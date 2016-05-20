@@ -1,7 +1,7 @@
 buildfase:
   stage: build
   script:
-    - mvn clean deploy
+    - /c/maven/bin/mvn clean deploy
   only:
     - master
 stages:
