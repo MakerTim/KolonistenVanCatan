@@ -1,12 +1,7 @@
-# This file is made by MakerTim, a modded version of Sansko1337
-# Last Changed 03-03-2016 01:52
 buildfase:
   stage: build
   script:
-    - echo "Testing is important"
-    - bash exit
-    - cd ..
-    - sh mvn clean deploy
+    - C:\maven\bin\mvn clean deploy
   only:
     - master
 stages:
