@@ -6,7 +6,7 @@
 	<groupId>nl.frii</groupId>
 	<artifactId>KolonistenVanCatan</artifactId>
 	<packaging>pom</packaging>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0</version>
 	<name>KolonistenVanCatan</name>
 	<url>frii.nl</url>
 
@@ -33,9 +33,9 @@
 	</dependencies>
 
 	<modules>
-		<module>Common</module>
-		<module>Client</module>
-		<module>Server</module>
+		<module>KvC-Common</module>
+		<module>KvC-Client</module>
+		<module>KvC-Server</module>
 	</modules>
 
 	<build>
