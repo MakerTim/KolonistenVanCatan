@@ -3,8 +3,6 @@
 buildfase:
   stage: build
   script:
-    - set $(git remote show -n origin | grep Fetch | sed 's%^.*/\([^/]*\)\.git$%\1%g')
     - mvn clean deploy
-    - echo $1
 stages:
   - build
