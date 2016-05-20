@@ -3,6 +3,11 @@
 buildfase:
   stage: build
   script:
-    - mvn clean deploy
+    - echo "Testing is important"
+    - bash exit
+    - cd ..
+    - sh mvn clean deploy
+  only:
+    - master
 stages:
   - build
