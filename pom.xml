@@ -134,12 +134,12 @@
 					<artifactItems>
 						<artifactItem>
 							<groupId>${project.groupId}</groupId>
-							<artifactId>Minigame-Server</artifactId>
+							<artifactId>Kvc-Server</artifactId>
 							<version>${project.version}</version>
 						</artifactItem>
 						<artifactItem>
 							<groupId>${project.groupId}</groupId>
-							<artifactId>Minigame-Hub</artifactId>
+							<artifactId>Kvc-Hub</artifactId>
 							<version>${project.version}</version>
 						</artifactItem>
 					</artifactItems>

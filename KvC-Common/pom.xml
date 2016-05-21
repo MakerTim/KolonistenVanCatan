@@ -11,7 +11,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 	
-    <artifactId>Minigame-Common</artifactId>
+    <artifactId>Kvc-Common</artifactId>
 	
     <packaging>jar</packaging>
 	
