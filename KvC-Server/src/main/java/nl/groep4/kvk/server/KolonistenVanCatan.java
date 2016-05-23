@@ -13,11 +13,13 @@ public class KolonistenVanCatan implements nl.groep4.kvk.common.KolonistenVanCat
 	@Override
 	public void registerClient(Client client) throws RemoteException {
 		clients.add(client);
+		client.logFine("Registerd client");
 	}
 
 	@Override
 	public void unregisterClient(Client client) throws RemoteException {
 		clients.remove(client);
+		client.logFine("Unregisterd client");
 	}
 
 }
