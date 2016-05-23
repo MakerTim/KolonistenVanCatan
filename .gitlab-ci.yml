@@ -3,7 +3,7 @@ buildfase:
   script:
     - /c/maven/bin/mvn clean install
     - curl -T "./KvC-Client/target/KvC-Client.jar" ftp://www-data:$ftppass@imineserver.nl:2100/files/kvc/
-    - curl -T "./KvC-Server/target/KvC-Client.jar" ftp://www-data:$ftppass@imineserver.nl:2100/files/kvc/
+    - curl -T "./KvC-Server/target/KvC-Server.jar" ftp://www-data:$ftppass@imineserver.nl:2100/files/kvc/
   only:
     - master
 stages:
