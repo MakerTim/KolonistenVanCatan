@@ -1,5 +1,13 @@
 package nl.groep4.kvc.common;
 
-public interface Player {
+import java.rmi.Remote;
+
+import nl.groep4.kvc.common.enumeration.Color;
+
+public interface Player extends Remote {
+
+	public Color getColor();
+
+	public void setColor(Color color);
 
 }
