@@ -7,6 +7,8 @@ import java.rmi.RemoteException;
 public interface Client extends Remote, Serializable {
 
 	/**
+	 * Log iets naar de console op level FINE
+	 * 
 	 * @param msg
 	 *            De message die in een log naar client op Level#FINE
 	 * @throws RemoteException
@@ -16,6 +18,8 @@ public interface Client extends Remote, Serializable {
 	public void logFine(String msg) throws RemoteException;
 
 	/**
+	 * Log iets naar de console op level INFO
+	 * 
 	 * @param msg
 	 *            De message die in een log naar client op Level#INFO
 	 * @throws RemoteException
@@ -25,6 +29,8 @@ public interface Client extends Remote, Serializable {
 	public void logInfo(String msg) throws RemoteException;
 
 	/**
+	 * Log iets naar de console op level WARN
+	 * 
 	 * @param msg
 	 *            De message die in een log naar client op Level#WARNING
 	 * @throws RemoteException

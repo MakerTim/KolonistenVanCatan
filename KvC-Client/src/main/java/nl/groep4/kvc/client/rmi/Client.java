@@ -6,21 +6,19 @@ import java.util.logging.Logger;
 public class Client implements nl.groep4.kvc.common.Client {
 	private static final long serialVersionUID = -1934522345656512264L;
 
-	private Logger log = Logger.getGlobal();
-
 	@Override
 	public void logFine(String msg) throws RemoteException {
-		log.fine(msg);
+		Logger.getGlobal().fine(msg);
 	}
 
 	@Override
 	public void logInfo(String msg) throws RemoteException {
-		log.info(msg);
+		Logger.getGlobal().info(msg);
 	}
 
 	@Override
 	public void logWarn(String msg) throws RemoteException {
-		log.warning(msg);
+		Logger.getGlobal().warning(msg);
 	}
 
 }
