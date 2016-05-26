@@ -20,7 +20,7 @@ public class Button extends ImageView {
 			setImage(BUTTON_PRESSED_IMAGE);
 			onClick(mousePressed);
 		});
-		setOnMouseReleased(mouseLeave -> setImage(BUTTON_IMAGE));
+		setOnMouseReleased(mouseLeave -> setImage(BUTTON_HOVER_IMAGE));
 	}
 
 	public Button(String text) {
