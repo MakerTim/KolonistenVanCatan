@@ -26,6 +26,8 @@ public class ViewLobby extends Application {
 		// Build the lobby
 		layers.getChildren().addAll(getBackground(), getForeground(), getBrazier(), theGrid);
 		primaryStage.setScene(new Scene(layers));
+		primaryStage.setTitle("Kolonisten van Catan: Online");
+		primaryStage.setResizable(false);
 		primaryStage.show();
 		System.out.println("Showing lobby");
 	}
