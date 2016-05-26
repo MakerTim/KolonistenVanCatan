@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project 
+<project
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <modelVersion>4.0.0</modelVersion>
-	
-    <parent>
-        <groupId>nl.frii</groupId>
-        <artifactId>KolonistenVanCatan</artifactId>
-        <version>1.0</version>
-        <relativePath>../pom.xml</relativePath>
-    </parent>
-	
-    <artifactId>Kvc-Common</artifactId>
-	
-    <packaging>jar</packaging>
-	
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>nl.frii</groupId>
+		<artifactId>KolonistenVanCatan</artifactId>
+		<version>1.0</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<artifactId>KvC-Common</artifactId>
+
+	<packaging>jar</packaging>
+
 	<properties>
 		<maven.deploy.skip>true</maven.deploy.skip>
 	</properties>
-	
 </project>
