@@ -1,8 +1,10 @@
 package nl.groep4.kvc.client.view;
 
 import javafx.application.Application;
+import javafx.scene.ImageCursor;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -25,7 +27,9 @@ public class ViewLobby extends Application {
 
 		// Build the lobby
 		layers.getChildren().addAll(getBackground(), getForeground(), getBrazier(), theGrid);
-		primaryStage.setScene(new Scene(layers));
+		Scene scene = new Scene(layers);
+		scene.setCursor(new ImageCursor(new Image("img/etc/cursor.png")));
+		primaryStage.setScene(scene);
 		primaryStage.setTitle("Kolonisten van Catan: Online");
 		primaryStage.setResizable(false);
 		primaryStage.show();
