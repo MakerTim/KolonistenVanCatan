@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nl.groep4.kvc.common.Client;
+import nl.groep4.kvc.common.map.Map;
 
 public class KolonistenVanCatan implements nl.groep4.kvc.common.KolonistenVanCatan {
 
@@ -20,6 +21,11 @@ public class KolonistenVanCatan implements nl.groep4.kvc.common.KolonistenVanCat
 	public void unregisterClient(Client client) throws RemoteException {
 		clients.remove(client);
 		client.logFine("Unregisterd client");
+	}
+
+	@Override
+	public Map getMap() throws RemoteException {
+		return null;
 	}
 
 }
