@@ -6,7 +6,6 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
@@ -29,9 +28,9 @@ public class ViewLobby extends Application {
 		Button join = new Button("Join");
 		join.setLayoutX(425);
 		join.setLayoutY(500);
-		
+
 		theGrid.getChildren().add(join);
-		
+
 		// Build the lobby
 		layers.getChildren().addAll(getBackground(), getForeground(), getBrazier(), theGrid);
 		Scene scene = new Scene(layers);
