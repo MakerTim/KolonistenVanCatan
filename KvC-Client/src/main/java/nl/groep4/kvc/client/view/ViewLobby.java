@@ -9,10 +9,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import nl.groep4.kvc.client.view.elements.Button;
 
 public class ViewLobby extends Application {
+
+	public static final Font FONT = new Font("Impact", 22);
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -23,7 +26,7 @@ public class ViewLobby extends Application {
 		GridPane theGrid = new GridPane();
 
 		// Add all user interactables
-		theGrid.getChildren().add(new Button());
+		theGrid.getChildren().add(new Button("Join"));
 
 		// Build the lobby
 		layers.getChildren().addAll(getBackground(), getForeground(), getBrazier(), theGrid);
