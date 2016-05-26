@@ -23,11 +23,15 @@ public class ViewLobby extends Application {
 
 		// Build multiple layers for the design
 		Pane layers = new StackPane();
-		GridPane theGrid = new GridPane();
+		Pane theGrid = new Pane();
 
 		// Add all user interactables
-		theGrid.getChildren().add(new Button("Join"));
-
+		Button join = new Button("Join");
+		join.setLayoutX(425);
+		join.setLayoutY(500);
+		
+		theGrid.getChildren().add(join);
+		
 		// Build the lobby
 		layers.getChildren().addAll(getBackground(), getForeground(), getBrazier(), theGrid);
 		Scene scene = new Scene(layers);
