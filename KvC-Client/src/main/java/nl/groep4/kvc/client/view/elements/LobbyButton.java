@@ -2,11 +2,10 @@ package nl.groep4.kvc.client.view.elements;
 
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import nl.groep4.kvc.client.util.SoundUtil;
 
 public class LobbyButton extends TexturedButton {
-	
-	sound_onclick clickSound = new sound_onclick();
-	
+
 	private static final Image BUTTON_IMAGE = new Image("img/etc/button.png");
 	private static final Image BUTTON_HOVER_IMAGE = new Image("img/etc/button_hover.png");
 	private static final Image BUTTON_PRESSED_IMAGE = new Image("img/etc/button_pressed.png");
@@ -36,7 +35,7 @@ public class LobbyButton extends TexturedButton {
 
 	@Override
 	public void onClick(MouseEvent mce) {
-		clickSound.playSound("KvC-Client/src/main/resources/sound/clicksound.wav");
+		SoundUtil.playSound("sound/clicksound.wav");
 	}
 
 }
