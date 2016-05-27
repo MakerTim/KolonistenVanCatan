@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.scene.ImageCursor;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -12,6 +13,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import nl.groep4.kvc.client.view.elements.LobbyButton;
+import nl.groep4.kvc.client.view.elements.LobbyInputField;
 
 public class ViewLobby extends Application {
 
@@ -38,8 +40,23 @@ public class ViewLobby extends Application {
 	private Node buildFrom() {
 		Pane theGrid = new Pane();
 
-		Text ipLabel = new Text(350, 350, "Server IP");
+		Text ipLabel = new Text(330, 350, "Server IP");
+		TextField ipInput = new LobbyInputField(450, 320, "");
+		Text portLabel = new Text(330, 370, "Server port");
+		TextField portInput = new LobbyInputField(450, 345, "");
+		Text usernameLabel = new Text(330, 410, "Username");
+		Text nocolorLabel = new Text(330, 450, "No color");
+		Text confirmLabel = new Text(330, 470, "Confirm every action");
+		Text nosoundLabel = new Text(330, 490, "No sounds");
+
 		ipLabel.setFont(FONT);
+		ipInput.setFont(FONT);
+		portLabel.setFont(FONT);
+		portInput.setFont(FONT);
+		usernameLabel.setFont(FONT);
+		nocolorLabel.setFont(FONT);
+		confirmLabel.setFont(FONT);
+		nosoundLabel.setFont(FONT);
 
 		LobbyButton join = new LobbyButton("Join");
 		join.setLayoutX(425);
@@ -48,7 +65,8 @@ public class ViewLobby extends Application {
 
 		});
 
-		theGrid.getChildren().addAll(ipLabel, join);
+		theGrid.getChildren().addAll(ipLabel, ipInput, portLabel, portInput, usernameLabel, nocolorLabel, confirmLabel,
+				nosoundLabel, join);
 		return theGrid;
 	}
 
