@@ -9,31 +9,27 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import nl.groep4.kvc.client.view.ViewLobby;
 
-public class Button extends StackPane {
-
-	private static final Image BUTTON_IMAGE = new Image("img/etc/button.png");
-	private static final Image BUTTON_HOVER_IMAGE = new Image("img/etc/button_hover.png");
-	private static final Image BUTTON_PRESSED_IMAGE = new Image("img/etc/button_pressed.png");
+public abstract class TexturedButton extends StackPane {
 
 	protected Text label;
 
-	public Button() {
-		ImageView background = new ImageView(BUTTON_IMAGE);
+	public TexturedButton() {
+		ImageView background = new ImageView(getTexture());
 		label = new Text();
 		label.setFont(ViewLobby.FONT);
 		label.setFill(Color.WHITE);
 		label.setEffect(getShadowEffect());
-		setOnMouseEntered(mouseEnter -> background.setImage(BUTTON_HOVER_IMAGE));
-		setOnMouseExited(mouseLeave -> background.setImage(BUTTON_IMAGE));
+		setOnMouseEntered(mouseEnter -> background.setImage(getHoverTexture()));
+		setOnMouseExited(mouseLeave -> background.setImage(getTexture()));
 		setOnMousePressed(mousePressed -> {
-			background.setImage(BUTTON_PRESSED_IMAGE);
+			background.setImage(getClickTexture());
 			onClick(mousePressed);
 		});
-		setOnMouseReleased(mouseRelease -> background.setImage(BUTTON_HOVER_IMAGE));
+		setOnMouseReleased(mouseRelease -> background.setImage(getHoverTexture()));
 		getChildren().addAll(background, label);
 	}
 
-	public Button(String text) {
+	public TexturedButton(String text) {
 		// #ConstructorLover
 		this();
 		updateText(text);
@@ -47,9 +43,6 @@ public class Button extends StackPane {
 		return this.label.getText();
 	}
 
-	public void onClick(MouseEvent mce) {
-	}
-
 	private DropShadow getShadowEffect() {
 		DropShadow shadow = new DropShadow();
 		shadow.setOffsetX(3);
@@ -57,4 +50,12 @@ public class Button extends StackPane {
 		shadow.setColor(Color.BLACK);
 		return shadow;
 	}
+
+	public abstract Image getTexture();
+
+	public abstract Image getHoverTexture();
+
+	public abstract Image getClickTexture();
+
+	public abstract void onClick(MouseEvent mce);
 }

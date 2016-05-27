@@ -9,8 +9,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import nl.groep4.kvc.client.view.elements.Button;
+import nl.groep4.kvc.client.view.elements.LobbyButton;
 
 public class ViewLobby extends Application {
 
@@ -22,17 +23,9 @@ public class ViewLobby extends Application {
 
 		// Build multiple layers for the design
 		Pane layers = new StackPane();
-		Pane theGrid = new Pane();
-
-		// Add all user interactables
-		Button join = new Button("Join");
-		join.setLayoutX(425);
-		join.setLayoutY(500);
-
-		theGrid.getChildren().add(join);
 
 		// Build the lobby
-		layers.getChildren().addAll(getBackground(), getForeground(), getBrazier(), theGrid);
+		layers.getChildren().addAll(getBackground(), getForeground(), getBrazier(), buildFrom());
 		Scene scene = new Scene(layers);
 		scene.setCursor(new ImageCursor(new Image("img/etc/cursor.png")));
 		primaryStage.setScene(scene);
@@ -40,6 +33,23 @@ public class ViewLobby extends Application {
 		primaryStage.setResizable(false);
 		primaryStage.show();
 		System.out.println("Showing lobby");
+	}
+
+	private Node buildFrom() {
+		Pane theGrid = new Pane();
+
+		Text ipLabel = new Text(350, 350, "Server IP");
+		ipLabel.setFont(FONT);
+
+		LobbyButton join = new LobbyButton("Join");
+		join.setLayoutX(425);
+		join.setLayoutY(500);
+		join.setOnMouseClicked(click -> {
+
+		});
+
+		theGrid.getChildren().addAll(ipLabel, join);
+		return theGrid;
 	}
 
 	private Node getBackground() {
