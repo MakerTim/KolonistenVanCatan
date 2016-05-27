@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.scene.ImageCursor;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,9 +23,12 @@ public class ViewLobby extends Application {
 
 	public static final Font FONT = new Font("Impact", 22);
 
+	private TextField ipInput, portInput, usernameInput;
+	private CheckBox nocolorInput, confirmInput, nosoundInput;
+
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		System.out.println("Starting lobby");		
+		System.out.println("Starting lobby");
 
 		// Build multiple layers for the design
 		Pane layers = new StackPane();
@@ -40,7 +44,7 @@ public class ViewLobby extends Application {
 		primaryStage.setResizable(false);
 		primaryStage.show();
 		System.out.println("Showing lobby");
-		
+
 		SoundUtil.playSound("sound/themesongKvC.wav");
 		System.out.println("Playing themesong");
 	}
@@ -50,20 +54,20 @@ public class ViewLobby extends Application {
 
 		Text ipLabel = new Text(330, 350, "Server IP");
 		// REGEX: ipv4 adress or a (subd)domain name *including case
-		TextField ipInput = new LobbyMatchInputField(450, 320, "",
+		ipInput = new LobbyMatchInputField(450, 320, "",
 				"((?:[0-9]{1,3}\\.){3}[0-9]{1,3})|(([a-zA-Z0-9|-]+\\.)*[a-zA-Z0-9|-]+\\.[a-zA-Z]+)");
 		Text portLabel = new Text(330, 375, "Server port");
 		// REGEX: only numbers
-		TextField portInput = new LobbyFilterdInputField(450, 345, "", "[0-9]");
+		portInput = new LobbyFilterdInputField(450, 345, "", "[0-9]");
 		Text usernameLabel = new Text(330, 410, "Username");
 		// REGEX: only characters, capital charcaters or numbers
-		TextField usernameInput = new LobbyFilterdInputField(450, 380, "", "[a-zA-Z0-9]");
+		usernameInput = new LobbyFilterdInputField(450, 380, "", "[a-zA-Z0-9]");
 		Text nocolorLabel = new Text(330, 450, "No color");
-		Node nocolorInput = new LobbyCheckBox(540, 434, false);
+		nocolorInput = new LobbyCheckBox(540, 434, false);
 		Text confirmLabel = new Text(330, 470, "Confirm every action");
-		Node confirmInput = new LobbyCheckBox(540, 454, false);
+		confirmInput = new LobbyCheckBox(540, 454, false);
 		Text nosoundLabel = new Text(330, 490, "No sounds");
-		Node nosoundInput = new LobbyCheckBox(540, 474, false);
+		nosoundInput = new LobbyCheckBox(540, 474, false);
 		LobbyButton joinButton = new LobbyButton(425, 500, "Join");
 
 		ipLabel.setFont(FONT);
