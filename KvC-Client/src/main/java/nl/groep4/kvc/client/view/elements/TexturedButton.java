@@ -6,8 +6,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import nl.groep4.kvc.client.view.ViewLobby;
 
 public abstract class TexturedButton extends StackPane {
 
@@ -16,7 +16,6 @@ public abstract class TexturedButton extends StackPane {
 	public TexturedButton() {
 		ImageView background = new ImageView(getTexture());
 		label = new Text();
-		label.setFont(ViewLobby.FONT);
 		label.setFill(Color.WHITE);
 		label.setEffect(getShadowEffect());
 		setOnMouseEntered(mouseEnter -> background.setImage(getHoverTexture()));
@@ -33,6 +32,10 @@ public abstract class TexturedButton extends StackPane {
 		// #ConstructorLover
 		this();
 		updateText(text);
+	}
+
+	public void setFont(Font font) {
+		label.setFont(font);
 	}
 
 	public void updateText(String text) {

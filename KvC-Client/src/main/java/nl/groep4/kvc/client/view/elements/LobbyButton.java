@@ -18,6 +18,12 @@ public class LobbyButton extends TexturedButton {
 		super(text);
 	}
 
+	public LobbyButton(int xPos, int yPos, String text) {
+		super(text);
+		this.setLayoutX(xPos);
+		this.setLayoutY(yPos);
+	}
+
 	@Override
 	public Image getTexture() {
 		return BUTTON_IMAGE;

@@ -6,6 +6,10 @@ import javax.sound.sampled.Clip;
 
 public class SoundUtil {
 
+	public static void playError() {
+		playSound("sound/no.wav");
+	}
+
 	public static void playSound(String soundName) {
 		try {
 			AudioInputStream audioInputStream = AudioSystem

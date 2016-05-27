@@ -13,7 +13,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import nl.groep4.kvc.client.view.elements.LobbyButton;
-import nl.groep4.kvc.client.view.elements.LobbyInputField;
+import nl.groep4.kvc.client.view.elements.LobbyCheckBox;
+import nl.groep4.kvc.client.view.elements.LobbyFilterdInputField;
+import nl.groep4.kvc.client.view.elements.LobbyMatchInputField;
 
 public class ViewLobby extends Application {
 
@@ -28,6 +30,8 @@ public class ViewLobby extends Application {
 
 		// Build the lobby
 		layers.getChildren().addAll(getBackground(), getForeground(), getBrazier(), buildFrom());
+
+		// Setup the window
 		Scene scene = new Scene(layers);
 		scene.setCursor(new ImageCursor(new Image("img/etc/cursor.png")));
 		primaryStage.setScene(scene);
@@ -41,32 +45,37 @@ public class ViewLobby extends Application {
 		Pane theGrid = new Pane();
 
 		Text ipLabel = new Text(330, 350, "Server IP");
-		TextField ipInput = new LobbyInputField(450, 320, "");
-		Text portLabel = new Text(330, 370, "Server port");
-		TextField portInput = new LobbyInputField(450, 345, "");
+		// REGEX: ipv4 adress or a (subd)domain name *including case
+		TextField ipInput = new LobbyMatchInputField(450, 320, "",
+				"((?:[0-9]{1,3}\\.){3}[0-9]{1,3})|(([a-zA-Z0-9|-]+\\.)*[a-zA-Z0-9|-]+\\.[a-zA-Z]+)");
+		Text portLabel = new Text(330, 375, "Server port");
+		// REGEX: only numbers
+		TextField portInput = new LobbyFilterdInputField(450, 345, "", "[0-9]");
 		Text usernameLabel = new Text(330, 410, "Username");
+		// REGEX: only characters, capital charcaters or numbers
+		TextField usernameInput = new LobbyFilterdInputField(450, 380, "", "[a-zA-Z0-9]");
 		Text nocolorLabel = new Text(330, 450, "No color");
+		Node nocolorInput = new LobbyCheckBox(540, 434, false);
 		Text confirmLabel = new Text(330, 470, "Confirm every action");
+		Node confirmInput = new LobbyCheckBox(540, 454, false);
 		Text nosoundLabel = new Text(330, 490, "No sounds");
+		Node nosoundInput = new LobbyCheckBox(540, 474, false);
+		LobbyButton joinButton = new LobbyButton(425, 500, "Join");
 
 		ipLabel.setFont(FONT);
 		ipInput.setFont(FONT);
 		portLabel.setFont(FONT);
 		portInput.setFont(FONT);
+		portInput.setText("1099");
 		usernameLabel.setFont(FONT);
+		usernameInput.setFont(FONT);
 		nocolorLabel.setFont(FONT);
 		confirmLabel.setFont(FONT);
 		nosoundLabel.setFont(FONT);
+		joinButton.setFont(FONT);
 
-		LobbyButton join = new LobbyButton("Join");
-		join.setLayoutX(425);
-		join.setLayoutY(500);
-		join.setOnMouseClicked(click -> {
-
-		});
-
-		theGrid.getChildren().addAll(ipLabel, ipInput, portLabel, portInput, usernameLabel, nocolorLabel, confirmLabel,
-				nosoundLabel, join);
+		theGrid.getChildren().addAll(ipLabel, ipInput, portLabel, portInput, usernameLabel, usernameInput, nocolorLabel,
+				nocolorInput, confirmLabel, confirmInput, nosoundLabel, nosoundInput, joinButton);
 		return theGrid;
 	}
 
