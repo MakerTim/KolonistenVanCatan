@@ -12,6 +12,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import nl.groep4.kvc.client.util.SoundUtil;
 import nl.groep4.kvc.client.view.elements.LobbyButton;
 import nl.groep4.kvc.client.view.elements.LobbyCheckBox;
 import nl.groep4.kvc.client.view.elements.LobbyFilterdInputField;
@@ -23,7 +24,7 @@ public class ViewLobby extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		System.out.println("Starting lobby");
+		System.out.println("Starting lobby");		
 
 		// Build multiple layers for the design
 		Pane layers = new StackPane();
@@ -39,6 +40,9 @@ public class ViewLobby extends Application {
 		primaryStage.setResizable(false);
 		primaryStage.show();
 		System.out.println("Showing lobby");
+		
+		SoundUtil.playSound("sound/themesongKvC.wav");
+		System.out.println("Playing themesong");
 	}
 
 	private Node buildFrom() {
