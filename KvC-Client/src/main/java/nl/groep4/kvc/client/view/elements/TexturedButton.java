@@ -29,7 +29,6 @@ public abstract class TexturedButton extends StackPane {
 	}
 
 	public TexturedButton(String text) {
-		// #ConstructorLover
 		this();
 		updateText(text);
 	}

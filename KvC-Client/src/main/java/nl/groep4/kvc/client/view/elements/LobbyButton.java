@@ -10,6 +10,8 @@ public class LobbyButton extends TexturedButton {
 	private static final Image BUTTON_HOVER_IMAGE = new Image("img/etc/button_hover.png");
 	private static final Image BUTTON_PRESSED_IMAGE = new Image("img/etc/button_pressed.png");
 
+	private Runnable todo;
+
 	public LobbyButton() {
 		super();
 	}
@@ -42,6 +44,13 @@ public class LobbyButton extends TexturedButton {
 	@Override
 	public void onClick(MouseEvent mce) {
 		SoundUtil.playSound("sound/clicksound.wav");
+		if (todo != null) {
+			todo.run();
+		}
+	}
+
+	public void registerClick(Runnable todo) {
+		this.todo = todo;
 	}
 
 }

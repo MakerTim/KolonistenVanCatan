@@ -4,19 +4,27 @@ import nl.groep4.kvc.client.util.SoundUtil;
 
 public class LobbyMatchInputField extends LobbyInputField {
 
+	private String regex;
+
 	public LobbyMatchInputField(String regex) {
 		super();
-		registerCheck(regex);
+		this.regex = regex;
+		registerCheck();
 	}
 
 	public LobbyMatchInputField(int xPos, int yPos, String text, String regex) {
 		super(xPos, yPos, text);
-		registerCheck(regex);
+		this.regex = regex;
+		registerCheck();
 	}
 
-	private void registerCheck(String regex) {
+	public String getRegex() {
+		return this.regex;
+	}
+
+	private void registerCheck() {
 		focusedProperty().addListener(change -> {
-			if (!isFocused() && !getText().matches(regex) && !getText().isEmpty()) {
+			if (!isFocused() && !getText().matches(getRegex()) && !getText().isEmpty()) {
 				requestFocus();
 				SoundUtil.playError();
 			}

@@ -13,6 +13,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import nl.groep4.kvc.client.controller.LobbyController;
 import nl.groep4.kvc.client.util.SoundUtil;
 import nl.groep4.kvc.client.view.elements.LobbyButton;
 import nl.groep4.kvc.client.view.elements.LobbyCheckBox;
@@ -81,10 +82,39 @@ public class ViewLobby extends Application {
 		confirmLabel.setFont(FONT);
 		nosoundLabel.setFont(FONT);
 		joinButton.setFont(FONT);
+		joinButton.registerClick(() -> onConnectClick());
 
 		theGrid.getChildren().addAll(ipLabel, ipInput, portLabel, portInput, usernameLabel, usernameInput, nocolorLabel,
 				nocolorInput, confirmLabel, confirmInput, nosoundLabel, nosoundInput, joinButton);
 		return theGrid;
+	}
+
+	public void onConnectClick() {
+		LobbyController.connect(this);
+	}
+
+	public String getIpInput() {
+		return ipInput.getText();
+	}
+
+	public int getPortInput() {
+		return Integer.parseInt(portInput.getText());
+	}
+
+	public String getUsernameInput() {
+		return usernameInput.getText();
+	}
+
+	public boolean getNocolorInput() {
+		return nocolorInput.isSelected();
+	}
+
+	public boolean getNosoundInput() {
+		return nosoundInput.isSelected();
+	}
+
+	public boolean getConfirmInput() {
+		return confirmInput.isSelected();
 	}
 
 	private Node getBackground() {
