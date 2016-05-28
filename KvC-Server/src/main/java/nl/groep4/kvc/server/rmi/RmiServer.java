@@ -5,6 +5,9 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
+import nl.groep4.kvc.common.KvCStaticNaming;
+import nl.groep4.kvc.server.model.ServerLobby;
+
 public class RmiServer {
 
 	/**
@@ -16,9 +19,9 @@ public class RmiServer {
 	 */
 	public static void init(int port) {
 		try {
-			Remote kvcSkeleton = UnicastRemoteObject.exportObject(new nl.groep4.kvc.server.KolonistenVanCatan(), 0);
+			Remote lobbySkeleton = UnicastRemoteObject.exportObject(new ServerLobby(), 0);
 			Registry registry = LocateRegistry.createRegistry(port);
-			registry.rebind("kvc", kvcSkeleton);
+			registry.rebind(KvCStaticNaming.LOBBY_KEY, lobbySkeleton);
 		} catch (Exception ex) {
 			System.err.println(ex);
 		}

@@ -9,9 +9,13 @@ import java.rmi.registry.Registry;
 import nl.groep4.kvc.client.model.Player;
 import nl.groep4.kvc.client.view.ExceptionDialog;
 import nl.groep4.kvc.client.view.ViewLobby;
+import nl.groep4.kvc.common.KvCStaticNaming;
 import nl.groep4.kvc.common.Lobby;
 
-public class LobbyController {
+public final class LobbyController {
+
+	private LobbyController() {
+	}
 
 	public static boolean connect(ViewLobby viewLobby) {
 		String ip = "";
@@ -31,7 +35,7 @@ public class LobbyController {
 
 			// Connect to Server
 			Registry registry = LocateRegistry.getRegistry(ip, port);
-			Lobby lobby = (Lobby) registry.lookup("KvCLobby");
+			Lobby lobby = (Lobby) registry.lookup(KvCStaticNaming.LOBBY_KEY);
 			// Register self
 			lobby.registerPlayer(new Player(username));
 		} catch (UnknownHostException ex) {
@@ -45,14 +49,13 @@ public class LobbyController {
 			ExceptionDialog.warning(ex.getMessage(), ex.getMessage(), "");
 			return false;
 		} catch (RemoteException ex) {
-			ExceptionDialog.warning("Server not found", "The server you are looking for is not found",
-					"There is no server found on this ip/port combo.");
+			ExceptionDialog.error(ex);
+			//ExceptionDialog.warning("Server not found", "The server you are looking for is not found", "There is no server found on this ip/port combo.");
 			return false;
 		} catch (Exception ex) {
 			ExceptionDialog.error(ex);
 			return false;
 		}
-
 		return true;
 	}
 
