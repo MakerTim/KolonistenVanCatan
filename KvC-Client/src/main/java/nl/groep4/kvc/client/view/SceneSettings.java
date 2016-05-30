@@ -9,6 +9,12 @@ import javafx.scene.text.Text;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.view.elements.LobbyButton;
 
+/**
+ * Configuration Scene
+ * 
+ * @version 1.0
+ * @author Luc
+ **/
 public class SceneSettings implements SceneHolder {
 
     @Override

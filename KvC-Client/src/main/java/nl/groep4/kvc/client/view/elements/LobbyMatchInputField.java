@@ -3,6 +3,12 @@ package nl.groep4.kvc.client.view.elements;
 import javafx.scene.paint.Color;
 import nl.groep4.kvc.client.util.SoundUtil;
 
+/**
+ * InputField where a regulair expression determines if field is valid or not
+ * 
+ * @version 1.0
+ * @author Tim
+ **/
 public class LobbyMatchInputField extends LobbyInputField {
 
     private String regex;

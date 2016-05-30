@@ -10,6 +10,12 @@ import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 
+/**
+ * InputField with a default style to fit in the lobby
+ * 
+ * @version 1.0
+ * @author Tim
+ **/
 public class LobbyInputField extends TextField {
 
     public LobbyInputField() {

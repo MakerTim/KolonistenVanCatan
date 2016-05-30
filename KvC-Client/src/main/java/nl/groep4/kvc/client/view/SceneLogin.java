@@ -18,6 +18,12 @@ import nl.groep4.kvc.client.view.elements.LobbyFilterdInputField;
 import nl.groep4.kvc.client.view.elements.LobbyMatchInputField;
 import nl.groep4.kvc.common.KvCStatics;
 
+/**
+ * Builds the Scene for logging in to servers - mainscreen
+ * 
+ * @version 1.0
+ * @author Tim
+ **/
 public class SceneLogin implements SceneHolder {
 
     private Stage parent;

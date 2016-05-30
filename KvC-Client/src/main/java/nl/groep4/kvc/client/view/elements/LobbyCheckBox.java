@@ -2,6 +2,12 @@ package nl.groep4.kvc.client.view.elements;
 
 import javafx.scene.control.CheckBox;
 
+/**
+ * Wrapper for CheckBox
+ * 
+ * @version 1.0
+ * @author Tim
+ **/
 public class LobbyCheckBox extends CheckBox {
 
     public LobbyCheckBox() {

@@ -4,6 +4,12 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import nl.groep4.kvc.client.util.SoundUtil;
 
+/**
+ * Lobby buttons, extension of {@link TexturedButton}
+ * 
+ * @version 1.0
+ * @author Tim
+ **/
 public class LobbyButton extends TexturedButton {
 
     private static final Image BUTTON_IMAGE = new Image("img/etc/button.png");

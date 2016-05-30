@@ -3,6 +3,12 @@ package nl.groep4.kvc.client.view.elements;
 import javafx.scene.paint.Color;
 import nl.groep4.kvc.client.util.SoundUtil;
 
+/**
+ * InputField where only sertain input is allowd
+ * 
+ * @version 1.0
+ * @author Tim
+ **/
 public class LobbyFilterdInputField extends LobbyInputField {
 
     public LobbyFilterdInputField(String regex) {

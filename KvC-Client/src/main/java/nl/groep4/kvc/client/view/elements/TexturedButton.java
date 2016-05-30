@@ -9,6 +9,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+/**
+ * Button class what makes a combination of images looks like a real button
+ * 
+ * @version 1.0
+ * @author Tim
+ **/
 public abstract class TexturedButton extends StackPane {
 
     protected Text label;
