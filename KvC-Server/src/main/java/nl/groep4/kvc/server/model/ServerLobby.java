@@ -27,6 +27,10 @@ public class ServerLobby implements Lobby {
 		if (ret == null) {
 			players.add(ret = pl);
 			// TODO: ensure no dube color
+			System.out.printf("Player %s has connected.\n", pl.getUsername());
+		} else {
+			System.out.printf("Player %s reconnected.\n", pl.getUsername());
+
 		}
 		return ret;
 	}
