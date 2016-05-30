@@ -58,7 +58,10 @@ public class ViewLobby extends Application {
 	Pane theGrid = new Pane();
 
 	Text ipLabel = new Text(330, 350, "Server IP");
-	/* REGEX: ipv4 adress or a (subd)domain name *including case */
+	/*
+	 * REGEX: ipv4 adress or a (subd)domain name *including case or
+	 * 'localhost'
+	 */
 	ipInput = new LobbyMatchInputField(450, 320, "",
 		"((?:[0-9]{1,3}\\.){3}[0-9]{1,3})|(([a-zA-Z0-9|-]+\\.)*[a-zA-Z0-9|-]+\\.[a-zA-Z]+)|(localhost)");
 	Text portLabel = new Text(330, 375, "Server port");

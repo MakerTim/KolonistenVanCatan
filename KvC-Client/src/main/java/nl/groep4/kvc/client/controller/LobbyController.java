@@ -26,17 +26,17 @@ public final class LobbyController {
 	    port = viewLobby.getPortInput();
 	    username = viewLobby.getUsernameInput().trim();
 
-	    // Check if valid IP
+	    /* Check if valid IP */
 	    InetAddress.getByName(ip);
-	    // Check if name is empty
+	    /* Check if name is empty */
 	    if (username.isEmpty()) {
 		throw new IllegalArgumentException("Username cannot be empty.");
 	    }
 
-	    // Connect to Server
+	    /* Connect to Server */
 	    Registry registry = LocateRegistry.getRegistry(ip, port);
 	    Lobby lobby = (Lobby) registry.lookup(KvCStaticNaming.LOBBY_KEY);
-	    // Register self
+	    /* Register self */
 	    lobby.registerPlayer(new Player(username));
 	} catch (UnknownHostException ex) {
 	    ExceptionDialog.warning("IP is not a valid ip address", "No valid IP",
@@ -50,9 +50,9 @@ public final class LobbyController {
 	    return false;
 	} catch (RemoteException ex) {
 	    ExceptionDialog.error(ex);
-	    // ExceptionDialog.warning("Server not found", "The server you are
-	    // looking for is not found", "There is no server found on this
-	    // ip/port combo.");
+	    // ExceptionDialog.warning("Server not found",
+	    // "The server you are looking for is not found",
+	    // "There is no server found on this ip/port combo.");
 	    return false;
 	} catch (Exception ex) {
 	    ExceptionDialog.error(ex);
