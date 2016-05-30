@@ -16,4 +16,8 @@ public class SceneUtil {
     public static Node getLobbyBrazier() {
 	return new ImageView("img/lobby/brazier.gif");
     }
+
+    public static Node getLobbySettings() {
+	return new ImageView("img/lobby/menu_settings.png");
+    }
 }
