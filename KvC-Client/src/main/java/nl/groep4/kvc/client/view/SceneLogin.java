@@ -1,28 +1,26 @@
 package nl.groep4.kvc.client.view;
 
-import javafx.application.Application;
 import javafx.scene.ImageCursor;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import nl.groep4.kvc.client.controller.LobbyController;
-import nl.groep4.kvc.client.util.SoundUtil;
+import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.view.elements.LobbyButton;
 import nl.groep4.kvc.client.view.elements.LobbyCheckBox;
 import nl.groep4.kvc.client.view.elements.LobbyFilterdInputField;
 import nl.groep4.kvc.client.view.elements.LobbyMatchInputField;
+import nl.groep4.kvc.common.KvCStatcis;
 
-public class ViewLobby extends Application {
+public class SceneLogin implements SceneHolder {
 
-    public static final Font FONT = new Font("Impact", 22);
+    private Stage parent;
 
     private TextField ipInput;
     private TextField portInput;
@@ -31,39 +29,28 @@ public class ViewLobby extends Application {
     private CheckBox confirmInput;
     private CheckBox nosoundInput;
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-	System.out.println("Starting lobby");
+    public SceneLogin(Stage stage) {
+	this.parent = stage;
+    }
 
+    @Override
+    public Scene getScene() {
 	/* Build multiple layers for the design */
 	Pane layers = new StackPane();
 
 	/* Build the lobby */
-	layers.getChildren().addAll(getBackground(), getForeground(), getBrazier(), buildFrom());
-
-	/* Setup the window */
+	layers.getChildren().addAll(SceneUtil.getLobbbyBackground(), SceneUtil.getLobbyForeground(),
+		SceneUtil.getLobbyBrazier(), buildFrom());
 	Scene scene = new Scene(layers);
 	scene.setCursor(new ImageCursor(new Image("img/etc/cursor.png")));
-	primaryStage.setScene(scene);
-	primaryStage.setTitle("Kolonisten van Catan: Online");
-	primaryStage.setResizable(false);
-	primaryStage.show();
-	System.out.println("Showing lobby");
-
-	SoundUtil.playSound("sound/themesongKvC.wav");
-	System.out.println("Playing themesong");
+	return scene;
     }
 
     private Node buildFrom() {
 	Pane theGrid = new Pane();
 
 	Text ipLabel = new Text(330, 350, "Server IP");
-	/*
-	 * REGEX: ipv4 adress or a (subd)domain name *including case or
-	 * 'localhost'
-	 */
-	ipInput = new LobbyMatchInputField(450, 320, "",
-		"((?:[0-9]{1,3}\\.){3}[0-9]{1,3})|(([a-zA-Z0-9|-]+\\.)*[a-zA-Z0-9|-]+\\.[a-zA-Z]+)|(localhost)");
+	ipInput = new LobbyMatchInputField(450, 320, "", KvCStatcis.REGEX_IP);
 	Text portLabel = new Text(330, 375, "Server port");
 	/* REGEX: only numbers */
 	portInput = new LobbyFilterdInputField(450, 345, "", "[0-9]");
@@ -79,19 +66,20 @@ public class ViewLobby extends Application {
 	LobbyButton joinButton = new LobbyButton(425, 500, "Join");
 	LobbyButton settingsButton = new LobbyButton(13, 650, "Settings");
 
-	ipLabel.setFont(FONT);
-	ipInput.setFont(FONT);
-	portLabel.setFont(FONT);
-	portInput.setFont(FONT);
+	ipLabel.setFont(ViewMaster.FONT);
+	ipInput.setFont(ViewMaster.FONT);
+	portLabel.setFont(ViewMaster.FONT);
+	portInput.setFont(ViewMaster.FONT);
 	portInput.setText("1099");
-	usernameLabel.setFont(FONT);
-	usernameInput.setFont(FONT);
-	nocolorLabel.setFont(FONT);
-	confirmLabel.setFont(FONT);
-	nosoundLabel.setFont(FONT);
-	joinButton.setFont(FONT);
+	usernameLabel.setFont(ViewMaster.FONT);
+	usernameInput.setFont(ViewMaster.FONT);
+	nocolorLabel.setFont(ViewMaster.FONT);
+	confirmLabel.setFont(ViewMaster.FONT);
+	nosoundLabel.setFont(ViewMaster.FONT);
+	joinButton.setFont(ViewMaster.FONT);
 	joinButton.registerClick(() -> onConnectClick());
-	settingsButton.setFont(FONT);
+	settingsButton.setFont(ViewMaster.FONT);
+	settingsButton.registerClick(() -> onSettingsClick());
 
 	theGrid.getChildren().addAll(ipLabel, ipInput, portLabel, portInput, usernameLabel, usernameInput, nocolorLabel,
 		nocolorInput, confirmLabel, confirmInput, nosoundLabel, nosoundInput, joinButton, settingsButton);
@@ -99,11 +87,13 @@ public class ViewLobby extends Application {
     }
 
     public void onConnectClick() {
-	LobbyController.connect(this);
+	if (LobbyController.connect(this)) {
+	    parent.setScene(new SceneLobby().getScene());
+	}
     }
 
     public void onSettingsClick() {
-
+	parent.setScene(new SceneSettings().getScene());
     }
 
     public String getIpInput() {
@@ -128,18 +118,6 @@ public class ViewLobby extends Application {
 
     public boolean getConfirmInput() {
 	return confirmInput.isSelected();
-    }
-
-    private Node getBackground() {
-	return new ImageView("img/lobby/menu_background.png");
-    }
-
-    private Node getForeground() {
-	return new ImageView("img/lobby/menu_foreground.png");
-    }
-
-    private Node getBrazier() {
-	return new ImageView("img/lobby/brazier.gif");
     }
 
 }

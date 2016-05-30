@@ -8,7 +8,7 @@ import java.rmi.registry.Registry;
 
 import nl.groep4.kvc.client.model.Player;
 import nl.groep4.kvc.client.view.ExceptionDialog;
-import nl.groep4.kvc.client.view.ViewLobby;
+import nl.groep4.kvc.client.view.SceneLogin;
 import nl.groep4.kvc.common.KvCStaticNaming;
 import nl.groep4.kvc.common.Lobby;
 
@@ -17,14 +17,14 @@ public final class LobbyController {
     private LobbyController() {
     }
 
-    public static boolean connect(ViewLobby viewLobby) {
+    public static boolean connect(SceneLogin sceneLogin) {
 	String ip = "";
 	int port = 1099;
 	String username = "";
 	try {
-	    ip = viewLobby.getIpInput();
-	    port = viewLobby.getPortInput();
-	    username = viewLobby.getUsernameInput().trim();
+	    ip = sceneLogin.getIpInput();
+	    port = sceneLogin.getPortInput();
+	    username = sceneLogin.getUsernameInput().trim();
 
 	    /* Check if valid IP */
 	    InetAddress.getByName(ip);
