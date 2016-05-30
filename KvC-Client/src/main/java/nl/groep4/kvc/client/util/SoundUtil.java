@@ -21,7 +21,9 @@ public class SoundUtil {
 	    clip = AudioSystem.getClip();
 	    clip.open(audioInputStream);
 	    FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+	    // clip.loop(x);
 	    // BooleanControl muteControl = (BooleanControl) clip.getControl(BooleanControl.Type.MUTE);
+	    // clip.stop();
 	    volume.setValue(-10F + SoundUtil.volume);
 	    clip.start();
 	} catch (Exception ex) {
