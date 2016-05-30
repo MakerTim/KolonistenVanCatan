@@ -3,7 +3,6 @@ package nl.groep4.kvc.client.view;
 import javafx.application.Application;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import nl.groep4.kvc.client.util.SoundUtil;
 
 /**
  * The application itself
