@@ -74,6 +74,7 @@ public class ViewLobby extends Application {
 	Text nosoundLabel = new Text(330, 490, "No sounds");
 	nosoundInput = new LobbyCheckBox(540, 474, false);
 	LobbyButton joinButton = new LobbyButton(425, 500, "Join");
+	LobbyButton settingsButton = new LobbyButton(13, 650, "Settings");
 
 	ipLabel.setFont(FONT);
 	ipInput.setFont(FONT);
@@ -87,14 +88,19 @@ public class ViewLobby extends Application {
 	nosoundLabel.setFont(FONT);
 	joinButton.setFont(FONT);
 	joinButton.registerClick(() -> onConnectClick());
+	settingsButton.setFont(FONT);
 
 	theGrid.getChildren().addAll(ipLabel, ipInput, portLabel, portInput, usernameLabel, usernameInput, nocolorLabel,
-		nocolorInput, confirmLabel, confirmInput, nosoundLabel, nosoundInput, joinButton);
+		nocolorInput, confirmLabel, confirmInput, nosoundLabel, nosoundInput, joinButton, settingsButton);
 	return theGrid;
     }
 
     public void onConnectClick() {
 	LobbyController.connect(this);
+    }
+
+    public void onSettingsClick() {
+
     }
 
     public String getIpInput() {
