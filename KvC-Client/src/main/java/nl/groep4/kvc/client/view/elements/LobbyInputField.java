@@ -12,24 +12,24 @@ import javafx.scene.paint.Color;
 
 public class LobbyInputField extends TextField {
 
-	public LobbyInputField() {
-		setBorderColor(Color.BLACK);
-	}
+    public LobbyInputField() {
+	setBorderColor(Color.BLACK);
+    }
 
-	public LobbyInputField(int xPos, int yPos, String text) {
-		this();
-		if (text == null) {
-			text = "";
-		}
-		this.setLayoutX(xPos);
-		this.setLayoutY(yPos);
-		this.setText(text);
+    public LobbyInputField(int xPos, int yPos, String text) {
+	this();
+	if (text == null) {
+	    text = "";
 	}
+	this.setLayoutX(xPos);
+	this.setLayoutY(yPos);
+	this.setText(text);
+    }
 
-	public void setBorderColor(Color color) {
-		setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
-		setBorder(new Border(new BorderStroke(null, null, color, null, null, null, BorderStrokeStyle.DASHED, null, null,
-				null, null)));
-		setPadding(Insets.EMPTY);
-	}
+    public void setBorderColor(Color color) {
+	setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
+	setBorder(new Border(new BorderStroke(null, null, color, null, null, null, BorderStrokeStyle.DASHED, null, null,
+		null, null)));
+	setPadding(Insets.EMPTY);
+    }
 }

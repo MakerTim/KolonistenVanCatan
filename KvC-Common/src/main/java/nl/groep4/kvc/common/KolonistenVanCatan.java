@@ -7,10 +7,10 @@ import nl.groep4.kvc.common.map.Map;
 
 public interface KolonistenVanCatan extends Remote {
 
-	public void registerClient(Client client) throws RemoteException;
+    public void registerClient(Client client) throws RemoteException;
 
-	public void unregisterClient(Client client) throws RemoteException;
+    public void unregisterClient(Client client) throws RemoteException;
 
-	public Map getMap() throws RemoteException;
+    public Map getMap() throws RemoteException;
 
 }

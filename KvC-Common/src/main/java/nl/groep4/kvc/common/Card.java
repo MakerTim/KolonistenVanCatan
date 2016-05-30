@@ -6,8 +6,8 @@ import nl.groep4.kvc.common.enumeration.CardType;
 
 public interface Card extends Remote {
 
-	public CardType getType();
+    public CardType getType();
 
-	public void use(Player player);
+    public void use(Player player);
 
 }

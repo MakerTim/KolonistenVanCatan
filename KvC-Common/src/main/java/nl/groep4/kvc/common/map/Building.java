@@ -5,8 +5,8 @@ import nl.groep4.kvc.common.interfaces.Ownable;
 
 public interface Building extends Ownable {
 
-	public BuildingType getBuildingType();
+    public BuildingType getBuildingType();
 
-	public void setBuildingType(BuildingType type);
+    public void setBuildingType(BuildingType type);
 
 }

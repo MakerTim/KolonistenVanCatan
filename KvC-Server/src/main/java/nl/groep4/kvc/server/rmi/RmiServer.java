@@ -10,21 +10,21 @@ import nl.groep4.kvc.server.model.ServerLobby;
 
 public class RmiServer {
 
-	/**
-	 * Maak een RMI registery aan en plaats daarin een KolonistenVanCatan object
-	 * 
-	 * @param port
-	 *            De port waar de server op luistert
-	 * @author MakerTim
-	 */
-	public static void init(int port) {
-		try {
-			Remote lobbySkeleton = UnicastRemoteObject.exportObject(new ServerLobby(), 0);
-			Registry registry = LocateRegistry.createRegistry(port);
-			registry.rebind(KvCStaticNaming.LOBBY_KEY, lobbySkeleton);
-		} catch (Exception ex) {
-			System.err.println(ex);
-		}
+    /**
+     * Maak een RMI registery aan en plaats daarin een KolonistenVanCatan object
+     * 
+     * @param port
+     *            De port waar de server op luistert
+     * @author MakerTim
+     */
+    public static void init(int port) {
+	try {
+	    Remote lobbySkeleton = UnicastRemoteObject.exportObject(new ServerLobby(), 0);
+	    Registry registry = LocateRegistry.createRegistry(port);
+	    registry.rebind(KvCStaticNaming.LOBBY_KEY, lobbySkeleton);
+	} catch (Exception ex) {
+	    System.err.println(ex);
 	}
+    }
 
 }

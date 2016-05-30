@@ -5,12 +5,12 @@ import nl.groep4.kvc.common.enumeration.Point;
 
 public interface Tile {
 
-	public String getPosition();
+    public String getPosition();
 
-	public Tile getRelativeTile(Direction direction);
+    public Tile getRelativeTile(Direction direction);
 
-	public Street getStreet(Direction direction);
+    public Street getStreet(Direction direction);
 
-	public Building getBuilding(Point point);
+    public Building getBuilding(Point point);
 
 }

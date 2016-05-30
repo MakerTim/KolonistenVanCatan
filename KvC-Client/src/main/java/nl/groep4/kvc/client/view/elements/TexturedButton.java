@@ -11,53 +11,53 @@ import javafx.scene.text.Text;
 
 public abstract class TexturedButton extends StackPane {
 
-	protected Text label;
+    protected Text label;
 
-	public TexturedButton() {
-		ImageView background = new ImageView(getTexture());
-		label = new Text();
-		label.setFill(Color.WHITE);
-		label.setEffect(getShadowEffect());
-		setOnMouseEntered(mouseEnter -> background.setImage(getHoverTexture()));
-		setOnMouseExited(mouseLeave -> background.setImage(getTexture()));
-		setOnMousePressed(mousePressed -> {
-			background.setImage(getClickTexture());
-			onClick(mousePressed);
-		});
-		setOnMouseReleased(mouseRelease -> background.setImage(getHoverTexture()));
-		getChildren().addAll(background, label);
-	}
+    public TexturedButton() {
+	ImageView background = new ImageView(getTexture());
+	label = new Text();
+	label.setFill(Color.WHITE);
+	label.setEffect(getShadowEffect());
+	setOnMouseEntered(mouseEnter -> background.setImage(getHoverTexture()));
+	setOnMouseExited(mouseLeave -> background.setImage(getTexture()));
+	setOnMousePressed(mousePressed -> {
+	    background.setImage(getClickTexture());
+	    onClick(mousePressed);
+	});
+	setOnMouseReleased(mouseRelease -> background.setImage(getHoverTexture()));
+	getChildren().addAll(background, label);
+    }
 
-	public TexturedButton(String text) {
-		this();
-		updateText(text);
-	}
+    public TexturedButton(String text) {
+	this();
+	updateText(text);
+    }
 
-	public void setFont(Font font) {
-		label.setFont(font);
-	}
+    public void setFont(Font font) {
+	label.setFont(font);
+    }
 
-	public void updateText(String text) {
-		this.label.setText(text);
-	}
+    public void updateText(String text) {
+	this.label.setText(text);
+    }
 
-	public String getText() {
-		return this.label.getText();
-	}
+    public String getText() {
+	return this.label.getText();
+    }
 
-	private DropShadow getShadowEffect() {
-		DropShadow shadow = new DropShadow();
-		shadow.setOffsetX(3);
-		shadow.setOffsetY(3);
-		shadow.setColor(Color.BLACK);
-		return shadow;
-	}
+    private DropShadow getShadowEffect() {
+	DropShadow shadow = new DropShadow();
+	shadow.setOffsetX(3);
+	shadow.setOffsetY(3);
+	shadow.setColor(Color.BLACK);
+	return shadow;
+    }
 
-	public abstract Image getTexture();
+    public abstract Image getTexture();
 
-	public abstract Image getHoverTexture();
+    public abstract Image getHoverTexture();
 
-	public abstract Image getClickTexture();
+    public abstract Image getClickTexture();
 
-	public abstract void onClick(MouseEvent mce);
+    public abstract void onClick(MouseEvent mce);
 }

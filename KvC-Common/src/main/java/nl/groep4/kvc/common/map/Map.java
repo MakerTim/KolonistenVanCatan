@@ -4,13 +4,13 @@ import java.util.List;
 
 public interface Map {
 
-	public List<Tile> getTiles();
+    public List<Tile> getTiles();
 
-	public void createMap();
+    public void createMap();
 
-	public int getRound();
+    public int getRound();
 
-	public List<Building> getAllBuildings();
+    public List<Building> getAllBuildings();
 
-	public List<Street> getAllStreets();
+    public List<Street> getAllStreets();
 }
