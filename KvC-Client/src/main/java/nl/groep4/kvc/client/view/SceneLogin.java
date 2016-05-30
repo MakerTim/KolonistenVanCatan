@@ -16,7 +16,7 @@ import nl.groep4.kvc.client.view.elements.LobbyButton;
 import nl.groep4.kvc.client.view.elements.LobbyCheckBox;
 import nl.groep4.kvc.client.view.elements.LobbyFilterdInputField;
 import nl.groep4.kvc.client.view.elements.LobbyMatchInputField;
-import nl.groep4.kvc.common.KvCStatcis;
+import nl.groep4.kvc.common.KvCStatics;
 
 public class SceneLogin implements SceneHolder {
 
@@ -50,7 +50,7 @@ public class SceneLogin implements SceneHolder {
 	Pane theGrid = new Pane();
 
 	Text ipLabel = new Text(330, 350, "Server IP");
-	ipInput = new LobbyMatchInputField(450, 320, "", KvCStatcis.REGEX_IP);
+	ipInput = new LobbyMatchInputField(450, 320, "", KvCStatics.REGEX_IP);
 	Text portLabel = new Text(330, 375, "Server port");
 	/* REGEX: only numbers */
 	portInput = new LobbyFilterdInputField(450, 345, "", "[0-9]");
