@@ -25,8 +25,6 @@ public class ViewMaster extends Application {
 	primaryStage.setResizable(false);
 	primaryStage.show();
 	System.out.println("Showing lobby");
-	SoundUtil.playSound("sound/themesongKvC.wav");
-	System.out.println("Playing themesong");
     }
 
 }
