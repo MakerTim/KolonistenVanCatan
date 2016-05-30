@@ -61,11 +61,9 @@ public class SceneLogin implements SceneHolder {
 	Text ipLabel = new Text(330, 350, "Server IP");
 	ipInput = new LobbyMatchInputField(450, 320, "", KvCStatics.REGEX_IP);
 	Text portLabel = new Text(330, 375, "Server port");
-	/* REGEX: only numbers */
-	portInput = new LobbyFilterdInputField(450, 345, "", "[0-9]");
+	portInput = new LobbyFilterdInputField(450, 345, "", KvCStatics.NUMERIC);
 	Text usernameLabel = new Text(330, 410, "Username");
-	/* REGEX: only characters, capital charcaters or numbers */
-	usernameInput = new LobbyFilterdInputField(450, 380, "", "[a-zA-Z0-9]");
+	usernameInput = new LobbyFilterdInputField(450, 380, "", KvCStatics.USERNAME);
 	Text nocolorLabel = new Text(330, 450, "No color");
 	nocolorInput = new LobbyCheckBox(540, 434, false);
 	Text confirmLabel = new Text(330, 470, "Confirm every action");

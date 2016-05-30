@@ -7,4 +7,9 @@ public class KvCStatics {
      */
     public static final String REGEX_IP = "((?:[0-9]{1,3}\\.){3}[0-9]{1,3})|(([a-zA-Z0-9|-]+\\.)*[a-zA-Z0-9|-]+\\.[a-zA-Z]+)|(localhost)";
 
+    /** REGEX: only numbers */
+    public static final String NUMERIC = "[0-9]";
+
+    /** REGEX: only characters, capital charcaters or numbers */
+    public static final String USERNAME = "[a-zA-Z0-9]";
 }
