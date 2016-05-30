@@ -17,7 +17,7 @@ public class LobbyFilterdInputField extends LobbyInputField {
 
     private void registerCheck(String regex) {
 	setOnKeyTyped(key -> {
-	    if (!key.getCharacter().equals("\t") && !key.getCharacter().matches(regex)) {
+	    if (!key.getCharacter().trim().equals("") && !key.getCharacter().matches(regex)) {
 		key.consume();
 		setBorderColor(Color.RED);
 		SoundUtil.playError();
