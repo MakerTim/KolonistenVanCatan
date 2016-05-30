@@ -24,8 +24,12 @@ public class ViewLobby extends Application {
 
 	public static final Font FONT = new Font("Impact", 22);
 
-	private TextField ipInput, portInput, usernameInput;
-	private CheckBox nocolorInput, confirmInput, nosoundInput;
+	private TextField ipInput;
+	private TextField portInput;
+	private TextField usernameInput;
+	private CheckBox nocolorInput;
+	private CheckBox confirmInput;
+	private CheckBox nosoundInput;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
