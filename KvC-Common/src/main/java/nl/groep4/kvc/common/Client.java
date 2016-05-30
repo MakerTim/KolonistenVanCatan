@@ -7,35 +7,26 @@ import java.rmi.RemoteException;
 public interface Client extends Remote, Serializable {
 
     /**
-     * Log iets naar de console op level FINE
+     * Logs data to the console on Fine level
      * 
-     * @param msg
-     *            De message die in een log naar client op Level#FINE
-     * @throws RemoteException
-     *             mocht er een remote probleem zijn
-     * @see java.util.logging.Level
+     * @version 1.0
+     * @author Tim
      */
     public void logFine(String msg) throws RemoteException;
 
     /**
-     * Log iets naar de console op level INFO
+     * Logs data to the console on Info level
      * 
-     * @param msg
-     *            De message die in een log naar client op Level#INFO
-     * @throws RemoteException
-     *             mocht er een remote probleem zijn
-     * @see java.util.logging.Level
+     * @version 1.0
+     * @author Tim
      */
     public void logInfo(String msg) throws RemoteException;
 
     /**
-     * Log iets naar de console op level WARN
+     * Logs data to the console on Warn level
      * 
-     * @param msg
-     *            De message die in een log naar client op Level#WARNING
-     * @throws RemoteException
-     *             mocht er een remote probleem zijn
-     * @see java.util.logging.Level
+     * @version 1.0
+     * @author Tim
      */
     public void logWarn(String msg) throws RemoteException;
 }
