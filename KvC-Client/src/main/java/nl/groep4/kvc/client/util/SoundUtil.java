@@ -4,7 +4,6 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
-import javax.sound.sampled.FloatControl.Type;
 
 public class SoundUtil {
 
@@ -21,7 +20,8 @@ public class SoundUtil {
 		    .getAudioInputStream(SoundUtil.class.getClassLoader().getResourceAsStream(soundName));
 	    clip = AudioSystem.getClip();
 	    clip.open(audioInputStream);
-	    FloatControl volume = (FloatControl) clip.getControl(Type.MASTER_GAIN);
+	    FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+	    // BooleanControl muteControl = (BooleanControl) clip.getControl(BooleanControl.Type.MUTE);
 	    volume.setValue(-10F + SoundUtil.volume);
 	    clip.start();
 	} catch (Exception ex) {
