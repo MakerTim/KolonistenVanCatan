@@ -1,5 +1,6 @@
 package nl.groep4.kvc.client.view.elements;
 
+import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import nl.groep4.kvc.client.util.SoundUtil;
 
@@ -22,6 +23,11 @@ public class LobbyFilterdInputField extends LobbyInputField {
     }
 
     private void registerCheck(String regex) {
+	setOnKeyPressed(key -> {
+	    if (key.getCode() == KeyCode.V && key.isControlDown()) {
+		key.consume();
+	    }
+	});
 	setOnKeyTyped(key -> {
 	    if (!key.getCharacter().trim().equals("") && !key.getCharacter().matches(regex)) {
 		key.consume();
