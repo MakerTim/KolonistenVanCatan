@@ -63,7 +63,7 @@
 						<configuration>
 							<artifactSet>
 								<includes>
-									<include>nl.frii:KvC-Common</include>
+									<include>*:*</include>
 								</includes>
 							</artifactSet>
 						</configuration>
