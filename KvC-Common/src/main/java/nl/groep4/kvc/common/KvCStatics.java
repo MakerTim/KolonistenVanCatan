@@ -1,6 +1,6 @@
 package nl.groep4.kvc.common;
 
-public class KvCStatcis {
+public class KvCStatics {
 
     /**
      * REGEX: ipv4 adress or a (subd)domain name *including case or 'localhost'
