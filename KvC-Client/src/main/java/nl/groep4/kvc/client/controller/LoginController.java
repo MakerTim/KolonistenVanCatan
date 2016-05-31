@@ -12,9 +12,9 @@ import nl.groep4.kvc.client.view.SceneLogin;
 import nl.groep4.kvc.common.KvCStaticNaming;
 import nl.groep4.kvc.common.Lobby;
 
-public final class LobbyController {
+public final class LoginController {
 
-    private LobbyController() {
+    private LoginController() {
     }
 
     public static boolean connect(SceneLogin sceneLogin) {

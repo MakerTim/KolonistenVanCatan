@@ -5,6 +5,13 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
+/**
+ * Controls the theme-song which is playing in the lobby.
+ * 
+ * @author Tim
+ * @version 1.0
+ */
+
 public class SoundUtil {
 
     private static float volume = 0F;

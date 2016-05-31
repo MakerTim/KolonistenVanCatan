@@ -8,6 +8,14 @@ import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
+/**
+ * Sets the lobby images, this includes background, foreground, brazier and
+ * menu-settings background.
+ * 
+ * @author Tim
+ * @version 1.0
+ */
+
 public class SceneUtil {
 
     private static Node background;

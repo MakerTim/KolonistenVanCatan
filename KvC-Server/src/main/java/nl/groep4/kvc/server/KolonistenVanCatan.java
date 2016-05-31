@@ -7,11 +7,21 @@ import java.util.List;
 import nl.groep4.kvc.common.Client;
 import nl.groep4.kvc.common.map.Map;
 
+/**
+ * Client registration and map retrieval
+ * 
+ * @version 1.0/
+ * @author Tim
+ *
+ */
 public class KolonistenVanCatan implements nl.groep4.kvc.common.KolonistenVanCatan {
 
     private List<Client> clients = new ArrayList<>();
 
     @Override
+    /**
+     * 
+     */
     public void registerClient(Client client) throws RemoteException {
 	clients.add(client);
 	client.logFine("Registerd client");

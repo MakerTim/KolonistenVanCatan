@@ -7,7 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
-import nl.groep4.kvc.client.controller.LobbyController;
+import nl.groep4.kvc.client.controller.LoginController;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.view.elements.LobbyButton;
 import nl.groep4.kvc.client.view.elements.LobbyCheckBox;
@@ -87,7 +87,7 @@ public class SceneLogin implements SceneHolder {
     }
 
     public void onConnectClick() {
-	if (LobbyController.connect(this)) {
+	if (LoginController.connect(this)) {
 	    ViewMaster.setScene(new SceneLobby().getScene());
 	}
     }
