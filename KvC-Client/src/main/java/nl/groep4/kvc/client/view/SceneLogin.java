@@ -47,7 +47,7 @@ public class SceneLogin implements SceneHolder {
 	/* Build the lobby */
 	layers.getChildren().addAll(SceneUtil.getLobbbyBackground(), SceneUtil.getLobbyForeground(),
 		SceneUtil.getLobbyBrazier(), buildFrom());
-	Scene scene = new Scene(layers);
+	Scene scene = new Scene(layers, 1000, 700);
 	scene.setCursor(new ImageCursor(new Image("img/etc/cursor.png")));
 	return scene;
     }
