@@ -68,7 +68,7 @@ public class SceneLogin implements SceneHolder {
 	Text nosoundLabel = new Text(330, 490, "No sounds");
 	nosoundInput = new LobbyCheckBox(540, 474, false);
 	LobbyButton joinButton = new LobbyButton(425, 500, "Join");
-	LobbyButton settingsButton = new LobbyButton(13, 650, "Settings");
+	LobbyButton settingsButton = new LobbyButton(13, 645, "Settings");
 
 	ipLabel.setFont(ViewMaster.FONT);
 	ipInput.setFont(ViewMaster.FONT);
