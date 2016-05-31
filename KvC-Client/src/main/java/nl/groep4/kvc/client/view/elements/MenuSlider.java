@@ -17,7 +17,7 @@ public class MenuSlider extends Slider {
     public MenuSlider(int xPos, int yPos, double min, double max, double value) {
 	this(xPos, yPos);
 	setMin(min);
-	setMax(value);
+	setMax(max);
 	setValue(value);
     }
 }

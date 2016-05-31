@@ -22,7 +22,7 @@ public interface Lobby extends Remote {
 
     public void unregisterPlayer(Player pl) throws RemoteException;
 
-    public void startSpel() throws RemoteException;
+    public void startGame() throws RemoteException;
 
     public void loadSafe(String safeFile) throws RemoteException;
 

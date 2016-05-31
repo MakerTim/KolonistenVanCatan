@@ -45,7 +45,7 @@ public final class LoginController {
 	    Registry registry = LocateRegistry.getRegistry(ip, port);
 	    lobby = (Lobby) registry.lookup(KvCStaticNaming.LOBBY_KEY);
 	    /* Register self */
-	    lobby.registerPlayer(PlayerController.setThePlayer(new Player(username)));
+	    PlayerController.setThePlayer(lobby.registerPlayer(new Player(username)));
 	} catch (UnknownHostException ex) {
 	    ExceptionDialog.warning("IP is not a valid ip address", "No valid IP",
 		    String.format("'%s' is not a valid ip address", ip));

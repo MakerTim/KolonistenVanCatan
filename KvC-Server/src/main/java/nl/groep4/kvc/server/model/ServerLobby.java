@@ -3,6 +3,7 @@ package nl.groep4.kvc.server.model;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import nl.groep4.kvc.common.Lobby;
 import nl.groep4.kvc.common.Player;
@@ -25,21 +26,16 @@ public class ServerLobby implements Lobby {
 
     @Override
     public Player registerPlayer(Player pl) {
-	Player ret = null;
-	for (Player player : players) {
-	    if (pl.getUsername() == player.getUsername()) {
-		ret = player;
-	    }
-	}
-	if (ret == null) {
-	    players.add(ret = pl);
-	    // TODO: ensure no dube color
-	    System.out.printf("Player %s has connected.\n", pl.getUsername());
-	} else {
+	Optional<Player> existingPlayer = players.stream().filter(player -> pl.getUsername() == player.getUsername())
+		.findFirst();
+	if (existingPlayer.isPresent()) {
 	    System.out.printf("Player %s reconnected.\n", pl.getUsername());
-
+	    return existingPlayer.get();
+	} else {
+	    players.add(pl);
+	    System.out.printf("Player %s has connected.\n", pl.getUsername());
+	    return pl;
 	}
-	return ret;
     }
 
     @Override
@@ -49,7 +45,7 @@ public class ServerLobby implements Lobby {
     }
 
     @Override
-    public void startSpel() {
+    public void startGame() {
 	// TODO
     }
 
@@ -60,12 +56,7 @@ public class ServerLobby implements Lobby {
 
     @Override
     public void setColor(Player player, Color color) {
-	boolean alreadyUsed = false;
-	for (Player pl : players) {
-	    if (pl.getColor() == color) {
-		alreadyUsed = true;
-	    }
-	}
+	boolean alreadyUsed = players.stream().filter(pl -> pl.getColor() == color).count() > 0;
 	if (!alreadyUsed) {
 	    player.setColor(color);
 	}

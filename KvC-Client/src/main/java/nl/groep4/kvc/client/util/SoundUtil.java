@@ -6,6 +6,7 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineEvent;
 
+import javafx.beans.InvalidationListener;
 import javafx.beans.binding.FloatExpression;
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.ReadOnlyFloatWrapper;
@@ -49,17 +50,21 @@ public class SoundUtil {
 	    clip.open(audioInputStream);
 	    FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 	    volume.setValue(-10F + SoundUtil.volume.get());
-	    SoundUtil.volume.addListener(change -> {
+	    InvalidationListener iListener = change -> {
 		if (clip.isActive()) {
 		    volume.setValue(-10F + SoundUtil.volume.get());
 		}
-	    });
+	    };
+	    SoundUtil.volume.addListener(iListener);
 	    clip.addLineListener(event -> {
 		if (event.getType() == LineEvent.Type.STOP) {
 		    event.getLine().close();
+		} else if (event.getType() == LineEvent.Type.CLOSE) {
+		    SoundUtil.volume.removeListener(iListener);
 		}
 	    });
 	    clip.start();
+	    return clip;
 	} catch (Exception ex) {
 	    ex.printStackTrace();
 	}
