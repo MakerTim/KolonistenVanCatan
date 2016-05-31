@@ -3,6 +3,7 @@ package nl.groep4.kvc.client.view;
 import javafx.application.Application;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import nl.groep4.kvc.client.util.SoundUtil;
 
 /**
  * The application itself
@@ -19,6 +20,8 @@ public class ViewMaster extends Application {
     public void start(Stage primaryStage) throws Exception {
 	System.out.println("Starting lobby");
 
+	SoundUtil.playThemesong();
+	System.out.println("Playing themesong");
 	primaryStage.setScene(new SceneLogin(primaryStage).getScene());
 	primaryStage.setTitle("Kolonisten van Catan: Online");
 	primaryStage.setResizable(false);
