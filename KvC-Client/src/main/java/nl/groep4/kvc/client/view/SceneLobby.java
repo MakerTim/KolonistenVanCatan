@@ -34,7 +34,7 @@ public class SceneLobby implements SceneHolder {
 	startGame.setFont(ViewMaster.FONT);
 	LobbyButton backButton = new LobbyButton(215, 550, "Back");
 	backButton.setFont(ViewMaster.FONT);
-	LobbyButton saveButton = new LobbyButton(615, 550, "Use Save");
+	LobbyButton saveButton = new LobbyButton(615, 550, "Load");
 	saveButton.setFont(ViewMaster.FONT);
 
 	startGame.registerClick(() -> {
