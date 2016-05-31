@@ -5,6 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.view.elements.LobbyButton;
@@ -28,6 +29,7 @@ public class SceneSettings implements SceneHolder {
 
 	Text settings = new Text(465, 120, "Settings");
 	settings.setFont(ViewMaster.FONT);
+	settings.setFill(Color.WHITE);
 
 	layers.getChildren().addAll(SceneUtil.getLobbbyBackground(), SceneUtil.getLobbySettings(),
 		SceneUtil.getLobbyBrazier(), buildFrom(), acceptSettings, settings);

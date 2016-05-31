@@ -14,13 +14,13 @@ public class SoundUtil {
 	playSound("sound/no.wav");
     }
 
-    public static void playTeamsong() {
-	stopTeamsong();
+    public static void playThemesong() {
+	stopThemesong();
 	teamsongKvC = playSound("sound/themesongKvC.wav");
 	teamsongKvC.loop(0);
     }
 
-    public static void stopTeamsong() {
+    public static void stopThemesong() {
 	if (teamsongKvC != null) {
 	    teamsongKvC.stop();
 	    teamsongKvC.flush();
