@@ -25,6 +25,8 @@ import nl.groep4.kvc.common.KvCStatics;
  **/
 public class SceneLogin implements SceneHolder {
 
+    private static Scene login;
+
     private TextField ipInput;
     private TextField portInput;
     private TextField usernameInput;
@@ -34,15 +36,18 @@ public class SceneLogin implements SceneHolder {
 
     @Override
     public Scene getScene() {
-	/* Build multiple layers for the design */
-	Pane layers = new StackPane();
+	if (login == null) {
+	    /* Build multiple layers for the design */
+	    Pane layers = new StackPane();
 
-	/* Build the lobby */
-	layers.getChildren().addAll(SceneUtil.getLobbbyBackground(), SceneUtil.getLobbyForeground(),
-		SceneUtil.getLobbyBrazier(), buildFrom());
-	Scene scene = new Scene(layers, 1000, 700);
-	scene.setCursor(new ImageCursor(new Image("img/etc/cursor.png")));
-	return scene;
+	    /* Build the lobby */
+	    layers.getChildren().addAll(SceneUtil.getLobbbyBackground(), SceneUtil.getLobbyForeground(),
+		    SceneUtil.getLobbyBrazier(), buildFrom());
+	    Scene scene = new Scene(layers, 1000, 700);
+	    scene.setCursor(new ImageCursor(new Image("img/etc/cursor.png")));
+	    login = scene;
+	}
+	return login;
     }
 
     private Node buildFrom() {
