@@ -3,6 +3,14 @@ package nl.groep4.kvc.client.util;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 
+/**
+ * Sets the lobby images, this includes background, foreground, brazier and
+ * menu-settings background.
+ * 
+ * @author Tim
+ * @version 1.0
+ */
+
 public class SceneUtil {
 
     private static Node background;
