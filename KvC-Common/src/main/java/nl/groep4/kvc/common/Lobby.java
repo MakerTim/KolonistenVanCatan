@@ -22,7 +22,7 @@ public interface Lobby extends Remote {
 
     public void startSpel() throws RemoteException;
 
-    public void loadSafe() throws RemoteException;
+    public void loadSafe(String safeFile) throws RemoteException;
 
     public void setColor(Player pl, Color color) throws RemoteException;
 

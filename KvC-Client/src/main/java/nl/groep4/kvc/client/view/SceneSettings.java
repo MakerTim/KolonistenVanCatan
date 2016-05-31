@@ -43,6 +43,10 @@ public class SceneSettings implements SceneHolder {
 	    }
 	});
 
+	acceptSettings.registerClick(() -> {
+	    ViewMaster.setScene(new SceneLogin().getScene());
+	});
+
 	Text settings = new Text(465, 120, "Settings");
 	settings.setFont(ViewMaster.FONT);
 	settings.setFill(Color.WHITE);
