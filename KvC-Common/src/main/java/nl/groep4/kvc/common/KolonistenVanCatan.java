@@ -16,13 +16,13 @@ public interface KolonistenVanCatan extends Remote {
      * Registers client machine to server
      * 
      */
-    public void registerClient(Client client) throws RemoteException;
+    public void registerClient(Player client) throws RemoteException;
 
     /**
      * Unregisters client machine from the server
      * 
      */
-    public void unregisterClient(Client client) throws RemoteException;
+    public void unregisterClient(Player client) throws RemoteException;
 
     /**
      * Retrieves map data from Map and displays it to player
