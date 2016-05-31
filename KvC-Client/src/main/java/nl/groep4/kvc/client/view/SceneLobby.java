@@ -1,7 +1,7 @@
 package nl.groep4.kvc.client.view;
 
 import javafx.scene.Scene;
-import nl.groep4.kvc.common.Lobby;
+import nl.groep4.kvc.client.controller.LobbyController;
 
 /**
  * 
@@ -12,14 +12,20 @@ import nl.groep4.kvc.common.Lobby;
 
 public class SceneLobby implements SceneHolder {
 
+    private LobbyController lobby;
+
     @Override
     public Scene getScene() {
 	// TODO: SoundUtil.stopTeamsong();
 	return null;
     }
 
-    public void update(Lobby lobby) {
+    public void update() {
 	// TODO: Everytime there is a update - then this method gets called
+    }
+
+    public void register(LobbyController lobbyController) {
+	this.lobby = lobbyController;
     }
 
 }

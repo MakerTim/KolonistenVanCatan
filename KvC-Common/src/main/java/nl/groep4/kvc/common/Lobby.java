@@ -20,6 +20,8 @@ public interface Lobby extends Remote {
 
     public Player registerPlayer(Player pl) throws RemoteException;
 
+    public void unregisterPlayer(Player pl) throws RemoteException;
+
     public void startSpel() throws RemoteException;
 
     public void loadSafe(String safeFile) throws RemoteException;

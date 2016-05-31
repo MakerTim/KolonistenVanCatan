@@ -1,5 +1,6 @@
 package nl.groep4.kvc.server.model;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +40,12 @@ public class ServerLobby implements Lobby {
 
 	}
 	return ret;
+    }
+
+    @Override
+    public void unregisterPlayer(Player pl) throws RemoteException {
+	System.out.printf("Player %s has been logged off.\n", pl.getUsername());
+	players.remove(pl);
     }
 
     @Override
