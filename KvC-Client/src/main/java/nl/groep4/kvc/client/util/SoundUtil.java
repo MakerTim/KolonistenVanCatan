@@ -42,11 +42,10 @@ public class SoundUtil {
     }
 
     public static Clip playSound(String soundName) {
-	Clip clip = null;
 	try {
 	    AudioInputStream audioInputStream = AudioSystem
 		    .getAudioInputStream(SoundUtil.class.getClassLoader().getResourceAsStream(soundName));
-	    clip = AudioSystem.getClip();
+	    Clip clip = AudioSystem.getClip();
 	    clip.open(audioInputStream);
 	    FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 	    volume.setValue(-10F + SoundUtil.volume.get());
@@ -64,7 +63,7 @@ public class SoundUtil {
 	} catch (Exception ex) {
 	    ex.printStackTrace();
 	}
-	return clip;
+	return null;
     }
 
     public static boolean themesongIsPlaying() {
