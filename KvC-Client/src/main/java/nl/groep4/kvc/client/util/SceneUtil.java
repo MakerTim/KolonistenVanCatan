@@ -5,19 +5,36 @@ import javafx.scene.image.ImageView;
 
 public class SceneUtil {
 
+    private static Node background;
+    private static Node forground;
+    private static Node brazier;
+    private static Node settings;
+
     public static Node getLobbbyBackground() {
-	return new ImageView("img/lobby/menu_background.png");
+	if (background == null) {
+	    background = new ImageView("img/lobby/menu_background.png");
+	}
+	return background;
     }
 
     public static Node getLobbyForeground() {
-	return new ImageView("img/lobby/menu_foreground.png");
+	if (forground == null) {
+	    forground = new ImageView("img/lobby/menu_foreground.png");
+	}
+	return forground;
     }
 
     public static Node getLobbyBrazier() {
-	return new ImageView("img/lobby/brazier.gif");
+	if (brazier == null) {
+	    brazier = new ImageView("img/lobby/brazier.gif");
+	}
+	return brazier;
     }
 
     public static Node getLobbySettings() {
-	return new ImageView("img/lobby/menu_settings.png");
+	if (settings == null) {
+	    settings = new ImageView("img/lobby/menu_settings.png");
+	}
+	return settings;
     }
 }
