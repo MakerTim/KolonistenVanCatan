@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.SoundUtil;
 import nl.groep4.kvc.client.view.elements.LobbyButton;
@@ -20,6 +21,11 @@ import nl.groep4.kvc.client.view.elements.LobbyButton;
 public class SceneSettings implements SceneHolder {
     private static final String PLAY = "Play Music";
     private static final String STOP = "Stop Music";
+    private Stage parent;
+
+    public SceneSettings(Stage parent) {
+	this.parent = parent;
+    }
 
     @Override
     public Scene getScene() {
@@ -41,6 +47,10 @@ public class SceneSettings implements SceneHolder {
 		SoundUtil.playThemesong();
 		music.updateText(STOP);
 	    }
+	});
+
+	acceptSettings.registerClick(() -> {
+	    parent.setScene(new SceneLogin(parent).getScene());
 	});
 
 	Text settings = new Text(465, 120, "Settings");
