@@ -10,14 +10,14 @@ import nl.groep4.kvc.client.util.SoundUtil;
  * @version 1.0
  * @author Tim
  **/
-public class LobbyFilterdInputField extends LobbyInputField {
+public class MenuFilterdInputField extends MenuInputField {
 
-    public LobbyFilterdInputField(String regex) {
+    public MenuFilterdInputField(String regex) {
 	super();
 	registerCheck(regex);
     }
 
-    public LobbyFilterdInputField(int xPos, int yPos, String text, String regex) {
+    public MenuFilterdInputField(int xPos, int yPos, String text, String regex) {
 	super(xPos, yPos, text);
 	registerCheck(regex);
     }

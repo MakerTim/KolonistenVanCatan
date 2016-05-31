@@ -9,17 +9,17 @@ import nl.groep4.kvc.client.util.SoundUtil;
  * @version 1.0
  * @author Tim
  **/
-public class LobbyMatchInputField extends LobbyInputField {
+public class MenuMatchInputField extends MenuInputField {
 
     private String regex;
 
-    public LobbyMatchInputField(String regex) {
+    public MenuMatchInputField(String regex) {
 	super();
 	this.regex = regex;
 	registerCheck();
     }
 
-    public LobbyMatchInputField(int xPos, int yPos, String text, String regex) {
+    public MenuMatchInputField(int xPos, int yPos, String text, String regex) {
 	super(xPos, yPos, text);
 	this.regex = regex;
 	registerCheck();

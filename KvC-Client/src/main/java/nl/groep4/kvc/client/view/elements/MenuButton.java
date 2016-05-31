@@ -10,7 +10,7 @@ import nl.groep4.kvc.client.util.SoundUtil;
  * @version 1.0
  * @author Tim
  **/
-public class LobbyButton extends TexturedButton {
+public class MenuButton extends TexturedButton {
 
     private static final Image BUTTON_IMAGE = new Image("img/etc/button.png");
     private static final Image BUTTON_HOVER_IMAGE = new Image("img/etc/button_hover.png");
@@ -18,15 +18,15 @@ public class LobbyButton extends TexturedButton {
 
     private Runnable todo;
 
-    public LobbyButton() {
+    public MenuButton() {
 	super();
     }
 
-    public LobbyButton(String text) {
+    public MenuButton(String text) {
 	super(text);
     }
 
-    public LobbyButton(int xPos, int yPos, String text) {
+    public MenuButton(int xPos, int yPos, String text) {
 	super(text);
 	this.setLayoutX(xPos);
 	this.setLayoutY(yPos);

@@ -9,7 +9,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.SoundUtil;
-import nl.groep4.kvc.client.view.elements.LobbyButton;
+import nl.groep4.kvc.client.view.elements.MenuButton;
 
 /**
  * Builds scene settings menu
@@ -33,11 +33,11 @@ public class SceneLobby implements SceneHolder {
 	lobbyLabel.setFont(ViewMaster.FONT);
 	lobbyLabel.setFill(Color.WHITE);
 	lobbyLabel.setStroke(Color.BLACK);
-	LobbyButton startGame = new LobbyButton(415, 550, "Start Game");
+	MenuButton startGame = new MenuButton(415, 550, "Start Game");
 	startGame.setFont(ViewMaster.FONT);
-	LobbyButton backButton = new LobbyButton(215, 550, "Back");
+	MenuButton backButton = new MenuButton(215, 550, "Back");
 	backButton.setFont(ViewMaster.FONT);
-	LobbyButton saveButton = new LobbyButton(615, 550, "Load");
+	MenuButton saveButton = new MenuButton(615, 550, "Load");
 	saveButton.setFont(ViewMaster.FONT);
 
 	startGame.registerClick(() -> {

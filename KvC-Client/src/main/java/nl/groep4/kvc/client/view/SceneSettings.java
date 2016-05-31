@@ -7,7 +7,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.SoundUtil;
-import nl.groep4.kvc.client.view.elements.LobbyButton;
+import nl.groep4.kvc.client.view.elements.MenuButton;
 
 /**
  * Configuration Scene
@@ -25,9 +25,9 @@ public class SceneSettings implements SceneHolder {
 	Pane layers = new Pane();
 
 	/* Build the settings menu in lobby */
-	LobbyButton music = new LobbyButton(415, 150, SoundUtil.themesongIsPlaying() ? STOP : PLAY);
+	MenuButton music = new MenuButton(415, 150, SoundUtil.themesongIsPlaying() ? STOP : PLAY);
 	music.setFont(ViewMaster.FONT);
-	LobbyButton acceptSettings = new LobbyButton(415, 550, "Accept");
+	MenuButton acceptSettings = new MenuButton(415, 550, "Accept");
 	acceptSettings.setFont(ViewMaster.FONT);
 
 	music.registerClick(() -> {
