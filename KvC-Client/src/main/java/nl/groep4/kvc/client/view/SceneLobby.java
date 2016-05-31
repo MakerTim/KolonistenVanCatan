@@ -11,7 +11,7 @@ import nl.groep4.kvc.client.view.elements.LobbyButton;
 import nl.groep4.kvc.common.Lobby;
 
 /**
- * Stops the theme song
+ * Builds scene settings menu
  * 
  * @version 1.0
  * @author Luc
