@@ -39,7 +39,7 @@ public class SceneLogin implements SceneHolder {
 	Pane layers = new StackPane();
 
 	/* Build the lobby */
-	layers.getChildren().addAll(SceneUtil.getLobbbyBackground(), SceneUtil.getLobbyForeground(),
+	layers.getChildren().addAll(SceneUtil.getMenuBackground(), SceneUtil.getMenuForeground(),
 		SceneUtil.getLobbyBrazier(), buildFrom());
 	SceneUtil.fadeIn(CollectionUtil.getItems(layers.getChildren(), 1, 3));
 	return new Scene(layers);

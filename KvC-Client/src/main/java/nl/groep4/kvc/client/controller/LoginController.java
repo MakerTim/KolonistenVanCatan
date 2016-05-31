@@ -12,6 +12,13 @@ import nl.groep4.kvc.client.view.SceneLogin;
 import nl.groep4.kvc.common.KvCStaticNaming;
 import nl.groep4.kvc.common.Lobby;
 
+/**
+ * Controls the form of the lobby and returns error messages
+ * 
+ * @author Tim
+ * @version 1.0
+ */
+
 public final class LoginController {
 
     private LoginController() {
