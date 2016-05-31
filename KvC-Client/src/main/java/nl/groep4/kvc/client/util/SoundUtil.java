@@ -31,7 +31,9 @@ public class SoundUtil {
     public static void playThemesong() {
 	stopThemesong();
 	teamsongKvC = playSound("sound/themesongKvC.wav");
-	teamsongKvC.loop(Clip.LOOP_CONTINUOUSLY);
+	if (teamsongKvC != null) {
+	    teamsongKvC.loop(Clip.LOOP_CONTINUOUSLY);
+	}
     }
 
     public static void stopThemesong() {
