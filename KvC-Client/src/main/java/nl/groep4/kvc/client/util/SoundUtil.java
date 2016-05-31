@@ -17,13 +17,14 @@ public class SoundUtil {
     public static void playThemesong() {
 	stopThemesong();
 	teamsongKvC = playSound("sound/themesongKvC.wav");
-	teamsongKvC.loop(0);
+	teamsongKvC.loop(Clip.LOOP_CONTINUOUSLY);
     }
 
     public static void stopThemesong() {
-	if (teamsongKvC != null) {
+	if (themesongIsPlaying()) {
 	    teamsongKvC.stop();
 	    teamsongKvC.flush();
+	    teamsongKvC = null;
 	}
     }
 
@@ -45,6 +46,10 @@ public class SoundUtil {
 	    ex.printStackTrace();
 	}
 	return clip;
+    }
+
+    public static boolean themesongIsPlaying() {
+	return teamsongKvC != null;
     }
 
 }
