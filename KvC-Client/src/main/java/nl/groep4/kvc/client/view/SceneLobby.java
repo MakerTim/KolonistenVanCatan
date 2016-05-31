@@ -1,10 +1,12 @@
 package nl.groep4.kvc.client.view;
 
 import javafx.scene.Scene;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import nl.groep4.kvc.client.util.SceneUtil;
+import nl.groep4.kvc.client.util.SoundUtil;
 import nl.groep4.kvc.client.view.elements.LobbyButton;
 import nl.groep4.kvc.common.Lobby;
 
@@ -16,6 +18,7 @@ import nl.groep4.kvc.common.Lobby;
  */
 
 public class SceneLobby implements SceneHolder {
+    GridPane lobbyGrid = new GridPane();
 
     @Override
     public Scene getScene() {
@@ -29,12 +32,26 @@ public class SceneLobby implements SceneHolder {
 	lobby.setStroke(Color.BLACK);
 	LobbyButton startGame = new LobbyButton(415, 550, "Start Game");
 	startGame.setFont(ViewMaster.FONT);
+	LobbyButton backButton = new LobbyButton(215, 550, "Back");
+	backButton.setFont(ViewMaster.FONT);
+	LobbyButton saveButton = new LobbyButton(615, 550, "Use Save");
+	saveButton.setFont(ViewMaster.FONT);
+
+	startGame.registerClick(() -> {
+	    SoundUtil.stopThemesong();
+	});
+
+	backButton.registerClick(() -> {
+	    ViewMaster.setScene(new SceneLogin().getScene());
+	    // Something to disconnect
+	});
 
 	lobbyPane.getChildren().addAll(SceneUtil.getMenuBackground(), SceneUtil.getLobbyForeground(),
-		SceneUtil.getLobbyBrazier(), SceneUtil.getCornerShield(), lobby, startGame);
+		SceneUtil.getLobbyBrazier(), SceneUtil.getCornerShield(), lobby, startGame, backButton, saveButton);
 
 	Scene scene = new Scene(lobbyPane);
-	SceneUtil.fadeIn(SceneUtil.getLobbySettings());
+	SceneUtil.fadeIn(SceneUtil.getLobbyForeground(), SceneUtil.getLobbyBrazier(), SceneUtil.getCornerShield(),
+		lobby, startGame, backButton, saveButton);
 
 	return scene;
 
