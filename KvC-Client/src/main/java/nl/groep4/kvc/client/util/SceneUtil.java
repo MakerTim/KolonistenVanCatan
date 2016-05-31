@@ -1,7 +1,12 @@
 package nl.groep4.kvc.client.util;
 
+import java.util.Arrays;
+import java.util.List;
+
+import javafx.animation.FadeTransition;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 
 /**
  * Sets the lobby images, this includes background, foreground, brazier and
@@ -44,5 +49,20 @@ public class SceneUtil {
 	    settings = new ImageView("img/lobby/menu_settings.png");
 	}
 	return settings;
+    }
+
+    public static void fadeIn(List<Node> elements) {
+	elements.forEach(element -> fadeIn(element));
+    }
+
+    public static void fadeIn(Node... elements) {
+	Arrays.stream(elements).forEach(element -> fadeIn(element));
+    }
+
+    public static void fadeIn(Node element) {
+	FadeTransition ft = new FadeTransition(Duration.millis(500), element);
+	ft.setFromValue(0);
+	ft.setToValue(1);
+	ft.play();
     }
 }
