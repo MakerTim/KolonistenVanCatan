@@ -100,7 +100,7 @@ public class SceneLogin implements SceneHolder {
     }
 
     public void onSettingsClick() {
-	ViewMaster.setScene(new SceneSettings().getScene());
+	ViewMaster.setScene(new SceneSettings(this).getScene());
     }
 
     public String getIpInput() {

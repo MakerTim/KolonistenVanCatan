@@ -4,6 +4,11 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
+import javax.sound.sampled.LineEvent;
+
+import javafx.beans.binding.FloatExpression;
+import javafx.beans.property.FloatProperty;
+import javafx.beans.property.ReadOnlyFloatWrapper;
 
 /**
  * Controls the theme-song which is playing in the lobby.
@@ -14,7 +19,8 @@ import javax.sound.sampled.FloatControl;
 
 public class SoundUtil {
 
-    private static float volume = 0F;
+    private static final float VOLUME_LEVEL = 30F;
+    private static FloatExpression volume = new ReadOnlyFloatWrapper(0F);
     private static Clip teamsongKvC;
 
     public static void playError() {
@@ -43,11 +49,17 @@ public class SoundUtil {
 	    clip = AudioSystem.getClip();
 	    clip.open(audioInputStream);
 	    FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-	    // clip.loop(x);
-	    // BooleanControl muteControl = (BooleanControl)
-	    // clip.getControl(BooleanControl.Type.MUTE);
-	    // clip.stop();
-	    volume.setValue(-10F + SoundUtil.volume);
+	    volume.setValue(-10F + SoundUtil.volume.get());
+	    SoundUtil.volume.addListener(change -> {
+		if (clip.isActive()) {
+		    volume.setValue(-10F + SoundUtil.volume.get());
+		}
+	    });
+	    clip.addLineListener(event -> {
+		if (event.getType() == LineEvent.Type.STOP) {
+		    event.getLine().close();
+		}
+	    });
 	    clip.start();
 	} catch (Exception ex) {
 	    ex.printStackTrace();
@@ -57,6 +69,14 @@ public class SoundUtil {
 
     public static boolean themesongIsPlaying() {
 	return teamsongKvC != null;
+    }
+
+    public static float getVolumeLevel() {
+	return SoundUtil.volume.get() / VOLUME_LEVEL;
+    }
+
+    public static void setVolume(float volume) {
+	((FloatProperty) SoundUtil.volume).setValue(volume * VOLUME_LEVEL);
     }
 
 }
