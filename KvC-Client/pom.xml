@@ -66,12 +66,6 @@
 					<source>1.8</source>
 					<target>1.8</target>
 					<encoding>UTF-8</encoding>
-					<archive>
-						<index>true</index>
-						<manifest>
-							<mainClass>nl.groep4.kvc.client.ClientStarter</mainClass>
-						</manifest>
-					</archive>
 				</configuration>
 			</plugin>
 			<plugin>
