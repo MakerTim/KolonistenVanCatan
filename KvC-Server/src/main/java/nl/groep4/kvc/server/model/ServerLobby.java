@@ -7,6 +7,12 @@ import nl.groep4.kvc.common.Lobby;
 import nl.groep4.kvc.common.Player;
 import nl.groep4.kvc.common.enumeration.Color;
 
+/**
+ * The lobby for the game
+ * 
+ * @version 1.0
+ * @author Tim
+ **/
 public class ServerLobby implements Lobby {
 
     private final List<Player> players = new ArrayList<>();
@@ -41,17 +47,27 @@ public class ServerLobby implements Lobby {
     }
 
     @Override
-    public void loadSafe() {
+    public void loadSafe(String safeFile) {
 	// TODO
     }
 
     @Override
-    public void setColor(Player pl, Color color) {
-	// TODO ensure no dube color
+    public void setColor(Player player, Color color) {
+	boolean alreadyUsed = false;
+	for (Player pl : players) {
+	    if (pl.getColor() == color) {
+		alreadyUsed = true;
+	    }
+	}
+	if (!alreadyUsed) {
+	    player.setColor(color);
+	}
+	update();
     }
 
     @Override
     public void update() {
+
     }
 
 }
