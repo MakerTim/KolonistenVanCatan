@@ -38,7 +38,7 @@ public class SceneLogin implements SceneHolder {
 
     public SceneLogin(Stage stage) {
 	this.parent = stage;
-	SoundUtil.playTeamsong();
+	SoundUtil.playThemesong();
 	System.out.println("Playing themesong");
     }
 
