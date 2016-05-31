@@ -12,6 +12,13 @@ import nl.groep4.kvc.client.view.SceneLogin;
 import nl.groep4.kvc.common.KvCStaticNaming;
 import nl.groep4.kvc.common.Lobby;
 
+/**
+ * Controls the form of the lobby and returns error messages
+ * 
+ * @author Tim
+ * @version 1.0
+ */
+
 public final class LoginController {
 
     private LoginController() {
@@ -38,7 +45,7 @@ public final class LoginController {
 	    Registry registry = LocateRegistry.getRegistry(ip, port);
 	    lobby = (Lobby) registry.lookup(KvCStaticNaming.LOBBY_KEY);
 	    /* Register self */
-	    lobby.registerPlayer(new Player(username));
+	    lobby.registerPlayer(PlayerController.setThePlayer(new Player(username)));
 	} catch (UnknownHostException ex) {
 	    ExceptionDialog.warning("IP is not a valid ip address", "No valid IP",
 		    String.format("'%s' is not a valid ip address", ip));

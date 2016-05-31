@@ -22,15 +22,17 @@ public class SceneUtil {
     private static Node forground;
     private static Node brazier;
     private static Node settings;
+    private static Node lobbyBack;
+    private static Node cornerShield;
 
-    public static Node getLobbbyBackground() {
+    public static Node getMenuBackground() {
 	if (background == null) {
 	    background = new ImageView("img/lobby/menu_background.png");
 	}
 	return background;
     }
 
-    public static Node getLobbyForeground() {
+    public static Node getMenuForeground() {
 	if (forground == null) {
 	    forground = new ImageView("img/lobby/menu_foreground.png");
 	}
@@ -49,6 +51,20 @@ public class SceneUtil {
 	    settings = new ImageView("img/lobby/menu_settings.png");
 	}
 	return settings;
+    }
+
+    public static Node getLobbyForeground() {
+	if (lobbyBack == null) {
+	    lobbyBack = new ImageView("img/etc/lobby_background.png");
+	}
+	return lobbyBack;
+    }
+
+    public static Node getCornerShield() {
+	if (cornerShield == null) {
+	    cornerShield = new ImageView("img/etc/shield_corner.png");
+	}
+	return cornerShield;
     }
 
     public static void fadeIn(List<Node> elements) {
