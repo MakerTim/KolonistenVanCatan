@@ -23,6 +23,7 @@ public abstract class TexturedButton extends StackPane {
 	ImageView background = new ImageView(getTexture());
 	label = new Text();
 	label.setFill(Color.WHITE);
+	label.setStroke(Color.BLACK);
 	label.setEffect(getShadowEffect());
 	setOnMouseEntered(mouseEnter -> background.setImage(getHoverTexture()));
 	setOnMouseExited(mouseLeave -> background.setImage(getTexture()));

@@ -1,7 +1,6 @@
 package nl.groep4.kvc.common;
 
 import java.io.Serializable;
-import java.rmi.Remote;
 
 import nl.groep4.kvc.common.enumeration.Color;
 
@@ -12,7 +11,7 @@ import nl.groep4.kvc.common.enumeration.Color;
  * @author Tim
  */
 
-public interface Player extends Remote, Serializable {
+public interface Player extends Serializable {
 
     public String getUsername();
 

@@ -4,7 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
-import nl.groep4.kvc.common.Client;
+import nl.groep4.kvc.common.Player;
 import nl.groep4.kvc.common.map.Map;
 
 /**
@@ -16,33 +16,28 @@ import nl.groep4.kvc.common.map.Map;
  */
 public class KolonistenVanCatan implements nl.groep4.kvc.common.KolonistenVanCatan {
 
-    private List<Client> clients = new ArrayList<>();
+    private List<Player> players = new ArrayList<>();
 
     @Override
     /**
      * @throws remoteException
-     *             In case connection between RMI and client in compromised
      */
-    public void registerClient(Client client) throws RemoteException {
-	clients.add(client);
-	client.logFine("Registerd client");
+    public void registerClient(Player player) throws RemoteException {
+	players.add(player);
     }
 
     @Override
     /**
      * @throws remoteException
-     *             In case connection between RMI and client in compromised
      */
-    public void unregisterClient(Client client) throws RemoteException {
-	clients.remove(client);
-	client.logFine("Unregisterd client");
+    public void unregisterClient(Player player) throws RemoteException {
+	players.remove(player);
     }
 
     @Override
     /**
-     * @return Retrieves map
+     * @return
      * @throws remoteException
-     *             In case connection between RMI and client in compromised
      * 
      */
     public Map getMap() throws RemoteException {
