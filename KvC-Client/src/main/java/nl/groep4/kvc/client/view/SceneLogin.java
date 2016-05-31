@@ -1,11 +1,9 @@
 package nl.groep4.kvc.client.view;
 
-import javafx.scene.ImageCursor;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
@@ -16,6 +14,7 @@ import nl.groep4.kvc.client.view.elements.LobbyCheckBox;
 import nl.groep4.kvc.client.view.elements.LobbyFilterdInputField;
 import nl.groep4.kvc.client.view.elements.LobbyMatchInputField;
 import nl.groep4.kvc.common.KvCStatics;
+import nl.groep4.kvc.common.util.CollectionUtil;
 
 /**
  * Builds the Scene for logging in to servers - mainscreen
@@ -25,7 +24,7 @@ import nl.groep4.kvc.common.KvCStatics;
  **/
 public class SceneLogin implements SceneHolder {
 
-    private static Scene login;
+    private static Pane form;
 
     private TextField ipInput;
     private TextField portInput;
@@ -36,61 +35,55 @@ public class SceneLogin implements SceneHolder {
 
     @Override
     public Scene getScene() {
-	if (login == null) {
-	    /* Build multiple layers for the design */
-	    Pane layers = new StackPane();
+	/* Build multiple layers for the design */
+	Pane layers = new StackPane();
 
-	    /* Build the lobby */
-	    layers.getChildren().addAll(SceneUtil.getLobbbyBackground(), SceneUtil.getLobbyForeground(),
-		    SceneUtil.getLobbyBrazier(), buildFrom());
-	    Scene scene = new Scene(layers, 1000, 700);
-	    scene.setCursor(new ImageCursor(new Image("img/etc/cursor.png")));
-	    login = scene;
-	}
-	return login;
+	/* Build the lobby */
+	layers.getChildren().addAll(SceneUtil.getLobbbyBackground(), SceneUtil.getLobbyForeground(),
+		SceneUtil.getLobbyBrazier(), buildFrom());
+	SceneUtil.fadeIn(CollectionUtil.getItems(layers.getChildren(), 1, 3));
+	return new Scene(layers);
     }
 
     private Node buildFrom() {
-	Pane theGrid = new Pane();
+	if (form == null) {
+	    form = new Pane();
 
-	Text ipLabel = new Text(330, 350, "Server IP");
-	ipInput = new LobbyMatchInputField(450, 320, "", KvCStatics.REGEX_IP);
-	Text portLabel = new Text(330, 375, "Server port");
-	portInput = new LobbyFilterdInputField(450, 345, "", KvCStatics.NUMERIC);
-	Text usernameLabel = new Text(330, 410, "Username");
-	usernameInput = new LobbyFilterdInputField(450, 380, "", KvCStatics.USERNAME);
-	Text nocolorLabel = new Text(330, 450, "No color");
-	nocolorInput = new LobbyCheckBox(540, 434, false);
-	Text confirmLabel = new Text(330, 470, "Confirm every action");
-	confirmInput = new LobbyCheckBox(540, 454, false);
-	Text nosoundLabel = new Text(330, 490, "No sounds");
-	nosoundInput = new LobbyCheckBox(540, 474, false);
-	LobbyButton joinButton = new LobbyButton(425, 500, "Join");
-	LobbyButton settingsButton = new LobbyButton(13, 645, "Settings");
+	    Text ipLabel = new Text(330, 350, "Server IP");
+	    ipInput = new LobbyMatchInputField(450, 320, "", KvCStatics.REGEX_IP);
+	    Text portLabel = new Text(330, 375, "Server port");
+	    portInput = new LobbyFilterdInputField(450, 345, "", KvCStatics.NUMERIC);
+	    Text usernameLabel = new Text(330, 410, "Username");
+	    usernameInput = new LobbyFilterdInputField(450, 380, "", KvCStatics.USERNAME);
+	    Text nocolorLabel = new Text(330, 450, "No color");
+	    nocolorInput = new LobbyCheckBox(540, 434, false);
+	    Text confirmLabel = new Text(330, 470, "Confirm every action");
+	    confirmInput = new LobbyCheckBox(540, 454, false);
+	    Text nosoundLabel = new Text(330, 490, "No sounds");
+	    nosoundInput = new LobbyCheckBox(540, 474, false);
+	    LobbyButton joinButton = new LobbyButton(425, 500, "Join");
+	    LobbyButton settingsButton = new LobbyButton(13, 645, "Settings");
 
-	ipLabel.setFont(ViewMaster.FONT);
-	ipInput.setFont(ViewMaster.FONT);
-	portLabel.setFont(ViewMaster.FONT);
-	portInput.setFont(ViewMaster.FONT);
-	portInput.setText("1099");
-	usernameLabel.setFont(ViewMaster.FONT);
-	usernameInput.setFont(ViewMaster.FONT);
-	nocolorLabel.setFont(ViewMaster.FONT);
-	confirmLabel.setFont(ViewMaster.FONT);
-	nosoundLabel.setFont(ViewMaster.FONT);
-	joinButton.setFont(ViewMaster.FONT);
-	joinButton.registerClick(() -> onConnectClick());
-	settingsButton.setFont(ViewMaster.FONT);
-	settingsButton.registerClick(() -> onSettingsClick());
+	    ipLabel.setFont(ViewMaster.FONT);
+	    ipInput.setFont(ViewMaster.FONT);
+	    portLabel.setFont(ViewMaster.FONT);
+	    portInput.setFont(ViewMaster.FONT);
+	    portInput.setText("1099");
+	    usernameLabel.setFont(ViewMaster.FONT);
+	    usernameInput.setFont(ViewMaster.FONT);
+	    nocolorLabel.setFont(ViewMaster.FONT);
+	    confirmLabel.setFont(ViewMaster.FONT);
+	    nosoundLabel.setFont(ViewMaster.FONT);
+	    joinButton.setFont(ViewMaster.FONT);
+	    joinButton.registerClick(() -> onConnectClick());
+	    settingsButton.setFont(ViewMaster.FONT);
+	    settingsButton.registerClick(() -> onSettingsClick());
 
-	theGrid.getChildren().addAll(ipLabel, ipInput, portLabel, portInput, usernameLabel, usernameInput, nocolorLabel,
-		nocolorInput, confirmLabel, confirmInput, nosoundLabel, nosoundInput, joinButton, settingsButton);
-
-	SceneUtil.fadeIn(SceneUtil.getLobbyForeground(), ipLabel, ipInput, portLabel, portInput, usernameLabel,
-		usernameInput, nocolorLabel, nocolorInput, confirmLabel, confirmInput, nosoundLabel, nosoundInput,
-		joinButton, settingsButton);
-
-	return theGrid;
+	    form.getChildren().addAll(ipLabel, ipInput, portLabel, portInput, usernameLabel, usernameInput,
+		    nocolorLabel, nocolorInput, confirmLabel, confirmInput, nosoundLabel, nosoundInput, joinButton,
+		    settingsButton);
+	}
+	return form;
     }
 
     public void onConnectClick() {

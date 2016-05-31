@@ -1,5 +1,8 @@
 package nl.groep4.kvc.client.util;
 
+import java.util.Arrays;
+import java.util.List;
+
 import javafx.animation.FadeTransition;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
@@ -40,10 +43,12 @@ public class SceneUtil {
 	return settings;
     }
 
+    public static void fadeIn(List<Node> elements) {
+	elements.forEach(element -> fadeIn(element));
+    }
+
     public static void fadeIn(Node... elements) {
-	for (Node element : elements) {
-	    fadeIn(element);
-	}
+	Arrays.stream(elements).forEach(element -> fadeIn(element));
     }
 
     public static void fadeIn(Node element) {

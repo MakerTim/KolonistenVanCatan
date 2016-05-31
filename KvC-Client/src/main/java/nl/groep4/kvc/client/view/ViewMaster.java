@@ -1,7 +1,9 @@
 package nl.groep4.kvc.client.view;
 
 import javafx.application.Application;
+import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import nl.groep4.kvc.client.util.SoundUtil;
@@ -25,7 +27,7 @@ public class ViewMaster extends Application {
 
 	SoundUtil.playThemesong();
 	System.out.println("Playing themesong");
-	primaryStage.setScene(new SceneLogin().getScene());
+	setScene(new SceneLogin().getScene());
 	primaryStage.setTitle("Kolonisten van Catan: Online");
 	primaryStage.setResizable(false);
 	primaryStage.show();
@@ -33,6 +35,7 @@ public class ViewMaster extends Application {
     }
 
     public static void setScene(Scene scene) {
+	scene.setCursor(new ImageCursor(new Image("img/etc/cursor.png")));
 	stage.setScene(scene);
     }
 }

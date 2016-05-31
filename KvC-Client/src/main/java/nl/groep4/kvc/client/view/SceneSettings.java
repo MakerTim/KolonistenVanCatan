@@ -1,9 +1,7 @@
 package nl.groep4.kvc.client.view;
 
-import javafx.scene.ImageCursor;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -55,8 +53,6 @@ public class SceneSettings implements SceneHolder {
 	layers.getChildren().addAll(SceneUtil.getLobbbyBackground(), SceneUtil.getLobbySettings(),
 		SceneUtil.getLobbyBrazier(), buildFrom(), acceptSettings, settings, music);
 	Scene scene = new Scene(layers);
-	scene.setCursor(new ImageCursor(new Image("img/etc/cursor.png")));
-
 	SceneUtil.fadeIn(SceneUtil.getLobbySettings(), settings, music, acceptSettings);
 
 	return scene;
