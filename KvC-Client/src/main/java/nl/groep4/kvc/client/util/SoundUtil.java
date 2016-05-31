@@ -1,5 +1,7 @@
 package nl.groep4.kvc.client.util;
 
+import java.io.BufferedInputStream;
+
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -44,8 +46,8 @@ public class SoundUtil {
 
     public static Clip playSound(String soundName) {
 	try {
-	    AudioInputStream audioInputStream = AudioSystem
-		    .getAudioInputStream(SoundUtil.class.getClassLoader().getResourceAsStream(soundName));
+	    AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(
+		    new BufferedInputStream(SoundUtil.class.getClassLoader().getResourceAsStream(soundName)));
 	    Clip clip = AudioSystem.getClip();
 	    clip.open(audioInputStream);
 	    FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
