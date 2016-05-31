@@ -9,7 +9,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import nl.groep4.kvc.client.controller.LobbyController;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.view.elements.LobbyButton;
@@ -26,18 +25,12 @@ import nl.groep4.kvc.common.KvCStatics;
  **/
 public class SceneLogin implements SceneHolder {
 
-    private Stage parent;
-
     private TextField ipInput;
     private TextField portInput;
     private TextField usernameInput;
     private CheckBox nocolorInput;
     private CheckBox confirmInput;
     private CheckBox nosoundInput;
-
-    public SceneLogin(Stage stage) {
-	this.parent = stage;
-    }
 
     @Override
     public Scene getScene() {
@@ -92,12 +85,12 @@ public class SceneLogin implements SceneHolder {
 
     public void onConnectClick() {
 	if (LobbyController.connect(this)) {
-	    parent.setScene(new SceneLobby().getScene());
+	    ViewMaster.setScene(new SceneLobby().getScene());
 	}
     }
 
     public void onSettingsClick() {
-	parent.setScene(new SceneSettings(this.parent).getScene());
+	ViewMaster.setScene(new SceneSettings().getScene());
     }
 
     public String getIpInput() {
