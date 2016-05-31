@@ -12,10 +12,10 @@ import nl.groep4.kvc.server.model.ServerLobby;
 public class RmiServer {
 
     /**
-     * Maak een RMI registery aan en plaats daarin een KolonistenVanCatan object
+     * Create RMI registry and place KolonistenVanCatan object
      * 
      * @param port
-     *            De port waar de server op luistert
+     *            Port which the server listens to
      * @author MakerTim
      */
     public static void init(int port) {

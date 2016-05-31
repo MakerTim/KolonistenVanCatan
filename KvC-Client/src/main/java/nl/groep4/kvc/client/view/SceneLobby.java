@@ -3,6 +3,13 @@ package nl.groep4.kvc.client.view;
 import javafx.scene.Scene;
 import nl.groep4.kvc.common.Lobby;
 
+/**
+ * 
+ * 
+ * @version 1.0
+ * @author Tim
+ */
+
 public class SceneLobby implements SceneHolder {
 
     @Override
