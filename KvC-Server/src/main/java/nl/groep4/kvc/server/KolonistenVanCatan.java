@@ -20,7 +20,8 @@ public class KolonistenVanCatan implements nl.groep4.kvc.common.KolonistenVanCat
 
     @Override
     /**
-     * 
+     * @throws remoteException
+     *             In case connection between RMI and client in compromised
      */
     public void registerClient(Client client) throws RemoteException {
 	clients.add(client);
@@ -28,12 +29,22 @@ public class KolonistenVanCatan implements nl.groep4.kvc.common.KolonistenVanCat
     }
 
     @Override
+    /**
+     * @throws remoteException
+     *             In case connection between RMI and client in compromised
+     */
     public void unregisterClient(Client client) throws RemoteException {
 	clients.remove(client);
 	client.logFine("Unregisterd client");
     }
 
     @Override
+    /**
+     * @return Retrieves map
+     * @throws remoteException
+     *             In case connection between RMI and client in compromised
+     * 
+     */
     public Map getMap() throws RemoteException {
 	return null;
     }

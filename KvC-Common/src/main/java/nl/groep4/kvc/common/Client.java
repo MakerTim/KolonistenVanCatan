@@ -19,6 +19,7 @@ public interface Client extends Remote, Serializable {
      * @param msg
      *            Unspecified return message
      * @throws RemoteException
+     *             In case connection between RMI and client in compromised
      */
     public void logFine(String msg) throws RemoteException;
 
@@ -28,6 +29,7 @@ public interface Client extends Remote, Serializable {
      * @param msg
      *            Unspecified return message
      * @throws RemoteException
+     *             In case connection between RMI and client in compromised
      */
     public void logInfo(String msg) throws RemoteException;
 
@@ -37,6 +39,7 @@ public interface Client extends Remote, Serializable {
      * @param msg
      *            Unspecified return message
      * @throws RemoteException
+     *             In case connection between RMI and client in compromised
      */
     public void logWarn(String msg) throws RemoteException;
 }

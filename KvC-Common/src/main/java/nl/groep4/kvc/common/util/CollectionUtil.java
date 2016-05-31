@@ -10,7 +10,7 @@ import java.util.Random;
 import java.util.function.Predicate;
 
 /**
- * Collecition util is there for some missing features in Collections/subclasses
+ * Collection util is used for some missing features in Collections/subclasses
  * 
  * @version 1.5
  * @author Sander Knauff

@@ -23,6 +23,7 @@ public enum Color {
     /**
      * Returns colour back to javafx defined colour
      * 
+     * @return Retrieves colour
      * @version 1.0
      * @author Tim
      */
