@@ -87,6 +87,11 @@ public class SceneLogin implements SceneHolder {
 
 	theGrid.getChildren().addAll(ipLabel, ipInput, portLabel, portInput, usernameLabel, usernameInput, nocolorLabel,
 		nocolorInput, confirmLabel, confirmInput, nosoundLabel, nosoundInput, joinButton, settingsButton);
+
+	SceneUtil.fadeIn(SceneUtil.getLobbyForeground(), ipLabel, ipInput, portLabel, portInput, usernameLabel,
+		usernameInput, nocolorLabel, nocolorInput, confirmLabel, confirmInput, nosoundLabel, nosoundInput,
+		joinButton, settingsButton);
+
 	return theGrid;
     }
 

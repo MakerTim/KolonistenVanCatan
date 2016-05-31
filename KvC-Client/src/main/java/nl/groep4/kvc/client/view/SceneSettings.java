@@ -63,6 +63,8 @@ public class SceneSettings implements SceneHolder {
 	Scene scene = new Scene(layers);
 	scene.setCursor(new ImageCursor(new Image("img/etc/cursor.png")));
 
+	SceneUtil.fadeIn(SceneUtil.getLobbySettings(), settings, music, acceptSettings);
+
 	return scene;
 
     }

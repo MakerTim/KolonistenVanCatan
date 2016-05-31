@@ -1,7 +1,9 @@
 package nl.groep4.kvc.client.util;
 
+import javafx.animation.FadeTransition;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 
 public class SceneUtil {
 
@@ -36,5 +38,18 @@ public class SceneUtil {
 	    settings = new ImageView("img/lobby/menu_settings.png");
 	}
 	return settings;
+    }
+
+    public static void fadeIn(Node... elements) {
+	for (Node element : elements) {
+	    fadeIn(element);
+	}
+    }
+
+    public static void fadeIn(Node element) {
+	FadeTransition ft = new FadeTransition(Duration.millis(500), element);
+	ft.setFromValue(0);
+	ft.setToValue(1);
+	ft.play();
     }
 }
