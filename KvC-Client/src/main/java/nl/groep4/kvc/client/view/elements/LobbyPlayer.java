@@ -3,13 +3,14 @@ package nl.groep4.kvc.client.view.elements;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import nl.groep4.kvc.common.Player;
 import nl.groep4.kvc.common.enumeration.Color;
 
@@ -26,11 +27,15 @@ public class LobbyPlayer extends StackPane {
     protected List<Runnable> clickHandlers = new ArrayList<>();
 
     public LobbyPlayer(Color color) {
+	VBox tussenPane = new VBox();
+	tussenPane.setAlignment(Pos.CENTER);
 	this.color = color;
 	ImageView background = new ImageView(IMAGE);
-	colorLabel = new Text();
-	usernameLabel = new Text();
+	colorLabel = new Text(color.name());
+	usernameLabel = new Text("Empty");
+	usernameLabel.setTextAlignment(TextAlignment.CENTER);
 	colorLabel.setFill(color.getColor());
+	colorLabel.setTextAlignment(TextAlignment.CENTER);
 	usernameLabel.setFill(color.getColor());
 	colorLabel.setStroke(javafx.scene.paint.Color.BLACK);
 	usernameLabel.setStroke(javafx.scene.paint.Color.BLACK);
@@ -44,10 +49,10 @@ public class LobbyPlayer extends StackPane {
 		click.run();
 	    }
 	});
+
 	setOnMouseReleased(mouseRelease -> background.setImage(HOVER_IMAGE));
-	Pane labels = new VBox();
-	labels.getChildren().addAll(colorLabel, usernameLabel);
-	getChildren().addAll(background, labels);
+	tussenPane.getChildren().addAll(usernameLabel, colorLabel);
+	getChildren().addAll(background, tussenPane);
     }
 
     public void setFont(Font font) {

@@ -1,11 +1,10 @@
 package nl.groep4.kvc.client.view;
 
 import javafx.scene.Scene;
-import nl.groep4.kvc.client.controller.LobbyController;
-import nl.groep4.kvc.client.controller.PlayerController;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import nl.groep4.kvc.client.controller.LobbyController;
+import nl.groep4.kvc.client.controller.PlayerController;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.SoundUtil;
 import nl.groep4.kvc.client.view.elements.LobbyPlayer;
@@ -30,7 +29,7 @@ public class SceneLobby implements SceneHolder {
     public Scene getScene() {
 	/* Build multiple layers for the design */
 	Pane lobbyPane = new Pane();
-	GridPane lobbyGrid = new GridPane();
+	Pane lobbyGrid = new Pane();
 	lobbyGrid.setLayoutX(200);
 	lobbyGrid.setLayoutY(200);
 	/* Build the settings menu in lobby */
@@ -56,6 +55,8 @@ public class SceneLobby implements SceneHolder {
 
 	for (int i = 0; i < Color.values().length; i++) {
 	    players[i] = new LobbyPlayer(Color.values()[i]);
+	    players[i].setLayoutX(i % 3 * 180);
+	    players[i].setLayoutY((i / 3) * 150);
 	    lobbyGrid.getChildren().add(players[i]);
 	}
 
