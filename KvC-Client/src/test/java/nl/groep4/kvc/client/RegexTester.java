@@ -18,12 +18,12 @@ public class RegexTester {
 	assertTrue("150.15.1.5".matches(KvCStatics.REGEX_IP));
 	// assertTrue("Localhost".matches(KvCStatics.REGEX_IP));
 	assertTrue(!" . . . ".matches(KvCStatics.REGEX_IP));
-	assertTrue("....".matches(KvCStatics.REGEX_IP));
-	assertTrue("1000.1000.1000.1000".matches(KvCStatics.REGEX_IP));
+	assertTrue(!"....".matches(KvCStatics.REGEX_IP));
+	assertTrue(!"1000.1000.1000.1000".matches(KvCStatics.REGEX_IP));
 	assertTrue("google.com".matches(KvCStatics.REGEX_IP));
 	assertTrue("www.google.com".matches(KvCStatics.REGEX_IP));
-	assertTrue("----".matches(KvCStatics.REGEX_IP));
-	assertTrue("localhost".matches(KvCStatics.REGEX_IP));
+	assertTrue(!"http://www.google.com".matches(KvCStatics.REGEX_IP));
+	assertTrue(!"".matches(KvCStatics.REGEX_IP));
 	assertTrue("localhost".matches(KvCStatics.REGEX_IP));
 	assertTrue("localhost".matches(KvCStatics.REGEX_IP));
 	assertTrue("localhost".matches(KvCStatics.REGEX_IP));
