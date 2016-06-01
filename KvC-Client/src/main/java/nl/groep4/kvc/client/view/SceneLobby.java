@@ -56,10 +56,13 @@ public class SceneLobby implements SceneHolder {
 	});
 
 	for (int i = 0; i < Color.values().length; i++) {
-	    players[i] = new LobbyPlayer(Color.values()[i]);
-	    players[i].setLayoutX(i % 3 * 180);
-	    players[i].setLayoutY((i / 3) * 150);
-	    lobbyGrid.getChildren().add(players[i]);
+	    LobbyPlayer lobbyPlayer = new LobbyPlayer(Color.values()[i]);
+	    lobbyPlayer.setLayoutX(i % 3 * 180);
+	    lobbyPlayer.setLayoutY((i / 3) * 150);
+	    lobbyGrid.getChildren().add(lobbyPlayer);
+	    lobbyPlayer.registerClick(() -> {
+		lobby.changeColor(PlayerController.getThePlayer(), lobbyPlayer.getColor());
+	    });
 	}
 
 	lobbyPane.getChildren().addAll(SceneUtil.getMenuBackground(), SceneUtil.getLobbyForeground(),

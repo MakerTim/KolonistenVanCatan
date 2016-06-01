@@ -19,7 +19,7 @@ public class LobbyPlayer extends StackPane {
     private static final Image IMAGE = new Image("img/menu/parchment.png");
     private static final Image HOVER_IMAGE = new Image("img/menu/parchment_hover.png");
     private static final Image PRESSED_IMAGE = new Image("img/menu/parchment_pressed.png");
-    private static final String EMPTY = "empty";
+    private static final String EMPTY = "Empty";
 
     private Color color;
     private Text colorLabel;
