@@ -70,8 +70,8 @@ public class SceneLobby implements SceneHolder {
 		saveButton);
 
 	Scene scene = new Scene(lobbyPane);
-	SceneUtil.fadeIn(SceneUtil.getLobbyForeground(), SceneUtil.getMenuBrazier(), SceneUtil.getCornerShield(),
-		lobbyLabel, lobbyGrid, startGame, backButton, saveButton);
+	SceneUtil.fadeIn(SceneUtil.getLobbyForeground(), SceneUtil.getCornerShield(), lobbyLabel, lobbyGrid, startGame,
+		backButton, saveButton);
 
 	return scene;
 
