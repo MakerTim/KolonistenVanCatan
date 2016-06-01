@@ -5,7 +5,7 @@ import javafx.scene.paint.Color;
 import nl.groep4.kvc.client.util.SoundUtil;
 
 /**
- * InputField where only sertain input is allowd
+ * InputField where only certain input is allowed
  * 
  * @version 1.0
  * @author Tim

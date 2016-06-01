@@ -4,7 +4,7 @@ import javafx.scene.paint.Color;
 import nl.groep4.kvc.client.util.SoundUtil;
 
 /**
- * InputField where a regulair expression determines if field is valid or not
+ * InputField where a regular expression determines if field is valid or not
  * 
  * @version 1.0
  * @author Tim

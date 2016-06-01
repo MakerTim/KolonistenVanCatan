@@ -68,4 +68,12 @@ public final class LoginController {
 	return true;
     }
 
+    /**
+     * Connects with server and if settings are incorrect returning error
+     * message
+     * 
+     * @author Tim
+     * @version 1.0
+     */
+
 }

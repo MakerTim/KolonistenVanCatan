@@ -9,7 +9,6 @@ import nl.groep4.kvc.common.enumeration.Color;
  * @author Tim
  *
  */
-
 public class Player implements nl.groep4.kvc.common.Player {
 
     private static final long serialVersionUID = 2304199625693960750L;
@@ -21,18 +20,49 @@ public class Player implements nl.groep4.kvc.common.Player {
 	this.color = Color.RED;
     }
 
+    /**
+     * Sets username and color of player
+     * 
+     * @version 1.0
+     * @author Tim
+     */
     @Override
     public String getUsername() {
 	return username;
     }
+
+    /**
+     * Returns username
+     * 
+     * @version 1.0
+     * @author Tim
+     */
 
     @Override
     public Color getColor() {
 	return color;
     }
 
+    /**
+     * Returns color of the player
+     * 
+     * @version 1.0
+     * @author Tim
+     */
+
     @Override
     public void setColor(Color color) {
 	this.color = color;
     }
+    /**
+     * 
+     * @version 1.0
+     * @author Tim
+     */
 }
+/**
+ * 
+ *
+ * @version 1.0
+ * @author Tim
+ */
