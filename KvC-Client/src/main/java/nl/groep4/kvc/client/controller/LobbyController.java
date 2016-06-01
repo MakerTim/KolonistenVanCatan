@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
+import nl.groep4.kvc.client.view.SceneLobby;
 import nl.groep4.kvc.common.Lobby;
 import nl.groep4.kvc.common.Player;
 import nl.groep4.kvc.common.enumeration.Color;
@@ -11,6 +12,7 @@ import nl.groep4.kvc.common.enumeration.Color;
 public class LobbyController {
 
     private Lobby lobby;
+    private SceneLobby scene;
 
     public LobbyController(Lobby lobby) {
 	this.lobby = lobby;
@@ -24,10 +26,6 @@ public class LobbyController {
 	    // TODO: handle exception
 	}
 	return new ArrayList<>();
-    }
-
-    public Lobby getLobby() {
-	return this.lobby;
     }
 
     public void discontect(Player pl) {
@@ -47,6 +45,15 @@ public class LobbyController {
 	    ex.printStackTrace();
 	    // TODO: handle exception
 	}
+	update();
+    }
+
+    public void update() {
+	scene.update();
+    }
+
+    public void registerScene(SceneLobby sceneLobby) {
+	scene = sceneLobby;
     }
 
 }

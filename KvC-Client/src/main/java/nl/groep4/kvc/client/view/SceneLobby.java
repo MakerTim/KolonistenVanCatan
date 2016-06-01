@@ -1,5 +1,6 @@
 package nl.groep4.kvc.client.view;
 
+import java.util.List;
 import java.util.Optional;
 
 import javafx.scene.Scene;
@@ -63,6 +64,7 @@ public class SceneLobby implements SceneHolder {
 	    lobbyPlayer.registerClick(() -> {
 		lobby.changeColor(PlayerController.getThePlayer(), lobbyPlayer.getColor());
 	    });
+	    players[i] = lobbyPlayer;
 	}
 
 	lobbyPane.getChildren().addAll(SceneUtil.getMenuBackground(), SceneUtil.getLobbyForeground(),
@@ -81,8 +83,8 @@ public class SceneLobby implements SceneHolder {
 
     public void update() {
 	for (LobbyPlayer lp : players) {
-	    Optional<Player> player = lobby.getPlayers().stream().filter(pl -> pl.getColor() == lp.getColor())
-		    .findAny();
+	    List<Player> players = lobby.getPlayers();
+	    Optional<Player> player = players.stream().filter(pl -> pl.getColor() == lp.getColor()).findAny();
 	    if (player.isPresent()) {
 		lp.updatePlayer(player.get());
 	    } else {
@@ -93,6 +95,7 @@ public class SceneLobby implements SceneHolder {
 
     public void register(LobbyController lobbyController) {
 	this.lobby = lobbyController;
+	this.lobby.registerScene(this);
     }
 
 }

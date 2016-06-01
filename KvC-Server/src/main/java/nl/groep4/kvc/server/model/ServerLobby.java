@@ -60,12 +60,6 @@ public class ServerLobby implements Lobby {
 	if (!alreadyUsed) {
 	    player.setColor(color);
 	}
-	update();
-    }
-
-    @Override
-    public void update() {
-
     }
 
 }

@@ -57,10 +57,8 @@ public final class LoginController {
 	    ExceptionDialog.warning(ex.getMessage(), ex.getMessage(), "");
 	    return null;
 	} catch (RemoteException ex) {
-	    ExceptionDialog.error(ex);
-	    // ExceptionDialog.warning("Server not found",
-	    // "The server you are looking for is not found",
-	    // "There is no server found on this ip/port combo.");
+	    ExceptionDialog.warning("Server not found", "The server you are looking for is not found",
+		    "There is no server found on this ip/port combo.");
 	    return null;
 	} catch (Exception ex) {
 	    ExceptionDialog.error(ex);

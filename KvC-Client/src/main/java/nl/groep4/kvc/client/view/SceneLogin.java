@@ -95,7 +95,6 @@ public class SceneLogin implements SceneHolder {
 	    SceneLobby scene = new SceneLobby();
 	    ViewMaster.setScene(scene.getScene());
 	    scene.register(lobbyController);
-	    scene.update();
 	}
     }
 
