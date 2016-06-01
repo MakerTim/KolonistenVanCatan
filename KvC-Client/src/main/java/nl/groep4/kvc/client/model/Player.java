@@ -18,7 +18,6 @@ public class Player implements nl.groep4.kvc.common.Player {
 
     public Player(String username) {
 	this.username = username.substring(0, Math.min(username.length(), 20));
-	this.color = Color.RED;
     }
 
     @Override

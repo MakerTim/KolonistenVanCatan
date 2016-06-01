@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import nl.groep4.kvc.client.controller.LobbyController;
-import nl.groep4.kvc.client.controller.PlayerController;
+import nl.groep4.kvc.client.controller.ConnectionController;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.SoundUtil;
 import nl.groep4.kvc.client.view.elements.LobbyPlayer;
@@ -21,12 +21,11 @@ import nl.groep4.kvc.common.enumeration.Color;
  * @version 1.0
  * @author Luc
  */
-
 public class SceneLobby implements SceneHolder {
 
     private LobbyController lobby;
 
-    private LobbyPlayer[] players = new LobbyPlayer[Color.values().length];
+    private LobbyPlayer[] scrolls = new LobbyPlayer[Color.values().length];
 
     @Override
     public Scene getScene() {
@@ -53,7 +52,7 @@ public class SceneLobby implements SceneHolder {
 
 	backButton.registerClick(() -> {
 	    ViewMaster.setScene(new SceneLogin().getScene());
-	    lobby.disconnect(PlayerController.getThePlayer());
+	    lobby.disconnect(ConnectionController.getThePlayer());
 	});
 
 	for (int i = 0; i < Color.values().length; i++) {
@@ -62,9 +61,9 @@ public class SceneLobby implements SceneHolder {
 	    lobbyPlayer.setLayoutY((i / 3) * 150);
 	    lobbyGrid.getChildren().add(lobbyPlayer);
 	    lobbyPlayer.registerClick(() -> {
-		lobby.changeColor(PlayerController.getThePlayer(), lobbyPlayer.getColor());
+		lobby.changeColor(ConnectionController.getThePlayer(), lobbyPlayer.getColor());
 	    });
-	    players[i] = lobbyPlayer;
+	    scrolls[i] = lobbyPlayer;
 	}
 
 	lobbyPane.getChildren().addAll(SceneUtil.getMenuBackground(), SceneUtil.getLobbyForeground(),
@@ -80,13 +79,14 @@ public class SceneLobby implements SceneHolder {
     }
 
     public void update() {
-	for (LobbyPlayer lp : players) {
-	    List<Player> players = lobby.getPlayers();
-	    Optional<Player> player = players.stream().filter(pl -> pl.getColor() == lp.getColor()).findAny();
+	System.out.println(ConnectionController.getThePlayer().getColor());
+	List<Player> players = lobby.getPlayers();
+	for (LobbyPlayer scroll : scrolls) {
+	    Optional<Player> player = players.stream().filter(pl -> pl.getColor() == scroll.getColor()).findAny();
 	    if (player.isPresent()) {
-		lp.updatePlayer(player.get());
+		scroll.updatePlayer(player.get());
 	    } else {
-		lp.updatePlayer(null);
+		scroll.updatePlayer(null);
 	    }
 	}
     }

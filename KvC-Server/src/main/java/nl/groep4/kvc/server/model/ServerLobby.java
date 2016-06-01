@@ -56,8 +56,7 @@ public class ServerLobby implements Lobby {
 
     @Override
     public void setColor(Player player, Color color) {
-	boolean alreadyUsed = players.stream().filter(pl -> pl.getColor() == color).count() > 0;
-	if (!alreadyUsed) {
+	if (!players.stream().filter(pl -> pl.getColor() == color).findAny().isPresent()) {
 	    player.setColor(color);
 	}
     }
