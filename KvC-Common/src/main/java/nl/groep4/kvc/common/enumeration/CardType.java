@@ -1,5 +1,11 @@
 package nl.groep4.kvc.common.enumeration;
 
+/**
+ * All card types and amounts per type
+ * 
+ * @version 1.0 30-5-2016
+ * @author Tim
+ */
 public enum CardType {
 
     KNIGHT(20), VICTORY(5), MONOPOLY(3), FREE_STREETS(2), INVENTION(3);

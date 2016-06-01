@@ -1,6 +1,7 @@
 package nl.groep4.kvc.client;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
@@ -16,7 +17,6 @@ public class RegexTester {
 	assertTrue("1.1.1.1".matches(KvCStatics.REGEX_IP));
 	assertTrue("20.20.20.20".matches(KvCStatics.REGEX_IP));
 	assertTrue("150.15.1.5".matches(KvCStatics.REGEX_IP));
-	// assertTrue("Localhost".matches(KvCStatics.REGEX_IP));
 	assertTrue(!" . . . ".matches(KvCStatics.REGEX_IP));
 	assertTrue(!"....".matches(KvCStatics.REGEX_IP));
 	assertTrue(!"1000.1000.1000.1000".matches(KvCStatics.REGEX_IP));
@@ -33,4 +33,13 @@ public class RegexTester {
 	assertTrue("localhost".matches(KvCStatics.REGEX_IP));
     }
 
+    @Test
+    public void numericRegex() {
+	fail("Not impemented yet");
+    }
+
+    @Test
+    public void usernameRegex() {
+	fail("Not impemented yet");
+    }
 }

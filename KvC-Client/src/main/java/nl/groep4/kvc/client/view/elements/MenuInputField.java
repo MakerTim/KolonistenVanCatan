@@ -10,13 +10,19 @@ import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 
-public class LobbyInputField extends TextField {
+/**
+ * InputField with a default style to fit in the lobby
+ * 
+ * @version 1.0
+ * @author Tim
+ **/
+public class MenuInputField extends TextField {
 
-    public LobbyInputField() {
+    public MenuInputField() {
 	setBorderColor(Color.BLACK);
     }
 
-    public LobbyInputField(int xPos, int yPos, String text) {
+    public MenuInputField(int xPos, int yPos, String text) {
 	this();
 	if (text == null) {
 	    text = "";

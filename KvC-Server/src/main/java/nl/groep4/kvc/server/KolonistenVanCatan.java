@@ -4,26 +4,42 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
-import nl.groep4.kvc.common.Client;
+import nl.groep4.kvc.common.Player;
 import nl.groep4.kvc.common.map.Map;
 
+/**
+ * Client registration and map retrieval
+ * 
+ * @version 1.0/
+ * @author Tim
+ *
+ */
 public class KolonistenVanCatan implements nl.groep4.kvc.common.KolonistenVanCatan {
 
-    private List<Client> clients = new ArrayList<>();
+    private List<Player> players = new ArrayList<>();
 
     @Override
-    public void registerClient(Client client) throws RemoteException {
-	clients.add(client);
-	client.logFine("Registerd client");
+    /**
+     * @throws remoteException
+     */
+    public void registerClient(Player player) throws RemoteException {
+	players.add(player);
     }
 
     @Override
-    public void unregisterClient(Client client) throws RemoteException {
-	clients.remove(client);
-	client.logFine("Unregisterd client");
+    /**
+     * @throws remoteException
+     */
+    public void unregisterClient(Player player) throws RemoteException {
+	players.remove(player);
     }
 
     @Override
+    /**
+     * @return
+     * @throws remoteException
+     * 
+     */
     public Map getMap() throws RemoteException {
 	return null;
     }

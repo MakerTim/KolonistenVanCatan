@@ -1,27 +1,33 @@
 package nl.groep4.kvc.client.view.elements;
 
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import nl.groep4.kvc.client.util.SoundUtil;
 
-public class LobbyButton extends TexturedButton {
+/**
+ * Lobby buttons, extension of {@link TexturedButton}
+ * 
+ * @version 1.0
+ * @author Tim
+ **/
+public class MenuButton extends TexturedButton {
 
     private static final Image BUTTON_IMAGE = new Image("img/etc/button.png");
     private static final Image BUTTON_HOVER_IMAGE = new Image("img/etc/button_hover.png");
     private static final Image BUTTON_PRESSED_IMAGE = new Image("img/etc/button_pressed.png");
 
-    private Runnable todo;
-
-    public LobbyButton() {
-	super();
+    public MenuButton() {
+	this("");
     }
 
-    public LobbyButton(String text) {
+    public MenuButton(String text) {
 	super(text);
+	registerClick(() -> {
+	    SoundUtil.playSound("sound/clicksound.wav");
+	});
     }
 
-    public LobbyButton(int xPos, int yPos, String text) {
-	super(text);
+    public MenuButton(int xPos, int yPos, String text) {
+	this(text);
 	this.setLayoutX(xPos);
 	this.setLayoutY(yPos);
     }
@@ -40,17 +46,4 @@ public class LobbyButton extends TexturedButton {
     public Image getClickTexture() {
 	return BUTTON_PRESSED_IMAGE;
     }
-
-    @Override
-    public void onClick(MouseEvent mce) {
-	SoundUtil.playSound("sound/clicksound.wav");
-	if (todo != null) {
-	    todo.run();
-	}
-    }
-
-    public void registerClick(Runnable todo) {
-	this.todo = todo;
-    }
-
 }
