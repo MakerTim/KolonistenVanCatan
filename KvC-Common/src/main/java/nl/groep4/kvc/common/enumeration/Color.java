@@ -28,7 +28,7 @@ public enum Color {
      * @author Tim
      */
     public javafx.scene.paint.Color getColor() {
-	return new javafx.scene.paint.Color(red, green, blue, 0);
+	return new javafx.scene.paint.Color(red / 255D, green / 255D, blue / 255D, 0);
     }
 
 }
