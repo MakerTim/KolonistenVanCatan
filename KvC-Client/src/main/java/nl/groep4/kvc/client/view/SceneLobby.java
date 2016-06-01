@@ -52,7 +52,7 @@ public class SceneLobby implements SceneHolder {
 
 	backButton.registerClick(() -> {
 	    ViewMaster.setScene(new SceneLogin().getScene());
-	    lobby.discontect(PlayerController.getThePlayer());
+	    lobby.disconnect(PlayerController.getThePlayer());
 	});
 
 	for (int i = 0; i < Color.values().length; i++) {
