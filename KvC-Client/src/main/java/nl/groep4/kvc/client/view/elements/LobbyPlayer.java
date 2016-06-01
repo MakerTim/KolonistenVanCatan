@@ -19,6 +19,7 @@ public class LobbyPlayer extends StackPane {
     private static final Image IMAGE = new Image("img/menu/parchment.png");
     private static final Image HOVER_IMAGE = new Image("img/menu/parchment_hover.png");
     private static final Image PRESSED_IMAGE = new Image("img/menu/parchment_pressed.png");
+    private static final String EMPTY = "Empty";
 
     private Color color;
     private Text colorLabel;
@@ -32,7 +33,7 @@ public class LobbyPlayer extends StackPane {
 	this.color = color;
 	ImageView background = new ImageView(IMAGE);
 	colorLabel = new Text(color.name());
-	usernameLabel = new Text("Empty");
+	usernameLabel = new Text(EMPTY);
 	usernameLabel.setTextAlignment(TextAlignment.CENTER);
 	colorLabel.setFill(color.getColor());
 	colorLabel.setTextAlignment(TextAlignment.CENTER);
@@ -65,7 +66,11 @@ public class LobbyPlayer extends StackPane {
     }
 
     public void updatePlayer(Player player) {
-	usernameLabel.setText(player.getUsername());
+	if (player == null) {
+	    usernameLabel.setText(EMPTY);
+	} else {
+	    usernameLabel.setText(player.getUsername());
+	}
     }
 
     public void registerClick(Runnable click) {

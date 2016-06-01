@@ -1,5 +1,7 @@
 package nl.groep4.kvc.client.view;
 
+import java.util.Optional;
+
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -54,10 +56,13 @@ public class SceneLobby implements SceneHolder {
 	});
 
 	for (int i = 0; i < Color.values().length; i++) {
-	    players[i] = new LobbyPlayer(Color.values()[i]);
-	    players[i].setLayoutX(i % 3 * 180);
-	    players[i].setLayoutY((i / 3) * 150);
-	    lobbyGrid.getChildren().add(players[i]);
+	    LobbyPlayer lobbyPlayer = new LobbyPlayer(Color.values()[i]);
+	    lobbyPlayer.setLayoutX(i % 3 * 180);
+	    lobbyPlayer.setLayoutY((i / 3) * 150);
+	    lobbyGrid.getChildren().add(lobbyPlayer);
+	    lobbyPlayer.registerClick(() -> {
+		lobby.changeColor(PlayerController.getThePlayer(), lobbyPlayer.getColor());
+	    });
 	}
 
 	lobbyPane.getChildren().addAll(SceneUtil.getMenuBackground(), SceneUtil.getLobbyForeground(),
@@ -75,11 +80,13 @@ public class SceneLobby implements SceneHolder {
     }
 
     public void update() {
-	for (Player pl : lobby.getPlayers()) {
-	    for (LobbyPlayer lp : players) {
-		if (pl.getColor() == lp.getColor()) {
-		    lp.updatePlayer(pl);
-		}
+	for (LobbyPlayer lp : players) {
+	    Optional<Player> player = lobby.getPlayers().stream().filter(pl -> pl.getColor() == lp.getColor())
+		    .findAny();
+	    if (player.isPresent()) {
+		lp.updatePlayer(player.get());
+	    } else {
+		lp.updatePlayer(null);
 	    }
 	}
     }

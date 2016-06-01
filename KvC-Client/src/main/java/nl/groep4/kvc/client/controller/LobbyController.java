@@ -6,10 +6,11 @@ import java.util.List;
 
 import nl.groep4.kvc.common.Lobby;
 import nl.groep4.kvc.common.Player;
+import nl.groep4.kvc.common.enumeration.Color;
 
 public class LobbyController {
 
-    public Lobby lobby;
+    private Lobby lobby;
 
     public LobbyController(Lobby lobby) {
 	this.lobby = lobby;
@@ -37,6 +38,15 @@ public class LobbyController {
 	    // TODO: handle exception
 	}
 	lobby = null;
+    }
+
+    public void changeColor(Player player, Color color) {
+	try {
+	    lobby.setColor(player, color);
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	    // TODO: handle exception
+	}
     }
 
 }
