@@ -30,7 +30,7 @@ public class LobbyController {
 	return this.lobby;
     }
 
-    public void discontect(Player pl) {
+    public void disconnect(Player pl) {
 	try {
 	    lobby.unregisterPlayer(pl);
 	} catch (RemoteException ex) {

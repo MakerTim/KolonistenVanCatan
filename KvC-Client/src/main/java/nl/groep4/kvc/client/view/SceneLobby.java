@@ -35,7 +35,7 @@ public class SceneLobby implements SceneHolder {
 	lobbyGrid.setLayoutX(200);
 	lobbyGrid.setLayoutY(200);
 	/* Build the settings menu in lobby */
-	Text lobbyLabel = new Text(838, 200, "Lobby");
+	Text lobbyLabel = new Text(873, 150, "Lobby");
 	lobbyLabel.setFont(ViewMaster.FONT);
 	lobbyLabel.setFill(javafx.scene.paint.Color.WHITE);
 	lobbyLabel.setStroke(javafx.scene.paint.Color.BLACK);
@@ -52,12 +52,12 @@ public class SceneLobby implements SceneHolder {
 
 	backButton.registerClick(() -> {
 	    ViewMaster.setScene(new SceneLogin().getScene());
-	    lobby.discontect(PlayerController.getThePlayer());
+	    lobby.disconnect(PlayerController.getThePlayer());
 	});
 
 	for (int i = 0; i < Color.values().length; i++) {
 	    LobbyPlayer lobbyPlayer = new LobbyPlayer(Color.values()[i]);
-	    lobbyPlayer.setLayoutX(i % 3 * 180);
+	    lobbyPlayer.setLayoutX(i % 3 * 215);
 	    lobbyPlayer.setLayoutY((i / 3) * 150);
 	    lobbyGrid.getChildren().add(lobbyPlayer);
 	    lobbyPlayer.registerClick(() -> {
@@ -70,8 +70,8 @@ public class SceneLobby implements SceneHolder {
 		saveButton);
 
 	Scene scene = new Scene(lobbyPane);
-	SceneUtil.fadeIn(SceneUtil.getLobbyForeground(), SceneUtil.getMenuBrazier(), SceneUtil.getCornerShield(),
-		lobbyLabel, lobbyGrid, startGame, backButton, saveButton);
+	SceneUtil.fadeIn(SceneUtil.getLobbyForeground(), SceneUtil.getCornerShield(), lobbyLabel, lobbyGrid, startGame,
+		backButton, saveButton);
 
 	return scene;
 
