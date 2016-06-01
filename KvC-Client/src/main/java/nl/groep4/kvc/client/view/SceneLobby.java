@@ -35,7 +35,7 @@ public class SceneLobby implements SceneHolder {
 	lobbyGrid.setLayoutX(200);
 	lobbyGrid.setLayoutY(200);
 	/* Build the settings menu in lobby */
-	Text lobbyLabel = new Text(838, 200, "Lobby");
+	Text lobbyLabel = new Text(873, 150, "Lobby");
 	lobbyLabel.setFont(ViewMaster.FONT);
 	lobbyLabel.setFill(javafx.scene.paint.Color.WHITE);
 	lobbyLabel.setStroke(javafx.scene.paint.Color.BLACK);
@@ -57,7 +57,7 @@ public class SceneLobby implements SceneHolder {
 
 	for (int i = 0; i < Color.values().length; i++) {
 	    LobbyPlayer lobbyPlayer = new LobbyPlayer(Color.values()[i]);
-	    lobbyPlayer.setLayoutX(i % 3 * 180);
+	    lobbyPlayer.setLayoutX(i % 3 * 215);
 	    lobbyPlayer.setLayoutY((i / 3) * 150);
 	    lobbyGrid.getChildren().add(lobbyPlayer);
 	    lobbyPlayer.registerClick(() -> {
