@@ -75,8 +75,6 @@ public class SceneLobby implements SceneHolder {
 
 	return scene;
 
-	// TODO: SoundUtil.stopTeamsong(); wanneer spel start
-
     }
 
     public void update() {
