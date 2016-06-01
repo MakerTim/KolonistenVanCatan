@@ -62,10 +62,10 @@ public class SceneSettings implements SceneHolder {
 	settings.setFill(Color.WHITE);
 	settings.setStroke(Color.BLACK);
 
-	layers.getChildren().addAll(SceneUtil.getMenuBackground(), SceneUtil.getLobbySettings(),
-		SceneUtil.getLobbyBrazier(), buildFrom(), acceptSettings, settings, slider, music);
+	layers.getChildren().addAll(SceneUtil.getMenuBackground(), SceneUtil.getSettingsForeground(),
+		SceneUtil.getMenuBrazier(), buildFrom(), acceptSettings, settings, slider, music);
 	Scene scene = new Scene(layers);
-	SceneUtil.fadeIn(SceneUtil.getLobbySettings(), settings, slider, music, acceptSettings);
+	SceneUtil.fadeIn(SceneUtil.getSettingsForeground(), settings, slider, music, acceptSettings);
 
 	return scene;
 

@@ -50,11 +50,11 @@ public class SceneLobby implements SceneHolder {
 	});
 
 	lobbyPane.getChildren().addAll(SceneUtil.getMenuBackground(), SceneUtil.getLobbyForeground(),
-		SceneUtil.getLobbyBrazier(), SceneUtil.getCornerShield(), lobbyLabel, startGame, backButton,
+		SceneUtil.getMenuBrazier(), SceneUtil.getCornerShield(), lobbyLabel, startGame, backButton,
 		saveButton);
 
 	Scene scene = new Scene(lobbyPane);
-	SceneUtil.fadeIn(SceneUtil.getLobbyForeground(), SceneUtil.getLobbyBrazier(), SceneUtil.getCornerShield(),
+	SceneUtil.fadeIn(SceneUtil.getLobbyForeground(), SceneUtil.getMenuBrazier(), SceneUtil.getCornerShield(),
 		lobbyLabel, startGame, backButton, saveButton);
 
 	return scene;
