@@ -24,7 +24,7 @@ public class ViewMaster extends Application {
     public void start(Stage primaryStage) throws Exception {
 	stage = primaryStage;
 	System.out.println("Starting lobby");
-
+	stage.getIcons().add(new Image("img/etc/cursor.png"));
 	SoundUtil.playThemesong();
 	System.out.println("Playing themesong");
 	setScene(new SceneLogin().getScene());

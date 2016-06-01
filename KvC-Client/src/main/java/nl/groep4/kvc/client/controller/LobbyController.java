@@ -28,7 +28,7 @@ public class LobbyController {
 	return new ArrayList<>();
     }
 
-    public void discontect(Player pl) {
+    public void disconnect(Player pl) {
 	try {
 	    lobby.unregisterPlayer(pl);
 	} catch (RemoteException ex) {
