@@ -74,7 +74,6 @@ public class SceneLobby implements SceneHolder {
 		backButton, saveButton);
 
 	return scene;
-
     }
 
     public void update() {
