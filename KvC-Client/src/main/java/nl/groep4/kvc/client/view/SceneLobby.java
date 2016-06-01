@@ -1,5 +1,7 @@
 package nl.groep4.kvc.client.view;
 
+import java.util.Optional;
+
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -75,11 +77,13 @@ public class SceneLobby implements SceneHolder {
     }
 
     public void update() {
-	for (Player pl : lobby.getPlayers()) {
-	    for (LobbyPlayer lp : players) {
-		if (pl.getColor() == lp.getColor()) {
-		    lp.updatePlayer(pl);
-		}
+	for (LobbyPlayer lp : players) {
+	    Optional<Player> player = lobby.getPlayers().stream().filter(pl -> pl.getColor() == lp.getColor())
+		    .findAny();
+	    if (player.isPresent()) {
+		lp.updatePlayer(player.get());
+	    } else {
+		lp.updatePlayer(null);
 	    }
 	}
     }
