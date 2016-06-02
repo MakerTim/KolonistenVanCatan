@@ -1,4 +1,4 @@
-package nl.groep4.kvc.client.view;
+package nl.groep4.kvc.client.view.scene;
 
 import java.rmi.RemoteException;
 
@@ -10,6 +10,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.SoundUtil;
+import nl.groep4.kvc.client.util.TranslationManager;
+import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.elements.MenuSlider;
 
@@ -21,8 +23,8 @@ import nl.groep4.kvc.client.view.elements.MenuSlider;
  **/
 public class SceneSettings implements SceneHolder {
 
-    private static final String PLAY = "Play Music";
-    private static final String STOP = "Stop Music";
+    private static final String PLAY = "settings.button.playmusic";
+    private static final String STOP = "settings.button.stopmusic";
 
     private SceneHolder parent;
     private Slider slider;
@@ -37,14 +39,15 @@ public class SceneSettings implements SceneHolder {
 	Pane layers = new Pane();
 
 	/* Build the settings menu in lobby */
-	MenuButton music = new MenuButton(415, 150, SoundUtil.themesongIsPlaying() ? STOP : PLAY);
+	MenuButton music = new MenuButton(415, 150,
+		TranslationManager.translate(SoundUtil.themesongIsPlaying() ? STOP : PLAY));
 	music.setFont(ViewMaster.FONT);
 	slider = new MenuSlider(415, 230, 0, 1, SoundUtil.getVolumeLevel() + 0.5);
 	slider.setPrefWidth(175);
 	slider.valueProperty().addListener(changed -> {
 	    SoundUtil.setVolume((float) (slider.getValue() - 0.5));
 	});
-	MenuButton acceptSettings = new MenuButton(415, 550, "Accept");
+	MenuButton acceptSettings = new MenuButton(415, 550, TranslationManager.translate("settings.button.accept"));
 	acceptSettings.setFont(ViewMaster.FONT);
 	music.registerClick(() -> {
 	    if (SoundUtil.themesongIsPlaying()) {
@@ -65,7 +68,7 @@ public class SceneSettings implements SceneHolder {
 	    }
 	});
 
-	Text settings = new Text(465, 120, "Settings");
+	Text settings = new Text(465, 120, TranslationManager.translate("settings.label.title"));
 	settings.setFont(ViewMaster.FONT);
 	settings.setFill(Color.WHITE);
 	settings.setStroke(Color.BLACK);

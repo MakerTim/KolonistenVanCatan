@@ -1,4 +1,4 @@
-package nl.groep4.kvc.client.view;
+package nl.groep4.kvc.client.view.scene;
 
 import java.rmi.RemoteException;
 
@@ -12,6 +12,8 @@ import javafx.scene.text.Text;
 import nl.groep4.kvc.client.controller.LobbyController;
 import nl.groep4.kvc.client.controller.LoginController;
 import nl.groep4.kvc.client.util.SceneUtil;
+import nl.groep4.kvc.client.util.TranslationManager;
+import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.elements.MenuCheckBox;
 import nl.groep4.kvc.client.view.elements.MenuFilterdInputField;
@@ -53,20 +55,20 @@ public class SceneLogin implements SceneHolder {
 	if (form == null) {
 	    form = new Pane();
 
-	    Text ipLabel = new Text(330, 350, "Server IP");
+	    Text ipLabel = new Text(330, 350, TranslationManager.translate("lobby.label.ip"));
 	    ipInput = new MenuMatchInputField(450, 320, "", KvCStatics.REGEX_IP);
-	    Text portLabel = new Text(330, 375, "Server port");
+	    Text portLabel = new Text(330, 375, TranslationManager.translate("lobby.label.port"));
 	    portInput = new MenuFilterdInputField(450, 345, "", KvCStatics.NUMERIC);
-	    Text usernameLabel = new Text(330, 410, "Username");
+	    Text usernameLabel = new Text(330, 410, TranslationManager.translate("lobby.label.username"));
 	    usernameInput = new MenuFilterdInputField(450, 380, "", KvCStatics.USERNAME);
-	    Text nocolorLabel = new Text(330, 450, "No color");
+	    Text nocolorLabel = new Text(330, 450, TranslationManager.translate("lobby.label.nocolor"));
 	    nocolorInput = new MenuCheckBox(540, 434, false);
-	    Text confirmLabel = new Text(330, 470, "Confirm every action");
+	    Text confirmLabel = new Text(330, 470, TranslationManager.translate("lobby.label.confirmeverything"));
 	    confirmInput = new MenuCheckBox(540, 454, false);
-	    Text nosoundLabel = new Text(330, 490, "No sounds");
+	    Text nosoundLabel = new Text(330, 490, TranslationManager.translate("lobby.label.nosound"));
 	    nosoundInput = new MenuCheckBox(540, 474, false);
-	    MenuButton joinButton = new MenuButton(425, 500, "Join");
-	    MenuButton settingsButton = new MenuButton(13, 645, "Settings");
+	    MenuButton joinButton = new MenuButton(425, 500, TranslationManager.translate("lobby.button.join"));
+	    MenuButton settingsButton = new MenuButton(13, 645, TranslationManager.translate("lobby.button.settings"));
 
 	    ipLabel.setFont(ViewMaster.FONT);
 	    ipInput.setFont(ViewMaster.FONT);

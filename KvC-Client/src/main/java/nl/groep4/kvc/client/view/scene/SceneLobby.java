@@ -1,4 +1,4 @@
-package nl.groep4.kvc.client.view;
+package nl.groep4.kvc.client.view.scene;
 
 import java.rmi.RemoteException;
 import java.util.List;
@@ -11,6 +11,8 @@ import nl.groep4.kvc.client.controller.ConnectionController;
 import nl.groep4.kvc.client.controller.LobbyController;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.SoundUtil;
+import nl.groep4.kvc.client.util.TranslationManager;
+import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.LobbyPlayer;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.common.Lobby;
@@ -43,15 +45,15 @@ public class SceneLobby implements SceneHolder, Updatable<Lobby> {
 	lobbyGrid.setLayoutX(200);
 	lobbyGrid.setLayoutY(200);
 	/* Build the settings menu in lobby */
-	Text lobbyLabel = new Text(873, 150, "Lobby");
+	Text lobbyLabel = new Text(873, 150, TranslationManager.translate("lobby.shield.title"));
 	lobbyLabel.setFont(ViewMaster.FONT);
 	lobbyLabel.setFill(javafx.scene.paint.Color.WHITE);
 	lobbyLabel.setStroke(javafx.scene.paint.Color.BLACK);
-	MenuButton startGame = new MenuButton(415, 550, "Start Game");
+	MenuButton startGame = new MenuButton(415, 550, TranslationManager.translate("lobby.button.start"));
 	startGame.setFont(ViewMaster.FONT);
-	MenuButton backButton = new MenuButton(215, 550, "Back");
+	MenuButton backButton = new MenuButton(215, 550, TranslationManager.translate("lobby.button.back"));
 	backButton.setFont(ViewMaster.FONT);
-	MenuButton saveButton = new MenuButton(615, 550, "Load");
+	MenuButton saveButton = new MenuButton(615, 550, TranslationManager.translate("lobby.button.loadsave"));
 	saveButton.setFont(ViewMaster.FONT);
 
 	startGame.registerClick(() -> {

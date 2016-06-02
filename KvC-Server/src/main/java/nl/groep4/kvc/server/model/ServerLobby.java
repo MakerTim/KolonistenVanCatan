@@ -37,12 +37,17 @@ public class ServerLobby implements Lobby {
 	    players.add(pl);
 	    System.out.printf("Player %s has connected.\n", pl.getUsername());
 	}
+	try {
+	    update();
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
     }
 
     @Override
     public void unregisterPlayer(Player pl) throws RemoteException {
 	System.out.printf("Player %s has been logged off.\n", pl.getUsername());
-	players.remove(pl);
+	players.remove(getServerPlayer(pl));
     }
 
     @Override
@@ -60,7 +65,6 @@ public class ServerLobby implements Lobby {
 	if (!players.stream().filter(pl -> pl.getColor() == color).findAny().isPresent()) {
 	    player = getServerPlayer(player);
 	    player.setColor(color);
-	    System.out.println(player.getUsername() + " -> " + color);
 	    try {
 		update();
 	    } catch (RemoteException ex) {
@@ -80,6 +84,6 @@ public class ServerLobby implements Lobby {
     }
 
     private Player getServerPlayer(Player player) {
-	return players.stream().filter(pl -> pl.getUsername().equals(player.getUsername())).findAny().orElse(player);
+	return players.stream().filter(pl -> pl.equals(player)).findAny().orElse(player);
     }
 }
