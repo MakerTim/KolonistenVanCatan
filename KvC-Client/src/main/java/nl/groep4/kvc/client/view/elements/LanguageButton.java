@@ -1,6 +1,7 @@
 package nl.groep4.kvc.client.view.elements;
 
 import javafx.scene.image.Image;
+import nl.groep4.kvc.client.util.TranslationManager;
 
 public class LanguageButton extends TexturedButton {
 
@@ -11,6 +12,7 @@ public class LanguageButton extends TexturedButton {
 	registerClick(() -> {
 	    selectedLanguage++;
 	    selectedLanguage %= LANGUAGES.length;
+	    TranslationManager.setLanguage(LANGUAGES[selectedLanguage]);
 	});
     }
 
