@@ -47,12 +47,12 @@ public class ServerLobby implements Lobby {
 
     @Override
     public void startGame() {
-	// TODO
+	// TODO Lobby#StartGame
     }
 
     @Override
     public void loadSafe(String safeFile) {
-	// TODO
+	// TODO Lobby#loadSafe
     }
 
     @Override

@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import nl.groep4.kvc.client.util.ExceptionManager;
 import nl.groep4.kvc.common.Lobby;
 import nl.groep4.kvc.common.Player;
 import nl.groep4.kvc.common.enumeration.Color;
@@ -22,8 +23,7 @@ public class LobbyController {
 	try {
 	    return lobby.getConnectedPlayers();
 	} catch (RemoteException ex) {
-	    ex.printStackTrace();
-	    // TODO: handle exception
+	    ExceptionManager.handleRemoteException(ex);
 	}
 	return new ArrayList<>();
     }
@@ -32,8 +32,7 @@ public class LobbyController {
 	try {
 	    lobby.unregisterPlayer(pl);
 	} catch (RemoteException ex) {
-	    ex.printStackTrace();
-	    // TODO: handle exception
+	    ExceptionManager.handleRemoteException(ex);
 	}
 	lobby = null;
     }
@@ -42,8 +41,7 @@ public class LobbyController {
 	try {
 	    lobby.setColor(player, color);
 	} catch (RemoteException ex) {
-	    ex.printStackTrace();
-	    // TODO: handle exception
+	    ExceptionManager.handleRemoteException(ex);
 	}
     }
 
@@ -51,8 +49,7 @@ public class LobbyController {
 	try {
 	    lobby.registerUpdateable((Updatable<Lobby>) UnicastRemoteObject.exportObject(sceneLobby, 0));
 	} catch (RemoteException ex) {
-	    ex.printStackTrace();
-	    // TODO: handle exception
+	    ExceptionManager.handleRemoteException(ex);
 	}
     }
 
