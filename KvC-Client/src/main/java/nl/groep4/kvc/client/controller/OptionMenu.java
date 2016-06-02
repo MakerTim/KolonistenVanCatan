@@ -9,9 +9,16 @@ package nl.groep4.kvc.client.controller;
 
 public class OptionMenu {
 
+    /**
+     * Opens option menu
+     */
     public void openOptionMenu() {
     }
 
+    /**
+     * 
+     */
     public void closeOptionMenu() {
     }
+
 }

@@ -24,6 +24,12 @@ public final class LoginController {
     private LoginController() {
     }
 
+    /**
+     * 
+     * 
+     * @param sceneLogin
+     * @return gets lobby status
+     */
     public static Lobby connect(SceneLogin sceneLogin) {
 	String ip = "";
 	int port = 1099;
