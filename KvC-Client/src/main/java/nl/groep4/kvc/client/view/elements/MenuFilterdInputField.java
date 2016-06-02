@@ -37,7 +37,8 @@ public class MenuFilterdInputField extends MenuInputField {
 
     private void registerCheck(String regex) {
 	setOnKeyPressed(key -> {
-	    if (key.getCode() == KeyCode.V && key.isControlDown()) {
+	    if (key.getCode() == KeyCode.V && key.isControlDown()
+		    || key.getCode() == KeyCode.INSERT && key.isShiftDown()) {
 		key.consume();
 	    }
 	});
