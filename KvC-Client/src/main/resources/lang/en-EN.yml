@@ -21,7 +21,7 @@ lobby.button.settings:Settings
 
 #SceneSettings
 settings.button.playmusic:Play Music
-settings.button.playmusic:Stop Music
+settings.button.stopmusic:Stop Music
 settings.button.accept:Accept
 settings.label.title:Settings
 
@@ -31,7 +31,7 @@ error.connect.notfound.explanation:The server you where looking for could not be
 error.version.notfound.details:Exception: \n%s
 error.version.diffrence.title:Server version is not the same
 error.version.diffrence.explanation:
-error.version.diffrence.details
+error.version.diffrence.details:
 error.server.error.title:
 error.server.error.explanation:
 error.server.error.detail:

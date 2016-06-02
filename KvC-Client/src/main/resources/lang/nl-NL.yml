@@ -12,26 +12,26 @@ lobby.button.loadsave:Laden
 #SceneLogin
 lobby.label.ip:IP Adres
 lobby.label.port:Port Nummer
-lobby.label.username:
-lobby.label.nocolor:No Color
-lobby.label.confirmeverything:Confirm Everything
-lobby.label.nosound:No Sound
-lobby.button.join:Join
-lobby.button.settings:Settings
+lobby.label.username:Gebruikersnaam
+lobby.label.nocolor:Geen Kleur
+lobby.label.confirmeverything:Bevestig Alles
+lobby.label.nosound:Geen geluid
+lobby.button.join:Meedoen
+lobby.button.settings:Instellingen
 
 #SceneSettings
-settings.button.playmusic:Play Music
-settings.button.playmusic:Stop Music
-settings.button.accept:Accept
-settings.label.title:Settings
+settings.button.playmusic:Muziek AAN
+settings.button.playmusic:Muziek UIT
+settings.button.accept:Accepteren
+settings.label.title:Instellingen
 
 #ExceptionManager
-error.connect.notfound.title:Server not found
-error.connect.notfound.explanation:The server you where looking for could not be found
+error.connect.notfound.title:Server is niet gevonden
+error.connect.notfound.explanation:De server die u zocht is niet gevonden
 error.version.notfound.details:Exception: \n%s
-error.version.diffrence.title:Server version is not the same
+error.version.diffrence.title:Server versie is niet hetzelfde
 error.version.diffrence.explanation:
-error.version.diffrence.details
+error.version.diffrence.details:
 error.server.error.title:
 error.server.error.explanation:
 error.server.error.detail:
