@@ -2,7 +2,6 @@ package nl.groep4.kvc.common;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.Iterator;
 import java.util.List;
 
 import nl.groep4.kvc.common.enumeration.Color;
@@ -71,20 +70,7 @@ public interface Lobby extends Remote {
      * 
      * @throws RemoteException
      */
-    public default void update() throws RemoteException {
-	for (Iterator<Player> playerIt = getConnectedPlayers().iterator(); playerIt.hasNext();) {
-	    Player pl = playerIt.next();
-	    try {
-		Updatable<Lobby> updatable = (Updatable<Lobby>) pl.getUpdateable();
-		updatable.update(this);
-	    } catch (NullPointerException ex) {
-		ex.printStackTrace();
-	    } catch (Exception ex) {
-		System.out.printf("%s has been kicked. %s\n", pl.getUsername(), ex.toString());
-		playerIt.remove();
-	    }
-	}
-    }
+    public void update() throws RemoteException;
 
     public State getState() throws RemoteException;
 

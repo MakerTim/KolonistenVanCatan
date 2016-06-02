@@ -2,6 +2,7 @@ package nl.groep4.kvc.server.model;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -83,13 +84,26 @@ public class ServerLobby implements Lobby {
 
     @Override
     public void update() throws RemoteException {
-	Lobby.super.update();
-	if (state != State.STARTING) {
+	for (Iterator<Player> playerIt = getConnectedPlayers().iterator(); playerIt.hasNext();) {
+	    Player pl = playerIt.next();
+	    try {
+		Updatable<Lobby> updatable = (Updatable<Lobby>) pl.getUpdateable();
+		(updatable).update(this);
+	    } catch (NullPointerException ex) {
+		ex.printStackTrace();
+	    } catch (Exception ex) {
+		System.out.printf("%s has been kicked. %s\n", pl.getUsername(), ex.toString());
+		playerIt.remove();
+	    }
+	}
+	if (!state.isStarting()) {
 	    if (players.stream().filter(pl -> pl.getColor() != null).count() >= 6) {
 		state = State.LOBBY_FULL;
 	    } else {
 		state = State.LOBBY;
 	    }
+	} else {
+
 	}
     }
 
