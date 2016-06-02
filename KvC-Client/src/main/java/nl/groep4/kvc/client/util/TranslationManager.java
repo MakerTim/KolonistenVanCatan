@@ -9,14 +9,14 @@ import jdk.nashorn.api.scripting.URLReader;
 
 public class TranslationManager {
 
-    private static final List<String> currentLanguage = new ArrayList<>();
+    private static final List<String> CURRENT_LANGUAGES = new ArrayList<>();
 
     static {
 	setLanguage("en-EN");
     }
 
     public static void setLanguage(String languageKey) {
-	currentLanguage.clear();
+	CURRENT_LANGUAGES.clear();
 	BufferedReader fileReader = new BufferedReader(
 		new URLReader(TranslationManager.class.getResource("/lang/" + languageKey + ".yml")));
 
@@ -26,13 +26,13 @@ public class TranslationManager {
 	    if (line.trim().isEmpty() || line.startsWith("#") || !line.contains(":")) {
 		continue;
 	    }
-	    currentLanguage.add(line);
+	    CURRENT_LANGUAGES.add(line);
 	}
 	scanner.close();
     }
 
     public static String translate(String key, Object... args) {
-	for (String translation : currentLanguage) {
+	for (String translation : CURRENT_LANGUAGES) {
 	    if (translation.startsWith(key)) {
 		return String.format(translation.split(":", 2)[1], args);
 	    }
