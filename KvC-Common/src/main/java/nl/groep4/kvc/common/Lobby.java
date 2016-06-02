@@ -21,26 +21,19 @@ public interface Lobby extends Remote {
      * 
      * @return a list of players which are connected to the lobby
      * @throws RemoteException
-     * @version 1.0
-     * @author Tim
      */
     public List<Player> getConnectedPlayers() throws RemoteException;
 
     /**
      * 
-     * @param pl
-     * @return registers a player
+     * @param username
      * @throws RemoteException
-     * @version 1.0
-     * @author Tim
      */
     public void registerPlayer(String username) throws RemoteException;
 
     /**
      * 
      * @throws RemoteException
-     * @version 1.0
-     * @author Tim
      */
     public void startGame() throws RemoteException;
 
@@ -48,8 +41,6 @@ public interface Lobby extends Remote {
      * 
      * @param pl
      * @throws RemoteException
-     * @version 1.0
-     * @author Tim
      */
     public void unregisterPlayer(Player pl) throws RemoteException;
 
@@ -57,8 +48,6 @@ public interface Lobby extends Remote {
      * 
      * @param safeFile
      * @throws RemoteException
-     * @version 1.0
-     * @author Tim
      */
     public void loadSafe(String safeFile) throws RemoteException;
 
@@ -67,16 +56,12 @@ public interface Lobby extends Remote {
      * @param pl
      * @param color
      * @throws RemoteException
-     * @version 1.0
-     * @author Tim
      */
     public void setColor(Player pl, Color color) throws RemoteException;
 
     /**
      * 
      * @throws RemoteException
-     * @version 1.0
-     * @author Tim
      */
     public default void update() throws RemoteException {
 	for (Iterator<Updatable<Lobby>> updateableIt = getUpdatable().iterator(); updateableIt.hasNext();) {
@@ -89,7 +74,17 @@ public interface Lobby extends Remote {
 	}
     }
 
+    /**
+     * 
+     * @return
+     * @throws RemoteException
+     */
     public List<Updatable<Lobby>> getUpdatable() throws RemoteException;
 
+    /**
+     * 
+     * @param updateable
+     * @throws RemoteException
+     */
     public void registerUpdateable(Updatable<Lobby> updateable) throws RemoteException;
 }

@@ -15,7 +15,6 @@ import javafx.util.Duration;
  * @author Tim
  * @version 1.0
  */
-
 public class SceneUtil {
 
     private static Node background;

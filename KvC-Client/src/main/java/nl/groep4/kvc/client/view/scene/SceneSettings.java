@@ -12,8 +12,10 @@ import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.SoundUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
+import nl.groep4.kvc.client.view.elements.LanguageButton;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.elements.MenuSlider;
+import nl.groep4.kvc.client.view.elements.TexturedButton;
 
 /**
  * Configuration Scene
@@ -47,6 +49,10 @@ public class SceneSettings implements SceneHolder {
 	slider.valueProperty().addListener(changed -> {
 	    SoundUtil.setVolume((float) (slider.getValue() - 0.5));
 	});
+	TexturedButton language = new LanguageButton();
+	language.setLayoutX(460);
+	language.setLayoutY(300);
+
 	MenuButton acceptSettings = new MenuButton(415, 550, TranslationManager.translate("settings.button.accept"));
 	acceptSettings.setFont(ViewMaster.FONT);
 	music.registerClick(() -> {
@@ -73,10 +79,16 @@ public class SceneSettings implements SceneHolder {
 	settings.setFill(Color.WHITE);
 	settings.setStroke(Color.BLACK);
 
+	language.registerClick(() -> {
+	    music.updateText(TranslationManager.translate(SoundUtil.themesongIsPlaying() ? STOP : PLAY));
+	    acceptSettings.updateText(TranslationManager.translate("settings.button.accept"));
+	    settings.setText(TranslationManager.translate("settings.label.title"));
+	});
+
 	layers.getChildren().addAll(SceneUtil.getMenuBackground(), SceneUtil.getSettingsForeground(),
-		SceneUtil.getMenuBrazier(), buildFrom(), acceptSettings, settings, slider, music);
+		SceneUtil.getMenuBrazier(), buildFrom(), acceptSettings, settings, slider, language, music);
 	Scene scene = new Scene(layers);
-	SceneUtil.fadeIn(SceneUtil.getSettingsForeground(), settings, slider, music, acceptSettings);
+	SceneUtil.fadeIn(SceneUtil.getSettingsForeground(), settings, slider, language, music, acceptSettings);
 
 	return scene;
 

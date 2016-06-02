@@ -15,16 +15,17 @@ public class Player implements nl.groep4.kvc.common.Player {
     private final String username;
     private Color color;
 
+    /**
+     * 
+     * @param username
+     */
     public Player(String username) {
 	this.username = username.substring(0, Math.min(username.length(), 20));
 	this.color = Color.RED;
     }
 
     /**
-     * Sets username and color of player
-     * 
-     * @version 1.0
-     * @author Tim
+     * Gets the name of a player
      */
     @Override
     public String getUsername() {
@@ -32,37 +33,19 @@ public class Player implements nl.groep4.kvc.common.Player {
     }
 
     /**
-     * Returns username
-     * 
-     * @version 1.0
-     * @author Tim
+     * Gets color for a player
      */
-
     @Override
     public Color getColor() {
 	return color;
     }
 
     /**
-     * Returns color of the player
-     * 
-     * @version 1.0
-     * @author Tim
+     * Sets color for a player
      */
-
     @Override
     public void setColor(Color color) {
 	this.color = color;
     }
-    /**
-     * 
-     * @version 1.0
-     * @author Tim
-     */
+
 }
-/**
- * 
- *
- * @version 1.0
- * @author Tim
- */

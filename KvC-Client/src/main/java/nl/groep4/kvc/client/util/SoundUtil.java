@@ -17,17 +17,22 @@ import javafx.beans.property.ReadOnlyFloatWrapper;
  * @author Tim
  * @version 1.0
  */
-
 public class SoundUtil {
 
     private static final float VOLUME_LEVEL = 30F;
     private static FloatExpression volume = new ReadOnlyFloatWrapper(0F);
     private static Clip teamsongKvC;
 
+    /**
+     * Music file to play if an error occurs
+     */
     public static void playError() {
 	playSound("sound/no.wav");
     }
 
+    /**
+     * Music file to play when in lobby
+     */
     public static void playThemesong() {
 	stopThemesong();
 	teamsongKvC = playSound("sound/themesongKvC.wav");
@@ -36,6 +41,9 @@ public class SoundUtil {
 	}
     }
 
+    /**
+     * Stops the music
+     */
     public static void stopThemesong() {
 	if (themesongIsPlaying()) {
 	    teamsongKvC.stop();
@@ -44,6 +52,12 @@ public class SoundUtil {
 	}
     }
 
+    /**
+     * Controls the sound volume
+     * 
+     * @param soundName
+     * @return
+     */
     public static Clip playSound(String soundName) {
 	try {
 	    AudioInputStream audioInputStream = AudioSystem
@@ -73,14 +87,27 @@ public class SoundUtil {
 	return null;
     }
 
+    /**
+     * 
+     * @return teamsongKvC not equal to null
+     */
     public static boolean themesongIsPlaying() {
 	return teamsongKvC != null;
     }
 
+    /**
+     * 
+     * @return gets volume level
+     */
     public static float getVolumeLevel() {
 	return SoundUtil.volume.get() / VOLUME_LEVEL;
     }
 
+    /**
+     * sets volume level value
+     * 
+     * @param volume
+     */
     public static void setVolume(float volume) {
 	((FloatProperty) SoundUtil.volume).setValue(volume * VOLUME_LEVEL);
     }
