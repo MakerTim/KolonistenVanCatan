@@ -6,7 +6,6 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-import nl.groep4.kvc.client.model.Player;
 import nl.groep4.kvc.client.view.ExceptionDialog;
 import nl.groep4.kvc.client.view.SceneLogin;
 import nl.groep4.kvc.common.KvCStaticNaming;
@@ -46,7 +45,8 @@ public final class LoginController {
 	    lobby = (Lobby) registry.lookup(KvCStaticNaming.LOBBY_KEY);
 	    /* Register self */
 	    ConnectionController.setLobby(lobby);
-	    ConnectionController.setThePlayer(lobby.registerPlayer(new Player(username)));
+	    lobby.registerPlayer(username);
+	    ConnectionController.setThePlayer(username);
 	} catch (UnknownHostException ex) {
 	    ExceptionDialog.warning("IP is not a valid ip address", "No valid IP",
 		    String.format("'%s' is not a valid ip address", ip));

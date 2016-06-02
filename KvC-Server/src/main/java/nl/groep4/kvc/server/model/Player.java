@@ -1,4 +1,4 @@
-package nl.groep4.kvc.client.model;
+package nl.groep4.kvc.server.model;
 
 import nl.groep4.kvc.common.enumeration.Color;
 

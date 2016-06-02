@@ -22,9 +22,8 @@ public class ConnectionController {
 	return null;
     }
 
-    public static Player setThePlayer(Player thePlayer) {
-	ConnectionController.username = thePlayer.getUsername();
-	return thePlayer;
+    public static void setThePlayer(String username) {
+	ConnectionController.username = username;
     }
 
     public static void setLobby(Lobby lobby) {

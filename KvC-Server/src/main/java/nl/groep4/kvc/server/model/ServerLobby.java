@@ -6,8 +6,9 @@ import java.util.List;
 import java.util.Optional;
 
 import nl.groep4.kvc.common.Lobby;
-import nl.groep4.kvc.common.Player;
 import nl.groep4.kvc.common.enumeration.Color;
+import nl.groep4.kvc.common.interfaces.Updatable;
+import nl.groep4.kvc.common.Player;
 
 /**
  * The lobby for the game
@@ -17,6 +18,7 @@ import nl.groep4.kvc.common.enumeration.Color;
  **/
 public class ServerLobby implements Lobby {
 
+    private final List<Updatable<Lobby>> views = new ArrayList<>();
     private final List<Player> players = new ArrayList<>();
 
     @Override
@@ -25,16 +27,15 @@ public class ServerLobby implements Lobby {
     }
 
     @Override
-    public Player registerPlayer(Player pl) {
-	Optional<Player> existingPlayer = players.stream().filter(player -> pl.getUsername() == player.getUsername())
+    public void registerPlayer(String username) {
+	Optional<Player> existingPlayer = players.stream().filter(player -> username.equals(player.getUsername()))
 		.findFirst();
 	if (existingPlayer.isPresent()) {
-	    System.out.printf("Player %s reconnected.\n", pl.getUsername());
-	    return existingPlayer.get();
+	    System.out.printf("Player %s reconnected.\n", existingPlayer.get().getUsername());
 	} else {
+	    Player pl = new nl.groep4.kvc.server.model.Player(username);
 	    players.add(pl);
 	    System.out.printf("Player %s has connected.\n", pl.getUsername());
-	    return pl;
 	}
     }
 
@@ -57,8 +58,28 @@ public class ServerLobby implements Lobby {
     @Override
     public void setColor(Player player, Color color) {
 	if (!players.stream().filter(pl -> pl.getColor() == color).findAny().isPresent()) {
+	    player = getServerPlayer(player);
 	    player.setColor(color);
+	    System.out.println(player.getUsername() + " -> " + color);
+	    try {
+		update();
+	    } catch (RemoteException ex) {
+		ex.printStackTrace();
+	    }
 	}
     }
 
+    @Override
+    public List<Updatable<Lobby>> getUpdatable() throws RemoteException {
+	return views;
+    }
+
+    @Override
+    public void registerUpdateable(Updatable<Lobby> updateable) throws RemoteException {
+	views.add(updateable);
+    }
+
+    private Player getServerPlayer(Player player) {
+	return players.stream().filter(pl -> pl.getUsername().equals(player.getUsername())).findAny().orElse(player);
+    }
 }
