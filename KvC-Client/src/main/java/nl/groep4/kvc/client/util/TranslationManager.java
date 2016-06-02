@@ -17,10 +17,10 @@ public class TranslationManager {
 	    BufferedReader br = new BufferedReader(
 		    new URLReader(TranslationManager.class.getResource("/lang/" + languageKey + ".yml")));
 	    try {
-		String x;
-		while ((x = br.readLine()) != null) {
+		String z;
+		while ((z = br.readLine()) != null) {
 		    // printing out each line in the file
-		    System.out.println(x);
+		    System.out.println(z);
 		}
 	    } catch (IOException e) {
 		e.printStackTrace();
