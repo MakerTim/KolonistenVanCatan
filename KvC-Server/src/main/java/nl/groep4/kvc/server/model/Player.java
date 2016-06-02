@@ -1,6 +1,7 @@
 package nl.groep4.kvc.server.model;
 
 import nl.groep4.kvc.common.enumeration.Color;
+import nl.groep4.kvc.common.interfaces.Updatable;
 
 /**
  * Sets color and name for player
@@ -15,6 +16,7 @@ public class Player implements nl.groep4.kvc.common.Player {
     private static final long serialVersionUID = 2304199625693960750L;
     private final String username;
     private Color color;
+    private Updatable<?> updatable;
 
     public Player(String username) {
 	this.username = username.substring(0, Math.min(username.length(), 20));
@@ -42,5 +44,15 @@ public class Player implements nl.groep4.kvc.common.Player {
 	    return other.getUsername().equals(this.getUsername());
 	}
 	return super.equals(obj);
+    }
+
+    @Override
+    public void registerUpdateable(Updatable<?> updatable) {
+	this.updatable = updatable;
+    }
+
+    @Override
+    public Updatable<?> getUpdateable() {
+	return updatable;
     }
 }

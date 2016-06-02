@@ -17,6 +17,14 @@ import nl.groep4.kvc.common.interfaces.Updatable;
  */
 public interface Lobby extends Remote {
 
+    public static enum State {
+	LOBBY, LOBBY_FULL, STARTING;
+
+	public boolean isStarting() {
+	    return this == State.STARTING;
+	}
+    }
+
     /**
      * 
      * @return a list of players which are connected to the lobby
@@ -64,27 +72,23 @@ public interface Lobby extends Remote {
      * @throws RemoteException
      */
     public default void update() throws RemoteException {
-	for (Iterator<Updatable<Lobby>> updateableIt = getUpdatable().iterator(); updateableIt.hasNext();) {
-	    Updatable<Lobby> updatable = updateableIt.next();
+	for (Iterator<Player> playerIt = getConnectedPlayers().iterator(); playerIt.hasNext();) {
+	    Player pl = playerIt.next();
 	    try {
+		Updatable<Lobby> updatable = (Updatable<Lobby>) pl.getUpdateable();
 		updatable.update(this);
+	    } catch (NullPointerException ex) {
+		ex.printStackTrace();
 	    } catch (Exception ex) {
-		updateableIt.remove();
+		System.out.printf("%s has been kicked. %s\n", pl.getUsername(), ex.toString());
+		playerIt.remove();
 	    }
 	}
     }
 
-    /**
-     * 
-     * @return
-     * @throws RemoteException
-     */
-    public List<Updatable<Lobby>> getUpdatable() throws RemoteException;
+    public State getState() throws RemoteException;
 
-    /**
-     * 
-     * @param updateable
-     * @throws RemoteException
-     */
-    public void registerUpdateable(Updatable<Lobby> updateable) throws RemoteException;
+    public Player getServerPlayer(Player player) throws RemoteException;
+
+    public void registerView(Player player, Updatable<Lobby> updateable) throws RemoteException;
 }

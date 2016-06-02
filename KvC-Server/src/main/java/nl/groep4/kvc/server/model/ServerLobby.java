@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Optional;
 
 import nl.groep4.kvc.common.Lobby;
+import nl.groep4.kvc.common.Player;
 import nl.groep4.kvc.common.enumeration.Color;
 import nl.groep4.kvc.common.interfaces.Updatable;
-import nl.groep4.kvc.common.Player;
 
 /**
  * The lobby for the game
@@ -18,8 +18,9 @@ import nl.groep4.kvc.common.Player;
  **/
 public class ServerLobby implements Lobby {
 
-    private final List<Updatable<Lobby>> views = new ArrayList<>();
     private final List<Player> players = new ArrayList<>();
+
+    private State state = State.LOBBY;
 
     @Override
     public List<Player> getConnectedPlayers() {
@@ -30,13 +31,21 @@ public class ServerLobby implements Lobby {
     public void registerPlayer(String username) {
 	Optional<Player> existingPlayer = players.stream().filter(player -> username.equals(player.getUsername()))
 		.findFirst();
+	Player pl;
 	if (existingPlayer.isPresent()) {
-	    System.out.printf("Player %s reconnected.\n", existingPlayer.get().getUsername());
+	    pl = existingPlayer.get();
+	    System.out.printf("Player %s reconnected.\n", pl.getUsername());
 	} else {
-	    Player pl = new nl.groep4.kvc.server.model.Player(username);
+	    pl = new nl.groep4.kvc.server.model.Player(username);
 	    players.add(pl);
 	    System.out.printf("Player %s has connected.\n", pl.getUsername());
 	}
+    }
+
+    @Override
+    public void unregisterPlayer(Player pl) {
+	System.out.printf("Player %s has been logged off.\n", pl.getUsername());
+	players.remove(getServerPlayer(pl));
 	try {
 	    update();
 	} catch (RemoteException ex) {
@@ -45,14 +54,13 @@ public class ServerLobby implements Lobby {
     }
 
     @Override
-    public void unregisterPlayer(Player pl) throws RemoteException {
-	System.out.printf("Player %s has been logged off.\n", pl.getUsername());
-	players.remove(getServerPlayer(pl));
-    }
-
-    @Override
     public void startGame() {
-	// TODO Lobby#StartGame
+	state = State.STARTING;
+	try {
+	    update();
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
     }
 
     @Override
@@ -74,16 +82,29 @@ public class ServerLobby implements Lobby {
     }
 
     @Override
-    public List<Updatable<Lobby>> getUpdatable() throws RemoteException {
-	return views;
+    public void update() throws RemoteException {
+	Lobby.super.update();
+	if (state != State.STARTING) {
+	    if (players.stream().filter(pl -> pl.getColor() != null).count() >= 6) {
+		state = State.LOBBY_FULL;
+	    } else {
+		state = State.LOBBY;
+	    }
+	}
     }
 
     @Override
-    public void registerUpdateable(Updatable<Lobby> updateable) throws RemoteException {
-	views.add(updateable);
+    public Player getServerPlayer(Player player) {
+	return players.stream().filter(pl -> pl.equals(player)).findAny().orElse(player);
     }
 
-    private Player getServerPlayer(Player player) {
-	return players.stream().filter(pl -> pl.equals(player)).findAny().orElse(player);
+    @Override
+    public State getState() {
+	return state;
+    }
+
+    @Override
+    public void registerView(Player pl, Updatable<Lobby> updateable) {
+	getServerPlayer(pl).registerUpdateable(updateable);
     }
 }

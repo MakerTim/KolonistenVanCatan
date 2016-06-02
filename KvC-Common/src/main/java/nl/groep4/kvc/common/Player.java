@@ -3,6 +3,7 @@ package nl.groep4.kvc.common;
 import java.io.Serializable;
 
 import nl.groep4.kvc.common.enumeration.Color;
+import nl.groep4.kvc.common.interfaces.Updatable;
 
 /**
  * Stores username and color
@@ -36,4 +37,8 @@ public interface Player extends Serializable {
      * @author Tim
      */
     public void setColor(Color color);
+
+    public void registerUpdateable(Updatable<?> updatable);
+
+    public Updatable<?> getUpdateable();
 }

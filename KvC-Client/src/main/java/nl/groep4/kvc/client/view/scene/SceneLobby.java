@@ -34,7 +34,6 @@ public class SceneLobby implements SceneHolder, Updatable<Lobby> {
 
     public SceneLobby(LobbyController lobbyController) throws RemoteException {
 	lobby = lobbyController;
-	this.lobby.registerScene(this);
     }
 
     @Override
@@ -58,11 +57,7 @@ public class SceneLobby implements SceneHolder, Updatable<Lobby> {
 
 	startGame.registerClick(() -> {
 	    SoundUtil.stopThemesong();
-	    try {
-		ViewMaster.setScene(new SceneMap().getScene());
-	    } catch (RemoteException ex) {
-		ex.printStackTrace();
-	    }
+	    lobby.startGame();
 	});
 
 	backButton.registerClick(() -> {
@@ -106,6 +101,8 @@ public class SceneLobby implements SceneHolder, Updatable<Lobby> {
 		scroll.updatePlayer(null);
 	    }
 	}
+	if (lobby.getState().isStarting()) {
+	    ViewMaster.setScene(new SceneMap().getScene());
+	}
     }
-
 }

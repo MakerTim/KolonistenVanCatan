@@ -2,12 +2,14 @@ package nl.groep4.kvc.client.view.scene;
 
 import java.rmi.RemoteException;
 
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.SoundUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
@@ -39,10 +41,19 @@ public class SceneSettings implements SceneHolder {
     public Scene getScene() throws RemoteException {
 	/* Build multiple layers for the design */
 	Pane layers = new Pane();
+	Pane form = new VBox(20);
+	form.setLayoutX(410);
+	form.setLayoutY(100);
+
+	Text settings = new Text(TranslationManager.translate("settings.label.title"));
+	settings.setTextAlignment(TextAlignment.CENTER);
+	settings.setFont(ViewMaster.FONT);
+	settings.setFill(Color.WHITE);
+	settings.setStroke(Color.BLACK);
+	settings.prefWidth(175);
 
 	/* Build the settings menu in lobby */
-	MenuButton music = new MenuButton(415, 150,
-		TranslationManager.translate(SoundUtil.themesongIsPlaying() ? STOP : PLAY));
+	MenuButton music = new MenuButton(TranslationManager.translate(SoundUtil.themesongIsPlaying() ? STOP : PLAY));
 	music.setFont(ViewMaster.FONT);
 	slider = new MenuSlider(415, 230, 0, 1, SoundUtil.getVolumeLevel() + 0.5);
 	slider.setPrefWidth(175);
@@ -74,11 +85,6 @@ public class SceneSettings implements SceneHolder {
 	    }
 	});
 
-	Text settings = new Text(465, 120, TranslationManager.translate("settings.label.title"));
-	settings.setFont(ViewMaster.FONT);
-	settings.setFill(Color.WHITE);
-	settings.setStroke(Color.BLACK);
-
 	language.registerClick(() -> {
 	    music.updateText(TranslationManager.translate(SoundUtil.themesongIsPlaying() ? STOP : PLAY));
 	    acceptSettings.updateText(TranslationManager.translate("settings.button.accept"));
@@ -88,18 +94,13 @@ public class SceneSettings implements SceneHolder {
 	    }
 	});
 
+	form.getChildren().addAll(new StackPane(settings), music, slider, language);
 	layers.getChildren().addAll(SceneUtil.getMenuBackground(), SceneUtil.getSettingsForeground(),
-		SceneUtil.getMenuBrazier(), buildFrom(), acceptSettings, settings, slider, language, music);
+		SceneUtil.getMenuBrazier(), acceptSettings, form);
 	Scene scene = new Scene(layers);
-	SceneUtil.fadeIn(SceneUtil.getSettingsForeground(), settings, slider, language, music, acceptSettings);
+	SceneUtil.fadeIn(SceneUtil.getSettingsForeground(), form, acceptSettings);
 
 	return scene;
-
-    }
-
-    private Node buildFrom() {
-	Pane settingsPane = new Pane();
-	return settingsPane;
 
     }
 }

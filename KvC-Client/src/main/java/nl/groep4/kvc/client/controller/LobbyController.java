@@ -74,10 +74,18 @@ public class LobbyController {
      */
     public void registerScene(Updatable<Lobby> sceneLobby) {
 	try {
-	    lobby.registerUpdateable((Updatable<Lobby>) UnicastRemoteObject.exportObject(sceneLobby, 0));
+	    lobby.registerView(ConnectionController.getThePlayer(),
+		    (Updatable<Lobby>) UnicastRemoteObject.exportObject(sceneLobby, 0));
 	} catch (RemoteException ex) {
 	    ExceptionManager.handleRemoteException(ex);
 	}
     }
 
+    public void startGame() {
+	try {
+	    lobby.startGame();
+	} catch (RemoteException ex) {
+	    ExceptionManager.handleRemoteException(ex);
+	}
+    }
 }
