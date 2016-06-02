@@ -14,6 +14,11 @@ import javafx.scene.text.TextAlignment;
 import nl.groep4.kvc.common.Player;
 import nl.groep4.kvc.common.enumeration.Color;
 
+/**
+ * 
+ * @author Tim
+ * @version 1.0
+ */
 public class LobbyPlayer extends StackPane {
 
     private static final Image IMAGE = new Image("img/menu/parchment.png");
@@ -27,6 +32,10 @@ public class LobbyPlayer extends StackPane {
 
     protected List<Runnable> clickHandlers = new ArrayList<>();
 
+    /**
+     * 
+     * @param color
+     */
     public LobbyPlayer(Color color) {
 	VBox tussenPane = new VBox();
 	tussenPane.setAlignment(Pos.CENTER);
@@ -54,15 +63,27 @@ public class LobbyPlayer extends StackPane {
 	getChildren().addAll(background, tussenPane);
     }
 
+    /**
+     * 
+     * @param font
+     */
     public void setFont(Font font) {
 	colorLabel.setFont(font);
 	usernameLabel.setFont(font);
     }
 
+    /**
+     * 
+     * @return
+     */
     public Color getColor() {
 	return color;
     }
 
+    /**
+     * 
+     * @param player
+     */
     public void updatePlayer(Player player) {
 	if (player == null) {
 	    usernameLabel.setText(EMPTY);
@@ -71,6 +92,10 @@ public class LobbyPlayer extends StackPane {
 	}
     }
 
+    /**
+     * 
+     * @param click
+     */
     public void registerClick(Runnable click) {
 	clickHandlers.add(click);
     }

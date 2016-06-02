@@ -6,26 +6,17 @@ package nl.groep4.kvc.client.controller;
  * @author Tim
  * @version 1.0
  */
-
 public class TradeMenu {
 
+    /**
+     * Opens trade menu
+     */
     public void openTradeMenu() {
     }
 
     /**
-     * Opens trade menu
-     * 
-     * @author Tim
-     * @version 1.0
+     * Close trade menu
      */
-
     public void closeTradeMenu() {
     }
-
-    /**
-     * Closes trade menu
-     * 
-     * @author Tim
-     * @version 1.0
-     */
 }

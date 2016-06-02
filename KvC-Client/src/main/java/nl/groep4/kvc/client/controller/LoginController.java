@@ -18,7 +18,6 @@ import nl.groep4.kvc.common.Lobby;
  * @author Tim
  * @version 1.0
  */
-
 public final class LoginController {
 
     private LoginController() {
