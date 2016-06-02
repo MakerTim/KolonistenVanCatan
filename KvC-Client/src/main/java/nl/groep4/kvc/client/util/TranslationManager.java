@@ -7,12 +7,19 @@ import java.util.Scanner;
 
 import jdk.nashorn.api.scripting.URLReader;
 
+/**
+ * 
+ * @author Bachir
+ *
+ */
 public class TranslationManager {
 
+    public static final String[] LANGUAGES;
     private static final List<String> CURRENT_LANGUAGES = new ArrayList<>();
 
     static {
-	setLanguage("en-EN");
+	LANGUAGES = new String[] { "en-EN", "nl-NL", "fr-FR" };
+	setLanguage(LANGUAGES[0]);
     }
 
     public static void setLanguage(String languageKey) {
