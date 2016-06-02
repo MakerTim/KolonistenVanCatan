@@ -13,10 +13,10 @@ public class SceneMap implements SceneHolder {
 	/* Build layer for the design */
 	Pane boardPane = new Pane();
 
-	boardPane.getChildren().addAll(SceneUtil.getBoard());
+	boardPane.getChildren().addAll(SceneUtil.getBoardBackground(), SceneUtil.getBoard());
 
 	Scene scene = new Scene(boardPane);
-	SceneUtil.fadeIn(SceneUtil.getBoard());
+	SceneUtil.fadeIn(SceneUtil.getBoardBackground(), SceneUtil.getBoard());
 	return scene;
     }
 
