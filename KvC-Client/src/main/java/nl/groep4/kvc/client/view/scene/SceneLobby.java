@@ -58,6 +58,11 @@ public class SceneLobby implements SceneHolder, Updatable<Lobby> {
 
 	startGame.registerClick(() -> {
 	    SoundUtil.stopThemesong();
+	    try {
+		ViewMaster.setScene(new SceneMap().getScene());
+	    } catch (RemoteException ex) {
+		ex.printStackTrace();
+	    }
 	});
 
 	backButton.registerClick(() -> {

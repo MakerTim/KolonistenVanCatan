@@ -24,6 +24,7 @@ public class SceneUtil {
     private static Node settings;
     private static Node lobbyBack;
     private static Node cornerShield;
+    private static Node board;
 
     public static Node getMenuBackground() {
 	if (background == null) {
@@ -65,6 +66,13 @@ public class SceneUtil {
 	    cornerShield = new ImageView("img/menu/shield_corner.png");
 	}
 	return cornerShield;
+    }
+
+    public static Node getBoard() {
+	if (board == null) {
+	    board = new ImageView("img/game/board.png");
+	}
+	return board;
     }
 
     public static void fadeIn(List<Node> elements) {
