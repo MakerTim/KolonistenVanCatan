@@ -1,4 +1,4 @@
-package nl.groep4.kvc.client.model;
+package nl.groep4.kvc.server.model;
 
 import nl.groep4.kvc.common.enumeration.Color;
 
@@ -18,7 +18,6 @@ public class Player implements nl.groep4.kvc.common.Player {
 
     public Player(String username) {
 	this.username = username.substring(0, Math.min(username.length(), 20));
-	this.color = Color.RED;
     }
 
     @Override

@@ -18,5 +18,4 @@ public interface Player extends Serializable {
     public Color getColor();
 
     public void setColor(Color color);
-
 }

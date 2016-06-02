@@ -38,10 +38,8 @@ public class LobbyPlayer extends StackPane {
 	colorLabel.setFill(color.getColor());
 	colorLabel.setTextAlignment(TextAlignment.CENTER);
 	usernameLabel.setFill(color.getColor());
-	colorLabel.setStroke(javafx.scene.paint.Color.BLACK);
-	usernameLabel.setStroke(javafx.scene.paint.Color.BLACK);
-	colorLabel.setEffect(TexturedButton.getShadowEffect());
-	usernameLabel.setEffect(TexturedButton.getShadowEffect());
+	colorLabel.setStroke(color.getColor());
+	usernameLabel.setStroke(color.getColor());
 	setOnMouseEntered(mouseEnter -> background.setImage(HOVER_IMAGE));
 	setOnMouseExited(mouseLeave -> background.setImage(IMAGE));
 	setOnMousePressed(mousePressed -> {

@@ -1,18 +1,22 @@
 package nl.groep4.kvc.client.view;
 
+import java.rmi.RemoteException;
+import java.util.List;
 import java.util.Optional;
 
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import nl.groep4.kvc.client.controller.ConnectionController;
 import nl.groep4.kvc.client.controller.LobbyController;
-import nl.groep4.kvc.client.controller.PlayerController;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.SoundUtil;
 import nl.groep4.kvc.client.view.elements.LobbyPlayer;
 import nl.groep4.kvc.client.view.elements.MenuButton;
+import nl.groep4.kvc.common.Lobby;
 import nl.groep4.kvc.common.Player;
 import nl.groep4.kvc.common.enumeration.Color;
+import nl.groep4.kvc.common.interfaces.Updatable;
 
 /**
  * Builds scene settings menu
@@ -20,15 +24,19 @@ import nl.groep4.kvc.common.enumeration.Color;
  * @version 1.0
  * @author Luc
  */
-
-public class SceneLobby implements SceneHolder {
+public class SceneLobby implements SceneHolder, Updatable<Lobby> {
 
     private LobbyController lobby;
 
-    private LobbyPlayer[] players = new LobbyPlayer[Color.values().length];
+    private LobbyPlayer[] scrolls = new LobbyPlayer[Color.values().length];
+
+    public SceneLobby(LobbyController lobbyController) throws RemoteException {
+	lobby = lobbyController;
+	this.lobby.registerScene(this);
+    }
 
     @Override
-    public Scene getScene() {
+    public Scene getScene() throws RemoteException {
 	/* Build multiple layers for the design */
 	Pane lobbyPane = new Pane();
 	Pane lobbyGrid = new Pane();
@@ -51,8 +59,12 @@ public class SceneLobby implements SceneHolder {
 	});
 
 	backButton.registerClick(() -> {
-	    ViewMaster.setScene(new SceneLogin().getScene());
-	    lobby.disconnect(PlayerController.getThePlayer());
+	    try {
+		ViewMaster.setScene(new SceneLogin().getScene());
+	    } catch (RemoteException ex) {
+		ex.printStackTrace();
+	    }
+	    lobby.disconnect(ConnectionController.getThePlayer());
 	});
 
 	for (int i = 0; i < Color.values().length; i++) {
@@ -61,8 +73,9 @@ public class SceneLobby implements SceneHolder {
 	    lobbyPlayer.setLayoutY((i / 3) * 150);
 	    lobbyGrid.getChildren().add(lobbyPlayer);
 	    lobbyPlayer.registerClick(() -> {
-		lobby.changeColor(PlayerController.getThePlayer(), lobbyPlayer.getColor());
+		lobby.changeColor(ConnectionController.getThePlayer(), lobbyPlayer.getColor());
 	    });
+	    scrolls[i] = lobbyPlayer;
 	}
 
 	lobbyPane.getChildren().addAll(SceneUtil.getMenuBackground(), SceneUtil.getLobbyForeground(),
@@ -72,27 +85,20 @@ public class SceneLobby implements SceneHolder {
 	Scene scene = new Scene(lobbyPane);
 	SceneUtil.fadeIn(SceneUtil.getLobbyForeground(), SceneUtil.getCornerShield(), lobbyLabel, lobbyGrid, startGame,
 		backButton, saveButton);
-
 	return scene;
-
-	// TODO: SoundUtil.stopTeamsong(); wanneer spel
-
     }
 
-    public void update() {
-	for (LobbyPlayer lp : players) {
-	    Optional<Player> player = lobby.getPlayers().stream().filter(pl -> pl.getColor() == lp.getColor())
-		    .findAny();
+    @Override
+    public void update(Lobby lobby) throws RemoteException {
+	List<Player> players = lobby.getConnectedPlayers();
+	for (LobbyPlayer scroll : scrolls) {
+	    Optional<Player> player = players.stream().filter(pl -> pl.getColor() == scroll.getColor()).findAny();
 	    if (player.isPresent()) {
-		lp.updatePlayer(player.get());
+		scroll.updatePlayer(player.get());
 	    } else {
-		lp.updatePlayer(null);
+		scroll.updatePlayer(null);
 	    }
 	}
-    }
-
-    public void register(LobbyController lobbyController) {
-	this.lobby = lobbyController;
     }
 
 }

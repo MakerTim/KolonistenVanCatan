@@ -1,9 +1,8 @@
 package nl.groep4.kvc.client.view;
 
-import javafx.scene.Node;
 import javafx.scene.Scene;
 
-public class SceneMap implements SceneHolder{
+public class SceneMap implements SceneHolder {
 
     @Override
     public Scene getScene() {
@@ -11,5 +10,4 @@ public class SceneMap implements SceneHolder{
 	return null;
     }
 
-    
 }

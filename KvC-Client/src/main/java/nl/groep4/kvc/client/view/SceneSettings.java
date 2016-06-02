@@ -1,5 +1,7 @@
 package nl.groep4.kvc.client.view;
 
+import java.rmi.RemoteException;
+
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Slider;
@@ -18,24 +20,26 @@ import nl.groep4.kvc.client.view.elements.MenuSlider;
  * @author Luc
  **/
 public class SceneSettings implements SceneHolder {
+
     private static final String PLAY = "Play Music";
     private static final String STOP = "Stop Music";
 
     private SceneHolder parent;
+    private Slider slider;
 
     public SceneSettings(SceneHolder parent) {
 	this.parent = parent;
     }
 
     @Override
-    public Scene getScene() {
+    public Scene getScene() throws RemoteException {
 	/* Build multiple layers for the design */
 	Pane layers = new Pane();
 
 	/* Build the settings menu in lobby */
 	MenuButton music = new MenuButton(415, 150, SoundUtil.themesongIsPlaying() ? STOP : PLAY);
 	music.setFont(ViewMaster.FONT);
-	Slider slider = new MenuSlider(415, 230, 0, 1, SoundUtil.getVolumeLevel() + 0.5);
+	slider = new MenuSlider(415, 230, 0, 1, SoundUtil.getVolumeLevel() + 0.5);
 	slider.setPrefWidth(175);
 	slider.valueProperty().addListener(changed -> {
 	    SoundUtil.setVolume((float) (slider.getValue() - 0.5));
@@ -54,7 +58,11 @@ public class SceneSettings implements SceneHolder {
 	});
 
 	acceptSettings.registerClick(() -> {
-	    ViewMaster.setScene(parent.getScene());
+	    try {
+		ViewMaster.setScene(parent.getScene());
+	    } catch (RemoteException ex) {
+		ex.printStackTrace();
+	    }
 	});
 
 	Text settings = new Text(465, 120, "Settings");
@@ -76,5 +84,4 @@ public class SceneSettings implements SceneHolder {
 	return settingsPane;
 
     }
-
 }

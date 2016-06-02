@@ -6,7 +6,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-import nl.groep4.kvc.client.model.Player;
+import nl.groep4.kvc.client.util.ExceptionManager;
 import nl.groep4.kvc.client.view.ExceptionDialog;
 import nl.groep4.kvc.client.view.SceneLogin;
 import nl.groep4.kvc.common.KvCStaticNaming;
@@ -45,7 +45,9 @@ public final class LoginController {
 	    Registry registry = LocateRegistry.getRegistry(ip, port);
 	    lobby = (Lobby) registry.lookup(KvCStaticNaming.LOBBY_KEY);
 	    /* Register self */
-	    PlayerController.setThePlayer(lobby.registerPlayer(new Player(username)));
+	    ConnectionController.setLobby(lobby);
+	    lobby.registerPlayer(username);
+	    ConnectionController.setThePlayer(username);
 	} catch (UnknownHostException ex) {
 	    ExceptionDialog.warning("IP is not a valid ip address", "No valid IP",
 		    String.format("'%s' is not a valid ip address", ip));
@@ -57,10 +59,7 @@ public final class LoginController {
 	    ExceptionDialog.warning(ex.getMessage(), ex.getMessage(), "");
 	    return null;
 	} catch (RemoteException ex) {
-	    ExceptionDialog.error(ex);
-	    // ExceptionDialog.warning("Server not found",
-	    // "The server you are looking for is not found",
-	    // "There is no server found on this ip/port combo.");
+	    ExceptionManager.handleRemoteException(ex);
 	    return null;
 	} catch (Exception ex) {
 	    ExceptionDialog.error(ex);

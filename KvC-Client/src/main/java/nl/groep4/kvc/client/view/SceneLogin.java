@@ -1,5 +1,7 @@
 package nl.groep4.kvc.client.view;
 
+import java.rmi.RemoteException;
+
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
@@ -36,7 +38,7 @@ public class SceneLogin implements SceneHolder {
     private CheckBox nosoundInput;
 
     @Override
-    public Scene getScene() {
+    public Scene getScene() throws RemoteException {
 	/* Build multiple layers for the design */
 	Pane layers = new StackPane();
 
@@ -92,15 +94,22 @@ public class SceneLogin implements SceneHolder {
 	Lobby lobby = LoginController.connect(this);
 	if (lobby != null) {
 	    LobbyController lobbyController = new LobbyController(lobby);
-	    SceneLobby scene = new SceneLobby();
-	    ViewMaster.setScene(scene.getScene());
-	    scene.register(lobbyController);
-	    scene.update();
+	    SceneLobby scene;
+	    try {
+		scene = new SceneLobby(lobbyController);
+		ViewMaster.setScene(scene.getScene());
+	    } catch (RemoteException ex) {
+		ex.printStackTrace();
+	    }
 	}
     }
 
     public void onSettingsClick() {
-	ViewMaster.setScene(new SceneSettings(this).getScene());
+	try {
+	    ViewMaster.setScene(new SceneSettings(this).getScene());
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
     }
 
     public String getIpInput() {
@@ -126,5 +135,4 @@ public class SceneLogin implements SceneHolder {
     public boolean getConfirmInput() {
 	return confirmInput.isSelected();
     }
-
 }

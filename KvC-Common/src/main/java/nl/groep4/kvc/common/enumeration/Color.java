@@ -8,7 +8,7 @@ package nl.groep4.kvc.common.enumeration;
  */
 public enum Color {
 
-    BLUE(0, 0, 255), BROWN(127, 0, 0), GREEN(0, 255, 0), ORANGE(255, 108, 0), RED(255, 0, 0), WHITE(255, 255, 255);
+    BLUE(0, 0, 255), BROWN(127, 0, 0), GREEN(38, 127, 0), ORANGE(255, 85, 0), RED(255, 0, 0), WHITE(255, 255, 255);
 
     private int red;
     private int blue;
@@ -28,7 +28,7 @@ public enum Color {
      * @author Tim
      */
     public javafx.scene.paint.Color getColor() {
-	return new javafx.scene.paint.Color(red / 255D, green / 255D, blue / 255D, 0);
+	return new javafx.scene.paint.Color(red / 255D, green / 255D, blue / 255D, 1);
     }
 
 }

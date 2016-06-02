@@ -6,6 +6,8 @@ public class MenuSlider extends Slider {
 
     public MenuSlider() {
 	super();
+
+	setStyle("");
     }
 
     public MenuSlider(int xPos, int yPos) {
