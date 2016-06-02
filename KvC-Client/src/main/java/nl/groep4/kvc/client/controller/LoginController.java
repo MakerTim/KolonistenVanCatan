@@ -24,10 +24,17 @@ public final class LoginController {
     private LoginController() {
     }
 
-    public static boolean connect(SceneLogin sceneLogin) {
+    /**
+     * 
+     * 
+     * @param sceneLogin
+     * @return gets lobby status
+     */
+    public static Lobby connect(SceneLogin sceneLogin) {
 	String ip = "";
 	int port = 1099;
 	String username = "";
+	Lobby lobby = null;
 	try {
 	    ip = sceneLogin.getIpInput();
 	    port = sceneLogin.getPortInput();
@@ -42,38 +49,30 @@ public final class LoginController {
 
 	    /* Connect to Server */
 	    Registry registry = LocateRegistry.getRegistry(ip, port);
-	    Lobby lobby = (Lobby) registry.lookup(KvCStaticNaming.LOBBY_KEY);
+	    lobby = (Lobby) registry.lookup(KvCStaticNaming.LOBBY_KEY);
 	    /* Register self */
-	    lobby.registerPlayer(new Player(username));
+	    PlayerController.setThePlayer(lobby.registerPlayer(new Player(username)));
 	} catch (UnknownHostException ex) {
 	    ExceptionDialog.warning("IP is not a valid ip address", "No valid IP",
 		    String.format("'%s' is not a valid ip address", ip));
-	    return false;
+	    return null;
 	} catch (NumberFormatException ex) {
 	    ExceptionDialog.warning("Port should be a number", "No valid PORT", "Port should be a number");
-	    return false;
+	    return null;
 	} catch (IllegalArgumentException ex) {
 	    ExceptionDialog.warning(ex.getMessage(), ex.getMessage(), "");
-	    return false;
+	    return null;
 	} catch (RemoteException ex) {
 	    ExceptionDialog.error(ex);
 	    // ExceptionDialog.warning("Server not found",
 	    // "The server you are looking for is not found",
 	    // "There is no server found on this ip/port combo.");
-	    return false;
+	    return null;
 	} catch (Exception ex) {
 	    ExceptionDialog.error(ex);
-	    return false;
+	    return null;
 	}
-	return true;
+	return lobby;
     }
-
-    /**
-     * Connects with server and if settings are incorrect returning error
-     * message
-     * 
-     * @author Tim
-     * @version 1.0
-     */
 
 }

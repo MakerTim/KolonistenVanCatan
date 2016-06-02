@@ -20,18 +20,26 @@ public class KolonistenVanCatan implements nl.groep4.kvc.common.KolonistenVanCat
 
     @Override
     /**
+     * @throws remoteException
+     */
+    public void registerClient(Player player) throws RemoteException {
+	players.add(player);
+    }
+
+    @Override
+    /**
+     * @throws remoteException
+     */
+    public void unregisterClient(Player player) throws RemoteException {
+	players.remove(player);
+    }
+
+    @Override
+    /**
+     * @return
+     * @throws remoteException
      * 
      */
-    public void registerClient(Player client) throws RemoteException {
-	players.add(client);
-    }
-
-    @Override
-    public void unregisterClient(Player client) throws RemoteException {
-	players.remove(client);
-    }
-
-    @Override
     public Map getMap() throws RemoteException {
 	return null;
     }

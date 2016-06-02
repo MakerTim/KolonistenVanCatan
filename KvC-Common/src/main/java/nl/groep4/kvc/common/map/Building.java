@@ -11,23 +11,17 @@ import nl.groep4.kvc.common.interfaces.Ownable;
  */
 public interface Building extends Ownable {
 
+    /**
+     * 
+     * @return gets building type
+     */
     public BuildingType getBuildingType();
 
     /**
+     * sets building type
      * 
      * @param type
-     * @version 1.0
-     * @author Tim
      */
     public void setBuildingType(BuildingType type);
-    /**
-     * Sets buildingtype
-     * 
-     * @version 1.0
-     * @author Tim
-     */
+
 }
-/**
-* 
-*
-*/

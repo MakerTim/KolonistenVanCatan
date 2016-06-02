@@ -1,14 +1,18 @@
 package nl.groep4.kvc.client.view;
 
+import java.util.Optional;
+
 import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import nl.groep4.kvc.client.controller.LobbyController;
+import nl.groep4.kvc.client.controller.PlayerController;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.SoundUtil;
-import nl.groep4.kvc.client.view.elements.LobbyButton;
-import nl.groep4.kvc.common.Lobby;
+import nl.groep4.kvc.client.view.elements.LobbyPlayer;
+import nl.groep4.kvc.client.view.elements.MenuButton;
+import nl.groep4.kvc.common.Player;
+import nl.groep4.kvc.common.enumeration.Color;
 
 /**
  * Builds scene settings menu
@@ -18,23 +22,28 @@ import nl.groep4.kvc.common.Lobby;
  */
 
 public class SceneLobby implements SceneHolder {
-    GridPane lobbyGrid = new GridPane();
+
+    private LobbyController lobby;
+
+    private LobbyPlayer[] players = new LobbyPlayer[Color.values().length];
 
     @Override
     public Scene getScene() {
 	/* Build multiple layers for the design */
 	Pane lobbyPane = new Pane();
-
+	Pane lobbyGrid = new Pane();
+	lobbyGrid.setLayoutX(200);
+	lobbyGrid.setLayoutY(200);
 	/* Build the settings menu in lobby */
-	Text lobby = new Text(838, 200, "Lobby");
-	lobby.setFont(ViewMaster.FONT);
-	lobby.setFill(Color.WHITE);
-	lobby.setStroke(Color.BLACK);
-	LobbyButton startGame = new LobbyButton(415, 550, "Start Game");
+	Text lobbyLabel = new Text(838, 200, "Lobby");
+	lobbyLabel.setFont(ViewMaster.FONT);
+	lobbyLabel.setFill(javafx.scene.paint.Color.WHITE);
+	lobbyLabel.setStroke(javafx.scene.paint.Color.BLACK);
+	MenuButton startGame = new MenuButton(415, 550, "Start Game");
 	startGame.setFont(ViewMaster.FONT);
-	LobbyButton backButton = new LobbyButton(215, 550, "Back");
+	MenuButton backButton = new MenuButton(215, 550, "Back");
 	backButton.setFont(ViewMaster.FONT);
-	LobbyButton saveButton = new LobbyButton(615, 550, "Load");
+	MenuButton saveButton = new MenuButton(615, 550, "Load");
 	saveButton.setFont(ViewMaster.FONT);
 
 	startGame.registerClick(() -> {
@@ -43,15 +52,23 @@ public class SceneLobby implements SceneHolder {
 
 	backButton.registerClick(() -> {
 	    ViewMaster.setScene(new SceneLogin().getScene());
-	    // Something to disconnect
+	    lobby.discontect(PlayerController.getThePlayer());
 	});
 
+	for (int i = 0; i < Color.values().length; i++) {
+	    players[i] = new LobbyPlayer(Color.values()[i]);
+	    players[i].setLayoutX(i % 3 * 180);
+	    players[i].setLayoutY((i / 3) * 150);
+	    lobbyGrid.getChildren().add(players[i]);
+	}
+
 	lobbyPane.getChildren().addAll(SceneUtil.getMenuBackground(), SceneUtil.getLobbyForeground(),
-		SceneUtil.getLobbyBrazier(), SceneUtil.getCornerShield(), lobby, startGame, backButton, saveButton);
+		SceneUtil.getMenuBrazier(), SceneUtil.getCornerShield(), lobbyLabel, lobbyGrid, startGame, backButton,
+		saveButton);
 
 	Scene scene = new Scene(lobbyPane);
-	SceneUtil.fadeIn(SceneUtil.getLobbyForeground(), SceneUtil.getLobbyBrazier(), SceneUtil.getCornerShield(),
-		lobby, startGame, backButton, saveButton);
+	SceneUtil.fadeIn(SceneUtil.getLobbyForeground(), SceneUtil.getMenuBrazier(), SceneUtil.getCornerShield(),
+		lobbyLabel, lobbyGrid, startGame, backButton, saveButton);
 
 	return scene;
 
@@ -59,8 +76,20 @@ public class SceneLobby implements SceneHolder {
 
     }
 
-    public void update(Lobby lobby) {
-	// TODO: Everytime there is a update - then this method gets called
+    public void update() {
+	for (LobbyPlayer lp : players) {
+	    Optional<Player> player = lobby.getPlayers().stream().filter(pl -> pl.getColor() == lp.getColor())
+		    .findAny();
+	    if (player.isPresent()) {
+		lp.updatePlayer(player.get());
+	    } else {
+		lp.updatePlayer(null);
+	    }
+	}
+    }
+
+    public void register(LobbyController lobbyController) {
+	this.lobby = lobbyController;
     }
 
 }

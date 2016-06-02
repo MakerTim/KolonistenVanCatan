@@ -12,12 +12,31 @@ import nl.groep4.kvc.common.enumeration.Point;
 
 public interface Tile {
 
+    /**
+     * 
+     * @return gets position of tile
+     */
     public String getPosition();
 
+    /**
+     * 
+     * @param direction
+     * @return gets tile direction
+     */
     public Tile getRelativeTile(Direction direction);
 
+    /**
+     * 
+     * @param direction
+     * @return gets direction of street
+     */
     public Street getStreet(Direction direction);
 
+    /**
+     * 
+     * @param point
+     * @return gets building point
+     */
     public Building getBuilding(Point point);
 
 }

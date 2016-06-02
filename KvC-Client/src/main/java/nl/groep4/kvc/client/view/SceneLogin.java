@@ -7,13 +7,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+import nl.groep4.kvc.client.controller.LobbyController;
 import nl.groep4.kvc.client.controller.LoginController;
 import nl.groep4.kvc.client.util.SceneUtil;
-import nl.groep4.kvc.client.view.elements.LobbyButton;
-import nl.groep4.kvc.client.view.elements.LobbyCheckBox;
-import nl.groep4.kvc.client.view.elements.LobbyFilterdInputField;
-import nl.groep4.kvc.client.view.elements.LobbyMatchInputField;
+import nl.groep4.kvc.client.view.elements.MenuButton;
+import nl.groep4.kvc.client.view.elements.MenuCheckBox;
+import nl.groep4.kvc.client.view.elements.MenuFilterdInputField;
+import nl.groep4.kvc.client.view.elements.MenuMatchInputField;
 import nl.groep4.kvc.common.KvCStatics;
+import nl.groep4.kvc.common.Lobby;
 import nl.groep4.kvc.common.util.CollectionUtil;
 
 /**
@@ -39,8 +41,8 @@ public class SceneLogin implements SceneHolder {
 	Pane layers = new StackPane();
 
 	/* Build the lobby */
-	layers.getChildren().addAll(SceneUtil.getMenuBackground(), SceneUtil.getMenuForeground(),
-		SceneUtil.getLobbyBrazier(), buildFrom());
+	layers.getChildren().addAll(SceneUtil.getMenuBackground(), SceneUtil.getLoginForeground(),
+		SceneUtil.getMenuBrazier(), buildFrom());
 	SceneUtil.fadeIn(CollectionUtil.getItems(layers.getChildren(), 1, 3));
 	return new Scene(layers);
     }
@@ -50,19 +52,19 @@ public class SceneLogin implements SceneHolder {
 	    form = new Pane();
 
 	    Text ipLabel = new Text(330, 350, "Server IP");
-	    ipInput = new LobbyMatchInputField(450, 320, "", KvCStatics.REGEX_IP);
+	    ipInput = new MenuMatchInputField(450, 320, "", KvCStatics.REGEX_IP);
 	    Text portLabel = new Text(330, 375, "Server port");
-	    portInput = new LobbyFilterdInputField(450, 345, "", KvCStatics.NUMERIC);
+	    portInput = new MenuFilterdInputField(450, 345, "", KvCStatics.NUMERIC);
 	    Text usernameLabel = new Text(330, 410, "Username");
-	    usernameInput = new LobbyFilterdInputField(450, 380, "", KvCStatics.USERNAME);
+	    usernameInput = new MenuFilterdInputField(450, 380, "", KvCStatics.USERNAME);
 	    Text nocolorLabel = new Text(330, 450, "No color");
-	    nocolorInput = new LobbyCheckBox(540, 434, false);
+	    nocolorInput = new MenuCheckBox(540, 434, false);
 	    Text confirmLabel = new Text(330, 470, "Confirm every action");
-	    confirmInput = new LobbyCheckBox(540, 454, false);
+	    confirmInput = new MenuCheckBox(540, 454, false);
 	    Text nosoundLabel = new Text(330, 490, "No sounds");
-	    nosoundInput = new LobbyCheckBox(540, 474, false);
-	    LobbyButton joinButton = new LobbyButton(425, 500, "Join");
-	    LobbyButton settingsButton = new LobbyButton(13, 645, "Settings");
+	    nosoundInput = new MenuCheckBox(540, 474, false);
+	    MenuButton joinButton = new MenuButton(425, 500, "Join");
+	    MenuButton settingsButton = new MenuButton(13, 645, "Settings");
 
 	    ipLabel.setFont(ViewMaster.FONT);
 	    ipInput.setFont(ViewMaster.FONT);
@@ -87,13 +89,18 @@ public class SceneLogin implements SceneHolder {
     }
 
     public void onConnectClick() {
-	if (LoginController.connect(this)) {
-	    ViewMaster.setScene(new SceneLobby().getScene());
+	Lobby lobby = LoginController.connect(this);
+	if (lobby != null) {
+	    LobbyController lobbyController = new LobbyController(lobby);
+	    SceneLobby scene = new SceneLobby();
+	    ViewMaster.setScene(scene.getScene());
+	    scene.register(lobbyController);
+	    scene.update();
 	}
     }
 
     public void onSettingsClick() {
-	ViewMaster.setScene(new SceneSettings().getScene());
+	ViewMaster.setScene(new SceneSettings(this).getScene());
     }
 
     public String getIpInput() {

@@ -12,13 +12,32 @@ import java.util.List;
 
 public interface Map {
 
+    /**
+     * 
+     * @return a list of the tiles
+     */
     public List<Tile> getTiles();
 
+    /**
+     * creates map
+     */
     public void createMap();
 
+    /**
+     * 
+     * @return gets current round
+     */
     public int getRound();
 
+    /**
+     * 
+     * @return gets a list of all buildings
+     */
     public List<Building> getAllBuildings();
 
+    /**
+     * 
+     * @return gets a list of all streets
+     */
     public List<Street> getAllStreets();
 }

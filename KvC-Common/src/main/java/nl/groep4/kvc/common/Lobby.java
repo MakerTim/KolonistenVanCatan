@@ -15,12 +15,19 @@ import nl.groep4.kvc.common.enumeration.Color;
  */
 public interface Lobby extends Remote {
 
+    /**
+     * 
+     * @return a list of players which are connected to the lobby
+     * @throws RemoteException
+     * @version 1.0
+     * @author Tim
+     */
     public List<Player> getConnectedPlayers() throws RemoteException;
 
     /**
      * 
      * @param pl
-     * @return a list of players which are connected to the lobby
+     * @return registers a player
      * @throws RemoteException
      * @version 1.0
      * @author Tim
@@ -33,7 +40,16 @@ public interface Lobby extends Remote {
      * @version 1.0
      * @author Tim
      */
-    public void startSpel() throws RemoteException;
+    public void startGame() throws RemoteException;
+
+    /**
+     * 
+     * @param pl
+     * @throws RemoteException
+     * @version 1.0
+     * @author Tim
+     */
+    public void unregisterPlayer(Player pl) throws RemoteException;
 
     /**
      * 
@@ -61,10 +77,4 @@ public interface Lobby extends Remote {
      * @author Tim
      */
     public void update() throws RemoteException;
-    /**
-     * 
-     * @throws RemoteException
-     * @version 1.0
-     * @author Tim
-     */
 }

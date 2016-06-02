@@ -4,6 +4,12 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
+import javax.sound.sampled.LineEvent;
+
+import javafx.beans.InvalidationListener;
+import javafx.beans.binding.FloatExpression;
+import javafx.beans.property.FloatProperty;
+import javafx.beans.property.ReadOnlyFloatWrapper;
 
 /**
  * Controls the theme-song which is playing in the lobby.
@@ -14,7 +20,8 @@ import javax.sound.sampled.FloatControl;
 
 public class SoundUtil {
 
-    private static float volume = 0F;
+    private static final float VOLUME_LEVEL = 30F;
+    private static FloatExpression volume = new ReadOnlyFloatWrapper(0F);
     private static Clip teamsongKvC;
 
     public static void playError() {
@@ -24,7 +31,9 @@ public class SoundUtil {
     public static void playThemesong() {
 	stopThemesong();
 	teamsongKvC = playSound("sound/themesongKvC.wav");
-	teamsongKvC.loop(Clip.LOOP_CONTINUOUSLY);
+	if (teamsongKvC != null) {
+	    teamsongKvC.loop(Clip.LOOP_CONTINUOUSLY);
+	}
     }
 
     public static void stopThemesong() {
@@ -36,27 +45,44 @@ public class SoundUtil {
     }
 
     public static Clip playSound(String soundName) {
-	Clip clip = null;
 	try {
 	    AudioInputStream audioInputStream = AudioSystem
-		    .getAudioInputStream(SoundUtil.class.getClassLoader().getResourceAsStream(soundName));
-	    clip = AudioSystem.getClip();
+		    .getAudioInputStream(SoundUtil.class.getClassLoader().getResource(soundName));
+	    Clip clip = AudioSystem.getClip();
 	    clip.open(audioInputStream);
 	    FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-	    // clip.loop(x);
-	    // BooleanControl muteControl = (BooleanControl)
-	    // clip.getControl(BooleanControl.Type.MUTE);
-	    // clip.stop();
-	    volume.setValue(-10F + SoundUtil.volume);
+	    volume.setValue(-10F + SoundUtil.volume.get());
+	    InvalidationListener iListener = change -> {
+		if (clip.isActive()) {
+		    volume.setValue(-10F + SoundUtil.volume.get());
+		}
+	    };
+	    SoundUtil.volume.addListener(iListener);
+	    clip.addLineListener(event -> {
+		if (event.getType() == LineEvent.Type.STOP) {
+		    event.getLine().close();
+		} else if (event.getType() == LineEvent.Type.CLOSE) {
+		    SoundUtil.volume.removeListener(iListener);
+		}
+	    });
 	    clip.start();
+	    return clip;
 	} catch (Exception ex) {
 	    ex.printStackTrace();
 	}
-	return clip;
+	return null;
     }
 
     public static boolean themesongIsPlaying() {
 	return teamsongKvC != null;
+    }
+
+    public static float getVolumeLevel() {
+	return SoundUtil.volume.get() / VOLUME_LEVEL;
+    }
+
+    public static void setVolume(float volume) {
+	((FloatProperty) SoundUtil.volume).setValue(volume * VOLUME_LEVEL);
     }
 
 }

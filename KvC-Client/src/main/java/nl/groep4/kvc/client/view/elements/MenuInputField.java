@@ -16,13 +16,13 @@ import javafx.scene.paint.Color;
  * @version 1.0
  * @author Tim
  **/
-public class LobbyInputField extends TextField {
+public class MenuInputField extends TextField {
 
-    public LobbyInputField() {
+    public MenuInputField() {
 	setBorderColor(Color.BLACK);
     }
 
-    public LobbyInputField(int xPos, int yPos, String text) {
+    public MenuInputField(int xPos, int yPos, String text) {
 	this();
 	if (text == null) {
 	    text = "";

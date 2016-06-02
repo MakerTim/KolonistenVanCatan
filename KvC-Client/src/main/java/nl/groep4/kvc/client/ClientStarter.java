@@ -9,7 +9,6 @@ import nl.groep4.kvc.client.view.ViewMaster;
  * @version 1.0
  * @author Tim
  */
-
 public class ClientStarter {
 
     public static void main(String[] args) {

@@ -27,42 +27,42 @@ public class SceneUtil {
 
     public static Node getMenuBackground() {
 	if (background == null) {
-	    background = new ImageView("img/lobby/menu_background.png");
+	    background = new ImageView("img/menu/menu_background.png");
 	}
 	return background;
     }
 
-    public static Node getMenuForeground() {
+    public static Node getLoginForeground() {
 	if (forground == null) {
-	    forground = new ImageView("img/lobby/menu_foreground.png");
+	    forground = new ImageView("img/menu/login_foreground.png");
 	}
 	return forground;
     }
 
-    public static Node getLobbyBrazier() {
+    public static Node getMenuBrazier() {
 	if (brazier == null) {
-	    brazier = new ImageView("img/lobby/brazier.gif");
+	    brazier = new ImageView("img/menu/brazier.gif");
 	}
 	return brazier;
     }
 
-    public static Node getLobbySettings() {
+    public static Node getSettingsForeground() {
 	if (settings == null) {
-	    settings = new ImageView("img/lobby/menu_settings.png");
+	    settings = new ImageView("img/menu/settings_foreground.png");
 	}
 	return settings;
     }
 
     public static Node getLobbyForeground() {
 	if (lobbyBack == null) {
-	    lobbyBack = new ImageView("img/etc/lobby_background.png");
+	    lobbyBack = new ImageView("img/menu/lobby_foreground.png");
 	}
 	return lobbyBack;
     }
 
     public static Node getCornerShield() {
 	if (cornerShield == null) {
-	    cornerShield = new ImageView("img/etc/shield_corner.png");
+	    cornerShield = new ImageView("img/menu/shield_corner.png");
 	}
 	return cornerShield;
     }

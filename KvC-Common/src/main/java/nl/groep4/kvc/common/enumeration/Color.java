@@ -23,11 +23,12 @@ public enum Color {
     /**
      * Returns colour back to javafx defined colour
      * 
+     * @return Retrieves colour
      * @version 1.0
      * @author Tim
      */
     public javafx.scene.paint.Color getColor() {
-	return new javafx.scene.paint.Color(red, green, blue, 0);
+	return new javafx.scene.paint.Color(red / 255D, green / 255D, blue / 255D, 0);
     }
 
 }
