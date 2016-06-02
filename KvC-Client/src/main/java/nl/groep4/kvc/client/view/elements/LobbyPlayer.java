@@ -19,7 +19,7 @@ public class LobbyPlayer extends StackPane {
     private static final Image IMAGE = new Image("img/menu/parchment.png");
     private static final Image HOVER_IMAGE = new Image("img/menu/parchment_hover.png");
     private static final Image PRESSED_IMAGE = new Image("img/menu/parchment_pressed.png");
-    private static final String EMPTY = "empty";
+    private static final String EMPTY = "Empty";
 
     private Color color;
     private Text colorLabel;
@@ -38,10 +38,8 @@ public class LobbyPlayer extends StackPane {
 	colorLabel.setFill(color.getColor());
 	colorLabel.setTextAlignment(TextAlignment.CENTER);
 	usernameLabel.setFill(color.getColor());
-	colorLabel.setStroke(javafx.scene.paint.Color.BLACK);
-	usernameLabel.setStroke(javafx.scene.paint.Color.BLACK);
-	colorLabel.setEffect(TexturedButton.getShadowEffect());
-	usernameLabel.setEffect(TexturedButton.getShadowEffect());
+	colorLabel.setStroke(color.getColor());
+	usernameLabel.setStroke(color.getColor());
 	setOnMouseEntered(mouseEnter -> background.setImage(HOVER_IMAGE));
 	setOnMouseExited(mouseLeave -> background.setImage(IMAGE));
 	setOnMousePressed(mousePressed -> {
