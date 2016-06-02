@@ -1,0 +1,40 @@
+language:Nederlands
+
+#Game
+game.name.round:Ronde: %d
+
+#SceneLobby
+lobby.shield.title:Lobby
+lobby.button.start:Start
+lobby.button.back:terug
+lobby.button.loadsave:Laden
+
+#SceneLogin
+lobby.label.ip:IP Adres
+lobby.label.port:Port Nummer
+lobby.label.username:
+lobby.label.nocolor:No Color
+lobby.label.confirmeverything:Confirm Everything
+lobby.label.nosound:No Sound
+lobby.button.join:Join
+lobby.button.settings:Settings
+
+#SceneSettings
+settings.button.playmusic:Play Music
+settings.button.playmusic:Stop Music
+settings.button.accept:Accept
+settings.label.title:Settings
+
+#ExceptionManager
+error.connect.notfound.title:Server not found
+error.connect.notfound.explanation:The server you where looking for could not be found
+error.version.notfound.details:Exception: \n%s
+error.version.diffrence.title:Server version is not the same
+error.version.diffrence.explanation:
+error.version.diffrence.details
+error.server.error.title:
+error.server.error.explanation:
+error.server.error.detail:
+error.remote.unknown.title:
+error.remote.unknown.explanation:
+error.remote.unknown.details:

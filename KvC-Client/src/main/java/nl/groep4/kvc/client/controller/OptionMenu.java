@@ -6,7 +6,6 @@ package nl.groep4.kvc.client.controller;
  * @author Tim
  * @version 1.0
  */
-
 public class OptionMenu {
 
     /**
@@ -16,7 +15,7 @@ public class OptionMenu {
     }
 
     /**
-     * 
+     * Closes option menu
      */
     public void closeOptionMenu() {
     }

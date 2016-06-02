@@ -5,18 +5,31 @@ import javafx.scene.paint.Color;
 import nl.groep4.kvc.client.util.SoundUtil;
 
 /**
- * InputField where only sertain input is allowd
+ * InputField where only certain input is allowed
  * 
  * @version 1.0
  * @author Tim
  **/
 public class MenuFilterdInputField extends MenuInputField {
 
+    /**
+     * Filters input data
+     * 
+     * @param regex
+     */
     public MenuFilterdInputField(String regex) {
 	super();
 	registerCheck(regex);
     }
 
+    /**
+     * 
+     * 
+     * @param xPos
+     * @param yPos
+     * @param text
+     * @param regex
+     */
     public MenuFilterdInputField(int xPos, int yPos, String text, String regex) {
 	super(xPos, yPos, text);
 	registerCheck(regex);

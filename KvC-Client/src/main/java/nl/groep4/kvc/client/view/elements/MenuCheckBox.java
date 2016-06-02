@@ -10,16 +10,30 @@ import javafx.scene.control.CheckBox;
  **/
 public class MenuCheckBox extends CheckBox {
 
+    /**
+     * 
+     */
     public MenuCheckBox() {
 	super();
     }
 
+    /**
+     * 
+     * @param xPos
+     * @param yPos
+     */
     public MenuCheckBox(int xPos, int yPos) {
 	this();
 	setLayoutX(xPos);
 	setLayoutY(yPos);
     }
 
+    /**
+     * 
+     * @param xPos
+     * @param yPos
+     * @param defaultSelected
+     */
     public MenuCheckBox(int xPos, int yPos, boolean defaultSelected) {
 	this(xPos, yPos);
 	setSelected(defaultSelected);

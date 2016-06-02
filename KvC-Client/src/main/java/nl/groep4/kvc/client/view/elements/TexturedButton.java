@@ -22,6 +22,9 @@ public abstract class TexturedButton extends StackPane {
     protected Text label;
     protected List<Runnable> clickHandlers = new ArrayList<>();
 
+    /**
+     * Generates button design
+     */
     public TexturedButton() {
 	ImageView background = new ImageView(getTexture());
 	label = new Text();
@@ -40,15 +43,27 @@ public abstract class TexturedButton extends StackPane {
 	getChildren().addAll(background, label);
     }
 
+    /**
+     * 
+     * @param text
+     */
     public TexturedButton(String text) {
 	this();
 	updateText(text);
     }
 
+    /**
+     * 
+     * @param font
+     */
     public void setFont(Font font) {
 	label.setFont(font);
     }
 
+    /**
+     * 
+     * @param text
+     */
     public void updateText(String text) {
 	this.label.setText(text);
     }
@@ -57,6 +72,10 @@ public abstract class TexturedButton extends StackPane {
 	return this.label.getText();
     }
 
+    /**
+     * 
+     * @return
+     */
     public static DropShadow getShadowEffect() {
 	DropShadow shadow = new DropShadow();
 	shadow.setOffsetX(3);
@@ -65,13 +84,29 @@ public abstract class TexturedButton extends StackPane {
 	return shadow;
     }
 
+    /**
+     * 
+     * @param click
+     */
     public void registerClick(Runnable click) {
 	clickHandlers.add(click);
     }
 
+    /**
+     * 
+     * @return
+     */
     public abstract Image getTexture();
 
+    /**
+     * 
+     * @return
+     */
     public abstract Image getHoverTexture();
 
+    /**
+     * 
+     * @return
+     */
     public abstract Image getClickTexture();
 }

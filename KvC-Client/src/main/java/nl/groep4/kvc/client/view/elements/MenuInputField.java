@@ -18,10 +18,19 @@ import javafx.scene.paint.Color;
  **/
 public class MenuInputField extends TextField {
 
+    /**
+     * sets border color to black
+     */
     public MenuInputField() {
 	setBorderColor(Color.BLACK);
     }
 
+    /**
+     * 
+     * @param xPos
+     * @param yPos
+     * @param text
+     */
     public MenuInputField(int xPos, int yPos, String text) {
 	this();
 	if (text == null) {
@@ -32,6 +41,11 @@ public class MenuInputField extends TextField {
 	this.setText(text);
     }
 
+    /**
+     * sets all bordersettings
+     * 
+     * @param color
+     */
     public void setBorderColor(Color color) {
 	setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
 	setBorder(new Border(new BorderStroke(null, null, color, null, null, null, BorderStrokeStyle.DASHED, null, null,

@@ -11,14 +11,28 @@ import nl.groep4.kvc.common.Player;
 import nl.groep4.kvc.common.enumeration.Color;
 import nl.groep4.kvc.common.interfaces.Updatable;
 
+/**
+ * 
+ * 
+ * @author Tim
+ * @version 1.0
+ */
 public class LobbyController {
 
     private Lobby lobby;
 
+    /**
+     * 
+     * @param lobby
+     */
     public LobbyController(Lobby lobby) {
 	this.lobby = lobby;
     }
 
+    /**
+     * 
+     * @return a list of players which are connected
+     */
     public List<Player> getPlayers() {
 	try {
 	    return lobby.getConnectedPlayers();
@@ -28,6 +42,10 @@ public class LobbyController {
 	return new ArrayList<>();
     }
 
+    /**
+     * 
+     * @param pl
+     */
     public void disconnect(Player pl) {
 	try {
 	    lobby.unregisterPlayer(pl);
@@ -37,6 +55,11 @@ public class LobbyController {
 	lobby = null;
     }
 
+    /**
+     * 
+     * @param player
+     * @param color
+     */
     public void changeColor(Player player, Color color) {
 	try {
 	    lobby.setColor(player, color);
@@ -45,6 +68,10 @@ public class LobbyController {
 	}
     }
 
+    /**
+     * 
+     * @param sceneLobby
+     */
     public void registerScene(Updatable<Lobby> sceneLobby) {
 	try {
 	    lobby.registerUpdateable((Updatable<Lobby>) UnicastRemoteObject.exportObject(sceneLobby, 0));
