@@ -19,17 +19,14 @@ public class RegexTester {
 	assertTrue(!" . . . ".matches(KvCStatics.REGEX_IP));
 	assertTrue(!"....".matches(KvCStatics.REGEX_IP));
 	assertTrue(!"1000.1000.1000.1000".matches(KvCStatics.REGEX_IP));
-	// assertTrue("google.com".matches(KvCStatics.REGEX_IP));
-	// assertTrue("www.google.com".matches(KvCStatics.REGEX_IP));
+	assertTrue("google.com".matches(KvCStatics.REGEX_IP));
+	assertTrue("www.google.com".matches(KvCStatics.REGEX_IP));
 	assertTrue(!"http://www.google.com".matches(KvCStatics.REGEX_IP));
-	// assertTrue(!"".matches(KvCStatics.REGEX_IP));
-	assertTrue("localhost".matches(KvCStatics.REGEX_IP));
-	assertTrue("localhost".matches(KvCStatics.REGEX_IP));
-	assertTrue("localhost".matches(KvCStatics.REGEX_IP));
-	assertTrue("localhost".matches(KvCStatics.REGEX_IP));
-	assertTrue("localhost".matches(KvCStatics.REGEX_IP));
-	assertTrue("localhost".matches(KvCStatics.REGEX_IP));
-	assertTrue("localhost".matches(KvCStatics.REGEX_IP));
+	assertTrue(!"".matches(KvCStatics.REGEX_IP));
+	assertTrue("LoCaLHoST".matches(KvCStatics.REGEX_IP));
+	assertTrue(!"L0c@lH0ST".matches(KvCStatics.REGEX_IP));
+	assertTrue("makerpi".matches(KvCStatics.REGEX_IP));
+	assertTrue("MakerTim-Laptop".matches(KvCStatics.REGEX_IP));
     }
 
     @Test
@@ -58,6 +55,7 @@ public class RegexTester {
 	assertTrue("r".matches(KvCStatics.USERNAME));
 	assertTrue("p".matches(KvCStatics.USERNAME));
 	assertTrue("y".matches(KvCStatics.USERNAME));
+	assertTrue(!"-".matches(KvCStatics.USERNAME));
 	assertTrue("t".matches(KvCStatics.USERNAME));
     }
 }
