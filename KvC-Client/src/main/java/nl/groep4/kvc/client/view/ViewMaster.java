@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import nl.groep4.kvc.client.util.SoundUtil;
+import nl.groep4.kvc.client.view.scene.SceneLogin;
 
 /**
  * The application itself

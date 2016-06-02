@@ -1,4 +1,4 @@
-package nl.groep4.kvc.client.view;
+package nl.groep4.kvc.client.view.scene;
 
 import java.rmi.RemoteException;
 import java.util.List;
@@ -11,6 +11,7 @@ import nl.groep4.kvc.client.controller.ConnectionController;
 import nl.groep4.kvc.client.controller.LobbyController;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.SoundUtil;
+import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.LobbyPlayer;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.common.Lobby;

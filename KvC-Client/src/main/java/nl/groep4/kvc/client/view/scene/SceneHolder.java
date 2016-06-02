@@ -1,4 +1,4 @@
-package nl.groep4.kvc.client.view;
+package nl.groep4.kvc.client.view.scene;
 
 import java.rmi.RemoteException;
 
