@@ -34,4 +34,13 @@ public class Player implements nl.groep4.kvc.common.Player {
     public void setColor(Color color) {
 	this.color = color;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+	if (obj instanceof nl.groep4.kvc.common.Player) {
+	    nl.groep4.kvc.common.Player other = (nl.groep4.kvc.common.Player) obj;
+	    return other.getUsername().equals(this.getUsername());
+	}
+	return super.equals(obj);
+    }
 }
