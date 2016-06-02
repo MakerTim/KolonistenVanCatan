@@ -1,9 +1,8 @@
-package nl.groep4.kvc.common;
+package nl.groep4.kvc.common.interfaces;
 
 import java.io.Serializable;
 
 import nl.groep4.kvc.common.enumeration.Color;
-import nl.groep4.kvc.common.interfaces.Updatable;
 
 /**
  * Stores username and color

@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nl.groep4.kvc.client.util.ExceptionManager;
-import nl.groep4.kvc.common.Lobby;
-import nl.groep4.kvc.common.Player;
 import nl.groep4.kvc.common.enumeration.Color;
+import nl.groep4.kvc.common.interfaces.Lobby;
+import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.Updatable;
 
 /**

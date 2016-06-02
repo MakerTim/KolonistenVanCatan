@@ -1,7 +1,5 @@
 package nl.groep4.kvc.common.interfaces;
 
-import nl.groep4.kvc.common.Player;
-
 /**
  * Tells items ownable by player
  * 

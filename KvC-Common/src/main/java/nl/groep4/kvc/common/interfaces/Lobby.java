@@ -1,11 +1,10 @@
-package nl.groep4.kvc.common;
+package nl.groep4.kvc.common.interfaces;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
 import nl.groep4.kvc.common.enumeration.Color;
-import nl.groep4.kvc.common.interfaces.Updatable;
 
 /**
  * Register players, generates a list of player which are connected, starts the

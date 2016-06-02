@@ -10,7 +10,7 @@ import nl.groep4.kvc.client.util.ExceptionManager;
 import nl.groep4.kvc.client.view.ExceptionDialog;
 import nl.groep4.kvc.client.view.scene.SceneLogin;
 import nl.groep4.kvc.common.KvCStaticNaming;
-import nl.groep4.kvc.common.Lobby;
+import nl.groep4.kvc.common.interfaces.Lobby;
 
 /**
  * Controls the form of the lobby and returns error messages

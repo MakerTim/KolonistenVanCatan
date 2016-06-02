@@ -6,9 +6,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
-import nl.groep4.kvc.common.Lobby;
-import nl.groep4.kvc.common.Player;
 import nl.groep4.kvc.common.enumeration.Color;
+import nl.groep4.kvc.common.interfaces.Lobby;
+import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.Updatable;
 
 /**
@@ -62,6 +62,8 @@ public class ServerLobby implements Lobby {
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();
 	}
+	// TODO Lobby#startGame - iets dat de client update krijgt van
+	// open game scherm -> hier is de game
     }
 
     @Override

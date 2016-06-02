@@ -11,7 +11,7 @@ import nl.groep4.kvc.common.interfaces.Updatable;
  *
  */
 
-public class Player implements nl.groep4.kvc.common.Player {
+public class Player implements nl.groep4.kvc.common.interfaces.Player {
 
     private static final long serialVersionUID = 2304199625693960750L;
     private final String username;
@@ -39,8 +39,8 @@ public class Player implements nl.groep4.kvc.common.Player {
 
     @Override
     public boolean equals(Object obj) {
-	if (obj instanceof nl.groep4.kvc.common.Player) {
-	    nl.groep4.kvc.common.Player other = (nl.groep4.kvc.common.Player) obj;
+	if (obj instanceof nl.groep4.kvc.common.interfaces.Player) {
+	    nl.groep4.kvc.common.interfaces.Player other = (nl.groep4.kvc.common.interfaces.Player) obj;
 	    return other.getUsername().equals(this.getUsername());
 	}
 	return super.equals(obj);

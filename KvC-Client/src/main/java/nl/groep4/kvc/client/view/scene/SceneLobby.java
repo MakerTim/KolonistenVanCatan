@@ -15,9 +15,9 @@ import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.LobbyPlayer;
 import nl.groep4.kvc.client.view.elements.MenuButton;
-import nl.groep4.kvc.common.Lobby;
-import nl.groep4.kvc.common.Player;
 import nl.groep4.kvc.common.enumeration.Color;
+import nl.groep4.kvc.common.interfaces.Lobby;
+import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.Updatable;
 
 /**

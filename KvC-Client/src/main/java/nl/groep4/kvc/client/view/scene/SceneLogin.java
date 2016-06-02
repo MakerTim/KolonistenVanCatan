@@ -19,7 +19,7 @@ import nl.groep4.kvc.client.view.elements.MenuCheckBox;
 import nl.groep4.kvc.client.view.elements.MenuFilterdInputField;
 import nl.groep4.kvc.client.view.elements.MenuMatchInputField;
 import nl.groep4.kvc.common.KvCStatics;
-import nl.groep4.kvc.common.Lobby;
+import nl.groep4.kvc.common.interfaces.Lobby;
 import nl.groep4.kvc.common.util.CollectionUtil;
 
 /**
