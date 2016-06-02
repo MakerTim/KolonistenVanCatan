@@ -33,10 +33,10 @@ public class TranslationManager {
 
     public static String translate(String key, Object... args) {
 	for (String translation : CURRENT_LANGUAGES) {
-	    if (translation.startsWith(key)) {
-		return String.format(translation.split(":", 2)[1], args);
+	    String[] translationSplit = translation.split(":", 2);
+	    if (translationSplit[0].equals(key)) {
+		return String.format(translationSplit[1], args);
 	    }
-
 	}
 	return key;
     }
