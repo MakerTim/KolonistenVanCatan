@@ -58,11 +58,11 @@ public class SceneSettings implements SceneHolder {
 	music.registerClick(() -> {
 	    if (SoundUtil.themesongIsPlaying()) {
 		SoundUtil.stopThemesong();
-		music.updateText(PLAY);
+		music.updateText(TranslationManager.translate(PLAY));
 
 	    } else {
 		SoundUtil.playThemesong();
-		music.updateText(STOP);
+		music.updateText(TranslationManager.translate(STOP));
 	    }
 	});
 
