@@ -6,7 +6,7 @@ public class MenuSlider extends Slider {
 
     public MenuSlider() {
 	super();
-	setStyle("");
+	setStyle("-fx-background-image: url('img/etc/button.png'); -fx-padding: 20px;");
     }
 
     public MenuSlider(int xPos, int yPos) {
