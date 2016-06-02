@@ -21,7 +21,7 @@ public class CollectionUtil {
     /**
      * 
      * @param e
-     * @return a random item from a array
+     * @return a random item from an array
      */
     public static <E> E randomItem(E[] e) {
 	if (e.length == 0) {
@@ -71,6 +71,7 @@ public class CollectionUtil {
     }
 
     /**
+     * 
      * 
      * @param original
      * @param items
