@@ -14,7 +14,7 @@ public class MenuSlider extends Slider {
      */
     public MenuSlider() {
 	super();
-	setStyle("-fx-background-image: url('img/etc/button.png'); -fx-padding: 20px;");
+	setStyle("-fx-background-image: url('img/etc/button.png') no-repeat; -fx-padding: 18px;");
     }
 
     /**
