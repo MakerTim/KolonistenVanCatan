@@ -1,4 +1,4 @@
-language:Nederlands
+language:Français
 
 #Game
 game.name.round:Ronde: %d
@@ -33,7 +33,7 @@ error.connect.notfound.title:Server is niet gevonden
 error.connect.notfound.explanation:De server die u zocht is niet gevonden
 error.version.notfound.details:Exception: \n%s
 error.version.diffrence.title:Server versie is niet hetzelfde
-error.version.diffrence.explanation:De versie van de server en uw versie komen niet overeen
+error.version.diffrence.explanation:La version du serveur et votre version mismatch
 error.version.diffrence.details:Exception: \n%s
 error.server.error.title:Server fout
 error.server.error.explanation:Er iets fout gegaan op de server
