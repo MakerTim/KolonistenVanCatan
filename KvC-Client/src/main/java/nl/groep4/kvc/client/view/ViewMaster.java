@@ -31,6 +31,9 @@ public class ViewMaster extends Application {
 	setScene(new SceneLogin().getScene());
 	primaryStage.setTitle("Kolonisten van Catan: Online");
 	primaryStage.setResizable(false);
+	primaryStage.setOnCloseRequest(onClose -> {
+	    System.exit(0);
+	});
 	primaryStage.show();
 	System.out.println("Showing lobby");
     }

@@ -32,6 +32,14 @@ public class SceneLogin implements SceneHolder {
 
     private static Pane form;
 
+    private Text ipLabel;
+    private Text portLabel;
+    private Text usernameLabel;
+    private Text nocolorLabel;
+    private Text confirmLabel;
+    private Text nosoundLabel;
+    private MenuButton joinButton;
+    private MenuButton settingsButton;
     private TextField ipInput;
     private TextField portInput;
     private TextField usernameInput;
@@ -55,20 +63,20 @@ public class SceneLogin implements SceneHolder {
 	if (form == null) {
 	    form = new Pane();
 
-	    Text ipLabel = new Text(330, 350, TranslationManager.translate("lobby.label.ip"));
-	    ipInput = new MenuMatchInputField(450, 320, "", KvCStatics.REGEX_IP);
-	    Text portLabel = new Text(330, 375, TranslationManager.translate("lobby.label.port"));
-	    portInput = new MenuFilterdInputField(450, 345, "", KvCStatics.NUMERIC);
-	    Text usernameLabel = new Text(330, 410, TranslationManager.translate("lobby.label.username"));
-	    usernameInput = new MenuFilterdInputField(450, 380, "", KvCStatics.USERNAME);
-	    Text nocolorLabel = new Text(330, 450, TranslationManager.translate("lobby.label.nocolor"));
+	    ipLabel = new Text(310, 350, TranslationManager.translate("lobby.label.ip"));
+	    ipInput = new MenuMatchInputField(460, 320, "", KvCStatics.REGEX_IP);
+	    portLabel = new Text(310, 375, TranslationManager.translate("lobby.label.port"));
+	    portInput = new MenuFilterdInputField(460, 345, "", KvCStatics.NUMERIC);
+	    usernameLabel = new Text(310, 410, TranslationManager.translate("lobby.label.username"));
+	    usernameInput = new MenuFilterdInputField(460, 380, "", KvCStatics.USERNAME);
+	    nocolorLabel = new Text(310, 450, TranslationManager.translate("lobby.label.nocolor"));
 	    nocolorInput = new MenuCheckBox(540, 434, false);
-	    Text confirmLabel = new Text(330, 470, TranslationManager.translate("lobby.label.confirmeverything"));
+	    confirmLabel = new Text(310, 470, TranslationManager.translate("lobby.label.confirmeverything"));
 	    confirmInput = new MenuCheckBox(540, 454, false);
-	    Text nosoundLabel = new Text(330, 490, TranslationManager.translate("lobby.label.nosound"));
+	    nosoundLabel = new Text(310, 490, TranslationManager.translate("lobby.label.nosound"));
 	    nosoundInput = new MenuCheckBox(540, 474, false);
-	    MenuButton joinButton = new MenuButton(425, 500, TranslationManager.translate("lobby.button.join"));
-	    MenuButton settingsButton = new MenuButton(13, 645, TranslationManager.translate("lobby.button.settings"));
+	    joinButton = new MenuButton(425, 500, TranslationManager.translate("lobby.button.join"));
+	    settingsButton = new MenuButton(13, 645, TranslationManager.translate("lobby.button.settings"));
 
 	    ipLabel.setFont(ViewMaster.FONT);
 	    ipInput.setFont(ViewMaster.FONT);
@@ -90,6 +98,17 @@ public class SceneLogin implements SceneHolder {
 		    settingsButton);
 	}
 	return form;
+    }
+
+    public void updateTranslation() {
+	ipLabel.setText(TranslationManager.translate("lobby.label.ip"));
+	portLabel.setText(TranslationManager.translate("lobby.label.port"));
+	usernameLabel.setText(TranslationManager.translate("lobby.label.username"));
+	nocolorLabel.setText(TranslationManager.translate("lobby.label.nocolor"));
+	confirmLabel.setText(TranslationManager.translate("lobby.label.confirmeverything"));
+	nosoundLabel.setText(TranslationManager.translate("lobby.label.nosound"));
+	joinButton.updateText(TranslationManager.translate("lobby.button.join"));
+	settingsButton.updateText(TranslationManager.translate("lobby.button.settings"));
     }
 
     public void onConnectClick() {

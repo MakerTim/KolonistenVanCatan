@@ -10,7 +10,6 @@ public class RegexTester {
 
     @Test
     public void ipRegex() {
-	// TODO: TEST -> KvCStatics.REGEX_IP
 	assertTrue("localhost".matches(KvCStatics.REGEX_IP));
 	assertTrue("192.101.130.111".matches(KvCStatics.REGEX_IP));
 	assertTrue("1.1.1.1".matches(KvCStatics.REGEX_IP));

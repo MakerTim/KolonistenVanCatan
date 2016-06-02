@@ -83,6 +83,9 @@ public class SceneSettings implements SceneHolder {
 	    music.updateText(TranslationManager.translate(SoundUtil.themesongIsPlaying() ? STOP : PLAY));
 	    acceptSettings.updateText(TranslationManager.translate("settings.button.accept"));
 	    settings.setText(TranslationManager.translate("settings.label.title"));
+	    if (parent instanceof SceneLogin) {
+		((SceneLogin) parent).updateTranslation();
+	    }
 	});
 
 	layers.getChildren().addAll(SceneUtil.getMenuBackground(), SceneUtil.getSettingsForeground(),

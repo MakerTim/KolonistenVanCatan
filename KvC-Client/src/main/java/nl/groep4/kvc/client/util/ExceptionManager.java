@@ -17,23 +17,14 @@ public class ExceptionManager {
 
     public static void handleRemoteException(RemoteException rex) {
 	if (rex instanceof ConnectException || rex instanceof ConnectIOException) {
-	    ExceptionDialog.warning(TranslationManager.translate("error.connect.notfound.title"),
-		    TranslationManager.translate("error.connect.notfound.explanation"),
-		    TranslationManager.translate("error.connect.notfound.details"));
+	    ExceptionDialog.warning("error.connect.notfound");
 	} else if (rex instanceof MarshalException || rex instanceof NoSuchObjectException
 		|| rex instanceof StubNotFoundException || rex instanceof AccessException) {
-	    ExceptionDialog.warning(TranslationManager.translate("error.version.diffrence.title"),
-		    TranslationManager.translate("error.version.diffrence.explanation"),
-		    TranslationManager.translate("error.version.diffrence.details"));
+	    ExceptionDialog.warning("error.version.diffrence");
 	} else if (rex instanceof ServerError || rex instanceof ServerException || rex instanceof UnexpectedException) {
-	    ExceptionDialog.warning(TranslationManager.translate("error.server.error.title"),
-		    TranslationManager.translate("error.server.error.explanation"),
-		    TranslationManager.translate("error.server.error.details"));
+	    ExceptionDialog.warning("error.server.error");
 	} else {
-	    ExceptionDialog.warning(TranslationManager.translate("error.remote.unkown.title"),
-		    TranslationManager.translate("error.remote.unkown.explanation"),
-		    TranslationManager.translate("error.remote.unkown.details"));
+	    ExceptionDialog.warning("error.remote.unkown");
 	}
     }
-
 }
