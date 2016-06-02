@@ -9,28 +9,35 @@ import jdk.nashorn.api.scripting.URLReader;
 
 public class TranslationManager {
 
-    private static final List currentLanguage = new ArrayList();
+    private static final List<String> currentLanguage = new ArrayList<>();
 
-    public static void main(String[] args) {
+    static {
 	setLanguage("en-EN");
-
     }
 
     public static void setLanguage(String languageKey) {
-
-	BufferedReader br = new BufferedReader(
+	currentLanguage.clear();
+	BufferedReader fileReader = new BufferedReader(
 		new URLReader(TranslationManager.class.getResource("/lang/" + languageKey + ".yml")));
 
-	Scanner s;
-	s = new Scanner(br);
-	while (s.hasNext()) {
-	    currentLanguage.add(s.next());
+	Scanner scanner = new Scanner(fileReader);
+	while (scanner.hasNextLine()) {
+	    String line = scanner.nextLine();
+	    if (line.trim().isEmpty() || line.startsWith("#") || !line.contains(":")) {
+		continue;
+	    }
+	    currentLanguage.add(line);
 	}
-	currentLanguage.clear();
+	scanner.close();
     }
 
     public static String translate(String key, Object... args) {
-	return key;
+	for (String translation : currentLanguage) {
+	    if (translation.startsWith(key)) {
+		return String.format(translation.split(":", 2)[1], args);
+	    }
 
+	}
+	return key;
     }
 }
