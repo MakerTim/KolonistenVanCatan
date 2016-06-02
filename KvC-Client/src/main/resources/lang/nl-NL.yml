@@ -21,7 +21,7 @@ lobby.button.settings:Instellingen
 
 #SceneSettings
 settings.button.playmusic:Muziek AAN
-settings.button.playmusic:Muziek UIT
+settings.button.stopmusic:Muziek UIT
 settings.button.accept:Accepteren
 settings.label.title:Instellingen
 
