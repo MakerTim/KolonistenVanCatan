@@ -38,6 +38,7 @@ public class TranslationManager {
 		return String.format(translationSplit[1], args);
 	    }
 	}
+	System.err.println(key);
 	return key;
     }
 }
