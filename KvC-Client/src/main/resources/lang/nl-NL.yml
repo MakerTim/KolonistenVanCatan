@@ -11,11 +11,11 @@ lobby.button.loadsave:Laden
 
 #SceneLogin
 lobby.label.ip:IP Adres
-lobby.label.port:Port Nummer
+lobby.label.port:Poort Nummer
 lobby.label.username:Gebruikersnaam
 lobby.label.nocolor:Geen Kleur
 lobby.label.confirmeverything:Bevestig Alles
-lobby.label.nosound:Geen geluid
+lobby.label.nosound:Geen Geluid
 lobby.button.join:Meedoen
 lobby.button.settings:Instellingen
 
