@@ -9,10 +9,8 @@ package nl.groep4.kvc.common;
 
 public class KvCStaticNaming {
 
-    public static final String LOBBY_KEY = "KvCLobby";
-
     /**
      * Name of lobby stored in LOBBY_KEY to connect with
      */
-
+    public static final String LOBBY_KEY = "KvCLobby";
 }
