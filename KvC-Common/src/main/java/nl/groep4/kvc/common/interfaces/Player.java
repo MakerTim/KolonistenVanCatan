@@ -15,29 +15,32 @@ public interface Player extends Serializable {
     /**
      * 
      * @return gets the name of a player
-     * @version 1.0
-     * @author Tim
      */
     public String getUsername();
 
     /**
      * 
      * @return gets the color of a player
-     * @version 1.0
-     * @author Tim
      */
     public Color getColor();
 
     /**
-     * sets color of a player
      * 
      * @param color
-     * @version 1.0
-     * @author Tim
+     *            reference to set color of a player
      */
     public void setColor(Color color);
 
+    /**
+     * 
+     * @param updatable
+     *            reference to update the server lobby
+     */
     public void registerUpdateable(Updatable<?> updatable);
 
+    /**
+     * 
+     * @return gets update for the server lobby
+     */
     public Updatable<?> getUpdateable();
 }
