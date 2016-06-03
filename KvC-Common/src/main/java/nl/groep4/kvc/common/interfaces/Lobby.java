@@ -55,7 +55,7 @@ public interface Lobby extends Remote {
      * @param safeFile
      * @throws RemoteException
      */
-    public void loadSafe(String safeFile) throws RemoteException;
+    public void loadSave(String safeFile) throws RemoteException;
 
     /**
      * 

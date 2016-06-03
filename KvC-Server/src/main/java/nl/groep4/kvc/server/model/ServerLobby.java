@@ -67,7 +67,7 @@ public class ServerLobby implements Lobby {
     }
 
     @Override
-    public void loadSafe(String safeFile) {
+    public void loadSave(String safeFile) {
 	// TODO Lobby#loadSafe
     }
 
