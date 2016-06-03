@@ -10,8 +10,8 @@ game.button.buy:Acheter
 lobby.shield.title:Hall
 lobby.button.start:Démarrer
 lobby.button.back:Retourner
-lobby.button.loadsave:Charge
-lobby.parchment.empty:Vide
+lobby.button.loadsave:Charger
+lobby.parchment.empty:Fermé
 lobby.parchment.color.blue:Bleu
 lobby.parchment.color.brown:Marron
 lobby.parchment.color.green:Vert
