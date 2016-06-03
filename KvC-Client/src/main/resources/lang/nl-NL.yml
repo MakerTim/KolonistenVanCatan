@@ -11,6 +11,24 @@ lobby.shield.title:Lobby
 lobby.button.start:Start
 lobby.button.back:terug
 lobby.button.loadsave:Laden
+lobby.parchment.empty:Leeg
+lobby.parchment.color.blue:Blauw
+lobby.parchment.color.brown:Bruin
+lobby.parchment.color.green:Groen
+lobby.parchment.color.orange:Oranje
+lobby.parchment.color.red:Rood
+lobby.parchment.color.white:Wit
+
+#Login
+login.error.nousername.title:Login fout
+login.error.nousername.explanation:Gebruikersnaam is niet ingevuld
+login.error.nousername.details:Exception: 406 Not Acceptable
+login.error.novalidip.title:Login fout
+login.error.novalidip.explanation:Er is geen geldig IP adres ingevuld
+login.error.novalidip.details:Exception: 406 Not Acceptable
+login.error.portnonumber.title:Login fout
+login.error.portnonumber.explanation:Er is geen geldige poortnummer ingevuld
+login.error.portnonumber.details: 406 Not Acceptable
 
 #SceneLogin
 lobby.label.ip:IP Adres
@@ -31,13 +49,16 @@ settings.label.title:Instellingen
 #ExceptionManager
 error.connect.notfound.title:Server is niet gevonden
 error.connect.notfound.explanation:De server die u zocht is niet gevonden
-error.version.notfound.details:Exception: \n%s
+error.version.notfound.details:Exception: 401 Unauthorized
 error.version.diffrence.title:Server versie is niet hetzelfde
 error.version.diffrence.explanation:De versie van de server en uw versie komen niet overeen
-error.version.diffrence.details:Exception: \n%s
+error.version.diffrence.details:Exception: 500 Internal Server Error
 error.server.error.title:Server fout
-error.server.error.explanation:Er iets fout gegaan op de server
-error.server.error.details:Exception: \n%s
+error.server.error.explanation:Er is iets fout gegaan op de server
+error.server.error.details:Exception: 500 Internal Server Error
 error.remote.unknown.title:Onbekende fout
 error.remote.unknown.explanation:Er is een onbekende fout opgetreden
-error.remote.unknown.details:Exception: \n%s
+error.remote.unknown.details:Exception: 500 Internal Server Error
+error.translation.notfound.title:Vertalingsfout
+error.translation.notfound.explanation:Vertaling is niet gevonden
+error.translation.notfound.details:Exception: 409 Conflict
