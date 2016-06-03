@@ -41,8 +41,8 @@ lobby.button.join:Participer
 lobby.button.settings:Réglages
 
 #SceneSettings
-settings.button.playmusic:Jouer de la musique
-settings.button.stopmusic:Interrompre la musique
+settings.button.playmusic:Son on
+settings.button.stopmusic:Son off
 settings.button.accept:Accepter
 settings.label.title:Réglages
 
