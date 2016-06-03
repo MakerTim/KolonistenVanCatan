@@ -1,43 +1,65 @@
 language:Français
 
 #Game
-game.name.round:Ronde: %d
-game.button.build:Bouwen
-game.button.trade:Ruilen
-game.button.buy:Kopen
+game.name.round:Tour: %d
+game.button.build:Construire
+game.button.trade:Échange
+game.button.buy:Acheter
 
 #SceneLobby
-lobby.shield.title:Lobby
-lobby.button.start:Start
-lobby.button.back:terug
-lobby.button.loadsave:Laden
+lobby.shield.title:Hall
+lobby.button.start:Démarrer
+lobby.button.back:Retourner
+lobby.button.loadsave:Charger
+lobby.parchment.empty:Fermé
+lobby.parchment.color.blue:Bleu
+lobby.parchment.color.brown:Marron
+lobby.parchment.color.green:Vert
+lobby.parchment.color.orange:Orange
+lobby.parchment.color.red:Rouge
+lobby.parchment.color.white:blanc
+
+#Login
+login.error.nousername.title:Erreur de connexion
+login.error.nousername.explanation:Nom d'utilisateur n'a pas rempli
+login.error.nousername.details:Exception: 406 Not Acceptable
+login.error.novalidip.title:Erreur de connexion
+login.error.novalidip.explanation:Il n'y a pas entré dans une adresse IP valide
+login.error.novalidip.details:Exception: 406 Not Acceptable
+login.error.portnonumber.title:Erreur de connexion
+login.error.portnonumber.explanation:Le numéro de port n'a pas été rempli
+login.error.portnonumber.details: 406 Not Acceptable
 
 #SceneLogin
-lobby.label.ip:IP Adres
-lobby.label.port:Poort Nummer
-lobby.label.username:Gebruikersnaam
-lobby.label.nocolor:Geen Kleur
-lobby.label.confirmeverything:Bevestig Alles
-lobby.label.nosound:Geen Geluid
-lobby.button.join:Meedoen
-lobby.button.settings:Instellingen
+lobby.label.ip:Adresse IP
+lobby.label.port:Numéro de port
+lobby.label.username:Nom d'utilisateur
+lobby.label.nocolor:Sans couleur
+lobby.label.confirmeverything:Confirmer tout
+lobby.label.nosound:Aucun bruit
+lobby.button.join:Participer
+lobby.button.settings:Réglages
 
 #SceneSettings
-settings.button.playmusic:Muziek aan
-settings.button.stopmusic:Muziek uit
-settings.button.accept:Accepteren
-settings.label.title:Instellingen
+settings.button.playmusic:Son on
+settings.button.stopmusic:Son off
+settings.button.accept:Accepter
+settings.label.title:Réglages
 
 #ExceptionManager
-error.connect.notfound.title:Server is niet gevonden
-error.connect.notfound.explanation:De server die u zocht is niet gevonden
-error.version.notfound.details:Exception: \n%s
-error.version.diffrence.title:Server versie is niet hetzelfde
+error.connect.notfound.title:Le serveur est introuvable
+error.connect.notfound.explanation:Le serveur que vous cherchez est introuvable
+error.connect.notfound.details:Exception: 503 Service Unavailable
+error.version.notfound.details:Exception: 401 Unauthorized
+error.version.diffrence.title:Version du serveur ne sont pas le même
 error.version.diffrence.explanation:La version du serveur et votre version mismatch
-error.version.diffrence.details:Exception: \n%s
-error.server.error.title:Server fout
-error.server.error.explanation:Er iets fout gegaan op de server
-error.server.error.details:Exception: \n%s
-error.remote.unknown.title:Onbekende fout
-error.remote.unknown.explanation:Er is een onbekende fout opgetreden
-error.remote.unknown.details:Exception: \n%s
+error.version.diffrence.details:Exception: 500 Internal Server Error
+error.server.error.title:erreur de serveur
+error.server.error.explanation:Il y a une erreur sur le serveur
+error.server.error.details:Exception: 500 Internal Server Error
+error.remote.unknown.title:Erreur inconnue
+error.remote.unknown.explanation:Une erreur inconnue est survenue
+error.remote.unknown.details:Exception: 500 Internal Server Error
+error.translation.notfound.title:Erreur de traduction
+error.translation.notfound.explanation:Traduction est introuvable
+error.translation.notfound.details:Exception: 409 Conflict

@@ -11,6 +11,7 @@ import nl.groep4.kvc.client.view.ExceptionDialog;
 import nl.groep4.kvc.client.view.scene.SceneLogin;
 import nl.groep4.kvc.common.KvCStaticNaming;
 import nl.groep4.kvc.common.interfaces.Lobby;
+import nl.groep4.kvc.common.interfaces.Player;
 
 /**
  * Controls the form of the lobby and returns error messages
@@ -54,8 +55,8 @@ public final class LoginController {
 	    lobby = (Lobby) registry.lookup(KvCStaticNaming.LOBBY_KEY);
 	    /* Register self */
 	    ConnectionController.setLobby(lobby);
-	    lobby.registerPlayer(username);
-	    ConnectionController.setThePlayer(username);
+	    Player pl = lobby.registerPlayer(username);
+	    ConnectionController.setThePlayer(pl.getUsername());
 	} catch (UnknownHostException ex) {
 	    ExceptionDialog.warning("login.error.novalidip");
 	    return null;

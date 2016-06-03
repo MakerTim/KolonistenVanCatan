@@ -29,7 +29,7 @@ public class ServerLobby implements Lobby {
     }
 
     @Override
-    public void registerPlayer(String username) {
+    public Player registerPlayer(String username) {
 	Optional<Player> existingPlayer = players.stream().filter(player -> username.equals(player.getUsername()))
 		.findFirst();
 	Player pl;
@@ -41,6 +41,7 @@ public class ServerLobby implements Lobby {
 	    players.add(pl);
 	    System.out.printf("Player %s has connected.\n", pl.getUsername());
 	}
+	return pl;
     }
 
     @Override

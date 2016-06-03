@@ -16,6 +16,7 @@ import nl.groep4.kvc.common.enumeration.Color;
 import nl.groep4.kvc.common.interfaces.Player;
 
 /**
+ * Handles design of the lobby and click events
  * 
  * @author Tim
  * @version 1.0
@@ -34,8 +35,10 @@ public class LobbyPlayer extends StackPane {
     protected List<Runnable> clickHandlers = new ArrayList<>();
 
     /**
+     * Handles when mouse clicks on the parchment image
      * 
      * @param color
+     *            reference to change or add color to a player
      */
     public LobbyPlayer(Color color) {
 	VBox tussenPane = new VBox();
