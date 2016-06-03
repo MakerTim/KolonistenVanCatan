@@ -1,0 +1,62 @@
+language:Deutsch
+
+#Game
+game.name.round:Runde: %d
+game.button.build:Bauen
+game.button.trade:Handel
+game.button.buy:Kaufen
+
+#SceneLobby
+lobby.shield.title:Lobby
+lobby.button.start:Beginn
+lobby.button.back:Zurück
+lobby.button.loadsave:Laden
+
+#SceneLogin
+lobby.label.ip:IP Addresse
+lobby.label.port:Port-Nummer
+lobby.label.username:Benutzername
+lobby.label.nocolor:Keine Farbe
+lobby.label.confirmeverything:Bestätigen alles
+lobby.label.nosound:Keinen Ton
+lobby.button.join:Entreiten
+lobby.button.settings:Einstellungen
+lobby.parchment.empty:Leer
+lobby.parchment.color.blue:Blau
+lobby.parchment.color.brown:Brun
+lobby.parchment.color.orange:Orange
+lobby.parchment.color.green:Grun
+lobby.parchment.color.white:Weiß
+lobby.parchment.color.red:Rot
+
+#Login
+login.error.nousername.title:Keine Benutzername
+login.error.nousername.explanation: Es wurde kein Benutzername ausgefüllt
+login.error.nousername.details:Exception: 401 Unauthorized
+login.error.novalidip.title:Keine gültige IP
+login.error.novalidip.explanation:Eingegebene IP-Adresse ist ungültig
+login.error.novalidip.details:Exception: 406 Not Acceptable
+login.error.portnonumber.title:Keine Portnummer
+login.error.portnonumber.explanation:Es wurde keine Portnummer ausgefüllt
+login.error.portnonumber.details:Exception: 404 Not Found
+
+#SceneSettings
+settings.button.playmusic:Spiel Musik
+settings.button.stopmusic:Halt Musik
+settings.button.accept:Akzeptieren
+settings.label.title:Einstellungen
+
+#ExceptionManager
+error.connect.notfound.title:Server nicht gefunden
+error.connect.notfound.explanation:Dies ist nicht der Server, den Sie suchen
+error.version.notfound.details:Exception: 503 Service Unavailable
+error.version.diffrence.title:Server-Version ist nicht das gleiche
+error.version.diffrence.explanation:Client-Version und Server-Version weichen ab
+error.version.diffrence.details:Exception: 418 I'm a teapot
+error.server.error.title:Serverfehler
+error.server.error.explanation:Ein Server-Fehler ist aufgetreten
+error.server.error.detail:Exception: 500 Internal Server Error
+error.remote.unknown.title:Unbekannter Fehler
+error.remote.unknown.explanation:Ein unbekannter Fehler ist aufgetreten
+error.remote.unknown.details:Exception: 1337 We just don't know any more
+error.translation.notfound: Übersetzung nicht gefunden

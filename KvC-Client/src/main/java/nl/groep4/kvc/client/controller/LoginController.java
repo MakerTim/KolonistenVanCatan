@@ -10,7 +10,7 @@ import nl.groep4.kvc.client.util.ExceptionManager;
 import nl.groep4.kvc.client.view.ExceptionDialog;
 import nl.groep4.kvc.client.view.scene.SceneLogin;
 import nl.groep4.kvc.common.KvCStaticNaming;
-import nl.groep4.kvc.common.Lobby;
+import nl.groep4.kvc.common.interfaces.Lobby;
 
 /**
  * Controls the form of the lobby and returns error messages
@@ -27,7 +27,7 @@ public final class LoginController {
      * 
      * 
      * @param sceneLogin
-     * @return gets lobby status
+     * @return gets the lobby
      */
     public static Lobby connect(SceneLogin sceneLogin) {
 	String ip = "";
@@ -40,10 +40,13 @@ public final class LoginController {
 	    username = sceneLogin.getUsernameInput().trim();
 
 	    /* Check if valid IP */
-	    InetAddress.getByName(ip);
+	    if (InetAddress.getByName(ip) == null) {
+		throw new UnknownHostException();
+	    }
 	    /* Check if name is empty */
 	    if (username.isEmpty()) {
-		throw new IllegalArgumentException("Username cannot be empty.");
+		ExceptionDialog.warning("login.error.nousername");
+		return null;
 	    }
 
 	    /* Connect to Server */
@@ -54,14 +57,10 @@ public final class LoginController {
 	    lobby.registerPlayer(username);
 	    ConnectionController.setThePlayer(username);
 	} catch (UnknownHostException ex) {
-	    ExceptionDialog.warning("IP is not a valid ip address", "No valid IP",
-		    String.format("'%s' is not a valid ip address", ip));
+	    ExceptionDialog.warning("login.error.novalidip");
 	    return null;
 	} catch (NumberFormatException ex) {
-	    ExceptionDialog.warning("Port should be a number", "No valid PORT", "Port should be a number");
-	    return null;
-	} catch (IllegalArgumentException ex) {
-	    ExceptionDialog.warning(ex.getMessage(), ex.getMessage(), "");
+	    ExceptionDialog.warning("login.error.portnonumber");
 	    return null;
 	} catch (RemoteException ex) {
 	    ExceptionManager.handleRemoteException(ex);

@@ -1,4 +1,4 @@
-package nl.groep4.kvc.common;
+package nl.groep4.kvc.common.interfaces;
 
 import java.rmi.Remote;
 

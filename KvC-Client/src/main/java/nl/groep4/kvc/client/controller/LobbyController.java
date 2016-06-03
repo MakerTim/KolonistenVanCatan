@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nl.groep4.kvc.client.util.ExceptionManager;
-import nl.groep4.kvc.common.Lobby;
-import nl.groep4.kvc.common.Player;
 import nl.groep4.kvc.common.enumeration.Color;
+import nl.groep4.kvc.common.interfaces.Lobby;
+import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.Updatable;
 
 /**
@@ -74,10 +74,18 @@ public class LobbyController {
      */
     public void registerScene(Updatable<Lobby> sceneLobby) {
 	try {
-	    lobby.registerUpdateable((Updatable<Lobby>) UnicastRemoteObject.exportObject(sceneLobby, 0));
+	    lobby.registerView(ConnectionController.getThePlayer(),
+		    (Updatable<Lobby>) UnicastRemoteObject.exportObject(sceneLobby, 0));
 	} catch (RemoteException ex) {
 	    ExceptionManager.handleRemoteException(ex);
 	}
     }
 
+    public void startGame() {
+	try {
+	    lobby.startGame();
+	} catch (RemoteException ex) {
+	    ExceptionManager.handleRemoteException(ex);
+	}
+    }
 }

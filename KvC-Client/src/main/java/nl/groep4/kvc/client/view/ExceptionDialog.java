@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
+import nl.groep4.kvc.client.util.TranslationManager;
 
 /**
  * 
@@ -20,6 +21,11 @@ import javafx.scene.layout.Priority;
  * @author Changed by Tim
  */
 public class ExceptionDialog {
+
+    public static void warning(String key) {
+	warning(TranslationManager.translate(key + ".title"), TranslationManager.translate(key + ".explanation"),
+		TranslationManager.translate(key + ".details"));
+    }
 
     public static void warning(String title, String header, String message) {
 	Alert alert = new Alert(AlertType.WARNING);

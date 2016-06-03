@@ -1,12 +1,10 @@
-package nl.groep4.kvc.common;
+package nl.groep4.kvc.common.interfaces;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.Iterator;
 import java.util.List;
 
 import nl.groep4.kvc.common.enumeration.Color;
-import nl.groep4.kvc.common.interfaces.Updatable;
 
 /**
  * Register players, generates a list of player which are connected, starts the
@@ -16,6 +14,14 @@ import nl.groep4.kvc.common.interfaces.Updatable;
  * @author Tim
  */
 public interface Lobby extends Remote {
+
+    public static enum State {
+	LOBBY, LOBBY_FULL, STARTING;
+
+	public boolean isStarting() {
+	    return this == State.STARTING;
+	}
+    }
 
     /**
      * 
@@ -49,7 +55,7 @@ public interface Lobby extends Remote {
      * @param safeFile
      * @throws RemoteException
      */
-    public void loadSafe(String safeFile) throws RemoteException;
+    public void loadSave(String safeFile) throws RemoteException;
 
     /**
      * 
@@ -63,28 +69,11 @@ public interface Lobby extends Remote {
      * 
      * @throws RemoteException
      */
-    public default void update() throws RemoteException {
-	for (Iterator<Updatable<Lobby>> updateableIt = getUpdatable().iterator(); updateableIt.hasNext();) {
-	    Updatable<Lobby> updatable = updateableIt.next();
-	    try {
-		updatable.update(this);
-	    } catch (Exception ex) {
-		updateableIt.remove();
-	    }
-	}
-    }
+    public void update() throws RemoteException;
 
-    /**
-     * 
-     * @return
-     * @throws RemoteException
-     */
-    public List<Updatable<Lobby>> getUpdatable() throws RemoteException;
+    public State getState() throws RemoteException;
 
-    /**
-     * 
-     * @param updateable
-     * @throws RemoteException
-     */
-    public void registerUpdateable(Updatable<Lobby> updateable) throws RemoteException;
+    public Player getServerPlayer(Player player) throws RemoteException;
+
+    public void registerView(Player player, Updatable<Lobby> updateable) throws RemoteException;
 }

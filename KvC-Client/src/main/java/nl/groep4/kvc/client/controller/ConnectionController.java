@@ -3,8 +3,8 @@ package nl.groep4.kvc.client.controller;
 import java.rmi.RemoteException;
 
 import nl.groep4.kvc.client.util.ExceptionManager;
-import nl.groep4.kvc.common.Lobby;
-import nl.groep4.kvc.common.Player;
+import nl.groep4.kvc.common.interfaces.Lobby;
+import nl.groep4.kvc.common.interfaces.Player;
 
 /**
  * Displays all client-side information

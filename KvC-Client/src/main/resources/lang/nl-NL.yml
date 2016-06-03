@@ -9,7 +9,7 @@ game.button.buy:Kopen
 #SceneLobby
 lobby.shield.title:Lobby
 lobby.button.start:Start
-lobby.button.back:terug
+lobby.button.back:Terug
 lobby.button.loadsave:Laden
 lobby.parchment.empty:Leeg
 lobby.parchment.color.blue:Blauw
