@@ -49,6 +49,7 @@ settings.label.title:Réglages
 #ExceptionManager
 error.connect.notfound.title:Le serveur est introuvable
 error.connect.notfound.explanation:Le serveur que vous cherchez est introuvable
+error.connect.notfound.details:Exception: 503 Service Unavailable
 error.version.notfound.details:Exception: 401 Unauthorized
 error.version.diffrence.title:Version du serveur ne sont pas le même
 error.version.diffrence.explanation:La version du serveur et votre version mismatch

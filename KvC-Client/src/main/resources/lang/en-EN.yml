@@ -49,6 +49,7 @@ settings.label.title:Settings
 #ExceptionManager
 error.connect.notfound.title:Server not found
 error.connect.notfound.explanation:This is not the server you are looking for
+error.connect.notfound.details:Exception: 503 Service Unavailable
 error.version.notfound.details:Exception: 503 Service Unavailable
 error.version.diffrence.title:Uncompatible server version
 error.version.diffrence.explanation:Client version and server version differ
