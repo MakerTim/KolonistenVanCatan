@@ -42,7 +42,7 @@ public class MenuInputField extends TextField {
     }
 
     /**
-     * sets all bordersettings
+     * sets all border settings
      * 
      * @param color
      */
