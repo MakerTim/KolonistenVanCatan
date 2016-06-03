@@ -26,12 +26,16 @@ public class RegexTester {
 	assertTrue(!"L0c@lH0ST".matches(KvCStatics.REGEX_IP));
 	assertTrue("makerpi".matches(KvCStatics.REGEX_IP));
 	assertTrue("MakerTim-Laptop".matches(KvCStatics.REGEX_IP));
+	assertTrue(!",".matches(KvCStatics.REGEX_IP));
+	assertTrue("---".matches(KvCStatics.REGEX_IP));
+	assertTrue("makerpie".matches(KvCStatics.REGEX_IP));
+	assertTrue("blabla".matches(KvCStatics.REGEX_IP));
     }
 
     @Test
     public void numericRegex() {
 	assertTrue(!"a".matches(KvCStatics.NUMERIC));
-	assertTrue("0".matches(KvCStatics.NUMERIC));
+	assertTrue(!" ".matches(KvCStatics.NUMERIC));
 	assertTrue("1".matches(KvCStatics.NUMERIC));
 	assertTrue("2".matches(KvCStatics.NUMERIC));
 	assertTrue("3".matches(KvCStatics.NUMERIC));
