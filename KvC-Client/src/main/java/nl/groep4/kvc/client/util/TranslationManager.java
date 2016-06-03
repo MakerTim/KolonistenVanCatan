@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import jdk.nashorn.api.scripting.URLReader;
+import nl.groep4.kvc.client.view.ExceptionDialog;
 
 /**
  * 
@@ -18,24 +19,28 @@ public class TranslationManager {
     private static final List<String> CURRENT_LANGUAGES = new ArrayList<>();
 
     static {
-	LANGUAGES = new String[] { "en-EN", "nl-NL", "fr-FR" };
+	LANGUAGES = new String[] { "en-EN", "nl-NL", "fr-FR", "de-DE" };
 	setLanguage(LANGUAGES[0]);
     }
 
     public static void setLanguage(String languageKey) {
 	CURRENT_LANGUAGES.clear();
-	BufferedReader fileReader = new BufferedReader(
-		new URLReader(TranslationManager.class.getResource("/lang/" + languageKey + ".yml")));
+	try {
+	    BufferedReader fileReader = new BufferedReader(
+		    new URLReader(TranslationManager.class.getResource("/lang/" + languageKey + ".yml")));
 
-	Scanner scanner = new Scanner(fileReader);
-	while (scanner.hasNextLine()) {
-	    String line = scanner.nextLine();
-	    if (line.trim().isEmpty() || line.startsWith("#") || !line.contains(":")) {
-		continue;
+	    Scanner scanner = new Scanner(fileReader);
+	    while (scanner.hasNextLine()) {
+		String line = scanner.nextLine();
+		if (line.trim().isEmpty() || line.startsWith("#") || !line.contains(":")) {
+		    continue;
+		}
+		CURRENT_LANGUAGES.add(line);
 	    }
-	    CURRENT_LANGUAGES.add(line);
+	    scanner.close();
+	} catch (Exception ex) {
+	    ExceptionDialog.warning("error.translation.notfound");
 	}
-	scanner.close();
     }
 
     public static String translate(String key, Object... args) {
