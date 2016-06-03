@@ -49,10 +49,10 @@ settings.label.title:Instellingen
 #ExceptionManager
 error.connect.notfound.title:Server is niet gevonden
 error.connect.notfound.explanation:De server die u zocht is niet gevonden
-error.version.notfound.details:Exception: 401 Unauthorized
+error.connect.notfound.details:Exception: 503 Service Unavailable
 error.version.diffrence.title:Server versie is niet hetzelfde
 error.version.diffrence.explanation:De versie van de server en uw versie komen niet overeen
-error.version.diffrence.details:Exception: 500 Internal Server Error
+error.version.diffrence.details:Exception: 418 I'm a teapot
 error.server.error.title:Server fout
 error.server.error.explanation:Er is iets fout gegaan op de server
 error.server.error.details:Exception: 500 Internal Server Error
@@ -61,4 +61,4 @@ error.remote.unknown.explanation:Er is een onbekende fout opgetreden
 error.remote.unknown.details:Exception: 500 Internal Server Error
 error.translation.notfound.title:Vertalingsfout
 error.translation.notfound.explanation:Vertaling is niet gevonden
-error.translation.notfound.details:Exception: 409 Conflict
+error.translation.notfound.details:Exception: 1337 We just don't know any more

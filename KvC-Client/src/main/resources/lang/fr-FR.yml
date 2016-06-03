@@ -10,8 +10,8 @@ game.button.buy:Acheter
 lobby.shield.title:Hall
 lobby.button.start:Démarrer
 lobby.button.back:Retourner
-lobby.button.loadsave:Charge
-lobby.parchment.empty:Vide
+lobby.button.loadsave:Charger
+lobby.parchment.empty:Fermé
 lobby.parchment.color.blue:Bleu
 lobby.parchment.color.brown:Marron
 lobby.parchment.color.green:Vert
@@ -41,14 +41,15 @@ lobby.button.join:Participer
 lobby.button.settings:Réglages
 
 #SceneSettings
-settings.button.playmusic:Jouer de la musique
-settings.button.stopmusic:Interrompre la musique
+settings.button.playmusic:Son on
+settings.button.stopmusic:Son off
 settings.button.accept:Accepter
 settings.label.title:Réglages
 
 #ExceptionManager
 error.connect.notfound.title:Le serveur est introuvable
 error.connect.notfound.explanation:Le serveur que vous cherchez est introuvable
+error.connect.notfound.details:Exception: 503 Service Unavailable
 error.version.notfound.details:Exception: 401 Unauthorized
 error.version.diffrence.title:Version du serveur ne sont pas le même
 error.version.diffrence.explanation:La version du serveur et votre version mismatch
