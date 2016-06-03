@@ -1,6 +1,7 @@
 package nl.groep4.kvc.client.view.scene;
 
 import java.rmi.RemoteException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,7 +19,7 @@ import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.common.enumeration.Color;
 import nl.groep4.kvc.common.interfaces.Lobby;
 import nl.groep4.kvc.common.interfaces.Player;
-import nl.groep4.kvc.common.interfaces.Updatable;
+import nl.groep4.kvc.common.interfaces.UpdatableLobby;
 
 /**
  * Builds scene settings menu
@@ -26,7 +27,7 @@ import nl.groep4.kvc.common.interfaces.Updatable;
  * @version 1.0
  * @author Luc
  */
-public class SceneLobby implements SceneHolder, Updatable<Lobby> {
+public class SceneLobby implements SceneHolder, UpdatableLobby {
 
     private LobbyController lobby;
 
@@ -91,18 +92,22 @@ public class SceneLobby implements SceneHolder, Updatable<Lobby> {
     }
 
     @Override
-    public void update(Lobby lobby) throws RemoteException {
+    public void setModel(Lobby lobby) throws RemoteException {
 	List<Player> players = lobby.getConnectedPlayers();
 	for (LobbyPlayer scroll : scrolls) {
 	    Optional<Player> player = players.stream().filter(pl -> pl.getColor() == scroll.getColor()).findAny();
-	    if (player.isPresent()) {
-		scroll.updatePlayer(player.get());
-	    } else {
-		scroll.updatePlayer(null);
-	    }
+	    scroll.updatePlayer(player.orElse(null));
 	}
-	if (lobby.getState().isStarting()) {
-	    ViewMaster.setScene(new SceneMap().getScene());
-	}
+    }
+
+    @Override
+    public void start() throws RemoteException {
+	ViewMaster.setScene(new SceneMap().getScene());
+    }
+
+    @Override
+    public void updateColor(Player player, Color color) throws RemoteException {
+	Arrays.stream(scrolls).filter(scroll -> scroll.getColor() == color)
+		.forEach(scroll -> scroll.updatePlayer(player));
     }
 }

@@ -9,7 +9,7 @@ import nl.groep4.kvc.client.util.ExceptionManager;
 import nl.groep4.kvc.common.enumeration.Color;
 import nl.groep4.kvc.common.interfaces.Lobby;
 import nl.groep4.kvc.common.interfaces.Player;
-import nl.groep4.kvc.common.interfaces.Updatable;
+import nl.groep4.kvc.common.interfaces.UpdatableLobby;
 
 /**
  * 
@@ -73,10 +73,10 @@ public class LobbyController {
      * 
      * @param sceneLobby
      */
-    public void registerScene(Updatable<Lobby> sceneLobby) {
+    public void registerScene(UpdatableLobby sceneLobby) {
 	try {
 	    lobby.registerView(ConnectionController.getThePlayer(),
-		    (Updatable<Lobby>) UnicastRemoteObject.exportObject(sceneLobby, 0));
+		    (UpdatableLobby) UnicastRemoteObject.exportObject(sceneLobby, 0));
 	} catch (RemoteException ex) {
 	    ExceptionManager.handleRemoteException(ex);
 	}

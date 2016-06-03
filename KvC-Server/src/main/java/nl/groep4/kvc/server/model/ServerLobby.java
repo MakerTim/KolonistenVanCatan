@@ -2,14 +2,13 @@ package nl.groep4.kvc.server.model;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
 import nl.groep4.kvc.common.enumeration.Color;
 import nl.groep4.kvc.common.interfaces.Lobby;
 import nl.groep4.kvc.common.interfaces.Player;
-import nl.groep4.kvc.common.interfaces.Updatable;
+import nl.groep4.kvc.common.interfaces.UpdatableLobby;
 
 /**
  * The lobby for the game
@@ -45,24 +44,22 @@ public class ServerLobby implements Lobby {
     }
 
     @Override
-    public void unregisterPlayer(Player pl) {
+    public void unregisterPlayer(Player pl) throws RemoteException {
 	System.out.printf("Player %s has been logged off.\n", pl.getUsername());
+	setColor(pl, null);
 	players.remove(getServerPlayer(pl));
-	try {
-	    update();
-	} catch (RemoteException ex) {
-	    ex.printStackTrace();
-	}
     }
 
     @Override
     public void startGame() {
 	state = State.STARTING;
-	try {
-	    update();
-	} catch (RemoteException ex) {
-	    ex.printStackTrace();
-	}
+	players.stream().filter(pl -> pl.getUpdateable() instanceof UpdatableLobby).forEach(pl -> {
+	    try {
+		((UpdatableLobby) pl.getUpdateable()).start();
+	    } catch (RemoteException ex) {
+		ex.printStackTrace();
+	    }
+	});
 	// TODO Lobby#startGame - iets dat de client update krijgt van
 	// open game scherm -> hier is de game
     }
@@ -73,40 +70,18 @@ public class ServerLobby implements Lobby {
     }
 
     @Override
-    public void setColor(Player player, Color color) {
+    public void setColor(Player clientPlayer, Color color) throws RemoteException {
 	if (!players.stream().filter(pl -> pl.getColor() == color).findAny().isPresent()) {
-	    player = getServerPlayer(player);
+	    Player player = getServerPlayer(clientPlayer);
 	    player.setColor(color);
-	    try {
-		update();
-	    } catch (RemoteException ex) {
-		ex.printStackTrace();
-	    }
-	}
-    }
-
-    @Override
-    public void update() throws RemoteException {
-	for (Iterator<Player> playerIt = getConnectedPlayers().iterator(); playerIt.hasNext();) {
-	    Player pl = playerIt.next();
-	    try {
-		Updatable<Lobby> updatable = (Updatable<Lobby>) pl.getUpdateable();
-		(updatable).update(this);
-	    } catch (NullPointerException ex) {
-		ex.printStackTrace();
-	    } catch (Exception ex) {
-		System.out.printf("%s has been kicked. %s\n", pl.getUsername(), ex.toString());
-		playerIt.remove();
-	    }
-	}
-	if (!state.isStarting()) {
-	    if (players.stream().filter(pl -> pl.getColor() != null).count() >= 6) {
-		state = State.LOBBY_FULL;
-	    } else {
-		state = State.LOBBY;
-	    }
-	} else {
-
+	    players.stream().filter(pl -> pl.getUpdateable() instanceof UpdatableLobby).forEach(pl -> {
+		try {
+		    ((UpdatableLobby) pl.getUpdateable()).updateColor(null, clientPlayer.getColor());
+		    ((UpdatableLobby) pl.getUpdateable()).updateColor(player, color);
+		} catch (RemoteException ex) {
+		    ex.printStackTrace();
+		}
+	    });
 	}
     }
 
@@ -121,7 +96,8 @@ public class ServerLobby implements Lobby {
     }
 
     @Override
-    public void registerView(Player pl, Updatable<Lobby> updateable) {
+    public void registerView(Player pl, UpdatableLobby updateable) throws RemoteException {
 	getServerPlayer(pl).registerUpdateable(updateable);
+	updateable.setModel(this);
     }
 }

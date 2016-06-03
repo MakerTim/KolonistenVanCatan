@@ -16,6 +16,6 @@ public interface Updatable<T> extends Remote {
      * @param model
      * @throws RemoteException
      */
-    public void update(T model) throws RemoteException;
+    public void setModel(T model) throws RemoteException;
 
 }

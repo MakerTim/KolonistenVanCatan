@@ -5,7 +5,7 @@ import java.rmi.RemoteException;
 import javafx.scene.Scene;
 
 /**
- * Interface for making code have some guidline, no real use
+ * Interface for making code have some guidline
  * 
  * @version 1.0
  * @author Tim

@@ -66,15 +66,9 @@ public interface Lobby extends Remote {
      */
     public void setColor(Player pl, Color color) throws RemoteException;
 
-    /**
-     * 
-     * @throws RemoteException
-     */
-    public void update() throws RemoteException;
-
     public State getState() throws RemoteException;
 
     public Player getServerPlayer(Player player) throws RemoteException;
 
-    public void registerView(Player player, Updatable<Lobby> updateable) throws RemoteException;
+    public void registerView(Player player, UpdatableLobby updateable) throws RemoteException;
 }

@@ -120,7 +120,6 @@ public class SceneLogin implements SceneHolder {
 		scene = new SceneLobby(lobbyController);
 		ViewMaster.setScene(scene.getScene());
 		lobbyController.registerScene(scene);
-		lobby.update();
 	    } catch (RemoteException ex) {
 		ex.printStackTrace();
 	    }
