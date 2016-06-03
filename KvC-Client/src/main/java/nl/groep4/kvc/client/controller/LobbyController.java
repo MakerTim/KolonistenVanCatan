@@ -24,6 +24,7 @@ public class LobbyController {
     /**
      * 
      * @param lobby
+     *            references to lobby for connection
      */
     public LobbyController(Lobby lobby) {
 	this.lobby = lobby;
