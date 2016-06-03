@@ -4,30 +4,36 @@ import java.rmi.RemoteException;
 
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import nl.groep4.kvc.client.util.SceneUtil;
-import nl.groep4.kvc.client.util.TranslationManager;
-import nl.groep4.kvc.client.view.ViewMaster;
-import nl.groep4.kvc.client.view.elements.MenuButton;
 
 public class SceneMap implements SceneHolder {
 
+    public Pane overlayPane = null;
+    private Pane layers;
+
     @Override
     public Scene getScene() throws RemoteException {
-	/* Build layer for the design */
-	Pane boardPane = new Pane();
-	MenuButton buildButton = new MenuButton(1150, 600, TranslationManager.translate("game.button.build"));
-	buildButton.setFont(ViewMaster.FONT);
-	MenuButton tradeButton = new MenuButton(1150, 650, TranslationManager.translate("game.button.trade"));
-	tradeButton.setFont(ViewMaster.FONT);
-	MenuButton buyButton = new MenuButton(1150, 700, TranslationManager.translate("game.button.buy"));
-	buyButton.setFont(ViewMaster.FONT);
+	if (layers != null)
+	    /* Build layer for the design */
+	    layers = new StackPane();
+	// "game.button.buy", "game.button.trade", "game.button.build"
 
-	boardPane.getChildren().addAll(SceneUtil.getBoardBackground(), SceneUtil.getBoard(), buildButton, tradeButton,
-		buyButton);
-
-	Scene scene = new Scene(boardPane);
-	SceneUtil.fadeIn(SceneUtil.getBoardBackground(), SceneUtil.getBoard(), buildButton, tradeButton, buyButton);
+	/* Add all layers */
+	layers.getChildren().addAll(SceneUtil.getBoardBackground(), SceneUtil.getBoard());
+	Scene scene = new Scene(layers);
 	return scene;
+    }
+
+    public void setOverlay(Pane pane) {
+	if (overlayPane != null) {
+	    layers.getChildren().remove(overlayPane);
+	}
+	if (pane != null) {
+	    layers.getChildren().add(pane);
+	    SceneUtil.fadeIn(pane);
+	}
+	overlayPane = pane;
     }
 
 }

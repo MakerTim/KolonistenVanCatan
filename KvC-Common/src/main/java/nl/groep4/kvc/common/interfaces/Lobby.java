@@ -33,9 +33,10 @@ public interface Lobby extends Remote {
     /**
      * 
      * @param username
+     * @return
      * @throws RemoteException
      */
-    public void registerPlayer(String username) throws RemoteException;
+    public Player registerPlayer(String username) throws RemoteException;
 
     /**
      * 
