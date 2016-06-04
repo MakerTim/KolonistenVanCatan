@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import nl.groep4.kvc.client.util.SoundUtil;
+import nl.groep4.kvc.client.view.scene.SceneHolder;
 import nl.groep4.kvc.client.view.scene.SceneLogin;
 
 /**
@@ -21,6 +22,7 @@ public class ViewMaster extends Application {
 
     public static final Font FONT = new Font("Impact", 22);
     private static Stage stage;
+    private static SceneHolder lastScene;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -29,7 +31,7 @@ public class ViewMaster extends Application {
 	stage.getIcons().add(new Image("img/etc/cursor.png"));
 	SoundUtil.playThemesong();
 	System.out.println("Playing themesong");
-	setScene(new SceneLogin().getScene());
+	setScene(new SceneLogin());
 	primaryStage.setTitle("Kolonisten van Catan: Online");
 	primaryStage.setResizable(false);
 	primaryStage.setOnCloseRequest(onClose -> {
@@ -39,10 +41,16 @@ public class ViewMaster extends Application {
 	System.out.println("Showing lobby");
     }
 
-    public static void setScene(Scene scene) {
+    public static void setScene(SceneHolder scene) {
 	Platform.runLater(() -> {
-	    scene.setCursor(new ImageCursor(new Image("img/etc/cursor.png")));
-	    stage.setScene(scene);
+	    Scene theScene = scene.getScene();
+	    lastScene = scene;
+	    theScene.setCursor(new ImageCursor(new Image("img/etc/cursor.png")));
+	    stage.setScene(theScene);
 	});
+    }
+
+    public static void updateConfig() {
+	lastScene.updateConfig();
     }
 }

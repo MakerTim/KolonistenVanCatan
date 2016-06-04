@@ -1,7 +1,5 @@
 package nl.groep4.kvc.client.view.scene;
 
-import java.rmi.RemoteException;
-
 import javafx.scene.Scene;
 
 /**
@@ -12,6 +10,8 @@ import javafx.scene.Scene;
  **/
 public interface SceneHolder {
 
-    public Scene getScene() throws RemoteException;
+    public Scene getScene();
+
+    public void updateConfig();
 
 }

@@ -6,9 +6,11 @@ import java.util.List;
 import java.util.Optional;
 
 import nl.groep4.kvc.common.enumeration.Color;
+import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Lobby;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.UpdatableLobby;
+import nl.groep4.kvc.common.util.Scheduler;
 
 /**
  * The lobby for the game
@@ -21,6 +23,7 @@ public class ServerLobby implements Lobby {
     private final List<Player> players = new ArrayList<>();
 
     private State state = State.LOBBY;
+    private KolonistenVanCatan game;
 
     @Override
     public List<Player> getConnectedPlayers() {
@@ -34,6 +37,10 @@ public class ServerLobby implements Lobby {
 	Player pl;
 	if (existingPlayer.isPresent()) {
 	    pl = existingPlayer.get();
+	    try {
+		pl.getUpdateable().close("other");
+	    } catch (Exception ex) {
+	    }
 	    System.out.printf("Player %s reconnected.\n", pl.getUsername());
 	} else {
 	    pl = new nl.groep4.kvc.server.model.Player(username);
@@ -53,15 +60,22 @@ public class ServerLobby implements Lobby {
     @Override
     public void startGame() {
 	state = State.STARTING;
-	players.stream().filter(pl -> pl.getUpdateable() instanceof UpdatableLobby).forEach(pl -> {
+	players.stream().filter(pl -> pl.getColor() == null).forEach(pl -> {
 	    try {
-		((UpdatableLobby) pl.getUpdateable()).start();
-	    } catch (RemoteException ex) {
-		ex.printStackTrace();
+		((UpdatableLobby) pl.getUpdateable()).close("nocolor");
+	    } catch (Exception ex) {
 	    }
 	});
-	// TODO Lobby#startGame - iets dat de client update krijgt van
-	// open game scherm -> hier is de game
+	players.stream().filter(pl -> pl.getUpdateable() instanceof UpdatableLobby).forEach(pl -> {
+	    Scheduler.runAsync(() -> {
+		try {
+		    ((UpdatableLobby) pl.getUpdateable()).start();
+		} catch (RemoteException ex) {
+		    ex.printStackTrace();
+		}
+	    });
+	});
+	state = State.STARTED;
     }
 
     @Override
@@ -75,12 +89,14 @@ public class ServerLobby implements Lobby {
 	    Player player = getServerPlayer(clientPlayer);
 	    player.setColor(color);
 	    players.stream().filter(pl -> pl.getUpdateable() instanceof UpdatableLobby).forEach(pl -> {
-		try {
-		    ((UpdatableLobby) pl.getUpdateable()).updateColor(null, clientPlayer.getColor());
-		    ((UpdatableLobby) pl.getUpdateable()).updateColor(player, color);
-		} catch (RemoteException ex) {
-		    ex.printStackTrace();
-		}
+		Scheduler.runAsync(() -> {
+		    try {
+			((UpdatableLobby) pl.getUpdateable()).updateColor(null, clientPlayer.getColor());
+			((UpdatableLobby) pl.getUpdateable()).updateColor(player, color);
+		    } catch (RemoteException ex) {
+			pl.registerUpdateable(null);
+		    }
+		});
 	    });
 	}
     }
@@ -97,7 +113,18 @@ public class ServerLobby implements Lobby {
 
     @Override
     public void registerView(Player pl, UpdatableLobby updateable) throws RemoteException {
-	getServerPlayer(pl).registerUpdateable(updateable);
-	updateable.setModel(this);
+	pl = getServerPlayer(pl);
+	pl.registerUpdateable(updateable);
+	if (state.isAfterStart() && !game.getPlayers().contains(pl)) {
+	    updateable.close("started");
+	    return;
+	}
+	Scheduler.runAsync(() -> {
+	    try {
+		updateable.setModel(this);
+	    } catch (RemoteException ex) {
+		ex.printStackTrace();
+	    }
+	});
     }
 }

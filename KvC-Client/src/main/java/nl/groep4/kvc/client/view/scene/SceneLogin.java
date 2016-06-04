@@ -48,7 +48,7 @@ public class SceneLogin implements SceneHolder {
     private CheckBox nosoundInput;
 
     @Override
-    public Scene getScene() throws RemoteException {
+    public Scene getScene() {
 	/* Build multiple layers for the design */
 	Pane layers = new StackPane();
 
@@ -100,7 +100,8 @@ public class SceneLogin implements SceneHolder {
 	return form;
     }
 
-    public void updateTranslation() {
+    @Override
+    public void updateConfig() {
 	ipLabel.setText(TranslationManager.translate("lobby.label.ip"));
 	portLabel.setText(TranslationManager.translate("lobby.label.port"));
 	usernameLabel.setText(TranslationManager.translate("lobby.label.username"));
@@ -118,7 +119,7 @@ public class SceneLogin implements SceneHolder {
 	    SceneLobby scene;
 	    try {
 		scene = new SceneLobby(lobbyController);
-		ViewMaster.setScene(scene.getScene());
+		ViewMaster.setScene(scene);
 		lobbyController.registerScene(scene);
 	    } catch (RemoteException ex) {
 		ex.printStackTrace();
@@ -127,11 +128,7 @@ public class SceneLogin implements SceneHolder {
     }
 
     public void onSettingsClick() {
-	try {
-	    ViewMaster.setScene(new SceneSettings(this).getScene());
-	} catch (RemoteException ex) {
-	    ex.printStackTrace();
-	}
+	ViewMaster.setScene(new SceneSettings(this));
     }
 
     public String getIpInput() {

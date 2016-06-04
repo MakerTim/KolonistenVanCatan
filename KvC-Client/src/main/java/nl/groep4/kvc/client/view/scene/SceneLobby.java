@@ -13,6 +13,7 @@ import nl.groep4.kvc.client.controller.LobbyController;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.SoundUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
+import nl.groep4.kvc.client.view.ExceptionDialog;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.LobbyPlayer;
 import nl.groep4.kvc.client.view.elements.MenuButton;
@@ -29,31 +30,35 @@ import nl.groep4.kvc.common.interfaces.UpdatableLobby;
  */
 public class SceneLobby implements SceneHolder, UpdatableLobby {
 
-    private LobbyController lobby;
+    private MenuButton saveButton;
+    private MenuButton backButton;
+    private MenuButton startGame;
+    private Text lobbyLabel;
 
     private LobbyPlayer[] scrolls = new LobbyPlayer[Color.values().length];
+    private LobbyController lobby;
 
     public SceneLobby(LobbyController lobbyController) throws RemoteException {
 	lobby = lobbyController;
     }
 
     @Override
-    public Scene getScene() throws RemoteException {
+    public Scene getScene() {
 	/* Build multiple layers for the design */
 	Pane lobbyPane = new Pane();
 	Pane lobbyGrid = new Pane();
 	lobbyGrid.setLayoutX(200);
 	lobbyGrid.setLayoutY(200);
 	/* Build the settings menu in lobby */
-	Text lobbyLabel = new Text(873, 150, TranslationManager.translate("lobby.shield.title"));
+	lobbyLabel = new Text(873, 150, TranslationManager.translate("lobby.shield.title"));
 	lobbyLabel.setFont(ViewMaster.FONT);
 	lobbyLabel.setFill(javafx.scene.paint.Color.WHITE);
 	lobbyLabel.setStroke(javafx.scene.paint.Color.BLACK);
-	MenuButton startGame = new MenuButton(415, 550, TranslationManager.translate("lobby.button.start"));
+	startGame = new MenuButton(415, 550, TranslationManager.translate("lobby.button.start"));
 	startGame.setFont(ViewMaster.FONT);
-	MenuButton backButton = new MenuButton(215, 550, TranslationManager.translate("lobby.button.back"));
+	backButton = new MenuButton(215, 550, TranslationManager.translate("lobby.button.back"));
 	backButton.setFont(ViewMaster.FONT);
-	MenuButton saveButton = new MenuButton(615, 550, TranslationManager.translate("lobby.button.loadsave"));
+	saveButton = new MenuButton(615, 550, TranslationManager.translate("lobby.button.loadsave"));
 	saveButton.setFont(ViewMaster.FONT);
 
 	startGame.registerClick(() -> {
@@ -62,11 +67,7 @@ public class SceneLobby implements SceneHolder, UpdatableLobby {
 	});
 
 	backButton.registerClick(() -> {
-	    try {
-		ViewMaster.setScene(new SceneLogin().getScene());
-	    } catch (RemoteException ex) {
-		ex.printStackTrace();
-	    }
+	    ViewMaster.setScene(new SceneLogin());
 	    lobby.disconnect(ConnectionController.getThePlayer());
 	});
 
@@ -101,13 +102,28 @@ public class SceneLobby implements SceneHolder, UpdatableLobby {
     }
 
     @Override
+    public void close(String key) throws RemoteException {
+	lobby.registerScene(null);
+	ExceptionDialog.warning("kicked." + key);
+	ViewMaster.setScene(new SceneLogin());
+    }
+
+    @Override
     public void start() throws RemoteException {
-	ViewMaster.setScene(new SceneMap().getScene());
+	ViewMaster.setScene(new SceneMap());
     }
 
     @Override
     public void updateColor(Player player, Color color) throws RemoteException {
 	Arrays.stream(scrolls).filter(scroll -> scroll.getColor() == color)
 		.forEach(scroll -> scroll.updatePlayer(player));
+    }
+
+    @Override
+    public void updateConfig() {
+	lobbyLabel.setText("lobby.shield.title");
+	startGame.updateText("lobby.button.start");
+	backButton.updateText("lobby.button.back");
+	saveButton.updateText("lobby.button.loadsave");
     }
 }

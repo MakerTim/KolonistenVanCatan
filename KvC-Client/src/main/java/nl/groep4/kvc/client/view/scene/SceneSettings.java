@@ -1,7 +1,5 @@
 package nl.groep4.kvc.client.view.scene;
 
-import java.rmi.RemoteException;
-
 import javafx.scene.Scene;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.Pane;
@@ -30,6 +28,11 @@ public class SceneSettings implements SceneHolder {
     private static final String PLAY = "settings.button.playmusic";
     private static final String STOP = "settings.button.stopmusic";
 
+    private Text settings;
+    private MenuButton music;
+    private TexturedButton language;
+    private MenuButton acceptSettings;
+
     private SceneHolder parent;
     private Slider slider;
 
@@ -38,14 +41,14 @@ public class SceneSettings implements SceneHolder {
     }
 
     @Override
-    public Scene getScene() throws RemoteException {
+    public Scene getScene() {
 	/* Build multiple layers for the design */
 	Pane layers = new Pane();
 	Pane form = new VBox(20);
 	form.setLayoutX(410);
 	form.setLayoutY(100);
 
-	Text settings = new Text(TranslationManager.translate("settings.label.title"));
+	settings = new Text(TranslationManager.translate("settings.label.title"));
 	settings.setTextAlignment(TextAlignment.CENTER);
 	settings.setFont(ViewMaster.FONT);
 	settings.setFill(Color.WHITE);
@@ -53,18 +56,18 @@ public class SceneSettings implements SceneHolder {
 	settings.prefWidth(175);
 
 	/* Build the settings menu in lobby */
-	MenuButton music = new MenuButton(TranslationManager.translate(SoundUtil.themesongIsPlaying() ? STOP : PLAY));
+	music = new MenuButton(TranslationManager.translate(SoundUtil.themesongIsPlaying() ? STOP : PLAY));
 	music.setFont(ViewMaster.FONT);
 	slider = new MenuSlider(415, 230, 0, 1, SoundUtil.getVolumeLevel() + 0.5);
 	slider.setPrefWidth(175);
 	slider.valueProperty().addListener(changed -> {
 	    SoundUtil.setVolume((float) (slider.getValue() - 0.5));
 	});
-	TexturedButton language = new LanguageButton();
+	language = new LanguageButton();
 	language.setLayoutX(460);
 	language.setLayoutY(300);
 
-	MenuButton acceptSettings = new MenuButton(415, 550, TranslationManager.translate("settings.button.accept"));
+	acceptSettings = new MenuButton(415, 550, TranslationManager.translate("settings.button.accept"));
 	acceptSettings.setFont(ViewMaster.FONT);
 	music.registerClick(() -> {
 	    if (SoundUtil.themesongIsPlaying()) {
@@ -78,20 +81,12 @@ public class SceneSettings implements SceneHolder {
 	});
 
 	acceptSettings.registerClick(() -> {
-	    try {
-		ViewMaster.setScene(parent.getScene());
-	    } catch (RemoteException ex) {
-		ex.printStackTrace();
-	    }
+	    ViewMaster.setScene(parent);
 	});
 
 	language.registerClick(() -> {
-	    music.updateText(TranslationManager.translate(SoundUtil.themesongIsPlaying() ? STOP : PLAY));
-	    acceptSettings.updateText(TranslationManager.translate("settings.button.accept"));
-	    settings.setText(TranslationManager.translate("settings.label.title"));
-	    if (parent instanceof SceneLogin) {
-		((SceneLogin) parent).updateTranslation();
-	    }
+	    updateConfig();
+	    ViewMaster.updateConfig();
 	});
 
 	form.getChildren().addAll(new StackPane(settings), music, slider, language);
@@ -99,8 +94,17 @@ public class SceneSettings implements SceneHolder {
 		SceneUtil.getMenuBrazier(), acceptSettings, form);
 	Scene scene = new Scene(layers);
 	SceneUtil.fadeIn(SceneUtil.getSettingsForeground(), form, acceptSettings);
-
 	return scene;
 
+    }
+
+    @Override
+    public void updateConfig() {
+	music.updateText(TranslationManager.translate(SoundUtil.themesongIsPlaying() ? STOP : PLAY));
+	acceptSettings.updateText(TranslationManager.translate("settings.button.accept"));
+	settings.setText(TranslationManager.translate("settings.label.title"));
+	if (parent instanceof SceneLogin) {
+	    ((SceneLogin) parent).updateConfig();
+	}
     }
 }

@@ -1,7 +1,5 @@
 package nl.groep4.kvc.client.view.pane;
 
-import java.rmi.RemoteException;
-
 import javafx.scene.layout.Pane;
 
 /**
@@ -12,6 +10,7 @@ import javafx.scene.layout.Pane;
  **/
 public interface PaneHolder {
 
-    public Pane getPane() throws RemoteException;
+    public Pane getPane();
 
+    public void updateTranslation();
 }

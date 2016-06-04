@@ -16,10 +16,10 @@ import nl.groep4.kvc.common.enumeration.Color;
 public interface Lobby extends Remote {
 
     public static enum State {
-	LOBBY, LOBBY_FULL, STARTING;
+	LOBBY, LOBBY_FULL, STARTING, STARTED;
 
-	public boolean isStarting() {
-	    return this == State.STARTING;
+	public boolean isAfterStart() {
+	    return this == State.STARTING || this == State.STARTED;
 	}
     }
 

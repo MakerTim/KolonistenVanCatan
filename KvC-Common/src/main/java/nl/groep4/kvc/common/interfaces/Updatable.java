@@ -18,4 +18,6 @@ public interface Updatable<T> extends Remote {
      */
     public void setModel(T model) throws RemoteException;
 
+    public void close(String key) throws RemoteException;
+
 }

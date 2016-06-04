@@ -1,7 +1,5 @@
 package nl.groep4.kvc.client.view.pane;
 
-import java.rmi.RemoteException;
-
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -16,10 +14,15 @@ public class MapPane implements PaneHolder {
     }
 
     @Override
-    public Pane getPane() throws RemoteException {
+    public Pane getPane() {
 	VBox lines = new VBox();
 	System.out.println(map);
+	// TODO: mappane#pane
 	return new StackPane(lines);
+    }
+
+    @Override
+    public void updateTranslation() {
     }
 
 }

@@ -12,6 +12,10 @@ import nl.groep4.kvc.common.enumeration.Color;
  */
 public interface Player extends Serializable {
 
+    public default boolean hasConnectionErrors() {
+	return getUpdateable() == null;
+    }
+
     /**
      * 
      * @return gets the name of a player
