@@ -1,7 +1,5 @@
 package nl.groep4.kvc.client.view.scene;
 
-import java.rmi.RemoteException;
-
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
@@ -9,8 +7,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
-import nl.groep4.kvc.client.controller.LobbyController;
-import nl.groep4.kvc.client.controller.LoginController;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
@@ -19,7 +15,6 @@ import nl.groep4.kvc.client.view.elements.MenuCheckBox;
 import nl.groep4.kvc.client.view.elements.MenuFilterdInputField;
 import nl.groep4.kvc.client.view.elements.MenuMatchInputField;
 import nl.groep4.kvc.common.KvCStatics;
-import nl.groep4.kvc.common.interfaces.Lobby;
 import nl.groep4.kvc.common.util.CollectionUtil;
 
 /**
@@ -113,18 +108,7 @@ public class SceneLogin implements SceneHolder {
     }
 
     public void onConnectClick() {
-	Lobby lobby = LoginController.connect(this);
-	if (lobby != null) {
-	    LobbyController lobbyController = new LobbyController(lobby);
-	    SceneLobby scene;
-	    try {
-		scene = new SceneLobby(lobbyController);
-		ViewMaster.setScene(scene);
-		lobbyController.registerScene(scene);
-	    } catch (RemoteException ex) {
-		ex.printStackTrace();
-	    }
-	}
+	// TODO
     }
 
     public void onSettingsClick() {

@@ -17,11 +17,4 @@ public interface Card extends Remote {
      */
     public CardType getType();
 
-    /**
-     * 
-     * @param player
-     *            Always use of card
-     */
-    public void use(Player player);
-
 }
