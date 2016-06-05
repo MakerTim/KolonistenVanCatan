@@ -8,11 +8,12 @@ import nl.groep4.kvc.common.interfaces.Player;
  * @author Tim
  * @version 1.0
  */
-public final class PlayerRefrence {
+public final class ClientRefrence {
 
     private static Player thePlayer;
+    private static int rmiport = 0;
 
-    private PlayerRefrence() {
+    private ClientRefrence() {
     }
 
     /**
@@ -28,6 +29,10 @@ public final class PlayerRefrence {
      * @param username
      */
     public static void setThePlayer(Player player) {
-	PlayerRefrence.thePlayer = player;
+	ClientRefrence.thePlayer = player;
+    }
+
+    public static int getPort() {
+	return rmiport++;
     }
 }

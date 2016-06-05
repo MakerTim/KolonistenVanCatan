@@ -6,8 +6,6 @@ public class KvCStatics {
      */
     public static final String LOBBY_KEY = "KvCLobby";
 
-    public static int RMI_OBJ = 0;
-
     /**
      * REGEX: ipv4 adress or a domain name (with sub) or a dynamic name
      */

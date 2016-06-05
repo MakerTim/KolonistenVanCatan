@@ -22,12 +22,13 @@ public class RmiServer {
 	try {
 	    System.out.printf("Server ip: %s\n", InetAddress.getLocalHost());
 	    System.out.printf("Server port: %d\n", 1099);
-	    Remote lobbySkeleton = UnicastRemoteObject.exportObject(new ServerLobby(), KvCStatics.RMI_OBJ++);
+	    Remote lobbySkeleton = UnicastRemoteObject.exportObject(new ServerLobby(), Short.MAX_VALUE);
 	    Registry registry = LocateRegistry.createRegistry(1099);
 	    registry.rebind(KvCStatics.LOBBY_KEY, lobbySkeleton);
 	    System.out.println("Server online!");
 	} catch (Exception ex) {
 	    System.err.println(ex);
+	    System.exit(1);
 	}
     }
 

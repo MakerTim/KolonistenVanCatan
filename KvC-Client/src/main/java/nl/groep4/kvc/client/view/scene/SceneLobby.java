@@ -6,6 +6,7 @@ import java.util.Arrays;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import nl.groep4.kvc.client.controller.ClientRefrence;
 import nl.groep4.kvc.client.controller.LobbyController;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.SoundUtil;
@@ -15,15 +16,17 @@ import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.elements.PlayerColorScroll;
 import nl.groep4.kvc.common.enumeration.Color;
 import nl.groep4.kvc.common.interfaces.Lobby;
-import nl.groep4.kvc.common.interfaces.Updatable;
+import nl.groep4.kvc.common.interfaces.Player;
+import nl.groep4.kvc.common.interfaces.UpdateLobby;
 
 /**
  * Builds scene settings menu
  * 
- * @version 1.0
+ * @version 1.2
  * @author Luc
+ * @author Tim
  */
-public class SceneLobby implements SceneHolder, Updatable<Lobby> {
+public class SceneLobby implements SceneHolder, UpdateLobby {
 
     private MenuButton saveButton;
     private MenuButton backButton;
@@ -54,12 +57,12 @@ public class SceneLobby implements SceneHolder, Updatable<Lobby> {
 
 	startGame.registerClick(() -> {
 	    SoundUtil.stopThemesong();
-
+	    controller.startGame();
 	});
 
 	backButton.registerClick(() -> {
 	    ViewMaster.setScene(new SceneLogin());
-
+	    controller.disconnect(ClientRefrence.getThePlayer());
 	});
 
 	scrolls = new PlayerColorScroll[Color.values().length];
@@ -69,7 +72,7 @@ public class SceneLobby implements SceneHolder, Updatable<Lobby> {
 	    scroll.setLayoutY((i / 3) * 150);
 	    lobbyGrid.getChildren().add(scroll);
 	    scroll.registerClick(() -> {
-
+		controller.changeColor(ClientRefrence.getThePlayer(), scroll.getColor());
 	    });
 	    scrolls[i] = scroll;
 	}
@@ -99,12 +102,20 @@ public class SceneLobby implements SceneHolder, Updatable<Lobby> {
 
     @Override
     public void setModel(Lobby model) throws RemoteException {
-	System.out.printf("setup model %s\n", model);
+	for (Player pl : model.getPlayers()) {
+	    updatePlayerColor(pl, pl.getColor());
+	}
     }
 
     @Override
     public void close(String key) throws RemoteException {
 	ViewMaster.setScene(new SceneLogin());
+    }
+
+    @Override
+    public void updatePlayerColor(Player pl, Color newColor) throws RemoteException {
+	Arrays.stream(scrolls).filter(scroll -> scroll.getColor() == newColor)
+		.forEach(scroll -> scroll.updatePlayer(pl));
     }
 
 }

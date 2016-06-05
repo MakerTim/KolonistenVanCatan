@@ -9,6 +9,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 import nl.groep4.kvc.client.util.ExceptionManager;
 import nl.groep4.kvc.client.view.ExceptionDialog;
+import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.scene.SceneLobby;
 import nl.groep4.kvc.client.view.scene.SceneLogin;
 import nl.groep4.kvc.common.KvCStatics;
@@ -43,7 +44,7 @@ public class LoginController {
 	    lobby = (Lobby) registry.lookup(KvCStatics.LOBBY_KEY);
 	    /* Register self */
 	    Player pl = lobby.registerPlayer(username);
-	    PlayerRefrence.setThePlayer(pl);
+	    ClientRefrence.setThePlayer(pl);
 	    openLobby(lobby, pl);
 	} catch (UnknownHostException ex) {
 	    ExceptionDialog.warning("login.error.novalidip");
@@ -62,7 +63,8 @@ public class LoginController {
 	LobbyController controller = new LobbyController(model);
 	view.registerController(controller);
 	try {
-	    pl.registerUpdateable((Updatable<Lobby>) UnicastRemoteObject.exportObject(view, KvCStatics.RMI_OBJ++));
+	    pl.registerUpdateable((Updatable<Lobby>) UnicastRemoteObject.exportObject(view, ClientRefrence.getPort()));
+	    ViewMaster.setScene(view);
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();
 	}
