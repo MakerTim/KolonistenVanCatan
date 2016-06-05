@@ -6,6 +6,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
+import nl.groep4.kvc.common.KvCStatics;
 import nl.groep4.kvc.server.model.ServerLobby;
 
 public class RmiServer {
@@ -21,9 +22,9 @@ public class RmiServer {
 	try {
 	    System.out.printf("Server ip: %s\n", InetAddress.getLocalHost());
 	    System.out.printf("Server port: %d\n", 1099);
-	    Remote lobbySkeleton = UnicastRemoteObject.exportObject(new ServerLobby(), 0);
+	    Remote lobbySkeleton = UnicastRemoteObject.exportObject(new ServerLobby(), KvCStatics.RMI_OBJ++);
 	    Registry registry = LocateRegistry.createRegistry(1099);
-	    registry.rebind("LoL", lobbySkeleton);
+	    registry.rebind(KvCStatics.LOBBY_KEY, lobbySkeleton);
 	    System.out.println("Server online!");
 	} catch (Exception ex) {
 	    System.err.println(ex);

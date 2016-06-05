@@ -1,12 +1,14 @@
 package nl.groep4.kvc.server.model;
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import nl.groep4.kvc.common.KvCStatics;
+import nl.groep4.kvc.common.enumeration.Color;
 import nl.groep4.kvc.common.interfaces.Lobby;
 import nl.groep4.kvc.common.interfaces.Player;
-import nl.groep4.kvc.common.interfaces.Updatable;
 
 public class ServerLobby implements Lobby {
 
@@ -14,14 +16,10 @@ public class ServerLobby implements Lobby {
 
     @Override
     public Player registerPlayer(String player) throws RemoteException {
-	Player pl = new ServerPlayer(player);
+	Player pl = (Player) UnicastRemoteObject.exportObject(new ServerPlayer(player), KvCStatics.RMI_OBJ++);
+	System.out.printf("Player %s has joined!\n", pl.getUsername());
 	players.add(pl);
 	return pl;
-    }
-
-    @Override
-    public void registerUpdatable(Player pl, Updatable<?> update) throws RemoteException {
-	players.stream().filter(player -> pl.equals(player)).forEach(player -> player.registerUpdateable(update));
     }
 
     public void update(String s) {
@@ -32,5 +30,25 @@ public class ServerLobby implements Lobby {
 		ex.printStackTrace();
 	    }
 	});
+    }
+
+    @Override
+    public List<Player> getPlayers() throws RemoteException {
+	return players;
+    }
+
+    @Override
+    public void disconnect(Player pl) throws RemoteException {
+	players.remove(pl);
+    }
+
+    @Override
+    public void setColor(Player pl, Color newColor) throws RemoteException {
+	pl.setColor(newColor);
+    }
+
+    @Override
+    public void startGame() throws RemoteException {
+	// TODO Auto-generated method stub
     }
 }

@@ -89,10 +89,10 @@ public class PlayerColorScroll extends StackPane {
      * @param player
      */
     public void updatePlayer(Player player) {
-	if (player == null) {
-	    usernameLabel.setText(TranslationManager.translate(EMPTY));
-	} else {
+	try {
 	    usernameLabel.setText(player.getUsername());
+	} catch (Exception ex) {
+	    usernameLabel.setText(TranslationManager.translate(EMPTY));
 	}
     }
 
@@ -102,5 +102,9 @@ public class PlayerColorScroll extends StackPane {
      */
     public void registerClick(Runnable click) {
 	clickHandlers.add(click);
+    }
+
+    public void updateTranslation() {
+	colorLabel = new Text(TranslationManager.translate("lobby.parchment.color." + color.name().toLowerCase()));
     }
 }

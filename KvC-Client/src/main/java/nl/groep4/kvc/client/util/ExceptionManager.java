@@ -28,6 +28,7 @@ public class ExceptionManager {
 	} else {
 	    ExceptionDialog.warning("error.remote.unkown");
 	}
+	rex.printStackTrace();
 	ViewMaster.setScene(new SceneLogin());
     }
 }

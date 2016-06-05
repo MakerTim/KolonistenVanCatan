@@ -2,15 +2,32 @@ package nl.groep4.kvc.client.controller;
 
 import nl.groep4.kvc.common.interfaces.Player;
 
-public class PlayerRefrence {
+/**
+ * Displays all client-side information
+ * 
+ * @author Tim
+ * @version 1.0
+ */
+public final class PlayerRefrence {
 
-    private static Player player;
+    private static Player thePlayer;
 
-    public static Player getPlayer() {
-	return player;
+    private PlayerRefrence() {
     }
 
-    public static void setPlayer(Player player) {
-	PlayerRefrence.player = player;
+    /**
+     * 
+     * @return gets player
+     */
+    public static Player getThePlayer() {
+	return thePlayer;
+    }
+
+    /**
+     * 
+     * @param username
+     */
+    public static void setThePlayer(Player player) {
+	PlayerRefrence.thePlayer = player;
     }
 }

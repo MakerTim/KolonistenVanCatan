@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+import nl.groep4.kvc.client.controller.LoginController;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
@@ -108,7 +109,7 @@ public class SceneLogin implements SceneHolder {
     }
 
     public void onConnectClick() {
-	// TODO
+	LoginController.connect(this);
     }
 
     public void onSettingsClick() {

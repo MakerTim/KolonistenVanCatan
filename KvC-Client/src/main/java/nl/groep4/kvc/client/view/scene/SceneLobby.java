@@ -1,15 +1,21 @@
 package nl.groep4.kvc.client.view.scene;
 
+import java.rmi.RemoteException;
+import java.util.Arrays;
+
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import nl.groep4.kvc.client.controller.LobbyController;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.SoundUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
-import nl.groep4.kvc.client.view.elements.PlayerColorScroll;
 import nl.groep4.kvc.client.view.elements.MenuButton;
+import nl.groep4.kvc.client.view.elements.PlayerColorScroll;
 import nl.groep4.kvc.common.enumeration.Color;
+import nl.groep4.kvc.common.interfaces.Lobby;
+import nl.groep4.kvc.common.interfaces.Updatable;
 
 /**
  * Builds scene settings menu
@@ -17,14 +23,15 @@ import nl.groep4.kvc.common.enumeration.Color;
  * @version 1.0
  * @author Luc
  */
-public class SceneLobby implements SceneHolder {
+public class SceneLobby implements SceneHolder, Updatable<Lobby> {
 
     private MenuButton saveButton;
     private MenuButton backButton;
     private MenuButton startGame;
     private Text lobbyLabel;
+    private PlayerColorScroll[] scrolls;
 
-    private PlayerColorScroll[] scrolls = new PlayerColorScroll[Color.values().length];
+    private LobbyController controller;
 
     @Override
     public Scene getScene() {
@@ -55,6 +62,7 @@ public class SceneLobby implements SceneHolder {
 
 	});
 
+	scrolls = new PlayerColorScroll[Color.values().length];
 	for (int i = 0; i < Color.values().length; i++) {
 	    PlayerColorScroll scroll = new PlayerColorScroll(Color.values()[i]);
 	    scroll.setLayoutX(i % 3 * 215);
@@ -78,7 +86,25 @@ public class SceneLobby implements SceneHolder {
 
     @Override
     public void updateConfig() {
+	lobbyLabel = new Text(873, 150, TranslationManager.translate("lobby.shield.title"));
+	startGame = new MenuButton(415, 550, TranslationManager.translate("lobby.button.start"));
+	backButton = new MenuButton(215, 550, TranslationManager.translate("lobby.button.back"));
+	saveButton = new MenuButton(615, 550, TranslationManager.translate("lobby.button.loadsave"));
+	Arrays.stream(scrolls).forEach(scroll -> scroll.updateTranslation());
+    }
 
+    public void registerController(LobbyController controller) {
+	this.controller = controller;
+    }
+
+    @Override
+    public void setModel(Lobby model) throws RemoteException {
+	System.out.printf("setup model %s\n", model);
+    }
+
+    @Override
+    public void close(String key) throws RemoteException {
+	ViewMaster.setScene(new SceneLogin());
     }
 
 }
