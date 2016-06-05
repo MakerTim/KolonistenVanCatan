@@ -3,7 +3,6 @@ package nl.groep4.kvc.client.view.scene;
 import java.rmi.RemoteException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -96,8 +95,8 @@ public class SceneLobby implements SceneHolder, UpdatableLobby {
     public void setModel(Lobby lobby) throws RemoteException {
 	List<Player> players = lobby.getConnectedPlayers();
 	for (LobbyPlayer scroll : scrolls) {
-	    Optional<Player> player = players.stream().filter(pl -> pl.getColor() == scroll.getColor()).findAny();
-	    scroll.updatePlayer(player.orElse(null));
+	    players.stream().filter(pl -> pl.getColor() == scroll.getColor())
+		    .forEach(player -> scroll.updatePlayer(player));
 	}
     }
 

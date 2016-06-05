@@ -12,6 +12,8 @@ import java.rmi.StubNotFoundException;
 import java.rmi.UnexpectedException;
 
 import nl.groep4.kvc.client.view.ExceptionDialog;
+import nl.groep4.kvc.client.view.ViewMaster;
+import nl.groep4.kvc.client.view.scene.SceneLogin;
 
 public class ExceptionManager {
 
@@ -26,5 +28,6 @@ public class ExceptionManager {
 	} else {
 	    ExceptionDialog.warning("error.remote.unkown");
 	}
+	ViewMaster.setScene(new SceneLogin());
     }
 }
