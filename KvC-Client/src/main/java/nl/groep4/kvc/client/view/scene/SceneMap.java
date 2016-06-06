@@ -4,15 +4,18 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import nl.groep4.kvc.client.util.SceneUtil;
+import nl.groep4.kvc.client.view.pane.DicePane;
 import nl.groep4.kvc.client.view.pane.PaneHolder;
 
 public class SceneMap implements SceneHolder {
 
     public PaneHolder overlayPane = null;
     private Pane layers;
+    DicePane dicePane;
 
     @Override
     public Scene getScene() {
+	dicePane = new DicePane();
 	if (layers == null) {
 	    /* Build layer for the design */
 	    layers = new StackPane();
@@ -23,6 +26,7 @@ public class SceneMap implements SceneHolder {
 	}
 	Scene scene = new Scene(layers);
 	return scene;
+
     }
 
     public void setOverlay(PaneHolder pane) {

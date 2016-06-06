@@ -11,16 +11,6 @@ lobby.shield.title:Lobby
 lobby.button.start:Beginn
 lobby.button.back:Zurück
 lobby.button.loadsave:Laden
-
-#SceneLogin
-lobby.label.ip:IP Addresse
-lobby.label.port:Port-Nummer
-lobby.label.username:Benutzername
-lobby.label.nocolor:Keine Farbe
-lobby.label.confirmeverything:Bestätigen alles
-lobby.label.nosound:Keinen Ton
-lobby.button.join:Entreiten
-lobby.button.settings:Einstellungen
 lobby.parchment.empty:Leer
 lobby.parchment.color.blue:Blau
 lobby.parchment.color.brown:Brun
@@ -40,11 +30,32 @@ login.error.portnonumber.title:Keine Portnummer
 login.error.portnonumber.explanation:Es wurde keine Portnummer ausgefüllt
 login.error.portnonumber.details:Exception: 404 Not Found
 
+#SceneLogin
+lobby.label.ip:IP Addresse
+lobby.label.port:Port-Nummer
+lobby.label.username:Benutzername
+lobby.label.nocolor:Keine Farbe
+lobby.label.confirmeverything:Bestätigen alles
+lobby.label.nosound:Keinen Ton
+lobby.button.join:Entreiten
+lobby.button.settings:Einstellungen
+
 #SceneSettings
 settings.button.playmusic:Spiel Musik
 settings.button.stopmusic:Halt Musik
 settings.button.accept:Akzeptieren
 settings.label.title:Einstellungen
+
+#Kicked
+kicked.other.title:Sie wurden von der Lobby entfernt
+kicked.other.explanation:Ein anderer Benutzer hat unter dem gleichen Namen angemeldet
+kicked.other.details:Entfernt vom Benutzer mit doppelten Namen
+kicked.nocolor.title:Sie wurden von der Lobby entfernt
+kicked.nocolor.explanation:Keine Farben durch den Benutzer ausgewählten
+kicked.nocolor.details:Der Benutzer hat keine Farbe ausgewählt
+kicked.started.title:Das Spiel hat begonnen
+kicked.started.explanation:Das Spiel, das Sie zu verbinden versuchen, hat bereits begonnen
+kicked.started.details:Unfähig Spiel im Gange beitreten
 
 #ExceptionManager
 error.connect.notfound.title:Server nicht gefunden
@@ -60,15 +71,6 @@ error.server.error.detail:Exception: 500 Internal Server Error
 error.remote.unknown.title:Unbekannter Fehler
 error.remote.unknown.explanation:Ein unbekannter Fehler ist aufgetreten
 error.remote.unknown.details:Exception: 1337 We just don't know any more
-error.translation.notfound: Übersetzung nicht gefunden
-
-#LobbyKick
-kicked.other.title:Sie wurden von der Lobby entfernt
-kicked.other.explanation:Ein anderer Benutzer hat unter dem gleichen Namen angemeldet
-kicked.other.details:Entfernt vom Benutzer mit doppelten Namen
-kicked.nocolor.title:Sie wurden von der Lobby entfernt
-kicked.nocolor.explanation:Keine Farben durch den Benutzer ausgewählten
-kicked.nocolor.details:Der Benutzer hat keine Farbe ausgewählt
-kicked.started.title:Das Spiel hat begonnen
-kicked.started.explanation:Das Spiel, das Sie zu verbinden versuchen, hat bereits begonnen
-kicked.started.details:Unfähig Spiel im Gange beitreten
+error.translation.notfound.title: Übersetzung nicht gefunden
+error.translation.notfound.explanation:Übersetzung nicht gefunden
+error.translation.notfound.details:Exception: 409 Conflict
