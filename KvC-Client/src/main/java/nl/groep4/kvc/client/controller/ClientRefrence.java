@@ -17,6 +17,7 @@ public final class ClientRefrence {
     }
 
     /**
+     * returns the player name
      * 
      * @return gets player
      */
@@ -25,13 +26,20 @@ public final class ClientRefrence {
     }
 
     /**
+     * sets the player
      * 
-     * @param username
+     * @param player
+     *            references to ClientReference()
      */
     public static void setThePlayer(Player player) {
 	ClientRefrence.thePlayer = player;
     }
 
+    /**
+     * returns the port for RMI to connect with
+     * 
+     * @return the port for RMI
+     */
     public static int getPort() {
 	return rmiport++;
     }
