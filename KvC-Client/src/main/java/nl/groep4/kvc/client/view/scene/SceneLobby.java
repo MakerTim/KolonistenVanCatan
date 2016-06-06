@@ -96,6 +96,12 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
 	Arrays.stream(scrolls).forEach(scroll -> scroll.updateTranslation());
     }
 
+    /**
+     * sets controller
+     * 
+     * @param controller
+     *            references to openLobby()
+     */
     public void registerController(LobbyController controller) {
 	this.controller = controller;
     }
