@@ -126,14 +126,4 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
 	ExceptionDialog.warning("kicked." + reason);
 	ViewMaster.setScene(new SceneLogin());
     }
-
-    @Override
-    public void test() throws RemoteException {
-    }
-
-    @Override
-    public void popup(String key) throws RemoteException {
-	ExceptionDialog.warning("note." + key);
-    }
-
 }

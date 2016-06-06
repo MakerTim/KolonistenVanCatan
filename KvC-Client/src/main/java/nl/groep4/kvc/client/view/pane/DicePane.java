@@ -66,12 +66,6 @@ public class DicePane implements PaneHolder, UpdateDice {
     }
 
     @Override
-    public void close(String key) throws RemoteException {
-	// TODO Auto-generated method stub
-
-    }
-
-    @Override
     public void throwDice() {
 	ThrowController.throwDice();
     }
@@ -81,9 +75,4 @@ public class DicePane implements PaneHolder, UpdateDice {
 	firstDice.setText(Integer.toString(dice1));
 	secondDice.setText(Integer.toString(dice2));
     }
-
-    @Override
-    public void test() throws RemoteException {
-    }
-
 }

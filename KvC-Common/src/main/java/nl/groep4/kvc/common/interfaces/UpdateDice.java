@@ -1,6 +1,6 @@
 package nl.groep4.kvc.common.interfaces;
 
-public interface UpdateDice extends Updatable<Throw> {
+public interface UpdateDice extends UpdatablePane<Throw> {
 
     public void throwDice();
 

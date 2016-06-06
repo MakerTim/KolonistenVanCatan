@@ -101,7 +101,7 @@ public class ServerLobby implements Lobby {
 	while (playerIT.hasNext()) {
 	    Player pl = playerIT.next();
 	    try {
-		pl.getUpdateable().test();
+		pl.getUpdateable().toString();
 	    } catch (Exception ex) {
 		try {
 		    removePlayer(pl, false);
