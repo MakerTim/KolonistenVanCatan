@@ -20,4 +20,6 @@ public interface Updatable<T> extends Remote {
 
     public void close(String key) throws RemoteException;
 
+    public void test() throws RemoteException;
+
 }

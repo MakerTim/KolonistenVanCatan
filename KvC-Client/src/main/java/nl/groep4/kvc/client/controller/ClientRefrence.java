@@ -1,5 +1,7 @@
 package nl.groep4.kvc.client.controller;
 
+import java.util.Random;
+
 import nl.groep4.kvc.common.interfaces.Player;
 
 /**
@@ -11,7 +13,6 @@ import nl.groep4.kvc.common.interfaces.Player;
 public final class ClientRefrence {
 
     private static Player thePlayer;
-    private static int rmiport = 0;
 
     private ClientRefrence() {
     }
@@ -41,6 +42,6 @@ public final class ClientRefrence {
      * @return the port for RMI
      */
     public static int getPort() {
-	return rmiport++;
+	return 100 + new Random().nextInt(10000);
     }
 }

@@ -65,6 +65,7 @@ public class LoginController {
 	try {
 	    pl.registerUpdateable((Updatable<Lobby>) UnicastRemoteObject.exportObject(view, ClientRefrence.getPort()));
 	    ViewMaster.setScene(view);
+	    view.setModel(model);
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();
 	}
