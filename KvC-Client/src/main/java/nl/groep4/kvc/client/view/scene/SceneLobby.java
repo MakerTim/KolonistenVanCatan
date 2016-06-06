@@ -59,7 +59,6 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
 	startGame.registerClick(() -> {
 	    SoundUtil.stopThemesong();
 	    controller.startGame();
-	    ViewMaster.setScene(new SceneMap());
 	});
 
 	backButton.registerClick(() -> {
