@@ -41,7 +41,7 @@ public class ServerLobby implements Lobby {
 
     @Override
     public void disconnect(Player pl) throws RemoteException {
-	System.out.printf("Player %s has %s logged off.", pl.getUsername(),
+	System.out.printf("Player %s has %s logged off.\n", pl.getUsername(),
 		players.remove(pl) ? "succesfully" : "unsuccesfully");
 	setColor(pl, null);
     }
@@ -56,6 +56,7 @@ public class ServerLobby implements Lobby {
 		return false;
 	    }
 	}).findAny().isPresent()) {
+	    System.out.printf("\t%s [%s] - new color = %s\n", pl.getUsername(), pl.getColor(), newColor);
 	    Color color = pl.getColor();
 	    pl.setColor(newColor);
 	    players.stream().filter(player -> {
