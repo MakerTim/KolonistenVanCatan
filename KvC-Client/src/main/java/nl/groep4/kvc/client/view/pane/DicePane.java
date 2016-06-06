@@ -82,4 +82,8 @@ public class DicePane implements PaneHolder, UpdateDice {
 	secondDice.setText(Integer.toString(dice2));
     }
 
+    @Override
+    public void test() throws RemoteException {
+    }
+
 }
