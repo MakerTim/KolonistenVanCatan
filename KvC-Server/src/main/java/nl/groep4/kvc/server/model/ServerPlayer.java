@@ -13,7 +13,7 @@ public class ServerPlayer implements Player {
     private Color color;
 
     public ServerPlayer(String username) {
-	this.username = username;
+	this.username = username.substring(0, Math.min(20, username.length()));
     }
 
     @Override
