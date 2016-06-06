@@ -1,15 +1,15 @@
 package nl.groep4.kvc.client.controller;
 
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
 import nl.groep4.kvc.client.util.ExceptionManager;
+import nl.groep4.kvc.client.view.ViewMaster;
+import nl.groep4.kvc.client.view.scene.SceneLogin;
 import nl.groep4.kvc.common.enumeration.Color;
 import nl.groep4.kvc.common.interfaces.Lobby;
 import nl.groep4.kvc.common.interfaces.Player;
-import nl.groep4.kvc.common.interfaces.UpdatableLobby;
 
 /**
  * 
@@ -19,15 +19,15 @@ import nl.groep4.kvc.common.interfaces.UpdatableLobby;
  */
 public class LobbyController {
 
-    private Lobby lobby;
+    private Lobby model;
 
     /**
      * 
      * @param lobby
      *            references to lobby for connection
      */
-    public LobbyController(Lobby lobby) {
-	this.lobby = lobby;
+    public LobbyController(Lobby model) {
+	this.model = model;
     }
 
     /**
@@ -36,7 +36,7 @@ public class LobbyController {
      */
     public List<Player> getPlayers() {
 	try {
-	    return lobby.getConnectedPlayers();
+	    return model.getPlayers();
 	} catch (RemoteException ex) {
 	    ExceptionManager.handleRemoteException(ex);
 	}
@@ -49,11 +49,12 @@ public class LobbyController {
      */
     public void disconnect(Player pl) {
 	try {
-	    lobby.unregisterPlayer(pl);
+	    model.disconnect(pl);
 	} catch (RemoteException ex) {
 	    ExceptionManager.handleRemoteException(ex);
 	}
-	lobby = null;
+	model = null;
+	ViewMaster.setScene(new SceneLogin());
     }
 
     /**
@@ -63,20 +64,7 @@ public class LobbyController {
      */
     public void changeColor(Player player, Color color) {
 	try {
-	    lobby.setColor(player, color);
-	} catch (RemoteException ex) {
-	    ExceptionManager.handleRemoteException(ex);
-	}
-    }
-
-    /**
-     * 
-     * @param sceneLobby
-     */
-    public void registerScene(UpdatableLobby sceneLobby) {
-	try {
-	    lobby.registerView(ConnectionController.getThePlayer(),
-		    (UpdatableLobby) UnicastRemoteObject.exportObject(sceneLobby, 0));
+	    model.setColor(player, color);
 	} catch (RemoteException ex) {
 	    ExceptionManager.handleRemoteException(ex);
 	}
@@ -84,7 +72,7 @@ public class LobbyController {
 
     public void startGame() {
 	try {
-	    lobby.startGame();
+	    model.startGame();
 	} catch (RemoteException ex) {
 	    ExceptionManager.handleRemoteException(ex);
 	}

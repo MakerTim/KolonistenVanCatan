@@ -27,18 +27,19 @@ public class ViewMaster extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 	stage = primaryStage;
-	System.out.println("Starting lobby");
-	stage.getIcons().add(new Image("img/etc/cursor.png"));
+	System.out.println("Playing ThemeSong");
 	SoundUtil.playThemesong();
-	System.out.println("Playing themesong");
+
+	System.out.println("Starting LoginScreen");
 	setScene(new SceneLogin());
 	primaryStage.setTitle("Kolonisten van Catan: Online");
 	primaryStage.setResizable(false);
 	primaryStage.setOnCloseRequest(onClose -> {
 	    System.exit(0);
 	});
+	System.out.println("Showing LoginScreen");
+	stage.getIcons().add(new Image("img/etc/cursor.png"));
 	primaryStage.show();
-	System.out.println("Showing lobby");
     }
 
     public static void setScene(SceneHolder scene) {

@@ -21,7 +21,7 @@ import nl.groep4.kvc.common.interfaces.Player;
  * @author Tim
  * @version 1.0
  */
-public class LobbyPlayer extends StackPane {
+public class PlayerColorScroll extends StackPane {
 
     private static final Image IMAGE = new Image("img/menu/parchment.png");
     private static final Image HOVER_IMAGE = new Image("img/menu/parchment_hover.png");
@@ -40,7 +40,7 @@ public class LobbyPlayer extends StackPane {
      * @param color
      *            reference to change or add color to a player
      */
-    public LobbyPlayer(Color color) {
+    public PlayerColorScroll(Color color) {
 	VBox tussenPane = new VBox();
 	tussenPane.setAlignment(Pos.CENTER);
 	this.color = color;
@@ -89,10 +89,10 @@ public class LobbyPlayer extends StackPane {
      * @param player
      */
     public void updatePlayer(Player player) {
-	if (player == null) {
-	    usernameLabel.setText(TranslationManager.translate(EMPTY));
-	} else {
+	try {
 	    usernameLabel.setText(player.getUsername());
+	} catch (Exception ex) {
+	    usernameLabel.setText(TranslationManager.translate(EMPTY));
 	}
     }
 
@@ -102,5 +102,9 @@ public class LobbyPlayer extends StackPane {
      */
     public void registerClick(Runnable click) {
 	clickHandlers.add(click);
+    }
+
+    public void updateTranslation() {
+	colorLabel = new Text(TranslationManager.translate("lobby.parchment.color." + color.name().toLowerCase()));
     }
 }

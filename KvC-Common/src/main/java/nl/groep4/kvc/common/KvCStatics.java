@@ -1,6 +1,10 @@
 package nl.groep4.kvc.common;
 
 public class KvCStatics {
+    /**
+     * Name of lobby stored in LOBBY_KEY to connect with
+     */
+    public static final String LOBBY_KEY = "KvCLobby";
 
     /**
      * REGEX: ipv4 adress or a domain name (with sub) or a dynamic name
