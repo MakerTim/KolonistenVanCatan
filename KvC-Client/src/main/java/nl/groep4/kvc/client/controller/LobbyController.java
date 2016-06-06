@@ -24,7 +24,7 @@ public class LobbyController {
     /**
      * sets model
      * 
-     * @param lobby
+     * @param model
      *            references to lobby for connection
      */
     public LobbyController(Lobby model) {
