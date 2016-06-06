@@ -11,7 +11,7 @@ import nl.groep4.kvc.client.view.ExceptionDialog;
 /**
  * 
  * @author Bachir
- *
+ * @version 1.0
  */
 public class TranslationManager {
 
@@ -23,6 +23,12 @@ public class TranslationManager {
 	setLanguage(LANGUAGES[0]);
     }
 
+    /**
+     * Makes List empty. There will be searched for the language. All the lines
+     * in that language will be put in the array.
+     * 
+     * @param languageKey
+     */
     public static void setLanguage(String languageKey) {
 	CURRENT_LANGUAGES.clear();
 	try {
@@ -43,6 +49,13 @@ public class TranslationManager {
 	}
     }
 
+    /**
+     * Reading the file and filter out the correct translation.
+     * 
+     * @param key
+     * @param args
+     * @return the correct translation
+     */
     public static String translate(String key, Object... args) {
 	for (String translation : CURRENT_LANGUAGES) {
 	    String[] translationSplit = translation.split(":", 2);
