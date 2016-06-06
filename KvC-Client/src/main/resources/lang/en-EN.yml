@@ -11,16 +11,6 @@ lobby.shield.title:Lobby
 lobby.button.start:Start
 lobby.button.back:Back
 lobby.button.loadsave:Load
-
-#SceneLogin
-lobby.label.ip:IP Address
-lobby.label.port:Port Number
-lobby.label.username:Username
-lobby.label.nocolor:No Colour
-lobby.label.confirmeverything:Confirm Everything
-lobby.label.nosound:No Sound
-lobby.button.join:Join
-lobby.button.settings:Settings
 lobby.parchment.empty:Empty
 lobby.parchment.color.blue:Blue
 lobby.parchment.color.brown:Brown
@@ -40,11 +30,32 @@ login.error.portnonumber.title:No Port Number
 login.error.portnonumber.explanation:No port number was filled in
 login.error.portnonumber.details:Exception: 404 Not Found
 
+#SceneLogin
+lobby.label.ip:IP Address
+lobby.label.port:Port Number
+lobby.label.username:Username
+lobby.label.nocolor:No Colour
+lobby.label.confirmeverything:Confirm Everything
+lobby.label.nosound:No Sound
+lobby.button.join:Join
+lobby.button.settings:Settings
+
 #SceneSettings
 settings.button.playmusic:Play Music
 settings.button.stopmusic:Stop Music
 settings.button.accept:Accept
 settings.label.title:Settings
+
+#Kicked
+kicked.other.title:You have been removed from the lobby
+kicked.other.explanation:Another user has logged on under the same name
+kicked.other.details:Removed by user with duplicate name
+kicked.nocolor.title:You have been removed from the lobby
+kicked.nocolor.explanation:No colour was selected by the user
+kicked.nocolor.details:User was kicked for not selecting a colour before the game began
+kicked.started.title:The game has already commenced 
+kicked.started.explanation:The game you are trying to join has already begun
+kicked.started.details:Unable to join game in progress
 
 #ExceptionManager
 error.connect.notfound.title:Server not found
@@ -59,15 +70,6 @@ error.server.error.detail:Exception: 500 Internal Server Error
 error.remote.unknown.title:Unknown error
 error.remote.unknown.explanation:An unknown error has occurred
 error.remote.unknown.details:Exception: 1337 We just don't know any more
-error.translation.notfound: Translation not found
-
-#LobbyKick
-kicked.other.title:You have been removed from the lobby
-kicked.other.explanation:Another user has logged on under the same name
-kicked.other.details:Removed by user with duplicate name
-kicked.nocolor.title:You have been removed from the lobby
-kicked.nocolor.explanation:No colour was selected by the user
-kicked.nocolor.details:User was kicked for not selecting a colour before the game began
-kicked.started.title:The game has already commenced 
-kicked.started.explanation:The game you are trying to join has already begun
-kicked.started.details:Unable to join game in progress
+error.translation.notfound.title: Translation not found
+error.translation.notfound.explanation:Translation not found
+error.translation.notfound.details:Exception: 409 Conflict
