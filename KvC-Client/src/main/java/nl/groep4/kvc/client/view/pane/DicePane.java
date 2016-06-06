@@ -1,35 +1,49 @@
 package nl.groep4.kvc.client.view.pane;
 
+import javafx.geometry.Pos;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
+import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 
 public class DicePane implements PaneHolder {
-    Pane dicePane;
+    StackPane dicePane;
     Text clickToThrow;
     Text firstDice;
     Text secondDice;
     MenuButton throwDice;
+    HBox dices;
+    VBox things;
 
     @Override
     public Pane getPane() {
-	dicePane = new Pane();
+	dices = new HBox();
+	things = new VBox(20);
+
+	dicePane = new StackPane();
+
 	clickToThrow = new Text(TranslationManager.translate("map.throwdice.clickToThrow"));
 	firstDice = new Text("*");
 	secondDice = new Text("*");
-	firstDice.setLayoutX(400);
-	firstDice.setLayoutY(350);
-	secondDice.setLayoutX(600);
-	secondDice.setLayoutY(350);
-	clickToThrow.setLayoutX(500);
-	clickToThrow.setLayoutY(300);
-	clickToThrow.setTextAlignment(TextAlignment.CENTER);
-	throwDice = new MenuButton(300, 300, "map.throwdice.throw");
-	dicePane.getChildren().addAll(SceneUtil.getLobbyForeground(), clickToThrow, throwDice);
-	SceneUtil.fadeIn(SceneUtil.getLobbyForeground(), clickToThrow, throwDice);
+	throwDice = new MenuButton(0, 0, TranslationManager.translate("map.throwdice.throw"));
+	throwDice.setFont(ViewMaster.FONT);
+
+	firstDice.setFont(ViewMaster.FONT);
+	secondDice.setFont(ViewMaster.FONT);
+	clickToThrow.setFont(ViewMaster.FONT);
+
+	dices.getChildren().addAll(firstDice, secondDice);
+	things.getChildren().addAll(clickToThrow, dices, throwDice);
+
+	things.setAlignment(Pos.CENTER);
+	dices.setAlignment(Pos.CENTER);
+	dicePane.getChildren().addAll(SceneUtil.getLobbyForeground(), things);
+	SceneUtil.fadeIn(SceneUtil.getLobbyForeground(), things);
 	return dicePane;
     }
 
