@@ -4,12 +4,14 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import nl.groep4.kvc.client.util.SceneUtil;
+import nl.groep4.kvc.client.view.pane.DicePane;
 import nl.groep4.kvc.client.view.pane.PaneHolder;
 
 public class SceneMap implements SceneHolder {
 
     public PaneHolder overlayPane = null;
     private Pane layers;
+    DicePane dicePane;
 
     @Override
     public Scene getScene() {
@@ -19,7 +21,7 @@ public class SceneMap implements SceneHolder {
 	    // "game.button.buy", "game.button.trade", "game.button.build"
 
 	    /* Add all layers */
-	    layers.getChildren().addAll(SceneUtil.getBoardBackground(), SceneUtil.getBoard());
+	    layers.getChildren().addAll(SceneUtil.getBoardBackground(), SceneUtil.getBoard(), dicePane.getPane());
 	}
 	Scene scene = new Scene(layers);
 	return scene;
