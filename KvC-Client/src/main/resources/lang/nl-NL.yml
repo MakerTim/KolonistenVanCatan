@@ -46,6 +46,16 @@ settings.button.stopmusic:Muziek uit
 settings.button.accept:Accepteren
 settings.label.title:Instellingen
 
+#kicked
+kicked.other.title:U bent verwijderd uit de lobby
+kicked.other.explanation:Iemand anders heeft ingelogd met dezelfde gebruikersnaam
+kicked.nocolor.title:U bent verwijderd uit de lobby
+kicked.nocolor.explanation:Het spel is begonnen, maar u heeft nog geen kleur
+kicked.nocolor.details.Spelers zonder een kleur kunnen niet meedoen
+kicked.started.title:Het spel is al begonnen
+kicked.started.explanation:Het spel waar u aan probeert mee te doen is al begonnen
+kicked.started.details:Spel wordt al gespeeld
+
 #ExceptionManager
 error.connect.notfound.title:Server is niet gevonden
 error.connect.notfound.explanation:De server die u zocht is niet gevonden
