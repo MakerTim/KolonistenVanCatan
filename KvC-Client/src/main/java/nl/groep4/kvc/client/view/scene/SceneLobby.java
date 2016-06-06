@@ -116,24 +116,24 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
     }
 
     @Override
-    public void close(String key) throws RemoteException {
-	ViewMaster.setScene(new SceneLogin());
-    }
-
-    @Override
     public void updatePlayerColor(Player pl, Color newColor) throws RemoteException {
 	Arrays.stream(scrolls).filter(scroll -> scroll.getColor() == newColor)
 		.forEach(scroll -> scroll.updatePlayer(pl));
     }
 
     @Override
-    public void kick(String reason) throws RemoteException {
+    public void close(String reason) throws RemoteException {
 	ExceptionDialog.warning("kicked." + reason);
 	ViewMaster.setScene(new SceneLogin());
     }
 
     @Override
     public void test() throws RemoteException {
+    }
+
+    @Override
+    public void popup(String key) throws RemoteException {
+	ExceptionDialog.warning("note." + key);
     }
 
 }

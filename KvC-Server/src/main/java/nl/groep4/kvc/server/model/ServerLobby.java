@@ -14,7 +14,9 @@ import nl.groep4.kvc.common.util.Scheduler;
 
 public class ServerLobby implements Lobby {
 
-    protected List<Player> players = new ArrayList<>();
+    protected final List<Player> players = new ArrayList<>();
+    private KolonistenVanCatanServer kvc;
+    private State state = State.LOBBY;
 
     @Override
     public Player registerPlayer(String playerName) throws RemoteException {
@@ -23,7 +25,7 @@ public class ServerLobby implements Lobby {
 	    try {
 		if (player.getUsername().equals(pl.getUsername()) && player.getUpdateable() instanceof UpdateLobby) {
 		    System.out.printf("Kicking player %s for dube name\n", pl.getUsername());
-		    ((UpdateLobby) player.getUpdateable()).kick("other");
+		    ((UpdateLobby) player.getUpdateable()).close("other");
 		}
 	    } catch (RemoteException ex) {
 	    }
@@ -50,32 +52,39 @@ public class ServerLobby implements Lobby {
 	Scheduler.runAsync(() -> {
 	    cleanup();
 	});
-	if (!players.stream().filter(player -> {
-	    try {
-		return player.getColor() == newColor && newColor != null;
-	    } catch (RemoteException ex) {
-		ex.printStackTrace();
-		return false;
-	    }
-	}).findAny().isPresent()) {
-	    System.out.printf("\t%s [%s] - new color = %s\n", pl.getUsername(), pl.getColor(), newColor);
-	    Color color = pl.getColor();
-	    pl.setColor(newColor);
-	    players.stream().filter(player -> {
+	switch (state) {
+	case IN_GAME:
+	    pl.getUpdateable().popup("ingame");
+	    break;
+	case LOBBY:
+	    if (!players.stream().filter(player -> {
 		try {
-		    return player.getUpdateable() instanceof UpdateLobby;
+		    return player.getColor() == newColor && newColor != null;
 		} catch (RemoteException ex) {
+		    ex.printStackTrace();
 		    return false;
 		}
-	    }).forEach(player -> {
-		Scheduler.runAsync(() -> {
+	    }).findAny().isPresent()) {
+		System.out.printf("\t%s [%s] - new color = %s\n", pl.getUsername(), pl.getColor(), newColor);
+		Color color = pl.getColor();
+		pl.setColor(newColor);
+		players.stream().filter(player -> {
 		    try {
-			((UpdateLobby) player.getUpdateable()).updatePlayerColor(null, color);
-			((UpdateLobby) player.getUpdateable()).updatePlayerColor(pl, newColor);
+			return player.getUpdateable() instanceof UpdateLobby;
 		    } catch (RemoteException ex) {
+			return false;
 		    }
+		}).forEach(player -> {
+		    Scheduler.runAsync(() -> {
+			try {
+			    ((UpdateLobby) player.getUpdateable()).updatePlayerColor(null, color);
+			    ((UpdateLobby) player.getUpdateable()).updatePlayerColor(pl, newColor);
+			} catch (RemoteException ex) {
+			}
+		    });
 		});
-	    });
+		break;
+	    }
 	}
     }
 
@@ -107,6 +116,11 @@ public class ServerLobby implements Lobby {
 
     @Override
     public void startGame() throws RemoteException {
-	// TODO Auto-generated method stub
+	kvc = new KolonistenVanCatanServer();
+    }
+
+    @Override
+    public void loadSave(String save) throws RemoteException {
+	// TODO LoadSave
     }
 }
