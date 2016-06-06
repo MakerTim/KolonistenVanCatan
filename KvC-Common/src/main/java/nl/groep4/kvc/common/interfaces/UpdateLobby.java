@@ -8,4 +8,5 @@ public interface UpdateLobby extends Updatable<Lobby> {
 
     public void updatePlayerColor(Player pl, Color newColor) throws RemoteException;
 
+    public void kick(String reason) throws RemoteException;
 }

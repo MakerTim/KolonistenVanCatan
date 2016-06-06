@@ -11,6 +11,7 @@ import nl.groep4.kvc.client.controller.LobbyController;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.SoundUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
+import nl.groep4.kvc.client.view.ExceptionDialog;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.elements.PlayerColorScroll;
@@ -64,6 +65,7 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
 	backButton.registerClick(() -> {
 	    ViewMaster.setScene(new SceneLogin());
 	    controller.disconnect(ClientRefrence.getThePlayer());
+	    ClientRefrence.setThePlayer(null);
 	});
 
 	scrolls = new PlayerColorScroll[Color.values().length];
@@ -123,6 +125,16 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
     public void updatePlayerColor(Player pl, Color newColor) throws RemoteException {
 	Arrays.stream(scrolls).filter(scroll -> scroll.getColor() == newColor)
 		.forEach(scroll -> scroll.updatePlayer(pl));
+    }
+
+    @Override
+    public void kick(String reason) throws RemoteException {
+	ExceptionDialog.warning("kicked." + reason);
+	ViewMaster.setScene(new SceneLogin());
+    }
+
+    @Override
+    public void test() throws RemoteException {
     }
 
 }
