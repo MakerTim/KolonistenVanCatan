@@ -61,3 +61,14 @@ error.remote.unknown.title:Unbekannter Fehler
 error.remote.unknown.explanation:Ein unbekannter Fehler ist aufgetreten
 error.remote.unknown.details:Exception: 1337 We just don't know any more
 error.translation.notfound: Übersetzung nicht gefunden
+
+#LobbyKick
+kicked.other.title:Sie wurden von der Lobby entfernt
+kicked.other.explanation:Ein anderer Benutzer hat unter dem gleichen Namen angemeldet
+kicked.other.details:Entfernt vom Benutzer mit doppelten Namen
+kicked.nocolor.title:Sie wurden von der Lobby entfernt
+kicked.nocolor.explanation:Keine Farben durch den Benutzer ausgewählten
+kicked.nocolor.details:Der Benutzer hat keine Farbe ausgewählt
+kicked.started.title:Das Spiel hat begonnen
+kicked.started.explanation:Das Spiel, das Sie zu verbinden versuchen, hat bereits begonnen
+kicked.started.details:Unfähig Spiel im Gange beitreten
