@@ -56,7 +56,7 @@ public class SoundUtil {
      * Controls the sound volume
      * 
      * @param soundName
-     * @return
+     * @return the clip that is played
      */
     public static Clip playSound(String soundName) {
 	try {
@@ -88,6 +88,7 @@ public class SoundUtil {
     }
 
     /**
+     * TeamsongKvC is playing
      * 
      * @return teamsongKvC not equal to null
      */
@@ -107,6 +108,7 @@ public class SoundUtil {
      * sets volume level value
      * 
      * @param volume
+     *            The volume of the sound
      */
     public static void setVolume(float volume) {
 	((FloatProperty) SoundUtil.volume).setValue(volume * VOLUME_LEVEL);

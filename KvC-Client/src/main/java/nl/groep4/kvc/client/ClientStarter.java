@@ -15,6 +15,7 @@ public class ClientStarter {
      * Launches the application
      * 
      * @param args
+     *            Reference to Main
      */
     public static void main(String[] args) {
 	Application.launch(ViewMaster.class, args);

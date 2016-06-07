@@ -26,6 +26,11 @@ public class SceneUtil {
     private static Node board;
     private static Node boardBackground;
 
+    /**
+     * Gets the background for the menu
+     * 
+     * @return background image of the menu
+     */
     public static Node getMenuBackground() {
 	if (background == null) {
 	    background = new ImageView("img/menu/menu_background.png");
@@ -33,6 +38,11 @@ public class SceneUtil {
 	return background;
     }
 
+    /**
+     * Gets the foreground of loginscreen
+     * 
+     * @return foreground image of the loginscreen
+     */
     public static Node getLoginForeground() {
 	if (forground == null) {
 	    forground = new ImageView("img/menu/login_foreground.png");
@@ -40,6 +50,11 @@ public class SceneUtil {
 	return forground;
     }
 
+    /**
+     * Gets the Braziers from the menu
+     * 
+     * @return brazier image
+     */
     public static Node getMenuBrazier() {
 	if (brazier == null) {
 	    brazier = new ImageView("img/menu/brazier.gif");
@@ -47,6 +62,11 @@ public class SceneUtil {
 	return brazier;
     }
 
+    /**
+     * Gets the foreground of the settings
+     * 
+     * @return image of the foreground from the settings
+     */
     public static Node getSettingsForeground() {
 	if (settings == null) {
 	    settings = new ImageView("img/menu/settings_foreground.png");
@@ -54,6 +74,11 @@ public class SceneUtil {
 	return settings;
     }
 
+    /**
+     * Gets the foreground of the settings
+     * 
+     * @return image of the foreground from the lobby
+     */
     public static Node getLobbyForeground() {
 	if (lobbyBack == null) {
 	    lobbyBack = new ImageView("img/menu/lobby_foreground.png");
@@ -61,6 +86,11 @@ public class SceneUtil {
 	return lobbyBack;
     }
 
+    /**
+     * Gets the cornershield image
+     * 
+     * @return image of the corner shield
+     */
     public static Node getCornerShield() {
 	if (cornerShield == null) {
 	    cornerShield = new ImageView("img/menu/shield_corner.png");
@@ -68,6 +98,11 @@ public class SceneUtil {
 	return cornerShield;
     }
 
+    /**
+     * Gets the board
+     * 
+     * @return image of the Board
+     */
     public static Node getBoard() {
 	if (board == null) {
 	    board = new ImageView("img/game/board.png");
@@ -75,6 +110,11 @@ public class SceneUtil {
 	return board;
     }
 
+    /**
+     * Gets background of the board
+     * 
+     * @return image of the background from the board
+     */
     public static Node getBoardBackground() {
 	if (boardBackground == null) {
 	    boardBackground = new ImageView("img/game/board_background.gif");
@@ -82,14 +122,30 @@ public class SceneUtil {
 	return boardBackground;
     }
 
+    /**
+     * Gives a fade-in for each element in the List
+     * 
+     * @param elements
+     *            Reference to fadeIn
+     */
     public static void fadeIn(List<Node> elements) {
 	elements.forEach(element -> fadeIn(element));
     }
 
+    /**
+     * Gives a fade-in for each element in the Array
+     * 
+     * @param elements
+     */
     public static void fadeIn(Node... elements) {
 	Arrays.stream(elements).forEach(element -> fadeIn(element));
     }
 
+    /**
+     * Gives fade transition to element and plays it
+     * 
+     * @param element
+     */
     public static void fadeIn(Node element) {
 	FadeTransition ft = new FadeTransition(Duration.millis(500), element);
 	ft.setFromValue(0);
