@@ -56,7 +56,7 @@ public class SoundUtil {
      * Controls the sound volume
      * 
      * @param soundName
-     * @return null
+     * @return the clip that is played
      */
     public static Clip playSound(String soundName) {
 	try {
