@@ -19,6 +19,10 @@ public class ServerMap implements Map {
     private final List<Building> buildings = new ArrayList<>();
     private final List<Street> streets = new ArrayList<>();
 
+    public static void main(String[] args) {
+	new ServerMap().createMap();
+    }
+
     @Override
     public List<Tile> getTiles() {
 	return tiles;
@@ -31,7 +35,7 @@ public class ServerMap implements Map {
 	for (short col = 0; col < cols; col++) {
 	    int rows = cols - Math.abs(col - ((cols - 1) / 2)) - 1;
 	    for (short row = 0; row < rows; row++) {
-		Coordinate position = new Coordinate(row, col);
+		Coordinate position = new Coordinate((short) (col - cols / 2), (short) (row - rows / 2));
 		if (row == 0 || row == rows - 1 || col == 0 || col == cols - 1) {
 		    tiles.add(new ServerTileSea(position));
 		} else if (col == 0 && (row == -2 || row == 1)) {
@@ -44,6 +48,7 @@ public class ServerMap implements Map {
 		}
 	    }
 	}
+	System.out.println();
     }
 
     @Override
