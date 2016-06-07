@@ -18,6 +18,10 @@ public final class Coordinate implements Serializable {
 	return String.format("%d;%d", x, y);
     }
 
+    public boolean isSameLocation(short x, short y) {
+	return this.x == x && this.y == y;
+    }
+
     @Override
     public String toString() {
 	return getKey();
@@ -27,7 +31,7 @@ public final class Coordinate implements Serializable {
     public boolean equals(Object obj) {
 	if (obj instanceof Coordinate) {
 	    Coordinate other = (Coordinate) obj;
-	    return other.x == this.x && other.y == this.y;
+	    return isSameLocation(other.x, other.y);
 	}
 	return super.equals(obj);
     }
