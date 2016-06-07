@@ -48,7 +48,6 @@ public class ServerMap implements Map {
 		}
 	    }
 	}
-	System.out.println();
     }
 
     @Override
@@ -96,7 +95,7 @@ public class ServerMap implements Map {
 	    if (findAt.getX() % 2 == 1) {
 		findAt = findAt.add((short) 1, (short) 0);
 	    } else {
-		findAt = findAt.add((short) 1, (short) 1);
+		findAt = findAt.add((short) -1, (short) 1);
 	    }
 	    break;
 	}
