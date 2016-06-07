@@ -38,8 +38,7 @@ public class ServerMap implements Map {
 
     @Override
     public List<Tile> getTiles() {
-	// TODO Auto-generated method stub
-	return null;
+	return tiles;
     }
 
     @Override
