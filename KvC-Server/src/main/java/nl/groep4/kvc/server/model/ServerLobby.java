@@ -15,7 +15,7 @@ import nl.groep4.kvc.common.util.Scheduler;
 public class ServerLobby implements Lobby {
 
     protected final List<Player> players = new ArrayList<>();
-    private KolonistenVanCatanServer kvc;
+    private ServerKolonistenVanCatan kvc;
     private State state = State.LOBBY;
 
     @Override
@@ -116,7 +116,9 @@ public class ServerLobby implements Lobby {
 
     @Override
     public void startGame() throws RemoteException {
-	kvc = new KolonistenVanCatanServer();
+	kvc = new ServerKolonistenVanCatan();
+	kvc.createMap();
+	state = State.LOBBY;
     }
 
     @Override

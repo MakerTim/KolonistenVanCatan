@@ -1,5 +1,7 @@
 package nl.groep4.kvc.common.map;
 
+import java.io.Serializable;
+
 import nl.groep4.kvc.common.enumeration.Direction;
 import nl.groep4.kvc.common.enumeration.Point;
 
@@ -10,13 +12,13 @@ import nl.groep4.kvc.common.enumeration.Point;
  * @author Tim
  */
 
-public interface Tile {
+public interface Tile extends Serializable {
 
     /**
      * 
      * @return gets position of tile
      */
-    public String getPosition();
+    public Coordinate getPosition();
 
     /**
      * 

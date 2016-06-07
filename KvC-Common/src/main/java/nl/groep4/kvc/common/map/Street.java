@@ -1,5 +1,7 @@
 package nl.groep4.kvc.common.map;
 
+import java.io.Serializable;
+
 import nl.groep4.kvc.common.interfaces.Ownable;
 
 /**
@@ -9,6 +11,6 @@ import nl.groep4.kvc.common.interfaces.Ownable;
  * @author Tim
  */
 
-public interface Street extends Ownable {
+public interface Street extends Ownable, Serializable {
 
 }
