@@ -68,8 +68,10 @@ public class PlayerColorScroll extends StackPane {
     }
 
     /**
+     * sets font for colorLabel and usernameLabel
      * 
      * @param font
+     *            a letter type for labels
      */
     public void setFont(Font font) {
 	colorLabel.setFont(font);
@@ -77,16 +79,20 @@ public class PlayerColorScroll extends StackPane {
     }
 
     /**
+     * gets color
      * 
-     * @return
+     * @return color type
      */
     public Color getColor() {
 	return color;
     }
 
     /**
+     * Updates labels when user chooses another parchment, also translates
+     * parchment text into given language
      * 
      * @param player
+     *            name of the user
      */
     public void updatePlayer(Player player) {
 	try {
@@ -97,6 +103,7 @@ public class PlayerColorScroll extends StackPane {
     }
 
     /**
+     * Check if player clicks another parchment
      * 
      * @param click
      */
@@ -104,6 +111,9 @@ public class PlayerColorScroll extends StackPane {
 	clickHandlers.add(click);
     }
 
+    /**
+     * Updates label text when user changes parchment
+     */
     public void updateTranslation() {
 	colorLabel = new Text(TranslationManager.translate("lobby.parchment.color." + color.name().toLowerCase()));
     }
