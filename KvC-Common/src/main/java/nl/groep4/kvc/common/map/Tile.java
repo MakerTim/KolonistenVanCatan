@@ -14,6 +14,8 @@ import nl.groep4.kvc.common.enumeration.Point;
 
 public interface Tile extends Serializable {
 
+    public TileType getType();
+
     /**
      * 
      * @return gets position of tile
