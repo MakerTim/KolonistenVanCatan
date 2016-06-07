@@ -99,4 +99,14 @@ public class ServerMap implements Map {
 	return tiles.stream().filter(aTile -> aTile.getPosition().equals(toFind)).findAny().orElse(null);
     }
 
+    @Override
+    public Tile getTile(Coordinate coord) {
+	return tiles.stream().filter(aTile -> aTile.getPosition().equals(coord)).findAny().orElse(null);
+    }
+
+    @Override
+    public Tile getTile(short x, short y) {
+	return getTile(new Coordinate(x, y));
+    }
+
 }

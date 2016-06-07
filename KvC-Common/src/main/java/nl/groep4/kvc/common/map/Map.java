@@ -43,4 +43,8 @@ public interface Map {
      * @return gets tile direction
      */
     public Tile getRelativeTile(Tile tile, Direction direction);
+
+    public Tile getTile(Coordinate coord);
+
+    public Tile getTile(short x, short y);
 }
