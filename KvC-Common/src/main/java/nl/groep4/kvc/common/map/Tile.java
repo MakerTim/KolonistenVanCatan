@@ -38,6 +38,8 @@ public interface Tile extends Serializable {
 
     public boolean isValidPlace(Map map, Point point);
 
-    public boolean isValidPlace(Map map, Direction direction);
+    public default boolean isValidPlace(Map map, Direction direction) {
+	return this instanceof TileLand || map.getRelativeTile(this, direction) instanceof TileLand;
+    }
 
 }

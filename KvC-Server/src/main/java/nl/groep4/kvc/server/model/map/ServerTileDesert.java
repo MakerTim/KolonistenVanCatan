@@ -2,7 +2,6 @@ package nl.groep4.kvc.server.model.map;
 
 import nl.groep4.kvc.common.enumeration.Direction;
 import nl.groep4.kvc.common.enumeration.Point;
-import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Map;
@@ -50,14 +49,7 @@ public class ServerTileDesert implements TileLand {
     }
 
     @Override
-    public boolean isValidPlace(Map map, Direction direction) {
-	// TODO TileLand#isvalidplace
-	return false;
-    }
-
-    @Override
     public TileType getType() {
-	// TODO Auto-generated method stub
-	return null;
+	return TileType.DESERT;
     }
 }

@@ -18,8 +18,11 @@ public class ServerTileResource implements TileResource {
     private Street[] streets;
     private Building[] buildings;
 
-    public ServerTileResource(Coordinate position) {
+    private TileType type;
+
+    public ServerTileResource(Coordinate position, TileType type) {
 	this.position = position;
+	this.type = type;
     }
 
     @Override
@@ -51,8 +54,7 @@ public class ServerTileResource implements TileResource {
 
     @Override
     public Resource getResource() {
-	// TODO TileLand#getresource
-	return null;
+	return Resource.values()[type.ordinal()];
     }
 
     @Override
@@ -63,7 +65,6 @@ public class ServerTileResource implements TileResource {
 
     @Override
     public TileType getType() {
-	// TODO Auto-generated method stub
-	return null;
+	return type;
     }
 }

@@ -1,13 +1,13 @@
 package nl.groep4.kvc.common.enumeration;
 
 /**
- * Directions of the tile
+ * Directions to assign for relative tiles / buildings
  * 
  * @version 1.0
  * @author Tim
  */
 public enum Direction {
 
-    NORTH_EAST, EAST, SOUTH_EAST, SOUTH_WEST, WEST, NORHT_WEST;
+    NORTH, NORTH_EAST, SOUTH_EAST, SOUTH, SOUTH_WEST, NORTH_WEST;
 
 }
