@@ -22,6 +22,30 @@ public final class Coordinate implements Serializable, Cloneable {
 	return this.x == x && this.y == y;
     }
 
+    public Coordinate add(Coordinate added) {
+	return add(added.getX(), added.getY());
+    }
+
+    public Coordinate multiply(Coordinate multiplied) {
+	return multiply(multiplied.getX(), multiplied.getY());
+    }
+
+    public Coordinate subtract(Coordinate subtracted) {
+	return subtract(subtracted.getX(), subtracted.getY());
+    }
+
+    public Coordinate add(double added) {
+	return add(added, added);
+    }
+
+    public Coordinate multiply(double multiplied) {
+	return multiply(multiplied, multiplied);
+    }
+
+    public Coordinate subtract(double subtracted) {
+	return subtract(subtracted, subtracted);
+    }
+
     public Coordinate add(double x, double y) {
 	return new Coordinate(this.x + x, this.y + y);
     }

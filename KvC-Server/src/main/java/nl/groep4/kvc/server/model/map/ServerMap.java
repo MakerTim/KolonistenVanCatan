@@ -9,6 +9,7 @@ import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Map;
 import nl.groep4.kvc.common.map.Street;
 import nl.groep4.kvc.common.map.Tile;
+import nl.groep4.kvc.common.map.TileLand;
 import nl.groep4.kvc.common.map.TileType;
 import nl.groep4.kvc.common.util.CollectionUtil;
 import nl.groep4.kvc.server.factory.TileFactory;
@@ -52,7 +53,22 @@ public class ServerMap implements Map {
     }
 
     private void setupStreets() {
-
+	for (Tile tile : tiles) {
+	    Street[] streets = new Street[6];
+	    for (int i = 0; i < Direction.values().length; i++) {
+		Direction direction = Direction.values()[i];
+		Tile relative = getRelativeTile(tile, direction);
+		Coordinate location = tile.getPosition().add(direction.offset(tile.getPosition()).subtract(2));
+		if (relative instanceof TileLand) {
+		    Street street = getStreet(location);
+		    if (street == null) {
+			street = new ServerStreet(location);
+		    }
+		    streets[i] = street;
+		    this.streets.add(street);
+		}
+	    }
+	}
     }
 
     @Override
@@ -66,46 +82,14 @@ public class ServerMap implements Map {
     }
 
     @Override
+    public Street getStreet(Coordinate location) {
+	return streets.stream().filter(street -> street.getPosition().equals(location)).findAny().orElse(null);
+    }
+
+    @Override
     public Tile getRelativeTile(Tile tile, Direction direction) {
-	Coordinate findAt = tile.getPosition();
-	switch (direction) {
-	case NORTH:
-	    findAt = findAt.add(0, -1);
-	    break;
-	case NORTH_EAST:
-	    if (findAt.getX() % 2 == 0) {
-		findAt = findAt.add(1, 0);
-	    } else {
-		findAt = findAt.add(1, -1);
-	    }
-	    break;
-	case NORTH_WEST:
-	    if (findAt.getX() % 2 == 0) {
-		findAt = findAt.add(-1, 0);
-	    } else {
-		findAt = findAt.add(-1, -1);
-	    }
-	    break;
-	case SOUTH:
-	    findAt = findAt.add(0, 1);
-	    break;
-	case SOUTH_EAST:
-	    if (findAt.getX() % 2 == 1) {
-		findAt = findAt.add(1, 0);
-	    } else {
-		findAt = findAt.add(1, 1);
-	    }
-	    break;
-	case SOUTH_WEST:
-	    if (findAt.getX() % 2 == 1) {
-		findAt = findAt.add(1, 0);
-	    } else {
-		findAt = findAt.add(-1, 1);
-	    }
-	    break;
-	}
-	Coordinate toFind = findAt;
-	return tiles.stream().filter(aTile -> aTile.getPosition().equals(toFind)).findAny().orElse(null);
+	return tiles.stream().filter(aTile -> aTile.getPosition().equals(direction.addTo(tile.getPosition()))).findAny()
+		.orElse(null);
     }
 
     @Override

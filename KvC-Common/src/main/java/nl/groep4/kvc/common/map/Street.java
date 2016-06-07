@@ -5,12 +5,11 @@ import java.io.Serializable;
 import nl.groep4.kvc.common.interfaces.Ownable;
 
 /**
- * Defines street per user
+ * Defines street
  * 
  * @version 1.0
  * @author Tim
  */
-
 public interface Street extends Ownable, Serializable, Locatable {
 
 }
