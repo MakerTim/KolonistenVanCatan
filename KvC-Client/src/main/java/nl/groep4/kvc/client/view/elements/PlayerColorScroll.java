@@ -106,6 +106,7 @@ public class PlayerColorScroll extends StackPane {
      * Check if player clicks another parchment
      * 
      * @param click
+     *            click that gets registers
      */
     public void registerClick(Runnable click) {
 	clickHandlers.add(click);

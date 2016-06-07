@@ -100,6 +100,7 @@ public abstract class TexturedButton extends StackPane {
      * handles click events
      * 
      * @param click
+     *            click that gets registers
      */
     public void registerClick(Runnable click) {
 	clickHandlers.add(click);
