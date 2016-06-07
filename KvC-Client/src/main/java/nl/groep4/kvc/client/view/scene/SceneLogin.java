@@ -108,34 +108,70 @@ public class SceneLogin implements SceneHolder {
 	settingsButton.updateText(TranslationManager.translate("lobby.button.settings"));
     }
 
+    /**
+     * When mouse clicked a User gets registered
+     */
     public void onConnectClick() {
 	LoginController.connect(this);
     }
 
+    /**
+     * When clicked Settingsmenu opens
+     */
     public void onSettingsClick() {
 	ViewMaster.setScene(new SceneSettings(this));
     }
 
+    /**
+     * Gets input of the IpLabel.
+     * 
+     * @return the input text of the Ip label.
+     */
     public String getIpInput() {
 	return ipInput.getText();
     }
 
+    /**
+     * Gets input of the portNumber label and converts it to an int.
+     * 
+     * @return the input of the portNumber label in an int
+     */
     public int getPortInput() {
 	return Integer.parseInt(portInput.getText());
     }
 
+    /**
+     * Gets the input of the username label
+     * 
+     * @return the input of the username label
+     */
     public String getUsernameInput() {
 	return usernameInput.getText();
     }
 
+    /**
+     * Gets the no color input
+     * 
+     * @return the no colorInput
+     */
     public boolean getNocolorInput() {
 	return nocolorInput.isSelected();
     }
 
+    /**
+     * Gets the no sound input
+     * 
+     * @return the no sound input
+     */
     public boolean getNosoundInput() {
 	return nosoundInput.isSelected();
     }
 
+    /**
+     * Gets the confirmation input
+     * 
+     * @return the confirmation input
+     */
     public boolean getConfirmInput() {
 	return confirmInput.isSelected();
     }
