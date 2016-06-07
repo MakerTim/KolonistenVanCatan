@@ -19,6 +19,15 @@ lobby.parchment.color.orange:Orange
 lobby.parchment.color.red:Rouge
 lobby.parchment.color.white:blanc
 
+#Note
+note.ingame.title:Le jeu a commencé
+note.ingame.explanation:Vous ne pouvez pas changer plus de couleur quand le jeu a déjà commencé
+note.ingame.details:Pendant le jeu, vous ne pouvez pas changer de couleur
+
+#Map
+map.throwdice.clickToThrow:Jouer aux dés
+map.throwdice.throw:Cliquez pour jouer aux dés
+
 #Login
 login.error.nousername.title:Erreur de connexion
 login.error.nousername.explanation:Nom d'utilisateur n'a pas rempli
