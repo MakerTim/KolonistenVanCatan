@@ -33,9 +33,9 @@ public class ServerMap implements Map {
     public void createMap() {
 	List<TileType> typesTodo = TileFactory.getNeeded();
 	int cols = 9;
-	for (short col = 0; col < cols; col++) {
+	for (int col = 0; col < cols; col++) {
 	    int rows = cols - Math.abs(col - ((cols - 1) / 2)) - 1;
-	    for (short row = 0; row < rows; row++) {
+	    for (int row = 0; row < rows; row++) {
 		Coordinate position = new Coordinate(col - cols / 2, row - rows / 2);
 		if (row == 0 || row == rows - 1 || col == 0 || col == cols - 1) {
 		    tiles.add(new ServerTileSea(position));

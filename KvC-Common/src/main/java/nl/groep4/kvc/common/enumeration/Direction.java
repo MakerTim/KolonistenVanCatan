@@ -1,5 +1,6 @@
 package nl.groep4.kvc.common.enumeration;
 
+import nl.groep4.kvc.common.interfaces.Offsetable;
 import nl.groep4.kvc.common.map.Coordinate;
 
 /**
@@ -8,57 +9,52 @@ import nl.groep4.kvc.common.map.Coordinate;
  * @version 1.0
  * @author Tim
  */
-public enum Direction {
+public enum Direction implements Offsetable {
 
     NORTH, NORTH_EAST, SOUTH_EAST, SOUTH, SOUTH_WEST, NORTH_WEST;
 
+    @Override
     public Coordinate addTo(Coordinate original) {
-	return original.add(offset(original.getX() % 2 == 0));
+	return original.add(offset(original));
     }
 
+    @Override
     public Coordinate offset(Coordinate original) {
 	return offset(original.getX() % 2 == 0);
     }
 
+    @Override
     public Coordinate offset(boolean isEvenRow) {
-	Coordinate ret;
 	switch (this) {
 	default:
 	case NORTH:
-	    ret = new Coordinate(0, -1);
-	    break;
+	    return new Coordinate(0, -1);
 	case NORTH_EAST:
 	    if (isEvenRow) {
-		ret = new Coordinate(1, 0);
+		return new Coordinate(1, 0);
 	    } else {
-		ret = new Coordinate(1, -1);
+		return new Coordinate(1, -1);
 	    }
-	    break;
 	case NORTH_WEST:
 	    if (isEvenRow) {
-		ret = new Coordinate(-1, 0);
+		return new Coordinate(-1, 0);
 	    } else {
-		ret = new Coordinate(-1, -1);
+		return new Coordinate(-1, -1);
 	    }
-	    break;
 	case SOUTH:
-	    ret = new Coordinate(0, 1);
-	    break;
+	    return new Coordinate(0, 1);
 	case SOUTH_EAST:
 	    if (!isEvenRow) {
-		ret = new Coordinate(1, 0);
+		return new Coordinate(1, 0);
 	    } else {
-		ret = new Coordinate(1, 1);
+		return new Coordinate(1, 1);
 	    }
-	    break;
 	case SOUTH_WEST:
 	    if (!isEvenRow) {
-		ret = new Coordinate(1, 0);
+		return new Coordinate(1, 0);
 	    } else {
-		ret = new Coordinate(-1, 1);
+		return new Coordinate(-1, 1);
 	    }
-	    break;
 	}
-	return ret;
     }
 }
