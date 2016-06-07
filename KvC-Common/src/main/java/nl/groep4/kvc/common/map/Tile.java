@@ -30,6 +30,10 @@ public interface Tile extends Serializable, Locatable {
      */
     public Building getBuilding(Point point);
 
+    public void setupStreets(Street[] streets);
+
+    public void setupBuilding(Building[] buildings);
+
     public boolean isValidPlace(Map map, Point point);
 
     public default boolean isValidPlace(Map map, Direction direction) {

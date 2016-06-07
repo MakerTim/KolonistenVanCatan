@@ -35,7 +35,7 @@ public class ServerMap implements Map {
 	for (short col = 0; col < cols; col++) {
 	    int rows = cols - Math.abs(col - ((cols - 1) / 2)) - 1;
 	    for (short row = 0; row < rows; row++) {
-		Coordinate position = new Coordinate((short) (col - cols / 2), (short) (row - rows / 2));
+		Coordinate position = new Coordinate(col - cols / 2, row - rows / 2);
 		if (row == 0 || row == rows - 1 || col == 0 || col == cols - 1) {
 		    tiles.add(new ServerTileSea(position));
 		} else if (col == 0 && (row == -2 || row == 1)) {
@@ -44,10 +44,15 @@ public class ServerMap implements Map {
 		} else {
 		    TileType randomType = CollectionUtil.randomItem(typesTodo);
 		    typesTodo.remove(randomType);
-		    tiles.add(new ServerTileResource(position, randomType));
+		    tiles.add(new ServerTileResource(randomType, position));
 		}
 	    }
 	}
+	setupStreets();
+    }
+
+    private void setupStreets() {
+
     }
 
     @Override
@@ -65,37 +70,37 @@ public class ServerMap implements Map {
 	Coordinate findAt = tile.getPosition();
 	switch (direction) {
 	case NORTH:
-	    findAt = findAt.add((short) 0, (short) -1);
+	    findAt = findAt.add(0, -1);
 	    break;
 	case NORTH_EAST:
 	    if (findAt.getX() % 2 == 0) {
-		findAt = findAt.add((short) 1, (short) 0);
+		findAt = findAt.add(1, 0);
 	    } else {
-		findAt = findAt.add((short) 1, (short) -1);
+		findAt = findAt.add(1, -1);
 	    }
 	    break;
 	case NORTH_WEST:
 	    if (findAt.getX() % 2 == 0) {
-		findAt = findAt.add((short) -1, (short) 0);
+		findAt = findAt.add(-1, 0);
 	    } else {
-		findAt = findAt.add((short) -1, (short) -1);
+		findAt = findAt.add(-1, -1);
 	    }
 	    break;
 	case SOUTH:
-	    findAt = findAt.add((short) 0, (short) 1);
+	    findAt = findAt.add(0, 1);
 	    break;
 	case SOUTH_EAST:
 	    if (findAt.getX() % 2 == 1) {
-		findAt = findAt.add((short) 1, (short) 0);
+		findAt = findAt.add(1, 0);
 	    } else {
-		findAt = findAt.add((short) 1, (short) 1);
+		findAt = findAt.add(1, 1);
 	    }
 	    break;
 	case SOUTH_WEST:
 	    if (findAt.getX() % 2 == 1) {
-		findAt = findAt.add((short) 1, (short) 0);
+		findAt = findAt.add(1, 0);
 	    } else {
-		findAt = findAt.add((short) -1, (short) 1);
+		findAt = findAt.add(-1, 1);
 	    }
 	    break;
 	}
