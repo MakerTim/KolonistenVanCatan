@@ -11,6 +11,6 @@ import nl.groep4.kvc.common.interfaces.Ownable;
  * @author Tim
  */
 
-public interface Street extends Ownable, Serializable {
+public interface Street extends Ownable, Serializable, Locatable {
 
 }

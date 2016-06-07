@@ -12,15 +12,9 @@ import nl.groep4.kvc.common.enumeration.Point;
  * @author Tim
  */
 
-public interface Tile extends Serializable {
+public interface Tile extends Serializable, Locatable {
 
     public TileType getType();
-
-    /**
-     * 
-     * @return gets position of tile
-     */
-    public Coordinate getPosition();
 
     /**
      * 
