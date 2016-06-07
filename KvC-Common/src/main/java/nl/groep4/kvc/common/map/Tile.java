@@ -23,13 +23,6 @@ public interface Tile extends Serializable {
     /**
      * 
      * @param direction
-     * @return gets tile direction
-     */
-    public Tile getRelativeTile(Direction direction);
-
-    /**
-     * 
-     * @param direction
      * @return gets direction of street
      */
     public Street getStreet(Direction direction);
@@ -40,5 +33,9 @@ public interface Tile extends Serializable {
      * @return gets building point
      */
     public Building getBuilding(Point point);
+
+    public boolean isValidPlace(Map map, Point point);
+
+    public boolean isValidPlace(Map map, Direction direction);
 
 }
