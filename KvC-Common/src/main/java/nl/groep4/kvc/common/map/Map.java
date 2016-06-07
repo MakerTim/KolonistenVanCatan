@@ -25,12 +25,6 @@ public interface Map {
 
     /**
      * 
-     * @return gets current round
-     */
-    public int getRound();
-
-    /**
-     * 
      * @return gets a list of all buildings
      */
     public List<Building> getAllBuildings();
