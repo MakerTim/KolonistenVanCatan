@@ -57,6 +57,13 @@ kicked.started.title:The game has already commenced
 kicked.started.explanation:The game you are trying to join has already begun
 kicked.started.details:Unable to join game in progress
 
+#IngameNotices
+note.ingame.title:Game in progress
+note.ingame.explanation:You can no longer pick a different colour
+note.ingame.details:Switching colour is unavailable while game is running
+map.throwdice.clickToThrow:Throw the dice
+map.throwdice.throw:Throw
+
 #ExceptionManager
 error.connect.notfound.title:Server not found
 error.connect.notfound.explanation:This is not the server you are looking for

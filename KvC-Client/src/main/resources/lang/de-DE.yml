@@ -57,6 +57,13 @@ kicked.started.title:Das Spiel hat begonnen
 kicked.started.explanation:Das Spiel, das Sie zu verbinden versuchen, hat bereits begonnen
 kicked.started.details:Unfähig Spiel im Gange beitreten
 
+#IngameNotices
+note.ingame.title:Spile im Gange
+note.ingame.explanation:Sie können nicht mehr eine andere Farbe
+note.ingame.details:Schalt Farbe ist nicht verfügbar, während Spiel läuft
+map.throwdice.clickToThrow:Wirf den Würfel
+map.throwdice.throw:Werfen
+
 #ExceptionManager
 error.connect.notfound.title:Server nicht gefunden
 error.connect.notfound.explanation:Dies ist nicht der Server, den Sie suchen
