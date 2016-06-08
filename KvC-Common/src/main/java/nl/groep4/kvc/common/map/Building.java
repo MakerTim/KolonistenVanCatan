@@ -11,7 +11,9 @@ import nl.groep4.kvc.common.interfaces.Ownable;
  * @version 1.0
  * @author Tim
  */
-public interface Building extends Ownable, Serializable {
+public interface Building extends Ownable, Serializable, Locatable {
+
+    public Tile[] getConnectedTiles(Map map);
 
     /**
      * 

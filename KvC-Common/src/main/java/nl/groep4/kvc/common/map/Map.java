@@ -37,6 +37,8 @@ public interface Map {
      */
     public List<Street> getAllStreets();
 
+    public Street getStreet(Coordinate location);
+
     /**
      * 
      * @param direction

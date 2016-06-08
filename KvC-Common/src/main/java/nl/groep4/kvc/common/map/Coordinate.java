@@ -6,10 +6,10 @@ public final class Coordinate implements Serializable, Cloneable {
 
     private static final long serialVersionUID = 12345678987654321L;
 
-    private short x;
-    private short y;
+    private double x;
+    private double y;
 
-    public Coordinate(short x, short y) {
+    public Coordinate(double x, double y) {
 	this.x = x;
 	this.y = y;
     }
@@ -18,27 +18,51 @@ public final class Coordinate implements Serializable, Cloneable {
 	return String.format("%d;%d", x, y);
     }
 
-    public boolean isSameLocation(short x, short y) {
+    public boolean isSameLocation(double x, double y) {
 	return this.x == x && this.y == y;
     }
 
-    public Coordinate add(short x, short y) {
-	return new Coordinate((short) (this.x + x), (short) (this.y + y));
+    public Coordinate add(Coordinate added) {
+	return add(added.getX(), added.getY());
     }
 
-    public Coordinate multiply(short x, short y) {
-	return new Coordinate((short) (this.x * x), (short) (this.y * y));
+    public Coordinate multiply(Coordinate multiplied) {
+	return multiply(multiplied.getX(), multiplied.getY());
     }
 
-    public Coordinate subtract(short x, short y) {
-	return new Coordinate((short) (this.x / x), (short) (this.y / y));
+    public Coordinate subtract(Coordinate subtracted) {
+	return subtract(subtracted.getX(), subtracted.getY());
     }
 
-    public short getX() {
+    public Coordinate add(double added) {
+	return add(added, added);
+    }
+
+    public Coordinate multiply(double multiplied) {
+	return multiply(multiplied, multiplied);
+    }
+
+    public Coordinate subtract(double subtracted) {
+	return subtract(subtracted, subtracted);
+    }
+
+    public Coordinate add(double x, double y) {
+	return new Coordinate(this.x + x, this.y + y);
+    }
+
+    public Coordinate multiply(double x, double y) {
+	return new Coordinate(this.x * x, this.y * y);
+    }
+
+    public Coordinate subtract(double x, double y) {
+	return new Coordinate(this.x / x, this.y / y);
+    }
+
+    public double getX() {
 	return this.x;
     }
 
-    public short getY() {
+    public double getY() {
 	return this.y;
     }
 

@@ -60,6 +60,7 @@ public class MapTester {
     public void correctStreets() {
 	// Kijken of elke landtegel 6 straten heeft
 	// map.getAllStreets()
+	// Kijk of Tile x met als buur tile y dezelfde street delen
 	/** het geeft nog een fail, nog niet af */
     }
 
@@ -67,6 +68,7 @@ public class MapTester {
     public void correctBuilding() {
 	// Kijken of elke landtegel 6 buildings heeft
 	// map.getAllBuidlings()
+	// Kijk of Tile x met als buur tile y dezelfde building delen
 	/** het geeft nog een fail, nog niet af */
     }
 }

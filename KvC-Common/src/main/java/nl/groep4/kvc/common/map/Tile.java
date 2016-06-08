@@ -12,15 +12,9 @@ import nl.groep4.kvc.common.enumeration.Point;
  * @author Tim
  */
 
-public interface Tile extends Serializable {
+public interface Tile extends Serializable, Locatable {
 
     public TileType getType();
-
-    /**
-     * 
-     * @return gets position of tile
-     */
-    public Coordinate getPosition();
 
     /**
      * 
@@ -35,6 +29,10 @@ public interface Tile extends Serializable {
      * @return gets building point
      */
     public Building getBuilding(Point point);
+
+    public void setupStreets(Street[] streets);
+
+    public void setupBuilding(Building[] buildings);
 
     public boolean isValidPlace(Map map, Point point);
 
