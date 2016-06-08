@@ -22,7 +22,7 @@ public class ServerBuilding implements Building {
     private Coordinate location;
 
     /**
-     * Makes an empty building at the corners of the tiles
+     * Makes empty buildings at the corners of the tiles
      * 
      * @param location
      */
