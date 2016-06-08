@@ -6,6 +6,13 @@ import java.util.List;
 
 import nl.groep4.kvc.common.map.TileType;
 
+/**
+ * All the tiles in the game will be put in a List and can't be modified after
+ * this.
+ * 
+ * @author Unknown
+ *
+ */
 public class TileFactory {
 
     private static final List<TileType> LAND_TILES;
@@ -26,6 +33,12 @@ public class TileFactory {
 	LAND_TILES = Collections.unmodifiableList(landTiles);
     }
 
+    /**
+     * Gives an array with an unmodifiable List in it of all the tiles in the
+     * game
+     * 
+     * @return
+     */
     public static List<TileType> getNeeded() {
 	return new ArrayList<>(LAND_TILES);
     }
