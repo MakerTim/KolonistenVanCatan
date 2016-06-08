@@ -11,6 +11,7 @@ import nl.groep4.kvc.common.enumeration.Direction;
 import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Map;
 import nl.groep4.kvc.common.map.Tile;
+import nl.groep4.kvc.common.map.TileType;
 import nl.groep4.kvc.server.model.map.ServerMap;
 
 public class MapTester {
@@ -30,47 +31,47 @@ public class MapTester {
 	Tile foundTile;
 
 	foundTile = map.getRelativeTile(tile, Direction.NORTH);
-	assertEquals(foundTile.getPosition(), new Coordinate(0, -1));
+	assertEquals(new Coordinate(0, -1), foundTile.getPosition());
 	foundTile = map.getRelativeTile(tile, Direction.SOUTH);
-	assertEquals(foundTile.getPosition(), new Coordinate(0, 1));
+	assertEquals(new Coordinate(0, 1), foundTile.getPosition());
 	foundTile = map.getRelativeTile(tile, Direction.SOUTH_EAST);
-	assertEquals(foundTile.getPosition(), new Coordinate(1, 1));
+	assertEquals(new Coordinate(1, 1), foundTile.getPosition());
 	foundTile = map.getRelativeTile(tile, Direction.SOUTH_WEST);
-	assertEquals(foundTile.getPosition(), new Coordinate(-1, 1));
+	assertEquals(new Coordinate(-1, 1), foundTile.getPosition());
 	foundTile = map.getRelativeTile(tile, Direction.NORTH_EAST);
-	assertEquals(foundTile.getPosition(), new Coordinate(1, 0));
+	assertEquals(new Coordinate(1, 0), foundTile.getPosition());
 	foundTile = map.getRelativeTile(tile, Direction.NORTH_WEST);
-	assertEquals(foundTile.getPosition(), new Coordinate(-1, 0));
+	assertEquals(new Coordinate(-1, 0), foundTile.getPosition());
 
 	tile = map.getTile(new Coordinate(0, 2));
 
 	foundTile = map.getRelativeTile(tile, Direction.NORTH);
-	assertEquals(foundTile.getPosition(), new Coordinate(0, 1));
+	assertEquals(new Coordinate(0, 1), foundTile.getPosition());
 	foundTile = map.getRelativeTile(tile, Direction.SOUTH);
-	assertEquals(foundTile.getPosition(), new Coordinate(0, 3));
+	assertEquals(new Coordinate(0, 3), foundTile.getPosition());
 	foundTile = map.getRelativeTile(tile, Direction.SOUTH_EAST);
-	assertEquals(foundTile.getPosition(), new Coordinate(1, 3));
+	assertEquals(new Coordinate(1, 3), foundTile.getPosition());
 	foundTile = map.getRelativeTile(tile, Direction.SOUTH_WEST);
-	assertEquals(foundTile.getPosition(), new Coordinate(-1, 3));
+	assertEquals(new Coordinate(-1, 3), foundTile.getPosition());
 	foundTile = map.getRelativeTile(tile, Direction.NORTH_EAST);
-	assertEquals(foundTile.getPosition(), new Coordinate(1, 2));
+	assertEquals(new Coordinate(1, 2), foundTile.getPosition());
 	foundTile = map.getRelativeTile(tile, Direction.NORTH_WEST);
-	assertEquals(foundTile.getPosition(), new Coordinate(-1, 2));
+	assertEquals(new Coordinate(-1, 2) foundTile.getPosition());
 
 	tile = map.getTile(new Coordinate(-2, -1));
 
 	foundTile = map.getRelativeTile(tile, Direction.NORTH);
-	assertEquals(foundTile.getPosition(), new Coordinate(-2, -2));
+	assertEquals(new Coordinate(-2, -2), foundTile.getPosition());
 	foundTile = map.getRelativeTile(tile, Direction.SOUTH);
-	assertEquals(foundTile.getPosition(), new Coordinate(-2, 0));
+	assertEquals(new Coordinate(-2, 0), foundTile.getPosition());
 	foundTile = map.getRelativeTile(tile, Direction.SOUTH_EAST);
-	assertEquals(foundTile.getPosition(), new Coordinate(-1, 0));
+	assertEquals(new Coordinate(-1, 0), foundTile.getPosition());
 	foundTile = map.getRelativeTile(tile, Direction.SOUTH_WEST);
-	assertEquals(foundTile.getPosition(), new Coordinate(-3, 0));
+	assertEquals(new Coordinate(-3, 0), foundTile.getPosition());
 	foundTile = map.getRelativeTile(tile, Direction.NORTH_EAST);
-	assertEquals(foundTile.getPosition(), new Coordinate(-1, -1));
+	assertEquals(new Coordinate(-1, -1), foundTile.getPosition());
 	foundTile = map.getRelativeTile(tile, Direction.NORTH_WEST);
-	assertEquals(foundTile.getPosition(), new Coordinate(-3, -1));
+	assertEquals(new Coordinate(-3, -1), foundTile.getPosition());
 
 	tile = map.getTile(new Coordinate(0, -4));
 
@@ -78,11 +79,11 @@ public class MapTester {
 	foundTile = map.getRelativeTile(tile, Direction.NORTH);
 	assertNull(null);
 	foundTile = map.getRelativeTile(tile, Direction.SOUTH);
-	assertEquals(foundTile.getPosition(), new Coordinate(0, -3));
+	assertEquals(new Coordinate(0, -3), foundTile.getPosition());
 	foundTile = map.getRelativeTile(tile, Direction.SOUTH_EAST);
-	assertEquals(foundTile.getPosition(), new Coordinate(1, -3));
+	assertEquals(new Coordinate(1, -3), foundTile.getPosition());
 	foundTile = map.getRelativeTile(tile, Direction.SOUTH_WEST);
-	assertEquals(foundTile.getPosition(), new Coordinate(-1, -3));
+	assertEquals(new Coordinate(-1, -3), foundTile.getPosition());
 	foundTile = map.getRelativeTile(tile, Direction.NORTH_EAST);
 	assertNull(null);
 	foundTile = map.getRelativeTile(tile, Direction.NORTH_WEST);
@@ -95,7 +96,8 @@ public class MapTester {
     @Test
     public void testTilesCreated() {
 
-	// Kijken of daadwerkelijk een tegel naast de ander zit
+	Tile tile = map.getTile(new Coordinate(0, 0));
+
 	// map.getTiles()
 	// kijken of de desert op goede plek staat
 	// kijken of er 6forest,6...,6... 5mesa, 5mountain
@@ -104,6 +106,7 @@ public class MapTester {
 
     @Test
     public void correctStreets() {
+
 	// Kijken of elke landtegel 6 straten heeft
 	// map.getAllStreets()
 	// Kijk of Tile x met als buur tile y dezelfde street delen
