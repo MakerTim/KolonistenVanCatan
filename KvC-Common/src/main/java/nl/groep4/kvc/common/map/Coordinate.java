@@ -68,7 +68,7 @@ public final class Coordinate implements Serializable, Cloneable {
 
     @Override
     public String toString() {
-	return getKey();
+	return x + ";" + y;
     }
 
     @Override

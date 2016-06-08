@@ -32,6 +32,10 @@ public interface Map {
      */
     public List<Building> getAllBuildings();
 
+    public Building getBuilding(Coordinate location);
+
+    public Building getBuilding(Tile tile, Point point);
+
     /**
      * 
      * @return gets a list of all streets
@@ -39,6 +43,8 @@ public interface Map {
     public List<Street> getAllStreets();
 
     public Street getStreet(Coordinate location);
+
+    public Street getStreet(Tile tile, Direction direction);
 
     /**
      * 
