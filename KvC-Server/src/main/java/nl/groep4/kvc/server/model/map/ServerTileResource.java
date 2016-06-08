@@ -35,4 +35,9 @@ public class ServerTileResource extends ServerTile implements TileResource {
     public Resource getResource() {
 	return Resource.values()[getType().ordinal()];
     }
+
+    @Override
+    public String toString() {
+	return "Resource " + getResource().name() + " @" + getPosition().toString();
+    }
 }

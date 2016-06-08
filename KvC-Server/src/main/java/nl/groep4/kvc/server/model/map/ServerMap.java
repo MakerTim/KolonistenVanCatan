@@ -2,7 +2,6 @@ package nl.groep4.kvc.server.model.map;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import nl.groep4.kvc.common.enumeration.Direction;
 import nl.groep4.kvc.common.enumeration.Point;
@@ -87,12 +86,12 @@ public class ServerMap implements Map {
     }
 
     private void setupBuildings() {
-	/*for (Tile tile : getTiles()) {
+	for (Tile tile : getTiles()) {
 	    Building[] buildings = new Building[Point.values().length];
 	    for (int i = 0; i < buildings.length; i++) {
 		Point point = Point.values()[i];
 		Building building;
-		if (getAdjacentTile(tile, point).length == 0) {
+		if (getAdjacentTile(point.addTo(tile.getPosition())).length == 0) {
 		    Coordinate location = tile.getPosition().add(point.offset(tile.getPosition()).subtract(2));
 		    building = new ServerBuilding(location);
 		    this.buildings.add(building);
@@ -100,7 +99,7 @@ public class ServerMap implements Map {
 
 	    }
 	    tile.setupBuilding(buildings);
-	}*/
+	}
     }
 
     @Override
@@ -155,13 +154,13 @@ public class ServerMap implements Map {
     }
 
     @Override
-    public Tile[] getAdjacentTile(Coordinate point) {
+    public Tile[] getAdjacentTile(Coordinate location) {
 	List<Tile> adjacent = new ArrayList<>();
-	//Coordinate location = tile.getBuilding(point).getPosition();
-	for (Tile tile : getTiles()) {
-
+	for (Point point : Point.values()) {
+	    Coordinate tileCoordinate = point.addTo(location);
+	    getTiles().stream().filter(tile -> tile.getPosition().equals(tileCoordinate))
+		    .forEach(tile -> adjacent.add(tile));
 	}
-
 	return adjacent.toArray(new Tile[adjacent.size()]);
     }
 }

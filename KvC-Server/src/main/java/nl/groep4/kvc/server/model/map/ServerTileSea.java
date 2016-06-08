@@ -22,4 +22,9 @@ public class ServerTileSea extends ServerTile implements TileSea {
     public ServerTileSea(Coordinate position) {
 	super(TileType.WATER, position);
     }
+
+    @Override
+    public String toString() {
+	return "Seatile @" + getPosition().toString();
+    }
 }
