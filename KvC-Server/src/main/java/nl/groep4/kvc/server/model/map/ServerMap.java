@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nl.groep4.kvc.common.enumeration.Direction;
+import nl.groep4.kvc.common.enumeration.Point;
 import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Map;
@@ -50,6 +51,7 @@ public class ServerMap implements Map {
 	    }
 	}
 	setupStreets();
+	setupBuildings();
     }
 
     private void setupStreets() {
@@ -58,8 +60,8 @@ public class ServerMap implements Map {
 	    for (int i = 0; i < Direction.values().length; i++) {
 		Direction direction = Direction.values()[i];
 		Tile relative = getRelativeTile(tile, direction);
-		Coordinate location = tile.getPosition().add(direction.offset(tile.getPosition()).subtract(2));
 		if (relative instanceof TileLand) {
+		    Coordinate location = tile.getPosition().add(direction.offset(tile.getPosition()).subtract(2));
 		    Street street = getStreet(location);
 		    if (street == null) {
 			street = new ServerStreet(location);
@@ -69,6 +71,25 @@ public class ServerMap implements Map {
 		}
 	    }
 	}
+    }
+
+    private void setupBuildings() {
+	/*for (Tile tile : tiles) {
+	    Building[] buildings = new Building[6];
+	    for (int i = 0; i < Point.values().length; i++) {
+		Point point = Point.values()[i];
+		Tile relative = getRelativeTile(tile, direction);
+		Coordinate location = tile.getPosition().add(direction.offset(tile.getPosition()).subtract(2));
+		if (relative instanceof TileLand) {
+		    Street street = getStreet(location);
+		    if (street == null) {
+			street = new ServerStreet(location);
+		    }
+		    buildings[i] = street;
+		    this.streets.add(street);
+		}
+	    }
+	}*/
     }
 
     @Override
@@ -98,8 +119,13 @@ public class ServerMap implements Map {
     }
 
     @Override
-    public Tile getTile(short x, short y) {
+    public Tile getTile(int x, int y) {
 	return getTile(new Coordinate(x, y));
+    }
+
+    @Override
+    public Tile[] getAdjacentTile(Tile tile, Direction direction) {
+	return null;
     }
 
 }
