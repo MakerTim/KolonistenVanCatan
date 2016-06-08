@@ -22,7 +22,9 @@ public class ServerMap implements Map {
     private final List<Street> streets = new ArrayList<>();
 
     public static void main(String[] args) {
-	new ServerMap().createMap();
+	Map map = new ServerMap();
+	map.createMap();
+	map.getAdjacentTile(map.getTile(0, 0), Point.EAST);
     }
 
     @Override
@@ -39,14 +41,14 @@ public class ServerMap implements Map {
 	    for (int row = 0; row < rows; row++) {
 		Coordinate position = new Coordinate(col - cols / 2, row - rows / 2);
 		if (row == 0 || row == rows - 1 || col == 0 || col == cols - 1) {
-		    tiles.add(new ServerTileSea(position));
-		} else if (col == 0 && (row == -2 || row == 1)) {
+		    getTiles().add(new ServerTileSea(position));
+		} else if (row == 0 && (col == -2 || col == 1)) {
 		    typesTodo.remove(TileType.DESERT);
-		    tiles.add(new ServerTileDesert(position));
+		    getTiles().add(new ServerTileDesert(position));
 		} else {
 		    TileType randomType = CollectionUtil.randomItem(typesTodo);
 		    typesTodo.remove(randomType);
-		    tiles.add(new ServerTileResource(randomType, position));
+		    getTiles().add(new ServerTileResource(randomType, position));
 		}
 	    }
 	}
@@ -55,9 +57,9 @@ public class ServerMap implements Map {
     }
 
     private void setupStreets() {
-	for (Tile tile : tiles) {
-	    Street[] streets = new Street[6];
-	    for (int i = 0; i < Direction.values().length; i++) {
+	for (Tile tile : getTiles()) {
+	    Street[] streets = new Street[Direction.values().length];
+	    for (int i = 0; i < streets.length; i++) {
 		Direction direction = Direction.values()[i];
 		Tile relative = getRelativeTile(tile, direction);
 		if (relative instanceof TileLand) {
@@ -74,22 +76,24 @@ public class ServerMap implements Map {
     }
 
     private void setupBuildings() {
-	/*for (Tile tile : tiles) {
-	    Building[] buildings = new Building[6];
-	    for (int i = 0; i < Point.values().length; i++) {
-		Point point = Point.values()[i];
-		Tile relative = getRelativeTile(tile, direction);
-		Coordinate location = tile.getPosition().add(direction.offset(tile.getPosition()).subtract(2));
-		if (relative instanceof TileLand) {
-		    Street street = getStreet(location);
-		    if (street == null) {
-			street = new ServerStreet(location);
-		    }
-		    buildings[i] = street;
-		    this.streets.add(street);
-		}
-	    }
-	}*/
+	// for (Tile tile : getTiles()) {
+	// Building[] buildings = new Building[6];
+	// for (int i = 0; i < Point.values().length; i++) {
+	// Point point = Point.values()[i];
+	// Tile[] pointJoiners = getRelativeTile(tile, direction);
+	// Coordinate location =
+	// tile.getPosition().add(direction.offset(tile.getPosition()).subtract(2));
+	// if (relative instanceof TileLand) {
+	// Street street = getStreet(location);
+	// if (street == null) {
+	// street = new ServerStreet(location);
+	// }
+	// buildings[i] = street;
+	// this.streets.add(street);
+	// }
+	// }
+	// }
+
     }
 
     @Override
@@ -109,13 +113,13 @@ public class ServerMap implements Map {
 
     @Override
     public Tile getRelativeTile(Tile tile, Direction direction) {
-	return tiles.stream().filter(aTile -> aTile.getPosition().equals(direction.addTo(tile.getPosition()))).findAny()
-		.orElse(null);
+	return getTiles().stream().filter(aTile -> aTile.getPosition().equals(direction.addTo(tile.getPosition())))
+		.findAny().orElse(null);
     }
 
     @Override
     public Tile getTile(Coordinate coord) {
-	return tiles.stream().filter(aTile -> aTile.getPosition().equals(coord)).findAny().orElse(null);
+	return getTiles().stream().filter(aTile -> aTile.getPosition().equals(coord)).findAny().orElse(null);
     }
 
     @Override
@@ -124,8 +128,17 @@ public class ServerMap implements Map {
     }
 
     @Override
-    public Tile[] getAdjacentTile(Tile tile, Direction direction) {
-	return null;
+    public Tile[] getAdjacentTile(Tile tile, Point point) {
+	Tile[] ret = new Tile[3];
+	for (Tile aTile : getTiles()) {
+	    for (Point aPoint : Point.values()) {
+		// tile.
+	    }
+	}
+
+	// tiles.stream().filter(aTile ->
+	// aTile.getPosition().equals(coord)).findAny().orElse(null);
+	return ret;
     }
 
 }

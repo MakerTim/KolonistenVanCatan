@@ -3,6 +3,7 @@ package nl.groep4.kvc.common.map;
 import java.util.List;
 
 import nl.groep4.kvc.common.enumeration.Direction;
+import nl.groep4.kvc.common.enumeration.Point;
 
 /**
  * Get all tiles to generate map. Determine what round and place all buildings
@@ -46,7 +47,7 @@ public interface Map {
      */
     public Tile getRelativeTile(Tile tile, Direction direction);
 
-    public Tile[] getAdjacentTile(Tile tile, Direction direction);
+    public Tile[] getAdjacentTile(Tile tile, Point point);
 
     public Tile getTile(Coordinate coord);
 
