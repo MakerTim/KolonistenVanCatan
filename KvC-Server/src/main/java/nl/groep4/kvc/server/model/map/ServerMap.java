@@ -25,7 +25,7 @@ public class ServerMap implements Map {
     public static void main(String[] args) {
 	Map map = new ServerMap();
 	map.createMap();
-	// map.getAdjacentTile(map.getTile(0, 0), Point.EAST);
+	map.getAdjacentTile(new Coordinate(0.5, 1));
     }
 
     @Override
@@ -55,7 +55,7 @@ public class ServerMap implements Map {
 	    }
 	}
 	setupStreets();
-	// setupBuildings();
+	setupBuildings();
     }
 
     private void setupStreets() {
@@ -64,7 +64,7 @@ public class ServerMap implements Map {
 	    for (int i = 0; i < streets.length; i++) {
 		Direction direction = Direction.values()[i];
 		Tile relative = getRelativeTile(tile, direction);
-		if (relative instanceof TileLand) {
+		if (tile instanceof TileLand || relative instanceof TileLand) {
 		    Coordinate location = tile.getPosition().add(direction.offset(tile.getPosition()).subtract(2));
 		    Street street = getStreet(location);
 		    if (street == null) {
@@ -79,7 +79,7 @@ public class ServerMap implements Map {
     }
 
     private void setupBuildings() {
-	for (Tile tile : getTiles()) {
+	/*for (Tile tile : getTiles()) {
 	    Building[] buildings = new Building[Point.values().length];
 	    for (int i = 0; i < buildings.length; i++) {
 		Point point = Point.values()[i];
@@ -92,7 +92,7 @@ public class ServerMap implements Map {
 
 	    }
 	    tile.setupBuilding(buildings);
-	}
+	}*/
     }
 
     @Override
@@ -142,16 +142,18 @@ public class ServerMap implements Map {
     }
 
     @Override
-    public Tile[] getAdjacentTile(Tile tile, Point point) {
-	Coordinate location = tile.getBuilding(point).getPosition();
-	List<Tile> adjacent = getTiles().stream().filter(aTile -> {
-	    for (Point aPoint : Point.values()) {
-		if (tile.getBuilding(aPoint).getPosition().equals(location)) {
-		    return true;
-		}
-	    }
-	    return false;
-	}).collect(Collectors.toList());
+    public Tile[] getAdjacentTile(Building building) {
+	return getAdjacentTile(building.getPosition());
+    }
+
+    @Override
+    public Tile[] getAdjacentTile(Coordinate point) {
+	List<Tile> adjacent = new ArrayList<>();
+	//Coordinate location = tile.getBuilding(point).getPosition();
+	for (Tile tile : getTiles()) {
+
+	}
+
 	return adjacent.toArray(new Tile[adjacent.size()]);
     }
 }
