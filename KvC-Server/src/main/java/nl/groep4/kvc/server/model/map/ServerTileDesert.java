@@ -4,10 +4,21 @@ import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.TileLand;
 import nl.groep4.kvc.common.map.TileType;
 
+/**
+ * Instance of Tile
+ * 
+ * @author Tim
+ * @version 1.0
+ */
 public class ServerTileDesert extends ServerTile implements TileLand {
 
     private static final long serialVersionUID = 19960811L;
 
+    /**
+     * Makes an empty tile for desert
+     * 
+     * @param position
+     */
     public ServerTileDesert(Coordinate position) {
 	super(TileType.DESERT, position);
     }

@@ -9,6 +9,12 @@ import nl.groep4.kvc.common.map.Street;
 import nl.groep4.kvc.common.map.Tile;
 import nl.groep4.kvc.common.map.TileType;
 
+/**
+ * Instance of Tile
+ * 
+ * @author Tim
+ * @version 1.0
+ */
 public abstract class ServerTile implements Tile {
 
     private static final long serialVersionUID = 1096369L;
@@ -18,6 +24,12 @@ public abstract class ServerTile implements Tile {
     private Building[] buildings;
     private TileType type;
 
+    /**
+     * Makes an empty tile
+     * 
+     * @param type
+     * @param position
+     */
     public ServerTile(TileType type, Coordinate position) {
 	this.type = type;
 	this.position = position;
