@@ -9,6 +9,12 @@ import java.rmi.server.UnicastRemoteObject;
 import nl.groep4.kvc.common.KvCStatics;
 import nl.groep4.kvc.server.model.ServerLobby;
 
+/**
+ * RMI Server class
+ * 
+ * @author Tim
+ * @version 1.0
+ */
 public class RmiServer {
 
     /**
