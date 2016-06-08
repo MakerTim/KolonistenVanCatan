@@ -49,4 +49,8 @@ public class ServerBuilding implements Building {
 	return location;
     }
 
+    @Override
+    public String toString() {
+	return "Building @" + getPosition().toString() + " owned by " + getOwner();
+    }
 }

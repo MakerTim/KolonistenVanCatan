@@ -55,7 +55,7 @@ public interface Map {
 
     public Tile[] getAdjacentTile(Building building);
 
-    public Tile[] getAdjacentTile(Coordinate point);
+    public Tile[] getAdjacentTile(Coordinate location);
 
     public Tile getTile(Coordinate coord);
 
