@@ -25,7 +25,7 @@ public class ServerMap implements Map {
     public static void main(String[] args) {
 	Map map = new ServerMap();
 	map.createMap();
-	map.getAdjacentTile(map.getTile(0, 0), Point.EAST);
+	// map.getAdjacentTile(map.getTile(0, 0), Point.EAST);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class ServerMap implements Map {
 	    }
 	}
 	setupStreets();
-	setupBuildings();
+	// setupBuildings();
     }
 
     private void setupStreets() {
