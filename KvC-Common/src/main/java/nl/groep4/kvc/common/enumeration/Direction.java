@@ -51,7 +51,7 @@ public enum Direction implements Offsetable {
 	    }
 	case SOUTH_WEST:
 	    if (!isEvenRow) {
-		return new Coordinate(1, 0);
+		return new Coordinate(-1, 0);
 	    } else {
 		return new Coordinate(-1, 1);
 	    }
