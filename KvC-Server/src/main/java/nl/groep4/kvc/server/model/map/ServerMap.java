@@ -149,7 +149,9 @@ public class ServerMap implements Map {
     public Tile[] getAdjacentTile(Coordinate location) {
 	List<Tile> adjacent = new ArrayList<>();
 	for (Point point : Point.values()) {
-	    System.out.println(point.name());
+	    Coordinate tileCoordinate = point.addTo(location);
+	    getTiles().stream().filter(tile -> tile.getPosition().equals(tileCoordinate))
+		    .forEach(tile -> adjacent.add(tile));
 	}
 	return adjacent.toArray(new Tile[adjacent.size()]);
     }
