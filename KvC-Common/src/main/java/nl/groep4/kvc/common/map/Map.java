@@ -53,7 +53,9 @@ public interface Map {
      */
     public Tile getRelativeTile(Tile tile, Direction direction);
 
-    public Tile[] getAdjacentTile(Tile tile, Point point);
+    public Tile[] getAdjacentTile(Building building);
+
+    public Tile[] getAdjacentTile(Coordinate point);
 
     public Tile getTile(Coordinate coord);
 
