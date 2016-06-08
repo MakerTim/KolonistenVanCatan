@@ -2,6 +2,7 @@ package nl.groep4.kvc.server.model.map;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import nl.groep4.kvc.common.enumeration.Direction;
 import nl.groep4.kvc.common.enumeration.Point;
@@ -32,7 +33,7 @@ public class ServerMap implements Map {
     public static void main(String[] args) {
 	Map map = new ServerMap();
 	map.createMap();
-	map.getAdjacentTile(map.getTile(0, 0), Point.EAST);
+	// map.getAdjacentTile(map.getTile(0, 0), Point.EAST);
     }
 
     @Override
@@ -43,6 +44,8 @@ public class ServerMap implements Map {
     @Override
     public void createMap() {
 	List<TileType> typesTodo = TileFactory.getNeeded();
+	typesTodo.remove(TileType.DESERT);
+	typesTodo.remove(TileType.DESERT);
 	int cols = 9;
 	for (int col = 0; col < cols; col++) {
 	    int rows = cols - Math.abs(col - ((cols - 1) / 2)) - 1;
@@ -50,8 +53,7 @@ public class ServerMap implements Map {
 		Coordinate position = new Coordinate(col - cols / 2, row - rows / 2);
 		if (row == 0 || row == rows - 1 || col == 0 || col == cols - 1) {
 		    getTiles().add(new ServerTileSea(position));
-		} else if (row == 0 && (col == -2 || col == 1)) {
-		    typesTodo.remove(TileType.DESERT);
+		} else if (position.getX() == 0 && (position.getY() == -2 || position.getY() == 1)) {
 		    getTiles().add(new ServerTileDesert(position));
 		} else {
 		    TileType randomType = CollectionUtil.randomItem(typesTodo);
@@ -61,7 +63,7 @@ public class ServerMap implements Map {
 	    }
 	}
 	setupStreets();
-	setupBuildings();
+	// setupBuildings();
     }
 
     private void setupStreets() {
@@ -80,28 +82,25 @@ public class ServerMap implements Map {
 		    this.streets.add(street);
 		}
 	    }
+	    tile.setupStreets(streets);
 	}
     }
 
     private void setupBuildings() {
-	// for (Tile tile : getTiles()) {
-	// Building[] buildings = new Building[6];
-	// for (int i = 0; i < Point.values().length; i++) {
-	// Point point = Point.values()[i];
-	// Tile[] pointJoiners = getRelativeTile(tile, direction);
-	// Coordinate location =
-	// tile.getPosition().add(direction.offset(tile.getPosition()).subtract(2));
-	// if (relative instanceof TileLand) {
-	// Street street = getStreet(location);
-	// if (street == null) {
-	// street = new ServerStreet(location);
-	// }
-	// buildings[i] = street;
-	// this.streets.add(street);
-	// }
-	// }
-	// }
+	for (Tile tile : getTiles()) {
+	    Building[] buildings = new Building[Point.values().length];
+	    for (int i = 0; i < buildings.length; i++) {
+		Point point = Point.values()[i];
+		Building building;
+		if (getAdjacentTile(tile, point).length == 0) {
+		    Coordinate location = tile.getPosition().add(point.offset(tile.getPosition()).subtract(2));
+		    building = new ServerBuilding(location);
+		    this.buildings.add(building);
+		}
 
+	    }
+	    tile.setupBuilding(buildings);
+	}
     }
 
     @Override
@@ -110,8 +109,23 @@ public class ServerMap implements Map {
     }
 
     @Override
+    public Building getBuilding(Tile tile, Point point) {
+	return tile.getBuilding(point);
+    }
+
+    @Override
+    public Building getBuilding(Coordinate location) {
+	return buildings.stream().filter(building -> building.getPosition().equals(location)).findAny().orElse(null);
+    }
+
+    @Override
     public List<Street> getAllStreets() {
 	return streets;
+    }
+
+    @Override
+    public Street getStreet(Tile tile, Direction direction) {
+	return tile.getStreet(direction);
     }
 
     @Override
@@ -137,16 +151,15 @@ public class ServerMap implements Map {
 
     @Override
     public Tile[] getAdjacentTile(Tile tile, Point point) {
-	Tile[] ret = new Tile[3];
-	for (Tile aTile : getTiles()) {
+	Coordinate location = tile.getBuilding(point).getPosition();
+	List<Tile> adjacent = getTiles().stream().filter(aTile -> {
 	    for (Point aPoint : Point.values()) {
-		// tile.
+		if (tile.getBuilding(aPoint).getPosition().equals(location)) {
+		    return true;
+		}
 	    }
-	}
-
-	// tiles.stream().filter(aTile ->
-	// aTile.getPosition().equals(coord)).findAny().orElse(null);
-	return ret;
+	    return false;
+	}).collect(Collectors.toList());
+	return adjacent.toArray(new Tile[adjacent.size()]);
     }
-
 }
