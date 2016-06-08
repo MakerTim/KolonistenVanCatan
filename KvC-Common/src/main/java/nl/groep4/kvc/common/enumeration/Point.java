@@ -15,12 +15,12 @@ public enum Point implements Offsetable {
 
     @Override
     public Coordinate addTo(Coordinate original) {
-	return original.add(offset(original.getX() % 2 == 0));
+	return original.add(offset(original));
     }
 
     @Override
     public Coordinate offset(Coordinate original) {
-	return offset(original.getX() % 2 == 0);
+	return offset((int) original.getX() % 2 == 0);
     }
 
     @Override
@@ -28,46 +28,22 @@ public enum Point implements Offsetable {
 	switch (this) {
 	default:
 	case EAST:
-	    if (isEvenRow) {
-		return new Coordinate(0.5, 0);
-	    } else {
-		return new Coordinate(0.5, -0.5);
-	    }
+	    return new Coordinate(0.5, 0 + (isEvenRow ? 0 : -0.5));
 	case NORTH_EAST:
-	    if (isEvenRow) {
-		return new Coordinate(0.5, -0.5);
-	    } else {
-		return new Coordinate(0.5, -1);
-	    }
+	    return new Coordinate(0.5, -0.5 + (isEvenRow ? 0 : -0.5));
 	case NORTH_WEST:
-	    if (isEvenRow) {
-		return new Coordinate(-0.5, -0.5);
-	    } else {
-		return new Coordinate(-0.5, -1);
-	    }
+	    return new Coordinate(-0.5, -0.5 + (isEvenRow ? 0 : -0.5));
 	case SOUTH_EAST:
-	    if (isEvenRow) {
-		return new Coordinate(-0.5, 0.5);
-	    } else {
-		return new Coordinate(-0.5, 0);
-	    }
+	    return new Coordinate(0.5, 0.5 + (isEvenRow ? 0 : -0.5));
 	case SOUTH_WEST:
-	    if (isEvenRow) {
-		return new Coordinate(-0.5, 0.5);
-	    } else {
-		return new Coordinate(-0.5, 0);
-	    }
+	    return new Coordinate(-0.5, 0.5 + (isEvenRow ? 0 : -0.5));
 	case WEST:
-	    if (isEvenRow) {
-		return new Coordinate(-0.5, 0);
-	    } else {
-		return new Coordinate(-0.5, -0.5);
-	    }
+	    return new Coordinate(-0.5, 0 + (isEvenRow ? 0 : -0.5));
 	}
     }
 
     public Coordinate realOffset(Coordinate original) {
-	return realOffset(original.getX() % 2 == 0);
+	return realOffset((int) original.getX() % 2 == 0);
     }
 
     public Coordinate realOffset(boolean isEvenRow) {
