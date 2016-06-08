@@ -18,7 +18,7 @@ import nl.groep4.kvc.server.factory.TileFactory;
 /**
  * 
  * @author Tim
- *
+ * @version 1.0
  */
 public class ServerMap implements Map {
 
@@ -26,6 +26,9 @@ public class ServerMap implements Map {
     private final List<Building> buildings = new ArrayList<>();
     private final List<Street> streets = new ArrayList<>();
 
+    /**
+     * The main, where the map is created.
+     */
     public static void main(String[] args) {
 	Map map = new ServerMap();
 	map.createMap();

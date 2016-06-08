@@ -11,7 +11,7 @@ import nl.groep4.kvc.common.map.Tile;
  * instance of Building
  * 
  * @author Tim
- *
+ * @version 1.0
  */
 public class ServerBuilding implements Building {
 
