@@ -11,7 +11,8 @@ import nl.groep4.kvc.common.map.TileType;
  * this.
  * 
  * @author Unknown
- *
+ * 
+ * @version 1.0
  */
 public class TileFactory {
 

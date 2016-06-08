@@ -7,6 +7,12 @@ import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Map;
 import nl.groep4.kvc.common.map.Tile;
 
+/**
+ * instance of Building
+ * 
+ * @author Tim
+ *
+ */
 public class ServerBuilding implements Building {
 
     private static final long serialVersionUID = -1934578502691308270L;
@@ -15,6 +21,11 @@ public class ServerBuilding implements Building {
     private Player owner;
     private Coordinate location;
 
+    /**
+     * Makes an empty building at the corners of the tiles
+     * 
+     * @param location
+     */
     public ServerBuilding(Coordinate location) {
 	this.location = location;
     }
