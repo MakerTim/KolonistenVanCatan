@@ -59,4 +59,9 @@ public abstract class ServerTile implements Tile {
 	return false;
     }
 
+    @Override
+    public String toString() {
+	return "Tile " + getClass().getSimpleName() + " @" + getPosition().toString();
+    }
+
 }

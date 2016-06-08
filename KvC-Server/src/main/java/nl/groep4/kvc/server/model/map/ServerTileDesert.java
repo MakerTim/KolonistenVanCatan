@@ -17,4 +17,9 @@ public class ServerTileDesert extends ServerTile implements TileLand {
 	// TODO TileLand#hasrover
 	return false;
     }
+
+    @Override
+    public String toString() {
+	return "Desert @" + getPosition().toString();
+    }
 }
