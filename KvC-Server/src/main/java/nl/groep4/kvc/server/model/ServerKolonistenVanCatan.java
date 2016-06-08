@@ -4,6 +4,12 @@ import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.map.Map;
 import nl.groep4.kvc.server.model.map.ServerMap;
 
+/**
+ * Instance of KolonistenVanCatan
+ * 
+ * @author Tim
+ * @version 1.0
+ */
 public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 
     private ServerMap map;
@@ -14,6 +20,9 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	return map;
     }
 
+    /**
+     * Creates the map
+     */
     public void createMap() {
 	map = new ServerMap();
     }

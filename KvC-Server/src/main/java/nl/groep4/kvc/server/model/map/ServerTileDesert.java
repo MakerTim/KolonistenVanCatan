@@ -15,7 +15,7 @@ public class ServerTileDesert extends ServerTile implements TileLand {
     private static final long serialVersionUID = 19960811L;
 
     /**
-     * Makes an empty tile for desert
+     * Makes an empty desert tile
      * 
      * @param position
      */
