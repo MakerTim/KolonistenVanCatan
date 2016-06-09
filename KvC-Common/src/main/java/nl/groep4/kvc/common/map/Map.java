@@ -44,9 +44,9 @@ public interface Map {
     /**
      * 
      * @param tile
-     *            Refers to {@link Tile}
+     *            Refers to {@link Tile} for tile location
      * @param point
-     *            Refers to {@link Point}
+     *            Refers to {@link Point} for available placement points
      * @return Gets building locations on the map
      */
     public Building getBuilding(Tile tile, Point point);
@@ -60,7 +60,7 @@ public interface Map {
     /**
      * 
      * @param location
-     *            Refers to {@link Coordinate}
+     *            Refers to {@link Coordinate} for street coordinates
      * @return Gets street location
      */
     public Street getStreet(Coordinate location);
@@ -68,9 +68,10 @@ public interface Map {
     /**
      * 
      * @param tile
-     *            Refers to {@link Tile}
+     *            Refers to {@link Tile} to define street location
      * @param direction
-     *            Refers to {@link Direction}
+     *            Refers to {@link Direction} to retrieve street direction on
+     *            map
      * @return Gets street direction relative to map
      */
     public Street getStreet(Tile tile, Direction direction);
@@ -78,7 +79,7 @@ public interface Map {
     /**
      * 
      * @param direction
-     *            Refers to {@link Direction}
+     *            Refers to {@link Direction} for tile orientation
      * @return Gets tile being interacted with
      */
     public Tile getRelativeTile(Tile tile, Direction direction);
@@ -86,15 +87,16 @@ public interface Map {
     /**
      * 
      * @param building
-     *            Refers to {@link Building}
-     * @return Building and building type on adjacant tile
+     *            Refers to {@link Building} for buildings on adjacent tiles
+     * @return Building and building type on adjacent tile
      */
     public Tile[] getAdjacentTile(Building building);
 
     /**
      * 
      * @param location
-     *            Refers to {@link ServerMap}
+     *            Refers to {@link ServerMap} for building location on adjacent
+     *            tiles
      * @return Gets location of building on adjacent tile
      */
     public Tile[] getAdjacentTile(Coordinate location);
@@ -102,7 +104,7 @@ public interface Map {
     /**
      * 
      * @param coord
-     *            Refers to {@link ServerMap}
+     *            Refers to {@link ServerMap} for tile position on map
      * @return Gets Tile coordinates
      */
     public Tile getTile(Coordinate coord);
