@@ -20,4 +20,5 @@ public class ClientStarter {
     public static void main(String[] args) {
 	Application.launch(ViewMaster.class, args);
     }
+
 }
