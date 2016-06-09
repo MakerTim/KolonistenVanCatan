@@ -177,6 +177,14 @@ public class CollectionUtil {
 	}
     }
 
+    public static int modInRange(Object[] array, int index) {
+	index %= array.length;
+	if (index < 0) {
+	    index += array.length;
+	}
+	return index;
+    }
+
     /**
      * 
      * @param list
