@@ -32,7 +32,11 @@ public class ServerMap implements Map {
     public static void main(String[] args) {
 	Map map = new ServerMap();
 	map.createMap();
-	map.getAdjacentTile(new Coordinate(0.5, 1));
+	Tile center = map.getTile(0, 0);
+	Coordinate coord = center.getPosition();
+	Point choose = Point.NORTH_EAST;
+	System.out.println(choose.toString());
+	map.getAdjacentTile(choose.addTo(coord));
     }
 
     @Override
@@ -62,7 +66,7 @@ public class ServerMap implements Map {
 	    }
 	}
 	setupStreets();
-	setupBuildings();
+	// setupBuildings();
     }
 
     private void setupStreets() {
@@ -96,7 +100,6 @@ public class ServerMap implements Map {
 		    building = new ServerBuilding(location);
 		    this.buildings.add(building);
 		}
-
 	    }
 	    tile.setupBuilding(buildings);
 	}
@@ -160,7 +163,10 @@ public class ServerMap implements Map {
 	    Coordinate tileCoordinate = point.addTo(location);
 	    getTiles().stream().filter(tile -> tile.getPosition().equals(tileCoordinate))
 		    .forEach(tile -> adjacent.add(tile));
+	    System.out.println("l:" + location + " + p:" + point.name().toLowerCase() + "      \t"
+		    + point.offset(location) + "  \t= " + tileCoordinate);
 	}
+	System.out.println(adjacent.size());
 	return adjacent.toArray(new Tile[adjacent.size()]);
     }
 }
