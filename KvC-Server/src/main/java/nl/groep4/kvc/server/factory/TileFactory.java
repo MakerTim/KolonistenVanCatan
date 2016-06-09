@@ -8,7 +8,7 @@ import nl.groep4.kvc.common.map.TileType;
 
 public class TileFactory {
 
-    public static final List<TileType> LAND_TILES;
+    private static final List<TileType> LAND_TILES;
 
     static {
 	List<TileType> landTiles = new ArrayList<>();
@@ -24,6 +24,10 @@ public class TileFactory {
 	    landTiles.add(TileType.MOUNTAIN);
 	}
 	LAND_TILES = Collections.unmodifiableList(landTiles);
+    }
+
+    public static List<TileType> getNeeded() {
+	return new ArrayList<>(LAND_TILES);
     }
 
 }

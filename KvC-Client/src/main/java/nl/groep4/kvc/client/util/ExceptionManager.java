@@ -15,8 +15,22 @@ import nl.groep4.kvc.client.view.ExceptionDialog;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.scene.SceneLogin;
 
+/**
+ * Exceptionmanager.
+ * 
+ * Displays an exception stack trace.
+ * 
+ * @author Tim
+ * @version 1.0
+ */
 public class ExceptionManager {
 
+    /**
+     * Gives a warning and an exception stack trace.
+     * 
+     * @param rex
+     *            Reference to handleRemoteException
+     */
     public static void handleRemoteException(RemoteException rex) {
 	if (rex instanceof ConnectException || rex instanceof ConnectIOException) {
 	    ExceptionDialog.warning("error.connect.notfound");

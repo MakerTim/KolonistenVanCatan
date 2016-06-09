@@ -1,46 +1,16 @@
 package nl.groep4.kvc.server.model.map;
 
-import nl.groep4.kvc.common.enumeration.Direction;
-import nl.groep4.kvc.common.enumeration.Point;
 import nl.groep4.kvc.common.enumeration.Resource;
-import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Coordinate;
-import nl.groep4.kvc.common.map.Map;
-import nl.groep4.kvc.common.map.Street;
 import nl.groep4.kvc.common.map.TileResource;
 import nl.groep4.kvc.common.map.TileType;
 
-public class ServerTileResource implements TileResource {
+public class ServerTileResource extends ServerTile implements TileResource {
 
     private static final long serialVersionUID = 19071996112112112L;
 
-    private Coordinate position;
-    private Street[] streets;
-    private Building[] buildings;
-
-    public ServerTileResource(Coordinate position) {
-	this.position = position;
-    }
-
-    @Override
-    public Coordinate getPosition() {
-	return position;
-    }
-
-    @Override
-    public Street getStreet(Direction direction) {
-	return streets[direction.ordinal()];
-    }
-
-    @Override
-    public Building getBuilding(Point point) {
-	return buildings[point.ordinal()];
-    }
-
-    @Override
-    public boolean isValidPlace(Map map, Point point) {
-	// TODO TileLand#validplace
-	return false;
+    public ServerTileResource(TileType type, Coordinate position) {
+	super(type, position);
     }
 
     @Override
@@ -51,19 +21,6 @@ public class ServerTileResource implements TileResource {
 
     @Override
     public Resource getResource() {
-	// TODO TileLand#getresource
-	return null;
-    }
-
-    @Override
-    public boolean isValidPlace(Map map, Direction direction) {
-	// TODO TileLand#isvalidplace
-	return false;
-    }
-
-    @Override
-    public TileType getType() {
-	// TODO Auto-generated method stub
-	return null;
+	return Resource.values()[getType().ordinal()];
     }
 }

@@ -40,6 +40,15 @@ lobby.label.nosound:Geen Geluid
 lobby.button.join:Meedoen
 lobby.button.settings:Instellingen
 
+#Note
+note.ingame.title:Spel is begonnen
+note.ingame.explanation:Je kunt niet meer van kleur switchen als het spel al begonnen is
+note.ingame.details:Tijdens het spel kun je niet van kleur veranderen
+
+#Map
+map.throwdice.clickToThrow:Dobbelen
+map.throwdice.throw:Klik om te dobbelen
+
 #SceneSettings
 settings.button.playmusic:Muziek aan
 settings.button.stopmusic:Muziek uit

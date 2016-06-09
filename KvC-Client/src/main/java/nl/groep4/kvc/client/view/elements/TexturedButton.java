@@ -44,10 +44,10 @@ public abstract class TexturedButton extends StackPane {
     }
 
     /**
-     * Updates text on TexturedButton()
+     * Updates the text of the button
      * 
      * @param text
-     *            string to display
+     *            Text of the button
      */
     public TexturedButton(String text) {
 	this();
@@ -55,29 +55,30 @@ public abstract class TexturedButton extends StackPane {
     }
 
     /**
-     * General font to display
+     * Sets the font of the label
+     * 
      * 
      * @param font
-     *            letter type
+     *            Font of the label
      */
     public void setFont(Font font) {
 	label.setFont(font);
     }
 
     /**
-     * Updates text on labels
+     * Updates the text of the label
      * 
      * @param text
-     *            string to display
+     *            Text of the label
      */
     public void updateText(String text) {
 	this.label.setText(text);
     }
 
     /**
-     * Gets text
+     * Gets the text of the label
      * 
-     * @return label string
+     * @return text of the label
      */
     public String getText() {
 	return this.label.getText();
@@ -87,6 +88,7 @@ public abstract class TexturedButton extends StackPane {
      * generates a shadow effect with color black
      * 
      * @return settings for shadow
+     * @return black shadow effect
      */
     public static DropShadow getShadowEffect() {
 	DropShadow shadow = new DropShadow();
@@ -97,7 +99,7 @@ public abstract class TexturedButton extends StackPane {
     }
 
     /**
-     * handles click events
+     * Registers the clicks in a List
      * 
      * @param click
      *            click that gets registers
@@ -107,7 +109,7 @@ public abstract class TexturedButton extends StackPane {
     }
 
     /**
-     * gets texture of image
+     * <<<<<<< HEAD gets texture of image
      */
     public abstract Image getTexture();
 
