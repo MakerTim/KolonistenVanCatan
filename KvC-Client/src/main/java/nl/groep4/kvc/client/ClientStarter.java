@@ -3,6 +3,8 @@ package nl.groep4.kvc.client;
 import javafx.application.Application;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.scene.SceneMap;
+import nl.groep4.kvc.common.map.Map;
+import nl.groep4.kvc.server.model.map.ServerMap;
 
 /**
  * Starts the client
@@ -19,13 +21,21 @@ public class ClientStarter {
      *            contains the supplied command-line arguments
      */
     public static void main(String[] args) {
+	Map servermap = new ServerMap();
+	servermap.createMap();
 	new Thread(() -> {
 	    try {
-		Thread.sleep(10000);
+		Thread.sleep(4000);
 	    } catch (Exception ex) {
 	    }
-	    System.out.println("scenemap");
-	    ViewMaster.setScene(new SceneMap());
+	    System.out.println("SceneMap");
+	    SceneMap map = new SceneMap();
+	    ViewMaster.setScene(map);
+	    try {
+		map.setModel(servermap);
+	    } catch (Exception e) {
+		e.printStackTrace();
+	    }
 	}).start();
 	Application.launch(ViewMaster.class, args);
     }

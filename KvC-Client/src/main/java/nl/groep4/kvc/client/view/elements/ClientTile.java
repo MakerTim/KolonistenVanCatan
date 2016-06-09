@@ -3,7 +3,10 @@ package nl.groep4.kvc.client.view.elements;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Tile;
 import nl.groep4.kvc.common.map.TileLand;
@@ -24,6 +27,16 @@ public class ClientTile extends StackPane {
 	image = new ImageView();
 	fiche = new ImageView("img/tiles/fiche.png");
 	number = new Text();
+
+	image.setFitWidth(1 * SceneMap.scale);
+	image.setFitHeight(0.86 * SceneMap.scale);
+	fiche.setFitWidth(0.35 * SceneMap.scale);
+	fiche.setFitHeight(0.35 * SceneMap.scale);
+	number.setFont(new Font("Impact", (0.2 * SceneMap.scale)));
+	number.setStroke(Color.BLACK);
+	number.setStrokeWidth(0.01 * SceneMap.scale);
+	number.setFill(Color.WHITE);
+
 	renderTile();
 	getChildren().addAll(image, fiche, number);
     }
@@ -57,7 +70,7 @@ public class ClientTile extends StackPane {
 		}
 	    }
 	} else if (tile instanceof TileSea) {
-	    // TODO: Watertiles
+	    fiche.setImage(null);
 	}
     }
 
