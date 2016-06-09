@@ -9,6 +9,7 @@ import nl.groep4.kvc.common.map.TileType;
 public class TileFactory {
 
     private static final List<TileType> LAND_TILES;
+    private static final List<Integer> NUMBERS;
 
     static {
 	List<TileType> landTiles = new ArrayList<>();
@@ -24,10 +25,28 @@ public class TileFactory {
 	    landTiles.add(TileType.MOUNTAIN);
 	}
 	LAND_TILES = Collections.unmodifiableList(landTiles);
+
+	List<Integer> numbers = new ArrayList<>();
+	for (int i = 2; i < 13; i++) {
+	    numbers.add(i);
+	    numbers.add(i);
+	}
+	for (int i = 5; i < 11; i++) {
+	    numbers.add(i);
+	}
+	NUMBERS = Collections.unmodifiableList(numbers);
+    }
+
+    public static void main(String[] args) {
+	System.out.println(getNumbers().size());
     }
 
     public static List<TileType> getNeeded() {
 	return new ArrayList<>(LAND_TILES);
+    }
+
+    public static List<Integer> getNumbers() {
+	return new ArrayList<>(NUMBERS);
     }
 
 }

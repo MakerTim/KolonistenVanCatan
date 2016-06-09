@@ -15,6 +15,8 @@ import nl.groep4.kvc.common.enumeration.Point;
 
 public interface Map {
 
+    public static final int COLUMS = 9;
+
     /**
      * 
      * @return a list of the tiles
