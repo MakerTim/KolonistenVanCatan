@@ -9,14 +9,25 @@ public class ServerTileResource extends ServerTile implements TileResource {
 
     private static final long serialVersionUID = 19071996112112112L;
 
+    private boolean hasRover = false;
+
     public ServerTileResource(TileType type, Coordinate position) {
 	super(type, position);
     }
 
     @Override
     public boolean hasRover() {
-	// TODO TileLand#hasrover
-	return false;
+	return hasRover;
+    }
+
+    @Override
+    public void placeRover() {
+	hasRover = true;
+    }
+
+    @Override
+    public void removeRover() {
+	hasRover = false;
     }
 
     @Override

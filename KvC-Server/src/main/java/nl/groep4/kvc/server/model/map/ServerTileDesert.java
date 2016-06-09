@@ -8,14 +8,25 @@ public class ServerTileDesert extends ServerTile implements TileLand {
 
     private static final long serialVersionUID = 19960811L;
 
+    private boolean hasRover = true;
+
     public ServerTileDesert(Coordinate position) {
 	super(TileType.DESERT, position);
     }
 
     @Override
     public boolean hasRover() {
-	// TODO TileLand#hasrover
-	return false;
+	return hasRover;
+    }
+
+    @Override
+    public void placeRover() {
+	hasRover = true;
+    }
+
+    @Override
+    public void removeRover() {
+	hasRover = false;
     }
 
     @Override
