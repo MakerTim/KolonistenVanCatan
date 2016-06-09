@@ -34,7 +34,7 @@ public interface Tile extends Serializable, Locatable {
 
     public void setupBuilding(Building[] buildings);
 
-    public boolean isValidPlace(Map map, Point point);
+    public boolean isValidPlace(Point point);
 
     public default boolean isValidPlace(Map map, Direction direction) {
 	return this instanceof TileLand || map.getRelativeTile(this, direction) instanceof TileLand;
