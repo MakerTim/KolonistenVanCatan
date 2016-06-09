@@ -60,13 +60,13 @@ public class ClientTile extends StackPane {
 	    Coordinate b = CollectionUtil.getInRange(Point.values(), i + 1).realOffset().multiply(offset);
 	    Line line = new Line(a.getX() * SceneMap.scale, a.getY() * SceneMap.scale, b.getX() * SceneMap.scale,
 		    b.getY() * SceneMap.scale);
-	    line.setStroke(new Color(0, 0, 0, 0));
+	    line.setStroke(new Color(1, 0, 0, 1));
 	    line.setStrokeWidth(10);
 	    lines[i] = line;
 	    linePane.getChildren().add(line);
 	}
-	linePane.setTranslateX(xFix * SceneMap.scale * 1.16);
-	linePane.setTranslateY(yFix * SceneMap.scale * 1.1);
+	linePane.setTranslateX(xFix * SceneMap.scale * 1.20);
+	linePane.setTranslateY(yFix * SceneMap.scale * 1.08);
 	renderTile();
 	getChildren().addAll(image, fiche, number, linePane);
     }
