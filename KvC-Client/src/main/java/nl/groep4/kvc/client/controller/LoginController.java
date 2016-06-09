@@ -17,8 +17,19 @@ import nl.groep4.kvc.common.interfaces.Lobby;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.Updatable;
 
+/**
+ * Verifies login information per login field
+ * 
+ * @version 1.0
+ * @author Tim
+ *
+ */
 public class LoginController {
-
+    /**
+     * 
+     * @param sceneLogin
+     * @return
+     */
     public static Lobby connect(SceneLogin sceneLogin) {
 	String ip = "";
 	int port = 1099;
