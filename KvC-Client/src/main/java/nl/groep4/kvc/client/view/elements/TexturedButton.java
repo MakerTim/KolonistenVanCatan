@@ -109,7 +109,7 @@ public abstract class TexturedButton extends StackPane {
     }
 
     /**
-     * <<<<<<< HEAD gets texture of image
+     * Gets texture of image
      */
     public abstract Image getTexture();
 
