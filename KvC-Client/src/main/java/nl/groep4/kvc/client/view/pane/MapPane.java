@@ -21,11 +21,11 @@ public class MapPane implements PaneHolder {
     @Override
     public Pane getPane() {
 	Pane stacked = new StackPane();
-	HBox colls = new HBox((-0.25 + 0.05) * SceneMap.scale);
+	HBox colls = new HBox((-0.40) * SceneMap.scale);
 	colls.setAlignment(Pos.CENTER);
 	for (int col = 0; col < Map.COLUMS; col++) {
 	    int rows = Map.COLUMS - Math.abs(col - ((Map.COLUMS - 1) / 2)) - 1;
-	    VBox rowws = new VBox(0.05 * SceneMap.scale);
+	    VBox rowws = new VBox(-0.15 * SceneMap.scale);
 	    rowws.setAlignment(Pos.CENTER);
 	    for (int row = 0; row < rows; row++) {
 		Coordinate coord = new Coordinate(col - Map.COLUMS / 2, row - rows / 2);

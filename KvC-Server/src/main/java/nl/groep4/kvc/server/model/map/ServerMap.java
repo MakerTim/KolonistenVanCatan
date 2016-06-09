@@ -17,6 +17,8 @@ import nl.groep4.kvc.server.factory.TileFactory;
 
 public class ServerMap implements Map {
 
+    private static final long serialVersionUID = 2507200235719526105L;
+
     private final List<Tile> tiles = new ArrayList<>();
     private final List<Building> buildings = new ArrayList<>();
     private final List<Street> streets = new ArrayList<>();

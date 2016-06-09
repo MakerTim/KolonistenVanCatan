@@ -28,17 +28,19 @@ public class TileFactory {
 
 	List<Integer> numbers = new ArrayList<>();
 	for (int i = 2; i < 13; i++) {
+	    if (i == 7) {
+		continue;
+	    }
 	    numbers.add(i);
 	    numbers.add(i);
 	}
-	for (int i = 5; i < 11; i++) {
+	for (int i = 3; i < 12; i++) {
+	    if (i == 7) {
+		continue;
+	    }
 	    numbers.add(i);
 	}
 	NUMBERS = Collections.unmodifiableList(numbers);
-    }
-
-    public static void main(String[] args) {
-	System.out.println(getNumbers().size());
     }
 
     public static List<TileType> getNeeded() {
