@@ -17,8 +17,21 @@ import nl.groep4.kvc.common.interfaces.Lobby;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.Updatable;
 
+/**
+ * Connects with the lobby if all requirements matches
+ * 
+ * @author Tim
+ * @version 1.0
+ */
 public class LoginController {
 
+    /**
+     * checks if all input fields are correct
+     * 
+     * @param sceneLogin
+     *            screen to display
+     * @return lobby key to connect with
+     */
     public static Lobby connect(SceneLogin sceneLogin) {
 	String ip = "";
 	int port = 1099;

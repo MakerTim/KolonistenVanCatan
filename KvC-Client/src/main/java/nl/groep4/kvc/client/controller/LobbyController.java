@@ -12,7 +12,7 @@ import nl.groep4.kvc.common.interfaces.Lobby;
 import nl.groep4.kvc.common.interfaces.Player;
 
 /**
- * 
+ * Controls all lobby features
  * 
  * @author Tim
  * @version 1.0
@@ -22,6 +22,7 @@ public class LobbyController {
     private Lobby model;
 
     /**
+     * sets model
      * 
      * @param model
      *            references to lobby for connection
@@ -31,8 +32,9 @@ public class LobbyController {
     }
 
     /**
+     * generates a list of players which are connected to the lobby
      * 
-     * @return a list of players which are connected
+     * @return a list of players
      */
     public List<Player> getPlayers() {
 	try {
@@ -44,8 +46,10 @@ public class LobbyController {
     }
 
     /**
+     * disconnects the player from the server
      * 
      * @param pl
+     *            references to ClientRefrence for disconnect
      */
     public void disconnect(Player pl) {
 	try {
@@ -58,9 +62,13 @@ public class LobbyController {
     }
 
     /**
+     * changes the color of a player
      * 
      * @param player
+     *            name of player
      * @param color
+     *            color to change
+     * 
      */
     public void changeColor(Player player, Color color) {
 	try {
@@ -70,6 +78,9 @@ public class LobbyController {
 	}
     }
 
+    /**
+     * Starts the game
+     */
     public void startGame() {
 	try {
 	    model.startGame();
