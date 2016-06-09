@@ -20,6 +20,9 @@ import nl.groep4.kvc.client.view.scene.SceneLogin;
  **/
 public class ViewMaster extends Application {
 
+    /**
+     * Gives the font type "Impact" with a size of 22
+     */
     public static final Font FONT = new Font("Impact", 22);
     private static Stage stage;
     private static SceneHolder lastScene;
@@ -42,6 +45,12 @@ public class ViewMaster extends Application {
 	primaryStage.show();
     }
 
+    /**
+     * Sets scene and sets the cursor image
+     * 
+     * @param scene
+     *            scene instance
+     */
     public static void setScene(SceneHolder scene) {
 	Scene theScene = scene.getScene();
 	Platform.runLater(() -> {
@@ -51,6 +60,9 @@ public class ViewMaster extends Application {
 	});
     }
 
+    /**
+     * Update given settings from user
+     */
     public static void updateConfig() {
 	lastScene.updateConfig();
     }

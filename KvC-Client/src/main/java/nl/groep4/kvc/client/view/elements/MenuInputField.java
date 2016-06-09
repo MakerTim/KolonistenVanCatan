@@ -26,10 +26,14 @@ public class MenuInputField extends TextField {
     }
 
     /**
+     * Places MenuInputField
      * 
      * @param xPos
+     *            the x-coordinate location of MenuInputField
      * @param yPos
+     *            the y-coordinate location of MenuInputField
      * @param text
+     *            the string
      */
     public MenuInputField(int xPos, int yPos, String text) {
 	this();
@@ -45,6 +49,7 @@ public class MenuInputField extends TextField {
      * sets all border settings
      * 
      * @param color
+     *            the color of the border
      */
     public void setBorderColor(Color color) {
 	setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));

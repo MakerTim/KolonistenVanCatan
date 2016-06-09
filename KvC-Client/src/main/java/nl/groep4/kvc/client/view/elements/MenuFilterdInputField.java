@@ -16,6 +16,7 @@ public class MenuFilterdInputField extends MenuInputField {
      * Filters input data
      * 
      * @param regex
+     *            input requirements
      */
     public MenuFilterdInputField(String regex) {
 	super();
@@ -23,12 +24,16 @@ public class MenuFilterdInputField extends MenuInputField {
     }
 
     /**
-     * 
+     * Places MenuFilterdInputField and checks regex
      * 
      * @param xPos
+     *            the x-coordinate location of MenuFilteredInputField
      * @param yPos
+     *            the y-coordinate location of MenuFilteredInputField
      * @param text
+     *            the string
      * @param regex
+     *            arguments that will be tested before going further
      */
     public MenuFilterdInputField(int xPos, int yPos, String text, String regex) {
 	super(xPos, yPos, text);

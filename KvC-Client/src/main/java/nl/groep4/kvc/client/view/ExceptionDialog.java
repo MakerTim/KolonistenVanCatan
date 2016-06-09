@@ -23,11 +23,27 @@ import nl.groep4.kvc.client.util.TranslationManager;
  */
 public class ExceptionDialog {
 
+    /**
+     * warning text with translations
+     * 
+     * @param key
+     *            error type
+     */
     public static void warning(String key) {
 	warning(TranslationManager.translate(key + ".title"), TranslationManager.translate(key + ".explanation"),
 		TranslationManager.translate(key + ".details"));
     }
 
+    /**
+     * warning message
+     * 
+     * @param title
+     *            the title for the error message
+     * @param header
+     *            text in the header
+     * @param message
+     *            the error message
+     */
     public static void warning(String title, String header, String message) {
 	Platform.runLater(() -> {
 	    Alert alert = new Alert(AlertType.WARNING);
@@ -38,6 +54,12 @@ public class ExceptionDialog {
 	});
     }
 
+    /**
+     * displays error message with all given settings
+     * 
+     * @param thr
+     *            gets errors and exceptions
+     */
     public static void error(Throwable thr) {
 	Platform.runLater(() -> {
 	    Alert alert = new Alert(AlertType.ERROR);
