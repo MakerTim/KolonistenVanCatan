@@ -21,16 +21,6 @@ public class ServerMap implements Map {
     private final List<Building> buildings = new ArrayList<>();
     private final List<Street> streets = new ArrayList<>();
 
-    public static void main(String[] args) {
-	Map map = new ServerMap();
-	map.createMap();
-	Tile center = map.getTile(0, 0);
-	Coordinate coord = center.getPosition();
-	Point choose = Point.NORTH_EAST;
-	System.out.println(choose.toString());
-	map.getAdjacentTile(choose.addTo(coord));
-    }
-
     @Override
     public List<Tile> getTiles() {
 	return tiles;
@@ -58,7 +48,7 @@ public class ServerMap implements Map {
 	    }
 	}
 	setupStreets();
-	// setupBuildings();
+	setupBuildings();
     }
 
     private void setupStreets() {
@@ -85,13 +75,14 @@ public class ServerMap implements Map {
 	for (Tile tile : getTiles()) {
 	    Building[] buildings = new Building[Point.values().length];
 	    for (int i = 0; i < buildings.length; i++) {
-		Point point = Point.values()[i];
-		Building building;
-		if (getAdjacentTile(point.addTo(tile.getPosition())).length == 0) {
-		    Coordinate location = tile.getPosition().add(point.offset(tile.getPosition()).subtract(2));
+		Coordinate location = Point.values()[i].addTo(tile.getPosition());
+		Building building = getBuilding(location);
+		if (building == null) {
 		    building = new ServerBuilding(location);
 		    this.buildings.add(building);
 		}
+		building.registerTile(tile);
+		buildings[i] = building;
 	    }
 	    tile.setupBuilding(buildings);
 	}
@@ -145,20 +136,6 @@ public class ServerMap implements Map {
 
     @Override
     public Tile[] getAdjacentTile(Building building) {
-	return getAdjacentTile(building.getPosition());
-    }
-
-    @Override
-    public Tile[] getAdjacentTile(Coordinate location) {
-	List<Tile> adjacent = new ArrayList<>();
-	for (Point point : Point.values()) {
-	    Coordinate tileCoordinate = point.addTo(location);
-	    getTiles().stream().filter(tile -> tile.getPosition().equals(tileCoordinate))
-		    .forEach(tile -> adjacent.add(tile));
-	    System.out.println("l:" + location + " + p:" + point.name().toLowerCase() + "      \t"
-		    + point.offset(location) + "  \t= " + tileCoordinate);
-	}
-	System.out.println(adjacent.size());
-	return adjacent.toArray(new Tile[adjacent.size()]);
+	return building.getConnectedTiles();
     }
 }
