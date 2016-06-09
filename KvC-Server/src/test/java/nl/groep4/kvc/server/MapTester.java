@@ -401,16 +401,35 @@ public class MapTester {
 	assertEquals(landtileCentral.getBuilding(Point.NORTH_WEST), landtileNW.getBuilding(Point.EAST));
 	assertEquals(landtileCentral.getBuilding(Point.NORTH_WEST), landtileNorth.getBuilding(Point.SOUTH_WEST));
 
+	// Building met coordinaat en kijken of de 3 tiles eromheen kloppen
+
+	Tile buildingTile1 = map.getTile(new Coordinate(0, -2));
+	Tile buildingTile2 = map.getTile(new Coordinate(0, -1));
+	Tile buildingTile3 = map.getTile(new Coordinate(-1, -1));
+
+	assertEquals(buildingTile1.getBuilding(Point.SOUTH_WEST), buildingTile2.getBuilding(Point.NORTH_WEST));
+	assertEquals(buildingTile3.getBuilding(Point.EAST), buildingTile2.getBuilding(Point.NORTH_WEST));
+	assertEquals(buildingTile2.getBuilding(Point.NORTH_WEST), buildingTile1.getBuilding(Point.SOUTH_WEST));
+
 	// Op een desert moet standaard een rover en op een normale tile niet #
 	// tile.hasRover() #
 
-	Tile desertTile1 = map.getTile(new Coordinate(0, -2));
-	Tile desertTile2 = map.getTile(new Coordinate(0, 1));
-	Tile normalTile = map.getTile(new Coordinate(-1, -1));
+	TileLand desertTile1 = (TileLand) map.getTile(new Coordinate(0, -2));
+	TileLand desertTile2 = (TileLand) map.getTile(new Coordinate(0, 1));
+	TileLand normalTile = (TileLand) map.getTile(new Coordinate(-1, -1));
+	TileLand normalTile2 = (TileLand) map.getTile(new Coordinate(-2, 0));
+	TileLand normalTile3 = (TileLand) map.getTile(new Coordinate(-3, -1));
+	TileLand normalTile4 = (TileLand) map.getTile(new Coordinate(3, -1));
+	TileLand normalTile5 = (TileLand) map.getTile(new Coordinate(2, 1));
 
-	assertTrue(((TileLand) desertTile1).hasRover());
-	assertTrue(((TileLand) desertTile2).hasRover());
-	assertTrue(!((TileLand) normalTile).hasRover());
+	assertTrue(desertTile1.hasRover());
+	assertTrue(desertTile2.hasRover());
+	assertTrue(!normalTile.hasRover());
+	assertTrue(!normalTile2.hasRover());
+	assertTrue(!normalTile3.hasRover());
+	assertTrue(!normalTile4.hasRover());
+	assertTrue(!normalTile5.hasRover());
+
     }
 
 }
