@@ -17,7 +17,6 @@ public abstract class ServerTile implements Tile {
     private Street[] streets;
     private Building[] buildings;
     private TileType type;
-    protected boolean hasRover;
 
     public ServerTile(TileType type, Coordinate position) {
 	this.type = type;
