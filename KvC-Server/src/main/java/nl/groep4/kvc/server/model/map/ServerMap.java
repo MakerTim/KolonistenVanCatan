@@ -62,9 +62,10 @@ public class ServerMap implements Map {
 		    Street street = getStreet(location);
 		    if (street == null) {
 			street = new ServerStreet(location);
+			this.streets.add(street);
 		    }
+		    street.registerTile(tile);
 		    streets[i] = street;
-		    this.streets.add(street);
 		}
 	    }
 	    tile.setupStreets(streets);
