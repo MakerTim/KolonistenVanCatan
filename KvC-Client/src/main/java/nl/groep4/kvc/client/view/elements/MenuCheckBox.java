@@ -11,16 +11,19 @@ import javafx.scene.control.CheckBox;
 public class MenuCheckBox extends CheckBox {
 
     /**
-     * 
+     * Inherit everything from CheckBox
      */
     public MenuCheckBox() {
 	super();
     }
 
     /**
+     * Places MenuCheckBox to location
      * 
      * @param xPos
+     *            the x-coordinate position of MenuCheckBox
      * @param yPos
+     *            the y-coordinate position of MenuCheckBox
      */
     public MenuCheckBox(int xPos, int yPos) {
 	this();
@@ -29,10 +32,14 @@ public class MenuCheckBox extends CheckBox {
     }
 
     /**
+     * Selects default selection
      * 
      * @param xPos
+     *            the x-coordinate position of MenuCheckBox
      * @param yPos
+     *            the y-coordinate position of MenuCheckBox
      * @param defaultSelected
+     *            selects standard settings
      */
     public MenuCheckBox(int xPos, int yPos, boolean defaultSelected) {
 	this(xPos, yPos);
