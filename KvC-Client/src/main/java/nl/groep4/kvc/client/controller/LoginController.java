@@ -18,17 +18,19 @@ import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.Updatable;
 
 /**
- * Verifies login information per login field
+ * Connects with the lobby if all requirements matches
  * 
- * @version 1.0
  * @author Tim
- *
+ * @version 1.0
  */
 public class LoginController {
+
     /**
+     * checks if all input fields are correct
      * 
      * @param sceneLogin
-     * @return
+     *            screen to display
+     * @return lobby key to connect with
      */
     public static Lobby connect(SceneLogin sceneLogin) {
 	String ip = "";
