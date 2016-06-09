@@ -30,4 +30,9 @@ public class ServerStreet implements Street {
 	return location;
     }
 
+    @Override
+    public String toString() {
+	return "Street @" + getPosition().toString();
+    }
+
 }
