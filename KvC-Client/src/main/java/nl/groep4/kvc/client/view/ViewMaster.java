@@ -2,10 +2,12 @@ package nl.groep4.kvc.client.view;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.text.Font;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import nl.groep4.kvc.client.util.SoundUtil;
 import nl.groep4.kvc.client.view.scene.SceneHolder;
@@ -19,6 +21,9 @@ import nl.groep4.kvc.client.view.scene.SceneLogin;
  * @see SceneLogin main screen
  **/
 public class ViewMaster extends Application {
+
+    private static final int GAME_WIDHT = 1366;
+    private static final int GAME_HEIGHT = 768;
 
     /**
      * Gives the font type "Impact" with a size of 22
@@ -42,6 +47,10 @@ public class ViewMaster extends Application {
 	});
 	System.out.println("Showing LoginScreen");
 	stage.getIcons().add(new Image("img/etc/cursor.png"));
+	Rectangle2D screen = Screen.getPrimary().getBounds();
+
+	primaryStage.setX(-2 + (screen.getMaxX() / 2) - (GAME_WIDHT / 2));
+	primaryStage.setY((screen.getMaxY() / 2) - (GAME_HEIGHT / 2));
 	primaryStage.show();
     }
 
