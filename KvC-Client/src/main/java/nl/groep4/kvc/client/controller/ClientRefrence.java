@@ -18,9 +18,9 @@ public final class ClientRefrence {
     }
 
     /**
-     * returns the player name
+     * Gets the player name
      * 
-     * @return gets player
+     * @return the player
      */
     public static Player getThePlayer() {
 	return thePlayer;
@@ -30,7 +30,7 @@ public final class ClientRefrence {
      * sets the player
      * 
      * @param player
-     *            references to ClientReference()
+     *            Refers to the player in this class
      */
     public static void setThePlayer(Player player) {
 	ClientRefrence.thePlayer = player;
