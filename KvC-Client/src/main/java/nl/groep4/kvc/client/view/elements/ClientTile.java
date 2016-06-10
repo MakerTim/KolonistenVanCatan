@@ -59,10 +59,10 @@ public class ClientTile extends StackPane {
 	{
 	    double offset = 1.05;
 	    for (int i = 0; i < lines.length; i++) {
-		Coordinate a = CollectionUtil.getInRange(Point.values(), i).realOffset().multiply(offset);
-		Coordinate b = CollectionUtil.getInRange(Point.values(), i + 1).realOffset().multiply(offset);
-		lines[i] = new Line(a.getX() * SceneMap.scale, a.getY() * SceneMap.scale, b.getX() * SceneMap.scale,
-			b.getY() * SceneMap.scale);
+		Coordinate a = CollectionUtil.getInRange(Point.values(), i - 1).realOffset().multiply(offset);
+		Coordinate b = CollectionUtil.getInRange(Point.values(), i).realOffset().multiply(offset);
+		lines[i] = new Line(a.getX() * SceneMap.scale, -a.getY() * SceneMap.scale, b.getX() * SceneMap.scale,
+			-b.getY() * SceneMap.scale);
 		lines[i].setStroke(new Color(Math.random(), 0, 0, 1));
 		lines[i].setStrokeWidth(10);
 		linePane.getChildren().add(lines[i]);
