@@ -14,6 +14,7 @@ import javafx.scene.text.Text;
 import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.enumeration.Direction;
 import nl.groep4.kvc.common.enumeration.Point;
+import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Street;
 import nl.groep4.kvc.common.map.Tile;
@@ -27,19 +28,21 @@ public class ClientTile extends StackPane {
     private static final Map<String, Image> CACHE = new HashMap<>();
 
     private Tile tile;
-    private Line[] lines = new Line[6];
     private Coordinate coord;
 
+    private Line[] lines = new Line[6];
+    private ImageView[] houses = new ImageView[2];
     private ImageView image;
     private ImageView fiche;
     private Text number;
 
     public ClientTile(Coordinate coord) {
 	this.coord = coord;
+	Pane linePane = new Pane();
+	Pane housePane = new Pane();
 	image = new ImageView();
 	fiche = new ImageView("img/tiles/fiche.png");
 	number = new Text();
-	Pane linePane = new Pane();
 
 	image.setFitWidth(1 * SceneMap.scale);
 	image.setFitHeight(0.86 * SceneMap.scale);
@@ -53,22 +56,33 @@ public class ClientTile extends StackPane {
 	// Offset fix for fxpanes?
 	double xFix = 0.5;
 	double yFix = 0.5;
-	double offset = 1.05;
-	for (Direction direction : Direction.values()) {
-	    int i = direction.ordinal();
-	    Coordinate a = CollectionUtil.getInRange(Point.values(), i).realOffset().multiply(offset);
-	    Coordinate b = CollectionUtil.getInRange(Point.values(), i + 1).realOffset().multiply(offset);
-	    Line line = new Line(a.getX() * SceneMap.scale, a.getY() * SceneMap.scale, b.getX() * SceneMap.scale,
-		    b.getY() * SceneMap.scale);
-	    line.setStroke(new Color(1, 0, 0, 1));
-	    line.setStrokeWidth(10);
-	    lines[i] = line;
-	    linePane.getChildren().add(line);
+	{
+	    double offset = 1.05;
+	    for (int i = 0; i < lines.length; i++) {
+		Coordinate a = CollectionUtil.getInRange(Point.values(), i).realOffset().multiply(offset);
+		Coordinate b = CollectionUtil.getInRange(Point.values(), i + 1).realOffset().multiply(offset);
+		lines[i] = new Line(a.getX() * SceneMap.scale, a.getY() * SceneMap.scale, b.getX() * SceneMap.scale,
+			b.getY() * SceneMap.scale);
+		lines[i].setStroke(new Color(Math.random(), 0, 0, 1));
+		lines[i].setStrokeWidth(10);
+		linePane.getChildren().add(lines[i]);
+	    }
+	    linePane.setTranslateX(xFix * SceneMap.scale * 1.20);
+	    linePane.setTranslateY(yFix * SceneMap.scale * 1.07);
 	}
-	linePane.setTranslateX(xFix * SceneMap.scale * 1.20);
-	linePane.setTranslateY(yFix * SceneMap.scale * 1.08);
+
+	for (int i = 0; i < houses.length; i++) {
+	    Coordinate offset = CollectionUtil.getInRange(Point.values(), i + 4).realOffset().multiply(SceneMap.scale);
+	    houses[i] = new ImageView(cacheImage("img/buildings/house_RED.png"));
+	    houses[i].setLayoutX(offset.getX());
+	    houses[i].setLayoutY(-offset.getY());
+	    housePane.getChildren().add(houses[i]);
+	}
+	housePane.setTranslateX(xFix * SceneMap.scale * 0.81);
+	housePane.setTranslateY(yFix * SceneMap.scale * 0.7);
+
 	renderTile();
-	getChildren().addAll(image, fiche, number, linePane);
+	getChildren().addAll(image, fiche, number, linePane, housePane);
     }
 
     public void setTile(Tile tile) {
@@ -114,14 +128,26 @@ public class ClientTile extends StackPane {
 	    Line line = lines[direction.ordinal()];
 	    if (street != null && street.getOwner() != null) {
 		try {
-		    line.setFill(street.getOwner().getColor().getColor());
+		    line.setStroke(street.getOwner().getColor().getColor());
 		} catch (Exception ex) {
 		    ex.printStackTrace();
 		}
 	    } else {
-		line.setFill(new Color(0, 0, 0, 0));
+		line.setStroke(new Color(0, 0, 0, 0));
+	    }
+	}
+	for (int i = 4; i < Point.values().length; i++) {
+	    Building building = tile.getBuilding(Point.values()[i]);
+	    ImageView house = houses[i - 4];
+	    if (building != null && building.getOwner() != null) {
+		try {
+		    house.setImage(cacheImage("img/buildings/house_" + building.getOwner().getColor() + ".png"));
+		} catch (Exception ex) {
+		    ex.printStackTrace();
+		}
+	    } else {
+		house.setImage(cacheImage("img/buildings/house_null.png"));
 	    }
 	}
     }
-
 }
