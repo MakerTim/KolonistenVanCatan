@@ -3,6 +3,7 @@ package nl.groep4.kvc.server;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -10,9 +11,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 import nl.groep4.kvc.common.enumeration.Direction;
+import nl.groep4.kvc.common.enumeration.Point;
 import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Map;
+import nl.groep4.kvc.common.map.Street;
 import nl.groep4.kvc.common.map.Tile;
+import nl.groep4.kvc.common.map.TileLand;
 import nl.groep4.kvc.common.map.TileType;
 import nl.groep4.kvc.server.model.map.ServerMap;
 
@@ -240,26 +244,192 @@ public class MapTester {
 	landtileCenter = map.getTile(new Coordinate(-1, -1));
 	landtileNE = map.getTile(new Coordinate(0, -2));
 	landtileNW = map.getTile(new Coordinate(-2, -2));
-	landtileSE = map.getTile(new Coordinate(-2, -1));
-	landtileSW = map.getTile(new Coordinate(0, -1));
+	landtileSE = map.getTile(new Coordinate(0, -1));
+	landtileSW = map.getTile(new Coordinate(-2, -1));
+
+	// niet evengetal tiles worden hier getest
 
 	assertEquals(landtileNE.getStreet(Direction.SOUTH_WEST), landtileCenter.getStreet(Direction.NORTH_EAST));
+	assertEquals(landtileNorth.getStreet(Direction.SOUTH), landtileCenter.getStreet(Direction.NORTH));
 	assertEquals(landtileNW.getStreet(Direction.SOUTH_EAST), landtileCenter.getStreet(Direction.NORTH_WEST));
 	assertEquals(landtileSE.getStreet(Direction.NORTH_WEST), landtileCenter.getStreet(Direction.SOUTH_EAST));
 	assertEquals(landtileSW.getStreet(Direction.NORTH_EAST), landtileCenter.getStreet(Direction.SOUTH_WEST));
 	assertEquals(landtileSouth.getStreet(Direction.NORTH), landtileCenter.getStreet(Direction.SOUTH));
 
-	// Kijken of elke landtegel 6 straten heeft #
-	// map.getAllStreets() #
-	// Kijk of Tile x met als buur tile y dezelfde street delen #
+	landtileNorth = map.getTile(new Coordinate(3, 0));
+	landtileSouth = map.getTile(new Coordinate(3, 2));
+	landtileCenter = map.getTile(new Coordinate(3, 1));
+	landtileNE = map.getTile(new Coordinate(4, 0));
+	landtileNW = map.getTile(new Coordinate(2, -0));
+	landtileSE = map.getTile(new Coordinate(4, 1));
+	landtileSW = map.getTile(new Coordinate(2, 1));
 
+	assertEquals(landtileNE.getStreet(Direction.SOUTH_WEST), landtileCenter.getStreet(Direction.NORTH_EAST));
+	assertEquals(landtileNorth.getStreet(Direction.SOUTH), landtileCenter.getStreet(Direction.NORTH));
+	assertEquals(landtileNW.getStreet(Direction.SOUTH_EAST), landtileCenter.getStreet(Direction.NORTH_WEST));
+	assertEquals(landtileSE.getStreet(Direction.NORTH_WEST), landtileCenter.getStreet(Direction.SOUTH_EAST));
+	assertEquals(landtileSW.getStreet(Direction.NORTH_EAST), landtileCenter.getStreet(Direction.SOUTH_WEST));
+	assertEquals(landtileSouth.getStreet(Direction.NORTH), landtileCenter.getStreet(Direction.SOUTH));
+
+	// voor elke street kijken of het 2 tiles heeft
+
+	for (Street street : map.getAllStreets()) {
+	    int tilesConnected = 0;
+	    for (Tile tile : street.getConnectedTiles()) {
+		if (tile != null) {
+		    tilesConnected++;
+		}
+	    }
+	    assertEquals(2, tilesConnected);
+	}
     }
+
+    // Kijken of elke landtegel 6 straten heeft #
+    // map.getAllStreets() #
+    // Kijk of Tile x met als buur tile y dezelfde street delen #
 
     @Test
     public void correctBuilding() {
+
+	// tile.isValidPlace(Point point) om te kijken of de plek wel geschikt
+	// 1) bij een evengetal tile
+
+	Tile evengetalTile = map.getTile(new Coordinate(0, -2));
+
+	assertTrue(evengetalTile.isValidPlace(Point.NORTH_EAST));
+	assertTrue(evengetalTile.isValidPlace(Point.EAST));
+	assertTrue(evengetalTile.isValidPlace(Point.SOUTH_EAST));
+	assertTrue(evengetalTile.isValidPlace(Point.NORTH_WEST));
+	assertTrue(evengetalTile.isValidPlace(Point.WEST));
+	assertTrue(evengetalTile.isValidPlace(Point.SOUTH_WEST));
+
+	// 2) bij een onevengetal tile
+
+	Tile OnevengetalTile = map.getTile(new Coordinate(0, -2));
+
+	assertTrue(OnevengetalTile.isValidPlace(Point.NORTH_EAST));
+	assertTrue(OnevengetalTile.isValidPlace(Point.EAST));
+	assertTrue(OnevengetalTile.isValidPlace(Point.SOUTH_EAST));
+	assertTrue(OnevengetalTile.isValidPlace(Point.NORTH_WEST));
+	assertTrue(OnevengetalTile.isValidPlace(Point.WEST));
+	assertTrue(OnevengetalTile.isValidPlace(Point.SOUTH_WEST));
+
+	Tile landtileEven1 = map.getTile(new Coordinate(0, -3));
+	Tile landtileEven2 = map.getTile(new Coordinate(0, -1));
+	Tile landtileEven3 = map.getTile(new Coordinate(0, -2));
+	Tile landtileOnEven1 = map.getTile(new Coordinate(1, -2));
+	Tile landtileOnEven2 = map.getTile(new Coordinate(-1, -2));
+	Tile landtileOnEven3 = map.getTile(new Coordinate(1, -1));
+	Tile landtileOnEven4 = map.getTile(new Coordinate(-1, -1));
 	// Kijken of elke landtegel 6 buildings heeft
+
+	// kijken of elke tile van de evengetallen landtiles een building heeft
+	// #
+
+	assertNotNull(landtileEven1.getBuilding(Point.NORTH_EAST));
+	assertNotNull(landtileEven1.getBuilding(Point.NORTH_WEST));
+	assertNotNull(landtileEven1.getBuilding(Point.SOUTH_EAST));
+	assertNotNull(landtileEven1.getBuilding(Point.SOUTH_WEST));
+	assertNotNull(landtileEven1.getBuilding(Point.WEST));
+	assertNotNull(landtileEven1.getBuilding(Point.EAST));
+
+	assertNotNull(landtileEven2.getBuilding(Point.NORTH_EAST));
+	assertNotNull(landtileEven2.getBuilding(Point.NORTH_WEST));
+	assertNotNull(landtileEven2.getBuilding(Point.SOUTH_EAST));
+	assertNotNull(landtileEven2.getBuilding(Point.SOUTH_WEST));
+	assertNotNull(landtileEven2.getBuilding(Point.WEST));
+	assertNotNull(landtileEven2.getBuilding(Point.EAST));
+
+	assertNotNull(landtileEven3.getBuilding(Point.NORTH_EAST));
+	assertNotNull(landtileEven3.getBuilding(Point.NORTH_WEST));
+	assertNotNull(landtileEven3.getBuilding(Point.SOUTH_EAST));
+	assertNotNull(landtileEven3.getBuilding(Point.SOUTH_WEST));
+	assertNotNull(landtileEven3.getBuilding(Point.WEST));
+	assertNotNull(landtileEven3.getBuilding(Point.EAST));
+
+	// kijken of elke tile van de onvengetallen landtiles een building heeft
+
+	assertNotNull(landtileOnEven1.getBuilding(Point.NORTH_EAST));
+	assertNotNull(landtileOnEven1.getBuilding(Point.NORTH_WEST));
+	assertNotNull(landtileOnEven1.getBuilding(Point.SOUTH_EAST));
+	assertNotNull(landtileOnEven1.getBuilding(Point.SOUTH_WEST));
+	assertNotNull(landtileOnEven1.getBuilding(Point.WEST));
+	assertNotNull(landtileOnEven1.getBuilding(Point.EAST));
+
+	assertNotNull(landtileOnEven2.getBuilding(Point.NORTH_EAST));
+	assertNotNull(landtileOnEven2.getBuilding(Point.NORTH_WEST));
+	assertNotNull(landtileOnEven2.getBuilding(Point.SOUTH_EAST));
+	assertNotNull(landtileOnEven2.getBuilding(Point.SOUTH_WEST));
+	assertNotNull(landtileOnEven2.getBuilding(Point.WEST));
+	assertNotNull(landtileOnEven2.getBuilding(Point.EAST));
+
+	assertNotNull(landtileOnEven3.getBuilding(Point.NORTH_EAST));
+	assertNotNull(landtileOnEven3.getBuilding(Point.NORTH_WEST));
+	assertNotNull(landtileOnEven3.getBuilding(Point.SOUTH_EAST));
+	assertNotNull(landtileOnEven3.getBuilding(Point.SOUTH_WEST));
+	assertNotNull(landtileOnEven3.getBuilding(Point.WEST));
+	assertNotNull(landtileOnEven3.getBuilding(Point.EAST));
+
+	assertNotNull(landtileOnEven4.getBuilding(Point.NORTH_EAST));
+	assertNotNull(landtileOnEven4.getBuilding(Point.NORTH_WEST));
+	assertNotNull(landtileOnEven4.getBuilding(Point.SOUTH_EAST));
+	assertNotNull(landtileOnEven4.getBuilding(Point.SOUTH_WEST));
+	assertNotNull(landtileOnEven4.getBuilding(Point.WEST));
+	assertNotNull(landtileOnEven4.getBuilding(Point.EAST));
+
 	// map.getAllBuidlings()
-	// Kijk of Tile x met als buur tile y dezelfde building delen
-	/** het geeft nog een fail, nog niet af */
+
+	// Kijk of Tile x met als buur tile y dezelfde building delen #
+	Tile landtileCentral = map.getTile(new Coordinate(0, -2));
+	Tile landtileNorth = map.getTile(new Coordinate(0, -3));
+	Tile landtileSouth = map.getTile(new Coordinate(0, -1));
+	Tile landtileNE = map.getTile(new Coordinate(1, -2));
+	Tile landtileNW = map.getTile(new Coordinate(-1, -2));
+	Tile landtileSE = map.getTile(new Coordinate(1, -1));
+	Tile landtileSW = map.getTile(new Coordinate(-1, -1));
+
+	assertEquals(landtileCentral.getBuilding(Point.NORTH_EAST), landtileNorth.getBuilding(Point.SOUTH_EAST));
+	assertEquals(landtileCentral.getBuilding(Point.NORTH_EAST), landtileNE.getBuilding(Point.WEST));
+	assertEquals(landtileCentral.getBuilding(Point.EAST), landtileNE.getBuilding(Point.SOUTH_WEST));
+	assertEquals(landtileCentral.getBuilding(Point.EAST), landtileSE.getBuilding(Point.NORTH_WEST));
+	assertEquals(landtileCentral.getBuilding(Point.SOUTH_EAST), landtileSE.getBuilding(Point.WEST));
+	assertEquals(landtileCentral.getBuilding(Point.SOUTH_EAST), landtileSouth.getBuilding(Point.NORTH_EAST));
+	assertEquals(landtileCentral.getBuilding(Point.SOUTH_WEST), landtileSouth.getBuilding(Point.NORTH_WEST));
+	assertEquals(landtileCentral.getBuilding(Point.SOUTH_WEST), landtileSW.getBuilding(Point.EAST));
+	assertEquals(landtileCentral.getBuilding(Point.WEST), landtileSW.getBuilding(Point.NORTH_EAST));
+	assertEquals(landtileCentral.getBuilding(Point.WEST), landtileNW.getBuilding(Point.SOUTH_EAST));
+	assertEquals(landtileCentral.getBuilding(Point.NORTH_WEST), landtileNW.getBuilding(Point.EAST));
+	assertEquals(landtileCentral.getBuilding(Point.NORTH_WEST), landtileNorth.getBuilding(Point.SOUTH_WEST));
+
+	// Building met coordinaat en kijken of de 3 tiles eromheen kloppen
+
+	Tile buildingTile1 = map.getTile(new Coordinate(0, -2));
+	Tile buildingTile2 = map.getTile(new Coordinate(0, -1));
+	Tile buildingTile3 = map.getTile(new Coordinate(-1, -1));
+
+	assertEquals(buildingTile1.getBuilding(Point.SOUTH_WEST), buildingTile2.getBuilding(Point.NORTH_WEST));
+	assertEquals(buildingTile3.getBuilding(Point.EAST), buildingTile2.getBuilding(Point.NORTH_WEST));
+	assertEquals(buildingTile2.getBuilding(Point.NORTH_WEST), buildingTile1.getBuilding(Point.SOUTH_WEST));
+
+	// Op een desert moet standaard een rover en op een normale tile niet #
+	// tile.hasRover() #
+
+	TileLand desertTile1 = (TileLand) map.getTile(new Coordinate(0, -2));
+	TileLand desertTile2 = (TileLand) map.getTile(new Coordinate(0, 1));
+	TileLand normalTile = (TileLand) map.getTile(new Coordinate(-1, -1));
+	TileLand normalTile2 = (TileLand) map.getTile(new Coordinate(-2, 0));
+	TileLand normalTile3 = (TileLand) map.getTile(new Coordinate(-3, -1));
+	TileLand normalTile4 = (TileLand) map.getTile(new Coordinate(3, -1));
+	TileLand normalTile5 = (TileLand) map.getTile(new Coordinate(2, 1));
+
+	assertTrue(desertTile1.hasRover());
+	assertTrue(desertTile2.hasRover());
+	assertTrue(!normalTile.hasRover());
+	assertTrue(!normalTile2.hasRover());
+	assertTrue(!normalTile3.hasRover());
+	assertTrue(!normalTile4.hasRover());
+	assertTrue(!normalTile5.hasRover());
+
     }
+
 }
