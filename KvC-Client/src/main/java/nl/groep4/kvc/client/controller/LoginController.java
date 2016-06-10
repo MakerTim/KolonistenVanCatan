@@ -5,7 +5,6 @@ import java.net.UnknownHostException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
 
 import nl.groep4.kvc.client.util.ExceptionManager;
 import nl.groep4.kvc.client.view.ExceptionDialog;
@@ -15,7 +14,6 @@ import nl.groep4.kvc.client.view.scene.SceneLogin;
 import nl.groep4.kvc.common.KvCStatics;
 import nl.groep4.kvc.common.interfaces.Lobby;
 import nl.groep4.kvc.common.interfaces.Player;
-import nl.groep4.kvc.common.interfaces.Updatable;
 
 /**
  * Connects with the lobby if all requirements matches
@@ -75,9 +73,9 @@ public class LoginController {
 	SceneLobby view = new SceneLobby();
 	LobbyController controller = new LobbyController(model);
 	view.registerController(controller);
+	ClientRefrence.registerUpdateable(view);
+	ViewMaster.setScene(view);
 	try {
-	    pl.registerUpdateable((Updatable<Lobby>) UnicastRemoteObject.exportObject(view, ClientRefrence.getPort()));
-	    ViewMaster.setScene(view);
 	    view.setModel(model);
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();

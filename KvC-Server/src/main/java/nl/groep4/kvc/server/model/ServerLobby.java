@@ -9,6 +9,7 @@ import java.util.List;
 import nl.groep4.kvc.common.enumeration.Color;
 import nl.groep4.kvc.common.interfaces.Lobby;
 import nl.groep4.kvc.common.interfaces.Player;
+import nl.groep4.kvc.common.interfaces.Updatable;
 import nl.groep4.kvc.common.interfaces.UpdateLobby;
 import nl.groep4.kvc.common.util.Scheduler;
 
@@ -118,7 +119,19 @@ public class ServerLobby implements Lobby {
     public void startGame() throws RemoteException {
 	kvc = new ServerKolonistenVanCatan();
 	kvc.createMap();
-	state = State.LOBBY;
+	state = State.IN_GAME;
+	for (Player pl : getPlayers()) {
+	    new Thread(() -> {
+		try {
+		    Updatable<?> view = pl.getUpdateable();
+		    if (view instanceof UpdateLobby) {
+			((UpdateLobby) view).start(kvc.getMap());
+		    }
+		} catch (Exception ex) {
+		    ex.printStackTrace();
+		}
+	    }).start();
+	}
     }
 
     @Override

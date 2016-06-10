@@ -19,6 +19,7 @@ import nl.groep4.kvc.common.enumeration.Color;
 import nl.groep4.kvc.common.interfaces.Lobby;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.UpdateLobby;
+import nl.groep4.kvc.common.map.Map;
 
 /**
  * Builds scene settings menu
@@ -130,5 +131,13 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
     @Override
     public void popup(String key) throws RemoteException {
 	ExceptionDialog.warning("note." + key);
+    }
+
+    @Override
+    public void start(Map model) throws RemoteException {
+	SceneMap mapview = new SceneMap();
+	ViewMaster.setScene(mapview);
+	mapview.setModel(model);
+	ClientRefrence.registerUpdateable(mapview);
     }
 }
