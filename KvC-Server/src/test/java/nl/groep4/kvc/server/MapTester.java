@@ -410,6 +410,7 @@ public class MapTester {
 	assertEquals(buildingTile1.getBuilding(Point.SOUTH_WEST), buildingTile2.getBuilding(Point.NORTH_WEST));
 	assertEquals(buildingTile3.getBuilding(Point.EAST), buildingTile2.getBuilding(Point.NORTH_WEST));
 	assertEquals(buildingTile2.getBuilding(Point.NORTH_WEST), buildingTile1.getBuilding(Point.SOUTH_WEST));
+	assertEquals(buildingTile1.getBuilding(Point.SOUTH_WEST), buildingTile3.getBuilding(Point.EAST));
 
 	// Op een desert moet standaard een rover en op een normale tile niet #
 	// tile.hasRover() #
