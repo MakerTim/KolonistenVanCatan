@@ -10,9 +10,11 @@ public class ServerTileResource extends ServerTile implements TileResource {
     private static final long serialVersionUID = 19071996112112112L;
 
     private boolean hasRover = false;
+    private int number;
 
-    public ServerTileResource(TileType type, Coordinate position) {
+    public ServerTileResource(TileType type, int number, Coordinate position) {
 	super(type, position);
+	this.number = number;
     }
 
     @Override
@@ -33,6 +35,11 @@ public class ServerTileResource extends ServerTile implements TileResource {
     @Override
     public Resource getResource() {
 	return Resource.values()[getType().ordinal()];
+    }
+
+    @Override
+    public int getNumber() {
+	return number;
     }
 
     @Override

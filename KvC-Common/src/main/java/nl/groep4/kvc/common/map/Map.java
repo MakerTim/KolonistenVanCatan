@@ -1,5 +1,6 @@
 package nl.groep4.kvc.common.map;
 
+import java.io.Serializable;
 import java.util.List;
 
 import nl.groep4.kvc.common.enumeration.Direction;
@@ -13,7 +14,9 @@ import nl.groep4.kvc.common.enumeration.Point;
  * @author Tim
  */
 
-public interface Map {
+public interface Map extends Serializable {
+
+    public static final int COLUMS = 9;
 
     /**
      * 

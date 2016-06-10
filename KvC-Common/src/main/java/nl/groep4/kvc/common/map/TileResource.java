@@ -6,4 +6,5 @@ public interface TileResource extends TileLand {
 
     public Resource getResource();
 
+    public int getNumber();
 }

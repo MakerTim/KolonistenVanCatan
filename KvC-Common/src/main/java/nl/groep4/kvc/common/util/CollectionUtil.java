@@ -177,6 +177,10 @@ public class CollectionUtil {
 	}
     }
 
+    public static <T> T getInRange(T[] array, int index) {
+	return array[modInRange(array, index)];
+    }
+
     public static int modInRange(Object[] array, int index) {
 	index %= array.length;
 	if (index < 0) {

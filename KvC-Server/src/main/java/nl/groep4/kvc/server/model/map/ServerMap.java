@@ -17,6 +17,8 @@ import nl.groep4.kvc.server.factory.TileFactory;
 
 public class ServerMap implements Map {
 
+    private static final long serialVersionUID = 2507200235719526105L;
+
     private final List<Tile> tiles = new ArrayList<>();
     private final List<Building> buildings = new ArrayList<>();
     private final List<Street> streets = new ArrayList<>();
@@ -29,21 +31,23 @@ public class ServerMap implements Map {
     @Override
     public void createMap() {
 	List<TileType> typesTodo = TileFactory.getNeeded();
+	List<Integer> numbersTodo = TileFactory.getNumbers();
 	typesTodo.remove(TileType.DESERT);
 	typesTodo.remove(TileType.DESERT);
-	int cols = 9;
-	for (int col = 0; col < cols; col++) {
-	    int rows = cols - Math.abs(col - ((cols - 1) / 2)) - 1;
+	for (int col = 0; col < Map.COLUMS; col++) {
+	    int rows = Map.COLUMS - Math.abs(col - ((Map.COLUMS - 1) / 2)) - 1;
 	    for (int row = 0; row < rows; row++) {
-		Coordinate position = new Coordinate(col - cols / 2, row - rows / 2);
-		if (row == 0 || row == rows - 1 || col == 0 || col == cols - 1) {
+		Coordinate position = new Coordinate(col - Map.COLUMS / 2, row - rows / 2);
+		if (row == 0 || row == rows - 1 || col == 0 || col == Map.COLUMS - 1) {
 		    getTiles().add(new ServerTileSea(position));
 		} else if (position.getX() == 0 && (position.getY() == -2 || position.getY() == 1)) {
 		    getTiles().add(new ServerTileDesert(position));
 		} else {
+		    Integer number = CollectionUtil.randomItem(numbersTodo);
 		    TileType randomType = CollectionUtil.randomItem(typesTodo);
+		    numbersTodo.remove(number);
 		    typesTodo.remove(randomType);
-		    getTiles().add(new ServerTileResource(randomType, position));
+		    getTiles().add(new ServerTileResource(randomType, number, position));
 		}
 	    }
 	}
