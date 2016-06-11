@@ -17,10 +17,10 @@ import nl.groep4.kvc.common.map.Tile;
 public class MapPane implements PaneHolder {
 
     private List<ClientTile> tiles = new ArrayList<>();
+    private Pane pane;
 
-    @Override
-    public Pane getPane() {
-	Pane stacked = new StackPane();
+    public MapPane() {
+	pane = new StackPane();
 	HBox colls = new HBox((-0.40) * SceneMap.scale);
 	colls.setAlignment(Pos.CENTER);
 	for (int col = 0; col < Map.COLUMS; col++) {
@@ -35,8 +35,12 @@ public class MapPane implements PaneHolder {
 	    }
 	    colls.getChildren().add(rowws);
 	}
-	stacked.getChildren().add(colls);
-	return stacked;
+	pane.getChildren().add(colls);
+    }
+
+    @Override
+    public Pane getPane() {
+	return pane;
     }
 
     @Override

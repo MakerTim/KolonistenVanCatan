@@ -21,7 +21,7 @@ import nl.groep4.kvc.common.interfaces.Player;
  * @author Tim
  * @version 1.0
  */
-public class PlayerColorScroll extends StackPane {
+public class ColorScroll extends StackPane {
 
     private static final Image IMAGE = new Image("img/menu/parchment.png");
     private static final Image HOVER_IMAGE = new Image("img/menu/parchment_hover.png");
@@ -40,7 +40,7 @@ public class PlayerColorScroll extends StackPane {
      * @param color
      *            reference to change or add color to a player
      */
-    public PlayerColorScroll(Color color) {
+    public ColorScroll(Color color) {
 	VBox tussenPane = new VBox();
 	tussenPane.setAlignment(Pos.CENTER);
 	this.color = color;

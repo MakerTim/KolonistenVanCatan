@@ -9,7 +9,9 @@ import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import nl.groep4.kvc.client.controller.LoginController;
 import nl.groep4.kvc.client.util.SoundUtil;
+import nl.groep4.kvc.client.view.elements.SettingsButton;
 import nl.groep4.kvc.client.view.scene.SceneHolder;
 import nl.groep4.kvc.client.view.scene.SceneLogin;
 
@@ -39,7 +41,9 @@ public class ViewMaster extends Application {
 	SoundUtil.playThemesong();
 
 	System.out.println("Starting LoginScreen");
-	setScene(new SceneLogin());
+	SceneLogin view = new SceneLogin();
+	view.registerController(new LoginController(view));
+	setScene(view);
 	primaryStage.setTitle("Kolonisten van Catan: Online");
 	primaryStage.setResizable(false);
 	primaryStage.setOnCloseRequest(onClose -> {
@@ -73,6 +77,7 @@ public class ViewMaster extends Application {
      * Update given settings from user
      */
     public static void updateConfig() {
+	SettingsButton.updateConfig();
 	lastScene.updateConfig();
     }
 }

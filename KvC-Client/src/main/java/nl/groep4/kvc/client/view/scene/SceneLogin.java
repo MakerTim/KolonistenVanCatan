@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+import nl.groep4.kvc.client.controller.Controller;
 import nl.groep4.kvc.client.controller.LoginController;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
@@ -15,6 +16,7 @@ import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.elements.MenuCheckBox;
 import nl.groep4.kvc.client.view.elements.MenuFilterdInputField;
 import nl.groep4.kvc.client.view.elements.MenuMatchInputField;
+import nl.groep4.kvc.client.view.elements.SettingsButton;
 import nl.groep4.kvc.common.KvCStatics;
 import nl.groep4.kvc.common.util.CollectionUtil;
 
@@ -35,13 +37,19 @@ public class SceneLogin implements SceneHolder {
     private Text confirmLabel;
     private Text nosoundLabel;
     private MenuButton joinButton;
-    private MenuButton settingsButton;
     private TextField ipInput;
     private TextField portInput;
     private TextField usernameInput;
     private CheckBox nocolorInput;
     private CheckBox confirmInput;
     private CheckBox nosoundInput;
+
+    private LoginController controller;
+
+    @Override
+    public void registerController(Controller controller) {
+	this.controller = (LoginController) controller;
+    }
 
     @Override
     public Scene getScene() {
@@ -72,7 +80,6 @@ public class SceneLogin implements SceneHolder {
 	    nosoundLabel = new Text(310, 490, TranslationManager.translate("lobby.label.nosound"));
 	    nosoundInput = new MenuCheckBox(540, 474, false);
 	    joinButton = new MenuButton(425, 500, TranslationManager.translate("lobby.button.join"));
-	    settingsButton = new MenuButton(13, 645, TranslationManager.translate("lobby.button.settings"));
 
 	    ipLabel.setFont(ViewMaster.FONT);
 	    ipInput.setFont(ViewMaster.FONT);
@@ -86,12 +93,10 @@ public class SceneLogin implements SceneHolder {
 	    nosoundLabel.setFont(ViewMaster.FONT);
 	    joinButton.setFont(ViewMaster.FONT);
 	    joinButton.registerClick(() -> onConnectClick());
-	    settingsButton.setFont(ViewMaster.FONT);
-	    settingsButton.registerClick(() -> onSettingsClick());
 
 	    form.getChildren().addAll(ipLabel, ipInput, portLabel, portInput, usernameLabel, usernameInput,
 		    nocolorLabel, nocolorInput, confirmLabel, confirmInput, nosoundLabel, nosoundInput, joinButton,
-		    settingsButton);
+		    SettingsButton.getButton(this, 13, 645));
 	}
 	return form;
     }
@@ -105,21 +110,13 @@ public class SceneLogin implements SceneHolder {
 	confirmLabel.setText(TranslationManager.translate("lobby.label.confirmeverything"));
 	nosoundLabel.setText(TranslationManager.translate("lobby.label.nosound"));
 	joinButton.updateText(TranslationManager.translate("lobby.button.join"));
-	settingsButton.updateText(TranslationManager.translate("lobby.button.settings"));
     }
 
     /**
      * When mouse clicked a User gets registered
      */
     public void onConnectClick() {
-	LoginController.connect(this);
-    }
-
-    /**
-     * When clicked Settingsmenu opens
-     */
-    public void onSettingsClick() {
-	ViewMaster.setScene(new SceneSettings(this));
+	controller.connect();
     }
 
     /**
@@ -136,7 +133,7 @@ public class SceneLogin implements SceneHolder {
      * 
      * @return the input of the portNumber label in an int
      */
-    public int getPortInput() {
+    public int getPortInput() throws NumberFormatException {
 	return Integer.parseInt(portInput.getText());
     }
 

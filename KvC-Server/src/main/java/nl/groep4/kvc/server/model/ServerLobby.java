@@ -6,17 +6,19 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.google.gson.GsonBuilder;
+
 import nl.groep4.kvc.common.enumeration.Color;
+import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Lobby;
 import nl.groep4.kvc.common.interfaces.Player;
-import nl.groep4.kvc.common.interfaces.Updatable;
 import nl.groep4.kvc.common.interfaces.UpdateLobby;
 import nl.groep4.kvc.common.util.Scheduler;
 
 public class ServerLobby implements Lobby {
 
     protected final List<Player> players = new ArrayList<>();
-    private ServerKolonistenVanCatan kvc;
+    private KolonistenVanCatan kvc;
     private State state = State.LOBBY;
 
     @Override
@@ -31,12 +33,14 @@ public class ServerLobby implements Lobby {
 	    break;
 	case LOBBY:
 	    Player pl = (Player) UnicastRemoteObject.exportObject(new ServerPlayer(playerName), 0);
-	    for (Player player : players) {
+	    Iterator<Player> playersIT = players.iterator();
+	    while (playersIT.hasNext()) {
+		Player player = playersIT.next();
 		try {
-		    if (player.getUsername().equals(pl.getUsername())
-			    && player.getUpdateable() instanceof UpdateLobby) {
+		    if (player.getUsername().equals(pl.getUsername())) {
 			System.out.printf("Kicking player %s for dube name\n", pl.getUsername());
-			((UpdateLobby) player.getUpdateable()).close("other");
+			player.getUpdateable().close("other");
+			playersIT.remove();
 		    }
 		} catch (RemoteException ex) {
 		}
@@ -62,42 +66,37 @@ public class ServerLobby implements Lobby {
 
     @Override
     public void setColor(Player pl, Color newColor) throws RemoteException {
-	Scheduler.runAsync(() -> {
-	    cleanup();
-	});
+	cleanup();
 	switch (state) {
 	case IN_GAME:
 	    pl.getUpdateable().popup("ingame");
 	    break;
 	case LOBBY:
-	    if (!players.stream().filter(player -> {
-		try {
-		    return player.getColor() == newColor && newColor != null;
-		} catch (RemoteException ex) {
-		    ex.printStackTrace();
-		    return false;
+	    boolean freeColor = true;
+	    for (Player player : players) {
+		if (player.getColor() == newColor && newColor != null) {
+		    freeColor = false;
 		}
-	    }).findAny().isPresent()) {
-		System.out.printf("\t%s [%s] - new color = %s\n", pl.getUsername(), pl.getColor(), newColor);
-		Color color = pl.getColor();
-		pl.setColor(newColor);
-		players.stream().filter(player -> {
-		    try {
-			return player.getUpdateable() instanceof UpdateLobby;
-		    } catch (RemoteException ex) {
-			return false;
-		    }
-		}).forEach(player -> {
-		    Scheduler.runAsync(() -> {
+	    }
+	    if (!freeColor) {
+		break;
+	    }
+	    System.out.printf("\t%s [%s] - new color = %s\n", pl.getUsername(), pl.getColor(), newColor);
+	    Color color = pl.getColor();
+	    pl.setColor(newColor);
+	    List<Runnable> runs = new ArrayList<>();
+	    for (Player player : players) {
+		if (player.getUpdateable() instanceof UpdateLobby) {
+		    runs.add(() -> {
 			try {
-			    ((UpdateLobby) player.getUpdateable()).updatePlayerColor(null, color);
-			    ((UpdateLobby) player.getUpdateable()).updatePlayerColor(pl, newColor);
+			    player.getUpdateable(UpdateLobby.class).updatePlayerColor(null, color);
+			    player.getUpdateable(UpdateLobby.class).updatePlayerColor(pl, newColor);
 			} catch (RemoteException ex) {
 			}
 		    });
-		});
-		break;
+		}
 	    }
+	    Scheduler.runSync(runs);
 	}
     }
 
@@ -135,10 +134,8 @@ public class ServerLobby implements Lobby {
 	for (Player pl : getPlayers()) {
 	    new Thread(() -> {
 		try {
-		    Updatable<?> view = pl.getUpdateable();
-		    if (view instanceof UpdateLobby) {
-			((UpdateLobby) view).start(kvc.getMap());
-		    }
+		    pl.getUpdateable(UpdateLobby.class)
+			    .start((KolonistenVanCatan) UnicastRemoteObject.exportObject(kvc, 2));
 		} catch (Exception ex) {
 		    ex.printStackTrace();
 		}
@@ -148,6 +145,7 @@ public class ServerLobby implements Lobby {
 
     @Override
     public void loadSave(String save) throws RemoteException {
-	// TODO LoadSave
+	// TODO: ServerLobby#LoadSave Needs to be looked in
+	kvc = new GsonBuilder().create().fromJson(save, ServerKolonistenVanCatan.class);
     }
 }

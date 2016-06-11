@@ -36,6 +36,10 @@ public interface Player extends Remote {
      */
     public Updatable<?> getUpdateable() throws RemoteException;
 
+    public default <T extends Updatable<?>> T getUpdateable(Class<T> type) throws RemoteException {
+	return (T) getUpdateable();
+    }
+
     public Color getColor() throws RemoteException;
 
     public void setColor(Color color) throws RemoteException;

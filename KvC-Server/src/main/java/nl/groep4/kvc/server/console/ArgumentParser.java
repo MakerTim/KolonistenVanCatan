@@ -1,9 +1,11 @@
 package nl.groep4.kvc.server.console;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.server.ServerStarter;
 
 public class ArgumentParser {
@@ -20,7 +22,7 @@ public class ArgumentParser {
     public void parse() throws Throwable {
 	switch (cmd.toLowerCase()) {
 	case "exit":
-	    System.exit(0);
+	    exit();
 	    break;
 	case "":
 	    System.out.println("No command given.");
@@ -34,29 +36,31 @@ public class ArgumentParser {
 	}
     }
 
-    private void kick() throws RemoteException {
-	if (args.length == 0) {
-	    System.out.println("Need a playername to be kicked");
-	    return;
+    private void exit() throws RemoteException {
+	for (Player pl : new ArrayList<>(ServerStarter.getLobby().getPlayers())) {
+	    pl.getUpdateable().close("closed");
+	    ServerStarter.getLobby().disconnect(pl);
 	}
-	ServerStarter.getLobby().getPlayers().stream().filter(pl -> {
-	    try {
-		return pl.getUsername().equals(args[0]);
-	    } catch (RemoteException e) {
-	    }
-	    return false;
-	}).forEach(pl -> {
-	    try {
-		ServerStarter.getLobby().disconnect(pl);
-	    } catch (RemoteException e) {
-	    }
-	});
-	System.out.println("Kicked player with the username '" + args[0] + "'");
+	System.exit(0);
     }
 
     private void list() throws RemoteException {
 	System.out.printf("Current players online: [%d]\n\t%s\n", ServerStarter.getLobby().getPlayers().size(),
 		ServerStarter.getLobby().getPlayers());
+    }
+
+    private void kick() throws RemoteException {
+	if (args.length == 0) {
+	    System.out.println("Need a playername to be kicked");
+	    return;
+	}
+	for (Player pl : ServerStarter.getLobby().getPlayers()) {
+	    if (pl.getUsername().equals(args[0])) {
+		pl.getUpdateable().close("");
+		ServerStarter.getLobby().disconnect(pl);
+	    }
+	}
+	System.out.println("Kicked player with the username '" + args[0] + "'");
     }
 
     public static void startParser() {

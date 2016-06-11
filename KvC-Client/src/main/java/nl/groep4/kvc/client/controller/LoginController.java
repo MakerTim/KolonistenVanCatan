@@ -21,7 +21,13 @@ import nl.groep4.kvc.common.interfaces.Player;
  * @author Tim
  * @version 1.0
  */
-public class LoginController {
+public class LoginController implements Controller {
+
+    private SceneLogin view;
+
+    public LoginController(SceneLogin view) {
+	this.view = view;
+    }
 
     /**
      * checks if all input fields are correct
@@ -30,15 +36,15 @@ public class LoginController {
      *            screen to display
      * @return lobby key to connect with
      */
-    public static Lobby connect(SceneLogin sceneLogin) {
+    public Lobby connect() {
 	String ip = "";
 	int port = 1099;
 	String username = "";
 	Lobby lobby = null;
 	try {
-	    ip = sceneLogin.getIpInput();
-	    port = sceneLogin.getPortInput();
-	    username = sceneLogin.getUsernameInput().trim();
+	    ip = view.getIpInput();
+	    port = view.getPortInput();
+	    username = view.getUsernameInput().trim();
 
 	    /* Check if valid IP */
 	    if (InetAddress.getByName(ip) == null) {
