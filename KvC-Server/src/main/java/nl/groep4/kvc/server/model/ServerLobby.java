@@ -21,19 +21,31 @@ public class ServerLobby implements Lobby {
 
     @Override
     public Player registerPlayer(String playerName) throws RemoteException {
-	Player pl = (Player) UnicastRemoteObject.exportObject(new ServerPlayer(playerName), 0);
-	for (Player player : players) {
-	    try {
-		if (player.getUsername().equals(pl.getUsername()) && player.getUpdateable() instanceof UpdateLobby) {
-		    System.out.printf("Kicking player %s for dube name\n", pl.getUsername());
-		    ((UpdateLobby) player.getUpdateable()).close("other");
+	switch (state) {
+	case IN_GAME:
+	    for (Player kvcPlayer : kvc.getPlayers()) {
+		if (kvcPlayer.getUsername().equals(playerName)) {
+		    return kvcPlayer;
 		}
-	    } catch (RemoteException ex) {
 	    }
+	    break;
+	case LOBBY:
+	    Player pl = (Player) UnicastRemoteObject.exportObject(new ServerPlayer(playerName), 0);
+	    for (Player player : players) {
+		try {
+		    if (player.getUsername().equals(pl.getUsername())
+			    && player.getUpdateable() instanceof UpdateLobby) {
+			System.out.printf("Kicking player %s for dube name\n", pl.getUsername());
+			((UpdateLobby) player.getUpdateable()).close("other");
+		    }
+		} catch (RemoteException ex) {
+		}
+	    }
+	    players.add(pl);
+	    System.out.printf("Player %s has joined!\n", pl.getUsername());
+	    return pl;
 	}
-	players.add(pl);
-	System.out.printf("Player %s has joined!\n", pl.getUsername());
-	return pl;
+	return null;
     }
 
     @Override
@@ -91,7 +103,7 @@ public class ServerLobby implements Lobby {
 
     private boolean removePlayer(Player pl, boolean shouldRemove) throws RemoteException {
 	setColor(pl, null);
-	if (!shouldRemove) {
+	if (shouldRemove) {
 	    return players.remove(pl);
 	}
 	return true;
@@ -102,7 +114,7 @@ public class ServerLobby implements Lobby {
 	while (playerIT.hasNext()) {
 	    Player pl = playerIT.next();
 	    try {
-		pl.getUpdateable().toString();
+		pl.getUpdateable().testConnection();
 	    } catch (Exception ex) {
 		try {
 		    removePlayer(pl, false);
@@ -117,7 +129,7 @@ public class ServerLobby implements Lobby {
 
     @Override
     public void startGame() throws RemoteException {
-	kvc = new ServerKolonistenVanCatan();
+	kvc = new ServerKolonistenVanCatan(players);
 	kvc.createMap();
 	state = State.IN_GAME;
 	for (Player pl : getPlayers()) {

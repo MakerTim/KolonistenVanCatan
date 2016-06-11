@@ -21,4 +21,7 @@ public interface Updatable<T> extends Remote {
     public void close(String key) throws RemoteException;
 
     public void popup(String key) throws RemoteException;
+
+    public default void testConnection() throws RemoteException {
+    }
 }

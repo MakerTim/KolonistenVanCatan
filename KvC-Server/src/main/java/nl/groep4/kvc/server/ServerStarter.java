@@ -1,5 +1,7 @@
 package nl.groep4.kvc.server;
 
+import nl.groep4.kvc.server.console.ArgumentParser;
+import nl.groep4.kvc.server.model.ServerLobby;
 import nl.groep4.kvc.server.rmi.RmiServer;
 
 /**
@@ -9,6 +11,8 @@ import nl.groep4.kvc.server.rmi.RmiServer;
  * @version 1.0
  */
 public class ServerStarter {
+
+    private static ServerLobby lobby;
 
     /**
      * gives port number 1099
@@ -24,6 +28,15 @@ public class ServerStarter {
 	    port = Integer.parseInt(args[0]);
 	}
 	RmiServer.init(port);
+	ArgumentParser.startParser();
+    }
+
+    public static ServerLobby getLobby() {
+	return lobby;
+    }
+
+    public static void setLobby(ServerLobby lobby) {
+	ServerStarter.lobby = lobby;
     }
 
 }
