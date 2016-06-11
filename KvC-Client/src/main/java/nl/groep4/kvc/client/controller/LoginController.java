@@ -61,6 +61,10 @@ public class LoginController implements Controller {
 	    lobby = (Lobby) registry.lookup(KvCStatics.LOBBY_KEY);
 	    /* Register self */
 	    Player pl = lobby.registerPlayer(username);
+	    if (pl == null) {
+		ExceptionDialog.warning("login.error.ingame");
+		return null;
+	    }
 	    ClientRefrence.setThePlayer(pl);
 	    openLobby(lobby, pl);
 	} catch (UnknownHostException ex) {

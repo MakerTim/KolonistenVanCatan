@@ -28,7 +28,7 @@ public class SettingsButton extends MenuButton {
     public static SettingsButton getButton(SceneHolder parent, int x, int y) {
 	BUTTON.parent = parent;
 	BUTTON.setLayoutX(x);
-	BUTTON.setLayoutX(y);
+	BUTTON.setLayoutY(y);
 	return BUTTON;
     }
 

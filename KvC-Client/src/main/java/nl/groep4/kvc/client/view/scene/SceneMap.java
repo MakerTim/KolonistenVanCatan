@@ -28,6 +28,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
     @Override
     public void registerController(Controller controller) {
 	this.controller = (MapController) controller;
+	this.gamepane.registerController(this.controller);
     }
 
     @Override

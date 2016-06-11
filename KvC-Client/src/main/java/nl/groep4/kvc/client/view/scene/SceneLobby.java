@@ -36,6 +36,7 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
     private MenuButton startGame;
     private Text lobbyLabel;
     private ColorScroll[] scrolls;
+    private Lobby model;
 
     private LobbyController controller;
 
@@ -90,6 +91,14 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
 	Scene scene = new Scene(lobbyPane);
 	SceneUtil.fadeIn(SceneUtil.getLobbyForeground(), SceneUtil.getCornerShield(), lobbyLabel, lobbyGrid, startGame,
 		backButton, saveButton);
+	if (model != null) {
+	    try {
+		setModel(model);
+	    } catch (RemoteException e) {
+		e.printStackTrace();
+	    }
+	}
+
 	return scene;
     }
 
@@ -104,6 +113,7 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
 
     @Override
     public void setModel(Lobby model) throws RemoteException {
+	this.model = model;
 	for (Player pl : model.getPlayers()) {
 	    updatePlayerColor(pl, pl.getColor());
 	}

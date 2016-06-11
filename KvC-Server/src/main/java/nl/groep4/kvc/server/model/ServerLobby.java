@@ -108,19 +108,20 @@ public class ServerLobby implements Lobby {
 	return true;
     }
 
-    private void cleanup() {
+    @Override
+    public void cleanup() throws RemoteException {
 	Iterator<Player> playerIT = players.iterator();
 	while (playerIT.hasNext()) {
 	    Player pl = playerIT.next();
 	    try {
 		pl.getUpdateable().testConnection();
-	    } catch (Exception ex) {
+	    } catch (RemoteException ex) {
 		try {
-		    removePlayer(pl, false);
 		    playerIT.remove();
+		    removePlayer(pl, false);
 		    System.out.printf("Player %s has been removed by disconnecting.\n", pl.getUsername());
 		} catch (Exception subex) {
-		    System.out.println(subex);
+		    System.err.println(subex);
 		}
 	    }
 	}

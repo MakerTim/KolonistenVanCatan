@@ -1,16 +1,33 @@
 package nl.groep4.kvc.client.controller;
 
-import nl.groep4.kvc.client.view.scene.SceneMap;
+import java.rmi.RemoteException;
+
+import nl.groep4.kvc.client.util.ExceptionManager;
+import nl.groep4.kvc.common.enumeration.BuildingType;
 import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
+import nl.groep4.kvc.common.map.Coordinate;
 
 public class MapController implements Controller {
 
-    private SceneMap view;
     private KolonistenVanCatan model;
 
-    public MapController(SceneMap view, KolonistenVanCatan model) {
-	this.view = view;
+    public MapController(KolonistenVanCatan model) {
 	this.model = model;
     }
 
+    public void placeBuilding(Coordinate coord) {
+	try {
+	    model.placeBuilding(coord, ClientRefrence.getThePlayer(), BuildingType.VILLAGE);
+	} catch (RemoteException ex) {
+	    ExceptionManager.handleRemoteException(ex);
+	}
+    }
+
+    public void placeStreet(Coordinate coord) {
+	try {
+	    model.placeStreet(coord, ClientRefrence.getThePlayer());
+	} catch (RemoteException ex) {
+	    ExceptionManager.handleRemoteException(ex);
+	}
+    }
 }

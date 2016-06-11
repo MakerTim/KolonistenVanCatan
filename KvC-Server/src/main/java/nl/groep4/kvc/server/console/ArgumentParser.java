@@ -30,6 +30,9 @@ public class ArgumentParser {
 	case "list":
 	    list();
 	    break;
+	case "clean":
+	    clean();
+	    break;
 	case "kick":
 	    kick();
 	    break;
@@ -37,6 +40,7 @@ public class ArgumentParser {
     }
 
     private void exit() throws RemoteException {
+	ServerStarter.getLobby().cleanup();
 	for (Player pl : new ArrayList<>(ServerStarter.getLobby().getPlayers())) {
 	    pl.getUpdateable().close("closed");
 	    ServerStarter.getLobby().disconnect(pl);
@@ -47,6 +51,11 @@ public class ArgumentParser {
     private void list() throws RemoteException {
 	System.out.printf("Current players online: [%d]\n\t%s\n", ServerStarter.getLobby().getPlayers().size(),
 		ServerStarter.getLobby().getPlayers());
+    }
+
+    private void clean() throws RemoteException {
+	ServerStarter.getLobby().cleanup();
+	System.out.println("Cleaned the disconnected players.");
     }
 
     private void kick() throws RemoteException {

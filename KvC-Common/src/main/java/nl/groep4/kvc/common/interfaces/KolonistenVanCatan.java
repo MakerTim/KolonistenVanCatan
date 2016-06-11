@@ -4,6 +4,8 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
+import nl.groep4.kvc.common.enumeration.BuildingType;
+import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Map;
 
 public interface KolonistenVanCatan extends Remote {
@@ -26,4 +28,7 @@ public interface KolonistenVanCatan extends Remote {
 
     public List<Player> getPlayersOrded() throws RemoteException;
 
+    public void placeBuilding(Coordinate coord, Player newOwner, BuildingType type) throws RemoteException;
+
+    public void placeStreet(Coordinate coord, Player newOwner) throws RemoteException;
 }
