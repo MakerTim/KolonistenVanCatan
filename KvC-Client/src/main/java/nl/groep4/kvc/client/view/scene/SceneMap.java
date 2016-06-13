@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.EnumMap;
 import java.util.List;
 
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -31,6 +32,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
     private PaneHolder overlayPane = null;
     private Pane theOverlayPane = null;
     private MapPane gamepane = new MapPane();
+    private MenuButton optionButton;
     private MenuButton buildButton;
     private MenuButton tradeButton;
     private MenuButton buyButton;
@@ -53,17 +55,24 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    /* Build bottom */
 	    BorderPane bottom = new BorderPane();
 
+	    VBox optionPane = new VBox();
+	    optionButton = new MenuButton("game.button.settings");
+	    optionPane.setAlignment(Pos.BOTTOM_RIGHT);
+	    optionPane.getChildren().add(optionButton);
+
 	    stock = new StockPane();
 
-	    Pane buttons = new VBox();
+	    VBox buttons = new VBox();
 	    buildButton = new MenuButton("game.button.build");
 	    tradeButton = new MenuButton("game.button.trade");
 	    buyButton = new MenuButton("game.button.buy");
+	    buttons.setAlignment(Pos.BOTTOM_RIGHT);
 	    buttons.getChildren().addAll(buildButton, tradeButton, buyButton);
 
-	    bottom.setLeft(null);
+	    bottom.setLeft(optionPane);
 	    bottom.setCenter(stock.getPane());
 	    bottom.setRight(buttons);
+	    BorderPane.setAlignment(bottom, Pos.BOTTOM_CENTER);
 	    screen.setBottom(bottom);
 
 	    /* Add all layers */

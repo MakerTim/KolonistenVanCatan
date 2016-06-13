@@ -14,6 +14,7 @@ import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 
+@SuppressWarnings("unused")
 public class CardPane extends Application implements PaneHolder {
 
     MenuButton yes = new MenuButton(425, 500, TranslationManager.translate("decision.yes"));
