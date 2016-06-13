@@ -11,6 +11,8 @@ import nl.groep4.kvc.client.view.ViewMaster;
  */
 public class ClientStarter {
 
+    public static String[] args;
+
     /**
      * Launches the application
      * 
@@ -18,6 +20,7 @@ public class ClientStarter {
      *            contains the supplied command-line arguments
      */
     public static void main(String[] args) throws Exception {
+	ClientStarter.args = args;
 	Application.launch(ViewMaster.class, args);
     }
 }
