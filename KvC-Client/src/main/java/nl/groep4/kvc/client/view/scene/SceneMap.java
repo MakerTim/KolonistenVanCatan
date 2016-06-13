@@ -3,13 +3,16 @@ package nl.groep4.kvc.client.view.scene;
 import java.rmi.RemoteException;
 
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import nl.groep4.kvc.client.controller.Controller;
 import nl.groep4.kvc.client.controller.MapController;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.view.ExceptionDialog;
 import nl.groep4.kvc.client.view.ViewMaster;
+import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.pane.MapPane;
 import nl.groep4.kvc.client.view.pane.PaneHolder;
 import nl.groep4.kvc.common.interfaces.UpdateMap;
@@ -23,6 +26,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
     private PaneHolder overlayPane = null;
     private Pane theOverlayPane = null;
     private MapPane gamepane = new MapPane();
+    private MenuButton buyButton;
     private Pane layers;
 
     @Override
@@ -36,11 +40,23 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	if (layers == null) {
 	    /* Build layer for the design */
 	    layers = new StackPane();
+	    BorderPane screen = new BorderPane();
+
+	    BorderPane bottom = new BorderPane();
+
 	    /* "game.button.buy", "game.button.trade", "game.button.build" */
-	    Pane board = gamepane.getPane();
+	    Pane buttons = new VBox();
+	    buyButton = new MenuButton("game.button.buy");
+	    buttons.getChildren().addAll(buyButton);
+
+	    bottom.setLeft(null);
+	    bottom.setCenter(null);
+	    bottom.setRight(buttons);
+	    screen.setBottom(bottom);
 
 	    /* Add all layers */
-	    layers.getChildren().addAll(SceneUtil.getBoardBackground(), SceneUtil.getBoard(), board);
+	    layers.getChildren().addAll(SceneUtil.getBoardBackground(), SceneUtil.getBoard(), gamepane.getPane(),
+		    screen);
 	}
 	Scene scene = new Scene(layers);
 	return scene;

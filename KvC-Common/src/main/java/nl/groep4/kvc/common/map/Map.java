@@ -5,7 +5,6 @@ import java.util.List;
 
 import nl.groep4.kvc.common.enumeration.Direction;
 import nl.groep4.kvc.common.enumeration.Point;
-import nl.groep4.kvc.server.model.map.ServerMap;
 
 /**
  * Get all tiles to generate map. Determine what round and place all buildings

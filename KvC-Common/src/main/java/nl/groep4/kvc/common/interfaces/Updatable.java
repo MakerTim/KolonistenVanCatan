@@ -3,8 +3,6 @@ package nl.groep4.kvc.common.interfaces;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-import nl.groep4.kvc.server.model.ServerLobby;
-
 /**
  * Sets updatable for players closing and ingame pop-up parameters
  * 

@@ -9,8 +9,6 @@ import java.util.Map.Entry;
 import java.util.Random;
 import java.util.function.Predicate;
 
-import nl.groep4.kvc.client.view.scene.SceneLogin;
-
 /**
  * Collection util is used for some missing features in Collections/subclasses
  * 
