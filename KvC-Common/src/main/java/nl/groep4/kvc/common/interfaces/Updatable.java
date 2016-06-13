@@ -40,4 +40,7 @@ public interface Updatable<T> extends Remote {
      *             in case connection between RMI and client is lost
      */
     public void popup(String key) throws RemoteException;
+
+    public default void testConnection() throws RemoteException {
+    }
 }

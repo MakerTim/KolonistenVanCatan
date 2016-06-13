@@ -54,6 +54,10 @@ public interface Player extends Remote {
      * @throws RemoteException
      *             in case connection between RMI and client is lost
      */
+    public default <T extends Updatable<?>> T getUpdateable(Class<T> type) throws RemoteException {
+	return (T) getUpdateable();
+    }
+
     public Color getColor() throws RemoteException;
 
     /**

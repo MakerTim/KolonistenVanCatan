@@ -6,10 +6,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.google.gson.GsonBuilder;
+
 import nl.groep4.kvc.common.enumeration.Color;
+import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Lobby;
 import nl.groep4.kvc.common.interfaces.Player;
-import nl.groep4.kvc.common.interfaces.Updatable;
 import nl.groep4.kvc.common.interfaces.UpdateLobby;
 import nl.groep4.kvc.common.util.Scheduler;
 
@@ -22,24 +24,39 @@ import nl.groep4.kvc.common.util.Scheduler;
 public class ServerLobby implements Lobby {
 
     protected final List<Player> players = new ArrayList<>();
-    private ServerKolonistenVanCatan kvc;
+    private KolonistenVanCatan kvc;
     private State state = State.LOBBY;
+    private int export = 10;
 
     @Override
     public Player registerPlayer(String playerName) throws RemoteException {
-	Player pl = (Player) UnicastRemoteObject.exportObject(new ServerPlayer(playerName), 0);
-	for (Player player : players) {
-	    try {
-		if (player.getUsername().equals(pl.getUsername()) && player.getUpdateable() instanceof UpdateLobby) {
-		    System.out.printf("Kicking player %s for dube name\n", pl.getUsername());
-		    ((UpdateLobby) player.getUpdateable()).close("other");
+	switch (state) {
+	case IN_GAME:
+	    for (Player kvcPlayer : kvc.getPlayers()) {
+		if (kvcPlayer.getUsername().equals(playerName)) {
+		    return kvcPlayer;
 		}
-	    } catch (RemoteException ex) {
 	    }
+	    break;
+	case LOBBY:
+	    Player pl = (Player) UnicastRemoteObject.exportObject(new ServerPlayer(playerName), 0);
+	    Iterator<Player> playersIT = players.iterator();
+	    while (playersIT.hasNext()) {
+		Player player = playersIT.next();
+		try {
+		    if (player.getUsername().equals(pl.getUsername())) {
+			System.out.printf("Kicking player %s for dube name\n", pl.getUsername());
+			player.getUpdateable().close("other");
+			playersIT.remove();
+		    }
+		} catch (RemoteException ex) {
+		}
+	    }
+	    players.add(pl);
+	    System.out.printf("Player %s has joined!\n", pl.getUsername());
+	    return pl;
 	}
-	players.add(pl);
-	System.out.printf("Player %s has joined!\n", pl.getUsername());
-	return pl;
+	return null;
     }
 
     @Override
@@ -56,83 +73,78 @@ public class ServerLobby implements Lobby {
 
     @Override
     public void setColor(Player pl, Color newColor) throws RemoteException {
-	Scheduler.runAsync(() -> {
-	    cleanup();
-	});
+	cleanup();
 	switch (state) {
 	case IN_GAME:
 	    pl.getUpdateable().popup("ingame");
 	    break;
 	case LOBBY:
-	    if (!players.stream().filter(player -> {
-		try {
-		    return player.getColor() == newColor && newColor != null;
-		} catch (RemoteException ex) {
-		    ex.printStackTrace();
-		    return false;
+	    boolean freeColor = true;
+	    for (Player player : players) {
+		if (player.getColor() == newColor && newColor != null) {
+		    freeColor = false;
 		}
-	    }).findAny().isPresent()) {
-		System.out.printf("\t%s [%s] - new color = %s\n", pl.getUsername(), pl.getColor(), newColor);
-		Color color = pl.getColor();
-		pl.setColor(newColor);
-		players.stream().filter(player -> {
-		    try {
-			return player.getUpdateable() instanceof UpdateLobby;
-		    } catch (RemoteException ex) {
-			return false;
-		    }
-		}).forEach(player -> {
-		    Scheduler.runAsync(() -> {
+	    }
+	    if (!freeColor) {
+		break;
+	    }
+	    System.out.printf("\t%s [%s] - new color = %s\n", pl.getUsername(), pl.getColor(), newColor);
+	    Color color = pl.getColor();
+	    pl.setColor(newColor);
+	    List<Runnable> runs = new ArrayList<>();
+	    for (Player player : players) {
+		if (player.getUpdateable() instanceof UpdateLobby) {
+		    runs.add(() -> {
 			try {
-			    ((UpdateLobby) player.getUpdateable()).updatePlayerColor(null, color);
-			    ((UpdateLobby) player.getUpdateable()).updatePlayerColor(pl, newColor);
+			    player.getUpdateable(UpdateLobby.class).updatePlayerColor(null, color);
+			    player.getUpdateable(UpdateLobby.class).updatePlayerColor(pl, newColor);
 			} catch (RemoteException ex) {
 			}
 		    });
-		});
-		break;
+		}
 	    }
+	    Scheduler.runSync(runs);
 	}
     }
 
     private boolean removePlayer(Player pl, boolean shouldRemove) throws RemoteException {
 	setColor(pl, null);
-	if (!shouldRemove) {
+	if (shouldRemove) {
 	    return players.remove(pl);
 	}
 	return true;
     }
 
-    private void cleanup() {
+    @Override
+    public void cleanup() throws RemoteException {
 	Iterator<Player> playerIT = players.iterator();
 	while (playerIT.hasNext()) {
 	    Player pl = playerIT.next();
 	    try {
-		pl.getUpdateable().toString();
-	    } catch (Exception ex) {
+		pl.getUpdateable().testConnection();
+	    } catch (RemoteException ex) {
 		try {
-		    removePlayer(pl, false);
 		    playerIT.remove();
+		    removePlayer(pl, false);
 		    System.out.printf("Player %s has been removed by disconnecting.\n", pl.getUsername());
 		} catch (Exception subex) {
-		    System.out.println(subex);
+		    System.err.println(subex);
 		}
+	    } catch (NullPointerException npe) {
 	    }
 	}
     }
 
     @Override
     public void startGame() throws RemoteException {
-	kvc = new ServerKolonistenVanCatan();
+	kvc = new ServerKolonistenVanCatan(players);
 	kvc.createMap();
 	state = State.IN_GAME;
 	for (Player pl : getPlayers()) {
 	    new Thread(() -> {
 		try {
-		    Updatable<?> view = pl.getUpdateable();
-		    if (view instanceof UpdateLobby) {
-			((UpdateLobby) view).start(kvc.getMap());
-		    }
+		    pl.getUpdateable(UpdateLobby.class)
+			    .start((KolonistenVanCatan) UnicastRemoteObject.exportObject(kvc, export++));
 		} catch (Exception ex) {
 		    ex.printStackTrace();
 		}
@@ -142,6 +154,7 @@ public class ServerLobby implements Lobby {
 
     @Override
     public void loadSave(String save) throws RemoteException {
-	// TODO LoadSave
+	// TODO: ServerLobby#LoadSave Needs to be looked in
+	kvc = new GsonBuilder().create().fromJson(save, ServerKolonistenVanCatan.class);
     }
 }

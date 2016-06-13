@@ -8,6 +8,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import nl.groep4.kvc.client.controller.Controller;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.SoundUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
@@ -106,5 +107,9 @@ public class SceneSettings implements SceneHolder {
 	if (parent instanceof SceneLogin) {
 	    ((SceneLogin) parent).updateConfig();
 	}
+    }
+
+    @Override
+    public void registerController(Controller controller) {
     }
 }

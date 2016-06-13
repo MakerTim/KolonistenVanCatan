@@ -8,6 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import nl.groep4.kvc.client.controller.MapController;
 import nl.groep4.kvc.client.view.elements.ClientTile;
 import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.map.Coordinate;
@@ -17,26 +18,36 @@ import nl.groep4.kvc.common.map.Tile;
 public class MapPane implements PaneHolder {
 
     private List<ClientTile> tiles = new ArrayList<>();
+    private Pane pane;
+    private MapController controller;
 
-    @Override
-    public Pane getPane() {
-	Pane stacked = new StackPane();
-	HBox colls = new HBox((-0.40) * SceneMap.scale);
+    public MapPane() {
+	pane = new StackPane();
+	HBox colls = new HBox((-0.60) * SceneMap.scale);
 	colls.setAlignment(Pos.CENTER);
 	for (int col = 0; col < Map.COLUMS; col++) {
 	    int rows = Map.COLUMS - Math.abs(col - ((Map.COLUMS - 1) / 2)) - 1;
-	    VBox rowws = new VBox(-0.15 * SceneMap.scale);
+	    VBox rowws = new VBox(-0.33 * SceneMap.scale);
 	    rowws.setAlignment(Pos.CENTER);
 	    for (int row = 0; row < rows; row++) {
 		Coordinate coord = new Coordinate(col - Map.COLUMS / 2, row - rows / 2);
-		ClientTile tile = new ClientTile(coord);
+		ClientTile tile = new ClientTile(controller, coord);
 		rowws.getChildren().add(tile);
 		tiles.add(tile);
 	    }
 	    colls.getChildren().add(rowws);
 	}
-	stacked.getChildren().add(colls);
-	return stacked;
+	pane.getChildren().add(colls);
+    }
+
+    public void registerController(MapController controller) {
+	this.controller = controller;
+	tiles.forEach(tile -> tile.setController(controller));
+    }
+
+    @Override
+    public Pane getPane() {
+	return pane;
     }
 
     @Override

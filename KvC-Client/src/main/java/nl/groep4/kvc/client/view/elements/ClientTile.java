@@ -11,6 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import nl.groep4.kvc.client.controller.MapController;
 import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.enumeration.Direction;
 import nl.groep4.kvc.common.enumeration.Point;
@@ -27,6 +28,7 @@ public class ClientTile extends StackPane {
 
     private static final Map<String, Image> CACHE = new HashMap<>();
 
+    private MapController controller;
     private Tile tile;
     private Coordinate coord;
 
@@ -36,10 +38,9 @@ public class ClientTile extends StackPane {
     private ImageView fiche;
     private Text number;
 
-    public ClientTile(Coordinate coord) {
+    public ClientTile(MapController controller, Coordinate coord) {
 	this.coord = coord;
-	Pane linePane = new Pane();
-	Pane housePane = new Pane();
+	Pane overlayPane = new Pane();
 	image = new ImageView();
 	fiche = new ImageView("img/tiles/fiche.png");
 	number = new Text();
@@ -58,31 +59,39 @@ public class ClientTile extends StackPane {
 	double yFix = 0.5;
 	{
 	    double offset = 1.05;
+	    double xyOffset = 27;
 	    for (int i = 0; i < lines.length; i++) {
+		int j = i;
 		Coordinate a = CollectionUtil.getInRange(Point.values(), i - 1).realOffset().multiply(offset);
 		Coordinate b = CollectionUtil.getInRange(Point.values(), i).realOffset().multiply(offset);
-		lines[i] = new Line(a.getX() * SceneMap.scale, -a.getY() * SceneMap.scale, b.getX() * SceneMap.scale,
-			-b.getY() * SceneMap.scale);
+		lines[i] = new Line(a.getX() * SceneMap.scale + xyOffset, -a.getY() * SceneMap.scale + xyOffset,
+			b.getX() * SceneMap.scale + xyOffset, -b.getY() * SceneMap.scale + xyOffset);
 		lines[i].setStroke(new Color(Math.random(), 0, 0, 1));
 		lines[i].setStrokeWidth(10);
-		linePane.getChildren().add(lines[i]);
+		lines[i].setOnMouseClicked(click -> {
+		    onStreetClick(coord.add(Direction.values()[j].offset(coord).multiply(0.5)));
+		});
+		overlayPane.getChildren().add(lines[i]);
 	    }
-	    linePane.setTranslateX(xFix * SceneMap.scale * 1.20);
-	    linePane.setTranslateY(yFix * SceneMap.scale * 1.07);
 	}
 
 	for (int i = 0; i < houses.length; i++) {
+	    int j = i;
 	    Coordinate offset = CollectionUtil.getInRange(Point.values(), i + 4).realOffset().multiply(SceneMap.scale);
 	    houses[i] = new ImageView(cacheImage("img/buildings/house_RED.png"));
 	    houses[i].setLayoutX(offset.getX());
 	    houses[i].setLayoutY(-offset.getY());
-	    housePane.getChildren().add(houses[i]);
+	    houses[i].setOnMouseClicked(click -> {
+		onBuildingClick(Point.values()[j + 4].addTo(coord));
+	    });
+	    houses[i].setMouseTransparent(true);
+	    overlayPane.getChildren().add(houses[i]);
 	}
-	housePane.setTranslateX(xFix * SceneMap.scale * 0.81);
-	housePane.setTranslateY(yFix * SceneMap.scale * 0.7);
+	overlayPane.setTranslateX(xFix * SceneMap.scale * 0.81);
+	overlayPane.setTranslateY(yFix * SceneMap.scale * 0.7);
 
 	renderTile();
-	getChildren().addAll(image, fiche, number, linePane, housePane);
+	getChildren().addAll(image, fiche, number, overlayPane);
     }
 
     public void setTile(Tile tile) {
@@ -99,6 +108,10 @@ public class ClientTile extends StackPane {
 	    CACHE.put(url, new Image(url));
 	}
 	return CACHE.get(url);
+    }
+
+    public void setController(MapController controller) {
+	this.controller = controller;
     }
 
     private void renderTile() {
@@ -149,5 +162,13 @@ public class ClientTile extends StackPane {
 		house.setImage(cacheImage("img/buildings/house_null.png"));
 	    }
 	}
+    }
+
+    private void onStreetClick(Coordinate coord) {
+	controller.placeStreet(coord);
+    }
+
+    private void onBuildingClick(Coordinate coord) {
+	controller.placeBuilding(coord);
     }
 }
