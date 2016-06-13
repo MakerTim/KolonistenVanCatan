@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import nl.groep4.kvc.common.enumeration.Direction;
 import nl.groep4.kvc.common.enumeration.Point;
-import nl.groep4.kvc.server.model.map.ServerMap;
 
 /**
  * Define positions of tiles, streets and buildings
