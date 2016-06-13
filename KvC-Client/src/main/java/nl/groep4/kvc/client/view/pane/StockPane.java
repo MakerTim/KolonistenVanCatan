@@ -29,7 +29,9 @@ public class StockPane implements PaneHolder, UpdateStock {
 	resCards = new VBox();
 	devCards = new VBox();
 
-	cardPane.getChildren().addAll(SceneUtil.getCardPlank(), cardPane);
+	cardPane.getChildren().addAll(SceneUtil.getCardPlank(), resCards, devCards);
+
+	SceneUtil.fadeIn(SceneUtil.getCardPlank(), cardPane);
 	return cardPane;
     }
 
