@@ -25,6 +25,7 @@ public class SceneUtil {
     private static Node cornerShield;
     private static Node board;
     private static Node boardBackground;
+    private static Node gamepane;
 
     /**
      * Gets the background for the menu
@@ -120,6 +121,13 @@ public class SceneUtil {
 	    boardBackground = new ImageView("img/game/board_background.gif");
 	}
 	return boardBackground;
+    }
+
+    public static Node getGamePane() {
+	if (gamepane == null) {
+	    gamepane = new ImageView("img/game/pane_background.png");
+	}
+	return gamepane;
     }
 
     /**
