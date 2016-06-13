@@ -32,8 +32,6 @@ public class LoginController implements Controller {
     /**
      * checks if all input fields are correct
      * 
-     * @param sceneLogin
-     *            screen to display
      * @return lobby key to connect with
      */
     public Lobby connect() {
