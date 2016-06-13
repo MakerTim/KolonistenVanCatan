@@ -24,6 +24,12 @@ public interface KolonistenVanCatan extends Remote {
 
     public Map getMap() throws RemoteException;
 
+    public default void update() throws RemoteException {
+	for (Player pl : getPlayers()) {
+	    pl.getUpdateable(UpdateMap.class).setModel(getMap());
+	}
+    }
+
     public List<Player> getPlayers() throws RemoteException;
 
     public List<Player> getPlayersOrded() throws RemoteException;
