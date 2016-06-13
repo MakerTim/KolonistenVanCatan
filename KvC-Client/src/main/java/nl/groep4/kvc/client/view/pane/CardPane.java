@@ -46,8 +46,8 @@ public class CardPane extends Application implements PaneHolder {
     public void start(Stage primaryStage) throws Exception {
 	// TODO Auto-generated method stub
 
-	MenuButton yes = new MenuButton(425, 500, TranslationManager.translate("build.button.road"));
-	MenuButton no = new MenuButton(425, 500, TranslationManager.translate("build.button.village"));
+	MenuButton yes = new MenuButton(425, 500, TranslationManager.translate("decision.yes"));
+	MenuButton no = new MenuButton(425, 500, TranslationManager.translate("decision.no"));
 	Group root = new Group();
 	Scene cards = new Scene(root, 1366, 768);
 
@@ -68,8 +68,7 @@ public class CardPane extends Application implements PaneHolder {
 
 	hbox.getChildren().addAll(yes, no);
 	vbox.getChildren().addAll(hbox, msg);
-	// cardPane.getChildren().addAll(SceneUtil.getBuildMenuBackground(),
-	// vbox);
+	cardPane.getChildren().addAll(SceneUtil.getBuildMenuBackground(), vbox);
 	root.getChildren().add(cardPane);
 	primaryStage.setScene(cards);
 	primaryStage.show();

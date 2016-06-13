@@ -34,6 +34,7 @@ public class ViewMaster extends Application {
      * Gives the font type "Impact" with a size of 22
      */
     public static final Font FONT = new Font("Impact", 22);
+    public static final Font TITLE_FONT = new Font("Impact", 56);
     private static Stage stage;
     private static SceneHolder lastScene;
 
