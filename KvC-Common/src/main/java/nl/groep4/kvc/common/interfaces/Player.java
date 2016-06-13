@@ -4,7 +4,6 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 import nl.groep4.kvc.common.enumeration.Color;
-import nl.groep4.kvc.server.model.ServerLobby;
 
 /**
  * Stores username and colour
