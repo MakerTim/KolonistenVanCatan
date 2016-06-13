@@ -1,5 +1,6 @@
 package nl.groep4.kvc.common.map;
 
+import java.io.Serializable;
 import java.util.List;
 
 import nl.groep4.kvc.common.enumeration.Direction;
@@ -9,15 +10,17 @@ import nl.groep4.kvc.server.model.map.ServerMap;
 /**
  * Get all tiles to generate map. Determine what round and place all buildings
  * and streets.
- * 
+ *
  * @version 1.0
  * @author Tim
  */
 
-public interface Map {
+public interface Map extends Serializable {
+
+    public static final int COLUMS = 9;
 
     /**
-     * 
+     *
      * @return a list of the tiles
      */
     public List<Tile> getTiles();
@@ -28,13 +31,13 @@ public interface Map {
     public void createMap();
 
     /**
-     * 
+     *
      * @return gets a list of all buildings
      */
     public List<Building> getAllBuildings();
 
     /**
-     * 
+     *
      * @param location
      *            Refers to {@link Coordinate} for building location
      * @return Gets building coordinates
@@ -42,7 +45,7 @@ public interface Map {
     public Building getBuilding(Coordinate location);
 
     /**
-     * 
+     *
      * @param tile
      *            Refers to {@link Tile} for tile location
      * @param point
@@ -52,13 +55,13 @@ public interface Map {
     public Building getBuilding(Tile tile, Point point);
 
     /**
-     * 
+     *
      * @return gets a list of all streets
      */
     public List<Street> getAllStreets();
 
     /**
-     * 
+     *
      * @param location
      *            Refers to {@link Coordinate} for street coordinates
      * @return Gets street location
@@ -66,7 +69,7 @@ public interface Map {
     public Street getStreet(Coordinate location);
 
     /**
-     * 
+     *
      * @param tile
      *            Refers to {@link Tile} to define street location
      * @param direction
@@ -77,7 +80,7 @@ public interface Map {
     public Street getStreet(Tile tile, Direction direction);
 
     /**
-     * 
+     *
      * @param direction
      *            Refers to {@link Direction} for tile orientation
      * @return Gets tile being interacted with
@@ -85,7 +88,7 @@ public interface Map {
     public Tile getRelativeTile(Tile tile, Direction direction);
 
     /**
-     * 
+     *
      * @param building
      *            Refers to {@link Building} for buildings on adjacent tiles
      * @return Building and building type on adjacent tile
@@ -93,16 +96,7 @@ public interface Map {
     public Tile[] getAdjacentTile(Building building);
 
     /**
-     * 
-     * @param location
-     *            Refers to {@link ServerMap} for building location on adjacent
-     *            tiles
-     * @return Gets location of building on adjacent tile
-     */
-    public Tile[] getAdjacentTile(Coordinate location);
-
-    /**
-     * 
+     *
      * @param coord
      *            Refers to {@link ServerMap} for tile position on map
      * @return Gets Tile coordinates
@@ -110,7 +104,7 @@ public interface Map {
     public Tile getTile(Coordinate coord);
 
     /**
-     * 
+     *
      * @param x
      *            Refers to {@link ServerMap} for X coordinate relative to
      *            centre

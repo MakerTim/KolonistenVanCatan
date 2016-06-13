@@ -4,10 +4,10 @@ import nl.groep4.kvc.common.enumeration.Direction;
 import nl.groep4.kvc.common.enumeration.Point;
 import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Coordinate;
-import nl.groep4.kvc.common.map.Map;
 import nl.groep4.kvc.common.map.Street;
 import nl.groep4.kvc.common.map.Tile;
 import nl.groep4.kvc.common.map.TileType;
+import nl.groep4.kvc.common.util.CollectionUtil;
 
 /**
  * Instance of Tile
@@ -66,9 +66,13 @@ public abstract class ServerTile implements Tile {
     }
 
     @Override
-    public boolean isValidPlace(Map map, Point point) {
-	// TODO Tile#validplace
-	return false;
+    public boolean isValidPlace(Point point) {
+	for (int i = 0; i < 2; i++) {
+	    if (streets[CollectionUtil.modInRange(streets, i)] == null) {
+		return false;
+	    }
+	}
+	return true;
     }
 
     @Override

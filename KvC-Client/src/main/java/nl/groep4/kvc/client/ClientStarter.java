@@ -17,7 +17,7 @@ public class ClientStarter {
      * @param args
      *            contains the supplied command-line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 	Application.launch(ViewMaster.class, args);
     }
 }

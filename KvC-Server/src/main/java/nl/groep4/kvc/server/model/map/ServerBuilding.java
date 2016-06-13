@@ -4,7 +4,6 @@ import nl.groep4.kvc.common.enumeration.BuildingType;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Coordinate;
-import nl.groep4.kvc.common.map.Map;
 import nl.groep4.kvc.common.map.Tile;
 
 /**
@@ -20,6 +19,7 @@ public class ServerBuilding implements Building {
     private BuildingType type;
     private Player owner;
     private Coordinate location;
+    private Tile[] tiles = new Tile[3];
 
     /**
      * Makes empty buildings at the corners of the tiles
@@ -46,13 +46,24 @@ public class ServerBuilding implements Building {
     }
 
     @Override
+    public void registerTile(Tile tile) {
+	for (int i = 0; i < tiles.length; i++) {
+	    if (tiles[i] == null) {
+		tiles[i] = tile;
+		return;
+	    }
+	}
+	throw new IllegalArgumentException("A building can only have 3 tiles.");
+    }
+
+    @Override
     public void setBuildingType(BuildingType type) {
 	this.type = type;
     }
 
     @Override
-    public Tile[] getConnectedTiles(Map map) {
-	return null;
+    public Tile[] getConnectedTiles() {
+	return tiles;
     }
 
     @Override

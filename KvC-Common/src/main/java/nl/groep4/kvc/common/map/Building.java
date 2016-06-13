@@ -13,7 +13,9 @@ import nl.groep4.kvc.common.interfaces.Ownable;
  */
 public interface Building extends Ownable, Serializable, Locatable {
 
-    public Tile[] getConnectedTiles(Map map);
+    public void registerTile(Tile tile);
+
+    public Tile[] getConnectedTiles();
 
     /**
      * 

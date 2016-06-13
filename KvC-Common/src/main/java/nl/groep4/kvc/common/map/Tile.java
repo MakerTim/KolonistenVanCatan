@@ -8,7 +8,7 @@ import nl.groep4.kvc.server.model.map.ServerMap;
 
 /**
  * Define positions of tiles, streets and buildings
- * 
+ *
  * @version 1.0
  * @author Tim
  */
@@ -18,7 +18,7 @@ public interface Tile extends Serializable, Locatable {
     public TileType getType();
 
     /**
-     * 
+     *
      * @param direction
      *            Refers to {@link Direction}
      * @return gets direction of street
@@ -26,7 +26,7 @@ public interface Tile extends Serializable, Locatable {
     public Street getStreet(Direction direction);
 
     /**
-     * 
+     *
      * @param point
      *            Refers to {@link Point}
      * @return gets interactable building points
@@ -34,14 +34,14 @@ public interface Tile extends Serializable, Locatable {
     public Building getBuilding(Point point);
 
     /**
-     * 
+     *
      * @param streets
      *            Refers to {@link ServerMap} for street location and direction
      */
     public void setupStreets(Street[] streets);
 
     /**
-     * 
+     *
      * @param buildings
      *            Refers to {@link ServerMap} for building location and
      *            direction
@@ -49,15 +49,14 @@ public interface Tile extends Serializable, Locatable {
     public void setupBuilding(Building[] buildings);
 
     /**
-     * 
-     * @param map
+     *
      * @param point
      * @return
      */
-    public boolean isValidPlace(Map map, Point point);
+    public boolean isValidPlace(Point point);
 
     /**
-     * 
+     *
      * @param map
      * @param direction
      * @return

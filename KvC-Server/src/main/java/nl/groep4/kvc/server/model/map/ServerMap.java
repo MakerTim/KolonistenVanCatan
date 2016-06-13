@@ -16,28 +16,17 @@ import nl.groep4.kvc.common.util.CollectionUtil;
 import nl.groep4.kvc.server.factory.TileFactory;
 
 /**
- * 
+ *
  * @author Tim
  * @version 1.0
  */
 public class ServerMap implements Map {
 
+    private static final long serialVersionUID = 2507200235719526105L;
+
     private final List<Tile> tiles = new ArrayList<>();
     private final List<Building> buildings = new ArrayList<>();
     private final List<Street> streets = new ArrayList<>();
-
-    /**
-     * The main, where the map is created.
-     */
-    public static void main(String[] args) {
-	Map map = new ServerMap();
-	map.createMap();
-	Tile center = map.getTile(0, 0);
-	Coordinate coord = center.getPosition();
-	Point choose = Point.NORTH_EAST;
-	System.out.println(choose.toString());
-	map.getAdjacentTile(choose.addTo(coord));
-    }
 
     @Override
     public List<Tile> getTiles() {
@@ -47,26 +36,28 @@ public class ServerMap implements Map {
     @Override
     public void createMap() {
 	List<TileType> typesTodo = TileFactory.getNeeded();
+	List<Integer> numbersTodo = TileFactory.getNumbers();
 	typesTodo.remove(TileType.DESERT);
 	typesTodo.remove(TileType.DESERT);
-	int cols = 9;
-	for (int col = 0; col < cols; col++) {
-	    int rows = cols - Math.abs(col - ((cols - 1) / 2)) - 1;
+	for (int col = 0; col < Map.COLUMS; col++) {
+	    int rows = Map.COLUMS - Math.abs(col - ((Map.COLUMS - 1) / 2)) - 1;
 	    for (int row = 0; row < rows; row++) {
-		Coordinate position = new Coordinate(col - cols / 2, row - rows / 2);
-		if (row == 0 || row == rows - 1 || col == 0 || col == cols - 1) {
+		Coordinate position = new Coordinate(col - Map.COLUMS / 2, row - rows / 2);
+		if (row == 0 || row == rows - 1 || col == 0 || col == Map.COLUMS - 1) {
 		    getTiles().add(new ServerTileSea(position));
 		} else if (position.getX() == 0 && (position.getY() == -2 || position.getY() == 1)) {
 		    getTiles().add(new ServerTileDesert(position));
 		} else {
+		    Integer number = CollectionUtil.randomItem(numbersTodo);
 		    TileType randomType = CollectionUtil.randomItem(typesTodo);
+		    numbersTodo.remove(number);
 		    typesTodo.remove(randomType);
-		    getTiles().add(new ServerTileResource(randomType, position));
+		    getTiles().add(new ServerTileResource(randomType, number, position));
 		}
 	    }
 	}
 	setupStreets();
-	// setupBuildings();
+	setupBuildings();
     }
 
     private void setupStreets() {
@@ -80,9 +71,10 @@ public class ServerMap implements Map {
 		    Street street = getStreet(location);
 		    if (street == null) {
 			street = new ServerStreet(location);
+			this.streets.add(street);
 		    }
+		    street.registerTile(tile);
 		    streets[i] = street;
-		    this.streets.add(street);
 		}
 	    }
 	    tile.setupStreets(streets);
@@ -93,13 +85,14 @@ public class ServerMap implements Map {
 	for (Tile tile : getTiles()) {
 	    Building[] buildings = new Building[Point.values().length];
 	    for (int i = 0; i < buildings.length; i++) {
-		Point point = Point.values()[i];
-		Building building;
-		if (getAdjacentTile(point.addTo(tile.getPosition())).length == 0) {
-		    Coordinate location = tile.getPosition().add(point.offset(tile.getPosition()).subtract(2));
+		Coordinate location = Point.values()[i].addTo(tile.getPosition());
+		Building building = getBuilding(location);
+		if (building == null) {
 		    building = new ServerBuilding(location);
 		    this.buildings.add(building);
 		}
+		building.registerTile(tile);
+		buildings[i] = building;
 	    }
 	    tile.setupBuilding(buildings);
 	}
@@ -153,20 +146,6 @@ public class ServerMap implements Map {
 
     @Override
     public Tile[] getAdjacentTile(Building building) {
-	return getAdjacentTile(building.getPosition());
-    }
-
-    @Override
-    public Tile[] getAdjacentTile(Coordinate location) {
-	List<Tile> adjacent = new ArrayList<>();
-	for (Point point : Point.values()) {
-	    Coordinate tileCoordinate = point.addTo(location);
-	    getTiles().stream().filter(tile -> tile.getPosition().equals(tileCoordinate))
-		    .forEach(tile -> adjacent.add(tile));
-	    System.out.println("l:" + location + " + p:" + point.name().toLowerCase() + "      \t"
-		    + point.offset(location) + "  \t= " + tileCoordinate);
-	}
-	System.out.println(adjacent.size());
-	return adjacent.toArray(new Tile[adjacent.size()]);
+	return building.getConnectedTiles();
     }
 }

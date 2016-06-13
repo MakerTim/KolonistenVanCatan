@@ -42,23 +42,19 @@ public enum Point implements Offsetable {
 	}
     }
 
-    public Coordinate realOffset(Coordinate original) {
-	return realOffset((int) original.getX() % 2 == 0);
-    }
-
-    public Coordinate realOffset(boolean isEvenRow) {
+    public Coordinate realOffset() {
 	switch (this) {
 	default:
 	case EAST:
 	    return new Coordinate(0.5, 0);
 	case NORTH_EAST:
-	    return new Coordinate(0.25, -0.433015);
-	case NORTH_WEST:
-	    return new Coordinate(-0.25, -0.433015);
-	case SOUTH_EAST:
 	    return new Coordinate(0.25, 0.433015);
-	case SOUTH_WEST:
+	case NORTH_WEST:
 	    return new Coordinate(-0.25, 0.433015);
+	case SOUTH_EAST:
+	    return new Coordinate(0.25, -0.433015);
+	case SOUTH_WEST:
+	    return new Coordinate(-0.25, -0.433015);
 	case WEST:
 	    return new Coordinate(-0.5, 0);
 	}

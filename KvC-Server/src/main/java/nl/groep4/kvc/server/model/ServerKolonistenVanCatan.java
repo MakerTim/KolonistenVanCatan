@@ -25,6 +25,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
      */
     public void createMap() {
 	map = new ServerMap();
+	map.createMap();
     }
 
     @Override
