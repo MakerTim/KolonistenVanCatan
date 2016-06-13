@@ -20,5 +20,4 @@ public class ClientStarter {
     public static void main(String[] args) throws Exception {
 	Application.launch(ViewMaster.class, args);
     }
-
 }

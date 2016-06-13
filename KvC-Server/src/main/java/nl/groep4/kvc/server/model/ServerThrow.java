@@ -4,6 +4,12 @@ import java.rmi.RemoteException;
 
 import nl.groep4.kvc.common.interfaces.Throw;
 
+/**
+ * Instance of throw
+ * 
+ * @author Tim
+ * @version 1.0
+ */
 public class ServerThrow implements Throw {
 
     private ServerDice[] dices = new ServerDice[2];

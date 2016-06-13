@@ -5,6 +5,12 @@ import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.TileResource;
 import nl.groep4.kvc.common.map.TileType;
 
+/**
+ * Instance of tileresource
+ *
+ * @author Tim
+ * @version 1.0
+ */
 public class ServerTileResource extends ServerTile implements TileResource {
 
     private static final long serialVersionUID = 19071996112112112L;
@@ -12,6 +18,12 @@ public class ServerTileResource extends ServerTile implements TileResource {
     private boolean hasRover = false;
     private int number;
 
+    /**
+     * Makes an empty resource tile
+     *
+     * @param type
+     * @param position
+     */
     public ServerTileResource(TileType type, int number, Coordinate position) {
 	super(type, position);
 	this.number = number;

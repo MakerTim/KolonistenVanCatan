@@ -126,7 +126,7 @@ public class SceneUtil {
      * Gives a fade-in for each element in the List
      * 
      * @param elements
-     *            Reference to fadeIn
+     *            an element in the List
      */
     public static void fadeIn(List<Node> elements) {
 	elements.forEach(element -> fadeIn(element));
@@ -136,6 +136,7 @@ public class SceneUtil {
      * Gives a fade-in for each element in the Array
      * 
      * @param elements
+     *            an element in the Array
      */
     public static void fadeIn(Node... elements) {
 	Arrays.stream(elements).forEach(element -> fadeIn(element));
