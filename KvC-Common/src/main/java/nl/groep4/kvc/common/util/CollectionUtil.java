@@ -9,6 +9,8 @@ import java.util.Map.Entry;
 import java.util.Random;
 import java.util.function.Predicate;
 
+import nl.groep4.kvc.client.view.scene.SceneLogin;
+
 /**
  * Collection util is used for some missing features in Collections/subclasses
  * 
@@ -21,6 +23,7 @@ public class CollectionUtil {
     /**
      * 
      * @param e
+     *            a random parameter for the array
      * @return a random item from an array
      */
     public static <E> E randomItem(E[] e) {
@@ -33,6 +36,7 @@ public class CollectionUtil {
     /**
      * 
      * @param e
+     *            a random parameter for the array
      * @return a random item from a list
      */
     public static <E> E randomItem(List<E> e) {
@@ -45,7 +49,8 @@ public class CollectionUtil {
     /**
      * 
      * @param es
-     * @return
+     *            Refers to first item on list
+     * @return the outcome of e : es
      */
     public static <E> E first(Collection<E> es) {
 	E ret = null;
@@ -59,7 +64,8 @@ public class CollectionUtil {
     /**
      * 
      * @param es
-     * @return
+     *            Refers to first item on list
+     * @return the outcome of e :es
      */
     public static <E> E first(E[] es) {
 	E ret = null;
@@ -72,10 +78,11 @@ public class CollectionUtil {
 
     /**
      * 
-     * 
      * @param original
+     *            Refers to {@link SceneLogin} for list
      * @param items
-     * @return
+     *            set of items from list
+     * @return array of data
      */
     public static <T> List<T> getItems(List<T> original, int... items) {
 	List<T> ret = new ArrayList<>();
@@ -90,7 +97,9 @@ public class CollectionUtil {
     /**
      * 
      * @param item
+     *            Adds item to list
      * @param lists
+     *            Addresses lists with items
      */
     @SafeVarargs
     public static <T> void addToAll(T item, List<T>... lists) {
@@ -102,8 +111,10 @@ public class CollectionUtil {
     /**
      * 
      * @param array
+     *            Refers to array to be created
      * @param equally
-     * @return
+     *            sorts equally
+     * @return The actual array is created and returned
      */
     public static <T> int timesFound(T[] array, T equally) {
 	return timesFound(Arrays.asList(array), equally);
@@ -112,8 +123,10 @@ public class CollectionUtil {
     /**
      * 
      * @param list
+     *            Refers to item list
      * @param equally
-     * @return
+     *            A random number
+     * @return returns outcome of for loop
      */
     public static <T> int timesFound(List<T> list, T equally) {
 	int ret = 0;
@@ -128,8 +141,10 @@ public class CollectionUtil {
     /**
      * 
      * @param array
+     *            Lists data in array
      * @param filter
-     * @return
+     *            Applies filter to array
+     * @return Array is returned with applied filter
      */
     public static <T> int timesFound(T[] array, Predicate<T> filter) {
 	return (int) Arrays.stream(array).filter(filter).count();
@@ -138,8 +153,10 @@ public class CollectionUtil {
     /**
      * 
      * @param list
+     *            Draws data from premade list
      * @param filter
-     * @return
+     *            Represents a boolean from the predicate statement
+     * @return Filtered list
      */
     public static <T> int timesFound(List<T> list, Predicate<T> filter) {
 	return (int) list.stream().filter(filter).count();
@@ -148,8 +165,10 @@ public class CollectionUtil {
     /**
      * 
      * @param list
+     *            Draws data from premade list
      * @param filter
-     * @return
+     *            filters data to lower case
+     * @return Returns items in the form of an array list
      */
     public static String[] filter(String[] list, String filter) {
 	String[] items = new String[0];
@@ -165,7 +184,9 @@ public class CollectionUtil {
     /**
      * 
      * @param list
+     *            Returns and itrator over the elements of T
      * @param filter
+     *            Filters for lower case
      */
     public static <T extends Iterable<String>> void filter(T list, String filter) {
 	Iterator<? extends String> strI = list.iterator();
@@ -175,6 +196,10 @@ public class CollectionUtil {
 		strI.remove();
 	    }
 	}
+    }
+
+    public static <T> T getInRange(T[] array, int index) {
+	return array[modInRange(array, index)];
     }
 
     public static int modInRange(Object[] array, int index) {
@@ -188,8 +213,10 @@ public class CollectionUtil {
     /**
      * 
      * @param list
+     *            Items in list
      * @param item
-     * @return
+     *            specific item selected from list
+     * @return returns outcome of boolean
      */
     public static <T> boolean contains(T[] list, T item) {
 	boolean b = false;
@@ -203,11 +230,11 @@ public class CollectionUtil {
     }
 
     /**
-     * 
-     * @author Gebruiker
      *
      * @param <K>
+     *            Definition for key
      * @param <V>
+     *            Definition for value
      */
     public static class GeneticEntry<K, V> implements Entry<K, V> {
 
@@ -217,7 +244,9 @@ public class CollectionUtil {
 	/**
 	 * 
 	 * @param key
+	 *            Random number entry
 	 * @param value
+	 *            Random value entry
 	 */
 	public GeneticEntry(K key, V value) {
 	    this.key = key;

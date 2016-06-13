@@ -8,11 +8,11 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+@SuppressWarnings("unused")
 public class BuildPane extends Application implements PaneHolder {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-	// TODO Auto-generated method stub
 	StackPane Build = new StackPane();
 	Build.setMinSize(50, 50);
 
@@ -30,13 +30,11 @@ public class BuildPane extends Application implements PaneHolder {
 
     @Override
     public Pane getPane() {
-	// TODO Auto-generated method stub
 	return null;
     }
 
     @Override
     public void updateTranslation() {
-	// TODO Auto-generated method stub
 
     }
 }

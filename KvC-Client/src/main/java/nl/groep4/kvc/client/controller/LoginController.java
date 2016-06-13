@@ -5,7 +5,6 @@ import java.net.UnknownHostException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
 
 import nl.groep4.kvc.client.util.ExceptionManager;
 import nl.groep4.kvc.client.view.ExceptionDialog;
@@ -15,7 +14,6 @@ import nl.groep4.kvc.client.view.scene.SceneLogin;
 import nl.groep4.kvc.common.KvCStatics;
 import nl.groep4.kvc.common.interfaces.Lobby;
 import nl.groep4.kvc.common.interfaces.Player;
-import nl.groep4.kvc.common.interfaces.Updatable;
 
 /**
  * Connects with the lobby if all requirements matches
@@ -23,24 +21,28 @@ import nl.groep4.kvc.common.interfaces.Updatable;
  * @author Tim
  * @version 1.0
  */
-public class LoginController {
+public class LoginController implements Controller {
+
+    private SceneLogin view;
+
+    public LoginController(SceneLogin view) {
+	this.view = view;
+    }
 
     /**
      * checks if all input fields are correct
      * 
-     * @param sceneLogin
-     *            screen to display
      * @return lobby key to connect with
      */
-    public static Lobby connect(SceneLogin sceneLogin) {
+    public Lobby connect() {
 	String ip = "";
 	int port = 1099;
 	String username = "";
 	Lobby lobby = null;
 	try {
-	    ip = sceneLogin.getIpInput();
-	    port = sceneLogin.getPortInput();
-	    username = sceneLogin.getUsernameInput().trim();
+	    ip = view.getIpInput();
+	    port = view.getPortInput();
+	    username = view.getUsernameInput().trim();
 
 	    /* Check if valid IP */
 	    if (InetAddress.getByName(ip) == null) {
@@ -57,6 +59,10 @@ public class LoginController {
 	    lobby = (Lobby) registry.lookup(KvCStatics.LOBBY_KEY);
 	    /* Register self */
 	    Player pl = lobby.registerPlayer(username);
+	    if (pl == null) {
+		ExceptionDialog.warning("login.error.ingame");
+		return null;
+	    }
 	    ClientRefrence.setThePlayer(pl);
 	    openLobby(lobby, pl);
 	} catch (UnknownHostException ex) {
@@ -75,9 +81,9 @@ public class LoginController {
 	SceneLobby view = new SceneLobby();
 	LobbyController controller = new LobbyController(model);
 	view.registerController(controller);
+	ClientRefrence.registerUpdateable(view);
+	ViewMaster.setScene(view);
 	try {
-	    pl.registerUpdateable((Updatable<Lobby>) UnicastRemoteObject.exportObject(view, ClientRefrence.getPort()));
-	    ViewMaster.setScene(view);
 	    view.setModel(model);
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();

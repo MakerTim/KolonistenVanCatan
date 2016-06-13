@@ -7,15 +7,17 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import nl.groep4.kvc.client.controller.ClientRefrence;
+import nl.groep4.kvc.client.controller.Controller;
 import nl.groep4.kvc.client.controller.LobbyController;
 import nl.groep4.kvc.client.util.SceneUtil;
-import nl.groep4.kvc.client.util.SoundUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ExceptionDialog;
 import nl.groep4.kvc.client.view.ViewMaster;
+import nl.groep4.kvc.client.view.elements.ColorScroll;
 import nl.groep4.kvc.client.view.elements.MenuButton;
-import nl.groep4.kvc.client.view.elements.PlayerColorScroll;
+import nl.groep4.kvc.client.view.elements.SettingsButton;
 import nl.groep4.kvc.common.enumeration.Color;
+import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Lobby;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.UpdateLobby;
@@ -33,9 +35,15 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
     private MenuButton backButton;
     private MenuButton startGame;
     private Text lobbyLabel;
-    private PlayerColorScroll[] scrolls;
+    private ColorScroll[] scrolls;
+    private Lobby model;
 
     private LobbyController controller;
+
+    @Override
+    public void registerController(Controller controller) {
+	this.controller = (LobbyController) controller;
+    }
 
     @Override
     public Scene getScene() {
@@ -57,19 +65,16 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
 	saveButton.setFont(ViewMaster.FONT);
 
 	startGame.registerClick(() -> {
-	    SoundUtil.stopThemesong();
 	    controller.startGame();
 	});
 
 	backButton.registerClick(() -> {
-	    ViewMaster.setScene(new SceneLogin());
 	    controller.disconnect(ClientRefrence.getThePlayer());
-	    ClientRefrence.setThePlayer(null);
 	});
 
-	scrolls = new PlayerColorScroll[Color.values().length];
+	scrolls = new ColorScroll[Color.values().length];
 	for (int i = 0; i < Color.values().length; i++) {
-	    PlayerColorScroll scroll = new PlayerColorScroll(Color.values()[i]);
+	    ColorScroll scroll = new ColorScroll(Color.values()[i]);
 	    scroll.setLayoutX(i % 3 * 215);
 	    scroll.setLayoutY((i / 3) * 150);
 	    lobbyGrid.getChildren().add(scroll);
@@ -81,11 +86,19 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
 
 	lobbyPane.getChildren().addAll(SceneUtil.getMenuBackground(), SceneUtil.getLobbyForeground(),
 		SceneUtil.getMenuBrazier(), SceneUtil.getCornerShield(), lobbyLabel, lobbyGrid, startGame, backButton,
-		saveButton);
+		saveButton, SettingsButton.getButton(this, 13, 645));
 
 	Scene scene = new Scene(lobbyPane);
 	SceneUtil.fadeIn(SceneUtil.getLobbyForeground(), SceneUtil.getCornerShield(), lobbyLabel, lobbyGrid, startGame,
 		backButton, saveButton);
+	if (model != null) {
+	    try {
+		setModel(model);
+	    } catch (RemoteException e) {
+		e.printStackTrace();
+	    }
+	}
+
 	return scene;
     }
 
@@ -98,18 +111,9 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
 	Arrays.stream(scrolls).forEach(scroll -> scroll.updateTranslation());
     }
 
-    /**
-     * sets controller
-     * 
-     * @param controller
-     *            references to openLobby()
-     */
-    public void registerController(LobbyController controller) {
-	this.controller = controller;
-    }
-
     @Override
     public void setModel(Lobby model) throws RemoteException {
+	this.model = model;
 	for (Player pl : model.getPlayers()) {
 	    updatePlayerColor(pl, pl.getColor());
 	}
@@ -117,6 +121,9 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
 
     @Override
     public void updatePlayerColor(Player pl, Color newColor) throws RemoteException {
+	if (scrolls == null) {
+	    return;
+	}
 	Arrays.stream(scrolls).filter(scroll -> scroll.getColor() == newColor)
 		.forEach(scroll -> scroll.updatePlayer(pl));
     }
@@ -130,5 +137,10 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
     @Override
     public void popup(String key) throws RemoteException {
 	ExceptionDialog.warning("note." + key);
+    }
+
+    @Override
+    public void start(KolonistenVanCatan model) throws RemoteException {
+	controller.start(model);
     }
 }

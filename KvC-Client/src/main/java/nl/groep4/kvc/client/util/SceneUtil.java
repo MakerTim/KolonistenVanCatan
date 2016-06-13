@@ -25,6 +25,7 @@ public class SceneUtil {
     private static Node cornerShield;
     private static Node board;
     private static Node boardBackground;
+    private static Node gamepane;
 
     /**
      * Gets the background for the menu
@@ -122,11 +123,18 @@ public class SceneUtil {
 	return boardBackground;
     }
 
+    public static Node getGamePane() {
+	if (gamepane == null) {
+	    gamepane = new ImageView("img/game/pane_background.png");
+	}
+	return gamepane;
+    }
+
     /**
      * Gives a fade-in for each element in the List
      * 
      * @param elements
-     *            Reference to fadeIn
+     *            an element in the List
      */
     public static void fadeIn(List<Node> elements) {
 	elements.forEach(element -> fadeIn(element));
@@ -136,6 +144,7 @@ public class SceneUtil {
      * Gives a fade-in for each element in the Array
      * 
      * @param elements
+     *            an element in the Array
      */
     public static void fadeIn(Node... elements) {
 	Arrays.stream(elements).forEach(element -> fadeIn(element));

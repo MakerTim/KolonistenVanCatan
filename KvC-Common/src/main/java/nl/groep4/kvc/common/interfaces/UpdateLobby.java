@@ -8,4 +8,6 @@ public interface UpdateLobby extends Updatable<Lobby> {
 
     public void updatePlayerColor(Player pl, Color newColor) throws RemoteException;
 
+    public void start(KolonistenVanCatan model) throws RemoteException;
+
 }
