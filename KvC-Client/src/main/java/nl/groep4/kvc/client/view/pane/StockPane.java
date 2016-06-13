@@ -18,7 +18,7 @@ import nl.groep4.kvc.common.interfaces.Card;
 import nl.groep4.kvc.common.interfaces.UpdateStock;
 
 public class StockPane implements PaneHolder, UpdateStock {
-
+    // TODO StockPaneAfmaken
     private ImageView oreCard;
     private ImageView stoneCard;
     private ImageView wheatCard;
