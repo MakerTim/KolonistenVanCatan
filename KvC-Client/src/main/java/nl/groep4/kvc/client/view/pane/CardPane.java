@@ -68,7 +68,8 @@ public class CardPane extends Application implements PaneHolder {
 
 	hbox.getChildren().addAll(yes, no);
 	vbox.getChildren().addAll(hbox, msg);
-	cardPane.getChildren().addAll(SceneUtil.getBuildMenuBackground(), vbox);
+	// cardPane.getChildren().addAll(SceneUtil.getBuildMenuBackground(),
+	// vbox);
 	root.getChildren().add(cardPane);
 	primaryStage.setScene(cards);
 	primaryStage.show();
