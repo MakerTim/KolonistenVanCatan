@@ -1,5 +1,7 @@
 package nl.groep4.kvc.client.view.scene;
 
+import java.net.InetAddress;
+
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
@@ -57,18 +59,23 @@ public class SceneLogin implements SceneHolder {
 	Pane layers = new StackPane();
 
 	/* Build the lobby */
-	layers.getChildren().addAll(SceneUtil.getMenuBackground(), SceneUtil.getLoginForeground(),
-		SceneUtil.getMenuBrazier(), buildFrom());
+	try {
+	    layers.getChildren().addAll(SceneUtil.getMenuBackground(), SceneUtil.getLoginForeground(),
+		    SceneUtil.getMenuBrazier(), buildFrom());
+	} catch (Exception ex) {
+	    ex.printStackTrace();
+	}
 	SceneUtil.fadeIn(CollectionUtil.getItems(layers.getChildren(), 1, 3));
 	return new Scene(layers);
     }
 
-    private Node buildFrom() {
+    private Node buildFrom() throws Exception {
 	if (form == null) {
 	    form = new Pane();
 
 	    ipLabel = new Text(310, 350, TranslationManager.translate("lobby.label.ip"));
-	    ipInput = new MenuMatchInputField(460, 320, "", KvCStatics.REGEX_IP);
+	    ipInput = new MenuMatchInputField(460, 320, InetAddress.getLocalHost().getHostAddress(),
+		    KvCStatics.REGEX_IP);
 	    portLabel = new Text(310, 375, TranslationManager.translate("lobby.label.port"));
 	    portInput = new MenuFilterdInputField(460, 345, "", KvCStatics.NUMERIC);
 	    usernameLabel = new Text(310, 410, TranslationManager.translate("lobby.label.username"));

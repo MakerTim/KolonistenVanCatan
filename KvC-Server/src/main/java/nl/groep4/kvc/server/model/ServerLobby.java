@@ -20,6 +20,7 @@ public class ServerLobby implements Lobby {
     protected final List<Player> players = new ArrayList<>();
     private KolonistenVanCatan kvc;
     private State state = State.LOBBY;
+    private int export = 10;
 
     @Override
     public Player registerPlayer(String playerName) throws RemoteException {
@@ -123,6 +124,7 @@ public class ServerLobby implements Lobby {
 		} catch (Exception subex) {
 		    System.err.println(subex);
 		}
+	    } catch (NullPointerException npe) {
 	    }
 	}
     }
@@ -136,7 +138,7 @@ public class ServerLobby implements Lobby {
 	    new Thread(() -> {
 		try {
 		    pl.getUpdateable(UpdateLobby.class)
-			    .start((KolonistenVanCatan) UnicastRemoteObject.exportObject(kvc, 2));
+			    .start((KolonistenVanCatan) UnicastRemoteObject.exportObject(kvc, export++));
 		} catch (Exception ex) {
 		    ex.printStackTrace();
 		}

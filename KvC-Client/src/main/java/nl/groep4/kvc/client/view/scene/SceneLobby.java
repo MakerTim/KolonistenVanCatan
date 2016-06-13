@@ -121,6 +121,9 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
 
     @Override
     public void updatePlayerColor(Player pl, Color newColor) throws RemoteException {
+	if (scrolls == null) {
+	    return;
+	}
 	Arrays.stream(scrolls).filter(scroll -> scroll.getColor() == newColor)
 		.forEach(scroll -> scroll.updatePlayer(pl));
     }

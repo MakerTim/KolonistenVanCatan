@@ -69,8 +69,7 @@ public class ClientTile extends StackPane {
 		lines[i].setStroke(new Color(Math.random(), 0, 0, 1));
 		lines[i].setStrokeWidth(10);
 		lines[i].setOnMouseClicked(click -> {
-		    System.out.println("test Line");
-		    onStreetClick(Direction.values()[j].addTo(coord));
+		    onStreetClick(coord.add(Direction.values()[j].offset(coord).multiply(0.5)));
 		});
 		overlayPane.getChildren().add(lines[i]);
 	    }
@@ -85,6 +84,7 @@ public class ClientTile extends StackPane {
 	    houses[i].setOnMouseClicked(click -> {
 		onBuildingClick(Point.values()[j + 4].addTo(coord));
 	    });
+	    houses[i].setMouseTransparent(true);
 	    overlayPane.getChildren().add(houses[i]);
 	}
 	overlayPane.setTranslateX(xFix * SceneMap.scale * 0.81);
@@ -146,7 +146,7 @@ public class ClientTile extends StackPane {
 		    ex.printStackTrace();
 		}
 	    } else {
-		line.setStroke(new Color(0, 0, 0, 0));
+		line.setStroke(new Color(0, 0, 0, 1));
 	    }
 	}
 	for (int i = 4; i < Point.values().length; i++) {
