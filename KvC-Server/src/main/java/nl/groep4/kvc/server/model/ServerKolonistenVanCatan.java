@@ -79,7 +79,6 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     @Override
     public void placeStreet(Coordinate coord, Player newOwner) throws RemoteException {
 	Street street = map.getStreet(coord);
-	System.out.println(coord + "\t" + street);
 	try {
 	    street.setOwner(newOwner);
 	} catch (Exception ex) {

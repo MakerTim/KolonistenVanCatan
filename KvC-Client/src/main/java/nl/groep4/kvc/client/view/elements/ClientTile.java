@@ -146,7 +146,7 @@ public class ClientTile extends StackPane {
 		    ex.printStackTrace();
 		}
 	    } else {
-		line.setStroke(new Color(0, 0, 0, 1));
+		line.setStroke(new Color(0, 0, 0, 0));
 	    }
 	}
 	for (int i = 4; i < Point.values().length; i++) {
