@@ -17,7 +17,7 @@ import nl.groep4.kvc.common.enumeration.Resource;
 public interface Player extends Remote {
     /**
      * 
-     * @return get updates from {@link ServerLobby}
+     * @return get updates from {@link Lobby}
      * @throws RemoteException
      *             in case connection between RMI and client is lost
      */
