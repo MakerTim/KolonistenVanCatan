@@ -15,6 +15,12 @@ import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.UpdateLobby;
 import nl.groep4.kvc.common.util.Scheduler;
 
+/**
+ * Instance of Lobby
+ * 
+ * @author Tim
+ * @version 1.0
+ */
 public class ServerLobby implements Lobby {
 
     protected final List<Player> players = new ArrayList<>();

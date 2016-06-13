@@ -13,6 +13,12 @@ import nl.groep4.kvc.common.map.Map;
 import nl.groep4.kvc.common.map.Street;
 import nl.groep4.kvc.server.model.map.ServerMap;
 
+/**
+ * Instance of KolonistenVanCatan
+ * 
+ * @author Tim
+ * @version 1.0
+ */
 public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 
     private final List<Player> players;
@@ -29,6 +35,9 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	return map;
     }
 
+    /**
+     * Creates the map
+     */
     @Override
     public void createMap() {
 	map = new ServerMap();

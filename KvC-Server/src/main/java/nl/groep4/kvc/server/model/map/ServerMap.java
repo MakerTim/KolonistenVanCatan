@@ -15,6 +15,11 @@ import nl.groep4.kvc.common.map.TileType;
 import nl.groep4.kvc.common.util.CollectionUtil;
 import nl.groep4.kvc.server.factory.TileFactory;
 
+/**
+ *
+ * @author Tim
+ * @version 1.0
+ */
 public class ServerMap implements Map {
 
     private static final long serialVersionUID = 2507200235719526105L;

@@ -5,6 +5,13 @@ import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Street;
 import nl.groep4.kvc.common.map.Tile;
 
+/**
+ * Instance of street
+ * 
+ * @author Tim
+ * @version 1.0
+ *
+ */
 public class ServerStreet implements Street {
 
     private static final long serialVersionUID = 7162302038488828886L;
@@ -13,6 +20,11 @@ public class ServerStreet implements Street {
     private Player owner;
     private Tile[] tiles = new Tile[2];
 
+    /**
+     * Makes empty streets at the points where the streets can be placed
+     * 
+     * @param location
+     */
     public ServerStreet(Coordinate location) {
 	this.location = location;
     }

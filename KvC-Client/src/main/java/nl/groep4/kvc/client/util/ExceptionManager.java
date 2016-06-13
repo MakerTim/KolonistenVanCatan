@@ -29,7 +29,7 @@ public class ExceptionManager {
      * Gives a warning and an exception stack trace.
      * 
      * @param rex
-     *            Reference to handleRemoteException
+     *            the RemoteException
      */
     public static void handleRemoteException(RemoteException rex) {
 	if (rex instanceof ConnectException || rex instanceof ConnectIOException) {
