@@ -57,6 +57,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
 
 	    VBox optionPane = new VBox();
 	    optionButton = new MenuButton("game.button.settings");
+	    optionButton.setFont(ViewMaster.FONT);
 	    optionPane.setAlignment(Pos.BOTTOM_RIGHT);
 	    optionPane.getChildren().add(optionButton);
 
@@ -66,6 +67,9 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    buildButton = new MenuButton("game.button.build");
 	    tradeButton = new MenuButton("game.button.trade");
 	    buyButton = new MenuButton("game.button.buy");
+	    buildButton.setFont(ViewMaster.FONT);
+	    tradeButton.setFont(ViewMaster.FONT);
+	    buyButton.setFont(ViewMaster.FONT);
 	    buttons.setAlignment(Pos.BOTTOM_RIGHT);
 	    buttons.getChildren().addAll(buildButton, tradeButton, buyButton);
 
