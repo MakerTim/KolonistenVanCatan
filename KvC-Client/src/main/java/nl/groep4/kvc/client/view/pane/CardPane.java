@@ -1,22 +1,21 @@
 package nl.groep4.kvc.client.view.pane;
 
-import javafx.application.Application;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 
 public class CardPane implements PaneHolder {
+
+    // TODO: Bachir, vertalingen updaten werkt niet
+    // TODO: Kosten van kaart hier laten zien
 
     @Override
     public Pane getPane() {
@@ -42,7 +41,7 @@ public class CardPane implements PaneHolder {
 	vbox.setPrefHeight(768);
 	vbox.setAlignment(Pos.CENTER);
 
-	Text msg = new Text("msg.buycard?");
+	Text msg = new Text("msg.buycard");
 
 	msg.setFill(Color.WHITE);
 	msg.setStroke(Color.BLACK);
@@ -57,11 +56,12 @@ public class CardPane implements PaneHolder {
 	return null;
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void updateTranslation() {
 	// TODO Auto-generated method stub
 
 	MenuButton yes = new MenuButton(425, 500, TranslationManager.translate("decision.yes"));
 	MenuButton no = new MenuButton(425, 500, TranslationManager.translate("decision.no"));
-
     }
+}

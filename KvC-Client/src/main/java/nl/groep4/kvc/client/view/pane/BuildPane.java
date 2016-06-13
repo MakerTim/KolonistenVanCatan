@@ -1,5 +1,8 @@
 package nl.groep4.kvc.client.view.pane;
 
+import java.rmi.RemoteException;
+import java.util.EnumMap;
+
 import javafx.geometry.Pos;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -11,8 +14,14 @@ import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.MenuButton;
+import nl.groep4.kvc.common.enumeration.Resource;
+import nl.groep4.kvc.common.interfaces.UpdateCosts;
 
-public class BuildPane implements PaneHolder {
+public class BuildPane implements PaneHolder, UpdateCosts {
+
+    // TODO: Bachir: Vertalingen achteraf werken niet
+    // TODO: Bachir: zorg er voor dat je kosten kan updaten vanaf de server
+    // TODO: Haal overbodige todo's weg
 
     MenuButton road = new MenuButton(425, 500, TranslationManager.translate("build.button.road"));
     MenuButton village = new MenuButton(425, 500, TranslationManager.translate("build.button.village"));
@@ -77,5 +86,17 @@ public class BuildPane implements PaneHolder {
 	village.updateText(TranslationManager.translate("build.button.village"));
 	city.updateText(TranslationManager.translate("build.button.city"));
 
+    }
+
+    @Override
+    public void updateStreetCosts(EnumMap<Resource, Integer> resources) throws RemoteException {
+    }
+
+    @Override
+    public void updateVillageCosts(EnumMap<Resource, Integer> resources) throws RemoteException {
+    }
+
+    @Override
+    public void updateCityCosts(EnumMap<Resource, Integer> resources) throws RemoteException {
     }
 }
