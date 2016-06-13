@@ -1,6 +1,8 @@
 package nl.groep4.kvc.client.view.scene;
 
 import java.rmi.RemoteException;
+import java.util.EnumMap;
+import java.util.List;
 
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -15,6 +17,8 @@ import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.pane.MapPane;
 import nl.groep4.kvc.client.view.pane.PaneHolder;
+import nl.groep4.kvc.common.enumeration.Resource;
+import nl.groep4.kvc.common.interfaces.Card;
 import nl.groep4.kvc.common.interfaces.UpdateMap;
 import nl.groep4.kvc.common.map.Map;
 
@@ -30,6 +34,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
     private MenuButton tradeButton;
     private MenuButton buyButton;
     private Pane layers;
+    private StockPane stock;
 
     @Override
     public void registerController(Controller controller) {
@@ -108,5 +113,15 @@ public class SceneMap implements SceneHolder, UpdateMap {
     @Override
     public void closeOverlay() throws RemoteException {
 	setOverlay(null);
+    }
+
+    @Override
+    public void updateStock(EnumMap<Resource, Integer> resources) {
+	stock.updateStock(resources);
+    }
+
+    @Override
+    public void updateStock(List<Card> cards) {
+	stock.updateStock(cards);
     }
 }
