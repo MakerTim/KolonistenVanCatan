@@ -2,8 +2,11 @@ package nl.groep4.kvc.common.interfaces;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.EnumMap;
+import java.util.List;
 
 import nl.groep4.kvc.common.enumeration.Color;
+import nl.groep4.kvc.common.enumeration.Resource;
 
 /**
  * Stores username and colour
@@ -67,4 +70,8 @@ public interface Player extends Remote {
      *             in case connection between RMI and client is lost
      */
     public void setColor(Color color) throws RemoteException;
+
+    public List<Card> getCards() throws RemoteException;
+
+    public EnumMap<Resource, Integer> getResources() throws RemoteException;
 }
