@@ -27,12 +27,6 @@ public class SceneUtil {
     private static Node boardBackground;
     private static Node gamepane;
     private static Node buildMenu;
-    private static Node oreCard;
-    private static Node stoneCard;
-    private static Node wheatCard;
-    private static Node woodCard;
-    private static Node woolCard;
-    private static Node cardPlank;
 
     /**
      * Gets the background for the menu
@@ -140,73 +134,6 @@ public class SceneUtil {
 	    gamepane = new ImageView("img/game/pane_background.png");
 	}
 	return gamepane;
-    }
-
-    public static Node getCardPlank() {
-	if (cardPlank == null) {
-	    cardPlank = new ImageView("img/game/kaart_plank.png");
-	}
-	return cardPlank;
-    }
-
-    /**
-     * Gets the resource for the wood card
-     * 
-     * @return image of the wood card
-     */
-    public static Node getWoodCard() {
-	if (woodCard == null) {
-	    woodCard = new ImageView("img/cards/kaart_hout.png");
-	}
-	return woodCard;
-    }
-
-    /**
-     * Gets the resource for the stone card
-     * 
-     * @return image of the stone card
-     */
-    public static Node getStoneCard() {
-	if (stoneCard == null) {
-	    stoneCard = new ImageView("img/cards/kaart_steen.png");
-	}
-	return stoneCard;
-    }
-
-    /**
-     * Gets the resource for the wool card
-     * 
-     * @return image of the wool card
-     */
-    public static Node getWoolCard() {
-	if (woolCard == null) {
-	    woolCard = new ImageView("img/cards/kaart_schaap.png");
-	}
-	return woolCard;
-    }
-
-    /**
-     * Gets the resource for the wheat card
-     * 
-     * @return image of the wheat card
-     */
-    public static Node getWheatCard() {
-	if (wheatCard == null) {
-	    wheatCard = new ImageView("img/cards/kaart_graan.png");
-	}
-	return wheatCard;
-    }
-
-    /**
-     * Gets the resource for the ore card
-     * 
-     * @return image of the ore card
-     */
-    public static Node getOreCard() {
-	if (oreCard == null) {
-	    oreCard = new ImageView("img/cards/kaart_erts.png");
-	}
-	return oreCard;
     }
 
     /**
