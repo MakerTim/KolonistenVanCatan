@@ -92,8 +92,14 @@ public class SceneMap implements SceneHolder, UpdateMap {
 
     }
 
-    public void openBuildpane() {
+    @Override
+    public void openBuildpane() throws RemoteException {
 	setOverlay(buildPane);
+    }
+
+    @Override
+    public void closeOverlay() throws RemoteException {
+	setOverlay(null);
     }
 
     public void setOverlay(PaneHolder pane) {
@@ -135,11 +141,6 @@ public class SceneMap implements SceneHolder, UpdateMap {
     }
 
     @Override
-    public void closeOverlay() throws RemoteException {
-	setOverlay(null);
-    }
-
-    @Override
     public void updateStock(EnumMap<Resource, Integer> resources) {
 	stockPane.updateStock(resources);
     }
@@ -156,9 +157,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
 
     @Override
     public void updateStreetCosts(EnumMap<Resource, Integer> resources) throws RemoteException {
-	if (buildPane != null) {
-	    buildPane.updateStreetCosts(resources);
-	}
+	buildPane.updateStreetCosts(resources);
     }
 
     @Override

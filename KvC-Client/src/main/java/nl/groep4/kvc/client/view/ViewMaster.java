@@ -11,11 +11,11 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import nl.groep4.kvc.client.ClientStarter;
 import nl.groep4.kvc.client.controller.LoginController;
+import nl.groep4.kvc.client.debug.TestMapViewSetup;
 import nl.groep4.kvc.client.util.SoundUtil;
 import nl.groep4.kvc.client.view.elements.SettingsButton;
 import nl.groep4.kvc.client.view.scene.SceneHolder;
 import nl.groep4.kvc.client.view.scene.SceneLogin;
-import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.util.CollectionUtil;
 
 /**
@@ -47,8 +47,10 @@ public class ViewMaster extends Application {
 	System.out.println("Starting LoginScreen");
 	SceneLogin view = new SceneLogin();
 	view.registerController(new LoginController(view));
-	if (ClientStarter.args.length > 0 && CollectionUtil.contains(ClientStarter.args, "--mapstarter")) {
-	    setScene(new SceneMap());
+	if (ClientStarter.args.length > 0) {
+	    if (CollectionUtil.contains(ClientStarter.args, "--mapstarter")) {
+		TestMapViewSetup.setup();
+	    }
 	} else {
 	    setScene(view);
 	}

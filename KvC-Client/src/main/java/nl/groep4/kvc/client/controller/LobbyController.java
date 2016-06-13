@@ -96,7 +96,7 @@ public class LobbyController implements Controller {
 
     public void start(KolonistenVanCatan model) {
 	SceneMap mapview = new SceneMap();
-	mapview.registerController(new MapController(model));
+	mapview.registerController(new MapController(model, mapview));
 	ViewMaster.setScene(mapview);
 	try {
 	    mapview.setModel(model.getMap());
