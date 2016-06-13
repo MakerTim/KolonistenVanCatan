@@ -26,6 +26,7 @@ public class SceneUtil {
     private static Node board;
     private static Node boardBackground;
     private static Node gamepane;
+    private static Node buildMenu;
 
     /**
      * Gets the background for the menu
@@ -160,5 +161,12 @@ public class SceneUtil {
 	ft.setFromValue(0);
 	ft.setToValue(1);
 	ft.play();
+    }
+
+    public static Node getBuildMenuBackground() {
+	if (buildMenu == null) {
+	    buildMenu = new ImageView("img/game/settings_foreground_horizontal.png");
+	}
+	return buildMenu;
     }
 }
