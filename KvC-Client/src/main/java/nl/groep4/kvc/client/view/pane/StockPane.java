@@ -3,6 +3,7 @@ package nl.groep4.kvc.client.view.pane;
 import java.util.EnumMap;
 import java.util.List;
 
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -24,6 +25,7 @@ public class StockPane implements PaneHolder, UpdateStock {
     private ImageView cardPlank;
 
     StackPane cardPane;
+    Pane allThings;
     HBox resCards;
     HBox devCards;
     Text amntWood;
@@ -34,13 +36,16 @@ public class StockPane implements PaneHolder, UpdateStock {
 
     @Override
     public Pane getPane() {
+
 	cardPane = new StackPane();
+	allThings = new Pane();
 	resCards = new HBox();
 	devCards = new HBox();
 
 	resCards.getChildren().addAll(getOreCard(), getWoodCard(), getWoolCard(), getStoneCard(), getWheatCard());
-	cardPane.getChildren().addAll(getCardPlank(), resCards, devCards);
+	resCards.setAlignment(Pos.CENTER);
 
+	cardPane.getChildren().addAll(getCardPlank(), resCards, devCards);
 	SceneUtil.fadeIn(getCardPlank(), cardPane);
 	return cardPane;
     }
