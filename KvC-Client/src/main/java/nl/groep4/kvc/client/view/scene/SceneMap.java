@@ -53,6 +53,8 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    /* Build bottom */
 	    BorderPane bottom = new BorderPane();
 
+	    stock = new StockPane();
+
 	    Pane buttons = new VBox();
 	    buildButton = new MenuButton("game.button.build");
 	    tradeButton = new MenuButton("game.button.trade");
@@ -60,7 +62,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    buttons.getChildren().addAll(buildButton, tradeButton, buyButton);
 
 	    bottom.setLeft(null);
-	    bottom.setCenter(null);
+	    bottom.setCenter(stock.getPane());
 	    bottom.setRight(buttons);
 	    screen.setBottom(bottom);
 
