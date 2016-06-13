@@ -24,12 +24,6 @@ import nl.groep4.kvc.common.map.Tile;
 import nl.groep4.kvc.common.map.TileLand;
 import nl.groep4.kvc.common.map.TileType;
 import nl.groep4.kvc.common.util.CollectionUtil;
-import nl.groep4.kvc.server.factory.TileFactory;
-import nl.groep4.kvc.server.model.map.ServerBuilding;
-import nl.groep4.kvc.server.model.map.ServerStreet;
-import nl.groep4.kvc.server.model.map.ServerTileDesert;
-import nl.groep4.kvc.server.model.map.ServerTileResource;
-import nl.groep4.kvc.server.model.map.ServerTileSea;
 
 public class TestMapController extends MapController {
 
@@ -47,7 +41,7 @@ public class TestMapController extends MapController {
 	return alles;
     }
 
-    private static class DebugKolonistenVanCatan implements KolonistenVanCatan, Map, Tile, Player {
+    private static class DebugKolonistenVanCatan implements KolonistenVanCatan, Map, Tile, Player, Street, Building {
 
 	private static final long serialVersionUID = 0L;
 	private int nxtRound = 0;
@@ -98,25 +92,13 @@ public class TestMapController extends MapController {
 
 	@Override
 	public void createMap() {
-	    List<TileType> typesTodo = TileFactory.getNeeded();
-	    List<Integer> numbersTodo = TileFactory.getNumbers();
-	    typesTodo.remove(TileType.DESERT);
-	    typesTodo.remove(TileType.DESERT);
 	    for (int col = 0; col < Map.COLUMS; col++) {
 		int rows = Map.COLUMS - Math.abs(col - ((Map.COLUMS - 1) / 2)) - 1;
 		for (int row = 0; row < rows; row++) {
 		    Coordinate position = new Coordinate(col - Map.COLUMS / 2, row - rows / 2);
-		    if (row == 0 || row == rows - 1 || col == 0 || col == Map.COLUMS - 1) {
-			getTiles().add(new ServerTileSea(position));
-		    } else if (position.getX() == 0 && (position.getY() == -2 || position.getY() == 1)) {
-			getTiles().add(new ServerTileDesert(position));
-		    } else {
-			Integer number = CollectionUtil.randomItem(numbersTodo);
-			TileType randomType = CollectionUtil.randomItem(typesTodo);
-			numbersTodo.remove(number);
-			typesTodo.remove(randomType);
-			getTiles().add(new ServerTileResource(randomType, number, position));
-		    }
+		    DebugKolonistenVanCatan dkvc = new DebugKolonistenVanCatan();
+		    dkvc.setPosition(position);
+		    tiles.add(dkvc);
 		}
 	    }
 	    setupStreets();
@@ -133,7 +115,8 @@ public class TestMapController extends MapController {
 			Coordinate location = tile.getPosition().add(direction.offset(tile.getPosition()).subtract(2));
 			Street street = getStreet(location);
 			if (street == null) {
-			    street = new ServerStreet(location);
+			    street = new DebugKolonistenVanCatan();
+			    ((DebugKolonistenVanCatan) street).setPosition(location);
 			    this.streets.add(street);
 			}
 			street.registerTile(tile);
@@ -151,7 +134,8 @@ public class TestMapController extends MapController {
 		    Coordinate location = Point.values()[i].addTo(tile.getPosition());
 		    Building building = getBuilding(location);
 		    if (building == null) {
-			building = new ServerBuilding(location);
+			building = new DebugKolonistenVanCatan();
+			((DebugKolonistenVanCatan) building).setPosition(location);
 			this.buildings.add(building);
 		    }
 		    building.registerTile(tile);
@@ -231,6 +215,10 @@ public class TestMapController extends MapController {
 	@Override
 	public Coordinate getPosition() {
 	    return position;
+	}
+
+	public void setPosition(Coordinate position) {
+	    this.position = position;
 	}
 
 	@Override
@@ -327,6 +315,41 @@ public class TestMapController extends MapController {
 	    Building building = this.getBuilding(coord);
 	    building.setOwner(newOwner);
 	    building.setBuildingType(type);
+	}
+
+	private Player owner;
+	private List<Tile> tilez = new ArrayList<>();
+
+	@Override
+	public Player getOwner() {
+	    return owner;
+	}
+
+	@Override
+	public void setOwner(Player player) {
+	    this.owner = player;
+	}
+
+	@Override
+	public void registerTile(Tile tile) {
+	    tilez.add(tile);
+	}
+
+	@Override
+	public Tile[] getConnectedTiles() {
+	    return tilez.toArray(new Tile[tilez.size()]);
+	}
+
+	private BuildingType typez;
+
+	@Override
+	public BuildingType getBuildingType() {
+	    return typez;
+	}
+
+	@Override
+	public void setBuildingType(BuildingType type) {
+	    typez = type;
 	}
     }
 }
