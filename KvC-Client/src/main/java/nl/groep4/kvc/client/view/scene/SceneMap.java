@@ -26,6 +26,8 @@ public class SceneMap implements SceneHolder, UpdateMap {
     private PaneHolder overlayPane = null;
     private Pane theOverlayPane = null;
     private MapPane gamepane = new MapPane();
+    private MenuButton buildButton;
+    private MenuButton tradeButton;
     private MenuButton buyButton;
     private Pane layers;
 
@@ -42,12 +44,14 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    layers = new StackPane();
 	    BorderPane screen = new BorderPane();
 
+	    /* Build bottom */
 	    BorderPane bottom = new BorderPane();
 
-	    /* "game.button.buy", "game.button.trade", "game.button.build" */
 	    Pane buttons = new VBox();
+	    buildButton = new MenuButton("game.button.build");
+	    tradeButton = new MenuButton("game.button.trade");
 	    buyButton = new MenuButton("game.button.buy");
-	    buttons.getChildren().addAll(buyButton);
+	    buttons.getChildren().addAll(buildButton, tradeButton, buyButton);
 
 	    bottom.setLeft(null);
 	    bottom.setCenter(null);
