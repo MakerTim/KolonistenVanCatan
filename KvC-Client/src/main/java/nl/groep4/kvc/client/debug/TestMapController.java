@@ -33,14 +33,18 @@ import nl.groep4.kvc.server.model.map.ServerTileSea;
 
 public class TestMapController extends MapController {
 
-    private static Map map;
+    private static DebugKolonistenVanCatan alles;
 
     public TestMapController(SceneMap view) {
-	super((DebugKolonistenVanCatan) (map = new DebugKolonistenVanCatan()), view);
+	super((alles = new DebugKolonistenVanCatan()), view);
     }
 
     public Map getMap() {
-	return map;
+	return alles;
+    }
+
+    public Player getPlayer() {
+	return alles;
     }
 
     private static class DebugKolonistenVanCatan implements KolonistenVanCatan, Map, Tile, Player {
@@ -266,7 +270,7 @@ public class TestMapController extends MapController {
 
 	private String username = "TestPersoon";
 	private Updatable<?> updatable;
-	private Color color;
+	private Color color = Color.BROWN;
 	private List<Card> cards = new ArrayList<>();
 	private EnumMap<Resource, Integer> resources;
 

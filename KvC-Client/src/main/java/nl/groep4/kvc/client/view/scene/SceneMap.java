@@ -5,6 +5,7 @@ import java.util.EnumMap;
 import java.util.List;
 
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -89,7 +90,6 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	}
 	Scene scene = new Scene(layers);
 	return scene;
-
     }
 
     @Override
