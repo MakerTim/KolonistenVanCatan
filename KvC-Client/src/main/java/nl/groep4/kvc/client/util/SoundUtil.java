@@ -22,6 +22,7 @@ public class SoundUtil {
     private static final float VOLUME_LEVEL = 30F;
     private static FloatExpression volume = new ReadOnlyFloatWrapper(0F);
     private static Clip teamsongKvC;
+    private static Clip playMusic;
 
     /**
      * Music file to play if an error occurs
@@ -38,6 +39,17 @@ public class SoundUtil {
 	teamsongKvC = playSound("sound/themesongKvC.wav");
 	if (teamsongKvC != null) {
 	    teamsongKvC.loop(Clip.LOOP_CONTINUOUSLY);
+	}
+    }
+
+    /**
+     * Music file to play when in game
+     */
+    public static void playGamesong() {
+	stopThemesong();
+	playMusic = playSound("sound/playMusic.wav");
+	if (playMusic != null) {
+	    playMusic.loop(Clip.LOOP_CONTINUOUSLY);
 	}
     }
 
