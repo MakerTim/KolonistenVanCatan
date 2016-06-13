@@ -82,6 +82,8 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    bottom.setRight(buttons);
 	    BorderPane.setAlignment(bottom, Pos.BOTTOM_CENTER);
 	    screen.setBottom(bottom);
+	    screen.setPickOnBounds(false);
+	    bottom.setPickOnBounds(false);
 
 	    /* Add all layers */
 	    layers.getChildren().addAll(SceneUtil.getBoardBackground(), SceneUtil.getBoard(), gamepane.getPane(),
