@@ -11,6 +11,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import nl.groep4.kvc.client.util.SceneUtil;
+import nl.groep4.kvc.client.view.ViewMaster;
+import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.Card;
 import nl.groep4.kvc.common.interfaces.UpdateStock;
@@ -33,20 +35,24 @@ public class StockPane implements PaneHolder, UpdateStock {
     Text amntStone;
     Text amntWheat;
     Text amntWool;
+    MenuButton showCards;
 
     @Override
     public Pane getPane() {
+	showCards = new MenuButton(200, 230, "Hide");
+	showCards.setFont(ViewMaster.FONT);
+	showCards.setAlignment(Pos.BOTTOM_CENTER);
 
-	cardPane = new StackPane();
-	allThings = new Pane();
 	resCards = new HBox();
 	devCards = new HBox();
+	cardPane = new StackPane();
+	allThings = new Pane();
 
 	resCards.getChildren().addAll(getOreCard(), getWoodCard(), getWoolCard(), getStoneCard(), getWheatCard());
 	resCards.setAlignment(Pos.CENTER);
 
-	cardPane.getChildren().addAll(getCardPlank(), resCards, devCards);
-	SceneUtil.fadeIn(getCardPlank(), cardPane);
+	cardPane.getChildren().addAll(getCardPlank(), resCards, devCards, showCards);
+	showCards.registerClick(() -> SceneUtil.fadeOut(cardPane));
 	return cardPane;
     }
 

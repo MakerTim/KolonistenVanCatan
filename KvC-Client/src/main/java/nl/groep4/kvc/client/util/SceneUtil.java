@@ -168,6 +168,28 @@ public class SceneUtil {
 	ft.play();
     }
 
+    /**
+     * Gives a fade-out for each element in the Array
+     * 
+     * @param elements
+     *            an element in the Array
+     */
+    public static void fadeOut(Node... elements) {
+	Arrays.stream(elements).forEach(element -> fadeOut(element));
+    }
+
+    /**
+     * Gives fade out transition to element and plays it
+     * 
+     * @param element
+     */
+    public static void fadeOut(Node element) {
+	FadeTransition ft = new FadeTransition(Duration.millis(500), element);
+	ft.setFromValue(1);
+	ft.setToValue(0);
+	ft.play();
+    }
+
     public static Node getBuildMenuBackground() {
 	if (buildMenu == null) {
 	    buildMenu = new ImageView("img/game/settings_foreground_horizontal.png");
