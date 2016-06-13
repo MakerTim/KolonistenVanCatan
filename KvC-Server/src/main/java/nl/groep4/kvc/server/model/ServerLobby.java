@@ -20,7 +20,6 @@ public class ServerLobby implements Lobby {
     protected final List<Player> players = new ArrayList<>();
     private KolonistenVanCatan kvc;
     private State state = State.LOBBY;
-    private int export = 10;
 
     @Override
     public Player registerPlayer(String playerName) throws RemoteException {
@@ -131,14 +130,13 @@ public class ServerLobby implements Lobby {
 
     @Override
     public void startGame() throws RemoteException {
-	kvc = new ServerKolonistenVanCatan(players);
+	kvc = (KolonistenVanCatan) UnicastRemoteObject.exportObject(new ServerKolonistenVanCatan(players), 2);
 	kvc.createMap();
 	state = State.IN_GAME;
 	for (Player pl : getPlayers()) {
 	    new Thread(() -> {
 		try {
-		    pl.getUpdateable(UpdateLobby.class)
-			    .start((KolonistenVanCatan) UnicastRemoteObject.exportObject(kvc, export++));
+		    pl.getUpdateable(UpdateLobby.class).start(kvc);
 		} catch (Exception ex) {
 		    ex.printStackTrace();
 		}
