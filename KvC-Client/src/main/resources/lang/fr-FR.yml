@@ -19,6 +19,11 @@ lobby.parchment.color.orange:Orange
 lobby.parchment.color.red:Rouge
 lobby.parchment.color.white:blanc
 
+#BuildPane
+build.button.road:Rue
+build.button.village:Village
+build.button.city:Ville
+
 #Note
 note.ingame.title:Le jeu a commencé
 note.ingame.explanation:Vous ne pouvez pas changer plus de couleur quand le jeu a déjà commencé
@@ -38,6 +43,9 @@ login.error.novalidip.details:Exception: 406 Not Acceptable
 login.error.portnonumber.title:Erreur de connexion
 login.error.portnonumber.explanation:Le numéro de port n'a pas été rempli
 login.error.portnonumber.details: 406 Not Acceptable
+login.error.ingame.title:Jeu a déjà commencé
+login.error.ingame.explanation:Le jeu a déjà commencé, vous ne pouvez pas joindre
+login.error.ingame.details:Exception: 406 Not Accaptable
 
 #SceneLogin
 lobby.label.ip:Adresse IP
@@ -64,6 +72,9 @@ kicked.nocolor.details:Les joueurs sans une couleur ne peuvent pas participer
 kicked.started.title:Le jeu a déjà commencé
 kicked.started.explanation:Le jeu où vous essayez de joindre a déjà commencé
 kicked.started.details:Le jeu est joué
+kicked.close.title:serveur fermé
+kicked.close.explanation:Le serveur est fermé
+kicked.close.details:Exception: 503 Service Unavailable
 
 #ExceptionManager
 error.connect.notfound.title:Le serveur est introuvable
