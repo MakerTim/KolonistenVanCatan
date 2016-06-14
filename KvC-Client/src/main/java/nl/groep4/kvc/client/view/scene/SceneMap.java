@@ -13,11 +13,13 @@ import javafx.scene.layout.VBox;
 import nl.groep4.kvc.client.controller.Controller;
 import nl.groep4.kvc.client.controller.MapController;
 import nl.groep4.kvc.client.util.SceneUtil;
+import nl.groep4.kvc.client.util.SoundUtil;
 import nl.groep4.kvc.client.view.ExceptionDialog;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.pane.BuildPane;
 import nl.groep4.kvc.client.view.pane.MapPane;
+import nl.groep4.kvc.client.view.pane.OptionPane;
 import nl.groep4.kvc.client.view.pane.PaneHolder;
 import nl.groep4.kvc.client.view.pane.StockPane;
 import nl.groep4.kvc.common.enumeration.Resource;
@@ -64,10 +66,10 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    optionButton = new MenuButton("game.button.settings");
 	    nxtButton.setFont(ViewMaster.FONT);
 	    optionButton.setFont(ViewMaster.FONT);
+	    nxtButton.setOnMouseClicked(mouse -> onNxtTurnClick());
+	    optionButton.setOnMouseClicked(mouse -> onOptionClick());
 	    optionPane.setAlignment(Pos.BOTTOM_RIGHT);
 	    optionPane.getChildren().addAll(nxtButton, optionButton);
-
-	    stockPane = new StockPane();
 
 	    VBox buttons = new VBox();
 	    buildButton = new MenuButton("game.button.build");
@@ -81,7 +83,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    buttons.getChildren().addAll(buildButton, tradeButton, buyButton);
 
 	    bottom.setLeft(optionPane);
-	    bottom.setCenter(stockPane.getPane());
+	    bottom.setCenter((stockPane = new StockPane()).getPane());
 	    bottom.setRight(buttons);
 	    BorderPane.setAlignment(bottom, Pos.BOTTOM_CENTER);
 	    screen.setBottom(bottom);
@@ -96,8 +98,26 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	return scene;
     }
 
+    private void onNxtTurnClick() {
+	controller.nextTurn();
+	SoundUtil.playNextTurn();
+    }
+
+    private void onOptionClick() {
+	try {
+	    openOptionPane();
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
+    }
+
     @Override
-    public void openBuildpane() throws RemoteException {
+    public void openOptionPane() throws RemoteException {
+	setOverlay(new OptionPane());
+    }
+
+    @Override
+    public void openBuildPane() throws RemoteException {
 	setOverlay(buildPane);
     }
 

@@ -8,6 +8,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
 import nl.groep4.kvc.client.controller.Controller;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.SoundUtil;
@@ -45,6 +46,7 @@ public class SceneSettings implements SceneHolder {
     public Scene getScene() {
 	/* Build multiple layers for the design */
 	Pane layers = new Pane();
+	Scene scene = new Scene(layers);
 	Pane form = new VBox(20);
 	form.setLayoutX(410);
 	form.setLayoutY(100);
@@ -80,9 +82,12 @@ public class SceneSettings implements SceneHolder {
 		music.updateText(TranslationManager.translate(STOP));
 	    }
 	});
-
 	acceptSettings.registerClick(() -> {
-	    ViewMaster.setScene(parent);
+	    if (parent == null) {
+		((Stage) scene.getWindow()).close();
+	    } else {
+		ViewMaster.setScene(parent);
+	    }
 	});
 
 	language.registerClick(() -> {
@@ -93,10 +98,8 @@ public class SceneSettings implements SceneHolder {
 	form.getChildren().addAll(new StackPane(settings), music, slider, language);
 	layers.getChildren().addAll(SceneUtil.getMenuBackground(), SceneUtil.getSettingsForeground(),
 		SceneUtil.getMenuBrazier(), acceptSettings, form);
-	Scene scene = new Scene(layers);
 	SceneUtil.fadeIn(SceneUtil.getSettingsForeground(), form, acceptSettings);
 	return scene;
-
     }
 
     @Override

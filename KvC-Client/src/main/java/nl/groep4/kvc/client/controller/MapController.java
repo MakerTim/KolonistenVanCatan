@@ -39,7 +39,15 @@ public class MapController implements Controller {
 
     public void openBuyPane() {
 	try {
-	    view.openBuildpane();
+	    view.openBuildPane();
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
+    }
+
+    public void nextTurn() {
+	try {
+	    model.nextTurn();
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();
 	}
