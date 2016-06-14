@@ -40,17 +40,17 @@ public class BuildPane implements PaneHolder, UpdateCosts {
     int wodCity;
     int wolCity;
 
-    Text wod = new Text(TranslationManager.translate("materials.wood"));
-    Text whe = new Text(TranslationManager.translate("materials.wheat"));
-    Text wol = new Text(TranslationManager.translate("materials.wool"));
-    Text sto = new Text(TranslationManager.translate("materials.stone"));
-    Text ore = new Text(TranslationManager.translate("materials.ore"));
-    Text prices = new Text((TranslationManager.translate("materials.row.prices:")));
+    Text wod = new Text(TranslationManager.translate("build.materials.wood"));
+    Text whe = new Text(TranslationManager.translate("build.materials.wheat"));
+    Text wol = new Text(TranslationManager.translate("build.materials.wool"));
+    Text sto = new Text(TranslationManager.translate("build.materials.stone"));
+    Text ore = new Text(TranslationManager.translate("build.materials.ore"));
+    Text prices = new Text((TranslationManager.translate("build.materials.row.prices:")));
 
-    Text Prices = new Text((TranslationManager.translate("materials.row") + " " + whe + wod + wol + sto + ore));
-    Text RoadPrices = new Text(TranslationManager.translate("road.row"));
-    Text VillagePrices = new Text(TranslationManager.translate("village.row"));
-    Text CityPrices = new Text(TranslationManager.translate("city.row"));
+    Text Prices = new Text((TranslationManager.translate("build.materials.row") + " " + whe + wod + wol + sto + ore));
+    Text RoadPrices = new Text(TranslationManager.translate("build.road.row"));
+    Text VillagePrices = new Text(TranslationManager.translate("build.village.row"));
+    Text CityPrices = new Text(TranslationManager.translate("build.city.row"));
 
     @Override
     public Pane getPane() {
@@ -71,15 +71,16 @@ public class BuildPane implements PaneHolder, UpdateCosts {
 	Text Empty3 = new Text("");
 	Text Empty4 = new Text("");
 
-	Text Prices = new Text((TranslationManager.translate("materials.row") + " " + whe + wod + wol + sto + ore));
-	Text RoadPrices = new Text(TranslationManager.translate("road.row") + " " + brStreet + orStreet + whStreet
+	Text Prices = new Text(
+		(TranslationManager.translate("build.materials.row") + " " + whe + wod + wol + sto + ore));
+	Text RoadPrices = new Text(TranslationManager.translate("build.road.row") + " " + brStreet + orStreet + whStreet
 		+ wodStreet + wolStreet);
-	Text VillagePrices = new Text(TranslationManager.translate("road.row") + " " + brVillage + orVillage + whVillage
-		+ wodVillage + wolVillage);
+	Text VillagePrices = new Text(TranslationManager.translate("build.village.row") + " " + brVillage + orVillage
+		+ whVillage + wodVillage + wolVillage);
 	Text CityPrices = new Text(
-		TranslationManager.translate("city.row") + " " + brCity + orCity + whCity + wodCity + wolCity);
+		TranslationManager.translate("build.city.row") + " " + brCity + orCity + whCity + wodCity + wolCity);
 
-	Font BuildFont = new Font("Impact", 14);
+	Font BuildFont = new Font("Impact", 22);
 	Prices.setFont(BuildFont);
 	RoadPrices.setFont(BuildFont);
 	RoadPrices.setFill(Color.WHITE);
@@ -108,19 +109,19 @@ public class BuildPane implements PaneHolder, UpdateCosts {
     public void updateTranslation() {
 	road.updateText(TranslationManager.translate("build.button.road"));
 	village.updateText(TranslationManager.translate("build.button.village"));
-	prices.setText(TranslationManager.translate("materials.row") + " " + whe + wod + wol + sto + ore);
+	prices.setText(TranslationManager.translate("build.materials.row") + " " + whe + wod + wol + sto + ore);
 	city.updateText(TranslationManager.translate("build.button.city"));
-	wod.setText(TranslationManager.translate("materials.wood"));
-	whe.setText(TranslationManager.translate("materials.wheat"));
-	sto.setText(TranslationManager.translate("materials.stone"));
-	ore.setText(TranslationManager.translate("materials.ore"));
-	wol.setText(TranslationManager.translate("materials.wol"));
-	RoadPrices.setText(TranslationManager.translate("road.row") + " " + brStreet + orStreet + whStreet + wodStreet
-		+ wolStreet);
-	VillagePrices.setText(TranslationManager.translate("village.row") + " " + brVillage + orVillage + whVillage
-		+ wodVillage + wolVillage);
-	CityPrices
-		.setText(TranslationManager.translate("city.row") + " " + brCity + orCity + whCity + wodCity + wolCity);
+	wod.setText(TranslationManager.translate("build.materials.wood"));
+	whe.setText(TranslationManager.translate("build.materials.wheat"));
+	sto.setText(TranslationManager.translate("build.materials.stone"));
+	ore.setText(TranslationManager.translate("build.materials.ore"));
+	wol.setText(TranslationManager.translate("build.materials.wol"));
+	RoadPrices.setText(TranslationManager.translate("build.road.row") + " " + brStreet + orStreet + whStreet
+		+ wodStreet + wolStreet);
+	VillagePrices.setText(TranslationManager.translate("build.village.row") + " " + brVillage + orVillage
+		+ whVillage + wodVillage + wolVillage);
+	CityPrices.setText(
+		TranslationManager.translate("build.city.row") + " " + brCity + orCity + whCity + wodCity + wolCity);
 
     }
 

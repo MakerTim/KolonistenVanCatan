@@ -14,14 +14,16 @@ import nl.groep4.kvc.client.view.elements.MenuButton;
 
 public class CardPane implements PaneHolder {
 
-    // TODO: Bachir, vertalingen updaten werkt niet
     // TODO: Kosten van kaart hier laten zien
+
+    Text CardMaterials = new Text()
+    MenuButton yes = new MenuButton(425, 500, TranslationManager.translate("buycard.decision.yes"));
+    MenuButton no = new MenuButton(425, 500, TranslationManager.translate("buycard.decision.no"));
+    Text msg = new Text(TranslationManager.translate("buycard.msg.buycard"));
 
     @Override
     public Pane getPane() {
 	// TODO Auto-generated method stub
-	MenuButton yes = new MenuButton(425, 500, TranslationManager.translate("decision.yes"));
-	MenuButton no = new MenuButton(425, 500, TranslationManager.translate("decision.no"));
 
 	StackPane cardPane = new StackPane();
 	cardPane.setAlignment(Pos.CENTER);
@@ -41,8 +43,7 @@ public class CardPane implements PaneHolder {
 	vbox.setPrefHeight(768);
 	vbox.setAlignment(Pos.CENTER);
 
-	Text msg = new Text(TranslationManager.translate("msg.buycard"));
-
+	Text msg = new Text(TranslationManager.translate("buycard.msg.buycard"));
 	msg.setFill(Color.WHITE);
 	msg.setStroke(Color.BLACK);
 	msg.setFont(ViewMaster.FONT);
@@ -56,14 +57,13 @@ public class CardPane implements PaneHolder {
 	return null;
     }
 
-    @SuppressWarnings("unused")
     @Override
     public void updateTranslation() {
 	// TODO Auto-generated method stub
 
-	MenuButton yes = new MenuButton(425, 500, TranslationManager.translate("decision.yes"));
-	MenuButton no = new MenuButton(425, 500, TranslationManager.translate("decision.no"));
-	Text msg = new Text(TranslationManager.translate("msg.buycard"));
+	yes.updateText(TranslationManager.translate("buycard.decision.yes"));
+	no.updateText(TranslationManager.translate("buycard.decision.no"));
+	msg.setText(TranslationManager.translate("buycard.msg.buycard"));
 
     }
 }
