@@ -18,6 +18,7 @@ import nl.groep4.kvc.client.view.ExceptionDialog;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.pane.BuildPane;
+import nl.groep4.kvc.client.view.pane.DicePane;
 import nl.groep4.kvc.client.view.pane.MapPane;
 import nl.groep4.kvc.client.view.pane.OptionPane;
 import nl.groep4.kvc.client.view.pane.PaneHolder;
@@ -114,12 +115,22 @@ public class SceneMap implements SceneHolder, UpdateMap {
 
     @Override
     public void openRulesPane() throws RemoteException {
-	setOverlay(new RulesPane());
+	setOverlay(new RulesPane(this));
     }
 
     @Override
     public void openOptionPane() throws RemoteException {
 	setOverlay(new OptionPane(this));
+    }
+
+    @Override
+    public void openDicePane() throws RemoteException {
+	setOverlay(new DicePane());
+    }
+
+    @Override
+    public void openBuyPane() throws RemoteException {
+	// setOverlay(new Buypane());
     }
 
     @Override
