@@ -5,7 +5,7 @@ game.name.round:Round: %d
 game.button.build:Build
 game.button.trade:Trade
 game.button.buy:Buy
-game.button.option:Options
+game.button.settings:Options
 game.button.next:Next Player
 game.menu.save:Save
 game.menu.pause:Pause

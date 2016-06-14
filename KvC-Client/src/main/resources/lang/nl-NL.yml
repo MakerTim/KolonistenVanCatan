@@ -5,7 +5,7 @@ game.name.round:Ronde: %d
 game.button.build:Bouwen
 game.button.trade:Ruilen
 game.button.buy:Kopen
-game.button.option:Opties
+game.button.settings:Opties
 game.button.next:Volgende Speler
 game.menu.save:Opslaan
 game.menu.pause:Pauze
