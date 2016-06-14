@@ -16,7 +16,7 @@ public class CardPane implements PaneHolder {
 
     // TODO: Kosten van kaart hier laten zien
 
-    Text CardMaterials = new Text()
+    Text CardMaterials = new Text();
     MenuButton yes = new MenuButton(425, 500, TranslationManager.translate("buycard.decision.yes"));
     MenuButton no = new MenuButton(425, 500, TranslationManager.translate("buycard.decision.no"));
     Text msg = new Text(TranslationManager.translate("buycard.msg.buycard"));
