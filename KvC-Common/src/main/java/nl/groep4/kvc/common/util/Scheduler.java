@@ -2,6 +2,8 @@ package nl.groep4.kvc.common.util;
 
 import java.util.List;
 
+import javafx.application.Platform;
+
 /**
  * Utility class for multi threading
  * 
@@ -31,7 +33,7 @@ public class Scheduler {
 	    }
 	    if (running) {
 		try {
-		    Thread.sleep(100);
+		    Thread.sleep(100L);
 		} catch (Exception ex) {
 		}
 	    }
@@ -42,8 +44,18 @@ public class Scheduler {
 	new Thread(run).start();
     }
 
+    public static void runSyncLater(Runnable run) {
+	runSyncLater(run, 1L);
+    }
+
     public static void runAsyncLater(Runnable run) {
-	runAsyncLater(run, 1);
+	runAsyncLater(run, 1L);
+    }
+
+    public static void runSyncLater(Runnable run, long millis) {
+	runAsyncLater(() -> {
+	    Platform.runLater(run);
+	}, millis);
     }
 
     public static void runAsyncLater(Runnable run, long millis) {
