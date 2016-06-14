@@ -196,11 +196,4 @@ public class SceneUtil {
 	ft.setToValue(0);
 	ft.play();
     }
-
-    public static Node getBuildMenuBackground() {
-	if (settingsPane == null) {
-	    settingsPane = new ImageView("img/game/settings_foreground_horizontal.png");
-	}
-	return settingsPane;
-    }
 }

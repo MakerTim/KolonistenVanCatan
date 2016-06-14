@@ -72,7 +72,7 @@ public class BuildPane implements PaneHolder, UpdateCosts {
 
 	vbox.getChildren().addAll(Prices, RoadPrices, VillagePrices, CityPrices, Empty, Empty2, Empty3, Empty4, road,
 		village, city);
-	Build.getChildren().addAll(SceneUtil.getBuildMenuBackground(), vbox);
+	Build.getChildren().addAll(SceneUtil.getGamePane(), vbox);
 
 	return Build;
 

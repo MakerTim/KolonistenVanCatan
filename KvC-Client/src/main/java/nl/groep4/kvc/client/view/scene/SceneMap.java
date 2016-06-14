@@ -80,6 +80,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    buildButton.setFont(ViewMaster.FONT);
 	    tradeButton.setFont(ViewMaster.FONT);
 	    buyButton.setFont(ViewMaster.FONT);
+	    buildButton.setOnMouseClicked(mouse -> onBuildClick());
 
 	    buttons.setAlignment(Pos.BOTTOM_RIGHT);
 	    buttons.getChildren().addAll(buildButton, tradeButton, buyButton);
@@ -108,6 +109,14 @@ public class SceneMap implements SceneHolder, UpdateMap {
     private void onOptionClick() {
 	try {
 	    openOptionPane();
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
+    }
+
+    private void onBuildClick() {
+	try {
+	    openBuildPane();
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();
 	}
