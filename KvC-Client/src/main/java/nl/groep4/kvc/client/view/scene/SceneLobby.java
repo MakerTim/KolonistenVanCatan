@@ -21,6 +21,7 @@ import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Lobby;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.UpdateLobby;
+import nl.groep4.kvc.common.util.KvCUtil;
 
 /**
  * Builds scene settings menu
@@ -39,6 +40,7 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
     private Lobby model;
 
     private LobbyController controller;
+    private Thread ping;
 
     @Override
     public void registerController(Controller controller) {
@@ -83,6 +85,14 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
 	    });
 	    scrolls[i] = scroll;
 	}
+	ping = new Thread(() -> {
+	    do {
+		for (ColorScroll scroll : scrolls) {
+		    scroll.setPing(KvCUtil.ping(scroll.getPlayer()));
+		}
+	    } while (ViewMaster.getLastScene() == this);
+	});
+	ping.run();
 
 	lobbyPane.getChildren().addAll(SceneUtil.getMenuBackground(), SceneUtil.getLobbyForeground(),
 		SceneUtil.getMenuBrazier(), SceneUtil.getCornerShield(), lobbyLabel, lobbyGrid, startGame, backButton,

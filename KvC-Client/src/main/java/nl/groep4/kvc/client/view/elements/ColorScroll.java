@@ -31,6 +31,7 @@ public class ColorScroll extends StackPane {
     private Color color;
     private Text colorLabel;
     private Text usernameLabel;
+    private Player player;
 
     protected List<Runnable> clickHandlers = new ArrayList<>();
 
@@ -96,6 +97,7 @@ public class ColorScroll extends StackPane {
      */
     public void updatePlayer(Player player) {
 	try {
+	    this.player = player;
 	    usernameLabel.setText(player.getUsername());
 	} catch (Exception ex) {
 	    usernameLabel.setText(TranslationManager.translate(EMPTY));
@@ -117,5 +119,13 @@ public class ColorScroll extends StackPane {
      */
     public void updateTranslation() {
 	colorLabel = new Text(TranslationManager.translate("lobby.parchment.color." + color.name().toLowerCase()));
+    }
+
+    public Player getPlayer() {
+	return player;
+    }
+
+    public void setPing(long pong) {
+	// TODO
     }
 }

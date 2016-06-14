@@ -8,8 +8,10 @@ public class KvCUtil {
     public static long ping(Player pl) {
 	long time = System.currentTimeMillis();
 	try {
-	    Updatable<?> updateable = pl.getUpdateable();
-	    updateable.testConnection();
+	    if (pl != null) {
+		Updatable<?> updateable = pl.getUpdateable();
+		updateable.testConnection();
+	    }
 	} catch (Exception ex) {
 	    System.err.println("KvCUtil.ping => " + ex);
 	}
