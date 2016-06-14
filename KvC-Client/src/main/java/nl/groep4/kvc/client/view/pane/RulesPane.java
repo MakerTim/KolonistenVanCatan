@@ -28,6 +28,7 @@ public class RulesPane implements PaneHolder {
 	this.view = view;
 
     }
+    // view.closeOverlay();
 
     public Pane getPane() {
 	// TODO Auto-generated method stub
@@ -69,6 +70,15 @@ public class RulesPane implements PaneHolder {
 	}
 
 	rulepane.getStylesheets().add("/assets/stylesheet.css");
+
+	back.registerClick(() -> {
+	    try {
+		view.closeOverlay();
+	    } catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	    }
+	});
 
 	return rulepane;
     }
