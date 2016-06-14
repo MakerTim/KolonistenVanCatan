@@ -5,11 +5,14 @@ import java.util.EnumMap;
 import java.util.List;
 
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import nl.groep4.kvc.client.controller.Controller;
 import nl.groep4.kvc.client.controller.MapController;
 import nl.groep4.kvc.client.util.SceneUtil;
@@ -39,7 +42,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
     private MapController controller;
     private PaneHolder overlayPane = null;
     private Pane theOverlayPane = null;
-    private Pane theOverlayBackground = null;
+    private Rectangle theOverlayBackground = null;
     private MapPane gamepane = new MapPane();
     private MenuButton nxtButton;
     private MenuButton optionButton;
@@ -114,69 +117,53 @@ public class SceneMap implements SceneHolder, UpdateMap {
     }
 
     private void onOptionClick() {
-	try {
-	    openOptionPane();
-	} catch (RemoteException ex) {
-	    ex.printStackTrace();
-	}
+	openOptionPane();
     }
 
     private void onTradeClick() {
-	try {
-	    openTradePane();
-	} catch (RemoteException ex) {
-	    ex.printStackTrace();
-	}
+	openTradePane();
     }
 
     private void onBuildClick() {
-	try {
-	    openBuildPane();
-	} catch (RemoteException ex) {
-	    ex.printStackTrace();
-	}
+	openBuildPane();
     }
 
     private void onBuyClick() {
-	try {
-	    openBuyPane();
-	} catch (RemoteException ex) {
-	    ex.printStackTrace();
-	}
+	openBuyPane();
     }
 
     @Override
-    public void openTradePane() throws RemoteException {
-	// setOverlay(new TradePane());
+    public void openTradePane() {
+	setOverlay(tradePane);
     }
 
     @Override
-    public void openRulesPane() throws RemoteException {
+    public void openRulesPane() {
 	setOverlay(new RulesPane(this));
     }
 
     @Override
-    public void openOptionPane() throws RemoteException {
+    public void openOptionPane() {
 	setOverlay(new OptionPane(this));
     }
 
     @Override
-    public void openDicePane() throws RemoteException {
+    public void openDicePane() {
 	setOverlay(new DicePane());
     }
 
     @Override
-    public void openBuyPane() throws RemoteException {
+    public void openBuyPane() {
 	// setOverlay(new Buypane());
     }
 
     @Override
-    public void openBuildPane() throws RemoteException {
+    public void openBuildPane() {
 	setOverlay(buildPane);
     }
 
     @Override
-    public void closeOverlay() throws RemoteException {
+    public void closeOverlay() {
 	setOverlay(null);
     }
 
@@ -187,6 +174,16 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	}
 	if (pane != null) {
 	    theOverlayPane = pane.getPane();
+	    theOverlayPane.setPickOnBounds(false);
+	    for (Node node : theOverlayPane.getChildren()) {
+		node.setPickOnBounds(false);
+	    }
+	    theOverlayBackground = new Rectangle(0, 0, ViewMaster.GAME_WIDHT, ViewMaster.GAME_HEIGHT);
+	    theOverlayBackground.setFill(new Color(0.1, 0.1, 0.1, 0.5));
+	    theOverlayBackground.setOnMouseClicked(click -> {
+		closeOverlay();
+	    });
+	    layers.getChildren().add(theOverlayBackground);
 	    layers.getChildren().add(theOverlayPane);
 	    SceneUtil.fadeIn(theOverlayPane);
 	} else {
@@ -251,6 +248,6 @@ public class SceneMap implements SceneHolder, UpdateMap {
 
     @Override
     public void updateTrades(List<Trade> allTrades) throws RemoteException {
-	// TODO: Trademenu ding redirecten
+	tradePane.updateTrades(allTrades);
     }
 }
