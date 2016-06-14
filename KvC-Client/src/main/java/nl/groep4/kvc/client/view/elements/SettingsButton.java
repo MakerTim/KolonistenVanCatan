@@ -1,5 +1,6 @@
 package nl.groep4.kvc.client.view.elements;
 
+import javafx.stage.Stage;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.scene.SceneHolder;
@@ -18,7 +19,13 @@ public class SettingsButton extends MenuButton {
     }
 
     private void onSettingsClick() {
-	ViewMaster.setScene(new SceneSettings(parent));
+	if (parent == null) {
+	    Stage stage = new Stage();
+	    stage.setScene(new SceneSettings(null).getScene());
+	    stage.showAndWait();
+	} else {
+	    ViewMaster.setScene(new SceneSettings(parent));
+	}
     }
 
     public static void updateConfig() {

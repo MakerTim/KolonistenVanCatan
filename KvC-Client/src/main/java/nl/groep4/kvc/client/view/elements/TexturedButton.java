@@ -41,6 +41,8 @@ public abstract class TexturedButton extends StackPane {
 	});
 	setOnMouseReleased(mouseRelease -> background.setImage(getHoverTexture()));
 	getChildren().addAll(background, label);
+	setHeight(background.getFitHeight());
+	setWidth(background.getFitWidth());
     }
 
     /**
