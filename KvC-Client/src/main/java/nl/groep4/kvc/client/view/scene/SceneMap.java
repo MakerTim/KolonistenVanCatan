@@ -14,6 +14,7 @@ import nl.groep4.kvc.client.controller.Controller;
 import nl.groep4.kvc.client.controller.MapController;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.SoundUtil;
+import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ExceptionDialog;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.MenuButton;
@@ -36,6 +37,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
     private MapController controller;
     private PaneHolder overlayPane = null;
     private Pane theOverlayPane = null;
+    private Pane theOverlayBackground = null;
     private MapPane gamepane = new MapPane();
     private MenuButton nxtButton;
     private MenuButton optionButton;
@@ -64,8 +66,8 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    BorderPane bottom = new BorderPane();
 
 	    VBox optionPane = new VBox();
-	    nxtButton = new MenuButton("game.button.next");
-	    optionButton = new MenuButton("game.button.settings");
+	    nxtButton = new MenuButton(TranslationManager.translate("game.button.next"));
+	    optionButton = new MenuButton(TranslationManager.translate("game.button.settings"));
 	    nxtButton.setFont(ViewMaster.FONT);
 	    optionButton.setFont(ViewMaster.FONT);
 	    nxtButton.setOnMouseClicked(mouse -> onNxtTurnClick());
@@ -74,13 +76,15 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    optionPane.getChildren().addAll(nxtButton, optionButton);
 
 	    VBox buttons = new VBox();
-	    buildButton = new MenuButton("game.button.build");
-	    tradeButton = new MenuButton("game.button.trade");
-	    buyButton = new MenuButton("game.button.buy");
+	    buildButton = new MenuButton(TranslationManager.translate("game.button.build"));
+	    tradeButton = new MenuButton(TranslationManager.translate("game.button.trade"));
+	    buyButton = new MenuButton(TranslationManager.translate("game.button.buy"));
 	    buildButton.setFont(ViewMaster.FONT);
 	    tradeButton.setFont(ViewMaster.FONT);
 	    buyButton.setFont(ViewMaster.FONT);
 	    buildButton.setOnMouseClicked(mouse -> onBuildClick());
+	    tradeButton.setOnMouseClicked(mouse -> onTradeClick());
+	    buyButton.setOnMouseClicked(mouse -> onBuyClick());
 
 	    buttons.setAlignment(Pos.BOTTOM_RIGHT);
 	    buttons.getChildren().addAll(buildButton, tradeButton, buyButton);
@@ -114,12 +118,33 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	}
     }
 
+    private void onTradeClick() {
+	try {
+	    openTradePane();
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
+    }
+
     private void onBuildClick() {
 	try {
 	    openBuildPane();
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();
 	}
+    }
+
+    private void onBuyClick() {
+	try {
+	    openBuyPane();
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
+    }
+
+    @Override
+    public void openTradePane() throws RemoteException {
+	// setOverlay(new TradePane());
     }
 
     @Override
@@ -154,6 +179,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
 
     public void setOverlay(PaneHolder pane) {
 	if (theOverlayPane != null) {
+	    layers.getChildren().remove(theOverlayBackground);
 	    layers.getChildren().remove(theOverlayPane);
 	}
 	if (pane != null) {

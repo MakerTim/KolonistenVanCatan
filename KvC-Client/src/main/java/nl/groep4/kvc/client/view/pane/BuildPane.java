@@ -40,12 +40,12 @@ public class BuildPane implements PaneHolder, UpdateCosts {
     int wodCity;
     int wolCity;
 
-    Text wod = new Text(TranslationManager.translate("build.materials.wood"));
-    Text whe = new Text(TranslationManager.translate("build.materials.wheat"));
-    Text wol = new Text(TranslationManager.translate("build.materials.wool"));
-    Text sto = new Text(TranslationManager.translate("build.materials.stone"));
-    Text ore = new Text(TranslationManager.translate("build.materials.ore"));
-    Text prices = new Text((TranslationManager.translate("build.materials.row.prices:")));
+    String wod = (TranslationManager.translate("build.materials.wood"));
+    String whe = (TranslationManager.translate("build.materials.wheat"));
+    String wol = (TranslationManager.translate("build.materials.wool"));
+    String sto = (TranslationManager.translate("build.materials.stone"));
+    String ore = (TranslationManager.translate("build.materials.ore"));
+    String prices = ((TranslationManager.translate("build.materials.row.prices:")));
 
     Text Prices = new Text((TranslationManager.translate("build.materials.row") + " " + whe + wod + wol + sto + ore));
     Text RoadPrices = new Text(TranslationManager.translate("build.road.row"));
@@ -109,13 +109,13 @@ public class BuildPane implements PaneHolder, UpdateCosts {
     public void updateTranslation() {
 	road.updateText(TranslationManager.translate("build.button.road"));
 	village.updateText(TranslationManager.translate("build.button.village"));
-	prices.setText(TranslationManager.translate("build.materials.row") + " " + whe + wod + wol + sto + ore);
+	prices = (TranslationManager.translate("build.materials.row") + " " + whe + wod + wol + sto + ore);
 	city.updateText(TranslationManager.translate("build.button.city"));
-	wod.setText(TranslationManager.translate("build.materials.wood"));
-	whe.setText(TranslationManager.translate("build.materials.wheat"));
-	sto.setText(TranslationManager.translate("build.materials.stone"));
-	ore.setText(TranslationManager.translate("build.materials.ore"));
-	wol.setText(TranslationManager.translate("build.materials.wol"));
+	wod = (TranslationManager.translate("build.materials.wood"));
+	whe = (TranslationManager.translate("build.materials.wheat"));
+	sto = (TranslationManager.translate("build.materials.stone"));
+	ore = (TranslationManager.translate("build.materials.ore"));
+	wol = (TranslationManager.translate("build.materials.wol"));
 	RoadPrices.setText(TranslationManager.translate("build.road.row") + " " + brStreet + orStreet + whStreet
 		+ wodStreet + wolStreet);
 	VillagePrices.setText(TranslationManager.translate("build.village.row") + " " + brVillage + orVillage

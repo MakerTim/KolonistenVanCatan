@@ -2,9 +2,11 @@ package nl.groep4.kvc.client.view.pane;
 
 import java.rmi.RemoteException;
 
+import javafx.geometry.Pos;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
@@ -15,7 +17,6 @@ import nl.groep4.kvc.client.view.scene.SceneMap;
 
 public class OptionPane implements PaneHolder {
 
-    // TODO: OptionPane needs work
     private SceneMap map;
 
     private Text tilte;
@@ -33,12 +34,15 @@ public class OptionPane implements PaneHolder {
     public Pane getPane() {
 	StackPane layers = new StackPane();
 	VBox buttons = new VBox(8);
+	buttons.setAlignment(Pos.CENTER);
 	tilte = new Text(TranslationManager.translate("game.menu.title"));
 	save = new MenuButton(TranslationManager.translate("game.menu.save"));
 	pause = new MenuButton(TranslationManager.translate("game.menu.pause"));
 	rules = new MenuButton(TranslationManager.translate("game.menu.rules"));
 	exit = new MenuButton(TranslationManager.translate("game.menu.exit"));
 	back = new MenuButton(TranslationManager.translate("game.menu.back"));
+	tilte.setFont(ViewMaster.TITLE_FONT);
+	tilte.setFill(Color.WHITE);
 	save.setFont(ViewMaster.FONT);
 	pause.setFont(ViewMaster.FONT);
 	rules.setFont(ViewMaster.FONT);
@@ -51,12 +55,13 @@ public class OptionPane implements PaneHolder {
 	exit.setOnMouseClicked(klick -> onExitClick());
 	back.setOnMouseClicked(klick -> onBackClick());
 
-	buttons.getChildren().addAll(SettingsButton.getButton(null, 0, 0), save, pause, rules, exit, back);
+	buttons.getChildren().addAll(tilte, SettingsButton.getButton(null, 0, 0), save, pause, rules, exit, back);
 	layers.getChildren().addAll(SceneUtil.getSettingsPane(), buttons);
 	return layers;
     }
 
     private void onExitClick() {
+	System.exit(0);
     }
 
     private void onBackClick() {
