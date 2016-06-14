@@ -13,4 +13,9 @@ public interface UpdateMap extends Updatable<Map>, UpdateStock, UpdateCosts {
     public void openOptionPane() throws RemoteException;
 
     public void openRulesPane() throws RemoteException;
+
+    public void openDicePane() throws RemoteException;
+
+    public void openBuyPane() throws RemoteException;
+
 }
