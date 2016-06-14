@@ -136,6 +136,13 @@ public class SceneUtil {
 	return gamepane;
     }
 
+    public static Node getSettingsPane() {
+	if (gamepane == null) {
+	    gamepane = new ImageView("img/menu/settings.png");
+	}
+	return gamepane;
+    }
+
     /**
      * Gives a fade-in for each element in the List
      * 

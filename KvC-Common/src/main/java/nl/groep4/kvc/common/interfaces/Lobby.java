@@ -12,6 +12,14 @@ public interface Lobby extends Remote {
 	LOBBY, IN_GAME
     }
 
+    public KolonistenVanCatan getGame() throws RemoteException;
+
+    public void setGame(KolonistenVanCatan kvc) throws RemoteException;
+
+    public void setState(State state) throws RemoteException;
+
+    public State getState() throws RemoteException;
+
     public Player registerPlayer(String player) throws RemoteException;
 
     public List<Player> getPlayers() throws RemoteException;
@@ -21,8 +29,6 @@ public interface Lobby extends Remote {
     public void setColor(Player pl, Color newColor) throws RemoteException;
 
     public void startGame() throws RemoteException;
-
-    public void cleanup() throws RemoteException;
 
     public void loadSave(String save) throws RemoteException;
 }

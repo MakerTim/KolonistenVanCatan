@@ -24,6 +24,10 @@ public class SoundUtil {
     private static Clip teamsongKvC;
     private static Clip playMusic;
 
+    public static void playNextTurn() {
+	playSound("sound/newturn.wav");
+    }
+
     /**
      * Music file to play if an error occurs
      */

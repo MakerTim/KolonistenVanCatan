@@ -33,6 +33,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
     private PaneHolder overlayPane = null;
     private Pane theOverlayPane = null;
     private MapPane gamepane = new MapPane();
+    private MenuButton nxtButton;
     private MenuButton optionButton;
     private MenuButton buildButton;
     private MenuButton tradeButton;
@@ -59,10 +60,12 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    BorderPane bottom = new BorderPane();
 
 	    VBox optionPane = new VBox();
+	    nxtButton = new MenuButton("game.button.next");
 	    optionButton = new MenuButton("game.button.settings");
+	    nxtButton.setFont(ViewMaster.FONT);
 	    optionButton.setFont(ViewMaster.FONT);
 	    optionPane.setAlignment(Pos.BOTTOM_RIGHT);
-	    optionPane.getChildren().add(optionButton);
+	    optionPane.getChildren().addAll(nxtButton, optionButton);
 
 	    stockPane = new StockPane();
 
