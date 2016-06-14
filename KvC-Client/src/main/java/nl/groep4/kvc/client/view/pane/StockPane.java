@@ -9,6 +9,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.elements.ResourceCard;
@@ -47,9 +48,9 @@ public class StockPane implements PaneHolder, UpdateStock {
 	wool = new StackPane();
 	stone = new StackPane();
 
-	hideCards = new MenuButton("Hide");
+	hideCards = new MenuButton(TranslationManager.translate("map.stock.hide"));
 	hideCards.setFont(ViewMaster.FONT);
-	showCards = new MenuButton("Show");
+	showCards = new MenuButton(TranslationManager.translate("map.stock.show"));
 	showCards.setFont(ViewMaster.FONT);
 
 	wood.getChildren().addAll(cards.getWoodCard(), cards.getWoodText());
@@ -93,8 +94,8 @@ public class StockPane implements PaneHolder, UpdateStock {
 
     @Override
     public void updateTranslation() {
-	// TODO Auto-generated method stub
-
+	hideCards.updateText(TranslationManager.translate("map.stock.hide"));
+	showCards.updateText(TranslationManager.translate("map.stock.show"));
     }
 
     @Override
