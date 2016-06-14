@@ -42,7 +42,7 @@ public class RulesPane implements PaneHolder {
 	back = new MenuButton(425, 500, TranslationManager.translate("rules.button.back"));
 	back.setFont(ViewMaster.FONT);
 
-	rules = new Text(TranslationManager.translate("rule.text.rules"));
+	rules = new Text(TranslationManager.translate("rules.text.rules"));
 	rules.setFont(ViewMaster.FONT);
 	rules.setFill(Color.WHITE);
 	rules.setStroke(Color.BLACK);

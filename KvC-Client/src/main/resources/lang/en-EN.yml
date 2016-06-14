@@ -5,6 +5,14 @@ game.name.round:Round: %d
 game.button.build:Build
 game.button.trade:Trade
 game.button.buy:Buy
+game.button.settings:Options
+game.button.next:Next Player
+game.menu.save:Save
+game.menu.pause:Pause
+game.menu.exit:Exit
+game.menu.back:Back
+game.menu.Rules:Rules
+game.menu.title:Options
 
 #SceneLobby
 lobby.shield.title:Lobby
@@ -19,6 +27,22 @@ lobby.parchment.color.green:Green
 lobby.parchment.color.white:White
 lobby.parchment.color.red:Red
 
+#BuildPane
+build.button.road:Street
+build.button.village:Village
+build.button.city:City
+build.village.row:Village
+build.city.row:City
+build.road.row:Road
+
+#Materials
+materials.row:Materials
+materials.wood:Wood
+materials.stone:Stone
+materials.wool:Wool
+materials.ore:Ore
+materials.wheat:Wheat
+
 #Login
 login.error.nousername.title: No Username
 login.error.nousername.explanation: No username was filled in
@@ -29,6 +53,9 @@ login.error.novalidip.details:Exception: 406 Not Acceptable
 login.error.portnonumber.title:No Port Number
 login.error.portnonumber.explanation:No port number was filled in
 login.error.portnonumber.details:Exception: 404 Not Found
+login.error.ingame.title:Game already started
+login.error.ingame.explanation:The game already started, you can't join anymore
+login.error.ingame.details:Exception: 406 Not Accaptable
 
 #SceneLogin
 lobby.label.ip:IP Address
@@ -39,6 +66,30 @@ lobby.label.confirmeverything:Confirm Everything
 lobby.label.nosound:No Sound
 lobby.button.join:Join
 lobby.button.settings:Settings
+
+#PausePane
+pause.button.continue:hervatten
+pause.label.pause:Pauze
+
+#RulesPane
+rules.button.back:Back
+rules.text.rules:Rules
+
+#BuyCard
+buycard.msg.buycard:Do you want to buy a developmentcard?
+buycard.decision.yes:Yes
+buycard.decision.no:No
+
+#IngameNotices
+note.ingame.title:Game in progress
+note.ingame.explanation:You can no longer pick a different colour
+note.ingame.details:Switching colour is unavailable while game is running
+
+#Map
+map.throwdice.clickToThrow:Throw the dice
+map.throwdice.throw:Throw
+map.stock.show:Show
+map.stock.hide:Hide
 
 #SceneSettings
 settings.button.playmusic:Play Music
@@ -56,13 +107,9 @@ kicked.nocolor.details:User was kicked for not selecting a colour before the gam
 kicked.started.title:The game has already commenced 
 kicked.started.explanation:The game you are trying to join has already begun
 kicked.started.details:Unable to join game in progress
-
-#IngameNotices
-note.ingame.title:Game in progress
-note.ingame.explanation:You can no longer pick a different colour
-note.ingame.details:Switching colour is unavailable while game is running
-map.throwdice.clickToThrow:Throw the dice
-map.throwdice.throw:Throw
+kicked.close.title:Server closed
+kicked.close.explanation:The server has been closed
+kicked.close.details:Exception: 503 Service Unavailable
 
 #ExceptionManager
 error.connect.notfound.title:Server not found

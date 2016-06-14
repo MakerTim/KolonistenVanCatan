@@ -5,6 +5,14 @@ game.name.round:Ronde: %d
 game.button.build:Bouwen
 game.button.trade:Ruilen
 game.button.buy:Kopen
+game.button.settings:Opties
+game.button.next:Volgende Speler
+game.menu.save:Opslaan
+game.menu.pause:Pauze
+game.menu.exit:Afsluiten
+game.menu.back:Terug
+game.menu.Rules:Spelregels
+game.menu.title:Opties
 
 #SceneLobby
 lobby.shield.title:Lobby
@@ -23,6 +31,17 @@ lobby.parchment.color.white:Wit
 build.button.road:Straat
 build.button.village:Dorp
 build.button.city:Stad
+build.village.row:Dorp
+build.city.row:Stad
+build.road.row:Straat
+
+#Materials
+materials.row:Materialen
+materials.wood:Hout
+materials.stone:Steen
+materials.wool:Wol
+materials.ore:Erts
+materials.wheat:Graan
 
 #Login
 login.error.nousername.title:Login fout
@@ -48,14 +67,29 @@ lobby.label.nosound:Geen Geluid
 lobby.button.join:Meedoen
 lobby.button.settings:Instellingen
 
+#PausePane
+pause.button.continue:hervatten
+pause.label.pause:Pauze
+
+#RulesPane
+rules.button.back:Back
+rules.text.rules:Rules
+
+#BuyCard
+buycard.msg.buycard:Wilt u een ontwikkelingskaart kopen?
+buycard.decision.yes:Ja
+buycard.decision.no:Nee 
+
 #Note
 note.ingame.title:Spel is begonnen
-note.ingame.explanation:Je kunt niet meer van kleur switchen als het spel al begonnen is
-note.ingame.details:Tijdens het spel kun je niet van kleur veranderen
+note.ingame.explanation:U kunt niet meer van kleur switchen als het spel al begonnen is
+note.ingame.details:Tijdens het spel kunt u niet van kleur veranderen
 
 #Map
 map.throwdice.clickToThrow:Dobbelen
 map.throwdice.throw:Klik om te dobbelen
+map.stock.show:Toon
+map.stock.hide:Verberg
 
 #SceneSettings
 settings.button.playmusic:Muziek aan
