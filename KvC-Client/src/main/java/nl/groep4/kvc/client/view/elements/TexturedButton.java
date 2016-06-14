@@ -108,6 +108,14 @@ public abstract class TexturedButton extends StackPane {
 	clickHandlers.add(click);
     }
 
+    public void setDiabled() {
+	setMouseTransparent(true);
+    }
+
+    public void setEnabled() {
+	setMouseTransparent(false);
+    }
+
     /**
      * Gets texture of image
      */
