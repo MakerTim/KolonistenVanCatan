@@ -72,8 +72,8 @@ pause.button.continue:hervatten
 pause.label.pause:Pauze
 
 #RulesPane
-rules.button.back:Back
-rules.text.rules:Rules
+rules.button.back:Terug
+rules.text.rules:Spelregels
 
 #BuyCard
 buycard.msg.buycard:Wilt u een ontwikkelingskaart kopen?
