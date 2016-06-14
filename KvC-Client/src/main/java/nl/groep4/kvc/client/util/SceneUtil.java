@@ -26,7 +26,7 @@ public class SceneUtil {
     private static Node board;
     private static Node boardBackground;
     private static Node gamepane;
-    private static Node buildMenu;
+    private static Node settingsPane;
 
     /**
      * Gets the background for the menu
@@ -137,10 +137,10 @@ public class SceneUtil {
     }
 
     public static Node getSettingsPane() {
-	if (gamepane == null) {
-	    gamepane = new ImageView("img/menu/settings.png");
+	if (settingsPane == null) {
+	    settingsPane = new ImageView("img/menu/settings.png");
 	}
-	return gamepane;
+	return settingsPane;
     }
 
     /**
@@ -198,9 +198,9 @@ public class SceneUtil {
     }
 
     public static Node getBuildMenuBackground() {
-	if (buildMenu == null) {
-	    buildMenu = new ImageView("img/game/settings_foreground_horizontal.png");
+	if (settingsPane == null) {
+	    settingsPane = new ImageView("img/game/settings_foreground_horizontal.png");
 	}
-	return buildMenu;
+	return settingsPane;
     }
 }
