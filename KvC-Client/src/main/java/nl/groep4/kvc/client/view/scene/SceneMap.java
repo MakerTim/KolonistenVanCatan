@@ -21,6 +21,7 @@ import nl.groep4.kvc.client.view.pane.BuildPane;
 import nl.groep4.kvc.client.view.pane.MapPane;
 import nl.groep4.kvc.client.view.pane.OptionPane;
 import nl.groep4.kvc.client.view.pane.PaneHolder;
+import nl.groep4.kvc.client.view.pane.RulesPane;
 import nl.groep4.kvc.client.view.pane.StockPane;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.Card;
@@ -112,8 +113,13 @@ public class SceneMap implements SceneHolder, UpdateMap {
     }
 
     @Override
+    public void openRulesPane() throws RemoteException {
+	setOverlay(new RulesPane());
+    }
+
+    @Override
     public void openOptionPane() throws RemoteException {
-	setOverlay(new OptionPane());
+	setOverlay(new OptionPane(this));
     }
 
     @Override

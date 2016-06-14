@@ -1,5 +1,7 @@
 package nl.groep4.kvc.client.view.pane;
 
+import java.rmi.RemoteException;
+
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -7,15 +9,21 @@ import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.elements.SettingsButton;
+import nl.groep4.kvc.client.view.scene.SceneMap;
 
 public class OptionPane implements PaneHolder {
 
     // TODO: OptionPane needs work
+    private SceneMap map;
     private MenuButton save;
     private MenuButton pause;
     private MenuButton rules;
     private MenuButton exit;
     private MenuButton back;
+
+    public OptionPane(SceneMap map) {
+	this.map = map;
+    }
 
     @Override
     public Pane getPane() {
@@ -42,9 +50,19 @@ public class OptionPane implements PaneHolder {
     }
 
     private void onBackClick() {
+	try {
+	    map.closeOverlay();
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
     }
 
     private void onRulesClick() {
+	try {
+	    map.openRulesPane();
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
     }
 
     private void onPauseClick() {
