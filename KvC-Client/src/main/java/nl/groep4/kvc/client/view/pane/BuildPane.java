@@ -27,6 +27,36 @@ public class BuildPane implements PaneHolder, UpdateCosts {
     MenuButton village = new MenuButton(425, 500, TranslationManager.translate("build.button.village"));
     MenuButton city = new MenuButton(425, 500, TranslationManager.translate("build.button.city"));
 
+    int brStreet;
+    int orStreet;
+    int whStreet;
+    int wodStreet;
+    int wolStreet;
+
+    int brVillage;
+    int orVillage;
+    int whVillage;
+    int wodVillage;
+    int wolVillage;
+
+    int brCity;
+    int orCity;
+    int whCity;
+    int wodCity;
+    int wolCity;
+
+    Text wod = new Text(TranslationManager.translate("materials.wood"));
+    Text whe = new Text(TranslationManager.translate("materials.wheat"));
+    Text wol = new Text(TranslationManager.translate("materials.wool"));
+    Text sto = new Text(TranslationManager.translate("materials.stone"));
+    Text ore = new Text(TranslationManager.translate("materials.ore"));
+    Text prices = new Text((TranslationManager.translate("materials.row.prices:")));
+
+    Text Prices = new Text((TranslationManager.translate("materials.row") + " " + whe + wod + wol + sto + ore));
+    Text RoadPrices = new Text(TranslationManager.translate("road.row"));
+    Text VillagePrices = new Text(TranslationManager.translate("village.row"));
+    Text CityPrices = new Text(TranslationManager.translate("city.row"));
+
     @Override
     public Pane getPane() {
 	// TODO Auto-generated method stub
@@ -48,10 +78,13 @@ public class BuildPane implements PaneHolder, UpdateCosts {
 	Text Empty3 = new Text("");
 	Text Empty4 = new Text("");
 
-	Text Prices = new Text("   Materials.row:  \t\t\t Wht \t wod \t Wol \t Sto \t Ore");
-	Text RoadPrices = new Text("Road.row:\t\t\t\t 0 \t\t 1 \t\t 0 \t\t 1 \t\t 0");
-	Text VillagePrices = new Text("Village.row:\t\t\t 1 \t\t 1 \t\t 1 \t\t 1 \t\t 1");
-	Text CityPrices = new Text("City.row:\t\t\t\t 3 \t\t 0 \t\t 0 \t\t 0 \t\t 2");
+	Text Prices = new Text((TranslationManager.translate("materials.row") + " " + whe + wod + wol + sto + ore));
+	Text RoadPrices = new Text(TranslationManager.translate("road.row") + " " + brStreet + orStreet + whStreet
+		+ wodStreet + wolStreet);
+	Text VillagePrices = new Text(TranslationManager.translate("road.row") + " " + brVillage + orVillage + whVillage
+		+ wodVillage + wolVillage);
+	Text CityPrices = new Text(
+		TranslationManager.translate("city.row") + " " + brCity + orCity + whCity + wodCity + wolCity);
 
 	Font BuildFont = new Font("Impact", 14);
 	Prices.setFont(BuildFont);
@@ -84,19 +117,47 @@ public class BuildPane implements PaneHolder, UpdateCosts {
 
 	road.updateText(TranslationManager.translate("build.button.road"));
 	village.updateText(TranslationManager.translate("build.button.village"));
+	prices.setText(TranslationManager.translate("materials.row"));
 	city.updateText(TranslationManager.translate("build.button.city"));
+	wod.setText(TranslationManager.translate("materials.wood"));
+	whe.setText(TranslationManager.translate("materials.wheat"));
+	sto.setText(TranslationManager.translate("materials.stone"));
+	ore.setText(TranslationManager.translate("materials.ore"));
+	wol.setText(TranslationManager.translate("materials.wol"));
+	RoadPrices.setText(TranslationManager.translate("road.row"));
+	VillagePrices.setText(TranslationManager.translate("village.row"));
+	CityPrices.setText(TranslationManager.translate("city.row"));
 
     }
 
     @Override
     public void updateStreetCosts(EnumMap<Resource, Integer> resources) throws RemoteException {
+
+	this.brStreet = resources.get(Resource.BRICK);
+	this.orStreet = resources.get(Resource.ORE);
+	this.whStreet = resources.get(Resource.WHEAT);
+	this.wodStreet = resources.get(Resource.WOOD);
+	this.wolStreet = resources.get(Resource.WOOL);
+
     }
 
     @Override
     public void updateVillageCosts(EnumMap<Resource, Integer> resources) throws RemoteException {
+
+	this.brVillage = resources.get(Resource.BRICK);
+	this.orVillage = resources.get(Resource.ORE);
+	this.whVillage = resources.get(Resource.WHEAT);
+	this.wodVillage = resources.get(Resource.WOOD);
+	this.wolVillage = resources.get(Resource.WOOL);
     }
 
     @Override
     public void updateCityCosts(EnumMap<Resource, Integer> resources) throws RemoteException {
+
+	this.brCity = resources.get(Resource.BRICK);
+	this.orCity = resources.get(Resource.ORE);
+	this.whCity = resources.get(Resource.WHEAT);
+	this.wodCity = resources.get(Resource.WOOD);
+	this.wolCity = resources.get(Resource.WOOL);
     }
 }

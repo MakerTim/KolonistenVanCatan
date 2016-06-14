@@ -41,7 +41,7 @@ public class CardPane implements PaneHolder {
 	vbox.setPrefHeight(768);
 	vbox.setAlignment(Pos.CENTER);
 
-	Text msg = new Text("msg.buycard");
+	Text msg = new Text(TranslationManager.translate("msg.buycard"));
 
 	msg.setFill(Color.WHITE);
 	msg.setStroke(Color.BLACK);
@@ -63,5 +63,7 @@ public class CardPane implements PaneHolder {
 
 	MenuButton yes = new MenuButton(425, 500, TranslationManager.translate("decision.yes"));
 	MenuButton no = new MenuButton(425, 500, TranslationManager.translate("decision.no"));
+	Text msg = new Text(TranslationManager.translate("msg.buycard"));
+
     }
 }
