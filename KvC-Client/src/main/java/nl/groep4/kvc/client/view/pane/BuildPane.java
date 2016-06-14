@@ -3,7 +3,9 @@ package nl.groep4.kvc.client.view.pane;
 import java.rmi.RemoteException;
 import java.util.EnumMap;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -62,6 +64,17 @@ public class BuildPane implements PaneHolder, UpdateCosts {
 	vbox.setPrefWidth(300);
 	vbox.setPrefHeight(450);
 	vbox.setAlignment(Pos.CENTER);
+
+	GridPane gp = new GridPane();
+	gp.setHgap(10);
+	gp.setVgap(10);
+	gp.setPadding(new Insets(50, 50, 50, 50));
+
+	Text wheat = new Text("Wheat");
+	wheat.setFill(Color.WHITE);
+	wheat.setStroke(Color.BLACK);
+	wheat.setFont(ViewMaster.FONT);
+	gp.add(wheat, 14, 0);
 
 	StackPane Build = new StackPane();
 	Build.setAlignment(Pos.CENTER);
