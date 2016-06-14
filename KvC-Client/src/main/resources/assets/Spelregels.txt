@@ -46,17 +46,18 @@ hierop in willekeurige richting 1 straat aan. Vervolgens zijn de andere spelers 
 met de klok mee aan de beurt. Bij het zetten moet echter rekening gehouden worden met de
 afstandsregel!
 	-Afstandsregel Een nederzetting mag slechts op een vrije kruising gezet worden als de drie
-	dichtstbijzijnde niet bebouwd zijn door een nederzetting of stad. Het maakt niet uit wie er staat,
-	het kruispunt moet vrij zijn.
+	dichtstbijzijnde niet bebouwd zijn door een nederzetting of stad. Het maakt niet uit wie
+	er staat, het kruispunt moet vrij zijn.
 
 Tweede ronde
 Vervolgens plaatst de speler die tijdens de eerste ronde als laatste een nederzetting mocht
-plaatsen een tweede nederzetting en straat. De andere spelers volgen in richting tegen de klok in. 
-De tweede nederzetting en straat mag - rekening houdend met de afstandsregel - overal geplaatst worden.
-Onmiddellijk na het plaatsen van de tweede nederzetting en straat, ontvangt elke speler zijn
-eerste grondstoffen. Voor elk landveld dat aan die tweede nederzetting grenst, ontvangt hij 1
-overeenstemmende grondstofkaart uit de voorraad. Deze grondstofkaarten houden de spelers voor elkaar verborgen.
-De speler die als laatste zijn tweede nederzetting plaatste, begint het spel.
+plaatsen een tweede nederzetting en straat. De andere spelers volgen in richting tegen de klok
+in. De tweede nederzetting en straat mag - rekening houdend met de afstandsregel - overal
+geplaatst worden. Onmiddellijk na het plaatsen van de tweede nederzetting en straat, ontvangt
+elke speler zijn eerste grondstoffen. Voor elk landveld dat aan die tweede nederzetting grenst,
+ontvangt hij 1 overeenstemmende grondstofkaart uit de voorraad. Deze grondstofkaarten houden de
+spelers voor elkaar verborgen. De speler die als laatste zijn tweede nederzetting plaatste,
+begint het spel.
 
 Spelverloop
 Elke speler doorloopt per beurt de volgende drie fasen:
@@ -67,79 +68,85 @@ Elke speler doorloopt per beurt de volgende drie fasen:
 
 
 a) Opbrengst van het land
-De speler aan beurt moet met beide dobbelstenen gooien. De som van de twee dobbelstenen bepaalt het landnummer
-dat grondstoffen opbrengt. Elke speler die een nederzetting of stad heeft aan dit gedobbeld stuk land, ontvangt
-een grondstofkaart (twee indien een stad). Zijn op een bepaald ogenblik geen grondstofkaarten meer voorradig,
-ontvangt geen enkele speler die kaart in die beurt.
+De speler aan beurt moet met beide dobbelstenen gooien. De som van de twee dobbelstenen bepaalt
+het landnummer dat grondstoffen opbrengt. Elke speler die een nederzetting of stad heeft aan dit
+gedobbeld stuk land, ontvangt een grondstofkaart (twee indien een stad). Zijn op een bepaald
+ogenblik geen grondstofkaarten meer voorradig, ontvangt geen enkele speler die kaart in die beurt.
 
 b) Handelen
-Vervolgens mag de speler die aan de beurt is handel drijven met de andere spelers om zo aan de hem ontbrekende
-grondstofkaarten te geraken. We onderscheiden hierbij de gewonnen binnenlandse handel en zeehandel.
+Vervolgens mag de speler die aan de beurt is handel drijven met de andere spelers om zo aan de hem
+ontbrekende grondstofkaarten te geraken. We onderscheiden hierbij de gewonnen binnenlandse handel
+en zeehandel.
 
 	- Binnenlandse handel
-	  De speler mag met alle spelers grondstofkaarten ruilen. Hij deelt b.v. mee wat hij nodig heeft en wat hij
-	  bereid is om er in ruil voor te geven. Belangrijk is dat er alleen gehandeld mag worden met de speler die
-	  aan de beurt is, dus niet onder de andere spelers onderling.
+	  De speler mag met alle spelers grondstofkaarten ruilen. Hij deelt b.v. mee wat hij nodig heeft
+	  en wat hij bereid is om er in ruil voor te geven. Belangrijk is dat er alleen gehandeld mag
+	  worden met de speler die aan de beurt is, dus niet onder de andere spelers onderling.
 
 	- Zeehandel
-	  Hierbij kan de speler zonder behulp van zijn medespelers aan tafel grondstofkaarten ruilen. Bij de meest
-	  eenvoudige ruil kan de speler 4 grondstofkaarten van 1 soort omruilen tegen 1 grondstofkaart naar keuze.
-	  Het bezit van een haven is hierbij niet nodig. Heeft een speler echter een nederzetting of een stad
-	  opgericht aan zee, dan kan hij veel interessantere deals doen. Bij een eenvoudige haven (met ?) mag de
-	  speler steeds 3 gelijke grondstofkaarten ruilen voor 1 andere naar keuze. Bij een speciale haven moet de
-	  speler slechts 2 gelijke kaarten van de afgebeelde grondstof omruilen tegen 1 nieuwe naar keuze.
+	  Hierbij kan de speler zonder behulp van zijn medespelers aan tafel grondstofkaarten ruilen.
+	  Bij de meest eenvoudige ruil kan de speler 4 grondstofkaarten van 1 soort omruilen tegen 1
+	  grondstofkaart naar keuze. Het bezit van een haven is hierbij niet nodig. Heeft een speler
+	  echter een nederzetting of een stad opgericht aan zee, dan kan hij veel interessantere deals
+	  doen. Bij een eenvoudige haven (met ?) mag de speler steeds 3 gelijke grondstofkaarten ruilen
+	  voor 1 andere naar keuze. Bij een speciale haven moet de speler slechts 2 gelijke kaarten van
+	  de afgebeelde grondstof omruilen tegen 1 nieuwe naar keuze.
 
 c) Bouwen
-De speler die aan de beurt is, kan ook bouwen om zijn punten te verhogen. In ruil voor bepaalde combinaties van
-grondstofkaarten (zie overzichtskaartje) kan hij willekeurig veel straten, nederzettingen of steden bouwen.
+De speler die aan de beurt is, kan ook bouwen om zijn punten te verhogen. In ruil voor bepaalde
+combinaties van grondstofkaarten (zie overzichtskaartje) kan hij willekeurig veel straten,
+nederzettingen of steden bouwen.
 
 Kosten:
 	straat: hout + stenen
-	Een nieuwe straat moet aangelegd worden aan eigen straten, nederzettingen of steden. Op elke weg kan
-	natuurlijk slechts 1 weg gebouwd worden. Zodra een speler een aaneensluitende straat heeft uit 5 stukken
-	straat, ontvangt hij de speciale kaart "Langste handelsstraat" die hem 2 extra punten opleveren.
-	Een handelsstraat kan onderbroken worden of een andere speler kan een langere straat bouwen. Op dat
-	ogenblik gaat die speciale kaart naar de speler met de langste straat. Zodra 2 of meer spelers een even
-	lange straat hebben, gaat de kaart terug naar de voorraad.
+	Een nieuwe straat moet aangelegd worden aan eigen straten, nederzettingen of steden. Op
+	elke weg kan natuurlijk slechts 1 weg gebouwd worden. Zodra een speler een aaneensluitende
+	straat heeft uit 5 stukken straat, ontvangt hij de speciale kaart "Langste handelsstraat"
+	die hem 2 extra punten opleveren. Een handelsstraat kan onderbroken worden of een andere
+	speler kan een langere straat bouwen. Op dat ogenblik gaat die speciale kaart naar de speler
+	met de langste straat. Zodra 2 of meer spelers een even lange straat hebben, gaat de kaart
+	terug naar de voorraad.
 
 	nederzetting: hout + stenen + graan + wol
-	Rekening houden met de afstandregel. De nederzetting moet minstens aan 1 eigen straat grenzen. Elke
-	nederzetting op het spelbord levert ook 1 punt op en kan 1 grondstofkaart opbrengen indien de dobbelstenen
-	dit bepalen.
+	Rekening houden met de afstandregel. De nederzetting moet minstens aan 1 eigen straat grenzen.
+	Elke nederzetting op het spelbord levert ook 1 punt op en kan 1 grondstofkaart opbrengen indien
+	de dobbelstenen dit bepalen.
 
 	stad: 2 x graan + 3 x erts
-	De speler bouwt zijn nederzetting om tot een stad. Hij verwisselt het huisje voor een kerk. Elke stad
-	levert 2 punten en kan 2 grondstofkaarten opbrengen.
+	De speler bouwt zijn nederzetting om tot een stad. Hij verwisselt het huisje voor een kerk.
+	Elke stad levert 2 punten en kan 2 grondstofkaarten opbrengen.
 
 	ontwikkelingskaart: graan + wol + erts
-	Als een speler een ontwikkelingskaart wil kopen, neemt hij de bovenste van de stapel af in ruil voor de
-	3 benodigde grondstofkaarten. De bekomen kaart(en) houdt hij best geheim voor de anderen. Een juist
-	aangekochte kaart mag niet meteen gebruikt worden. Er zijn 14 ridders, 6 vooruitgang en 5 punten in het
-	spel.
+	Als een speler een ontwikkelingskaart wil kopen, neemt hij de bovenste van de stapel af in
+	ruil voor de 3 benodigde grondstofkaarten. De bekomen kaart(en) houdt hij best geheim voor de
+	anderen. Een juist aangekochte kaart mag niet meteen gebruikt worden. Er zijn 14 ridders,
+	6 vooruitgang en 5 punten in het spel.
 
 d) Speciale gebeurtenissen + kaarten
 
 	- Rover
-	  Als een speler een 7 dobbelt bij het begin van zijn beurt, moet deze speler een van de twee rovers
-	  verplaatst naar een willekeurig ander landveld. De spelers die dorpen of steden hebben aan de landveld
-	  waar de rovers op word geplaatst en meer dan 7 kaarten hebben, moeten de helft van hun kaarten inleveren.
-	  Deze spelers ontvangen ook geen grondstoffen totdat de rover weer verplaatst is. Dan mag de plaatser van
-	  de rover nog een grondstof stelen van een speler die aan de tegel staat waar de rover op geplaatst is,
-	  mits aanwezig. Zijn er meerdere spelers voorhanden, dan kiest hij 1 slachtoffer uit. Het roven zelf
-	  gebeurt gesloten: je mag niet zien welke soort kaart je steelt. Zolang een rover op een tegel staat,
-	  ontvangt geen enkele speler grondstoffen van die tegel.
+	  Als een speler een 7 dobbelt bij het begin van zijn beurt, moet deze speler een van de twee
+	  rovers verplaatst naar een willekeurig ander landveld. De spelers die dorpen of steden hebben
+	  aan de landveld waar de rovers op word geplaatst en meer dan 7 kaarten hebben, moeten de helft
+	  van hun kaarten inleveren. Deze spelers ontvangen ook geen grondstoffen totdat de rover weer
+	  verplaatst is. Dan mag de plaatser van de rover nog een grondstof stelen van een speler die aan
+	  de tegel staat waar de rover op geplaatst is, mits aanwezig. Zijn er meerdere spelers voorhanden,
+	  dan kiest hij 1 slachtoffer uit. Het roven zelf gebeurt gesloten: je mag niet zien welke soort
+	  kaart je steelt. Zolang een rover op een tegel staat, ontvangt geen enkele speler grondstoffen
+	  van die tegel.
 	  
 	- Ontwikkelingskaart uitspelen
-	  Een speler die aan de beurt is, mag op gelijk welk ogenblik tijdens zijn beurt 1 ontwikkelingskaart
-	  uitspelen(behalve de kaart die hij eventueel net kocht).
+	  Een speler die aan de beurt is, mag op gelijk welk ogenblik tijdens zijn beurt 1
+	  ontwikkelingskaart uitspelen(behalve de kaart die hij eventueel net kocht).
 
 	- Ridder
-	  Als een speler deze kaart uitspeelt, moet hij de rover op een ander landveld zetten. Hij steelt ook
-	  1 grondstofkaart van een willekeurige speler die er een nederzetting of stad heeft. Gespeelde
-	  ridderkaarten blijven open voor de speler op tafel liggen. Een speler met 3 gespeelde ridderkaarten
-	  ontvangt de speciale kaart "Grootste Riddermacht". Dit levert hem extra 2 punten. Deze kaart gaat
-	  terug naar de voorraad indieniemand anders evenveel ridderkaarten komt uit te spelen, of gaat naar die
-	  speler die op dat ogenblik weer de grootste riddermacht voor zich liggen heeft. 
+	  Als een speler deze kaart uitspeelt, moet hij de rover op een ander landveld zetten. Hij steelt
+	  ook 1 grondstofkaart van een willekeurige speler die er een nederzetting of stad heeft.
+	  Gespeelde ridderkaarten blijven open voor de speler op tafel liggen. Een speler met 3 gespeelde
+	  ridderkaarten ontvangt de speciale kaart "Grootste Riddermacht". Dit levert hem extra 2 punten.
+	  Deze kaart gaat terug naar de voorraad indieniemand anders evenveel ridderkaarten komt uit te
+	  spelen, of gaat naar die speler die op dat ogenblik weer de grootste riddermacht voor zich liggen
+	  heeft. 
 	  
 	- Vooruitgang
 	  Diegene die een dergelijke kaart uitspeelt, moet de opdracht die op de kaart staat gelijk uitvoeren.
