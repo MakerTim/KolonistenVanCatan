@@ -28,7 +28,6 @@ public class RulesPane implements PaneHolder {
 	this.view = view;
 
     }
-    // view.closeOverlay();
 
     public Pane getPane() {
 	// TODO Auto-generated method stub
@@ -51,7 +50,13 @@ public class RulesPane implements PaneHolder {
 	area.setStyle("-fx-text-fill: white;");
 	area.setPrefRowCount(21);
 	area.setMaxWidth(600);
+	area.setEditable(false);
+	area.setOnKeyPressed(key -> key.consume());
+	// area.setCursor(new ImageCursor(new Image("img/etc/cursor.png")));
 
+	// area.setOnMouseEntered(e -> {
+	// area.setCursor(new ImageCursor(new Image("img/etc/cursor.png")));
+	// });
 	Node background = SceneUtil.getGamePane();
 
 	vbox.getChildren().addAll(rules, area, back);

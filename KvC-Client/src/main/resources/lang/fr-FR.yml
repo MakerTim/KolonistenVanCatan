@@ -5,6 +5,14 @@ game.name.round:Tour: %d
 game.button.build:Construire
 game.button.trade:Échange
 game.button.buy:Acheter
+game.button.settings:Options
+game.button.next:Joueur suivant
+game.menu.save:Sauver
+game.menu.pause:Pause
+game.menu.exit:Fermer
+game.menu.back:Retourner
+game.menu.rules:Règles
+game.menu.title:Options
 
 #SceneLobby
 lobby.shield.title:Hall
@@ -23,15 +31,17 @@ lobby.parchment.color.white:blanc
 build.button.road:Rue
 build.button.village:Village
 build.button.city:Ville
+build.village.row:Village
+build.city.row:Ville
+build.road.row:Rue
 
-#Note
-note.ingame.title:Le jeu a commencé
-note.ingame.explanation:Vous ne pouvez pas changer plus de couleur quand le jeu a déjà commencé
-note.ingame.details:Pendant le jeu, vous ne pouvez pas changer de couleur
-
-#Map
-map.throwdice.clickToThrow:Jouer aux dés
-map.throwdice.throw:Cliquez pour jouer aux dés
+#Materials
+materials.row:Matériels
+materials.wood:Bois
+materials.stone:Pierre
+materials.wool:Laine
+materials.ore:Minerai
+materials.wheat:Grain
 
 #Login
 login.error.nousername.title:Erreur de connexion
@@ -56,6 +66,30 @@ lobby.label.confirmeverything:Confirmer tout
 lobby.label.nosound:Aucun bruit
 lobby.button.join:Participer
 lobby.button.settings:Réglages
+
+#PausePane
+pause.button.continue:Résumé
+pause.label.pause:Pause
+
+#RulesPane
+rules.button.back:Back
+rules.text.rules:Rules
+
+#BuyCard
+buycard.msg.buycard:Vous voulez acheter une carte de développement?
+buycard.decision.yes:Oui
+buycard.decision.no:Non
+
+#Note
+note.ingame.title:Le jeu a commencé
+note.ingame.explanation:Vous ne pouvez pas changer plus de couleur quand le jeu a déjà commencé
+note.ingame.details:Pendant le jeu, vous ne pouvez pas changer de couleur
+
+#Map
+map.throwdice.clickToThrow:Jouer aux dés
+map.throwdice.throw:Cliquez pour jouer aux dés
+map.stock.show:Show
+map.stock.hide:cacher
 
 #SceneSettings
 settings.button.playmusic:Son on
