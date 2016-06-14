@@ -18,11 +18,6 @@ import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.UpdateCosts;
 
 public class BuildPane implements PaneHolder, UpdateCosts {
-
-    // TODO: Bachir: Vertalingen achteraf werken niet
-    // TODO: Bachir: zorg er voor dat je kosten kan updaten vanaf de server
-    // TODO: Haal overbodige todo's weg
-
     MenuButton road = new MenuButton(425, 500, TranslationManager.translate("build.button.road"));
     MenuButton village = new MenuButton(425, 500, TranslationManager.translate("build.button.village"));
     MenuButton city = new MenuButton(425, 500, TranslationManager.translate("build.button.city"));
@@ -59,8 +54,6 @@ public class BuildPane implements PaneHolder, UpdateCosts {
 
     @Override
     public Pane getPane() {
-	// TODO Auto-generated method stub
-
 	MenuButton road = new MenuButton(425, 500, TranslationManager.translate("build.button.road"));
 	MenuButton village = new MenuButton(425, 500, TranslationManager.translate("build.button.village"));
 	MenuButton city = new MenuButton(425, 500, TranslationManager.translate("build.button.city"));
@@ -113,26 +106,26 @@ public class BuildPane implements PaneHolder, UpdateCosts {
 
     @Override
     public void updateTranslation() {
-	// TODO Auto-generated method stub
-
 	road.updateText(TranslationManager.translate("build.button.road"));
 	village.updateText(TranslationManager.translate("build.button.village"));
-	prices.setText(TranslationManager.translate("materials.row"));
+	prices.setText(TranslationManager.translate("materials.row") + " " + whe + wod + wol + sto + ore);
 	city.updateText(TranslationManager.translate("build.button.city"));
 	wod.setText(TranslationManager.translate("materials.wood"));
 	whe.setText(TranslationManager.translate("materials.wheat"));
 	sto.setText(TranslationManager.translate("materials.stone"));
 	ore.setText(TranslationManager.translate("materials.ore"));
 	wol.setText(TranslationManager.translate("materials.wol"));
-	RoadPrices.setText(TranslationManager.translate("road.row"));
-	VillagePrices.setText(TranslationManager.translate("village.row"));
-	CityPrices.setText(TranslationManager.translate("city.row"));
+	RoadPrices.setText(TranslationManager.translate("road.row") + " " + brStreet + orStreet + whStreet + wodStreet
+		+ wolStreet);
+	VillagePrices.setText(TranslationManager.translate("village.row") + " " + brVillage + orVillage + whVillage
+		+ wodVillage + wolVillage);
+	CityPrices
+		.setText(TranslationManager.translate("city.row") + " " + brCity + orCity + whCity + wodCity + wolCity);
 
     }
 
     @Override
     public void updateStreetCosts(EnumMap<Resource, Integer> resources) throws RemoteException {
-
 	this.brStreet = resources.get(Resource.BRICK);
 	this.orStreet = resources.get(Resource.ORE);
 	this.whStreet = resources.get(Resource.WHEAT);
@@ -143,7 +136,6 @@ public class BuildPane implements PaneHolder, UpdateCosts {
 
     @Override
     public void updateVillageCosts(EnumMap<Resource, Integer> resources) throws RemoteException {
-
 	this.brVillage = resources.get(Resource.BRICK);
 	this.orVillage = resources.get(Resource.ORE);
 	this.whVillage = resources.get(Resource.WHEAT);
@@ -153,7 +145,6 @@ public class BuildPane implements PaneHolder, UpdateCosts {
 
     @Override
     public void updateCityCosts(EnumMap<Resource, Integer> resources) throws RemoteException {
-
 	this.brCity = resources.get(Resource.BRICK);
 	this.orCity = resources.get(Resource.ORE);
 	this.whCity = resources.get(Resource.WHEAT);
