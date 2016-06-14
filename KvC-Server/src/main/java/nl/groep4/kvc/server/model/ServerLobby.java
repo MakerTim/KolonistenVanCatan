@@ -10,6 +10,7 @@ import nl.groep4.kvc.common.enumeration.Color;
 import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Lobby;
 import nl.groep4.kvc.common.interfaces.Player;
+import nl.groep4.kvc.server.controller.ServerKolonistenVanCatan;
 import nl.groep4.kvc.server.controller.ServerLobbyController;
 
 /**

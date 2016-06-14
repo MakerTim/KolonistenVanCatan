@@ -1,4 +1,4 @@
-package nl.groep4.kvc.server.model;
+package nl.groep4.kvc.server.controller;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;

@@ -13,7 +13,6 @@ import nl.groep4.kvc.common.interfaces.Lobby.State;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.UpdateLobby;
 import nl.groep4.kvc.common.util.Scheduler;
-import nl.groep4.kvc.server.model.ServerKolonistenVanCatan;
 import nl.groep4.kvc.server.model.ServerLobby;
 import nl.groep4.kvc.server.model.ServerPlayer;
 
