@@ -25,8 +25,10 @@ import nl.groep4.kvc.client.view.pane.OptionPane;
 import nl.groep4.kvc.client.view.pane.PaneHolder;
 import nl.groep4.kvc.client.view.pane.RulesPane;
 import nl.groep4.kvc.client.view.pane.StockPane;
+import nl.groep4.kvc.client.view.pane.TradePane;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.Card;
+import nl.groep4.kvc.common.interfaces.Trade;
 import nl.groep4.kvc.common.interfaces.UpdateMap;
 import nl.groep4.kvc.common.map.Map;
 
@@ -48,6 +50,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
 
     private StockPane stockPane;
     private BuildPane buildPane = new BuildPane();
+    private TradePane tradePane = new TradePane();
 
     @Override
     public void registerController(Controller controller) {
@@ -194,6 +197,11 @@ public class SceneMap implements SceneHolder, UpdateMap {
 
     @Override
     public void updateConfig() {
+	nxtButton = new MenuButton(TranslationManager.translate("game.button.next"));
+	optionButton = new MenuButton(TranslationManager.translate("game.button.settings"));
+	buildButton = new MenuButton(TranslationManager.translate("game.button.build"));
+	tradeButton = new MenuButton(TranslationManager.translate("game.button.trade"));
+	buyButton = new MenuButton(TranslationManager.translate("game.button.buy"));
 	if (overlayPane != null) {
 	    overlayPane.updateTranslation();
 	}
@@ -239,5 +247,10 @@ public class SceneMap implements SceneHolder, UpdateMap {
     @Override
     public void updateVillageCosts(EnumMap<Resource, Integer> resources) throws RemoteException {
 	buildPane.updateVillageCosts(resources);
+    }
+
+    @Override
+    public void updateTrades(List<Trade> allTrades) throws RemoteException {
+	// TODO: Trademenu ding redirecten
     }
 }

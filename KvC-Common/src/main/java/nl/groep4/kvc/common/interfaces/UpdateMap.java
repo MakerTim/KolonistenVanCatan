@@ -4,7 +4,7 @@ import java.rmi.RemoteException;
 
 import nl.groep4.kvc.common.map.Map;
 
-public interface UpdateMap extends Updatable<Map>, UpdateStock, UpdateCosts {
+public interface UpdateMap extends Updatable<Map>, UpdateStock, UpdateCosts, UpdateTrade {
 
     public void closeOverlay() throws RemoteException;
 
