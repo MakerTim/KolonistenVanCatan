@@ -24,7 +24,7 @@ public interface Updatable<T> extends Remote {
     /**
      * 
      * @param key
-     *            Refers to closing settings in {@link ServerLobby}
+     *            Refers to closing settings in {@link Lobby}
      * @throws RemoteException
      *             in case connection between RMI and client is lost
      */
@@ -33,7 +33,7 @@ public interface Updatable<T> extends Remote {
     /**
      * 
      * @param key
-     *            Refers to ingame pop-up in {@link ServerLobby}
+     *            Refers to ingame pop-up in {@link Lobby}
      * @throws RemoteException
      *             in case connection between RMI and client is lost
      */

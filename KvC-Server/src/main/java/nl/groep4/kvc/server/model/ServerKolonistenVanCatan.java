@@ -22,7 +22,7 @@ import nl.groep4.kvc.server.model.map.ServerMap;
 public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 
     private final List<Player> players;
-    private ServerMap map;
+    private ServerMap map = new ServerMap();
     private int round;
     private int turn;
 
@@ -40,7 +40,6 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
      */
     @Override
     public void createMap() {
-	map = new ServerMap();
 	map.createMap();
     }
 

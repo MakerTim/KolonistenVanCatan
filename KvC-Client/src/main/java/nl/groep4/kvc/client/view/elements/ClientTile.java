@@ -69,6 +69,7 @@ public class ClientTile extends StackPane {
 		lines[i].setStroke(new Color(Math.random(), 0, 0, 1));
 		lines[i].setStrokeWidth(10);
 		lines[i].setOnMouseClicked(click -> {
+		    System.out.println("street");
 		    onStreetClick(coord.add(Direction.values()[j].offset(coord).multiply(0.5)));
 		});
 		overlayPane.getChildren().add(lines[i]);

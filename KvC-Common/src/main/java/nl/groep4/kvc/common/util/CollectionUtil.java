@@ -77,7 +77,6 @@ public class CollectionUtil {
     /**
      * 
      * @param original
-     *            Refers to {@link SceneLogin} for list
      * @param items
      *            set of items from list
      * @return array of data

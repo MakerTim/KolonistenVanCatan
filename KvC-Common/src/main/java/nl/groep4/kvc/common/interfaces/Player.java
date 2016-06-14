@@ -17,7 +17,7 @@ import nl.groep4.kvc.common.enumeration.Resource;
 public interface Player extends Remote {
     /**
      * 
-     * @return get updates from {@link ServerLobby}
+     * @return get updates from {@link Lobby}
      * @throws RemoteException
      *             in case connection between RMI and client is lost
      */
@@ -36,7 +36,7 @@ public interface Player extends Remote {
     /**
      * 
      * @param updatable
-     *            reference to update the {@link ServerLobby}
+     *            reference to update the {@link Lobby}
      * @throws RemoteException
      *             in case connection between RMI and client is lost
      */
@@ -44,7 +44,7 @@ public interface Player extends Remote {
 
     /**
      * 
-     * @return Gets update for the {@link ServerLobby}
+     * @return Gets update for the {@link Lobby}
      * @throws RemoteException
      *             in case connection between RMI and client is lost
      */
@@ -65,7 +65,7 @@ public interface Player extends Remote {
     /**
      * 
      * @param color
-     *            Refers to colour set by {@link ServerLobby}
+     *            Refers to colour set by {@link Lobby}
      * @throws RemoteException
      *             in case connection between RMI and client is lost
      */

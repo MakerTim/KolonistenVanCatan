@@ -35,15 +35,14 @@ public interface Tile extends Serializable, Locatable {
     /**
      *
      * @param streets
-     *            Refers to {@link ServerMap} for street location and direction
+     *            Refers to {@link Map} for street location and direction
      */
     public void setupStreets(Street[] streets);
 
     /**
      *
      * @param buildings
-     *            Refers to {@link ServerMap} for building location and
-     *            direction
+     *            Refers to {@link Map} for building location and direction
      */
     public void setupBuilding(Building[] buildings);
 

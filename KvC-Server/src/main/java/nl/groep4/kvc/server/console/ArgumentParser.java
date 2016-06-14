@@ -16,7 +16,6 @@ public class ArgumentParser {
     public ArgumentParser(String cmd, String[] args) throws Throwable {
 	this.cmd = cmd;
 	this.args = args;
-	parse();
     }
 
     public void parse() throws Throwable {
@@ -84,7 +83,7 @@ public class ArgumentParser {
 		args = new String[0];
 	    }
 	    try {
-		new ArgumentParser(cmd, args);
+		new ArgumentParser(cmd, args).parse();
 	    } catch (Throwable thr) {
 		System.err.printf("There wass a exception with the command %s %s\n\t%s\n", cmd, Arrays.toString(args),
 			thr.toString());

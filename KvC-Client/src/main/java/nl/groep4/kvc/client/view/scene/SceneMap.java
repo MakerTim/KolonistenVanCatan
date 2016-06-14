@@ -16,6 +16,7 @@ import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.view.ExceptionDialog;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.MenuButton;
+import nl.groep4.kvc.client.view.pane.BuildPane;
 import nl.groep4.kvc.client.view.pane.MapPane;
 import nl.groep4.kvc.client.view.pane.PaneHolder;
 import nl.groep4.kvc.client.view.pane.StockPane;
@@ -38,7 +39,9 @@ public class SceneMap implements SceneHolder, UpdateMap {
     private MenuButton tradeButton;
     private MenuButton buyButton;
     private Pane layers;
-    private StockPane stock;
+
+    private StockPane stockPane;
+    private BuildPane buildPane = new BuildPane();
 
     @Override
     public void registerController(Controller controller) {
@@ -64,7 +67,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    optionPane.setAlignment(Pos.BOTTOM_RIGHT);
 	    optionPane.getChildren().addAll(nxtButton, optionButton);
 
-	    stock = new StockPane();
+	    stockPane = new StockPane();
 
 	    VBox buttons = new VBox();
 	    buildButton = new MenuButton("game.button.build");
@@ -73,14 +76,17 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    buildButton.setFont(ViewMaster.FONT);
 	    tradeButton.setFont(ViewMaster.FONT);
 	    buyButton.setFont(ViewMaster.FONT);
+
 	    buttons.setAlignment(Pos.BOTTOM_RIGHT);
 	    buttons.getChildren().addAll(buildButton, tradeButton, buyButton);
 
 	    bottom.setLeft(optionPane);
-	    bottom.setCenter(stock.getPane());
+	    bottom.setCenter(stockPane.getPane());
 	    bottom.setRight(buttons);
 	    BorderPane.setAlignment(bottom, Pos.BOTTOM_CENTER);
 	    screen.setBottom(bottom);
+	    screen.setPickOnBounds(false);
+	    bottom.setPickOnBounds(false);
 
 	    /* Add all layers */
 	    layers.getChildren().addAll(SceneUtil.getBoardBackground(), SceneUtil.getBoard(), gamepane.getPane(),
@@ -88,7 +94,16 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	}
 	Scene scene = new Scene(layers);
 	return scene;
+    }
 
+    @Override
+    public void openBuildpane() throws RemoteException {
+	setOverlay(buildPane);
+    }
+
+    @Override
+    public void closeOverlay() throws RemoteException {
+	setOverlay(null);
     }
 
     public void setOverlay(PaneHolder pane) {
@@ -130,17 +145,27 @@ public class SceneMap implements SceneHolder, UpdateMap {
     }
 
     @Override
-    public void closeOverlay() throws RemoteException {
-	setOverlay(null);
-    }
-
-    @Override
     public void updateStock(EnumMap<Resource, Integer> resources) {
-	stock.updateStock(resources);
+	stockPane.updateStock(resources);
     }
 
     @Override
     public void updateStock(List<Card> cards) {
-	stock.updateStock(cards);
+	stockPane.updateStock(cards);
+    }
+
+    @Override
+    public void updateCityCosts(EnumMap<Resource, Integer> resources) throws RemoteException {
+	buildPane.updateCityCosts(resources);
+    }
+
+    @Override
+    public void updateStreetCosts(EnumMap<Resource, Integer> resources) throws RemoteException {
+	buildPane.updateStreetCosts(resources);
+    }
+
+    @Override
+    public void updateVillageCosts(EnumMap<Resource, Integer> resources) throws RemoteException {
+	buildPane.updateVillageCosts(resources);
     }
 }

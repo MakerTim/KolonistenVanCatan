@@ -97,7 +97,7 @@ public interface Map extends Serializable {
     /**
      *
      * @param coord
-     *            Refers to {@link ServerMap} for tile position on map
+     *            Refers to {@link Map} for tile position on map
      * @return Gets Tile coordinates
      */
     public Tile getTile(Coordinate coord);
@@ -105,11 +105,9 @@ public interface Map extends Serializable {
     /**
      *
      * @param x
-     *            Refers to {@link ServerMap} for X coordinate relative to
-     *            centre
+     *            Refers to {@link Map} for X coordinate relative to centre
      * @param y
-     *            Refers to {@link ServerMap} for Y coordinate relative to
-     *            centre
+     *            Refers to {@link Map} for Y coordinate relative to centre
      * @return Gets tile location relative to centre tile
      */
     public Tile getTile(int x, int y);
