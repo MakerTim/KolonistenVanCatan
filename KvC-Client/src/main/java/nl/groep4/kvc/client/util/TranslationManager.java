@@ -16,6 +16,7 @@ import nl.groep4.kvc.client.view.ExceptionDialog;
 public class TranslationManager {
 
     public static final String[] LANGUAGES;
+    private static String current;
     private static final List<String> CURRENT_LANGUAGES = new ArrayList<>();
 
     static {
@@ -30,6 +31,7 @@ public class TranslationManager {
      * @param languageKey
      */
     public static void setLanguage(String languageKey) {
+	current = languageKey;
 	CURRENT_LANGUAGES.clear();
 	try {
 	    BufferedReader fileReader = new BufferedReader(
@@ -47,6 +49,10 @@ public class TranslationManager {
 	} catch (Exception ex) {
 	    ExceptionDialog.warning("error.translation.notfound");
 	}
+    }
+
+    public static String getCurrentLanguage() {
+	return current;
     }
 
     /**
