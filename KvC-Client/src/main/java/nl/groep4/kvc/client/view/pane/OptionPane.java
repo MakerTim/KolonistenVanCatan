@@ -1,7 +1,5 @@
 package nl.groep4.kvc.client.view.pane;
 
-import java.rmi.RemoteException;
-
 import javafx.geometry.Pos;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -65,19 +63,11 @@ public class OptionPane implements PaneHolder {
     }
 
     private void onBackClick() {
-	try {
-	    map.closeOverlay();
-	} catch (RemoteException ex) {
-	    ex.printStackTrace();
-	}
+	map.closeOverlay();
     }
 
     private void onRulesClick() {
-	try {
-	    map.openRulesPane();
-	} catch (RemoteException ex) {
-	    ex.printStackTrace();
-	}
+	map.openRulesPane();
     }
 
     private void onPauseClick() {

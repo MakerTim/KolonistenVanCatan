@@ -27,8 +27,8 @@ import nl.groep4.kvc.common.util.CollectionUtil;
  **/
 public class ViewMaster extends Application {
 
-    private static final int GAME_WIDHT = 1366;
-    private static final int GAME_HEIGHT = 768;
+    public static final int GAME_WIDHT = 1366;
+    public static final int GAME_HEIGHT = 768;
 
     /**
      * Gives the font type "Impact" with a size of 22
