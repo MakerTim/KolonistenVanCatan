@@ -5,10 +5,8 @@ import java.util.Scanner;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.ImageCursor;
 import javafx.scene.Node;
 import javafx.scene.control.TextArea;
-import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -54,7 +52,7 @@ public class RulesPane implements PaneHolder {
 	area.setMaxWidth(600);
 	area.setEditable(false);
 	area.setOnKeyPressed(key -> key.consume());
-	area.setCursor(new ImageCursor(new Image("img/etc/cursor.png")));
+	// area.setCursor(new ImageCursor(new Image("img/etc/cursor.png")));
 
 	// area.setOnMouseEntered(e -> {
 	// area.setCursor(new ImageCursor(new Image("img/etc/cursor.png")));
