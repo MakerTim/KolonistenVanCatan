@@ -37,7 +37,7 @@ public class RulesPane implements PaneHolder {
 
 	VBox vbox = new VBox();
 	vbox.setAlignment(Pos.CENTER);
-	vbox.setPadding(new Insets(30, 40, 0, 40));
+	vbox.setPadding(new Insets(30, 80, 0, 80));
 
 	back = new MenuButton(425, 500, TranslationManager.translate("rules.button.back"));
 	back.setFont(ViewMaster.FONT);
@@ -50,6 +50,7 @@ public class RulesPane implements PaneHolder {
 	TextArea area = new TextArea();
 	area.setStyle("-fx-text-fill: white;");
 	area.setPrefRowCount(21);
+	area.setMaxWidth(600);
 
 	Node background = SceneUtil.getGamePane();
 
