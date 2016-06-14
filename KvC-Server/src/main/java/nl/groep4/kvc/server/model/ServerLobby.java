@@ -25,7 +25,6 @@ public class ServerLobby implements Lobby {
     private KolonistenVanCatan kvc;
     private ServerLobbyController controller;
 
-    @Override
     public void setController(ServerLobbyController controller) {
 	this.controller = controller;
     }

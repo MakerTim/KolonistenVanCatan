@@ -5,15 +5,12 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 import nl.groep4.kvc.common.enumeration.Color;
-import nl.groep4.kvc.server.controller.ServerLobbyController;
 
 public interface Lobby extends Remote {
 
     public static enum State {
 	LOBBY, IN_GAME
     }
-
-    public void setController(ServerLobbyController controller) throws RemoteException;
 
     public KolonistenVanCatan getGame() throws RemoteException;
 
