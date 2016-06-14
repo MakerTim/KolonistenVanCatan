@@ -110,7 +110,7 @@ public abstract class TexturedButton extends StackPane {
 	clickHandlers.add(click);
     }
 
-    public void setDiabled() {
+    public void setDisabled() {
 	setMouseTransparent(true);
     }
 
