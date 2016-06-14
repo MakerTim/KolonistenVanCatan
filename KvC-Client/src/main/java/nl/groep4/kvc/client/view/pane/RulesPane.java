@@ -6,7 +6,6 @@ import java.util.Scanner;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -56,8 +55,7 @@ public class RulesPane implements PaneHolder {
 	    e.getStackTrace();
 	}
 
-	Scene scene = new Scene(rulepane, 700, 800);
-	scene.getStylesheets().add("/assets/stylesheet.css");
+	rulepane.getStylesheets().add("/assets/stylesheet.css");
 
 	return rulepane;
     }
