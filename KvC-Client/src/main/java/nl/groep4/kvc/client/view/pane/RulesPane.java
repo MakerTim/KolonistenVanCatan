@@ -16,17 +16,30 @@ import jdk.nashorn.api.scripting.URLReader;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
+import nl.groep4.kvc.client.view.elements.MenuButton;
+import nl.groep4.kvc.client.view.scene.SceneMap;
 
 public class RulesPane implements PaneHolder {
     Text rules;
+    SceneMap view;
+    MenuButton back;
+
+    public RulesPane(SceneMap view) {
+	this.view = view;
+
+    }
 
     public Pane getPane() {
 	// TODO Auto-generated method stub
 
 	StackPane rulepane = new StackPane();
+
 	VBox vbox = new VBox();
 	vbox.setAlignment(Pos.CENTER);
 	vbox.setPadding(new Insets(30, 40, 0, 40));
+
+	back = new MenuButton(425, 500, TranslationManager.translate("rules.button.back"));
+	back.setFont(ViewMaster.FONT);
 
 	rules = new Text(TranslationManager.translate("rule.text.rules"));
 	rules.setFont(ViewMaster.FONT);
@@ -39,7 +52,7 @@ public class RulesPane implements PaneHolder {
 
 	Node background = SceneUtil.getGamePane();
 
-	vbox.getChildren().addAll(rules, area);
+	vbox.getChildren().addAll(rules, area, back);
 	rulepane.getChildren().addAll(background, vbox);
 
 	BufferedReader fileReader = new BufferedReader(
