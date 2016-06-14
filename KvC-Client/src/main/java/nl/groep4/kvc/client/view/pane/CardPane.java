@@ -59,8 +59,6 @@ public class CardPane implements PaneHolder {
 
     @Override
     public void updateTranslation() {
-	// TODO Auto-generated method stub
-
 	yes.updateText(TranslationManager.translate("buycard.decision.yes"));
 	no.updateText(TranslationManager.translate("buycard.decision.no"));
 	msg.setText(TranslationManager.translate("buycard.msg.buycard"));
