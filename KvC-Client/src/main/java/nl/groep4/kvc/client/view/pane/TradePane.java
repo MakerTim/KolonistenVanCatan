@@ -23,6 +23,12 @@ import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.common.interfaces.Trade;
 import nl.groep4.kvc.common.interfaces.UpdateTrade;
 
+/**
+ * Generates trade pane
+ * 
+ * @author Matthijs
+ * @version 1.0
+ */
 public class TradePane implements PaneHolder, UpdateTrade {
     StackPane pane = new StackPane();
     Group root = new Group();
@@ -80,13 +86,15 @@ public class TradePane implements PaneHolder, UpdateTrade {
 	scrollPane.setMinHeight(280);
 	scrollPane.setMinWidth(575);
 
+	hbox.setAlignment(Pos.CENTER);
+
 	BorderPane toolbar = new BorderPane();
 	toolbar.setTop(tb);
 
 	BorderPane root = new BorderPane(scrollPane);
 	root.setPadding(new Insets(80, 60, 60, 60));
 
-	BorderPane bp = new BorderPane();
+	StackPane bp = new StackPane();
 	bp.getChildren().addAll(SceneUtil.getGamePane(), gp, root);
 
 	scrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
@@ -103,12 +111,11 @@ public class TradePane implements PaneHolder, UpdateTrade {
 
     @Override
     public void updateTranslation() {
-	// TODO Auto-generated method stub
+
     }
 
     @Override
     public void updateTrades(List<Trade> allTrades) throws RemoteException {
-	// TODO Auto-generated method stub
 
     }
 
