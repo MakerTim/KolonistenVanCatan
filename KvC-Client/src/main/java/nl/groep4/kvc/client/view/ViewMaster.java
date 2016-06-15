@@ -83,6 +83,10 @@ public class ViewMaster extends Application {
 	});
     }
 
+    public static SceneHolder getLastScene() {
+	return lastScene;
+    }
+
     /**
      * Update given settings from user
      */
