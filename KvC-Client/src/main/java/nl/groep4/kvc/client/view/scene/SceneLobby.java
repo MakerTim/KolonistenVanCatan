@@ -17,7 +17,6 @@ import nl.groep4.kvc.client.view.elements.ColorScroll;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.elements.SettingsButton;
 import nl.groep4.kvc.common.enumeration.Color;
-import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Lobby;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.UpdateLobby;
@@ -111,7 +110,6 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
 		e.printStackTrace();
 	    }
 	}
-
 	return scene;
     }
 
@@ -153,7 +151,7 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
     }
 
     @Override
-    public void start(KolonistenVanCatan model) throws RemoteException {
-	controller.start(model);
+    public void start() throws RemoteException {
+	controller.start();
     }
 }

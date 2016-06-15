@@ -77,17 +77,25 @@ public class LoginController implements Controller {
 	return lobby;
     }
 
-    private static void openLobby(Lobby model, Player pl) {
-	SceneLobby view = new SceneLobby();
-	LobbyController controller = new LobbyController(model);
-	view.registerController(controller);
-	ClientRefrence.registerUpdateable(view);
-	ViewMaster.setScene(view);
-	try {
-	    view.setModel(model);
-	} catch (RemoteException ex) {
-	    ex.printStackTrace();
+    private static void openLobby(Lobby model, Player pl) throws RemoteException {
+	switch (model.getState()) {
+	case LOBBY:
+	    SceneLobby view = new SceneLobby();
+	    LobbyController controller = new LobbyController(model);
+	    view.registerController(controller);
+	    ClientRefrence.registerUpdateable(view);
+	    ViewMaster.setScene(view);
+	    try {
+		view.setModel(model);
+	    } catch (RemoteException ex) {
+		ex.printStackTrace();
+	    }
+	    break;
+	case IN_GAME:
+	    new LobbyController(model).start();
+	    break;
 	}
+
     }
 
 }
