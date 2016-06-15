@@ -72,8 +72,7 @@ public class StockPane implements PaneHolder, UpdateStock {
 
 	allThings.setAlignment(Pos.CENTER);
 	buttons.setAlignment(Pos.BOTTOM_RIGHT);
-	cardPane.setMouseTransparent(true);
-	cardPane.setMouseTransparent(true);
+	stockPane.setMouseTransparent(true);
 
 	showCards.registerClick(() -> {
 	    allThings.getChildren().addAll(resCards);
