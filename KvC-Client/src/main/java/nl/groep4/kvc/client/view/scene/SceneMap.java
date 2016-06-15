@@ -87,7 +87,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    optionPane.getChildren().addAll(nxtButton, optionButton);
 
 	    VBox buttons = new VBox();
-	    resourceButton = new MenuButton(TranslationManager.translate("map.stock.hide"));
+	    resourceButton = new MenuButton(TranslationManager.translate("map.stock.show"));
 	    buildButton = new MenuButton(TranslationManager.translate("game.button.build"));
 	    tradeButton = new MenuButton(TranslationManager.translate("game.button.trade"));
 	    buyButton = new MenuButton(TranslationManager.translate("game.button.buy"));
@@ -121,8 +121,10 @@ public class SceneMap implements SceneHolder, UpdateMap {
 
     private void onToggleResourceClick() {
 	if (stockpane.isOpen()) {
+	    resourceButton.updateText(TranslationManager.translate("map.stock.show"));
 	    stockpane.closeStock();
 	} else {
+	    resourceButton.updateText(TranslationManager.translate("map.stock.hide"));
 	    stockpane.openStock();
 	}
     }
