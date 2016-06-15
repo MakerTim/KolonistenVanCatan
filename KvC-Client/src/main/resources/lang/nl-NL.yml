@@ -6,7 +6,7 @@ game.button.build:Bouwen
 game.button.trade:Ruilen
 game.button.buy:Kopen
 game.button.settings:Opties
-game.button.next:Volgende Speler
+game.button.next:Einde beurt
 game.menu.save:Opslaan
 game.menu.pause:Pauze
 game.menu.exit:Afsluiten

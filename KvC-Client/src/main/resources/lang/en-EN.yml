@@ -6,7 +6,7 @@ game.button.build:Build
 game.button.trade:Trade
 game.button.buy:Buy
 game.button.settings:Options
-game.button.next:Next Player
+game.button.next:End turn
 game.menu.save:Save
 game.menu.pause:Pause
 game.menu.exit:Exit
