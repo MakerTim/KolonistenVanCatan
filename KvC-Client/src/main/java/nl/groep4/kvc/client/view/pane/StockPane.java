@@ -73,48 +73,23 @@ public class StockPane implements PaneHolder, UpdateStock {
 	buttons.getChildren().addAll(showCards);
 
 	allThings.setAlignment(Pos.CENTER);
-	buttons.setAlignment(Pos.BOTTOM_RIGHT);
 	stockPane.setMouseTransparent(true);
 
-	showCards.registerClick(() -> {
-	    allThings.getChildren().addAll(resCards);
-	    cardPane.getChildren().remove(allThings);
-	    cardPane.getChildren().addAll(cards.getCardPlank(), allThings);
-	    buttons.getChildren().addAll(hideCards);
-	    buttons.getChildren().remove(showCards);
-
-	});
-
-	hideCards.registerClick(() -> {
-	    allThings.getChildren().removeAll(resCards);
-	    cardPane.getChildren().removeAll(cards.getCardPlank());
-	    buttons.getChildren().addAll(showCards);
-	    buttons.getChildren().remove(hideCards);
-	});
-	stockPane.getChildren().addAll(cardPane, buttons);
-	return stockPane;
+	return cardPane;
     }
 
     public void openStock() {
 	isOpen = true;
-	showCards.registerClick(() -> {
-	    allThings.getChildren().addAll(resCards);
-	    cardPane.getChildren().remove(allThings);
-	    cardPane.getChildren().addAll(cards.getCardPlank(), allThings);
-	    buttons.getChildren().addAll(hideCards);
-	    buttons.getChildren().remove(showCards);
+	allThings.getChildren().addAll(resCards);
+	cardPane.getChildren().remove(allThings);
+	cardPane.getChildren().addAll(cards.getCardPlank(), allThings);
 
-	});
     }
 
     public void closeStock() {
 	isOpen = false;
-	hideCards.registerClick(() -> {
-	    allThings.getChildren().removeAll(resCards);
-	    cardPane.getChildren().removeAll(cards.getCardPlank());
-	    buttons.getChildren().addAll(showCards);
-	    buttons.getChildren().remove(hideCards);
-	});
+	allThings.getChildren().removeAll(resCards);
+	cardPane.getChildren().removeAll(cards.getCardPlank());
     }
 
     public boolean isOpen() {
