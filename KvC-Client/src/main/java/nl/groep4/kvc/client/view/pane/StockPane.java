@@ -40,6 +40,8 @@ public class StockPane implements PaneHolder, UpdateStock {
     VBox allThings;
     VBox buttons;
 
+    private boolean isOpen = false;
+
     @Override
     public Pane getPane() {
 	cards = new ResourceCard();
@@ -94,6 +96,7 @@ public class StockPane implements PaneHolder, UpdateStock {
     }
 
     public void openStock() {
+	isOpen = true;
 	showCards.registerClick(() -> {
 	    allThings.getChildren().addAll(resCards);
 	    cardPane.getChildren().remove(allThings);
@@ -105,12 +108,17 @@ public class StockPane implements PaneHolder, UpdateStock {
     }
 
     public void closeStock() {
+	isOpen = false;
 	hideCards.registerClick(() -> {
 	    allThings.getChildren().removeAll(resCards);
 	    cardPane.getChildren().removeAll(cards.getCardPlank());
 	    buttons.getChildren().addAll(showCards);
 	    buttons.getChildren().remove(hideCards);
 	});
+    }
+
+    public boolean isOpen() {
+	return this.isOpen;
     }
 
     @Override
