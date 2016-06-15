@@ -18,7 +18,7 @@ public class PausePane implements PaneHolder {
     Text pause;
 
     @Override
-    public Pane getPane() { // TODO Auto-generated method stub
+    public Pane getPane() {
 
 	continueButton.setFont(ViewMaster.FONT);
 	VBox pausebox = new VBox();
@@ -38,7 +38,6 @@ public class PausePane implements PaneHolder {
 
     @Override
     public void updateTranslation() {
-	// TODO Auto-generated method
 	continueButton.updateText(TranslationManager.translate("pause.label.pause"));
 	pause.setText(TranslationManager.translate("pause.label.pause"));
 
