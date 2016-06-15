@@ -21,6 +21,7 @@ public class OptionPane implements PaneHolder {
     private MenuButton save;
     private MenuButton pause;
     private MenuButton rules;
+    private MenuButton credits;
     private MenuButton exit;
     private MenuButton back;
 
@@ -37,6 +38,7 @@ public class OptionPane implements PaneHolder {
 	save = new MenuButton(TranslationManager.translate("game.menu.save"));
 	pause = new MenuButton(TranslationManager.translate("game.menu.pause"));
 	rules = new MenuButton(TranslationManager.translate("game.menu.rules"));
+	credits = new MenuButton(TranslationManager.translate("game.menu.rules"));
 	exit = new MenuButton(TranslationManager.translate("game.menu.exit"));
 	back = new MenuButton(TranslationManager.translate("game.menu.back"));
 	tilte.setFont(ViewMaster.TITLE_FONT);
@@ -44,22 +46,29 @@ public class OptionPane implements PaneHolder {
 	save.setFont(ViewMaster.FONT);
 	pause.setFont(ViewMaster.FONT);
 	rules.setFont(ViewMaster.FONT);
+	credits.setFont(ViewMaster.FONT);
 	exit.setFont(ViewMaster.FONT);
 	back.setFont(ViewMaster.FONT);
 
 	save.setOnMouseClicked(klick -> onSaveClick());
 	pause.setOnMouseClicked(klick -> onPauseClick());
 	rules.setOnMouseClicked(klick -> onRulesClick());
+	credits.setOnMouseClicked(klick -> onCreditsClick());
 	exit.setOnMouseClicked(klick -> onExitClick());
 	back.setOnMouseClicked(klick -> onBackClick());
 
-	buttons.getChildren().addAll(tilte, SettingsButton.getButton(null, 0, 0), save, pause, rules, exit, back);
+	buttons.getChildren().addAll(tilte, SettingsButton.getButton(null, 0, 0), save, pause, rules, credits, exit,
+		back);
 	layers.getChildren().addAll(SceneUtil.getSettingsPane(), buttons);
 	return layers;
     }
 
     private void onExitClick() {
 	System.exit(0);
+    }
+
+    private void onCreditsClick() {
+	map.openCreditsPane();
     }
 
     private void onBackClick() {
@@ -71,9 +80,11 @@ public class OptionPane implements PaneHolder {
     }
 
     private void onPauseClick() {
+	map.openPausePane();
     }
 
     private void onSaveClick() {
+	map.openSavePane();
     }
 
     @Override

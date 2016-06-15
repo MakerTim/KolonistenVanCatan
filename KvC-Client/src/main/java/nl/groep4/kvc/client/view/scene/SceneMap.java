@@ -22,10 +22,12 @@ import nl.groep4.kvc.client.view.ExceptionDialog;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.pane.BuildPane;
+import nl.groep4.kvc.client.view.pane.CreditsPane;
 import nl.groep4.kvc.client.view.pane.DicePane;
 import nl.groep4.kvc.client.view.pane.MapPane;
 import nl.groep4.kvc.client.view.pane.OptionPane;
 import nl.groep4.kvc.client.view.pane.PaneHolder;
+import nl.groep4.kvc.client.view.pane.PausePane;
 import nl.groep4.kvc.client.view.pane.RulesPane;
 import nl.groep4.kvc.client.view.pane.StockPane;
 import nl.groep4.kvc.client.view.pane.TradePane;
@@ -154,7 +156,22 @@ public class SceneMap implements SceneHolder, UpdateMap {
 
     @Override
     public void openBuyPane() {
-	// setOverlay(new Buypane());
+	// setOverlay(new BuyPane());
+    }
+
+    @Override
+    public void openCreditsPane() {
+	setOverlay(new CreditsPane());
+    }
+
+    @Override
+    public void openPausePane() {
+	setOverlay(new PausePane());
+    }
+
+    @Override
+    public void openSavePane() {
+	// setOverlay(new SavePane());
     }
 
     @Override
