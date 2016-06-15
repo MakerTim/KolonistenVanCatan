@@ -8,6 +8,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -33,7 +34,9 @@ import nl.groep4.kvc.client.view.pane.RulesPane;
 import nl.groep4.kvc.client.view.pane.ScoreRoundPane;
 import nl.groep4.kvc.client.view.pane.StockPane;
 import nl.groep4.kvc.client.view.pane.TradePane;
+import nl.groep4.kvc.client.view.pane.TurnInfoPane;
 import nl.groep4.kvc.common.enumeration.Resource;
+import nl.groep4.kvc.common.enumeration.TurnState;
 import nl.groep4.kvc.common.interfaces.Card;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.Trade;
@@ -59,6 +62,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
 
     private StockPane stockPane = new StockPane();
     private ScoreRoundPane scorePane = new ScoreRoundPane();
+    private TurnInfoPane infoPane = new TurnInfoPane();
     private BuildPane buildPane = new BuildPane(this);
     private TradePane tradePane = new TradePane(this);
 
@@ -70,6 +74,8 @@ public class SceneMap implements SceneHolder, UpdateMap {
 
     @Override
     public Scene getScene() {
+	SoundUtil.stopThemesong();
+	SoundUtil.playGamesong();
 	if (layers == null) {
 	    /* Build layer for the design */
 	    layers = new StackPane();
@@ -78,7 +84,9 @@ public class SceneMap implements SceneHolder, UpdateMap {
 
 	    /* Build top */
 	    BorderPane top = new BorderPane();
-	    top.setLeft(scorePane.getPane());
+	    HBox topLeftCorner = new HBox();
+	    topLeftCorner.getChildren().addAll(scorePane.getPane(), infoPane.getPane());
+	    top.setLeft(topLeftCorner);
 	    screen.setTop(top);
 
 	    /* Build bottom */
@@ -297,6 +305,13 @@ public class SceneMap implements SceneHolder, UpdateMap {
     @Override
     public void updateRound(int round) throws RemoteException {
 	scorePane.updateRound(round);
+	infoPane.updateRound(round);
+    }
+
+    @Override
+    public void updateTurn(Player who, TurnState what) throws RemoteException {
+	scorePane.updateTurn(who, what);
+	infoPane.updateTurn(who, what);
     }
 
     @Override

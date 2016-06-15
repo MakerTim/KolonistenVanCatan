@@ -10,12 +10,21 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import nl.groep4.kvc.client.controller.ClientRefrence;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
+import nl.groep4.kvc.client.view.elements.TexturedButton;
+import nl.groep4.kvc.common.enumeration.TurnState;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.UpdateRound;
 import nl.groep4.kvc.common.interfaces.UpdateScore;
 
+/**
+ * The shield in where round and score can be on displayed
+ * 
+ * @author Tim
+ * @version 1.0
+ */
 public class ScoreRoundPane implements PaneHolder, UpdateScore, UpdateRound {
 
     private Text roundText;
@@ -36,6 +45,10 @@ public class ScoreRoundPane implements PaneHolder, UpdateScore, UpdateRound {
 	scoreText = new Text(TranslationManager.translate("game.score", score));
 	roundText.setFont(ViewMaster.FONT);
 	scoreText.setFont(ViewMaster.FONT);
+	roundText.setStroke(Color.BLACK);
+	scoreText.setStroke(Color.BLACK);
+	roundText.setEffect(TexturedButton.getShadowEffect());
+	scoreText.setEffect(TexturedButton.getShadowEffect());
 	roundText.setFill(Color.WHITE);
 	scoreText.setFill(Color.WHITE);
 	text.getChildren().addAll(roundText, scoreText);
@@ -48,17 +61,26 @@ public class ScoreRoundPane implements PaneHolder, UpdateScore, UpdateRound {
 
     @Override
     public void updateTranslation() {
-
+	roundText.setText(TranslationManager.translate("game.round", round));
+	scoreText.setText(TranslationManager.translate("game.score", score));
     }
 
     @Override
-    public void updateRound(int round) throws RemoteException {
-	// TODO ScoreRoundPane#updateRound
+    public void updateRound(int round) {
+	this.round = round;
+	roundText.setText(TranslationManager.translate("game.round", round));
     }
 
     @Override
-    public void updateScore(Player pl, int score) throws RemoteException {
-	// TODO ScoreRoundPane#updateScore
+    public void updateScore(Player pl, int score) {
+	if (ClientRefrence.getThePlayer().equals(pl)) {
+	    this.score = score;
+	    scoreText.setText(TranslationManager.translate("game.score", score));
+	}
+    }
+
+    @Override
+    public void updateTurn(Player who, TurnState what) throws RemoteException {
     }
 
 }
