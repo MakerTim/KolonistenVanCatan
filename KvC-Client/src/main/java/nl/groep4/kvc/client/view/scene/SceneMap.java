@@ -52,10 +52,9 @@ public class SceneMap implements SceneHolder, UpdateMap {
     private MenuButton buildButton;
     private MenuButton tradeButton;
     private MenuButton buyButton;
-    private StockPane stockpane;
     private Pane layers;
 
-    private StockPane stockPane = new StockPane();
+    private StockPane stockPane;
     private BuildPane buildPane = new BuildPane(this);
     private TradePane tradePane = new TradePane(this);
 
@@ -76,7 +75,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    BorderPane bottom = new BorderPane();
 
 	    VBox optionPane = new VBox();
-	    stockpane = new StockPane();
+	    stockPane = new StockPane();
 	    nxtButton = new MenuButton(TranslationManager.translate("game.button.next"));
 	    optionButton = new MenuButton(TranslationManager.translate("game.button.settings"));
 	    nxtButton.setFont(ViewMaster.FONT);
@@ -120,12 +119,12 @@ public class SceneMap implements SceneHolder, UpdateMap {
     }
 
     private void onToggleResourceClick() {
-	if (stockpane.isOpen()) {
+	if (stockPane.isOpen()) {
 	    resourceButton.updateText(TranslationManager.translate("map.stock.show"));
-	    stockpane.closeStock();
+	    stockPane.closeStock();
 	} else {
 	    resourceButton.updateText(TranslationManager.translate("map.stock.hide"));
-	    stockpane.openStock();
+	    stockPane.openStock();
 	}
     }
 
@@ -225,11 +224,16 @@ public class SceneMap implements SceneHolder, UpdateMap {
 
     @Override
     public void updateConfig() {
-	nxtButton = new MenuButton(TranslationManager.translate("game.button.next"));
-	optionButton = new MenuButton(TranslationManager.translate("game.button.settings"));
-	buildButton = new MenuButton(TranslationManager.translate("game.button.build"));
-	tradeButton = new MenuButton(TranslationManager.translate("game.button.trade"));
-	buyButton = new MenuButton(TranslationManager.translate("game.button.buy"));
+	if (stockPane.isOpen()) {
+	    resourceButton.updateText(TranslationManager.translate("map.stock.show"));
+	} else {
+	    resourceButton.updateText(TranslationManager.translate("map.stock.hide"));
+	}
+	nxtButton.updateText(TranslationManager.translate("game.button.next"));
+	optionButton.updateText(TranslationManager.translate("game.button.settings"));
+	buildButton.updateText(TranslationManager.translate("game.button.build"));
+	tradeButton.updateText(TranslationManager.translate("game.button.trade"));
+	buyButton.updateText(TranslationManager.translate("game.button.buy"));
 	if (overlayPane != null) {
 	    overlayPane.updateTranslation();
 	}
