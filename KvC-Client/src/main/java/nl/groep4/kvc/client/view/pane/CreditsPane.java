@@ -49,6 +49,7 @@ public class CreditsPane implements PaneHolder {
 	Lisa = new Text("Lisa Groenendijk");
 
 	back = new MenuButton(425, 500, TranslationManager.translate("credits.button.back"));
+	back.setFont(ViewMaster.FONT);
 
 	credits.setFont(ViewMaster.TITLE_FONT);
 	credits.setFill(Color.WHITE);
