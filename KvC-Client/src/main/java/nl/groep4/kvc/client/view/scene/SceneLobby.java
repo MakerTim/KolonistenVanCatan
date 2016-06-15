@@ -17,11 +17,11 @@ import nl.groep4.kvc.client.view.elements.ColorScroll;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.elements.SettingsButton;
 import nl.groep4.kvc.common.enumeration.Color;
-import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Lobby;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.UpdateLobby;
 import nl.groep4.kvc.common.util.KvCUtil;
+import nl.groep4.kvc.common.util.Scheduler;
 
 /**
  * Builds scene settings menu
@@ -40,7 +40,6 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
     private Lobby model;
 
     private LobbyController controller;
-    private Thread ping;
 
     @Override
     public void registerController(Controller controller) {
@@ -85,15 +84,18 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
 	    });
 	    scrolls[i] = scroll;
 	}
-	ping = new Thread(() -> {
+
+	Scheduler.runAsyncLater(() -> {
 	    do {
 		for (ColorScroll scroll : scrolls) {
 		    scroll.setPing(KvCUtil.ping(scroll.getPlayer()));
 		}
+		try {
+		    Thread.sleep(1000L);
+		} catch (Exception ex) {
+		}
 	    } while (ViewMaster.getLastScene() == this);
-	});
-	ping.run();
-
+	}, 1000);
 	lobbyPane.getChildren().addAll(SceneUtil.getMenuBackground(), SceneUtil.getLobbyForeground(),
 		SceneUtil.getMenuBrazier(), SceneUtil.getCornerShield(), lobbyLabel, lobbyGrid, startGame, backButton,
 		saveButton, SettingsButton.getButton(this, 13, 645));
@@ -108,7 +110,6 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
 		e.printStackTrace();
 	    }
 	}
-
 	return scene;
     }
 
@@ -150,7 +151,7 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
     }
 
     @Override
-    public void start(KolonistenVanCatan model) throws RemoteException {
-	controller.start(model);
+    public void start() throws RemoteException {
+	controller.start();
     }
 }

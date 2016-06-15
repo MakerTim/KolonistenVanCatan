@@ -29,16 +29,16 @@ public class ServerLobbyController {
 		.exportObject(new ServerKolonistenVanCatan(lobby.getPlayers()), 2);
 	kvc.createMap();
 	lobby.setState(State.IN_GAME);
+	lobby.setGame(kvc);
 	for (Player pl : lobby.getPlayers()) {
 	    new Thread(() -> {
 		try {
-		    pl.getUpdateable(UpdateLobby.class).start(kvc);
+		    pl.getUpdateable(UpdateLobby.class).start();
 		} catch (Exception ex) {
 		    ex.printStackTrace();
 		}
 	    }).start();
 	}
-	lobby.setGame(kvc);
     }
 
     public Player registerPlayer(String username) throws RemoteException {

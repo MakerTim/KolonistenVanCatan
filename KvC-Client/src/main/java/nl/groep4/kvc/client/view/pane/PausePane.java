@@ -11,14 +11,19 @@ import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.MenuButton;
+import nl.groep4.kvc.client.view.scene.SceneMap;
 
 public class PausePane implements PaneHolder {
 
     MenuButton continueButton = new MenuButton(425, 500, TranslationManager.translate("pause.button.continue"));
     Text pause;
 
+    public PausePane(SceneMap sceneMap) {
+	// TODO Auto-generated constructor stub
+    }
+
     @Override
-    public Pane getPane() { // TODO Auto-generated method stub
+    public Pane getPane() {
 
 	continueButton.setFont(ViewMaster.FONT);
 	VBox pausebox = new VBox();
@@ -38,7 +43,6 @@ public class PausePane implements PaneHolder {
 
     @Override
     public void updateTranslation() {
-	// TODO Auto-generated method
 	continueButton.updateText(TranslationManager.translate("pause.label.pause"));
 	pause.setText(TranslationManager.translate("pause.label.pause"));
 

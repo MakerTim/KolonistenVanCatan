@@ -94,15 +94,20 @@ public class LobbyController implements Controller {
 	}
     }
 
-    public void start(KolonistenVanCatan model) {
-	SceneMap mapview = new SceneMap();
-	mapview.registerController(new MapController(model, mapview));
-	ViewMaster.setScene(mapview);
+    public void start() {
 	try {
-	    mapview.setModel(model.getMap());
+	    KolonistenVanCatan model = this.model.getGame();
+	    SceneMap mapview = new SceneMap();
+	    mapview.registerController(new MapController(model, mapview));
+	    ViewMaster.setScene(mapview);
+	    try {
+		mapview.setModel(model.getMap());
+	    } catch (RemoteException ex) {
+		ex.printStackTrace();
+	    }
+	    ClientRefrence.registerUpdateable(mapview);
 	} catch (RemoteException ex) {
-	    ex.printStackTrace();
+	    ExceptionManager.handleRemoteException(ex);
 	}
-	ClientRefrence.registerUpdateable(mapview);
     }
 }

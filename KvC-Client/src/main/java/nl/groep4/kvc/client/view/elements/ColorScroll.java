@@ -31,6 +31,7 @@ public class ColorScroll extends StackPane {
     private Color color;
     private Text colorLabel;
     private Text usernameLabel;
+    private Text pingLabel;
     private Player player;
 
     protected List<Runnable> clickHandlers = new ArrayList<>();
@@ -48,6 +49,7 @@ public class ColorScroll extends StackPane {
 	ImageView background = new ImageView(IMAGE);
 	colorLabel = new Text(TranslationManager.translate("lobby.parchment.color." + color.name().toLowerCase()));
 	usernameLabel = new Text(TranslationManager.translate(EMPTY));
+	pingLabel = new Text();
 	usernameLabel.setTextAlignment(TextAlignment.CENTER);
 	colorLabel.setFill(color.getColor());
 	colorLabel.setTextAlignment(TextAlignment.CENTER);
@@ -64,7 +66,7 @@ public class ColorScroll extends StackPane {
 	});
 
 	setOnMouseReleased(mouseRelease -> background.setImage(HOVER_IMAGE));
-	tussenPane.getChildren().addAll(usernameLabel, colorLabel);
+	tussenPane.getChildren().addAll(usernameLabel, colorLabel, pingLabel);
 	getChildren().addAll(background, tussenPane);
     }
 
@@ -102,6 +104,7 @@ public class ColorScroll extends StackPane {
 	} catch (Exception ex) {
 	    usernameLabel.setText(TranslationManager.translate(EMPTY));
 	}
+	pingLabel.setText("");
     }
 
     /**
@@ -126,6 +129,10 @@ public class ColorScroll extends StackPane {
     }
 
     public void setPing(long pong) {
-	// TODO
+	if (pong < 1) {
+	    pingLabel.setText("");
+	} else {
+	    pingLabel.setText(Long.toString(pong) + " ms");
+	}
     }
 }

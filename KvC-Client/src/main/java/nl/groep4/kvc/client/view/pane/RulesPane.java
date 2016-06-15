@@ -31,8 +31,6 @@ public class RulesPane implements PaneHolder {
     }
 
     public Pane getPane() {
-	// TODO Auto-generated method stub
-
 	StackPane rulepane = new StackPane();
 
 	VBox vbox = new VBox();
@@ -82,7 +80,6 @@ public class RulesPane implements PaneHolder {
 	    try {
 		view.closeOverlay();
 	    } catch (Exception e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	    }
 	});
@@ -92,7 +89,6 @@ public class RulesPane implements PaneHolder {
 
     @Override
     public void updateTranslation() {
-	// TODO Auto-generated method stub
 
     }
 
