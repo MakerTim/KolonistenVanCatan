@@ -13,6 +13,12 @@ game.menu.exit:Fermer
 game.menu.back:Retourner
 game.menu.rules:Règles
 game.menu.title:Options
+game.menu.credits:Crédits
+game.resourcename.wood:Bois
+game.resourcename.ore:Minerai
+game.resourcename.stone:Pierre
+game.resourcename.wool:Laine
+game.resourcename.wheat:Grain
 
 #SceneLobby
 lobby.shield.title:Hall
