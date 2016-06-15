@@ -1,7 +1,9 @@
 package nl.groep4.kvc.client.view.pane;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -14,19 +16,21 @@ import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.scene.SceneMap;
 
 public class CreditsPane implements PaneHolder {
-    Font font = new Font(ViewMaster.FONT.getName(), 40);
+    private Font font = new Font(ViewMaster.FONT.getName(), 40);
 
-    SceneMap sceneMap;
-    Text credits;
-    Text bachir;
-    Text matthijs;
-    Text Tim;
-    Text Luc;
-    Text Lisa;
-    ImageView boardbackground;
-    ImageView board;
+    private SceneMap sceneMap;
 
-    MenuButton back;
+    private Text credits;
+    private Text bachir;
+    private Text matthijs;
+    private Text Tim;
+    private Text Luc;
+    private Text Lisa;
+
+    private ImageView boardbackground;
+    private ImageView board;
+
+    private MenuButton back;
 
     public CreditsPane(SceneMap sceneMap) {
 	this.sceneMap = sceneMap;
@@ -36,6 +40,9 @@ public class CreditsPane implements PaneHolder {
     public Pane getPane() {
 
 	StackPane creditspane = new StackPane();
+
+	HBox hbox = new HBox();
+
 	VBox vbox = new VBox();
 
 	boardbackground = new ImageView("img/game/board_background.gif");
@@ -73,17 +80,19 @@ public class CreditsPane implements PaneHolder {
 	Luc.setStroke(Color.BLACK);
 	Lisa.setStroke(Color.BLACK);
 
+	back.setPadding(new Insets(50, 0, 0, 0));
+
+	hbox.setAlignment(Pos.CENTER);
+	hbox.getChildren().add(back);
+
+	vbox.setAlignment(Pos.CENTER);
+	vbox.getChildren().addAll(credits, bachir, matthijs, Tim, Luc, Lisa, hbox);
+
+	creditspane.getChildren().addAll(boardbackground, board, vbox);
+
 	back.registerClick(() -> {
 	    sceneMap.closeOverlay();
 	});
-
-	vbox.setAlignment(Pos.CENTER);
-	vbox.getChildren().addAll(credits, bachir, matthijs, Tim, Luc, Lisa, back);
-	// creditspane.getChildren().addAll(SceneUtil.getMenuBackground(),
-	// SceneUtil.getLobbyForeground(),
-	// SceneUtil.getMenuBrazier(), vbox);
-
-	creditspane.getChildren().addAll(boardbackground, board, vbox);
 
 	return creditspane;
     }
