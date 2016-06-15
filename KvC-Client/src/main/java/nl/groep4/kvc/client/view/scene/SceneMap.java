@@ -180,9 +180,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    }
 	    theOverlayBackground = new Rectangle(0, 0, ViewMaster.GAME_WIDHT, ViewMaster.GAME_HEIGHT);
 	    theOverlayBackground.setFill(new Color(0.1, 0.1, 0.1, 0.5));
-	    theOverlayBackground.setOnMouseClicked(click -> {
-		closeOverlay();
-	    });
+	    theOverlayBackground.setOnMouseClicked(click -> closeOverlay());
 	    layers.getChildren().add(theOverlayBackground);
 	    layers.getChildren().add(theOverlayPane);
 	    SceneUtil.fadeIn(theOverlayPane);
