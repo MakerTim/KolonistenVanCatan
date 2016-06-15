@@ -17,6 +17,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import nl.groep4.kvc.client.util.SceneUtil;
+import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.common.interfaces.Trade;
@@ -25,8 +26,8 @@ import nl.groep4.kvc.common.interfaces.UpdateTrade;
 public class TradePane implements PaneHolder, UpdateTrade {
     StackPane pane = new StackPane();
     Group root = new Group();
-    MenuButton plaats = new MenuButton("Plaats");
-    MenuButton terug = new MenuButton("Terug");
+    MenuButton plaats = new MenuButton(425, 500, TranslationManager.translate("trade.button.place"));
+    MenuButton terug = new MenuButton(425, 500, TranslationManager.translate("trade.button.back"));
     HBox hbox = new HBox();
     VBox vbox = new VBox();
     ScrollPane sp = new ScrollPane();
@@ -74,15 +75,19 @@ public class TradePane implements PaneHolder, UpdateTrade {
 
 	ScrollPane scrollPane = new ScrollPane(hbox);
 	scrollPane.getStylesheets().add("/assets/stylesheet.css");
+	scrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
+	scrollPane.setVbarPolicy(ScrollBarPolicy.ALWAYS);
+	scrollPane.setMinHeight(280);
+	scrollPane.setMinWidth(575);
+
 	BorderPane toolbar = new BorderPane();
 	toolbar.setTop(tb);
 
 	BorderPane root = new BorderPane(scrollPane);
+	root.setPadding(new Insets(80, 60, 60, 60));
 
 	BorderPane bp = new BorderPane();
-
 	bp.getChildren().addAll(SceneUtil.getGamePane(), gp, root);
-	root.setPadding(new Insets(80, 60, 60, 60));
 
 	scrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
 	scrollPane.setVbarPolicy(ScrollBarPolicy.ALWAYS);
@@ -92,6 +97,7 @@ public class TradePane implements PaneHolder, UpdateTrade {
 	buttons.setAlignment(Pos.BOTTOM_RIGHT);
 	buttons.getChildren().addAll(terug, plaats);
 	root.setBottom(buttons);
+
 	return bp;
     }
 
