@@ -94,6 +94,22 @@ public class LobbyController implements Controller {
 	}
     }
 
+    public void reopenGame(Player pl) {
+	try {
+	    for (Player player : model.getGame().getPlayers()) {
+		if (player.equals(pl)) {
+		    try {
+			player.getUpdateable().close("other");
+		    } catch (Exception ex) {
+		    }
+		}
+	    }
+	    start();
+	} catch (RemoteException ex) {
+	    ExceptionManager.handleRemoteException(ex);
+	}
+    }
+
     public void start() {
 	try {
 	    KolonistenVanCatan model = this.model.getGame();

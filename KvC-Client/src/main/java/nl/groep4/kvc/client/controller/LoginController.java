@@ -83,8 +83,8 @@ public class LoginController implements Controller {
 	    SceneLobby view = new SceneLobby();
 	    LobbyController controller = new LobbyController(model);
 	    view.registerController(controller);
-	    ClientRefrence.registerUpdateable(view);
 	    ViewMaster.setScene(view);
+	    ClientRefrence.registerUpdateable(view);
 	    try {
 		view.setModel(model);
 	    } catch (RemoteException ex) {
@@ -92,7 +92,7 @@ public class LoginController implements Controller {
 	    }
 	    break;
 	case IN_GAME:
-	    new LobbyController(model).start();
+	    new LobbyController(model).reopenGame(pl);
 	    break;
 	}
 
