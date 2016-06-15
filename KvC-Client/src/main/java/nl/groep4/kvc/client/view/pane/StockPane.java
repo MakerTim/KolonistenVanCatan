@@ -21,7 +21,6 @@ public class StockPane implements PaneHolder, UpdateStock {
     // TODO StockPaneAfmaken
 
     StackPane cardPane;
-    StackPane stockPane;
     HBox resCards;
     HBox devCards;
     Text amntWood;
@@ -55,8 +54,6 @@ public class StockPane implements PaneHolder, UpdateStock {
 	cardPane = new StackPane();
 	allThings = new VBox();
 	buttons = new VBox();
-	stockPane = new StackPane();
-
 	hideCards = new MenuButton(TranslationManager.translate("map.stock.hide"));
 	hideCards.setFont(ViewMaster.FONT);
 	showCards = new MenuButton(TranslationManager.translate("map.stock.show"));
@@ -73,8 +70,7 @@ public class StockPane implements PaneHolder, UpdateStock {
 	buttons.getChildren().addAll(showCards);
 
 	allThings.setAlignment(Pos.CENTER);
-	stockPane.setMouseTransparent(true);
-
+	cardPane.setMouseTransparent(true);
 	return cardPane;
     }
 
