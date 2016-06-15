@@ -84,6 +84,10 @@ buycard.msg.buycard:Do you want to buy a developmentcard?
 buycard.decision.yes:Yes
 buycard.decision.no:No
 
+#CreditsPane
+credits.button.back:Back
+credits.text.credits:Credits
+
 #IngameNotices
 note.ingame.title:Game in progress
 note.ingame.explanation:You can no longer pick a different colour

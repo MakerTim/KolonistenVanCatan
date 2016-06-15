@@ -76,13 +76,17 @@ trade.button.place:Déposer
 trade.button.back:Retourner
 
 #RulesPane
-rules.button.back:Back
-rules.text.rules:Rules
+rules.button.back:Retourner
+rules.text.rules:Règles
 
 #BuyCard
 buycard.msg.buycard:Vous voulez acheter une carte de développement?
 buycard.decision.yes:Oui
 buycard.decision.no:Non
+
+#CreditsPane
+credits.button.back:Retourner
+credits.text.credits:Crédits
 
 #Note
 note.ingame.title:Le jeu a commencé
