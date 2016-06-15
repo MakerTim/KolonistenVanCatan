@@ -47,13 +47,15 @@ public class SceneMap implements SceneHolder, UpdateMap {
     private Rectangle theOverlayBackground = null;
     private MapPane gamepane = new MapPane();
     private MenuButton nxtButton;
+    private MenuButton resourceButton;
     private MenuButton optionButton;
     private MenuButton buildButton;
     private MenuButton tradeButton;
     private MenuButton buyButton;
+    private StockPane stockpane;
     private Pane layers;
 
-    private StockPane stockPane;
+    private StockPane stockPane = new StockPane();
     private BuildPane buildPane = new BuildPane(this);
     private TradePane tradePane = new TradePane(this);
 
@@ -74,6 +76,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    BorderPane bottom = new BorderPane();
 
 	    VBox optionPane = new VBox();
+	    stockpane = new StockPane();
 	    nxtButton = new MenuButton(TranslationManager.translate("game.button.next"));
 	    optionButton = new MenuButton(TranslationManager.translate("game.button.settings"));
 	    nxtButton.setFont(ViewMaster.FONT);
@@ -84,21 +87,24 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    optionPane.getChildren().addAll(nxtButton, optionButton);
 
 	    VBox buttons = new VBox();
+	    resourceButton = new MenuButton(TranslationManager.translate("map.stock.hide"));
 	    buildButton = new MenuButton(TranslationManager.translate("game.button.build"));
 	    tradeButton = new MenuButton(TranslationManager.translate("game.button.trade"));
 	    buyButton = new MenuButton(TranslationManager.translate("game.button.buy"));
+	    resourceButton.setFont(ViewMaster.FONT);
 	    buildButton.setFont(ViewMaster.FONT);
 	    tradeButton.setFont(ViewMaster.FONT);
 	    buyButton.setFont(ViewMaster.FONT);
+	    resourceButton.setOnMouseClicked(mouse -> onToggleResourceClick());
 	    buildButton.setOnMouseClicked(mouse -> onBuildClick());
 	    tradeButton.setOnMouseClicked(mouse -> onTradeClick());
 	    buyButton.setOnMouseClicked(mouse -> onBuyClick());
 
 	    buttons.setAlignment(Pos.BOTTOM_RIGHT);
-	    buttons.getChildren().addAll(buildButton, tradeButton, buyButton);
+	    buttons.getChildren().addAll(resourceButton, buildButton, tradeButton, buyButton);
 
 	    bottom.setLeft(optionPane);
-	    bottom.setCenter((stockPane = new StockPane()).getPane());
+	    bottom.setCenter(stockPane.getPane());
 	    bottom.setRight(buttons);
 	    BorderPane.setAlignment(bottom, Pos.BOTTOM_CENTER);
 	    screen.setBottom(bottom);
@@ -111,6 +117,14 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	}
 	Scene scene = new Scene(layers);
 	return scene;
+    }
+
+    private void onToggleResourceClick() {
+	if (stockpane.isOpen()) {
+	    stockpane.closeStock();
+	} else {
+	    stockpane.openStock();
+	}
     }
 
     private void onNxtTurnClick() {
