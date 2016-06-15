@@ -102,8 +102,8 @@ note.ingame.details:Pendant le jeu, vous ne pouvez pas changer de couleur
 #Map
 map.throwdice.clickToThrow:Jouer aux dés
 map.throwdice.throw:Cliquez pour jouer aux dés
-map.stock.show:Show ressource
-map.stock.hide:Cacher ressource
+map.stock.show:Show cartes
+map.stock.hide:Cacher cartes
 
 #SceneSettings
 settings.button.playmusic:Son on

@@ -40,22 +40,21 @@ This phase is spread over two rounds. Each player is given the opportunity to tw
 build villages and two lanes before starting the game itself.
 
 First round
-Who dice highest, begins. He places one settlement on a crossing your choice and close
-this in any direction one road. Subsequently, the other players are in the direction
-clockwise turn. At the power must be taken into account, however, with the
-remote control!
--Afstandsregel A settlement may only be put on a free crossing if the three
-Nearest not be built by a settlement or city. It does not matter who
-it says, the intersection should be free.
+Who dices the highest begins. He places one village on a corner of choice and connects
+this to a street in a direction of choice. Subsequently, the other players are in the direction
+clockwise turn. However, there should be kept in mind that there is a distance rule!
+	- Distance rule
+	  A settlement may only be put on a free intersection if the three
+	  nearest intersections are free of buildings or settlements. It does not matter who
+	  stands there, the intersection should be remain unoccupied.
 
 Second round
-Then places the player as a settlement last in the first round
-Placing a second settlement and street. The other players follow in counterclockwise direction
-in. The second settlement and street may - taking into account the distance rule - everywhere
-being placed. Immediately after placing the second settlement and street, receives
-each player's first commodity. For each country field that is adjacent to said second settlement,
-he receives one corresponding resource card from the stock. This resource cards keep
-Players hidden from each other. The last player placed his second settlement,
+After this, the person who was last in the first round, must place a second settlements. The
+other players will follow in counterclockwise direction. The second settlements may be 
+- taking into account the distance rule - placed everywhere. Immediately after placing the
+second settlements, each player will recieve their first resources. For each land tile that is
+adjacent to a settlement, the player will receive one corresponding resource card from the
+stock. This resource cards keep Players hidden from each other. The last player placed his second settlement,
 the game begins.
 
 Gameplay

@@ -102,8 +102,8 @@ note.ingame.details:Tijdens het spel kunt u niet van kleur veranderen
 #Map
 map.throwdice.clickToThrow:Dobbelen
 map.throwdice.throw:Klik om te dobbelen
-map.stock.show:Toon grondstoffen
-map.stock.hide:Verberg grondstoffen
+map.stock.show:Toon kaarten
+map.stock.hide:Verberg kaarten
 
 #SceneSettings
 settings.button.playmusic:Muziek aan

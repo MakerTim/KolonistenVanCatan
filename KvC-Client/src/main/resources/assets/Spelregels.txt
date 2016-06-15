@@ -45,9 +45,10 @@ Wie het hoogst dobbelt, begint. Hij plaatst 1 nederzetting op een kruising naar 
 hierop in willekeurige richting 1 straat aan. Vervolgens zijn de andere spelers in de richting
 met de klok mee aan de beurt. Bij het zetten moet echter rekening gehouden worden met de
 afstandsregel!
-	-Afstandsregel Een nederzetting mag slechts op een vrije kruising gezet worden als de drie
-	dichtstbijzijnde niet bebouwd zijn door een nederzetting of stad. Het maakt niet uit wie
-	er staat, het kruispunt moet vrij zijn.
+	- Afstandsregel
+	  Een nederzetting mag slechts op een vrije kruising gezet worden als de drie
+	  dichtstbijzijnde niet bebouwd zijn door een nederzetting of stad. Het maakt niet uit wie
+	  er staat, het kruispunt moet vrij zijn.
 
 Tweede ronde
 Vervolgens plaatst de speler die tijdens de eerste ronde als laatste een nederzetting mocht
