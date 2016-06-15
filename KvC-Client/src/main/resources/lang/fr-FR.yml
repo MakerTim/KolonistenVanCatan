@@ -100,6 +100,7 @@ settings.label.title:Réglages
 #kicked
 kicked.other.title:Vous êtes retiré du hall
 kicked.other.explanation:Quelqu'un d'autre connecté avec le même nom d'utilisateur
+Exception: 503 Service Unavailable
 kicked.nocolor.title:Vous êtes retiré du hall
 kicked.nocolor.explanation:Le jeu a commencé, mais n'a pas encore pas de couleur
 kicked.nocolor.details:Les joueurs sans une couleur ne peuvent pas participer

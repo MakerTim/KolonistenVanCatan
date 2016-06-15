@@ -100,7 +100,7 @@ settings.label.title:Settings
 #Kicked
 kicked.other.title:You have been removed from the lobby
 kicked.other.explanation:Another user has logged on under the same name
-kicked.other.details:Removed by user with duplicate name
+kicked.other.details:Exception: 503 Service Unavailable
 kicked.nocolor.title:You have been removed from the lobby
 kicked.nocolor.explanation:No colour was selected by the user
 kicked.nocolor.details:User was kicked for not selecting a colour before the game began

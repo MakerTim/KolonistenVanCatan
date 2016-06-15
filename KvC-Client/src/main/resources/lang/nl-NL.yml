@@ -100,6 +100,7 @@ settings.label.title:Instellingen
 #kicked
 kicked.other.title:U bent verwijderd uit de lobby
 kicked.other.explanation:Iemand anders heeft ingelogd met dezelfde gebruikersnaam
+kicked.other.details:Exception: 503 Service Unavailable
 kicked.nocolor.title:U bent verwijderd uit de lobby
 kicked.nocolor.explanation:Het spel is begonnen, maar u heeft nog geen kleur
 kicked.nocolor.details.Spelers zonder een kleur kunnen niet meedoen
