@@ -71,6 +71,10 @@ lobby.button.settings:Instellingen
 pause.button.continue:hervatten
 pause.label.pause:Pauze
 
+#TradePane
+trade.button.place:Plaats
+trade.button.back:Terug
+
 #RulesPane
 rules.button.back:Terug
 rules.text.rules:Spelregels

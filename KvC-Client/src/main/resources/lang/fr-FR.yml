@@ -71,6 +71,10 @@ lobby.button.settings:Réglages
 pause.button.continue:Résumé
 pause.label.pause:Pause
 
+#TradePane
+trade.button.place:Déposer
+trade.button.back:Retourner
+
 #RulesPane
 rules.button.back:Back
 rules.text.rules:Rules
