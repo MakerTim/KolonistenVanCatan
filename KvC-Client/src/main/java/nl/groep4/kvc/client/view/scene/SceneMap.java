@@ -54,8 +54,8 @@ public class SceneMap implements SceneHolder, UpdateMap {
     private Pane layers;
 
     private StockPane stockPane;
-    private BuildPane buildPane = new BuildPane();
-    private TradePane tradePane = new TradePane();
+    private BuildPane buildPane = new BuildPane(this);
+    private TradePane tradePane = new TradePane(this);
 
     @Override
     public void registerController(Controller controller) {
@@ -161,12 +161,12 @@ public class SceneMap implements SceneHolder, UpdateMap {
 
     @Override
     public void openCreditsPane() {
-	setOverlay(new CreditsPane());
+	setOverlay(new CreditsPane(this));
     }
 
     @Override
     public void openPausePane() {
-	setOverlay(new PausePane());
+	setOverlay(new PausePane(this));
     }
 
     @Override

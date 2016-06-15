@@ -16,6 +16,7 @@ import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.MenuButton;
+import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.UpdateCosts;
 
@@ -53,6 +54,10 @@ public class BuildPane implements PaneHolder, UpdateCosts {
     Text RoadPrices = new Text(TranslationManager.translate("build.road.row"));
     Text VillagePrices = new Text(TranslationManager.translate("build.village.row"));
     Text CityPrices = new Text(TranslationManager.translate("build.city.row"));
+
+    public BuildPane(SceneMap sceneMap) {
+	// TODO Auto-generated constructor stub
+    }
 
     @Override
     public Pane getPane() {

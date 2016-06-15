@@ -5,6 +5,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import nl.groep4.kvc.client.util.TranslationManager;
+import nl.groep4.kvc.client.view.scene.SceneMap;
 
 public class CreditsPane extends Application implements PaneHolder {
     Text credits;
@@ -14,6 +15,10 @@ public class CreditsPane extends Application implements PaneHolder {
     Text cred4;
     Text cred5;
     Text cred6;
+
+    public CreditsPane(SceneMap sceneMap) {
+	// TODO Auto-generated constructor stub
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {

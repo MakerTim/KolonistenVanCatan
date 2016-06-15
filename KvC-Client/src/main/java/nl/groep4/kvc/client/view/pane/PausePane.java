@@ -11,11 +11,16 @@ import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.MenuButton;
+import nl.groep4.kvc.client.view.scene.SceneMap;
 
 public class PausePane implements PaneHolder {
 
     MenuButton continueButton = new MenuButton(425, 500, TranslationManager.translate("pause.button.continue"));
     Text pause;
+
+    public PausePane(SceneMap sceneMap) {
+	// TODO Auto-generated constructor stub
+    }
 
     @Override
     public Pane getPane() {
