@@ -21,6 +21,7 @@ public class StockPane implements PaneHolder, UpdateStock {
     // TODO StockPaneAfmaken
 
     StackPane cardPane;
+    StackPane stockPane;
     HBox resCards;
     HBox devCards;
     Text amntWood;
@@ -37,16 +38,22 @@ public class StockPane implements PaneHolder, UpdateStock {
     MenuButton showCards;
     ResourceCard cards;
     VBox allThings;
+    VBox buttons;
 
     @Override
     public Pane getPane() {
 	cards = new ResourceCard();
-
 	wood = new StackPane();
 	wheat = new StackPane();
 	ore = new StackPane();
 	wool = new StackPane();
 	stone = new StackPane();
+	resCards = new HBox();
+	devCards = new HBox();
+	cardPane = new StackPane();
+	allThings = new VBox();
+	buttons = new VBox();
+	stockPane = new StackPane();
 
 	hideCards = new MenuButton(TranslationManager.translate("map.stock.hide"));
 	hideCards.setFont(ViewMaster.FONT);
@@ -59,37 +66,52 @@ public class StockPane implements PaneHolder, UpdateStock {
 	stone.getChildren().addAll(cards.getStoneCard(), cards.getStoneText());
 	wool.getChildren().addAll(cards.getWoolCard(), cards.getWoolText());
 
-	resCards = new HBox();
-	devCards = new HBox();
-	cardPane = new StackPane();
-
 	resCards.getChildren().addAll(wood, wheat, wool, stone, ore);
 	resCards.setAlignment(Pos.CENTER);
+	buttons.getChildren().addAll(showCards);
 
-	allThings = new VBox();
-	allThings.getChildren().addAll(showCards);
-	allThings.setAlignment(Pos.BOTTOM_CENTER);
-
-	cardPane.getChildren().addAll(allThings);
-
-	hideCards.registerClick(() -> {
-	    allThings.getChildren().removeAll(resCards, hideCards);
-	    allThings.getChildren().add(showCards);
-	    hideCards.setDisabled();
-	    showCards.setEnabled();
-	    cardPane.getChildren().removeAll(cards.getCardPlank(), allThings);
-	    cardPane.getChildren().add(allThings);
-	});
+	allThings.setAlignment(Pos.CENTER);
+	buttons.setAlignment(Pos.BOTTOM_RIGHT);
+	cardPane.setMouseTransparent(true);
+	cardPane.setMouseTransparent(true);
 
 	showCards.registerClick(() -> {
-	    allThings.getChildren().removeAll(showCards);
-	    allThings.getChildren().addAll(resCards, hideCards);
-	    hideCards.setEnabled();
-	    showCards.setDisabled();
+	    allThings.getChildren().addAll(resCards);
 	    cardPane.getChildren().remove(allThings);
 	    cardPane.getChildren().addAll(cards.getCardPlank(), allThings);
+	    buttons.getChildren().addAll(hideCards);
+	    buttons.getChildren().remove(showCards);
+
 	});
-	return cardPane;
+
+	hideCards.registerClick(() -> {
+	    allThings.getChildren().removeAll(resCards);
+	    cardPane.getChildren().removeAll(cards.getCardPlank());
+	    buttons.getChildren().addAll(showCards);
+	    buttons.getChildren().remove(hideCards);
+	});
+	stockPane.getChildren().addAll(cardPane, buttons);
+	return stockPane;
+    }
+
+    public void openStock() {
+	showCards.registerClick(() -> {
+	    allThings.getChildren().addAll(resCards);
+	    cardPane.getChildren().remove(allThings);
+	    cardPane.getChildren().addAll(cards.getCardPlank(), allThings);
+	    buttons.getChildren().addAll(hideCards);
+	    buttons.getChildren().remove(showCards);
+
+	});
+    }
+
+    public void closeStock() {
+	hideCards.registerClick(() -> {
+	    allThings.getChildren().removeAll(resCards);
+	    cardPane.getChildren().removeAll(cards.getCardPlank());
+	    buttons.getChildren().addAll(showCards);
+	    buttons.getChildren().remove(hideCards);
+	});
     }
 
     @Override
