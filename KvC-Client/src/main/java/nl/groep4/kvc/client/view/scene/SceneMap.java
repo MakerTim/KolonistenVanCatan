@@ -13,6 +13,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import nl.groep4.kvc.client.controller.ClientRefrence;
 import nl.groep4.kvc.client.controller.Controller;
 import nl.groep4.kvc.client.controller.MapController;
 import nl.groep4.kvc.client.util.SceneUtil;
@@ -29,10 +30,12 @@ import nl.groep4.kvc.client.view.pane.OptionPane;
 import nl.groep4.kvc.client.view.pane.PaneHolder;
 import nl.groep4.kvc.client.view.pane.PausePane;
 import nl.groep4.kvc.client.view.pane.RulesPane;
+import nl.groep4.kvc.client.view.pane.ScoreRoundPane;
 import nl.groep4.kvc.client.view.pane.StockPane;
 import nl.groep4.kvc.client.view.pane.TradePane;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.Card;
+import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.Trade;
 import nl.groep4.kvc.common.interfaces.UpdateMap;
 import nl.groep4.kvc.common.map.Map;
@@ -54,7 +57,8 @@ public class SceneMap implements SceneHolder, UpdateMap {
     private MenuButton buyButton;
     private Pane layers;
 
-    private StockPane stockPane;
+    private StockPane stockPane = new StockPane();
+    private ScoreRoundPane scorePane = new ScoreRoundPane();
     private BuildPane buildPane = new BuildPane(this);
     private TradePane tradePane = new TradePane(this);
 
@@ -70,12 +74,17 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    /* Build layer for the design */
 	    layers = new StackPane();
 	    BorderPane screen = new BorderPane();
+	    screen.setPickOnBounds(false);
+
+	    /* Build top */
+	    BorderPane top = new BorderPane();
+	    top.setLeft(scorePane.getPane());
+	    screen.setTop(top);
 
 	    /* Build bottom */
 	    BorderPane bottom = new BorderPane();
 
 	    VBox optionPane = new VBox();
-	    stockPane = new StockPane();
 	    nxtButton = new MenuButton(TranslationManager.translate("game.button.next"));
 	    optionButton = new MenuButton(TranslationManager.translate("game.button.settings"));
 	    nxtButton.setFont(ViewMaster.FONT);
@@ -105,10 +114,9 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    bottom.setLeft(optionPane);
 	    bottom.setCenter(stockPane.getPane());
 	    bottom.setRight(buttons);
+	    bottom.setPickOnBounds(false);
 	    BorderPane.setAlignment(bottom, Pos.BOTTOM_CENTER);
 	    screen.setBottom(bottom);
-	    screen.setPickOnBounds(false);
-	    bottom.setPickOnBounds(false);
 
 	    /* Add all layers */
 	    layers.getChildren().addAll(SceneUtil.getBoardBackground(), SceneUtil.getBoard(), gamepane.getPane(),
@@ -284,5 +292,17 @@ public class SceneMap implements SceneHolder, UpdateMap {
     @Override
     public void updateTrades(List<Trade> allTrades) throws RemoteException {
 	tradePane.updateTrades(allTrades);
+    }
+
+    @Override
+    public void updateRound(int round) throws RemoteException {
+	scorePane.updateRound(round);
+    }
+
+    @Override
+    public void updateScore(Player pl, int score) throws RemoteException {
+	if (ClientRefrence.getThePlayer().equals(pl)) {
+	    scorePane.updateScore(pl, score);
+	}
     }
 }
