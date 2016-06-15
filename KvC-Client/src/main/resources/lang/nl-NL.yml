@@ -6,7 +6,7 @@ game.button.build:Bouwen
 game.button.trade:Ruilen
 game.button.buy:Kopen
 game.button.settings:Opties
-game.button.next:Volgende Speler
+game.button.next:Einde beurt
 game.menu.save:Opslaan
 game.menu.pause:Pauze
 game.menu.exit:Afsluiten
@@ -71,6 +71,10 @@ lobby.button.settings:Instellingen
 pause.button.continue:hervatten
 pause.label.pause:Pauze
 
+#TradePane
+trade.button.place:Plaats
+trade.button.back:Terug
+
 #RulesPane
 rules.button.back:Terug
 rules.text.rules:Spelregels
@@ -100,6 +104,7 @@ settings.label.title:Instellingen
 #kicked
 kicked.other.title:U bent verwijderd uit de lobby
 kicked.other.explanation:Iemand anders heeft ingelogd met dezelfde gebruikersnaam
+kicked.other.details:Exception: 503 Service Unavailable
 kicked.nocolor.title:U bent verwijderd uit de lobby
 kicked.nocolor.explanation:Het spel is begonnen, maar u heeft nog geen kleur
 kicked.nocolor.details.Spelers zonder een kleur kunnen niet meedoen

@@ -7,6 +7,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -38,6 +39,8 @@ public class RulesPane implements PaneHolder {
 	vbox.setAlignment(Pos.CENTER);
 	vbox.setPadding(new Insets(30, 80, 0, 80));
 
+	HBox hbox = new HBox();
+
 	back = new MenuButton(425, 500, TranslationManager.translate("rules.button.back"));
 	back.setFont(ViewMaster.FONT);
 
@@ -52,14 +55,12 @@ public class RulesPane implements PaneHolder {
 	area.setMaxWidth(600);
 	area.setEditable(false);
 	area.setOnKeyPressed(key -> key.consume());
-	// area.setCursor(new ImageCursor(new Image("img/etc/cursor.png")));
 
-	// area.setOnMouseEntered(e -> {
-	// area.setCursor(new ImageCursor(new Image("img/etc/cursor.png")));
-	// });
 	Node background = SceneUtil.getGamePane();
 
-	vbox.getChildren().addAll(rules, area, back);
+	hbox.setAlignment(Pos.CENTER);
+	hbox.getChildren().add(back);
+	vbox.getChildren().addAll(rules, area, hbox);
 	rulepane.getChildren().addAll(background, vbox);
 
 	BufferedReader fileReader = new BufferedReader(

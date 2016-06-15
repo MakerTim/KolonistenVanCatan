@@ -3,11 +3,9 @@ package nl.groep4.kvc.client.view.pane;
 import java.rmi.RemoteException;
 import java.util.List;
 
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.layout.BorderPane;
@@ -18,18 +16,18 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import nl.groep4.kvc.client.util.SceneUtil;
+import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.common.interfaces.Trade;
 import nl.groep4.kvc.common.interfaces.UpdateTrade;
 
-public class TradePane extends Application implements PaneHolder, UpdateTrade {
+public class TradePane implements PaneHolder, UpdateTrade {
     StackPane pane = new StackPane();
     Group root = new Group();
-    MenuButton plaats = new MenuButton("Plaats");
-    MenuButton terug = new MenuButton("Terug");
+    MenuButton plaats = new MenuButton(425, 500, TranslationManager.translate("trade.button.place"));
+    MenuButton terug = new MenuButton(425, 500, TranslationManager.translate("trade.button.back"));
     HBox hbox = new HBox();
     VBox vbox = new VBox();
     ScrollPane sp = new ScrollPane();
@@ -37,18 +35,6 @@ public class TradePane extends Application implements PaneHolder, UpdateTrade {
 
     @Override
     public Pane getPane() {
-	// TODO Auto-generated method stub
-	return null;
-    }
-
-    @Override
-    public void updateTranslation() {
-	// TODO Auto-generated method stub
-    }
-
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-
 	HBox hbox = new HBox();
 	HBox buttons = new HBox();
 	HBox tb = new HBox();
@@ -89,15 +75,19 @@ public class TradePane extends Application implements PaneHolder, UpdateTrade {
 
 	ScrollPane scrollPane = new ScrollPane(hbox);
 	scrollPane.getStylesheets().add("/assets/stylesheet.css");
+	scrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
+	scrollPane.setVbarPolicy(ScrollBarPolicy.ALWAYS);
+	scrollPane.setMinHeight(280);
+	scrollPane.setMinWidth(575);
+
 	BorderPane toolbar = new BorderPane();
 	toolbar.setTop(tb);
 
 	BorderPane root = new BorderPane(scrollPane);
+	root.setPadding(new Insets(80, 60, 60, 60));
 
 	BorderPane bp = new BorderPane();
-
 	bp.getChildren().addAll(SceneUtil.getGamePane(), gp, root);
-	root.setPadding(new Insets(80, 60, 60, 60));
 
 	scrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
 	scrollPane.setVbarPolicy(ScrollBarPolicy.ALWAYS);
@@ -108,14 +98,12 @@ public class TradePane extends Application implements PaneHolder, UpdateTrade {
 	buttons.getChildren().addAll(terug, plaats);
 	root.setBottom(buttons);
 
-	Scene scene = new Scene(bp, 800, 600);
-
-	primaryStage.setScene(scene);
-	primaryStage.show();
+	return bp;
     }
 
-    public static void main(String[] args) {
-	launch(args);
+    @Override
+    public void updateTranslation() {
+	// TODO Auto-generated method stub
     }
 
     @Override

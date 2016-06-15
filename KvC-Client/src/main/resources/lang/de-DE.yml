@@ -5,6 +5,14 @@ game.name.round:Runde: %d
 game.button.build:Bauen
 game.button.trade:Handel
 game.button.buy:Kaufen
+game.button.settings:Optionen
+game.button.next:Einde beurt
+game.menu.save:Opslaan
+game.menu.pause:Pauze
+game.menu.exit:Afsluiten
+game.menu.back:Terug
+game.menu.rules:Spelregels
+game.menu.title:Opties
 
 #SceneLobby
 lobby.shield.title:Lobby
@@ -19,6 +27,22 @@ lobby.parchment.color.green:Grun
 lobby.parchment.color.white:Weiß
 lobby.parchment.color.red:Rot
 
+#BuildPane
+build.button.road:Straat
+build.button.village:Dorp
+build.button.city:Stad
+build.village.row:Dorp
+build.city.row:Stad
+build.road.row:Straat
+
+#Materials
+materials.row:Materialen
+materials.wood:Hout
+materials.stone:Steen
+materials.wool:Wol
+materials.ore:Erts
+materials.wheat:Graan
+
 #Login
 login.error.nousername.title:Keine Benutzername
 login.error.nousername.explanation: Es wurde kein Benutzername ausgefüllt
@@ -29,6 +53,9 @@ login.error.novalidip.details:Exception: 406 Not Acceptable
 login.error.portnonumber.title:Keine Portnummer
 login.error.portnonumber.explanation:Es wurde keine Portnummer ausgefüllt
 login.error.portnonumber.details:Exception: 404 Not Found
+login.error.ingame.title:Spel al begonnen
+login.error.ingame.explanation:Het spel is al begonnen, u kunt niet meer joinen
+login.error.ingame.details:Exception: 406 Not Accaptable
 
 #SceneLogin
 lobby.label.ip:IP Addresse
@@ -39,6 +66,30 @@ lobby.label.confirmeverything:Bestätigen alles
 lobby.label.nosound:Keinen Ton
 lobby.button.join:Entreiten
 lobby.button.settings:Einstellungen
+
+#PausePane
+pause.button.continue:hervatten
+pause.label.pause:Pauze
+
+#RulesPane
+rules.button.back:Terug
+rules.text.rules:Spelregels
+
+#BuyCard
+buycard.msg.buycard:Wilt u een ontwikkelingskaart kopen?
+buycard.decision.yes:Ja
+buycard.decision.no:Nee 
+
+#Note
+note.ingame.title:Spile im Gange
+note.ingame.explanation:Sie können nicht mehr eine andere Farbe
+note.ingame.details:Schalt Farbe ist nicht verfügbar, während Spiel läuft
+
+#Map
+map.throwdice.clickToThrow:Wirf den Würfel
+map.throwdice.throw:Werfen
+map.stock.show:Toon
+map.stock.hide:Verberg
 
 #SceneSettings
 settings.button.playmusic:Spiel Musik
@@ -56,13 +107,6 @@ kicked.nocolor.details:Der Benutzer hat keine Farbe ausgewählt
 kicked.started.title:Das Spiel hat begonnen
 kicked.started.explanation:Das Spiel, das Sie zu verbinden versuchen, hat bereits begonnen
 kicked.started.details:Unfähig Spiel im Gange beitreten
-
-#IngameNotices
-note.ingame.title:Spile im Gange
-note.ingame.explanation:Sie können nicht mehr eine andere Farbe
-note.ingame.details:Schalt Farbe ist nicht verfügbar, während Spiel läuft
-map.throwdice.clickToThrow:Wirf den Würfel
-map.throwdice.throw:Werfen
 
 #ExceptionManager
 error.connect.notfound.title:Server nicht gefunden
