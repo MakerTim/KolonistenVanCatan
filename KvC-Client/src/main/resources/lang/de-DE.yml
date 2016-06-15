@@ -80,6 +80,10 @@ buycard.msg.buycard:Wilt u een ontwikkelingskaart kopen?
 buycard.decision.yes:Ja
 buycard.decision.no:Nee 
 
+#CreditsPane
+credits.button.back:Terug
+credits.text.credits:Credits
+
 #Note
 note.ingame.title:Spile im Gange
 note.ingame.explanation:Sie können nicht mehr eine andere Farbe
