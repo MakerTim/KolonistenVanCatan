@@ -35,12 +35,6 @@ public class TurnInfoPane implements PaneHolder, UpdateRound {
     private Text whoText;
     private Text whatText;
 
-    private SceneMap view;
-
-    public TurnInfoPane(SceneMap view) {
-	this.view = view;
-    }
-
     @Override
     public Pane getPane() {
 	StackPane layers = new StackPane();
