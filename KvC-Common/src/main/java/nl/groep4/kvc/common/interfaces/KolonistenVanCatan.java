@@ -26,7 +26,10 @@ public interface KolonistenVanCatan extends Remote {
 
     public default void update() throws RemoteException {
 	for (Player pl : getPlayers()) {
-	    pl.getUpdateable(UpdateMap.class).setModel(getMap());
+	    try {
+		pl.getUpdateable(UpdateMap.class).setModel(getMap());
+	    } catch (Exception ex) {
+	    }
 	}
     }
 
@@ -37,4 +40,5 @@ public interface KolonistenVanCatan extends Remote {
     public void placeBuilding(Coordinate coord, Player newOwner, BuildingType type) throws RemoteException;
 
     public void placeStreet(Coordinate coord, Player newOwner) throws RemoteException;
+
 }

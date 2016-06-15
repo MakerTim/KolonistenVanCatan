@@ -65,13 +65,8 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
 	saveButton = new MenuButton(615, 550, TranslationManager.translate("lobby.button.loadsave"));
 	saveButton.setFont(ViewMaster.FONT);
 
-	startGame.registerClick(() -> {
-	    controller.startGame();
-	});
-
-	backButton.registerClick(() -> {
-	    controller.disconnect(ClientRefrence.getThePlayer());
-	});
+	startGame.registerClick(() -> controller.startGame());
+	backButton.registerClick(() -> controller.disconnect(ClientRefrence.getThePlayer()));
 
 	scrolls = new ColorScroll[Color.values().length];
 	for (int i = 0; i < Color.values().length; i++) {

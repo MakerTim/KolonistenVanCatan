@@ -11,9 +11,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import nl.groep4.kvc.client.controller.ClientRefrence;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.TexturedButton;
+import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.enumeration.TurnState;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.UpdateRound;
@@ -32,6 +34,12 @@ public class TurnInfoPane implements PaneHolder, UpdateRound {
 
     private Text whoText;
     private Text whatText;
+
+    private SceneMap view;
+
+    public TurnInfoPane(SceneMap view) {
+	this.view = view;
+    }
 
     @Override
     public Pane getPane() {
@@ -60,8 +68,7 @@ public class TurnInfoPane implements PaneHolder, UpdateRound {
     @Override
     public void updateTranslation() {
 	try {
-	    whoText.setText(lastTurn.getUsername());
-	    whatText.setText(TranslationManager.translate(state.translate()));
+	    updateTurn(lastTurn, state);
 	} catch (Exception ex) {
 	    ex.printStackTrace();
 	}
@@ -73,8 +80,16 @@ public class TurnInfoPane implements PaneHolder, UpdateRound {
 
     @Override
     public void updateTurn(Player who, TurnState what) throws RemoteException {
-	whoText.setText(who.getUsername());
-	whatText.setText(TranslationManager.translate(what.translate()));
+	lastTurn = who;
+	state = what;
+	String append = "";
+	if (ClientRefrence.getThePlayer().equals(who)) {
+	    whoText.setText(TranslationManager.translate("turn.self"));
+	    append = ".self";
+	} else {
+	    whoText.setText(who.getUsername());
+	}
+	whatText.setText(TranslationManager.translate(what.translate() + append));
     }
 
 }

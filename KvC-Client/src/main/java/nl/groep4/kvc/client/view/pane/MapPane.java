@@ -12,8 +12,13 @@ import nl.groep4.kvc.client.controller.MapController;
 import nl.groep4.kvc.client.view.elements.ClientTile;
 import nl.groep4.kvc.client.view.elements.ClientTile.SelectState;
 import nl.groep4.kvc.client.view.scene.SceneMap;
+import nl.groep4.kvc.common.enumeration.BuildingType;
+import nl.groep4.kvc.common.enumeration.Direction;
+import nl.groep4.kvc.common.enumeration.Point;
+import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Map;
+import nl.groep4.kvc.common.map.Street;
 import nl.groep4.kvc.common.map.Tile;
 
 public class MapPane implements PaneHolder {
@@ -67,4 +72,29 @@ public class MapPane implements PaneHolder {
 	tiles.forEach(clientTile -> clientTile.setSelectState(SelectState.STREET));
     }
 
+    public void highlightStreet(List<Street> streets) {
+	for (ClientTile tile : tiles) {
+	    for (Direction direction : Direction.values()) {
+		tile.highLightStreet(direction, false);
+		for (Street street : streets) {
+		    if (street.equals(tile.getTile().getStreet(direction))) {
+			tile.highLightStreet(direction, true);
+		    }
+		}
+	    }
+	}
+    }
+
+    public void highlightBuilding(List<Building> buildings, BuildingType type) {
+	for (ClientTile tile : tiles) {
+	    for (Point point : Point.values()) {
+		tile.highLightBuilding(point, BuildingType.EMPTY);
+		for (Building building : buildings) {
+		    if (building.equals(tile.getTile().getBuilding(point))) {
+			tile.highLightBuilding(point, type);
+		    }
+		}
+	    }
+	}
+    }
 }

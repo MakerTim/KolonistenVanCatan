@@ -35,13 +35,16 @@ import nl.groep4.kvc.client.view.pane.ScoreRoundPane;
 import nl.groep4.kvc.client.view.pane.StockPane;
 import nl.groep4.kvc.client.view.pane.TradePane;
 import nl.groep4.kvc.client.view.pane.TurnInfoPane;
+import nl.groep4.kvc.common.enumeration.BuildingType;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.enumeration.TurnState;
 import nl.groep4.kvc.common.interfaces.Card;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.Trade;
 import nl.groep4.kvc.common.interfaces.UpdateMap;
+import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Map;
+import nl.groep4.kvc.common.map.Street;
 
 public class SceneMap implements SceneHolder, UpdateMap {
 
@@ -60,9 +63,9 @@ public class SceneMap implements SceneHolder, UpdateMap {
     private MenuButton buyButton;
     private Pane layers;
 
-    private StockPane stockPane = new StockPane();
+    private StockPane stockPane = new StockPane(this);
     private ScoreRoundPane scorePane = new ScoreRoundPane();
-    private TurnInfoPane infoPane = new TurnInfoPane();
+    private TurnInfoPane infoPane = new TurnInfoPane(this);
     private BuildPane buildPane = new BuildPane(this);
     private TradePane tradePane = new TradePane(this);
 
@@ -319,5 +322,15 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	if (ClientRefrence.getThePlayer().equals(pl)) {
 	    scorePane.updateScore(pl, score);
 	}
+    }
+
+    @Override
+    public void highlightStreets(List<Street> streets) {
+	gamepane.highlightStreet(streets);
+    }
+
+    @Override
+    public void highlightBuildings(List<Building> buildings, BuildingType type) {
+	gamepane.highlightBuilding(buildings, type);
     }
 }

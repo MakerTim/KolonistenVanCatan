@@ -31,13 +31,13 @@ public class ServerLobbyController {
 	lobby.setState(State.IN_GAME);
 	lobby.setGame(kvc);
 	for (Player pl : lobby.getPlayers()) {
-	    new Thread(() -> {
+	    Scheduler.runAsync(() -> {
 		try {
 		    pl.getUpdateable(UpdateLobby.class).start();
 		} catch (Exception ex) {
 		    ex.printStackTrace();
 		}
-	    }).start();
+	    });
 	}
     }
 

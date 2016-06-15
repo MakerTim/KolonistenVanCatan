@@ -13,6 +13,7 @@ import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.elements.ResourceCard;
+import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.Card;
 import nl.groep4.kvc.common.interfaces.UpdateStock;
@@ -45,6 +46,14 @@ public class StockPane implements PaneHolder, UpdateStock {
     VBox buttons;
 
     private boolean isOpen = false;
+
+    private SceneMap view;
+
+    public StockPane(SceneMap view) {
+	this.view = view;
+	this.view.toString();
+	// TODO: Luc: Controller aanroepen via view.getController().useCard()
+    }
 
     @Override
     public Pane getPane() {

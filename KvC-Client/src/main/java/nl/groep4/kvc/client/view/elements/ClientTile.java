@@ -13,6 +13,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import nl.groep4.kvc.client.controller.MapController;
 import nl.groep4.kvc.client.view.scene.SceneMap;
+import nl.groep4.kvc.common.enumeration.BuildingType;
 import nl.groep4.kvc.common.enumeration.Direction;
 import nl.groep4.kvc.common.enumeration.Point;
 import nl.groep4.kvc.common.map.Building;
@@ -103,6 +104,10 @@ public class ClientTile extends StackPane {
 	renderTile();
     }
 
+    public Tile getTile() {
+	return tile;
+    }
+
     public Coordinate getPosition() {
 	return this.coord;
     }
@@ -141,30 +146,10 @@ public class ClientTile extends StackPane {
 	    fiche.setImage(null);
 	}
 	for (Direction direction : Direction.values()) {
-	    Street street = tile.getStreet(direction);
-	    Line line = lines[direction.ordinal()];
-	    if (street != null && street.getOwner() != null) {
-		try {
-		    line.setStroke(street.getOwner().getColor().getColor());
-		} catch (Exception ex) {
-		    ex.printStackTrace();
-		}
-	    } else {
-		line.setStroke(new Color(0, 0, 0, 0));
-	    }
+	    highLightStreet(direction, false);
 	}
-	for (int i = 4; i < Point.values().length; i++) {
-	    Building building = tile.getBuilding(Point.values()[i]);
-	    ImageView house = houses[i - 4];
-	    if (building != null && building.getOwner() != null) {
-		try {
-		    house.setImage(cacheImage("img/buildings/house_" + building.getOwner().getColor() + ".png"));
-		} catch (Exception ex) {
-		    ex.printStackTrace();
-		}
-	    } else {
-		house.setImage(cacheImage("img/buildings/house_null.png"));
-	    }
+	for (Point point : Point.values()) {
+	    highLightBuilding(point, BuildingType.EMPTY);
 	}
     }
 
@@ -212,5 +197,62 @@ public class ClientTile extends StackPane {
 
     private void onBuildingClick(Coordinate coord) {
 	controller.placeBuilding(coord);
+    }
+
+    public void highLightStreet(Direction direction, boolean doesHighlight) {
+	if (doesHighlight) {
+	    Line line = lines[direction.ordinal()];
+	    line.setStroke(new Color(0, 0, 0, 1));
+	} else {
+	    Line line = lines[direction.ordinal()];
+	    Street street = tile.getStreet(direction);
+	    if (street != null && street.getOwner() != null) {
+		try {
+		    line.setStroke(street.getOwner().getColor().getColor());
+		} catch (Exception ex) {
+		    ex.printStackTrace();
+		}
+	    } else {
+		line.setStroke(new Color(0, 0, 0, 0));
+	    }
+	}
+    }
+
+    public void highLightBuilding(Point point, BuildingType type) {
+	if (point == Point.WEST || point == Point.NORTH_WEST) {
+	    int i = point.ordinal();
+	    Building building = tile.getBuilding(Point.values()[i]);
+	    ImageView house = houses[i - 4];
+	    switch (type) {
+	    case EMPTY:
+		if (building != null && building.getOwner() != null) {
+		    try {
+			switch (building.getBuildingType()) {
+			case CITY:
+			    house.setImage(cacheImage("img/buildings/city_" + building.getOwner().getColor() + ".png"));
+			    break;
+			case EMPTY:
+			    house.setImage(cacheImage("img/buildings/house_null.png"));
+			    break;
+			case VILLAGE:
+			    house.setImage(
+				    cacheImage("img/buildings/house_" + building.getOwner().getColor() + ".png"));
+			    break;
+			}
+		    } catch (Exception ex) {
+			ex.printStackTrace();
+		    }
+		} else {
+		    house.setImage(cacheImage("img/buildings/house_null.png"));
+		}
+		break;
+	    case CITY:
+		house.setImage(cacheImage("img/buildings/city_highlight.png"));
+		break;
+	    case VILLAGE:
+		house.setImage(cacheImage("img/buildings/house_highlight.png"));
+		break;
+	    }
+	}
     }
 }

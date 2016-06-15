@@ -31,4 +31,5 @@ public interface Lobby extends Remote {
     public void startGame() throws RemoteException;
 
     public void loadSave(String save) throws RemoteException;
+
 }
