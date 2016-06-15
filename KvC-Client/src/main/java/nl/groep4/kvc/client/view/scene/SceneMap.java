@@ -225,9 +225,9 @@ public class SceneMap implements SceneHolder, UpdateMap {
     @Override
     public void updateConfig() {
 	if (stockPane.isOpen()) {
-	    resourceButton.updateText(TranslationManager.translate("map.stock.show"));
-	} else {
 	    resourceButton.updateText(TranslationManager.translate("map.stock.hide"));
+	} else {
+	    resourceButton.updateText(TranslationManager.translate("map.stock.show"));
 	}
 	nxtButton.updateText(TranslationManager.translate("game.button.next"));
 	optionButton.updateText(TranslationManager.translate("game.button.settings"));
