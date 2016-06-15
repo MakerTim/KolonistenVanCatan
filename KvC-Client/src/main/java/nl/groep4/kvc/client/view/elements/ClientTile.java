@@ -26,6 +26,10 @@ import nl.groep4.kvc.common.util.CollectionUtil;
 
 public class ClientTile extends StackPane {
 
+    public enum SelectState {
+	STREET, BUILDING, TILE
+    }
+
     private static final Map<String, Image> CACHE = new HashMap<>();
 
     private MapController controller;
@@ -85,7 +89,6 @@ public class ClientTile extends StackPane {
 	    houses[i].setOnMouseClicked(click -> {
 		onBuildingClick(Point.values()[j + 4].addTo(coord));
 	    });
-	    houses[i].setMouseTransparent(true);
 	    overlayPane.getChildren().add(houses[i]);
 	}
 	overlayPane.setTranslateX(xFix * SceneMap.scale * 0.81);
@@ -162,6 +165,44 @@ public class ClientTile extends StackPane {
 	    } else {
 		house.setImage(cacheImage("img/buildings/house_null.png"));
 	    }
+	}
+    }
+
+    public void setSelectState(SelectState select) {
+	switch (select) {
+	case BUILDING:
+	    setBuildClickable(true);
+	    setStreetClickable(false);
+	    setTileClickable(false);
+	    break;
+	case STREET:
+	    setBuildClickable(false);
+	    setStreetClickable(true);
+	    setTileClickable(false);
+	    break;
+	case TILE:
+	    setBuildClickable(false);
+	    setStreetClickable(false);
+	    setTileClickable(true);
+	    break;
+	}
+    }
+
+    private void setTileClickable(boolean clickAble) {
+	image.setMouseTransparent(!clickAble);
+	fiche.setMouseTransparent(!clickAble);
+	number.setMouseTransparent(!clickAble);
+    }
+
+    private void setBuildClickable(boolean clickAble) {
+	for (ImageView house : houses) {
+	    house.setMouseTransparent(!clickAble);
+	}
+    }
+
+    private void setStreetClickable(boolean clickAble) {
+	for (Line street : lines) {
+	    street.setMouseTransparent(!clickAble);
 	}
     }
 

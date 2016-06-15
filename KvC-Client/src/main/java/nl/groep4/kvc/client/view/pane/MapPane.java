@@ -10,6 +10,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import nl.groep4.kvc.client.controller.MapController;
 import nl.groep4.kvc.client.view.elements.ClientTile;
+import nl.groep4.kvc.client.view.elements.ClientTile.SelectState;
 import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Map;
@@ -60,8 +61,10 @@ public class MapPane implements PaneHolder {
 
     public void updateMap(Map map) {
 	for (Tile tile : map.getTiles()) {
-	    getTile(tile.getPosition()).setTile(tile);
+	    ClientTile clientTile = getTile(tile.getPosition());
+	    clientTile.setTile(tile);
 	}
+	tiles.forEach(clientTile -> clientTile.setSelectState(SelectState.STREET));
     }
 
 }

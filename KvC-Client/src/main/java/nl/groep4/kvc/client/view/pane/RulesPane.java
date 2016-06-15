@@ -58,7 +58,9 @@ public class RulesPane implements PaneHolder {
 
 	hbox.setAlignment(Pos.CENTER);
 	hbox.getChildren().add(back);
+
 	vbox.getChildren().addAll(rules, area, hbox);
+
 	rulepane.getChildren().addAll(background, vbox);
 
 	BufferedReader fileReader = new BufferedReader(
@@ -89,7 +91,8 @@ public class RulesPane implements PaneHolder {
 
     @Override
     public void updateTranslation() {
-
+	rules.setText(TranslationManager.translate("rules.text.rules"));
+	back.updateText(TranslationManager.translate("rules.button.back"));
     }
 
 }

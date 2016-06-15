@@ -38,7 +38,7 @@ public class OptionPane implements PaneHolder {
 	save = new MenuButton(TranslationManager.translate("game.menu.save"));
 	pause = new MenuButton(TranslationManager.translate("game.menu.pause"));
 	rules = new MenuButton(TranslationManager.translate("game.menu.rules"));
-	credits = new MenuButton(TranslationManager.translate("game.menu.rules"));
+	credits = new MenuButton(TranslationManager.translate("game.menu.credits"));
 	exit = new MenuButton(TranslationManager.translate("game.menu.exit"));
 	back = new MenuButton(TranslationManager.translate("game.menu.back"));
 	tilte.setFont(ViewMaster.TITLE_FONT);
@@ -93,6 +93,7 @@ public class OptionPane implements PaneHolder {
 	save.updateText(TranslationManager.translate("game.menu.save"));
 	pause.updateText(TranslationManager.translate("game.menu.pause"));
 	rules.updateText(TranslationManager.translate("game.menu.rules"));
+	credits.updateText(TranslationManager.translate("game.menu.credits"));
 	exit.updateText(TranslationManager.translate("game.menu.exit"));
 	back.updateText(TranslationManager.translate("game.menu.back"));
     }

@@ -13,6 +13,12 @@ game.menu.exit:Afsluiten
 game.menu.back:Terug
 game.menu.rules:Spelregels
 game.menu.title:Opties
+game.menu.credits:Credits
+game.resourcename.wood:Hout
+game.resourcename.ore:Erts
+game.resourcename.stone:Steen
+game.resourcename.wool:Wol
+game.resourcename.wheat:Graan
 
 #SceneLobby
 lobby.shield.title:Lobby
@@ -68,7 +74,7 @@ lobby.button.join:Meedoen
 lobby.button.settings:Instellingen
 
 #PausePane
-pause.button.continue:hervatten
+pause.button.continue:Hervatten
 pause.label.pause:Pauze
 
 #TradePane
@@ -84,6 +90,10 @@ buycard.msg.buycard:Wilt u een ontwikkelingskaart kopen?
 buycard.decision.yes:Ja
 buycard.decision.no:Nee 
 
+#CreditsPane
+credits.button.back:Terug
+credits.text.credits:Credits
+
 #Note
 note.ingame.title:Spel is begonnen
 note.ingame.explanation:U kunt niet meer van kleur switchen als het spel al begonnen is
@@ -92,8 +102,8 @@ note.ingame.details:Tijdens het spel kunt u niet van kleur veranderen
 #Map
 map.throwdice.clickToThrow:Dobbelen
 map.throwdice.throw:Klik om te dobbelen
-map.stock.show:Toon
-map.stock.hide:Verberg
+map.stock.show:Toon kaarten
+map.stock.hide:Verberg kaarten
 
 #SceneSettings
 settings.button.playmusic:Muziek aan
