@@ -2,6 +2,8 @@ language:English
 
 #Game
 game.name.round:Round: %d
+game.round:Round: %d
+game.score:Score: %d
 game.button.build:Build
 game.button.trade:Trade
 game.button.buy:Buy
