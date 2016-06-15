@@ -20,6 +20,7 @@ import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.MenuButton;
+import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.interfaces.Trade;
 import nl.groep4.kvc.common.interfaces.UpdateTrade;
 
@@ -32,6 +33,10 @@ public class TradePane implements PaneHolder, UpdateTrade {
     VBox vbox = new VBox();
     ScrollPane sp = new ScrollPane();
     GridPane gp = new GridPane();
+
+    public TradePane(SceneMap sceneMap) {
+	// TODO Auto-generated constructor stub
+    }
 
     @Override
     public Pane getPane() {

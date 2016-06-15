@@ -14,10 +14,12 @@ import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.MenuButton;
+import nl.groep4.kvc.client.view.scene.SceneMap;
 
 public class CreditsPane extends Application implements PaneHolder {
     Font font = new Font(ViewMaster.FONT.getName(), 40);
 
+    SceneMap sceneMap = new SceneMap();
     Text credits;
     Text bachir;
     Text matthijs;
@@ -26,6 +28,12 @@ public class CreditsPane extends Application implements PaneHolder {
     Text Lisa;
 
     MenuButton back;
+
+    public CreditsPane(SceneMap sceneMap) {
+	// TODO Auto-generated constructor stub
+	this.sceneMap = sceneMap;
+
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -47,11 +55,11 @@ public class CreditsPane extends Application implements PaneHolder {
 	credits.setFill(Color.WHITE);
 	credits.setStroke(Color.BLACK);
 
-	bachir.setFont(ViewMaster.FONT);
-	matthijs.setFont(ViewMaster.FONT);
-	Tim.setFont(ViewMaster.FONT);
-	Luc.setFont(ViewMaster.FONT);
-	Lisa.setFont(ViewMaster.FONT);
+	bachir.setFont(font);
+	matthijs.setFont(font);
+	Tim.setFont(font);
+	Luc.setFont(font);
+	Lisa.setFont(font);
 
 	bachir.setFill(nl.groep4.kvc.common.enumeration.Color.BROWN.getColor());
 	matthijs.setFill(nl.groep4.kvc.common.enumeration.Color.BLUE.getColor());
@@ -64,6 +72,10 @@ public class CreditsPane extends Application implements PaneHolder {
 	Tim.setStroke(Color.BLACK);
 	Luc.setStroke(Color.BLACK);
 	Lisa.setStroke(Color.BLACK);
+
+	back.registerClick(() -> {
+	    sceneMap.closeOverlay();
+	});
 
 	vbox.setAlignment(Pos.CENTER);
 	vbox.getChildren().addAll(credits, bachir, matthijs, Tim, Luc, Lisa, back);
@@ -86,6 +98,8 @@ public class CreditsPane extends Application implements PaneHolder {
     public void updateTranslation() {
 	// TODO Auto-generated method stub
 
+	credits.setText(TranslationManager.translate("credits.text.credits"));
+	back.updateText(TranslationManager.translate("credits.button.back"));
     }
 
     public static void main(String[] args) {
