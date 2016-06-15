@@ -4,6 +4,7 @@ import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
 
 public class ResourceCard extends Text {
@@ -15,11 +16,56 @@ public class ResourceCard extends Text {
     private ImageView woodCard;
     private ImageView woolCard;
 
-    Text amntWood;
-    Text amntOre;
-    Text amntWool;
-    Text amntWheat;
-    Text amntStone;
+    private Text amntWood;
+    private Text amntOre;
+    private Text amntWool;
+    private Text amntWheat;
+    private Text amntStone;
+    private Text nameWood;
+    private Text nameOre;
+    private Text nameWool;
+    private Text nameWheat;
+    private Text nameStone;
+
+    public Text getWoodName() {
+	nameWood = new Text(TranslationManager.translate("game.resourcename.wood"));
+	nameWood.setFont(ViewMaster.FONT);
+	nameWood.setFill(Color.WHITE);
+	nameWood.setStroke(Color.BLACK);
+	return nameWood;
+    };
+
+    public Text getStoneName() {
+	nameStone = new Text(TranslationManager.translate("game.resourcename.stone"));
+	nameStone.setFont(ViewMaster.FONT);
+	nameStone.setFill(Color.WHITE);
+	nameStone.setStroke(Color.BLACK);
+	return nameStone;
+    };
+
+    public Text getOreName() {
+	nameOre = new Text(TranslationManager.translate("game.resourcename.ore"));
+	nameOre.setFont(ViewMaster.FONT);
+	nameOre.setFill(Color.WHITE);
+	nameOre.setStroke(Color.BLACK);
+	return nameOre;
+    };
+
+    public Text getWoolName() {
+	nameWool = new Text(TranslationManager.translate("game.resourcename.wool"));
+	nameWool.setFont(ViewMaster.FONT);
+	nameWool.setFill(Color.WHITE);
+	nameWool.setStroke(Color.BLACK);
+	return nameWool;
+    };
+
+    public Text getWheatName() {
+	nameWheat = new Text(TranslationManager.translate("game.resourcename.wheat"));
+	nameWheat.setFont(ViewMaster.FONT);
+	nameWheat.setFill(Color.WHITE);
+	nameWheat.setStroke(Color.BLACK);
+	return nameWheat;
+    };
 
     public Text getWoodText() {
 	amntWood = new Text("0");
@@ -126,6 +172,15 @@ public class ResourceCard extends Text {
 	oreCard.setFitHeight(170);
 	oreCard.setFitWidth(113.5);
 	return oreCard;
+    }
+
+    public void updateTranslation() {
+	nameOre.setText(TranslationManager.translate("game.resourcename.ore"));
+	nameWood.setText(TranslationManager.translate("game.resourcename.wood"));
+	nameStone.setText(TranslationManager.translate("game.resourcename.stone"));
+	nameWheat.setText(TranslationManager.translate("game.resourcename.wheat"));
+	nameWool.setText(TranslationManager.translate("game.resourcename.wool"));
+
     }
 
 }

@@ -1,0 +1,157 @@
+Rules
+
+Original author: Klaus Tauber
+2 to 6 players aged 11 years
+
+
+Goal
+The player who will score the first 10 or more points wins the game. The number of points may varies
+between 10 and 15, depending on what you agree in advance.
+
+
+Structure of the board
+Divide the land and sea spaces. Leave a land tile in the middle, followed by two desert fields there
+parallel to. Continue with the rest of the land tiles in a spiral shape around the middle, so that the
+country is a symmetry. And finally place the sea tile around the island. You do this alternately in
+the order Water - 2: 1 harbor - Water - 3: 1 harbor. The rotation of the harbor is random, but both
+harbor points must connect with the mainland.
+
+
+Then the number tokens are placed on the game board with the letters up and this in
+a spiral shape, starting from a tile corner of choice. If all the tokens are placed on the board,
+they are turned over so that the numbers are clearly visible.
+
+
+The numbers (2 to 12) are each twice in the game (except the 2 and 12 itself:
+only 1 time). They give the probability of the sum of the two dice.
+The larger the size of the number, the higher the probability that this sum is diced.
+The highest occurring combinations (6 and 8) are also very clear printed in red.
+No tokens are placed on the desert tiles.
+Once the board is structured, each player chooses a color and will recieve 5
+villages (houses), 4 cities (churches), 15 blocks (streets) and ancard of the building costs.
+The resource cards are placed in five open stacks next to the board. The
+variants are forest (wood), pasture (wool), field (grain), Hill (stones), mountain (ore).
+The development cards (darker back) are placed face down in a pile. The bandit (black pawn) needs to
+be placed in the desert. The two special cards and dice be ready next to the board.
+
+
+Settlement Phase
+This phase is spread over two rounds. Each player is given the opportunity to two
+build villages and two lanes before starting the game itself.
+
+First round
+Who dices the highest begins. He places one village on a corner of choice and connects
+this to a street in a direction of choice. Subsequently, the other players are in the direction
+clockwise turn. However, there should be kept in mind that there is a distance rule!
+	- Distance rule
+	  A settlement may only be put on a free intersection if the three
+	  nearest intersections are free of buildings or settlements. It does not matter who
+	  stands there, the intersection should be remain unoccupied.
+
+Second round
+After this, the person who was last in the first round, must place a second settlements. The
+other players will follow in counterclockwise direction. The second settlements may be 
+- taking into account the distance rule - placed everywhere. Immediately after placing the
+second settlements, each player will recieve their first resources. For each land tile that is
+adjacent to a settlement, the player will receive one corresponding resource card from the
+stock. This resource cards keep Players hidden from each other. The last player placed his second settlement,
+the game begins.
+
+Gameplay
+Each player goes through per turn the following three phases:
+- Proceeds from the country
+- act
+- build
+- Some special events
+
+
+a) Proceeds from the land
+The player in turn must roll both dice. The sum of the two dice determines
+the prefix yielding commodities. Any player who has a settlement or city on this
+diced piece of land, receives a resource map (two if a city). Are at a certain
+moment no resource cards stock, no player will receive the card in that turn.
+
+b) Dealing
+Then the player who drive the turn, trade with other players in order to him
+get missing resource cards. We distinguish won domestic trade
+and maritime trade.
+
+- Domestic Trade
+The player may trade with all players commodity cards. He shares example with what he needs
+and what he is willing to give in exchange for it. It is important that there should only act
+be with the player's turn, not themselves among the other players.
+
+- maritime trade
+Here the player can trade without the help of his fellow players at the table resource cards.
+In the most simple exchange, the player 4 resource cards of one kind exchange to 1
+commodity card of your choice. Owning a port is not necessary. A player
+However, a settlement or a city founded by the sea, it can be much more interesting deals
+do. With a simple port (with?) The player can always exchange three identical resource cards
+for another 1 to choice. At a special port the player has only two identical cards
+the pictured commodity exchange against one new choice.
+
+c) Building
+The player whose turn it is can also build to increase his points. In exchange for
+combinations of material cards (see overview map) he could arbitrarily many streets,
+build settlements or cities.
+
+cost:
+street: wood + stone
+A new road to be built on private roads, settlements and cities. On
+each road can be built, of course, only one way. Once a player a contiguous
+street has five pieces from the street, he receives the special card "longest commercial street"
+presenting him two extra points. A commercial street can be interrupted or another
+player can build a long road. At that moment, is that special card to the player
+the longest street. When two or more players have an equally long street, the card is
+back to the stock.
+
+settlement: wood + stone + corn + yarn
+Taking into account the distance rule. The settlement must meet at least one private street boundaries.
+Any settlement on the board also provides one point and can yield 1 resource card if
+the dice determine this.
+
+City: 2 x 3 x ore grain +
+The player builds his settlement into a city. He changes the cottage for a church.
+Each city is worth 2 points and came second resource cards.
+
+Development card: corn + wool + ore
+If a player wants to buy a development card, he takes off the top of the stack in
+exchange for the three required resource cards. The resulting map (s) he likes best secret for
+others. A properly purchased card should not be used right away. There are 14 knights,
+6 Progress and 5 points in the game.
+
+d) Special events + cards
+
+- Rover
+If a player 7 dice at the beginning of his turn, the player must be one of the two
+robbers moved to any other country field. The players who have villages or towns
+the country field where the robbers will be placed and have more than seven cards, half must
+to surrender their cards. These players also do not receive raw materials until the robber again
+has been moved. The installer of the rover can still steal a resource from a player whose
+Tile state where the rover has been placed, if available. There exist several players,
+he chooses from one victim. Robbing itself happens locked: you can not see what kind
+card you steal. As long as a robber on a tile state receives no player commodities
+of that tile.
+
+- Development Card play
+A player's turn, may at any time during his turn 1
+play development card (except the card he bought any network).
+
+- Knight
+When a player plays this card, he must put the rover on another country field. He steals
+Also one resource card of any player who has a settlement or city.
+Knight played cards remain open for the player on the table. A player with 3-played
+Knight cards receives the special card "largest army". This gives him extra 2 points.
+This card goes back to the stock if someone else as much knight maps is to
+play, or go to the player who at that time again, the greatest knight power in front of them
+has.
+
+- Progress
+The person who plays such a card, the following command which is run directly on the map.
+The card then disappear back under the pile.
+- Road construction: the player may immediately two new streets (free) build
+- Discovery: the player may immediately take 2 resource cards of your choice
+- Monopoly: all players have all their resource cards of a certain
+kind - to be determined by the player using the card - giving that player points
+- Points
+These cards provide additional points to be the best and only shown on the end of the game.

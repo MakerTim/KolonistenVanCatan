@@ -13,6 +13,12 @@ game.menu.exit:Afsluiten
 game.menu.back:Terug
 game.menu.rules:Spelregels
 game.menu.title:Opties
+game.menu.credits:Credits
+game.resourcename.wood:Hout
+game.resourcename.ore:Erts
+game.resourcename.stone:Steen
+game.resourcename.wool:Wol
+game.resourcename.wheat:Graan
 
 #SceneLobby
 lobby.shield.title:Lobby
@@ -96,8 +102,8 @@ note.ingame.details:Tijdens het spel kunt u niet van kleur veranderen
 #Map
 map.throwdice.clickToThrow:Dobbelen
 map.throwdice.throw:Klik om te dobbelen
-map.stock.show:Toon
-map.stock.hide:Verberg
+map.stock.show:Toon kaarten
+map.stock.hide:Verberg kaarten
 
 #SceneSettings
 settings.button.playmusic:Muziek aan

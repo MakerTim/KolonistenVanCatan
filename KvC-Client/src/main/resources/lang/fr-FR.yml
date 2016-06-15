@@ -13,6 +13,12 @@ game.menu.exit:Fermer
 game.menu.back:Retourner
 game.menu.rules:Règles
 game.menu.title:Options
+game.menu.credits:Crédits
+game.resourcename.wood:Bois
+game.resourcename.ore:Minerai
+game.resourcename.stone:Pierre
+game.resourcename.wool:Laine
+game.resourcename.wheat:Grain
 
 #SceneLobby
 lobby.shield.title:Hall
@@ -96,8 +102,8 @@ note.ingame.details:Pendant le jeu, vous ne pouvez pas changer de couleur
 #Map
 map.throwdice.clickToThrow:Jouer aux dés
 map.throwdice.throw:Cliquez pour jouer aux dés
-map.stock.show:Show
-map.stock.hide:cacher
+map.stock.show:Show cartes
+map.stock.hide:Cacher cartes
 
 #SceneSettings
 settings.button.playmusic:Son on

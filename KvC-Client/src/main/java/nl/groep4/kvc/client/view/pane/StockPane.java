@@ -21,9 +21,13 @@ public class StockPane implements PaneHolder, UpdateStock {
     // TODO StockPaneAfmaken
 
     StackPane cardPane;
-    StackPane stockPane;
     HBox resCards;
     HBox devCards;
+    VBox woodText;
+    VBox oreText;
+    VBox stoneText;
+    VBox woolText;
+    VBox wheatText;
     Text amntWood;
     Text amntOre;
     Text amntStone;
@@ -50,31 +54,46 @@ public class StockPane implements PaneHolder, UpdateStock {
 	ore = new StackPane();
 	wool = new StackPane();
 	stone = new StackPane();
+
+	woodText = new VBox();
+	wheatText = new VBox();
+	oreText = new VBox();
+	woolText = new VBox();
+	stoneText = new VBox();
+
+	woodText.setAlignment(Pos.CENTER);
+	woodText.getChildren().addAll(cards.getWoodText(), cards.getWoodName());
+	oreText.setAlignment(Pos.CENTER);
+	oreText.getChildren().addAll(cards.getOreText(), cards.getOreName());
+	wheatText.setAlignment(Pos.CENTER);
+	wheatText.getChildren().addAll(cards.getWheatText(), cards.getWheatName());
+	stoneText.setAlignment(Pos.CENTER);
+	stoneText.getChildren().addAll(cards.getStoneText(), cards.getStoneName());
+	woolText.setAlignment(Pos.CENTER);
+	woolText.getChildren().addAll(cards.getWoolText(), cards.getWoolName());
+
 	resCards = new HBox();
 	devCards = new HBox();
 	cardPane = new StackPane();
 	allThings = new VBox();
 	buttons = new VBox();
-	stockPane = new StackPane();
-
 	hideCards = new MenuButton(TranslationManager.translate("map.stock.hide"));
 	hideCards.setFont(ViewMaster.FONT);
 	showCards = new MenuButton(TranslationManager.translate("map.stock.show"));
 	showCards.setFont(ViewMaster.FONT);
 
-	wood.getChildren().addAll(cards.getWoodCard(), cards.getWoodText());
-	wheat.getChildren().addAll(cards.getWheatCard(), cards.getWheatText());
-	ore.getChildren().addAll(cards.getOreCard(), cards.getOreText());
-	stone.getChildren().addAll(cards.getStoneCard(), cards.getStoneText());
-	wool.getChildren().addAll(cards.getWoolCard(), cards.getWoolText());
+	wood.getChildren().addAll(cards.getWoodCard(), woodText);
+	wheat.getChildren().addAll(cards.getWheatCard(), wheatText);
+	ore.getChildren().addAll(cards.getOreCard(), oreText);
+	stone.getChildren().addAll(cards.getStoneCard(), stoneText);
+	wool.getChildren().addAll(cards.getWoolCard(), woolText);
 
 	resCards.getChildren().addAll(wood, wheat, wool, stone, ore);
 	resCards.setAlignment(Pos.CENTER);
 	buttons.getChildren().addAll(showCards);
 
 	allThings.setAlignment(Pos.CENTER);
-	stockPane.setMouseTransparent(true);
-
+	cardPane.setMouseTransparent(true);
 	return cardPane;
     }
 

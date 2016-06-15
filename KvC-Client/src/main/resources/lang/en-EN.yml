@@ -13,6 +13,12 @@ game.menu.exit:Exit
 game.menu.back:Back
 game.menu.rules:Rules
 game.menu.title:Options
+game.menu.credits:Credits
+game.resourcename.wood:Wood
+game.resourcename.ore:Ore
+game.resourcename.stone:Stone
+game.resourcename.wool:Wool
+game.resourcename.wheat:Wheat
 
 #SceneLobby
 lobby.shield.title:Lobby
@@ -96,8 +102,8 @@ note.ingame.details:Switching colour is unavailable while game is running
 #Map
 map.throwdice.clickToThrow:Throw the dice
 map.throwdice.throw:Throw
-map.stock.show:Show
-map.stock.hide:Hide
+map.stock.show:Show cards
+map.stock.hide:Hide cards
 
 #SceneSettings
 settings.button.playmusic:Play Music
