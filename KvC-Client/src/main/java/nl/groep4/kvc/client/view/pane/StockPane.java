@@ -113,7 +113,7 @@ public class StockPane implements PaneHolder, UpdateStock {
 	devCards.getChildren().addAll(getKnightCard(), getInventCard(), getMonoCard(), getCathCard(), getRoadCard());
 	devCards.setAlignment(Pos.CENTER);
 
-	allThings.setAlignment(Pos.CENTER);
+	allThings.setAlignment(Pos.BOTTOM_CENTER);
 	cardPane.setMouseTransparent(true);
 	return cardPane;
     }
