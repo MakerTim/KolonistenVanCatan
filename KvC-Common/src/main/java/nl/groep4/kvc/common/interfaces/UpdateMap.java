@@ -34,4 +34,7 @@ public interface UpdateMap extends Updatable<Map>, UpdateStock, UpdateCosts, Upd
 
     public void highlightBuildings(List<Building> buildings, BuildingType type) throws RemoteException;
 
+    public void blockActions() throws RemoteException;
+
+    public void unblockActions() throws RemoteException;
 }
