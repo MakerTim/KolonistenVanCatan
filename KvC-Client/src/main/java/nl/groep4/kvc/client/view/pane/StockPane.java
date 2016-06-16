@@ -19,7 +19,6 @@ import nl.groep4.kvc.common.interfaces.Card;
 import nl.groep4.kvc.common.interfaces.UpdateStock;
 
 public class StockPane implements PaneHolder, UpdateStock {
-    // TODO StockPaneAfmaken
 
     StackPane cardPane;
     HBox resCards;
@@ -126,14 +125,12 @@ public class StockPane implements PaneHolder, UpdateStock {
 
     @Override
     public void updateTranslation() {
-	hideCards.updateText(TranslationManager.translate("map.stock.hide"));
-	showCards.updateText(TranslationManager.translate("map.stock.show"));
+	cards.updateTranslation();
     }
 
     @Override
     public void updateStock(EnumMap<Resource, Integer> resources) {
-	// TODO Auto-generated method stub
-
+	cards.updateStock(resources);
     }
 
     @Override

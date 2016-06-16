@@ -76,18 +76,18 @@ lobby.button.settings:Réglages
 
 #Turn
 turn.state.building:Est un bâtiment à la construction
-turn.state.building.self:Je place un bâtiment
+turn.state.building.self:Construisez un bâtiment
 turn.state.street:Est une rue à la construction
-turn.state.street.self:Place une rue
+turn.state.street.self:Placer une rue
 turn.state.card:Est une carte pour acheter
-turn.state.card.self:Acheter une carte
+turn.state.card.self:Achetez une carte
 turn.state.dice:Est dés
-turn.state.dice.self:dés un dé
+turn.state.dice.self:êtes les dés
 turn.state.trade:Était à la vente aux enchères
-turn.state.trade.self:à la vente aux enchères
+turn.state.trade.self:Êtes à la vente aux enchères
 turn.state.wait:Tourne
-turn.state.wait.self:Me tourne
-turn.self:U
+turn.state.wait.self:Êtes à côté
+turn.self:Vous
 
 #PausePane
 pause.button.continue:Résumé

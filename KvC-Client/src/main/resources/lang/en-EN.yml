@@ -76,15 +76,15 @@ lobby.button.settings:Settings
 
 #Turn
 turn.state.building:Is building a building
-turn.state.building.self:building a building
+turn.state.building.self:Are building a building
 turn.state.street:Is building a street
-turn.state.street.self:Building a street
+turn.state.street.self:Are building a street
 turn.state.card:Is buying a card
-turn.state.card.self:Buying a card
+turn.state.card.self:Are buying a card
 turn.state.dice:Is throwing dices
-turn.state.dice.self:Throwing dices
+turn.state.dice.self:Are throwing dices
 turn.state.trade:Is in the auction house
-turn.state.trade.self:In the auctionhouse
+turn.state.trade.self:are in the auctionhouse
 turn.state.wait:Turn
 turn.state.wait.self:Your turn
 turn.self:You
