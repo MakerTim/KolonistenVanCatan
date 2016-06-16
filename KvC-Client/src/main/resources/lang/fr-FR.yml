@@ -104,6 +104,13 @@ rules.text.rules:Règles
 buycard.msg.buycard:Vous voulez acheter une carte de développement?
 buycard.decision.yes:Oui
 buycard.decision.no:Non
+buypane.text.brick:Pierre
+buypane.text.wool:Laine
+buypane.text.wheat:Grain
+buypane.text.ore:Minerai
+buypane.text.wood:Bois
+buypane.text.resources:Ressources
+buypane.text.cards:Cartes
 
 #CreditsPane
 credits.button.back:Retourner

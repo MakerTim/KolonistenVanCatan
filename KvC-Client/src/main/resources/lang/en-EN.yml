@@ -104,6 +104,13 @@ rules.text.rules:Rules
 buycard.msg.buycard:Do you want to buy a developmentcard?
 buycard.decision.yes:Yes
 buycard.decision.no:No
+buypane.text.brick:Brick
+buypane.text.wool:Wool
+buypane.text.wheat:Wheat
+buypane.text.ore:Ore
+buypane.text.wood:Wood
+buypane.text.resources:Resources
+buypane.text.cards:Cards
 
 #CreditsPane
 credits.button.back:Back
