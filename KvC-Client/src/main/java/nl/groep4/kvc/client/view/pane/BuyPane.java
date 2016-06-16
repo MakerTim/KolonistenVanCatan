@@ -86,6 +86,12 @@ public class BuyPane extends Application implements PaneHolder, UpdateCosts {
 	resources = new Text(TranslationManager.translate("buypane.text.resources"));
 	cards = new Text(TranslationManager.translate("buypane.text.cards"));
 
+	brickAmount = new Text("0");
+	woolAmount = new Text("0");
+	wheatAmount = new Text("0");
+	oreAmount = new Text("0");
+	woodAmount = new Text("0");
+
 	brick.setFont(ViewMaster.FONT);
 	wool.setFont(ViewMaster.FONT);
 	wheat.setFont(ViewMaster.FONT);
@@ -94,17 +100,39 @@ public class BuyPane extends Application implements PaneHolder, UpdateCosts {
 	resources.setFont(ViewMaster.FONT);
 	cards.setFont(ViewMaster.FONT);
 
-	brickAmount = new Text("0");
-	woolAmount = new Text("0");
-	wheatAmount = new Text("0");
-	oreAmount = new Text("0");
-	woodAmount = new Text("0");
-
 	brickAmount.setFont(ViewMaster.FONT);
 	woolAmount.setFont(ViewMaster.FONT);
 	wheatAmount.setFont(ViewMaster.FONT);
 	oreAmount.setFont(ViewMaster.FONT);
 	woodAmount.setFont(ViewMaster.FONT);
+
+	brick.setFill(Color.WHITE);
+	wool.setFill(Color.WHITE);
+	wheat.setFill(Color.WHITE);
+	ore.setFill(Color.WHITE);
+	wood.setFill(Color.WHITE);
+	resources.setFill(Color.WHITE);
+	cards.setFill(Color.WHITE);
+
+	brickAmount.setFill(Color.WHITE);
+	woolAmount.setFill(Color.WHITE);
+	wheatAmount.setFill(Color.WHITE);
+	oreAmount.setFill(Color.WHITE);
+	woodAmount.setFill(Color.WHITE);
+
+	brick.setStroke(Color.BLACK);
+	wool.setStroke(Color.BLACK);
+	wheat.setStroke(Color.BLACK);
+	ore.setStroke(Color.BLACK);
+	wood.setStroke(Color.BLACK);
+	resources.setStroke(Color.BLACK);
+	cards.setStroke(Color.BLACK);
+
+	brickAmount.setStroke(Color.BLACK);
+	woolAmount.setStroke(Color.BLACK);
+	wheatAmount.setStroke(Color.BLACK);
+	oreAmount.setStroke(Color.BLACK);
+	woodAmount.setStroke(Color.BLACK);
 
 	vboxPrices = new VBox();
 	vboxWheat = new VBox();
@@ -123,8 +151,11 @@ public class BuyPane extends Application implements PaneHolder, UpdateCosts {
 	vboxOre.getChildren().addAll(ore, oreAmount);
 
 	hboxPrices.getChildren().addAll(vboxPrices, vboxWheat, vboxWood, vboxWool, vboxBrick, vboxOre);
+	hboxPrices.setAlignment(Pos.CENTER);
+	hboxPrices.setPadding(new Insets(200, 0, 0, 0));
+	hboxPrices.setSpacing(20);
 
-	hbox.setPadding(new Insets(0, 0, 60, 0));
+	hbox.setPadding(new Insets(0, 0, 220, 0));
 	hbox.setSpacing(150);
 	hbox.setAlignment(Pos.CENTER);
 	hbox.getChildren().addAll(yes, no);

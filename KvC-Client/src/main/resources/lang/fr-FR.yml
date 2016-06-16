@@ -88,6 +88,12 @@ turn.state.wait:Tourne
 turn.state.wait.self:Êtes à côté
 turn.self:Vous
 
+cards.monopoly.info:Monopole
+cards.knight.info:chevalier
+cards.road.info:la construction de routes
+cards.cath.info:Cathédrale
+cards.invent.info:Invention
+
 #PausePane
 pause.button.continue:Résumé
 pause.label.pause:Pause
