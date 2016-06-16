@@ -442,5 +442,17 @@ public class TestMapController extends MapController {
 	    // TODO Auto-generated method stub
 
 	}
+
+	@Override
+	public void throwDices() throws RemoteException {
+	    // TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void distrube() throws RemoteException {
+	    // TODO Auto-generated method stub
+
+	}
     }
 }

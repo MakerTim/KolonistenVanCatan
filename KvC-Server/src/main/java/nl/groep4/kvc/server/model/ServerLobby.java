@@ -12,7 +12,6 @@ import nl.groep4.kvc.common.interfaces.Lobby;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.server.controller.ServerKolonistenVanCatan;
 import nl.groep4.kvc.server.controller.ServerLobbyController;
-import nl.groep4.kvc.server.util.ConnectionUtil;
 
 /**
  * Instance of Lobby
@@ -82,10 +81,5 @@ public class ServerLobby implements Lobby {
     @Override
     public KolonistenVanCatan getGame() throws RemoteException {
 	return kvc;
-    }
-
-    public void cleanup() throws RemoteException {
-	ConnectionUtil.cleanup(getPlayers(), pl -> {
-	});
     }
 }

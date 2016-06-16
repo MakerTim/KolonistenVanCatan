@@ -5,10 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nl.groep4.kvc.common.enumeration.BuildingType;
-import nl.groep4.kvc.common.enumeration.TurnState;
 import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Player;
-import nl.groep4.kvc.common.interfaces.UpdateMap;
+import nl.groep4.kvc.common.interfaces.Throw;
 import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Map;
@@ -23,14 +22,18 @@ import nl.groep4.kvc.server.model.map.ServerMap;
  */
 public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 
+    private ServerTurnController turnController;
+
     private final List<Player> players;
     private ServerMap map = new ServerMap();
     private int round;
-    private int turn;
+    private int turn = -1;
+    private Throw lastThrow;
 
     public ServerKolonistenVanCatan(List<Player> players) {
 	System.out.println("Starting game!");
 	this.players = players;
+	turnController = new ServerTurnController(this);
 	players.sort((pl1, pl2) -> {
 	    return Integer.compare(pl1.hashCode(), pl2.hashCode());
 	});
@@ -39,8 +42,8 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 
     @Override
     public void start() {
-	updateTurn();
 	System.out.println("\tStarted game!");
+	nextTurn();
     }
 
     @Override
@@ -73,12 +76,11 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 
     @Override
     public void nextTurn() {
-	turn++;
-	if (turn > players.size()) {
+	if (turn++ >= players.size() - 1) {
 	    turn = 0;
 	    nextRound();
 	}
-	updateTurn();
+	turnController.onTurn();
     }
 
     @Override
@@ -109,30 +111,17 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	update();
     }
 
-    private void updateTurn() {
-	try {
-	    UpdateMap view = getPlayersOrded().get(0).getUpdateable(UpdateMap.class);
-	    view.unblockActions();
-	    view.openDicePane(true);
-	} catch (Exception ex) {
-	    ex.printStackTrace();
-	}
-	for (int i = 1; i < getPlayersOrded().size(); i++) {
-	    try {
-		UpdateMap view = getPlayersOrded().get(i).getUpdateable(UpdateMap.class);
-		view.blockActions();
-		view.openDicePane(false);
-	    } catch (Exception ex) {
-		ex.printStackTrace();
-	    }
-	}
+    @Override
+    public void throwDices() throws RemoteException {
+	ServerThrowController diceController = new ServerThrowController(this);
+	lastThrow = diceController.getThrow();
+	diceController.updateThrow();
+    }
+
+    @Override
+    public void distrube() throws RemoteException {
 	for (Player pl : getPlayers()) {
-	    try {
-		UpdateMap view = pl.getUpdateable(UpdateMap.class);
-		view.updateTurn(getPlayersOrded().get(0), TurnState.THROWING_DICE);
-	    } catch (Exception ex) {
-		ex.printStackTrace();
-	    }
+	    pl.getUpdateable().popup("ding" + lastThrow.getValue());
 	}
     }
 

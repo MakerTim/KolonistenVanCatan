@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.server.ServerStarter;
-import nl.groep4.kvc.server.model.ServerLobby;
+import nl.groep4.kvc.server.util.ConnectionUtil;
 
 public class ArgumentParser {
 
@@ -54,7 +54,8 @@ public class ArgumentParser {
     }
 
     private void clean() throws RemoteException {
-	((ServerLobby) ServerStarter.getLobby()).cleanup();
+	ConnectionUtil.cleanup(ServerStarter.getLobby().getPlayers(), pl -> {
+	});
 	System.out.println("Cleaned the disconnected players.");
     }
 

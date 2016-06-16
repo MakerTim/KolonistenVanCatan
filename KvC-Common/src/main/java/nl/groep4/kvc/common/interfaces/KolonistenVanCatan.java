@@ -43,4 +43,7 @@ public interface KolonistenVanCatan extends Remote {
 
     public void placeStreet(Coordinate coord, Player newOwner) throws RemoteException;
 
+    public void throwDices() throws RemoteException;
+
+    public void distrube() throws RemoteException;
 }

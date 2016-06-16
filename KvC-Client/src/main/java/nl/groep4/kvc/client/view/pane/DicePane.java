@@ -1,7 +1,5 @@
 package nl.groep4.kvc.client.view.pane;
 
-import java.rmi.RemoteException;
-
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -11,23 +9,24 @@ import javafx.scene.text.Text;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
+import nl.groep4.kvc.client.view.elements.KvCText;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.scene.SceneMap;
-import nl.groep4.kvc.common.interfaces.Throw;
+import nl.groep4.kvc.common.interfaces.NotCloseable;
 import nl.groep4.kvc.common.interfaces.UpdateDice;
+import nl.groep4.kvc.common.util.Scheduler;
 
-public class DicePane implements PaneHolder, UpdateDice {
+public class DicePane implements PaneHolder, UpdateDice, NotCloseable {
 
-    StackPane dicePane;
-    Text clickToThrow;
-    Text firstDice;
-    Text secondDice;
-    MenuButton throwDice;
-    HBox dices;
-    VBox things;
+    private Text throwLabel;
+    private Text leftDice;
+    private Text rightDice;
+    private MenuButton throwButton;
+    private HBox dices;
 
     private SceneMap view;
     private boolean isMyTurn;
+    private boolean hasNumber;
 
     public DicePane(SceneMap view, boolean isMyTurn) {
 	this.view = view;
@@ -36,54 +35,84 @@ public class DicePane implements PaneHolder, UpdateDice {
 
     @Override
     public Pane getPane() {
-	dices = new HBox();
-	things = new VBox(20);
+	StackPane layers = new StackPane();
+	VBox lines = new VBox(20);
+	dices = new HBox(100);
 
-	dicePane = new StackPane();
+	throwLabel = new KvCText();
+	if (isMyTurn) {
+	    throwLabel.setText(TranslationManager.translate("map.throwdice.clickToThrow"));
+	} else {
+	    throwLabel.setText(TranslationManager.translate("map.throwdice.clicktothrow.other"));
+	}
+	leftDice = new KvCText();
+	rightDice = new KvCText();
 
-	clickToThrow = new Text(TranslationManager.translate("map.throwdice.clickToThrow"));
-	firstDice = new Text("*");
-	secondDice = new Text("*");
-	throwDice = new MenuButton(0, 0, TranslationManager.translate("map.throwdice.throw"));
-	throwDice.registerClick(() -> throwDice());
-	throwDice.setFont(ViewMaster.FONT);
+	leftDice.setFont(ViewMaster.TITLE_FONT);
+	rightDice.setFont(ViewMaster.TITLE_FONT);
 
-	firstDice.setFont(ViewMaster.FONT);
-	secondDice.setFont(ViewMaster.FONT);
-	clickToThrow.setFont(ViewMaster.FONT);
+	dices.getChildren().addAll(leftDice, rightDice);
+	lines.getChildren().addAll(throwLabel, dices);
+	if (isMyTurn) {
+	    throwButton = new MenuButton(0, 0, TranslationManager.translate("map.throwdice.throw"));
+	    throwButton.registerClick(() -> throwDice());
+	    throwButton.setFont(ViewMaster.FONT);
+	    lines.getChildren().add(throwButton);
+	}
 
-	dices.getChildren().addAll(firstDice, secondDice);
-	things.getChildren().addAll(clickToThrow, dices, throwDice);
-
-	things.setAlignment(Pos.CENTER);
+	lines.setAlignment(Pos.CENTER);
 	dices.setAlignment(Pos.CENTER);
-	dicePane.getChildren().addAll(SceneUtil.getLobbyForeground(), things);
-	SceneUtil.fadeIn(SceneUtil.getLobbyForeground(), things);
-	return dicePane;
+	layers.getChildren().addAll(SceneUtil.getGamePane(), lines);
+	SceneUtil.fadeIn(SceneUtil.getGamePane(), lines);
+	Scheduler.runAsync(() -> {
+	    do {
+		leftDice.setText(Integer.toString(1 + (int) (Math.random() * 6)));
+		rightDice.setText(Integer.toString(1 + (int) (Math.random() * 6)));
+		try {
+		    Thread.sleep(100L);
+		} catch (Exception ex) {
+		    ex.printStackTrace();
+		}
+	    } while (!hasNumber);
+	});
+	return layers;
     }
 
     @Override
     public void updateTranslation() {
-	clickToThrow.setText(TranslationManager.translate("map.throwdice.clickToThrow"));
-	throwDice.updateText(TranslationManager.translate("map.throwdice.throw"));
+	if (isMyTurn) {
+	    throwLabel.setText(TranslationManager.translate("map.throwdice.clickToThrow"));
+	} else {
+	    throwLabel.setText(TranslationManager.translate("map.throwdice.clicktothrow.other"));
+	}
+	if (throwButton != null) {
+	    throwButton.updateText(TranslationManager.translate("map.throwdice.throw"));
+	}
     }
 
-    @Override
-    public void setModel(Throw model) throws RemoteException {
-	firstDice.setText(Integer.toString(model.getDiceLeft()));
-	secondDice.setText(Integer.toString(model.getDiceRight()));
-    }
-
-    @Override
     public void throwDice() {
 	if (isMyTurn) {
+	    isMyTurn = false;
 	    view.getController().throwDice();
+	    throwButton.setDisabled();
 	}
     }
 
     @Override
     public void updateDices(int dice1, int dice2) {
-	firstDice.setText(Integer.toString(dice1));
-	secondDice.setText(Integer.toString(dice2));
+	hasNumber = true;
+	Scheduler.runSyncLater(() -> {
+	    leftDice.setText(Integer.toString(dice1));
+	    rightDice.setText(Integer.toString(dice2));
+	    Scheduler.runSyncLater(() -> {
+		dices.getChildren().clear();
+		Text text = new KvCText(Integer.toString(dice1 + dice2));
+		text.setFont(ViewMaster.TITLE_FONT);
+		dices.getChildren().add(text);
+		Scheduler.runSyncLater(() -> {
+		    view.closeOverlay();
+		}, 5000L);
+	    }, 2500L);
+	}, 200L);
     }
 }
