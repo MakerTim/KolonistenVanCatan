@@ -82,7 +82,7 @@ turn.state.street.self:Plaatst een straat
 turn.state.card:Is een kaart aan het kopen
 turn.state.card.self:Koopt een kaart
 turn.state.dice:Is aan het dobbelen
-turn.state.dice.self:bent aan het dobbelen
+turn.state.dice.self:Bent aan het dobbelen
 turn.state.trade:Is in het veilingshuis
 turn.state.trade.self:Bent in het veilinghuis
 turn.state.wait:Is aan de beurt
