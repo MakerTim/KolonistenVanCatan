@@ -170,4 +170,8 @@ public class BuildPane implements PaneHolder, UpdateCosts {
 	this.wodCity = resources.get(Resource.WOOD);
 	this.wolCity = resources.get(Resource.WOOL);
     }
+
+    @Override
+    public void updateCardCosts(EnumMap<Resource, Integer> resources) throws RemoteException {
+    }
 }

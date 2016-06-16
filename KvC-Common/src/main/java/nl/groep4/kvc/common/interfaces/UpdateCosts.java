@@ -13,4 +13,6 @@ public interface UpdateCosts {
 
     public void updateCityCosts(EnumMap<Resource, Integer> resources) throws RemoteException;
 
+    public void updateCardCosts(EnumMap<Resource, Integer> resources) throws RemoteException;
+
 }

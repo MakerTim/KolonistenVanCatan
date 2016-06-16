@@ -322,6 +322,12 @@ public class SceneMap implements SceneHolder, UpdateMap {
     }
 
     @Override
+    public void updateCardCosts(EnumMap<Resource, Integer> resources) throws RemoteException {
+	buildPane.updateCardCosts(resources);
+	// TODO: ook naar buypane
+    }
+
+    @Override
     public void updateTrades(List<Trade> allTrades) throws RemoteException {
 	tradePane.updateTrades(allTrades);
     }
@@ -361,10 +367,12 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	if (blocked) {
 	    nxtButton.setDisabled();
 	    buildButton.setDisabled();
+	    tradeButton.setDisabled();
 	    buyButton.setDisabled();
 	} else {
 	    nxtButton.setEnabled();
 	    buildButton.setEnabled();
+	    tradeButton.setEnabled();
 	    buyButton.setEnabled();
 	}
     }
