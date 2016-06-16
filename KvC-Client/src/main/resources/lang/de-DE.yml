@@ -100,6 +100,13 @@ rules.text.rules:Regeln
 buycard.msg.buycard:Möchten Sie eine Entwicklungskarte zu öffnen?
 buycard.decision.yes:Ja
 buycard.decision.no:Nein
+buypane.text.brick:Stein
+buypane.text.wool:Wolle
+buypane.text.wheat:Korn
+buypane.text.ore:Erz
+buypane.text.wood:Holz
+buypane.text.resources:Ressourcen
+buypane.text.cards:Karten
 
 #CreditsPane
 credits.button.back:Zurück
