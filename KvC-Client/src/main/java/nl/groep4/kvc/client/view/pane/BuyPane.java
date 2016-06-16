@@ -2,17 +2,18 @@ package nl.groep4.kvc.client.view.pane;
 
 import java.rmi.RemoteException;
 import java.util.EnumMap;
+import java.util.Map.Entry;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -27,14 +28,42 @@ import nl.groep4.kvc.common.interfaces.UpdateCosts;
 public class BuyPane extends Application implements PaneHolder, UpdateCosts {
     private Font font = new Font(ViewMaster.FONT.getName(), 30);
 
-    private TableView table;
     private MenuButton yes;
     private MenuButton no;
+
     private Text buy;
+    private Text brickAmount;
+    private Text woolAmount;
+    private Text wheatAmount;
+    private Text oreAmount;
+    private Text woodAmount;
+    private Text brick;
+    private Text wool;
+    private Text wheat;
+    private Text ore;
+    private Text wood;
+    private Text resources;
+    private Text cards;
+
+    private HBox hboxPrices;
+    private VBox vboxPrices;
+    private VBox vboxWheat;
+    private VBox vboxWood;
+    private VBox vboxWool;
+    private VBox vboxBrick;
+    private VBox vboxOre;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+	Scene scene = new Scene(getPane());
+	primaryStage.setScene(scene);
+	primaryStage.show();
+
+    }
+
+    @Override
+    public Pane getPane() {
 	StackPane buypane = new StackPane();
 	BorderPane border = new BorderPane();
 	HBox hbox = new HBox();
@@ -49,32 +78,78 @@ public class BuyPane extends Application implements PaneHolder, UpdateCosts {
 	buy.setFill(Color.WHITE);
 	buy.setStroke(Color.BLACK);
 
+	brick = new Text(TranslationManager.translate("buypane.text.brick"));
+	wool = new Text(TranslationManager.translate("buypane.text.wool"));
+	wheat = new Text(TranslationManager.translate("buypane.text.wheat"));
+	ore = new Text(TranslationManager.translate("buypane.text.ore"));
+	wood = new Text(TranslationManager.translate("buypane.text.wood"));
+	resources = new Text(TranslationManager.translate("buypane.text.resources"));
+	cards = new Text(TranslationManager.translate("buypane.text.cards"));
+
+	brick.setFont(ViewMaster.FONT);
+	wool.setFont(ViewMaster.FONT);
+	wheat.setFont(ViewMaster.FONT);
+	ore.setFont(ViewMaster.FONT);
+	wood.setFont(ViewMaster.FONT);
+	resources.setFont(ViewMaster.FONT);
+	cards.setFont(ViewMaster.FONT);
+
+	brickAmount = new Text("0");
+	woolAmount = new Text("0");
+	wheatAmount = new Text("0");
+	oreAmount = new Text("0");
+	woodAmount = new Text("0");
+
+	brickAmount.setFont(ViewMaster.FONT);
+	woolAmount.setFont(ViewMaster.FONT);
+	wheatAmount.setFont(ViewMaster.FONT);
+	oreAmount.setFont(ViewMaster.FONT);
+	woodAmount.setFont(ViewMaster.FONT);
+
+	vboxPrices = new VBox();
+	vboxWheat = new VBox();
+	vboxWood = new VBox();
+	vboxWool = new VBox();
+	vboxBrick = new VBox();
+	vboxOre = new VBox();
+
+	hboxPrices = new HBox();
+
+	vboxPrices.getChildren().addAll(resources, cards);
+	vboxWheat.getChildren().addAll(wheat, wheatAmount);
+	vboxWood.getChildren().addAll(wood, woodAmount);
+	vboxWool.getChildren().addAll(wool, woolAmount);
+	vboxBrick.getChildren().addAll(brick, brickAmount);
+	vboxOre.getChildren().addAll(ore, oreAmount);
+
+	hboxPrices.getChildren().addAll(vboxPrices, vboxWheat, vboxWood, vboxWool, vboxBrick, vboxOre);
+
 	hbox.setPadding(new Insets(0, 0, 60, 0));
 	hbox.setSpacing(150);
 	hbox.setAlignment(Pos.CENTER);
 	hbox.getChildren().addAll(yes, no);
 
-	border.setBottom(hbox);
+	border.setTop(hboxPrices);
 	border.setCenter(buy);
+	border.setBottom(hbox);
 
 	Node background = SceneUtil.getGamePane();
 
 	buypane.getChildren().addAll(background, border);
 
-	Scene scene = new Scene(buypane);
-	primaryStage.setScene(scene);
-	primaryStage.show();
-
-    }
-
-    @Override
-    public Pane getPane() {
-	return new Pane();
+	return buypane;
     }
 
     @Override
     public void updateTranslation() {
 
+	brick.setText(TranslationManager.translate("buypane.text.brick"));
+	wool.setText(TranslationManager.translate("buypane.text.wool"));
+	wheat.setText(TranslationManager.translate("buypane.text.wheat"));
+	ore.setText(TranslationManager.translate("buypane.text.ore"));
+	wood.setText(TranslationManager.translate("buypane.text.wood"));
+	resources.setText(TranslationManager.translate("buypane.text.resources"));
+	cards.setText(TranslationManager.translate("buypane.text.cards"));
     }
 
     public static void main(String[] args) {
@@ -83,7 +158,28 @@ public class BuyPane extends Application implements PaneHolder, UpdateCosts {
 
     @Override
     public void updateCardCosts(EnumMap<Resource, Integer> resources) throws RemoteException {
-	// TODO Updatecardcost in buymenu
+
+	for (Entry<Resource, Integer> resource : resources.entrySet()) {
+	    Resource res = resource.getKey();
+	    String amount = resource.getValue().toString();
+	    switch (res) {
+	    case BRICK:
+		brickAmount.setText(amount);
+		break;
+	    case ORE:
+		oreAmount.setText(amount);
+		break;
+	    case WHEAT:
+		wheatAmount.setText(amount);
+		break;
+	    case WOOD:
+		woodAmount.setText(amount);
+		break;
+	    case WOOL:
+		woolAmount.setText(amount);
+		break;
+	    }
+	}
     }
 
     @Override

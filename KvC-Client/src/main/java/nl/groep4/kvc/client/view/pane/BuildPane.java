@@ -43,6 +43,25 @@ public class BuildPane implements PaneHolder, UpdateCosts {
     int wodCity;
     int wolCity;
 
+    /*
+     * private Text brickAmount; private Text woolAmount; private Text
+     * wheatAmount; private Text oreAmount; private Text woodAmount; private
+     * Text brick; private Text wool; private Text wheat; private Text ore;
+     * private Text wood; private Text resources; private Text street; private
+     * Text village; private Text city;
+     * 
+     * private Text wheatStreet; private Text wheatVillage; private Text
+     * wheatCity; private Text woeatStreet; private Text woodVillage; private
+     * Text woodStreet; private Text woodCity; private Text woolStreet; private
+     * Text woolVillage; private Text woolCity; private Text brickStreet;
+     * private Text brickVillage; private Text brickCity; private Text
+     * oreStreet; private Text oreVillage; private Text oreCity;
+     * 
+     * private HBox hboxPrices; private VBox vboxBuilding; private VBox
+     * vboxWheat; private VBox vboxWood; private VBox vboxWool; private VBox
+     * vboxBrick; private VBox vboxOre;
+     */
+
     String wod = (TranslationManager.translate("build.materials.wood"));
     String whe = (TranslationManager.translate("build.materials.wheat"));
     String wol = (TranslationManager.translate("build.materials.wool"));

@@ -15,7 +15,7 @@ game.menu.back:Back
 game.menu.rules:Rules
 game.menu.title:Options
 game.menu.credits:Credits
-game.resourcename.wood:Wood
+game.resourcename.wood:Brick
 game.resourcename.ore:Ore
 game.resourcename.stone:Stone
 game.resourcename.wool:Wool
@@ -43,7 +43,7 @@ build.city.row:City
 build.road.row:Road
 build.materials.row:Materials
 build.materials.wood:Wood
-build.materials.stone:Stone
+build.materials.stone:Brick
 build.materials.wool:Wool
 build.materials.ore:Ore
 build.materials.wheat:Wheat
