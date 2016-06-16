@@ -433,5 +433,11 @@ public class TestMapController extends MapController {
 	public void setBuildingType(BuildingType type) {
 	    typez = type;
 	}
+
+	@Override
+	public void start() throws RemoteException {
+	    // TODO Auto-generated method stub
+
+	}
     }
 }

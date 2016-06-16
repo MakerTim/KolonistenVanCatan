@@ -25,6 +25,24 @@ public class ServerLobbyController {
     }
 
     public void startGame() throws RemoteException {
+	List<Player> playersReady = new ArrayList<>();
+	List<Player> playersUnready = new ArrayList<>();
+	for (Player player : lobby.getPlayers()) {
+	    if (player.getColor() != null) {
+		playersReady.add(player);
+	    } else {
+		playersUnready.add(player);
+	    }
+	}
+	if (playersReady.size() < 2) {
+	    for (Player pl : lobby.getPlayers()) {
+		pl.getUpdateable().popup("noplayers");
+	    }
+	    return;
+	}
+	for (Player player : playersUnready) {
+	    player.getUpdateable(UpdateLobby.class).close("nocolor");
+	}
 	KolonistenVanCatan kvc = (KolonistenVanCatan) UnicastRemoteObject
 		.exportObject(new ServerKolonistenVanCatan(lobby.getPlayers()), 2);
 	kvc.createMap();
@@ -39,6 +57,7 @@ public class ServerLobbyController {
 		}
 	    });
 	}
+	kvc.start();
     }
 
     public Player registerPlayer(String username) throws RemoteException {

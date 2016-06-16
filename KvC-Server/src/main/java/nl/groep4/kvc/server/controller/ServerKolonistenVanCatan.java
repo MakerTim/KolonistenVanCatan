@@ -7,6 +7,7 @@ import java.util.List;
 import nl.groep4.kvc.common.enumeration.BuildingType;
 import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Player;
+import nl.groep4.kvc.common.interfaces.UpdateMap;
 import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Map;
@@ -28,6 +29,14 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 
     public ServerKolonistenVanCatan(List<Player> players) {
 	this.players = players;
+	players.sort((pl1, pl2) -> {
+	    return Integer.compare(pl1.hashCode(), pl2.hashCode());
+	});
+    }
+
+    @Override
+    public void start() {
+	updateTurn();
     }
 
     @Override
@@ -65,6 +74,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	    turn = 0;
 	    nextRound();
 	}
+	updateTurn();
     }
 
     @Override
@@ -93,6 +103,21 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	    System.err.println(ex);
 	}
 	update();
+    }
+
+    private void updateTurn() {
+	try {
+	    getPlayersOrded().get(0).getUpdateable(UpdateMap.class).unblockActions();
+	} catch (Exception ex) {
+	    ex.printStackTrace();
+	}
+	for (int i = 1; i < getPlayersOrded().size(); i++) {
+	    try {
+		getPlayersOrded().get(i).getUpdateable(UpdateMap.class).unblockActions();
+	    } catch (Exception ex) {
+		ex.printStackTrace();
+	    }
+	}
     }
 
 }

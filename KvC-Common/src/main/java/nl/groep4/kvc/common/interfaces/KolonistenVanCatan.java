@@ -22,6 +22,8 @@ public interface KolonistenVanCatan extends Remote {
 
     public void nextTurn() throws RemoteException;
 
+    public void start() throws RemoteException;
+
     public Map getMap() throws RemoteException;
 
     public default void update() throws RemoteException {
