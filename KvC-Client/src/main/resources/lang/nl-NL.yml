@@ -88,6 +88,13 @@ turn.state.wait:Is aan de beurt
 turn.state.wait.self:Bent aan zet
 turn.self:U
 
+#Cards
+cards.monopoly.info:Monopolie
+cards.knight.info:Ridder
+cards.road.info:Stratenbouw
+cards.cath.info:Kathedraal
+cards.invent.info:Uitvinding
+
 #PausePane
 pause.button.continue:Hervatten
 pause.label.pause:Pauze
