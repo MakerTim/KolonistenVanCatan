@@ -113,7 +113,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	}
 	for (int i = 1; i < getPlayersOrded().size(); i++) {
 	    try {
-		getPlayersOrded().get(i).getUpdateable(UpdateMap.class).unblockActions();
+		getPlayersOrded().get(i).getUpdateable(UpdateMap.class).blockActions();
 	    } catch (Exception ex) {
 		ex.printStackTrace();
 	    }

@@ -48,8 +48,9 @@ public class ServerLobbyController {
 	kvc.createMap();
 	lobby.setState(State.IN_GAME);
 	lobby.setGame(kvc);
+	List<Runnable> runners = new ArrayList<>();
 	for (Player pl : lobby.getPlayers()) {
-	    Scheduler.runAsync(() -> {
+	    runners.add(() -> {
 		try {
 		    pl.getUpdateable(UpdateLobby.class).start();
 		} catch (Exception ex) {
@@ -57,7 +58,14 @@ public class ServerLobbyController {
 		}
 	    });
 	}
-	kvc.start();
+	Scheduler.runSync(runners);
+	Scheduler.runAsyncLater(() -> {
+	    try {
+		kvc.start();
+	    } catch (Exception ex) {
+		ex.printStackTrace();
+	    }
+	}, 1000L);
     }
 
     public Player registerPlayer(String username) throws RemoteException {
