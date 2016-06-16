@@ -1,11 +1,15 @@
 package nl.groep4.kvc.client.view.elements;
 
+import java.util.EnumMap;
+import java.util.Map.Entry;
+
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
+import nl.groep4.kvc.common.enumeration.Resource;
 
 public class ResourceCard extends Text {
 
@@ -181,6 +185,30 @@ public class ResourceCard extends Text {
 	nameWheat.setText(TranslationManager.translate("game.resourcename.wheat"));
 	nameWool.setText(TranslationManager.translate("game.resourcename.wool"));
 
+    }
+
+    public void updateStock(EnumMap<Resource, Integer> resources) {
+	for (Entry<Resource, Integer> resource : resources.entrySet()) {
+	    Resource res = resource.getKey();
+	    String amnt = resource.getValue().toString();
+	    switch (res) {
+	    case BRICK:
+		amntStone.setText(amnt);
+		break;
+	    case ORE:
+		amntOre.setText(amnt);
+		break;
+	    case WHEAT:
+		amntWheat.setText(amnt);
+		break;
+	    case WOOD:
+		amntWood.setText(amnt);
+		break;
+	    case WOOL:
+		amntWool.setText(amnt);
+		break;
+	    }
+	}
     }
 
 }

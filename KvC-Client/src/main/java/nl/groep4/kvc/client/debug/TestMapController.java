@@ -99,6 +99,7 @@ public class TestMapController extends MapController {
 		for (Resource resource : Resource.values()) {
 		    resources.put(resource, new Random().nextInt(100));
 		}
+		view.updateStock(new EnumMap<>(resources));
 		List<Card> cards = new ArrayList<>();
 		for (CardType card : CardType.values()) {
 		    cards.add(new Card() {
