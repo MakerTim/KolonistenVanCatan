@@ -278,6 +278,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	buildPane.updateTranslation();
 	tradePane.updateTranslation();
 	pausePane.updateTranslation();
+	buyPane.updateTranslation();
     }
 
     @Override
@@ -309,22 +310,25 @@ public class SceneMap implements SceneHolder, UpdateMap {
     @Override
     public void updateCityCosts(EnumMap<Resource, Integer> resources) throws RemoteException {
 	buildPane.updateCityCosts(resources);
+	buyPane.updateCityCosts(resources);
     }
 
     @Override
     public void updateStreetCosts(EnumMap<Resource, Integer> resources) throws RemoteException {
 	buildPane.updateStreetCosts(resources);
+	buyPane.updateStreetCosts(resources);
     }
 
     @Override
     public void updateVillageCosts(EnumMap<Resource, Integer> resources) throws RemoteException {
 	buildPane.updateVillageCosts(resources);
+	buyPane.updateVillageCosts(resources);
     }
 
     @Override
     public void updateCardCosts(EnumMap<Resource, Integer> resources) throws RemoteException {
 	buildPane.updateCardCosts(resources);
-	// TODO: ook naar buypane
+	buyPane.updateCardCosts(resources);
     }
 
     @Override
