@@ -28,7 +28,7 @@ public class TranslationTest {
     @Test
     public void translateWithArgs() {
 	for (int i = 0; i < 1000; i++) {
-	    assertEquals("Args", "Round: " + i, TranslationManager.translate("game.name.round", i));
+	    assertEquals("Args", "Round: " + i, TranslationManager.translate("game.round", i));
 	}
     }
 
