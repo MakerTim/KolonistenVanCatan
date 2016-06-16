@@ -1,13 +1,15 @@
 package nl.groep4.kvc.client.view.pane;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.TableView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -20,6 +22,7 @@ import nl.groep4.kvc.client.view.elements.MenuButton;
 public class BuyPane extends Application implements PaneHolder {
     private Font font = new Font(ViewMaster.FONT.getName(), 30);
 
+    private TableView table;
     private MenuButton yes;
     private MenuButton no;
     private Text buy;
@@ -28,7 +31,7 @@ public class BuyPane extends Application implements PaneHolder {
     public void start(Stage primaryStage) throws Exception {
 
 	StackPane buypane = new StackPane();
-	VBox vbox = new VBox();
+	BorderPane border = new BorderPane();
 	HBox hbox = new HBox();
 
 	yes = new MenuButton(425, 500, TranslationManager.translate("buycard.decision.yes"));
@@ -41,14 +44,17 @@ public class BuyPane extends Application implements PaneHolder {
 	buy.setFill(Color.WHITE);
 	buy.setStroke(Color.BLACK);
 
+	hbox.setPadding(new Insets(0, 0, 60, 0));
+	hbox.setSpacing(150);
 	hbox.setAlignment(Pos.CENTER);
-	vbox.setAlignment(Pos.CENTER);
+	hbox.getChildren().addAll(yes, no);
+
+	border.setBottom(hbox);
+	border.setCenter(buy);
 
 	Node background = SceneUtil.getGamePane();
 
-	hbox.getChildren().addAll(yes, no);
-	vbox.getChildren().addAll(buy, hbox);
-	buypane.getChildren().addAll(background, vbox);
+	buypane.getChildren().addAll(background, border);
 
 	Scene scene = new Scene(buypane);
 	primaryStage.setScene(scene);
