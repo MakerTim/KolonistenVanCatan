@@ -133,7 +133,7 @@ public class BuildPane implements PaneHolder, UpdateCosts {
 	whe = (TranslationManager.translate("build.materials.wheat"));
 	sto = (TranslationManager.translate("build.materials.stone"));
 	ore = (TranslationManager.translate("build.materials.ore"));
-	wol = (TranslationManager.translate("build.materials.wol"));
+	wol = (TranslationManager.translate("build.materials.wool"));
 	RoadPrices.setText(TranslationManager.translate("build.road.row") + " " + brStreet + orStreet + whStreet
 		+ wodStreet + wolStreet);
 	VillagePrices.setText(TranslationManager.translate("build.village.row") + " " + brVillage + orVillage
