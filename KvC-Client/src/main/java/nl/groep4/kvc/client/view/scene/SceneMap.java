@@ -24,6 +24,7 @@ import nl.groep4.kvc.client.view.ExceptionDialog;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.pane.BuildPane;
+import nl.groep4.kvc.client.view.pane.BuyPane;
 import nl.groep4.kvc.client.view.pane.CreditsPane;
 import nl.groep4.kvc.client.view.pane.DicePane;
 import nl.groep4.kvc.client.view.pane.MapPane;
@@ -63,12 +64,13 @@ public class SceneMap implements SceneHolder, UpdateMap {
     private MenuButton buyButton;
     private Pane layers;
 
-    private StockPane stockPane = new StockPane(this);
-    private ScoreRoundPane scorePane = new ScoreRoundPane();
-    private TurnInfoPane infoPane = new TurnInfoPane();
-    private BuildPane buildPane = new BuildPane(this);
-    private TradePane tradePane = new TradePane(this);
-    private PausePane pausePane = new PausePane(this);
+    private StockPane stockPane;
+    private ScoreRoundPane scorePane;
+    private TurnInfoPane infoPane;
+    private BuildPane buildPane;
+    private TradePane tradePane;
+    private PausePane pausePane;
+    private BuyPane buyPane;
 
     @Override
     public void registerController(Controller controller) {
@@ -85,6 +87,14 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    layers = new StackPane();
 	    BorderPane screen = new BorderPane();
 	    screen.setPickOnBounds(false);
+
+	    stockPane = new StockPane(this);
+	    scorePane = new ScoreRoundPane();
+	    infoPane = new TurnInfoPane();
+	    buildPane = new BuildPane(this);
+	    tradePane = new TradePane(this);
+	    pausePane = new PausePane(this);
+	    buyPane = new BuyPane();
 
 	    /* Build top */
 	    BorderPane top = new BorderPane();
@@ -191,7 +201,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
 
     @Override
     public void openBuyPane() {
-	// setOverlay(new BuyPane());
+	setOverlay(buyPane);
     }
 
     public void openPlaceTradePane() {

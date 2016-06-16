@@ -34,7 +34,7 @@ public class RmiServer {
 	    ServerLobbyController lobbyController = new ServerLobbyController(lobby);
 	    lobby.setController(lobbyController);
 	    ServerStarter.setLobby(lobby);
-	    Remote lobbySkeleton = UnicastRemoteObject.exportObject(lobby, 1);
+	    Remote lobbySkeleton = UnicastRemoteObject.exportObject(lobby, 0);
 	    Registry registry = LocateRegistry.createRegistry(port);
 	    registry.rebind(KvCStatics.LOBBY_KEY, lobbySkeleton);
 	    System.out.println("Server online!");

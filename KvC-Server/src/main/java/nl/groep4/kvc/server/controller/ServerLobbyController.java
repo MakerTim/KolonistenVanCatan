@@ -44,7 +44,7 @@ public class ServerLobbyController {
 	    player.getUpdateable(UpdateLobby.class).close("nocolor");
 	}
 	KolonistenVanCatan kvc = (KolonistenVanCatan) UnicastRemoteObject
-		.exportObject(new ServerKolonistenVanCatan(lobby.getPlayers()), 2);
+		.exportObject(new ServerKolonistenVanCatan(lobby.getPlayers()), 0);
 	kvc.createMap();
 	lobby.setState(State.IN_GAME);
 	lobby.setGame(kvc);
