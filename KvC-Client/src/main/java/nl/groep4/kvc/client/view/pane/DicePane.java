@@ -13,10 +13,11 @@ import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.scene.SceneMap;
+import nl.groep4.kvc.common.interfaces.NotCloseable;
 import nl.groep4.kvc.common.interfaces.Throw;
 import nl.groep4.kvc.common.interfaces.UpdateDice;
 
-public class DicePane implements PaneHolder, UpdateDice {
+public class DicePane implements PaneHolder, UpdateDice, NotCloseable {
 
     StackPane dicePane;
     Text clickToThrow;
