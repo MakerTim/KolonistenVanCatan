@@ -155,7 +155,7 @@ d) Speciale gebeurtenissen + kaarten
 		- stratenbouw: de speler mag onmiddellijk 2 nieuwe straten (gratis) bouwen
 		- ontdekking: de speler mag onmiddellijk 2 grondstofkaarten naar keuze nemen
 		- monopolie: alle spelers moeten al hun grondstofkaarten van een bepaalde
-		 soort - te bepalen door de speler die de kaart gebruikt - afgeven aan die speler
-		- Punten
-	  	  Deze kaarten leveren extra punten op en worden het best pas op het einde van het spel getoond.
+		  soort - te bepalen door de speler die de kaart gebruikt - afgeven aan die speler
+		- Punten: deze kaarten leveren extra punten op en worden het best pas op het einde van het
+		  spel getoond.
 

@@ -1,0 +1,160 @@
+Règles
+
+Auteur original: Klaus Tauber
+2 à 6 joueurs âgés de 11 ans
+
+
+Objectif
+Le joueur qui va marquer les 10 ou plusieurs premiers points gagne la partie. Le nombre de points peut
+varier entre 10 et 15, en fonction de ce que vous êtes d'accord à l'avance.
+
+
+Structure du le jeu de plateau
+Divisez les espaces terrestres et maritimes. Laisse un carreau de terre au milieu, suivi de deux champs
+du désert là-bas parallèle à. Continuer avec le reste des tuiles de terre en forme de spirale autour de
+la moyenne, de sorte que le pays est une symétrie. Et enfin placer la tuile de la mer autour de l'île.
+Pour ce faire, alternativement dans l'ordre de l'eau - 2: 1 port - Eau - 3: 1 port. La rotation du port
+est aléatoire, mais les deux points de port doivent se connecter avec le continent.
+
+
+Ensuite, les jetons numériques sont placés sur le plateau de jeu avec les lettres vers le haut et cela
+dans une forme en spirale, à partir d'un coin de tuiles de choix. Si tous les jetons sont placés sur la
+carte, elles sont retournées de manière que les nombres soient clairement visibles.
+
+
+Les numéros (2 à 12) sont chacun deux fois dans le jeu (sauf les 2 et 12 lui-même:
+seulement 1 fois). Ils donnent la probabilité de la somme des deux dés.
+Plus la taille du nombre est élevé, plus la probabilité que cette somme est découpée.
+Les combinaisons se produisent les plus élevés (6 et 8) sont également très clair imprimé en rouge.
+Aucun jetons sont placés sur les tuiles du désert.
+Une fois que le conseil est structuré, chaque joueur choisit une couleur et recevoir 5
+villages (maisons), 4 villes (églises), 15 blocs (rues) et une carte des coûts de construction.
+Les cartes de ressources sont placées dans cinq piles ouvertes à côté du plateau. le
+variantes sont la forêt (bois), les pâturages (laine), champ (grain), Hill (pierres), montagne (minerai).
+Les cartes de développement (plus sombre arrière) sont placées face cachée dans une pile. Le bandit
+(pion noir) doit être placé dans le désert. Les deux cartes spéciales et les dés soient prêts à côté du
+plateau.
+
+
+Phase de règlement
+Cette phase est répartie sur deux tours. Chaque joueur a la possibilité de construire deux
+colonies et deux voies avant de commencer le jeu lui-même.
+
+Premier tour
+Qui dices le plus élevé commence. Il place un règlement sur un coin de choix et se connecte
+ceci à une rue dans une direction de choix. Par la suite, les autres joueurs sont dans le
+sens horaire tourner. Cependant, il faut garder à l'esprit qu'il ya une règle à distance!
+	- Règle de Distance
+	  Un règlement ne peut être mis sur une intersection libre si les trois
+	  intersections les plus proches sont libres des colonies ou des villes. Peu importe qui
+	  est là, l'intersection doit être rester inoccupée.
+
+Deuxième tour
+Après cela, la personne qui a été mise au premier tour, doit placer une seconde colonies. le
+les autres joueurs vont suivre dans le sens antihoraire. Les deuxièmes colonies peuvent être
+- En tenant compte de la règle de la distance - placé partout. Immédiatement après avoir placé le
+deuxième colonies, chaque joueur recevront leurs premières ressources. Pour chaque tuile de terre
+qui est adjacent à un règlement, le joueur recevra une carte de ressource correspondante de la
+Stock. Les joueurs gardent ces cartes de ressources cachées de l'autre. Lorsque le dernier joueur
+placé son deuxième règlement, le jeu commence.
+
+Gameplay
+Chaque joueur passe par par tour les trois phases suivantes:
+	- Le bénéfice des carreaux de terre
+	- Commerce
+	- Construire
+	- Certains événements spéciaux
+
+
+a) Le bénéfice de la terre
+Le joueur whos tour, il est doit rouler deux dés. La somme des deux dés détermine
+le nombre sur la tuile de terre qui fournit des ressources. Tout joueur qui a un règlement ou d'une
+ville sur ce morceau de terre, reçoit une carte des ressources (deux si elle est une ville).
+S'il n'y a plus de ressources cartes en stock, aucun joueur recevra la carte dans ce tour.
+
+b) Opérations
+Après cela, le joueur peut échanger avec d'autres joueurs afin d'obtenir les ressources qui lui
+manque. Nous distinguons le commerce intérieur gagnant et le commerce maritime.
+
+	- Commerce intérieur
+	  Le joueur peut échanger des cartes de ressources avec tous les joueurs. Il partage avec les autres
+	  joueurs ce il a besoin et ce qu'il est prêt à donner en échange. Il est important qu'il y ait peut
+	  seulement être échangé avec le joueur dont le tour est, pas amongs les autres joueurs quand il est
+	  pas leur tour.
+
+	- Le commerce maritime
+	  Ici, le joueur peut échanger des cartes de ressources sans l'aide de ses coéquipiers.
+	  Dans le plus simple échange, le joueur peut échanger 4 cartes de ressources d'un genre à 1
+	  carte ressource de choix. La possession d'un port est pas nécessaire. Quand un joueur a cependant un
+	  règlement à la mer, il peut d offres beaucoup plus intéressantes. À un port simple, (avec?)
+	  le joueur peut toujours échanger trois cartes de ressources identiques pour un autre 1 de choix.
+	  À un port spécial, le joueur a besoin seulement deux cartes identiques, le même que sur la photo du
+	  port, à échanger contre une nouvelle carte de ressource de choix.
+
+c) Bâtiment
+Le joueur dont le tour est peut aussi construire pour augmenter ses points. En échange de
+combinaisons de cartes de ressources (coûts de construction carte), il pourrait construire de
+nombreuses rues, colonies ou villes.
+
+Frais:
+	Rue: bois + pierre
+	Une nouvelle rue doit être construit à côté déjà propriétaire des rues, des villages et des villes.
+	Sur chaque rue seulement une rue peut être construit. Une fois qu'un joueur a a une route contiguë de
+	cinq pièces, il reçoit la carte spéciale "la plus longue route" en lui donnant deux points
+	supplémentaires. Une route peut être interrompu ou un autre joueur peut construire une route plus longue.
+	A ce moment, la carte spéciale sera aller au joueur avec la plus longue route. Lorsque deux joueurs
+	ou plus ont une aussi longue rue, la carte est retour au stock.
+
+	Règlement: bois + pierre + grain + laine
+	Compte tenu de la règle de la distance. Le règlement doit être placé à au moins une rue appartenant.
+	Tout règlement sur la carte fournit également un point et un joueur peut gagner 1 carte ressource si
+	les dés déterminer.
+
+	Ville: 2 + 3 grains de minerai
+	Le joueur convertit son établissement dans une ville. Il change la maison pour une église.
+	Chaque ville vaut 2 points et peut gagner 2 cartes de ressources.
+
+	Carte de développement: grain + laine + minerai
+	Si un joueur veut acheter une carte de développement, il prend le premier sur la pile dans
+	échange pour les trois cartes de ressources nécessaires. La carte de développement
+	résultant(s) est le mieux gardé un secret pour les autres. Une carte bien acheté ne doit pas
+	être utilisé tout de suite. Il y a 14 chevaliers, 6 cartes de progrès et de 5 points dans
+	le jeu.
+
+d) événements + cartes spéciales
+
+	- Le bandit
+	  Quand un joueur dices 7 au début de son tour, le joueur doit déplacer l'un des deux
+	  bandits à une autre tuile de terre. Les joueurs qui ont des colonies ou des villes
+	  adjacentes à les carreaux de terre où les voleurs seront placés sur, et ont plus de
+	  sept cartes, doit donner la moitié de leurs cartes. Ces joueurs ont également ne reçoivent
+	  pas les cartes de ressources jusqu'à ce que le bandit a été déplacé à nouveau.
+	  Le programme d'installation du bandit peut encore voler une ressource à partir d'un joueur
+	  dont le règlement ou la ville adjacente à une tuile où le bandit a été placé sur,
+	  si disponible. Quand il y a plusieurs joueurs, il choisit l'un d'une victime
+	  de choix. Se Robbing arrivera fermé: vous ne pouvez pas voir ce genre de carte que vous voler.
+	  Aussi longtemps que un bandit se dresse sur une tuile, aucun joueur reçoit des cartes de
+	  ressources de cette tuile.
+
+	- Cartes à jouer Développement
+	  À tout moment pendant votre tour, vous pouvez jouer 1 carte de développement. Mais il ne
+	  peut pas être une carte vous avez acheté dans le même tour!
+
+	- Chevalier
+	  Quand un joueur joue cette carte, il doit mettre le rover sur une autre tuile de terre.
+	  Il a aussi vole une carte des ressources de tout joueur qui a un règlement ou d'une
+	  ville à côté de la tuile. Cartes Chevalier jouées restent ouvertes pour le joueur sur la
+	  table. Un joueur avec 3 joué cartes Chevalier reçoit la carte spéciale
+	  "la plus grande armée". Cela lui donne 2 points supplémentaires. Cette carte retourne au
+	  stock si quelqu'un d'autre a des cartes de chevalier autant, ou va à qui à ce moment-là
+	  encore, a la «plus grande armée".
+
+	  - La progression
+	  	La personne qui joue une telle carte, doit suivre la commande sur la carte. La carte
+	  	doit alors retourner retour sous la pile.
+		- Construction de routes: le joueur peut immédiatement construire deux nouvelles rues (gratuit)
+		- Découverte: le joueur peut immédiatement prendre 2 cartes de ressources de votre choix
+		- Monopoly: tous les joueurs doivent donner toutes leurs cartes de ressources d'un certain
+		genre - à déterminer par le joueur en utilisant la carte - à ce joueur
+		- Points: ces cartes fournissent des points supplémentaires pour être le meilleur
+		et uniquement affichés à la fin du jeu.

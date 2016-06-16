@@ -145,11 +145,11 @@ d) Special events + cards
 	  at that time again, has the "Largest Army".
 
 	- Progress
-	  The person who plays such a card, must follow the command on the card. The card then must return
-	  back under the pile.
+	  The person who plays such a card, must follow the command on the card. The card then must
+	  return back under the pile.
 	  - Road construction: the player may immediately build two new streets (free)
 	  - Discovery: the player may immediately take 2 resource cards of your choice
 	  - Monopoly: all players must give all their resource cards of a certain
 		kind - to be determined by the player using the card - to that player
-	  - Points
-	    These cards provide additional points to be the best and only shown on the end of the game.
+	  - Points: these cards provide additional points to be the best and only shown on the end
+	  	of the game.
