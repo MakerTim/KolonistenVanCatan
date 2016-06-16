@@ -3,6 +3,7 @@ package nl.groep4.kvc.client.view.pane;
 import java.util.EnumMap;
 import java.util.List;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
@@ -112,6 +113,7 @@ public class StockPane implements PaneHolder, UpdateStock {
 	devCards.setMaxWidth(600);
 	devCards.getChildren().addAll(getKnightCard(), getInventCard(), getMonoCard(), getCathCard(), getRoadCard());
 	devCards.setAlignment(Pos.CENTER);
+	devCards.setPadding(new Insets(8, 0, 8, 0));
 
 	allThings.setAlignment(Pos.BOTTOM_CENTER);
 	cardPane.setMouseTransparent(true);
