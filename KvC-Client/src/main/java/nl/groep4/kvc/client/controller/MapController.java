@@ -50,6 +50,10 @@ public class MapController implements Controller {
     }
 
     public void throwDice() {
-	// TODO: controller-throwdice
+	try {
+	    model.throwDices();
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
     }
 }

@@ -8,7 +8,8 @@ import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Map;
 import nl.groep4.kvc.common.map.Street;
 
-public interface UpdateMap extends Updatable<Map>, UpdateStock, UpdateCosts, UpdateTrade, UpdateRound, UpdateScore {
+public interface UpdateMap
+	extends Updatable<Map>, UpdateDice, UpdateStock, UpdateCosts, UpdateTrade, UpdateRound, UpdateScore {
 
     public void closeOverlay() throws RemoteException;
 

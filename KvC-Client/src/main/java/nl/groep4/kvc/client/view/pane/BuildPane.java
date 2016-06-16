@@ -73,9 +73,10 @@ public class BuildPane implements PaneHolder, UpdateCosts {
     Text RoadPrices = new Text(TranslationManager.translate("build.road.row"));
     Text VillagePrices = new Text(TranslationManager.translate("build.village.row"));
     Text CityPrices = new Text(TranslationManager.translate("build.city.row"));
+    SceneMap sceneMap;
 
     public BuildPane(SceneMap sceneMap) {
-	// TODO Auto-generated constructor stub
+	this.sceneMap = sceneMap;
     }
 
     @Override

@@ -7,6 +7,7 @@ import java.util.List;
 import nl.groep4.kvc.common.enumeration.BuildingType;
 import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Player;
+import nl.groep4.kvc.common.interfaces.Throw;
 import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Map;
@@ -21,11 +22,13 @@ import nl.groep4.kvc.server.model.map.ServerMap;
  */
 public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 
+    private ServerTurnController turnController;
+
     private final List<Player> players;
     private ServerMap map = new ServerMap();
     private int round;
     private int turn = -1;
-    private ServerTurnController turnController;
+    private Throw lastThrow;
 
     public ServerKolonistenVanCatan(List<Player> players) {
 	System.out.println("Starting game!");
@@ -39,8 +42,8 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 
     @Override
     public void start() {
-	nextTurn();
 	System.out.println("\tStarted game!");
+	nextTurn();
     }
 
     @Override
@@ -106,6 +109,20 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	    System.err.println(ex);
 	}
 	update();
+    }
+
+    @Override
+    public void throwDices() throws RemoteException {
+	ServerThrowController diceController = new ServerThrowController(this);
+	lastThrow = diceController.getThrow();
+	diceController.updateThrow();
+    }
+
+    @Override
+    public void distrube() throws RemoteException {
+	for (Player pl : getPlayers()) {
+	    pl.getUpdateable().popup("ding" + lastThrow.getValue());
+	}
     }
 
 }

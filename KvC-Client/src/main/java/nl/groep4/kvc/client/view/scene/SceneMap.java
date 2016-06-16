@@ -43,6 +43,7 @@ import nl.groep4.kvc.common.interfaces.Card;
 import nl.groep4.kvc.common.interfaces.NotCloseable;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.Trade;
+import nl.groep4.kvc.common.interfaces.UpdateDice;
 import nl.groep4.kvc.common.interfaces.UpdateMap;
 import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Map;
@@ -255,8 +256,8 @@ public class SceneMap implements SceneHolder, UpdateMap {
 		theOverlayBackground.setFill(new Color(0.1, 0.1, 0.1, 0.5));
 		if (!(theOverlayPane instanceof NotCloseable)) {
 		    theOverlayBackground.setOnMouseClicked(click -> closeOverlay());
+		    layers.getChildren().add(theOverlayBackground);
 		}
-		layers.getChildren().add(theOverlayBackground);
 		layers.getChildren().add(theOverlayPane);
 		SceneUtil.fadeIn(theOverlayPane);
 	    } else {
@@ -399,5 +400,16 @@ public class SceneMap implements SceneHolder, UpdateMap {
     @Override
     public void unblockActions() throws RemoteException {
 	setBlockedButtons(false);
+    }
+
+    @Override
+    public void updateDices(int dice1, int dice2) {
+	if (overlayPane instanceof UpdateDice) {
+	    try {
+		((UpdateDice) overlayPane).updateDices(dice1, dice2);
+	    } catch (RemoteException ex) {
+		ex.printStackTrace();
+	    }
+	}
     }
 }

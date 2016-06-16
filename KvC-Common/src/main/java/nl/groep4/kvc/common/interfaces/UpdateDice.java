@@ -1,9 +1,9 @@
 package nl.groep4.kvc.common.interfaces;
 
-public interface UpdateDice extends UpdatablePane<Throw> {
+import java.rmi.RemoteException;
 
-    public void throwDice();
+public interface UpdateDice {
 
-    public void updateDices(int dice1, int dice2);
+    public void updateDices(int dice1, int dice2) throws RemoteException;
 
 }

@@ -12,6 +12,7 @@ import nl.groep4.kvc.common.interfaces.Lobby;
 import nl.groep4.kvc.common.interfaces.Lobby.State;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.UpdateLobby;
+import nl.groep4.kvc.common.interfaces.UpdateMap;
 import nl.groep4.kvc.common.util.Scheduler;
 import nl.groep4.kvc.server.model.ServerLobby;
 import nl.groep4.kvc.server.model.ServerPlayer;
@@ -60,13 +61,27 @@ public class ServerLobbyController {
 	    });
 	}
 	Scheduler.runSyncd(runners);
-	Scheduler.runAsyncLater(() -> {
+	Scheduler.runAsync(() -> {
+	    boolean hasCastException;
+	    do {
+		hasCastException = false;
+		try {
+		    Thread.sleep(100L);
+		    for (Player pl : kvc.getPlayers()) {
+			UpdateMap updateMap = pl.getUpdateable(UpdateMap.class);
+			updateMap.testConnection();
+		    }
+		} catch (Exception ex) {
+		    hasCastException = true;
+		    System.err.println("ServerLobbyController -> " + ex);
+		}
+	    } while (hasCastException);
 	    try {
 		kvc.start();
 	    } catch (Exception ex) {
 		ex.printStackTrace();
 	    }
-	}, 1000L);
+	});
     }
 
     public Player registerPlayer(String username) throws RemoteException {
