@@ -1,7 +1,8 @@
 language:Nederlands
 
 #Game
-game.name.round:Ronde: %d
+game.round:Ronde: %d
+game.score:Score: %d
 game.button.build:Bouwen
 game.button.trade:Ruilen
 game.button.buy:Kopen
@@ -73,6 +74,21 @@ lobby.label.nosound:Geen Geluid
 lobby.button.join:Meedoen
 lobby.button.settings:Instellingen
 
+#Turn
+turn.state.building:Is een gebouw aan het bouwen
+turn.state.building.self:Plaats een gebouw
+turn.state.street:Is een straat aan het bouwen
+turn.state.street.self:Plaats een straat
+turn.state.card:Is een kaart aan het kopen
+turn.state.card.self:Koop een kaart
+turn.state.dice:Is aan het dobbelen
+turn.state.dice.self:Dobbel dobbelstenen
+turn.state.trade:Is in het veilingshuis
+turn.state.trade.self:U bent in het veilinghuis
+turn.state.wait:Is aan de beurt
+turn.state.wait.self:Je bent aan zet
+turn.self:U
+
 #PausePane
 pause.button.continue:Hervatten
 pause.label.pause:Pauze
@@ -98,6 +114,9 @@ credits.text.credits:Credits
 note.ingame.title:Spel is begonnen
 note.ingame.explanation:U kunt niet meer van kleur switchen als het spel al begonnen is
 note.ingame.details:Tijdens het spel kunt u niet van kleur veranderen
+note.noplayers.title:Niet genoeg mensen
+note.players.explanation:Niet genoeg mensen zijn aanwezig
+note.players.details:Exception: 503 Service Unavailable
 
 #Map
 map.throwdice.clickToThrow:Dobbelen

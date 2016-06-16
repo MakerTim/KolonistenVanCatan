@@ -1,7 +1,6 @@
 language:English
 
 #Game
-game.name.round:Round: %d
 game.round:Round: %d
 game.score:Score: %d
 game.button.build:Build
@@ -75,6 +74,21 @@ lobby.label.nosound:No Sound
 lobby.button.join:Join
 lobby.button.settings:Settings
 
+#Turn
+turn.state.building:Is building a building
+turn.state.building.self:building a building
+turn.state.street:Is building a street
+turn.state.street.self:Building a street
+turn.state.card:Is buying a card
+turn.state.card.self:Buying a card
+turn.state.dice:Is throwing dices
+turn.state.dice.self:Throwing dices
+turn.state.trade:Is in the auction house
+turn.state.trade.self:In the auctionhouse
+turn.state.wait:Turn
+turn.state.wait.self:Your turn
+turn.self:You
+
 #PausePane
 pause.button.continue:hervatten
 pause.label.pause:Pauze
@@ -100,6 +114,9 @@ credits.text.credits:Credits
 note.ingame.title:Game in progress
 note.ingame.explanation:You can no longer pick a different colour
 note.ingame.details:Switching colour is unavailable while game is running
+note.noplayers.title:Not enough people
+note.players.explanation:There are not enough people
+note.players.details:Exception: 503 Service Unavailable
 
 #Map
 map.throwdice.clickToThrow:Throw the dice
