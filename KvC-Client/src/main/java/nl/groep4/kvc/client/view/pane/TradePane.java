@@ -3,6 +3,7 @@ package nl.groep4.kvc.client.view.pane;
 import java.rmi.RemoteException;
 import java.util.List;
 
+import javafx.beans.binding.Bindings;
 import javafx.geometry.Pos;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
@@ -30,7 +31,7 @@ public class TradePane implements PaneHolder, UpdateTrade {
     StackPane stackpane = new StackPane();
     MenuButton plaats = new MenuButton(425, 500, TranslationManager.translate("trade.button.place"));
     MenuButton terug = new MenuButton(425, 500, TranslationManager.translate("trade.button.back"));
-    HBox hbox = new HBox();
+    HBox buttons = new HBox();
     VBox vbox = new VBox();
     GridPane gp = new GridPane();
     ScrollPane scrollpane = new ScrollPane(gp);
@@ -43,10 +44,9 @@ public class TradePane implements PaneHolder, UpdateTrade {
     @SuppressWarnings("unchecked")
     @Override
     public Pane getPane() {
-	HBox buttons = new HBox();
 	HBox tb = new HBox();
-	tb.setAlignment(Pos.TOP_CENTER);
 	vbox.setAlignment(Pos.CENTER);
+	tb.setAlignment(Pos.CENTER);
 
 	TableColumn<String, ?> emptyCol = new TableColumn<>("\n");
 	TableColumn<String, ?> wheatCol = new TableColumn<>("Wheat");
@@ -56,7 +56,13 @@ public class TradePane implements PaneHolder, UpdateTrade {
 	TableColumn<String, ?> oreCol = new TableColumn<>("Ore");
 
 	table.getColumns().addAll(emptyCol, wheatCol, woodCol, woolCol, stoneCol, oreCol);
+	table.setFixedCellSize(300);
+	table.prefHeightProperty()
+		.bind(table.fixedCellSizeProperty().multiply(Bindings.size(table.getItems()).add(1.01)));
+	table.minHeightProperty().bind(table.prefHeightProperty());
+	table.maxHeightProperty().bind(table.prefHeightProperty());
 
+	table.getStylesheets().add("/assets/stylesheet.css");
 	scrollpane.getStylesheets().add("/assets/stylesheet.css");
 	scrollpane.setHbarPolicy(ScrollBarPolicy.NEVER);
 	scrollpane.setVbarPolicy(ScrollBarPolicy.ALWAYS);
@@ -64,13 +70,15 @@ public class TradePane implements PaneHolder, UpdateTrade {
 	scrollpane.setMinWidth(575);
 
 	buttons.setAlignment(Pos.BOTTOM_RIGHT);
-	buttons.getChildren().addAll(terug, plaats);
 
 	stackpane.setAlignment(Pos.CENTER);
 
-	tb.getChildren().addAll(table);
-	vbox.getChildren().addAll(tb);
-	stackpane.getChildren().addAll(SceneUtil.getGamePane(), vbox);
+	buttons.getChildren().addAll(terug, plaats);
+
+	vbox.getChildren().addAll(table, buttons);
+	tb.getChildren().addAll(vbox);
+
+	stackpane.getChildren().addAll(SceneUtil.getGamePane(), tb);
 
 	return stackpane;
     }
