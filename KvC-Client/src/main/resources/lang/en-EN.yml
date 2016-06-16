@@ -47,6 +47,7 @@ build.materials.stone:Stone
 build.materials.wool:Wool
 build.materials.ore:Ore
 build.materials.wheat:Wheat
+build.materials.row.prices:Prices
 
 #Login
 login.error.nousername.title: No Username

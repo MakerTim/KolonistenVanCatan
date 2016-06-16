@@ -47,6 +47,7 @@ build.materials.stone:Stein
 build.materials.wool:Wolle
 build.materials.ore:Erz
 build.materials.wheat:Korn
+build.materials.row.prices:Preis
 
 #Login
 login.error.nousername.title:Keine Benutzername

@@ -47,6 +47,7 @@ build.materials.stone:Pierre
 build.materials.wool:Laine
 build.materials.ore:Minerai
 build.materials.wheat:Grain
+build.materials.row.prices:Prix
 
 #Login
 login.error.nousername.title:Erreur de connexion
