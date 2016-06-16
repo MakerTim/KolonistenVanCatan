@@ -3,11 +3,15 @@ package nl.groep4.kvc.client.view.pane;
 import java.util.EnumMap;
 import java.util.List;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
@@ -21,8 +25,8 @@ import nl.groep4.kvc.common.interfaces.UpdateStock;
 public class StockPane implements PaneHolder, UpdateStock {
 
     StackPane cardPane;
-    HBox resCards;
     HBox devCards;
+    HBox resCards;
     VBox woodText;
     VBox oreText;
     VBox stoneText;
@@ -43,6 +47,7 @@ public class StockPane implements PaneHolder, UpdateStock {
     ResourceCard cards;
     VBox allThings;
     VBox buttons;
+    Text information;
 
     private boolean isOpen = false;
 
@@ -81,8 +86,8 @@ public class StockPane implements PaneHolder, UpdateStock {
 	woolText.getChildren().addAll(cards.getWoolText(), cards.getWoolName());
 
 	resCards = new HBox();
-	devCards = new HBox();
 	cardPane = new StackPane();
+	devCards = new HBox();
 	allThings = new VBox();
 	buttons = new VBox();
 	hideCards = new MenuButton(TranslationManager.translate("map.stock.hide"));
@@ -99,33 +104,54 @@ public class StockPane implements PaneHolder, UpdateStock {
 	resCards.getChildren().addAll(wood, wheat, wool, stone, ore);
 	resCards.setAlignment(Pos.CENTER);
 	buttons.getChildren().addAll(showCards);
+	information = new Text("");
+	information.setFont(ViewMaster.FONT);
+	information.setFill(Color.WHITE);
+	information.setStroke(Color.BLACK);
 
-	allThings.setAlignment(Pos.CENTER);
+	devCards.setMaxHeight(150);
+	devCards.setMaxWidth(600);
+	devCards.getChildren().addAll(getKnightCard(), getInventCard(), getMonoCard(), getCathCard(), getRoadCard());
+	devCards.setAlignment(Pos.CENTER);
+	devCards.setPadding(new Insets(8, 0, 8, 0));
+
+	allThings.setAlignment(Pos.BOTTOM_CENTER);
 	cardPane.setMouseTransparent(true);
 	return cardPane;
     }
 
     public void openStock() {
 	isOpen = true;
-	allThings.getChildren().addAll(resCards);
+	allThings.getChildren().addAll(resCards, devCards, information);
 	cardPane.getChildren().remove(allThings);
 	cardPane.getChildren().addAll(cards.getCardPlank(), allThings);
+	cardPane.setMouseTransparent(false);
 
     }
 
     public void closeStock() {
 	isOpen = false;
-	allThings.getChildren().removeAll(resCards);
+	allThings.getChildren().removeAll(resCards, devCards, information);
 	cardPane.getChildren().removeAll(cards.getCardPlank());
+	cardPane.setMouseTransparent(true);
     }
 
     public boolean isOpen() {
 	return this.isOpen;
     }
 
+    public void updateInfo(String info) {
+	information.setText(info);
+    }
+
     @Override
     public void updateTranslation() {
 	cards.updateTranslation();
+	information.setText(TranslationManager.translate("cards.monopoly.info"));
+	information.setText(TranslationManager.translate("cards.knight.info"));
+	information.setText(TranslationManager.translate("cards.road.info"));
+	information.setText(TranslationManager.translate("cards.cath.info"));
+	information.setText(TranslationManager.translate("cards.invent.info"));
     }
 
     @Override
@@ -139,4 +165,78 @@ public class StockPane implements PaneHolder, UpdateStock {
 
     }
 
+    /**
+     * Gets the resource for the cathedral card
+     * 
+     * @return image of the cathedral card
+     */
+    public Node getCathCard() {
+	ImageView cathCard;
+	cathCard = new ImageView("img/cards/card_cathedral.png");
+	cathCard.setFitHeight(100);
+	cathCard.setFitWidth(80);
+	cathCard.setOnMouseEntered(e -> updateInfo(TranslationManager.translate("cards.cath.info")));
+	cathCard.setOnMouseExited(e -> updateInfo(""));
+	return cathCard;
+    }
+
+    /**
+     * Gets the resource for the monopoly card
+     * 
+     * @return image of the monopoly card
+     */
+    public Node getMonoCard() {
+	ImageView monoCard;
+	monoCard = new ImageView("img/cards/card_monopoly.png");
+	monoCard.setFitHeight(100);
+	monoCard.setFitWidth(80);
+	monoCard.setOnMouseEntered(e -> updateInfo(TranslationManager.translate("cards.monopoly.info")));
+	monoCard.setOnMouseExited(e -> updateInfo(""));
+	return monoCard;
+    }
+
+    /**
+     * Gets the resource for the knight card
+     * 
+     * @return image of the knight card
+     */
+    public Node getKnightCard() {
+	ImageView knightCard;
+	knightCard = new ImageView("img/cards/card_knight.png");
+	knightCard.setFitHeight(100);
+	knightCard.setFitWidth(80);
+	knightCard.setOnMouseEntered(e -> updateInfo(TranslationManager.translate("cards.knight.info")));
+	knightCard.setOnMouseExited(e -> updateInfo(""));
+	return knightCard;
+    }
+
+    /**
+     * Gets the resource for the invention card
+     * 
+     * @return image of the invention card
+     */
+    public Node getInventCard() {
+	ImageView inventCard;
+	inventCard = new ImageView("img/cards/card_invention.png");
+	inventCard.setFitHeight(100);
+	inventCard.setFitWidth(80);
+	inventCard.setOnMouseEntered(e -> updateInfo(TranslationManager.translate("cards.invent.info")));
+	inventCard.setOnMouseExited(e -> updateInfo(""));
+	return inventCard;
+    }
+
+    /**
+     * Gets the resource for the road card
+     * 
+     * @return image of the road card
+     */
+    public Node getRoadCard() {
+	ImageView roadCard;
+	roadCard = new ImageView("img/cards/card_road.png");
+	roadCard.setFitHeight(100);
+	roadCard.setFitWidth(80);
+	roadCard.setOnMouseEntered(e -> updateInfo(TranslationManager.translate("cards.road.info")));
+	roadCard.setOnMouseExited(e -> updateInfo(""));
+	return roadCard;
+    }
 }

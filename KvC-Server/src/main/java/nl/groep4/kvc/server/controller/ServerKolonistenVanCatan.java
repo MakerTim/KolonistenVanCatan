@@ -29,15 +29,18 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     private int turn;
 
     public ServerKolonistenVanCatan(List<Player> players) {
+	System.out.println("Starting game!");
 	this.players = players;
 	players.sort((pl1, pl2) -> {
 	    return Integer.compare(pl1.hashCode(), pl2.hashCode());
 	});
+	System.out.println("\tRandomized players");
     }
 
     @Override
     public void start() {
 	updateTurn();
+	System.out.println("\tStarted game!");
     }
 
     @Override
@@ -109,16 +112,24 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     private void updateTurn() {
 	try {
 	    UpdateMap view = getPlayersOrded().get(0).getUpdateable(UpdateMap.class);
-	    view.updateTurn(getPlayersOrded().get(0), TurnState.THROWING_DICE);
 	    view.unblockActions();
+	    view.openDicePane(true);
 	} catch (Exception ex) {
 	    ex.printStackTrace();
 	}
 	for (int i = 1; i < getPlayersOrded().size(); i++) {
 	    try {
 		UpdateMap view = getPlayersOrded().get(i).getUpdateable(UpdateMap.class);
-		view.updateTurn(getPlayersOrded().get(0), TurnState.THROWING_DICE);
 		view.blockActions();
+		view.openDicePane(false);
+	    } catch (Exception ex) {
+		ex.printStackTrace();
+	    }
+	}
+	for (Player pl : getPlayers()) {
+	    try {
+		UpdateMap view = pl.getUpdateable(UpdateMap.class);
+		view.updateTurn(getPlayersOrded().get(0), TurnState.THROWING_DICE);
 	    } catch (Exception ex) {
 		ex.printStackTrace();
 	    }

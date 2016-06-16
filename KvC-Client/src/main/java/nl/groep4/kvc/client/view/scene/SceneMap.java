@@ -46,6 +46,7 @@ import nl.groep4.kvc.common.interfaces.UpdateMap;
 import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Map;
 import nl.groep4.kvc.common.map.Street;
+import nl.groep4.kvc.common.util.Scheduler;
 
 public class SceneMap implements SceneHolder, UpdateMap {
 
@@ -158,6 +159,10 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	}
     }
 
+    public MapController getController() {
+	return this.controller;
+    }
+
     private void onNxtTurnClick() {
 	controller.nextTurn();
 	SoundUtil.playNextTurn();
@@ -195,8 +200,8 @@ public class SceneMap implements SceneHolder, UpdateMap {
     }
 
     @Override
-    public void openDicePane() {
-	setOverlay(new DicePane());
+    public void openDicePane(boolean isOwnTurn) {
+	setOverlay(new DicePane(this, isOwnTurn));
     }
 
     @Override
@@ -234,26 +239,28 @@ public class SceneMap implements SceneHolder, UpdateMap {
     }
 
     public void setOverlay(PaneHolder pane) {
-	if (theOverlayPane != null) {
-	    layers.getChildren().remove(theOverlayBackground);
-	    layers.getChildren().remove(theOverlayPane);
-	}
-	if (pane != null) {
-	    theOverlayPane = pane.getPane();
-	    theOverlayPane.setPickOnBounds(false);
-	    for (Node node : theOverlayPane.getChildren()) {
-		node.setPickOnBounds(false);
+	Scheduler.runSync(() -> {
+	    if (theOverlayPane != null) {
+		layers.getChildren().remove(theOverlayBackground);
+		layers.getChildren().remove(theOverlayPane);
 	    }
-	    theOverlayBackground = new Rectangle(0, 0, ViewMaster.GAME_WIDHT, ViewMaster.GAME_HEIGHT);
-	    theOverlayBackground.setFill(new Color(0.1, 0.1, 0.1, 0.5));
-	    theOverlayBackground.setOnMouseClicked(click -> closeOverlay());
-	    layers.getChildren().add(theOverlayBackground);
-	    layers.getChildren().add(theOverlayPane);
-	    SceneUtil.fadeIn(theOverlayPane);
-	} else {
-	    theOverlayPane = null;
-	}
-	overlayPane = pane;
+	    if (pane != null) {
+		theOverlayPane = pane.getPane();
+		theOverlayPane.setPickOnBounds(false);
+		for (Node node : theOverlayPane.getChildren()) {
+		    node.setPickOnBounds(false);
+		}
+		theOverlayBackground = new Rectangle(0, 0, ViewMaster.GAME_WIDHT, ViewMaster.GAME_HEIGHT);
+		theOverlayBackground.setFill(new Color(0.1, 0.1, 0.1, 0.5));
+		theOverlayBackground.setOnMouseClicked(click -> closeOverlay());
+		layers.getChildren().add(theOverlayBackground);
+		layers.getChildren().add(theOverlayPane);
+		SceneUtil.fadeIn(theOverlayPane);
+	    } else {
+		theOverlayPane = null;
+	    }
+	    overlayPane = pane;
+	});
     }
 
     @Override
@@ -278,6 +285,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	buildPane.updateTranslation();
 	tradePane.updateTranslation();
 	pausePane.updateTranslation();
+	buyPane.updateTranslation();
     }
 
     @Override
@@ -309,22 +317,25 @@ public class SceneMap implements SceneHolder, UpdateMap {
     @Override
     public void updateCityCosts(EnumMap<Resource, Integer> resources) throws RemoteException {
 	buildPane.updateCityCosts(resources);
+	buyPane.updateCityCosts(resources);
     }
 
     @Override
     public void updateStreetCosts(EnumMap<Resource, Integer> resources) throws RemoteException {
 	buildPane.updateStreetCosts(resources);
+	buyPane.updateStreetCosts(resources);
     }
 
     @Override
     public void updateVillageCosts(EnumMap<Resource, Integer> resources) throws RemoteException {
 	buildPane.updateVillageCosts(resources);
+	buyPane.updateVillageCosts(resources);
     }
 
     @Override
     public void updateCardCosts(EnumMap<Resource, Integer> resources) throws RemoteException {
 	buildPane.updateCardCosts(resources);
-	// TODO: ook naar buypane
+	buyPane.updateCardCosts(resources);
     }
 
     @Override

@@ -102,12 +102,14 @@ public class TestMapController extends MapController {
 		view.updateStock(new EnumMap<>(resources));
 		List<Card> cards = new ArrayList<>();
 		for (CardType card : CardType.values()) {
-		    cards.add(new Card() {
-			@Override
-			public CardType getType() {
-			    return card;
-			}
-		    });
+		    for (int i = 0; i < 25; i++) {
+			cards.add(new Card() {
+			    @Override
+			    public CardType getType() {
+				return card;
+			    }
+			});
+		    }
 		}
 		view.updateStock(cards);
 	    } catch (Exception ex) {
