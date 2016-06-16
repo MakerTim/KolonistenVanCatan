@@ -41,14 +41,12 @@ build.button.city:Ville
 build.village.row:Village
 build.city.row:Ville
 build.road.row:Rue
-
-#Materials
-materials.row:Matériels
-materials.wood:Bois
-materials.stone:Pierre
-materials.wool:Laine
-materials.ore:Minerai
-materials.wheat:Grain
+build.materials.row:Matériels
+build.materials.wood:Bois
+build.materials.stone:Pierre
+build.materials.wool:Laine
+build.materials.ore:Minerai
+build.materials.wheat:Grain
 
 #Login
 login.error.nousername.title:Erreur de connexion

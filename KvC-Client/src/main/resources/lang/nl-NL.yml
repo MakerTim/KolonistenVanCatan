@@ -41,14 +41,12 @@ build.button.city:Stad
 build.village.row:Dorp
 build.city.row:Stad
 build.road.row:Straat
-
-#Materials
-materials.row:Materialen
-materials.wood:Hout
-materials.stone:Steen
-materials.wool:Wol
-materials.ore:Erts
-materials.wheat:Graan
+build.materials.row:Materialen
+build.materials.wood:Hout
+build.materials.stone:Steen
+build.materials.wool:Wol
+build.materials.ore:Erts
+build.materials.wheat:Graan
 
 #Login
 login.error.nousername.title:Login fout

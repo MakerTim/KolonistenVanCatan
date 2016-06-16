@@ -41,14 +41,12 @@ build.button.city:Stadt
 build.village.row:Dorf
 build.city.row:Stadt
 build.road.row:Straße
-
-#Materials
-materials.row:Materialien
-materials.wood:Holz
-materials.stone:Stein
-materials.wool:Wolle
-materials.ore:Erz
-materials.wheat:Korn
+build.materials.row:Materialien
+build.materials.wood:Holz
+build.materials.stone:Stein
+build.materials.wool:Wolle
+build.materials.ore:Erz
+build.materials.wheat:Korn
 
 #Login
 login.error.nousername.title:Keine Benutzername

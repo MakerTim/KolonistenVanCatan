@@ -41,14 +41,12 @@ build.button.city:City
 build.village.row:Village
 build.city.row:City
 build.road.row:Road
-
-#Materials
-materials.row:Materials
-materials.wood:Wood
-materials.stone:Stone
-materials.wool:Wool
-materials.ore:Ore
-materials.wheat:Wheat
+build.materials.row:Materials
+build.materials.wood:Wood
+build.materials.stone:Stone
+build.materials.wool:Wool
+build.materials.ore:Ore
+build.materials.wheat:Wheat
 
 #Login
 login.error.nousername.title: No Username
