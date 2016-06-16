@@ -63,8 +63,8 @@ public class RulesPane implements PaneHolder {
 
 	rulepane.getChildren().addAll(background, vbox);
 
-	BufferedReader fileReader = new BufferedReader(
-		new URLReader(TranslationManager.class.getResource("/assets/Spelregels.txt")));
+	BufferedReader fileReader = new BufferedReader(new URLReader(TranslationManager.class
+		.getResource("/assets/Spelregels-" + TranslationManager.getCurrentLanguage() + ".txt")));
 	try {
 	    Scanner scanner = new Scanner(fileReader);
 	    while (scanner.hasNextLine()) {
