@@ -193,6 +193,10 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	// setOverlay(new BuyPane());
     }
 
+    public void openPlaceTradePane() {
+	// setOverlay(new PlaceTradePane());
+    }
+
     @Override
     public void openCreditsPane() {
 	setOverlay(new CreditsPane(this));
@@ -332,5 +336,27 @@ public class SceneMap implements SceneHolder, UpdateMap {
     @Override
     public void highlightBuildings(List<Building> buildings, BuildingType type) {
 	gamepane.highlightBuilding(buildings, type);
+    }
+
+    private void setBlockedButtons(boolean blocked) {
+	if (blocked) {
+	    nxtButton.setDisabled();
+	    buildButton.setDisabled();
+	    buyButton.setDisabled();
+	} else {
+	    nxtButton.setEnabled();
+	    buildButton.setEnabled();
+	    buyButton.setEnabled();
+	}
+    }
+
+    @Override
+    public void blockActions() throws RemoteException {
+	setBlockedButtons(true);
+    }
+
+    @Override
+    public void unblockActions() throws RemoteException {
+	setBlockedButtons(false);
     }
 }
