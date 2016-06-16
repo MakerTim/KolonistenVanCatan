@@ -5,15 +5,18 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 import nl.groep4.kvc.client.controller.ClientRefrence;
 import nl.groep4.kvc.client.controller.MapController;
 import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.enumeration.BuildingType;
+import nl.groep4.kvc.common.enumeration.CardType;
 import nl.groep4.kvc.common.enumeration.Color;
 import nl.groep4.kvc.common.enumeration.Direction;
 import nl.groep4.kvc.common.enumeration.Point;
 import nl.groep4.kvc.common.enumeration.Resource;
+import nl.groep4.kvc.common.enumeration.TurnState;
 import nl.groep4.kvc.common.interfaces.Card;
 import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Player;
@@ -64,7 +67,52 @@ public class TestMapController extends MapController {
 	    } catch (Exception ex) {
 		ex.printStackTrace();
 	    }
-	}, 1500L);
+	}, 3000L);
+	Scheduler.runAsyncLater(() -> {
+	    try {
+		view.updateRound(25);
+		view.updateConfig();
+		view.updateTurn(ClientRefrence.getThePlayer(), TurnState.WAITING);
+		view.updateScore(ClientRefrence.getThePlayer(), 69);
+	    } catch (Exception ex) {
+		ex.printStackTrace();
+	    }
+	}, 3000L);
+	Scheduler.runAsyncLater(() -> {
+	    try {
+		java.util.Map<Resource, Integer> resources = new HashMap<>();
+		resources.put(Resource.WOOL, 10);
+		view.updateStreetCosts(new EnumMap<>(resources));
+		resources = new HashMap<>();
+		resources.put(Resource.WOOD, 10);
+		view.updateCityCosts(new EnumMap<>(resources));
+		resources = new HashMap<>();
+		resources.put(Resource.WHEAT, 10);
+		view.updateVillageCosts(new EnumMap<>(resources));
+	    } catch (Exception ex) {
+		ex.printStackTrace();
+	    }
+	}, 3000L);
+	Scheduler.runAsyncLater(() -> {
+	    try {
+		java.util.Map<Resource, Integer> resources = new HashMap<>();
+		for (Resource resource : Resource.values()) {
+		    resources.put(resource, new Random().nextInt(100));
+		}
+		List<Card> cards = new ArrayList<>();
+		for (CardType card : CardType.values()) {
+		    cards.add(new Card() {
+			@Override
+			public CardType getType() {
+			    return card;
+			}
+		    });
+		}
+		view.updateStock(cards);
+	    } catch (Exception ex) {
+		ex.printStackTrace();
+	    }
+	}, 3000L);
     }
 
     public Map getMap() {
