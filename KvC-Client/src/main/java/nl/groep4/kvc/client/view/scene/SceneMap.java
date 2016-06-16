@@ -260,8 +260,12 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	if (overlayPane != null) {
 	    overlayPane.updateTranslation();
 	}
-	infoPane.updateTranslation();
 	gamepane.updateTranslation();
+	stockPane.updateTranslation();
+	scorePane.updateTranslation();
+	infoPane.updateTranslation();
+	buildPane.updateTranslation();
+	tradePane.updateTranslation();
     }
 
     @Override
