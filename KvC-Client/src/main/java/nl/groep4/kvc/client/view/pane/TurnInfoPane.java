@@ -29,7 +29,7 @@ public class TurnInfoPane implements PaneHolder, UpdateRound {
 
     private final Font font = new Font(ViewMaster.FONT.getName(), 16);
     private Player lastTurn;
-    private TurnState state;
+    private TurnState state = TurnState.WAITING;
 
     private Text whoText;
     private Text whatText;

@@ -1,5 +1,8 @@
 package nl.groep4.kvc.client.view.pane;
 
+import java.rmi.RemoteException;
+import java.util.EnumMap;
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,8 +21,10 @@ import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.MenuButton;
+import nl.groep4.kvc.common.enumeration.Resource;
+import nl.groep4.kvc.common.interfaces.UpdateCosts;
 
-public class BuyPane extends Application implements PaneHolder {
+public class BuyPane extends Application implements PaneHolder, UpdateCosts {
     private Font font = new Font(ViewMaster.FONT.getName(), 30);
 
     private TableView table;
@@ -74,6 +79,23 @@ public class BuyPane extends Application implements PaneHolder {
 
     public static void main(String[] args) {
 	launch(args);
+    }
+
+    @Override
+    public void updateCardCosts(EnumMap<Resource, Integer> resources) throws RemoteException {
+	// TODO Updatecardcost in buymenu
+    }
+
+    @Override
+    public void updateCityCosts(EnumMap<Resource, Integer> resources) throws RemoteException {
+    }
+
+    @Override
+    public void updateStreetCosts(EnumMap<Resource, Integer> resources) throws RemoteException {
+    }
+
+    @Override
+    public void updateVillageCosts(EnumMap<Resource, Integer> resources) throws RemoteException {
     }
 
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nl.groep4.kvc.common.enumeration.BuildingType;
+import nl.groep4.kvc.common.enumeration.TurnState;
 import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.UpdateMap;
@@ -107,13 +108,17 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 
     private void updateTurn() {
 	try {
-	    getPlayersOrded().get(0).getUpdateable(UpdateMap.class).unblockActions();
+	    UpdateMap view = getPlayersOrded().get(0).getUpdateable(UpdateMap.class);
+	    view.updateTurn(getPlayersOrded().get(0), TurnState.THROWING_DICE);
+	    view.unblockActions();
 	} catch (Exception ex) {
 	    ex.printStackTrace();
 	}
 	for (int i = 1; i < getPlayersOrded().size(); i++) {
 	    try {
-		getPlayersOrded().get(i).getUpdateable(UpdateMap.class).blockActions();
+		UpdateMap view = getPlayersOrded().get(i).getUpdateable(UpdateMap.class);
+		view.updateTurn(getPlayersOrded().get(0), TurnState.THROWING_DICE);
+		view.blockActions();
 	    } catch (Exception ex) {
 		ex.printStackTrace();
 	    }
