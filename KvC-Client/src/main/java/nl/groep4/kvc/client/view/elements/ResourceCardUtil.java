@@ -11,7 +11,7 @@ import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.common.enumeration.Resource;
 
-public class ResourceCard extends Text {
+public class ResourceCardUtil {
 
     private ImageView cardPlank;
     private ImageView oreCard;
@@ -32,82 +32,52 @@ public class ResourceCard extends Text {
     private Text nameStone;
 
     public Text getWoodName() {
-	nameWood = new Text(TranslationManager.translate("game.resourcename.wood"));
-	nameWood.setFont(ViewMaster.FONT);
-	nameWood.setFill(Color.WHITE);
-	nameWood.setStroke(Color.BLACK);
+	nameWood = new KvCText(TranslationManager.translate("game.resourcename.wood"));
 	return nameWood;
     };
 
     public Text getStoneName() {
-	nameStone = new Text(TranslationManager.translate("game.resourcename.stone"));
-	nameStone.setFont(ViewMaster.FONT);
-	nameStone.setFill(Color.WHITE);
-	nameStone.setStroke(Color.BLACK);
+	nameStone = new KvCText(TranslationManager.translate("game.resourcename.stone"));
 	return nameStone;
     };
 
     public Text getOreName() {
-	nameOre = new Text(TranslationManager.translate("game.resourcename.ore"));
-	nameOre.setFont(ViewMaster.FONT);
-	nameOre.setFill(Color.WHITE);
-	nameOre.setStroke(Color.BLACK);
+	nameOre = new KvCText(TranslationManager.translate("game.resourcename.ore"));
 	return nameOre;
     };
 
     public Text getWoolName() {
-	nameWool = new Text(TranslationManager.translate("game.resourcename.wool"));
-	nameWool.setFont(ViewMaster.FONT);
-	nameWool.setFill(Color.WHITE);
-	nameWool.setStroke(Color.BLACK);
+	nameWool = new KvCText(TranslationManager.translate("game.resourcename.wool"));
 	return nameWool;
     };
 
     public Text getWheatName() {
-	nameWheat = new Text(TranslationManager.translate("game.resourcename.wheat"));
-	nameWheat.setFont(ViewMaster.FONT);
-	nameWheat.setFill(Color.WHITE);
-	nameWheat.setStroke(Color.BLACK);
+	nameWheat = new KvCText(TranslationManager.translate("game.resourcename.wheat"));
 	return nameWheat;
     };
 
     public Text getWoodText() {
-	amntWood = new Text("0");
-	amntWood.setFont(ViewMaster.TITLE_FONT);
-	amntWood.setFill(Color.WHITE);
-	amntWood.setStroke(Color.BLACK);
+	amntWood = new KvCText("0");
 	return amntWood;
     }
 
     public Text getOreText() {
-	amntOre = new Text("0");
-	amntOre.setFont(ViewMaster.TITLE_FONT);
-	amntOre.setFill(Color.WHITE);
-	amntOre.setStroke(Color.BLACK);
+	amntOre = new KvCText("0");
 	return amntOre;
     }
 
     public Text getWoolText() {
-	amntWool = new Text("0");
-	amntWool.setFont(ViewMaster.TITLE_FONT);
-	amntWool.setFill(Color.WHITE);
-	amntWool.setStroke(Color.BLACK);
+	amntWool = new KvCText("0");
 	return amntWool;
     }
 
     public Text getWheatText() {
-	amntWheat = new Text("0");
-	amntWheat.setFont(ViewMaster.TITLE_FONT);
-	amntWheat.setFill(Color.WHITE);
-	amntWheat.setStroke(Color.BLACK);
+	amntWheat = new KvCText("0");
 	return amntWheat;
     }
 
     public Text getStoneText() {
-	amntStone = new Text("0");
-	amntStone.setFont(ViewMaster.TITLE_FONT);
-	amntStone.setFill(Color.WHITE);
-	amntStone.setStroke(Color.BLACK);
+	amntStone = new KvCText("0");
 	return amntStone;
     }
 

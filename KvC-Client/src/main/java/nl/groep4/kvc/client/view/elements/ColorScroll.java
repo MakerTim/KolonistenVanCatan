@@ -121,7 +121,7 @@ public class ColorScroll extends StackPane {
      * Updates label text when user changes parchment
      */
     public void updateTranslation() {
-	colorLabel = new Text(TranslationManager.translate("lobby.parchment.color." + color.name().toLowerCase()));
+	colorLabel.setText(TranslationManager.translate("lobby.parchment.color." + color.name().toLowerCase()));
     }
 
     public Player getPlayer() {
@@ -129,7 +129,7 @@ public class ColorScroll extends StackPane {
     }
 
     public void setPing(long pong) {
-	if (pong < 1) {
+	if (pong < 0) {
 	    pingLabel.setText("");
 	} else {
 	    pingLabel.setText(Long.toString(pong) + " ms");

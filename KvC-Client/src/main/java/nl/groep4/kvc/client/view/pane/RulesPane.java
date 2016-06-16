@@ -17,6 +17,7 @@ import jdk.nashorn.api.scripting.URLReader;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
+import nl.groep4.kvc.client.view.elements.KvCText;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.scene.SceneMap;
 
@@ -42,10 +43,7 @@ public class RulesPane implements PaneHolder {
 	back = new MenuButton(425, 500, TranslationManager.translate("rules.button.back"));
 	back.setFont(ViewMaster.FONT);
 
-	rules = new Text(TranslationManager.translate("rules.text.rules"));
-	rules.setFont(ViewMaster.FONT);
-	rules.setFill(Color.WHITE);
-	rules.setStroke(Color.BLACK);
+	rules = new KvCText(TranslationManager.translate("rules.text.rules"));
 
 	TextArea area = new TextArea();
 	area.setStyle("-fx-text-fill: white;");

@@ -15,8 +15,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
+import nl.groep4.kvc.client.view.elements.KvCText;
 import nl.groep4.kvc.client.view.elements.MenuButton;
-import nl.groep4.kvc.client.view.elements.ResourceCard;
+import nl.groep4.kvc.client.view.elements.ResourceCardUtil;
 import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.Card;
@@ -44,7 +45,7 @@ public class StockPane implements PaneHolder, UpdateStock {
     StackPane wool;
     MenuButton hideCards;
     MenuButton showCards;
-    ResourceCard cards;
+    ResourceCardUtil cards;
     VBox allThings;
     VBox buttons;
     Text information;
@@ -61,7 +62,7 @@ public class StockPane implements PaneHolder, UpdateStock {
 
     @Override
     public Pane getPane() {
-	cards = new ResourceCard();
+	cards = new ResourceCardUtil();
 	wood = new StackPane();
 	wheat = new StackPane();
 	ore = new StackPane();
@@ -104,10 +105,7 @@ public class StockPane implements PaneHolder, UpdateStock {
 	resCards.getChildren().addAll(wood, wheat, wool, stone, ore);
 	resCards.setAlignment(Pos.CENTER);
 	buttons.getChildren().addAll(showCards);
-	information = new Text("");
-	information.setFont(ViewMaster.FONT);
-	information.setFill(Color.WHITE);
-	information.setStroke(Color.BLACK);
+	information = new KvCText();
 
 	devCards.setMaxHeight(150);
 	devCards.setMaxWidth(600);

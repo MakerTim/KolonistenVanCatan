@@ -26,7 +26,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 
     private final List<Player> players;
     private ServerMap map = new ServerMap();
-    private int round;
+    private int round = -2;
     private int turn = -1;
     private Throw lastThrow;
 

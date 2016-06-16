@@ -9,6 +9,7 @@ import javafx.scene.text.Text;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
+import nl.groep4.kvc.client.view.elements.KvCText;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.elements.SettingsButton;
 import nl.groep4.kvc.client.view.scene.SceneMap;
@@ -34,7 +35,7 @@ public class OptionPane implements PaneHolder {
 	StackPane layers = new StackPane();
 	VBox buttons = new VBox(8);
 	buttons.setAlignment(Pos.CENTER);
-	title = new Text(TranslationManager.translate("game.menu.title"));
+	title = new KvCText(TranslationManager.translate("game.menu.title"));
 	save = new MenuButton(TranslationManager.translate("game.menu.save"));
 	pause = new MenuButton(TranslationManager.translate("game.menu.pause"));
 	rules = new MenuButton(TranslationManager.translate("game.menu.rules"));
@@ -42,7 +43,6 @@ public class OptionPane implements PaneHolder {
 	exit = new MenuButton(TranslationManager.translate("game.menu.exit"));
 	back = new MenuButton(TranslationManager.translate("game.menu.back"));
 	title.setFont(ViewMaster.TITLE_FONT);
-	title.setFill(Color.WHITE);
 	save.setFont(ViewMaster.FONT);
 	pause.setFont(ViewMaster.FONT);
 	rules.setFont(ViewMaster.FONT);
