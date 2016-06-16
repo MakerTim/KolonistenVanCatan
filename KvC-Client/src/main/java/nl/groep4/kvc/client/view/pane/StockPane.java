@@ -103,15 +103,15 @@ public class StockPane implements PaneHolder, UpdateStock {
 	resCards.getChildren().addAll(wood, wheat, wool, stone, ore);
 	resCards.setAlignment(Pos.CENTER);
 	buttons.getChildren().addAll(showCards);
-	information = new Text("yooooo");
+	information = new Text("");
 	information.setFont(ViewMaster.FONT);
 	information.setFill(Color.WHITE);
 	information.setStroke(Color.BLACK);
 
 	devCards.setMaxHeight(150);
 	devCards.setMaxWidth(600);
-	devCards.getChildren().addAll(getKnightCard(), getInventCard(), getInventCard(), getInventCard(),
-		getInventCard());
+	devCards.getChildren().addAll(getKnightCard(), getInventCard(), getMonoCard(), getCathCard(), getRoadCard());
+	devCards.setAlignment(Pos.CENTER);
 
 	allThings.setAlignment(Pos.CENTER);
 	cardPane.setMouseTransparent(true);
@@ -168,6 +168,8 @@ public class StockPane implements PaneHolder, UpdateStock {
 	cathCard = new ImageView("img/cards/card_cathedral.png");
 	cathCard.setFitHeight(100);
 	cathCard.setFitWidth(80);
+	cathCard.setOnMouseEntered(e -> updateInfo("LEKKER GELOVIG"));
+	cathCard.setOnMouseExited(e -> updateInfo(""));
 	return cathCard;
     }
 
@@ -181,6 +183,8 @@ public class StockPane implements PaneHolder, UpdateStock {
 	monoCard = new ImageView("img/cards/card_monopoly.png");
 	monoCard.setFitHeight(100);
 	monoCard.setFitWidth(80);
+	monoCard.setOnMouseEntered(e -> updateInfo("we spelen helemaal geen monopoly"));
+	monoCard.setOnMouseExited(e -> updateInfo(""));
 	return monoCard;
     }
 
@@ -195,7 +199,7 @@ public class StockPane implements PaneHolder, UpdateStock {
 	knightCard.setFitHeight(100);
 	knightCard.setFitWidth(80);
 	knightCard.setOnMouseEntered(e -> updateInfo("Knight card, nak je tegenstanders met deze nicht"));
-	knightCard.setOnMouseExited(e -> updateInfo("Development card information"));
+	knightCard.setOnMouseExited(e -> updateInfo(""));
 	return knightCard;
     }
 
@@ -211,7 +215,7 @@ public class StockPane implements PaneHolder, UpdateStock {
 	inventCard.setFitWidth(80);
 	inventCard.setOnMouseEntered(
 		e -> updateInfo("Invention card, wees de uitvinder die je altijd al had willen zijn"));
-	inventCard.setOnMouseExited(e -> updateInfo("Development card information"));
+	inventCard.setOnMouseExited(e -> updateInfo(""));
 	return inventCard;
     }
 
@@ -222,9 +226,11 @@ public class StockPane implements PaneHolder, UpdateStock {
      */
     public Node getRoadCard() {
 	ImageView roadCard;
-	roadCard = new ImageView("img/cards/card_invention.png");
+	roadCard = new ImageView("img/cards/card_road.png");
 	roadCard.setFitHeight(100);
 	roadCard.setFitWidth(80);
+	roadCard.setOnMouseEntered(e -> updateInfo("straatjes makennnnn"));
+	roadCard.setOnMouseExited(e -> updateInfo(""));
 	return roadCard;
     }
 }
