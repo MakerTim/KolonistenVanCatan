@@ -95,7 +95,7 @@ en zeehandel.
 
 c) Bouwen
 De speler die aan de beurt is, kan ook bouwen om zijn punten te verhogen. In ruil voor bepaalde
-combinaties van grondstofkaarten (zie overzichtskaartje) kan hij willekeurig veel straten,
+combinaties van grondstofkaarten (zie overzichtskaartje) kan hij willekeurig straten,
 nederzettingen of steden bouwen.
 
 Kosten:
@@ -113,7 +113,7 @@ Kosten:
 	Elke nederzetting op het spelbord levert ook 1 punt op en kan 1 grondstofkaart opbrengen indien
 	de dobbelstenen dit bepalen.
 
-	stad: 2 x graan + 3 x erts
+	stad: 2 graan + 3 erts
 	De speler bouwt zijn nederzetting om tot een stad. Hij verwisselt het huisje voor een kerk.
 	Elke stad levert 2 punten en kan 2 grondstofkaarten opbrengen.
 
@@ -145,7 +145,7 @@ d) Speciale gebeurtenissen + kaarten
 	  ook 1 grondstofkaart van een willekeurige speler die er een nederzetting of stad heeft.
 	  Gespeelde ridderkaarten blijven open voor de speler op tafel liggen. Een speler met 3 gespeelde
 	  ridderkaarten ontvangt de speciale kaart "Grootste Riddermacht". Dit levert hem extra 2 punten.
-	  Deze kaart gaat terug naar de voorraad indieniemand anders evenveel ridderkaarten komt uit te
+	  Deze kaart gaat terug naar de voorraad indien iemand anders evenveel ridderkaarten komt uit te
 	  spelen, of gaat naar die speler die op dat ogenblik weer de grootste riddermacht voor zich liggen
 	  heeft. 
 	  
@@ -155,7 +155,7 @@ d) Speciale gebeurtenissen + kaarten
 		- stratenbouw: de speler mag onmiddellijk 2 nieuwe straten (gratis) bouwen
 		- ontdekking: de speler mag onmiddellijk 2 grondstofkaarten naar keuze nemen
 		- monopolie: alle spelers moeten al hun grondstofkaarten van een bepaalde
-		 soort - te bepalen door de speler die de kaart gebruikt - afgeven aan die speler punten
-	- Punten
-	  Deze kaarten leveren extra punten op en worden het best pas op het einde van het spel getoond.
+		 soort - te bepalen door de speler die de kaart gebruikt - afgeven aan die speler
+		- Punten
+	  	  Deze kaarten leveren extra punten op en worden het best pas op het einde van het spel getoond.
 
