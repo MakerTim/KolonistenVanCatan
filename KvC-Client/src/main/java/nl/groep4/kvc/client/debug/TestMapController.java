@@ -3,8 +3,10 @@ package nl.groep4.kvc.client.debug;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.List;
 
+import nl.groep4.kvc.client.controller.ClientRefrence;
 import nl.groep4.kvc.client.controller.MapController;
 import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.enumeration.BuildingType;
@@ -15,6 +17,7 @@ import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.Card;
 import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Player;
+import nl.groep4.kvc.common.interfaces.Trade;
 import nl.groep4.kvc.common.interfaces.Updatable;
 import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Coordinate;
@@ -24,6 +27,7 @@ import nl.groep4.kvc.common.map.Tile;
 import nl.groep4.kvc.common.map.TileLand;
 import nl.groep4.kvc.common.map.TileType;
 import nl.groep4.kvc.common.util.CollectionUtil;
+import nl.groep4.kvc.common.util.Scheduler;
 
 public class TestMapController extends MapController {
 
@@ -31,6 +35,36 @@ public class TestMapController extends MapController {
 
     public TestMapController(SceneMap view) {
 	super((alles = new DebugKolonistenVanCatan()), view);
+	Scheduler.runAsyncLater(() -> {
+	    List<Trade> trades = new ArrayList<>();
+	    trades.add(new Trade() {
+		private static final long serialVersionUID = 1L;
+
+		@Override
+		public Player getPlayer() {
+		    return ClientRefrence.getThePlayer();
+		}
+
+		@Override
+		public EnumMap<Resource, Integer> getRequest() {
+		    java.util.Map<Resource, Integer> request = new HashMap<>();
+		    request.put(Resource.WOOL, 10);
+		    return new EnumMap<Resource, Integer>(request);
+		}
+
+		@Override
+		public EnumMap<Resource, Integer> getReward() {
+		    java.util.Map<Resource, Integer> request = new HashMap<>();
+		    request.put(Resource.BRICK, 1);
+		    return new EnumMap<Resource, Integer>(request);
+		}
+	    });
+	    try {
+		view.updateTrades(trades);
+	    } catch (Exception ex) {
+		ex.printStackTrace();
+	    }
+	}, 1500L);
     }
 
     public Map getMap() {
