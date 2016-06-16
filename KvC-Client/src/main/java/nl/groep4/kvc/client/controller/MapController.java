@@ -48,4 +48,8 @@ public class MapController implements Controller {
 	    ex.printStackTrace();
 	}
     }
+
+    public void throwDice() {
+	// TODO: controller-throwdice
+    }
 }

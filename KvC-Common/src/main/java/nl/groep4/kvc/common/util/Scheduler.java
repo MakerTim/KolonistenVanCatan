@@ -12,11 +12,11 @@ import javafx.application.Platform;
  */
 public class Scheduler {
 
-    public static void runSync(List<Runnable> runs) {
-	runSync(runs.toArray(new Runnable[runs.size()]));
+    public static void runSyncd(List<Runnable> runs) {
+	runSyncd(runs.toArray(new Runnable[runs.size()]));
     }
 
-    public static void runSync(Runnable... runs) {
+    public static void runSyncd(Runnable... runs) {
 	Thread[] threads = new Thread[runs.length];
 	for (int i = 0; i < runs.length; i++) {
 	    threads[i] = new Thread(runs[i]);
@@ -40,8 +40,12 @@ public class Scheduler {
 	} while (running);
     }
 
+    public static void runSync(Runnable run) {
+	runSyncLater(run, 0L);
+    }
+
     public static void runAsync(Runnable run) {
-	new Thread(run).start();
+	runAsyncLater(run, 0L);
     }
 
     public static void runSyncLater(Runnable run) {

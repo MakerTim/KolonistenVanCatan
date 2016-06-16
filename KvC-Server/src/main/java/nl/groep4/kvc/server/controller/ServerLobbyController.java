@@ -58,7 +58,7 @@ public class ServerLobbyController {
 		}
 	    });
 	}
-	Scheduler.runSync(runners);
+	Scheduler.runSyncd(runners);
 	Scheduler.runAsyncLater(() -> {
 	    try {
 		kvc.start();
@@ -129,7 +129,7 @@ public class ServerLobbyController {
 		    });
 		}
 	    }
-	    Scheduler.runSync(runs);
+	    Scheduler.runSyncd(runs);
 	}
     }
 

@@ -8,15 +8,16 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import nl.groep4.kvc.client.controller.ThrowController;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.MenuButton;
+import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.interfaces.Throw;
 import nl.groep4.kvc.common.interfaces.UpdateDice;
 
 public class DicePane implements PaneHolder, UpdateDice {
+
     StackPane dicePane;
     Text clickToThrow;
     Text firstDice;
@@ -24,6 +25,14 @@ public class DicePane implements PaneHolder, UpdateDice {
     MenuButton throwDice;
     HBox dices;
     VBox things;
+
+    private SceneMap view;
+    private boolean isMyTurn;
+
+    public DicePane(SceneMap view, boolean isMyTurn) {
+	this.view = view;
+	this.isMyTurn = isMyTurn;
+    }
 
     @Override
     public Pane getPane() {
@@ -67,7 +76,9 @@ public class DicePane implements PaneHolder, UpdateDice {
 
     @Override
     public void throwDice() {
-	ThrowController.throwDice();
+	if (isMyTurn) {
+	    view.getController().throwDice();
+	}
     }
 
     @Override
