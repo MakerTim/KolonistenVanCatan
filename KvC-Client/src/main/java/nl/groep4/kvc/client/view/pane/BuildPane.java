@@ -48,7 +48,7 @@ public class BuildPane implements PaneHolder, UpdateCosts {
     String wol = (TranslationManager.translate("build.materials.wool"));
     String sto = (TranslationManager.translate("build.materials.stone"));
     String ore = (TranslationManager.translate("build.materials.ore"));
-    String prices = ((TranslationManager.translate("build.materials.row.prices:")));
+    String prices = ((TranslationManager.translate("build.materials.row.prices")));
 
     Text Prices = new Text((TranslationManager.translate("build.materials.row") + " " + whe + wod + wol + sto + ore));
     Text RoadPrices = new Text(TranslationManager.translate("build.road.row"));

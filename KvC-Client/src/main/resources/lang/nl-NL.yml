@@ -47,6 +47,7 @@ build.materials.stone:Steen
 build.materials.wool:Wol
 build.materials.ore:Erts
 build.materials.wheat:Graan
+build.materials.row.prices:Prijzen
 
 #Login
 login.error.nousername.title:Login fout
