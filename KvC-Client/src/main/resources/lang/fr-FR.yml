@@ -1,7 +1,8 @@
 language:Français
 
 #Game
-game.name.round:Tour: %d
+game.round:Tour: %d
+game.score:Points: %d
 game.button.build:Construire
 game.button.trade:Échange
 game.button.buy:Acheter
@@ -73,6 +74,21 @@ lobby.label.nosound:Aucun bruit
 lobby.button.join:Participer
 lobby.button.settings:Réglages
 
+#Turn
+turn.state.building:Est un bâtiment à la construction
+turn.state.building.self:Je place un bâtiment
+turn.state.street:Est une rue à la construction
+turn.state.street.self:Place une rue
+turn.state.card:Est une carte pour acheter
+turn.state.card.self:Acheter une carte
+turn.state.dice:Est dés
+turn.state.dice.self:dés un dé
+turn.state.trade:Était à la vente aux enchères
+turn.state.trade.self:à la vente aux enchères
+turn.state.wait:Tourne
+turn.state.wait.self:Me tourne
+turn.self:U
+
 #PausePane
 pause.button.continue:Résumé
 pause.label.pause:Pause
@@ -98,6 +114,9 @@ credits.text.credits:Crédits
 note.ingame.title:Le jeu a commencé
 note.ingame.explanation:Vous ne pouvez pas changer plus de couleur quand le jeu a déjà commencé
 note.ingame.details:Pendant le jeu, vous ne pouvez pas changer de couleur
+note.noplayers.title:Pas assez de gens
+note.players.explanation:Il n'y a pas assez de personnes présentes
+note.players.details:Exception: 503 Service Unavailable
 
 #Map
 map.throwdice.clickToThrow:Jouer aux dés
