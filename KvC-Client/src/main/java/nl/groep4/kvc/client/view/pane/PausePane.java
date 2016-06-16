@@ -15,8 +15,8 @@ import nl.groep4.kvc.client.view.scene.SceneMap;
 
 public class PausePane implements PaneHolder {
 
-    MenuButton continueButton = new MenuButton(425, 500, TranslationManager.translate("pause.button.continue"));
-    Text pause;
+    private MenuButton continueButton;
+    private Text pause;
 
     public PausePane(SceneMap sceneMap) {
 	// TODO Auto-generated constructor stub
@@ -25,16 +25,21 @@ public class PausePane implements PaneHolder {
     @Override
     public Pane getPane() {
 
-	continueButton.setFont(ViewMaster.FONT);
-	VBox pausebox = new VBox();
-	pausebox.setAlignment(Pos.CENTER);
 	StackPane pausepane = new StackPane();
+	VBox pausebox = new VBox();
+
+	continueButton = new MenuButton(425, 500, TranslationManager.translate("pause.button.continue"));
 	pause = new Text(TranslationManager.translate("pause.label.pause"));
+
+	continueButton.setFont(ViewMaster.FONT);
 	pause.setFill(Color.WHITE);
 	pause.setStroke(Color.BLACK);
 	pause.setFont(ViewMaster.TITLE_FONT);
 
+	pausebox.setAlignment(Pos.CENTER);
+
 	Node background = SceneUtil.getGamePane();
+
 	pausebox.getChildren().addAll(pause, continueButton);
 	pausepane.getChildren().addAll(background, pausebox);
 
