@@ -155,7 +155,7 @@ public class BuyPane extends Application implements PaneHolder, UpdateCosts {
 	hboxPrices.setPadding(new Insets(200, 0, 0, 0));
 	hboxPrices.setSpacing(20);
 
-	hbox.setPadding(new Insets(0, 0, 220, 0));
+	hbox.setPadding(new Insets(0, 0, 160, 0));
 	hbox.setSpacing(150);
 	hbox.setAlignment(Pos.CENTER);
 	hbox.getChildren().addAll(yes, no);
