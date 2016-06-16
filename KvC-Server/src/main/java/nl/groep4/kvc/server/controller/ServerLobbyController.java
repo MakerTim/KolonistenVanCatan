@@ -15,6 +15,7 @@ import nl.groep4.kvc.common.interfaces.UpdateLobby;
 import nl.groep4.kvc.common.util.Scheduler;
 import nl.groep4.kvc.server.model.ServerLobby;
 import nl.groep4.kvc.server.model.ServerPlayer;
+import nl.groep4.kvc.server.util.ConnectionUtil;
 
 public class ServerLobbyController {
 
@@ -99,7 +100,13 @@ public class ServerLobbyController {
     }
 
     public void setColor(Player pl, Color newColor) throws RemoteException {
-	cleanup();
+	ConnectionUtil.cleanup(lobby.getPlayers(), player -> {
+	    try {
+		removePlayer(player, false);
+	    } catch (Exception ex) {
+		ex.printStackTrace();
+	    }
+	});
 	switch (lobby.getState()) {
 	case IN_GAME:
 	    pl.getUpdateable().popup("ingame");
@@ -140,25 +147,4 @@ public class ServerLobbyController {
 	}
 	return true;
     }
-
-    public void cleanup() throws RemoteException {
-	Iterator<Player> playerIT = lobby.getPlayers().iterator();
-	while (playerIT.hasNext()) {
-	    Player pl = playerIT.next();
-	    try {
-		pl.getUpdateable().testConnection();
-	    } catch (RemoteException ex) {
-		try {
-		    playerIT.remove();
-		    removePlayer(pl, false);
-		    System.out.printf("Player %s has been removed by disconnecting.\n", pl.getUsername());
-		} catch (Exception subex) {
-		    System.err.println(subex);
-		}
-	    } catch (NullPointerException npe) {
-		System.out.printf("No updateable for %s\n", pl.getUsername());
-	    }
-	}
-    }
-
 }
