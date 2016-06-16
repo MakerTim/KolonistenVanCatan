@@ -147,6 +147,11 @@ public class StockPane implements PaneHolder, UpdateStock {
     @Override
     public void updateTranslation() {
 	cards.updateTranslation();
+	information.setText(TranslationManager.translate("cards.monopoly.info"));
+	information.setText(TranslationManager.translate("cards.knight.info"));
+	information.setText(TranslationManager.translate("cards.road.info"));
+	information.setText(TranslationManager.translate("cards.cath.info"));
+	information.setText(TranslationManager.translate("cards.invent.info"));
     }
 
     @Override
@@ -170,7 +175,7 @@ public class StockPane implements PaneHolder, UpdateStock {
 	cathCard = new ImageView("img/cards/card_cathedral.png");
 	cathCard.setFitHeight(100);
 	cathCard.setFitWidth(80);
-	cathCard.setOnMouseEntered(e -> updateInfo("LEKKER GELOVIG"));
+	cathCard.setOnMouseEntered(e -> updateInfo(TranslationManager.translate("cards.cath.info")));
 	cathCard.setOnMouseExited(e -> updateInfo(""));
 	return cathCard;
     }
@@ -185,7 +190,7 @@ public class StockPane implements PaneHolder, UpdateStock {
 	monoCard = new ImageView("img/cards/card_monopoly.png");
 	monoCard.setFitHeight(100);
 	monoCard.setFitWidth(80);
-	monoCard.setOnMouseEntered(e -> updateInfo("we spelen helemaal geen monopoly"));
+	monoCard.setOnMouseEntered(e -> updateInfo(TranslationManager.translate("cards.monopoly.info")));
 	monoCard.setOnMouseExited(e -> updateInfo(""));
 	return monoCard;
     }
@@ -200,7 +205,7 @@ public class StockPane implements PaneHolder, UpdateStock {
 	knightCard = new ImageView("img/cards/card_knight.png");
 	knightCard.setFitHeight(100);
 	knightCard.setFitWidth(80);
-	knightCard.setOnMouseEntered(e -> updateInfo("Knight card, nak je tegenstanders met deze nicht"));
+	knightCard.setOnMouseEntered(e -> updateInfo(TranslationManager.translate("cards.knight.info")));
 	knightCard.setOnMouseExited(e -> updateInfo(""));
 	return knightCard;
     }
@@ -215,8 +220,7 @@ public class StockPane implements PaneHolder, UpdateStock {
 	inventCard = new ImageView("img/cards/card_invention.png");
 	inventCard.setFitHeight(100);
 	inventCard.setFitWidth(80);
-	inventCard.setOnMouseEntered(
-		e -> updateInfo("Invention card, wees de uitvinder die je altijd al had willen zijn"));
+	inventCard.setOnMouseEntered(e -> updateInfo(TranslationManager.translate("cards.invent.info")));
 	inventCard.setOnMouseExited(e -> updateInfo(""));
 	return inventCard;
     }
@@ -231,7 +235,7 @@ public class StockPane implements PaneHolder, UpdateStock {
 	roadCard = new ImageView("img/cards/card_road.png");
 	roadCard.setFitHeight(100);
 	roadCard.setFitWidth(80);
-	roadCard.setOnMouseEntered(e -> updateInfo("straatjes makennnnn"));
+	roadCard.setOnMouseEntered(e -> updateInfo(TranslationManager.translate("cards.road.info")));
 	roadCard.setOnMouseExited(e -> updateInfo(""));
 	return roadCard;
     }
