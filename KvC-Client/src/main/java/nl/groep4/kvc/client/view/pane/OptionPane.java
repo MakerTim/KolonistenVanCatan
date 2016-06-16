@@ -17,7 +17,7 @@ public class OptionPane implements PaneHolder {
 
     private SceneMap map;
 
-    private Text tilte;
+    private Text title;
     private MenuButton save;
     private MenuButton pause;
     private MenuButton rules;
@@ -34,15 +34,15 @@ public class OptionPane implements PaneHolder {
 	StackPane layers = new StackPane();
 	VBox buttons = new VBox(8);
 	buttons.setAlignment(Pos.CENTER);
-	tilte = new Text(TranslationManager.translate("game.menu.title"));
+	title = new Text(TranslationManager.translate("game.menu.title"));
 	save = new MenuButton(TranslationManager.translate("game.menu.save"));
 	pause = new MenuButton(TranslationManager.translate("game.menu.pause"));
 	rules = new MenuButton(TranslationManager.translate("game.menu.rules"));
 	credits = new MenuButton(TranslationManager.translate("game.menu.credits"));
 	exit = new MenuButton(TranslationManager.translate("game.menu.exit"));
 	back = new MenuButton(TranslationManager.translate("game.menu.back"));
-	tilte.setFont(ViewMaster.TITLE_FONT);
-	tilte.setFill(Color.WHITE);
+	title.setFont(ViewMaster.TITLE_FONT);
+	title.setFill(Color.WHITE);
 	save.setFont(ViewMaster.FONT);
 	pause.setFont(ViewMaster.FONT);
 	rules.setFont(ViewMaster.FONT);
@@ -57,7 +57,7 @@ public class OptionPane implements PaneHolder {
 	exit.setOnMouseClicked(klick -> onExitClick());
 	back.setOnMouseClicked(klick -> onBackClick());
 
-	buttons.getChildren().addAll(tilte, SettingsButton.getButton(null, 0, 0), save, pause, rules, credits, exit,
+	buttons.getChildren().addAll(title, SettingsButton.getButton(null, 0, 0), save, pause, rules, credits, exit,
 		back);
 	layers.getChildren().addAll(SceneUtil.getSettingsPane(), buttons);
 	return layers;
@@ -89,7 +89,7 @@ public class OptionPane implements PaneHolder {
 
     @Override
     public void updateTranslation() {
-	tilte.setText(TranslationManager.translate("game.menu.title"));
+	title.setText(TranslationManager.translate("game.menu.title"));
 	save.updateText(TranslationManager.translate("game.menu.save"));
 	pause.updateText(TranslationManager.translate("game.menu.pause"));
 	rules.updateText(TranslationManager.translate("game.menu.rules"));

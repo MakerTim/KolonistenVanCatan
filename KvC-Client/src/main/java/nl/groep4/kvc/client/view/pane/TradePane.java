@@ -16,6 +16,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
+import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.interfaces.Trade;
@@ -28,22 +29,26 @@ import nl.groep4.kvc.common.interfaces.UpdateTrade;
  * @version 1.0
  */
 public class TradePane implements PaneHolder, UpdateTrade {
-    StackPane stackpane = new StackPane();
-    MenuButton plaats = new MenuButton(425, 500, TranslationManager.translate("trade.button.place"));
-    MenuButton terug = new MenuButton(425, 500, TranslationManager.translate("trade.button.back"));
-    HBox buttons = new HBox();
-    VBox vbox = new VBox();
-    GridPane gp = new GridPane();
-    ScrollPane scrollpane = new ScrollPane(gp);
-    TableView<String> table = new TableView<>();
+
+    private SceneMap sceneMap;
+    private MenuButton plaats;
+    private MenuButton terug;
 
     public TradePane(SceneMap sceneMap) {
-	// TODO Auto-generated constructor stub
+	this.sceneMap = sceneMap;
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public Pane getPane() {
+	plaats = new MenuButton(425, 500, TranslationManager.translate("trade.button.place"));
+	terug = new MenuButton(425, 500, TranslationManager.translate("trade.button.back"));
+	GridPane gp = new GridPane();
+	ScrollPane scrollpane = new ScrollPane(gp);
+	TableView<String> table = new TableView<>();
+	StackPane stackpane = new StackPane();
+	HBox buttons = new HBox();
+	VBox vbox = new VBox();
 	HBox tb = new HBox();
 	vbox.setAlignment(Pos.CENTER);
 	tb.setAlignment(Pos.CENTER);
@@ -69,22 +74,35 @@ public class TradePane implements PaneHolder, UpdateTrade {
 	scrollpane.setMinHeight(280);
 	scrollpane.setMinWidth(575);
 
-	buttons.setAlignment(Pos.BOTTOM_RIGHT);
+	plaats.setFont(ViewMaster.FONT);
+	terug.setFont(ViewMaster.FONT);
 
+	buttons.setAlignment(Pos.BOTTOM_RIGHT);
 	stackpane.setAlignment(Pos.CENTER);
 
 	buttons.getChildren().addAll(terug, plaats);
-
 	vbox.getChildren().addAll(table, buttons);
 	tb.getChildren().addAll(vbox);
-
 	stackpane.getChildren().addAll(SceneUtil.getGamePane(), tb);
+
+	terug.setOnMouseClicked(klick -> onBackClick());
+	plaats.setOnMouseClicked(klick -> onPlaceClick());
 
 	return stackpane;
     }
 
+    private void onBackClick() {
+	sceneMap.closeOverlay();
+    }
+
+    private void onPlaceClick() {
+
+    }
+
     @Override
     public void updateTranslation() {
+	terug.updateText(TranslationManager.translate("trade.button.back"));
+	plaats.updateText(TranslationManager.translate("trade.button.plaats"));
 
     }
 
