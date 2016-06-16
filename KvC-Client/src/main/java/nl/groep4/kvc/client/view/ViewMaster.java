@@ -76,11 +76,15 @@ public class ViewMaster extends Application {
      */
     public static void setScene(SceneHolder scene) {
 	Platform.runLater(() -> {
-	    Scene theScene = scene.getScene();
-	    lastScene = scene;
-	    theScene.setCursor(new ImageCursor(new Image("img/etc/cursor.png")));
-	    stage.setScene(theScene);
+	    setSceneSynced(scene);
 	});
+    }
+
+    public static void setSceneSynced(SceneHolder scene) {
+	Scene theScene = scene.getScene();
+	lastScene = scene;
+	theScene.setCursor(new ImageCursor(new Image("img/etc/cursor.png")));
+	stage.setScene(theScene);
     }
 
     public static SceneHolder getLastScene() {
