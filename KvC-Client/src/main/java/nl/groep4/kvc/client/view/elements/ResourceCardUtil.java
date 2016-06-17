@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import nl.groep4.kvc.client.util.TranslationManager;
+import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.common.enumeration.Resource;
 
 public class ResourceCardUtil {
@@ -56,26 +57,31 @@ public class ResourceCardUtil {
 
     public Text getWoodText() {
 	amntWood = new KvCText("0");
+	amntWood.setFont(ViewMaster.TITLE_FONT);
 	return amntWood;
     }
 
     public Text getOreText() {
 	amntOre = new KvCText("0");
+	amntOre.setFont(ViewMaster.TITLE_FONT);
 	return amntOre;
     }
 
     public Text getWoolText() {
 	amntWool = new KvCText("0");
+	amntWool.setFont(ViewMaster.TITLE_FONT);
 	return amntWool;
     }
 
     public Text getWheatText() {
 	amntWheat = new KvCText("0");
+	amntWheat.setFont(ViewMaster.TITLE_FONT);
 	return amntWheat;
     }
 
     public Text getStoneText() {
 	amntStone = new KvCText("0");
+	amntStone.setFont(ViewMaster.TITLE_FONT);
 	return amntStone;
     }
 
