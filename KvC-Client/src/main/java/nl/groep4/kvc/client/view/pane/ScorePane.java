@@ -13,6 +13,7 @@ public class ScorePane implements PaneHolder {
     VBox players;
     VBox content;
     ImageView banner;
+    ImageView closedBanner;
     Text title;
 
     @Override
@@ -24,23 +25,35 @@ public class ScorePane implements PaneHolder {
 
 	content.getChildren().addAll(title, players);
 
-	scorePane.getChildren().addAll(getBanner(), content);
+	scorePane.getChildren().addAll(getClosedBanner());
+
+	scorePane.setOnMouseEntered(e -> clickOpen());
+	scorePane.setOnMouseExited(e -> clickClose());
 	return scorePane;
     }
 
     public void clickOpen() {
 	scorePane.getChildren().addAll(getBanner(), content);
+	scorePane.getChildren().remove(closedBanner);
     }
 
     public void clickClose() {
-	scorePane.getChildren().removeAll(getBanner(), content);
+	scorePane.getChildren().add(getClosedBanner());
+	scorePane.getChildren().removeAll(banner, content);
     }
 
     public Node getBanner() {
 	banner = new ImageView("img/game/banner.png");
-	banner.setFitHeight(482);
-	banner.setFitWidth(200);
+	banner.setFitHeight(390);
+	banner.setFitWidth(160);
 	return banner;
+    }
+
+    public Node getClosedBanner() {
+	closedBanner = new ImageView("img/game/banner_closed.png");
+	closedBanner.setFitHeight(200);
+	closedBanner.setFitWidth(160);
+	return closedBanner;
     }
 
     @Override
