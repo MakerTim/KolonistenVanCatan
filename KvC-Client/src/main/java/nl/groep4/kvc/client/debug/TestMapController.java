@@ -14,6 +14,7 @@ import nl.groep4.kvc.common.enumeration.BuildingType;
 import nl.groep4.kvc.common.enumeration.CardType;
 import nl.groep4.kvc.common.enumeration.Color;
 import nl.groep4.kvc.common.enumeration.Direction;
+import nl.groep4.kvc.common.enumeration.GameState;
 import nl.groep4.kvc.common.enumeration.Point;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.enumeration.TurnState;
@@ -454,25 +455,23 @@ public class TestMapController extends MapController {
 
 	@Override
 	public void setBuildingType(BuildingType type) {
-	    typez = type;
 	}
 
 	@Override
 	public void start() throws RemoteException {
-	    // TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void throwDices() throws RemoteException {
-	    // TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void distrube() throws RemoteException {
-	    // TODO Auto-generated method stub
+	}
 
+	@Override
+	public GameState getState() throws RemoteException {
+	    return null;
 	}
     }
 }

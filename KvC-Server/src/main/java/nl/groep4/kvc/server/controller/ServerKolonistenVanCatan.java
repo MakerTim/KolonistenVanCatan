@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nl.groep4.kvc.common.enumeration.BuildingType;
+import nl.groep4.kvc.common.enumeration.GameState;
 import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.Throw;
@@ -29,6 +30,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     private int round = -2;
     private int turn = -1;
     private Throw lastThrow;
+    private GameState state;
 
     public ServerKolonistenVanCatan(List<Player> players) {
 	System.out.println("Starting game!");
@@ -43,6 +45,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     @Override
     public void start() {
 	System.out.println("\tStarted game!");
+	state = GameState.INIT;
 	nextTurn();
     }
 
@@ -57,6 +60,11 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     @Override
     public void createMap() {
 	map.createMap();
+    }
+
+    @Override
+    public GameState getState() {
+	return this.state;
     }
 
     @Override
