@@ -69,6 +69,7 @@ public class BuyPane extends Application implements PaneHolder, UpdateCosts {
 	BorderPane border = new BorderPane();
 
 	HBox hbox = new HBox();
+	VBox backgroundvbox = new VBox();
 
 	yes = new MenuButton(425, 500, TranslationManager.translate("buycard.decision.yes"));
 	no = new MenuButton(425, 500, TranslationManager.translate("buycard.decision.no"));
@@ -156,15 +157,20 @@ public class BuyPane extends Application implements PaneHolder, UpdateCosts {
 	hboxPrices.setAlignment(Pos.CENTER);
 	hboxPrices.setPadding(new Insets(200, 0, 0, 0));
 	hboxPrices.setSpacing(20);
+	hboxPrices.setPickOnBounds(false);
 
 	hbox.getChildren().addAll(yes, no);
 	hbox.setAlignment(Pos.CENTER);
 	hbox.setPadding(new Insets(0, 0, 160, 0));
 	hbox.setSpacing(150);
+	hbox.setPickOnBounds(false);
 
 	border.setTop(hboxPrices);
 	border.setCenter(buy);
 	border.setBottom(hbox);
+	border.setPickOnBounds(false);
+
+	// backgroundvbox.getChildren().addAll(hboxPrices, buy, hbox);
 
 	Node background = SceneUtil.getGamePane();
 
