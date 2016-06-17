@@ -6,7 +6,7 @@ import java.util.List;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -43,12 +43,11 @@ public class TradePane implements PaneHolder, UpdateTrade {
 	terug = new MenuButton(425, 500, TranslationManager.translate("trade.button.back"));
 	HBox hboxScrollpane = new HBox();
 	VBox vboxButtons = new VBox();
+	VBox vbox = new VBox();
 	HBox buttons = new HBox();
 	HBox tb = new HBox();
-	HBox paneContent = new HBox();
 	StackPane stackpane = new StackPane();
 	ScrollPane scrollpane = new ScrollPane();
-	BorderPane borderpane = new BorderPane();
 
 	Text wheat = new KvCText("Wheat").addShadow();
 	Text wood = new KvCText("Wood").addShadow();
@@ -56,9 +55,15 @@ public class TradePane implements PaneHolder, UpdateTrade {
 	Text stone = new KvCText("Stone").addShadow();
 	Text ore = new KvCText("Ore").addShadow();
 
+	scrollpane.setHbarPolicy(ScrollBarPolicy.NEVER);
+	scrollpane.setVbarPolicy(ScrollBarPolicy.ALWAYS);
+	scrollpane.setMinWidth(500);
+	scrollpane.setMaxWidth(500);
+	scrollpane.setMinHeight(300);
+	scrollpane.setMaxHeight(300);
+	scrollpane.getStylesheets().add("/assets/stylesheet.css");
 	hboxScrollpane.setAlignment(Pos.CENTER);
-	vboxButtons.setAlignment(Pos.CENTER);
-	tb.setAlignment(Pos.CENTER);
+	tb.setAlignment(Pos.BOTTOM_CENTER);
 
 	VBox vboxWheat = new VBox();
 	VBox vboxWood = new VBox();
@@ -81,19 +86,19 @@ public class TradePane implements PaneHolder, UpdateTrade {
 	plaats.setFont(ViewMaster.FONT);
 	terug.setFont(ViewMaster.FONT);
 
-	buttons.setAlignment(Pos.BOTTOM_RIGHT);
 	stackpane.setAlignment(Pos.CENTER);
 
 	buttons.getChildren().addAll(terug, plaats);
+	vboxButtons.getChildren().addAll(buttons);
+	tb.getChildren().addAll(buttons);
 
 	hboxScrollpane.getChildren().addAll(scrollpane);
-	vboxButtons.getChildren().addAll(buttons);
 	hboxResources.getChildren().addAll(vboxWheat, vboxWood, vboxWool, vboxStone, vboxOre);
 
-	borderpane.setTop(hboxResources);
-	borderpane.setCenter(scrollpane);
+	vboxButtons.getChildren().addAll(tb);
 
-	stackpane.getChildren().addAll(SceneUtil.getGamePane(), borderpane);
+	vbox.getChildren().addAll(hboxResources, hboxScrollpane, vboxButtons);
+	stackpane.getChildren().addAll(SceneUtil.getGamePane(), vbox);
 
 	terug.setOnMouseClicked(klick -> onBackClick());
 	plaats.setOnMouseClicked(klick -> onPlaceClick());
