@@ -45,6 +45,7 @@ public class TradePane implements PaneHolder, UpdateTrade {
 	VBox vboxButtons = new VBox();
 	HBox buttons = new HBox();
 	HBox tb = new HBox();
+	@SuppressWarnings("unused")
 	HBox paneContent = new HBox();
 	StackPane stackpane = new StackPane();
 	ScrollPane scrollpane = new ScrollPane();
