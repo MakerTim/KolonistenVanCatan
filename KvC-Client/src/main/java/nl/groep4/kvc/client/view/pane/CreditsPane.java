@@ -86,7 +86,7 @@ public class CreditsPane implements PaneHolder {
 	hbox.getChildren().add(back);
 
 	vbox.setAlignment(Pos.CENTER);
-	vbox.getChildren().addAll(credits, bachir, matthijs, Tim, Luc, Lisa, hbox);
+	vbox.getChildren().addAll(credits, Tim, Lisa, matthijs, Luc, bachir, hbox);
 
 	creditspane.getChildren().addAll(boardbackground, board, vbox);
 

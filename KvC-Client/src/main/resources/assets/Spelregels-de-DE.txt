@@ -3,59 +3,70 @@ Ursprünglicher Autor: Klaus Tauber
 
 
 Das Ziel des Spiels
-Der Spieler, der die ersten 10 oder mehr Punkte werden, gewinnt das Spiel. Die Anzahl der Punkte
-kann variiert zwischen 10 und 15, je nachdem, was Sie im Voraus vereinbaren.
+Der Spieler, der die ersten 10 oder mehr Punkte werden, gewinnt das Spiel.
+Die Anzahl der Punkte kann variiert zwischen 10 und 15, je nachdem, was
+Sie im Voraus vereinbaren.
 
 
 Struktur des Vorstandes
-Teilen Sie die Land und Meer Räume. Lassen Sie eine Landkärtchen in der Mitte, gefolgt von zwei
-Wüstenfelder dort neben. Fahren Sie mit dem Rest der Landplättchen in eine spiralförmige Form
-um die Mitte, so dass das Land ist eine Symmetrie. Und legen Sie endlich das Meer Ziegel rund um
-die Insel. Sie tun dies im Wechsel in der Reihenfolge Wasser - 2: 1 Hafen - Wasser - 3: 1 Hafen.
-Die Drehung des Hafens ist zufällig, aber beide Hafenpunkte müssen mit dem Festland verbinden.
+Teilen Sie die Land und Meer Räume. Lassen Sie eine Landkärtchen in der
+Mitte, gefolgt von zwei Wüstenfelder dort neben. Fahren Sie mit dem Rest
+der Landplättchen in eine spiralförmige Form um die Mitte, so dass das
+Land ist eine Symmetrie. Und legen Sie endlich das Meer Ziegel rund um
+die Insel. Sie tun dies im Wechsel in der Reihenfolge Wasser - 2: 1 Hafen 
+- Wasser - 3: 1 Hafen. Die Drehung des Hafens ist zufällig, aber beide
+Hafenpunkte müssen mit dem Festland verbinden.
 
 
-Dann wird die Anzahl Token werden auf dem Spielbrett mit den Buchstaben nach oben eingelegt und
-diese in eine Spiralform, aus einer Kachel Ecke der Wahl beginnen. Wenn alle Token auf dem Brett 
-latziert sind, sie werden so umgedreht, dass die Zahlen deutlich sichtbar sind.
+Dann wird die Anzahl Token werden auf dem Spielbrett mit den Buchstaben
+nach oben eingelegt und diese in eine Spiralform, aus einer Kachel Ecke
+der Wahl beginnen. Wenn alle Token auf dem Brett latziert sind,
+sie werden so umgedreht, dass die Zahlen deutlich sichtbar sind.
 
 
-Die Zahlen (2-12) jeweils zweimal in dem Spiel (mit Ausnahme der 2 und 12 selbst:
-nur 1-mal). Sie geben die Wahrscheinlichkeit der Summe der beiden Würfel.
-Je größer die Größe der Zahl, desto höher die Wahrscheinlichkeit, dass diese Summe in Würfel
-geschnitten wird. Die höchsten vorkommenden Kombinationen (6 und 8) sind auch sehr deutlich
+Die Zahlen (2-12) jeweils zweimal in dem Spiel (mit Ausnahme der 2 und
+12 selbst: nur 1-mal). Sie geben die Wahrscheinlichkeit der Summe der
+beiden Würfel. Je größer die Größe der Zahl, desto höher die
+Wahrscheinlichkeit, dass diese Summe in Würfel geschnitten wird. Die
+höchsten vorkommenden Kombinationen (6 und 8) sind auch sehr deutlich
 in Rot gedruckt. Es werden keine Token auf den Wüsten Fliesen gelegt.
-Sobald das Board strukturiert ist, wählt jeder Spieler eine Farbe und 5 empfangen
-Dörfer (Häuser), 4 Städte (Gemeinden), 15 Blöcke (Straßen) und eine Karte der Baukosten.
-Die Ressourcenkarten werden in fünf offene Stapel neben dem Spielbrett platziert. Das
-Varianten sind Wald (Holz), Weide (Wolle), Feld (Korn), Hill (Steine), Berg (Erz).
-Die Entwicklungskarten (dunkler Rückseite) werden verdeckt in einem Stapel gelegt. Der Bandit
-(schwarzer Bauer) muss in der Wüste angeordnet werden. Die beiden Sonderkarten und Würfel neben
-dem Spielbrett bereit sein.
+Sobald das Board strukturiert ist, wählt jeder Spieler eine Farbe und
+5 empfangen Dörfer (Häuser), 4 Städte (Gemeinden), 15 Blöcke (Straßen)
+und eine Karte der Baukosten. Die Ressourcenkarten werden in fünf offene
+Stapel neben dem Spielbrett platziert. Das Varianten sind Wald (Holz),
+Weide (Wolle), Feld (Korn), Hill (Steine), Berg (Erz). Die
+Entwicklungskarten (dunkler Rückseite) werden verdeckt in einem Stapel
+gelegt. Der Bandit (schwarzer Bauer) muss in der Wüste angeordnet werden.
+Die beiden Sonderkarten und Würfel neben dem Spielbrett bereit sein.
 
 
 Settlement Phase
-Diese Phase wird über zwei Runden verteilt. Jeder Spieler hat die Möglichkeit, zwei zu bauen
-Siedlungen und zwei Fahrspuren vor dem Spiel selbst zu starten.
+Diese Phase wird über zwei Runden verteilt. Jeder Spieler hat die
+Möglichkeit, zwei zu bauen Siedlungen und zwei Fahrspuren vor dem Spiel
+selbst zu starten.
 
 Erste Runde
-Wer würfelt die höchste beginnt. Er legt eine Siedlung an einer Ecke der Wahl und eine Verbindung
-herstellt dies zu einer Straße in einer Richtung der Wahl. Anschließend werden die anderen Spieler
-in der Richtung im Uhrzeigersinn drehen. Es sollte jedoch bedacht werden, dass es eine Abstandsregel
-ist!
+Wer würfelt die höchste beginnt. Er legt eine Siedlung an einer Ecke der
+Wahl und eine Verbindung herstellt dies zu einer Straße in einer Richtung
+der Wahl. Anschließend werden die anderen Spieler in der Richtung im
+Uhrzeigersinn drehen. Es sollte jedoch bedacht werden, dass es eine
+Abstandsregel ist!
 	- Entfernung Regel
-	  Eine Siedlung kann nur dann, wenn die drei auf eine freie Kreuzung gesetzt werden
-	  nächsten Kreuzungen sind frei von Siedlungen oder Städte. Es spielt keine Rolle, wer
-	  da steht, sollte die Kreuzung frei bleiben werden.
+	  Eine Siedlung kann nur dann, wenn die drei auf eine freie
+	  Kreuzung gesetzt werden nächsten Kreuzungen sind frei von Siedlungen
+	  oder Städte. Es spielt keine Rolle, wer da steht, sollte die Kreuzung
+	  frei bleiben werden.
 
 Zweite Runde
-Danach, wer die Person zuletzt in der ersten Runde war, muss eine zweite Siedlungen platzieren.
-Das andere Spieler werden gegen den Uhrzeigersinn folgen. Die zweite Siedlungen können
-- Unter Berücksichtigung der Abstandsregel - überall platziert. Unmittelbar nach dem Aufsetzen
-zweite Siedlungen, wird jeder Spieler ihre erste Ressourcen erhalten. dass für jede Landkärtchen
-ist benachbart zu einer Siedlung, wird der Spieler eine entsprechende Ressourcenkarte aus dem
-Empfangs Stock. Die Spieler halten diese Ressourcenkarten voneinander versteckt. Wenn der letzte
-Spieler platziert seine zweite Siedlung, beginnt das Spiel.
+Danach, wer die Person zuletzt in der ersten Runde war, muss eine zweite
+Siedlungen platzieren. Das andere Spieler werden gegen den Uhrzeigersinn
+folgen. Die zweite Siedlungen können - Unter Berücksichtigung der
+Abstandsregel - überall platziert. Unmittelbar nach dem Aufsetzen zweite
+Siedlungen, wird jeder Spieler ihre erste Ressourcen erhalten. dass für
+jede Landkärtchen ist benachbart zu einer Siedlung, wird der Spieler
+eine entsprechende Ressourcenkarte aus dem Empfangs Stock. Die Spieler
+halten diese Ressourcenkarten voneinander versteckt. Wenn der letzte Spieler
+platziert seine zweite Siedlung, beginnt das Spiel.
 
 Gameplay
 Jeder Spieler geht durch pro Umdrehung die folgenden drei Phasen:
@@ -66,96 +77,117 @@ Jeder Spieler geht durch pro Umdrehung die folgenden drei Phasen:
 
 
 a) Das Ergebnis aus dem Land
-Die Spieler whos drehen ist, beide Würfel rollen muss. Die Summe der beiden Würfel bestimmt
-die Zahl auf der Landkärtchen, die Ressourcen zur Verfügung stellt. Jeder Spieler, der eine
-Siedlung oder eine Stadt hat auf dieses Stück Land, erhält eine Ressourcenkarte
-(zwei, wenn es eine Stadt ist). Wenn es nicht mehr Ressourcen Karten auf Lager, wird kein
-Spieler die Karte in dieser Runde erhalten.
+Die Spieler whos drehen ist, beide Würfel rollen muss. Die Summe der
+beiden Würfel bestimmt die Zahl auf der Landkärtchen, die Ressourcen
+zur Verfügung stellt. Jeder Spieler, der eine Siedlung oder eine Stadt
+hat auf dieses Stück Land, erhält eine Ressourcenkarte
+(zwei, wenn es eine Stadt ist). Wenn es nicht mehr Ressourcen Karten auf
+Lager, wird kein Spieler die Karte in dieser Runde erhalten.
 
 b) Handels
-Danach kann der Spieler mit anderen Spielern, um den Handel, die Ressourcen zu erhalten,
-die er vermisst. Wir unterscheiden den Siegbinnenhandel und Seehandel.
+Danach kann der Spieler mit anderen Spielern, um den Handel, die
+Ressourcen zu erhalten, die er vermisst. Wir unterscheiden den
+Siegbinnenhandel und Seehandel.
 
 	- Binnenhandel
-	  Der Spieler kann Ressourcenkarten mit allen Spielern tauschen. Er teilt sich mit den
-	  anderen Spielern welche er braucht und was er bereit ist, im Austausch für sie zu geben.
-	  Es ist wichtig, dass es nur mit dem Spieler, dessen Zug ausgetauscht werden ist es,
+	  Der Spieler kann Ressourcenkarten mit allen Spielern tauschen.
+	  Er teilt sich mit den anderen Spielern welche er braucht und
+	  was er bereit ist, im Austausch für sie zu geben. Es ist wichtig,
+	  dass es nur mit dem Spieler, dessen Zug ausgetauscht werden ist es,
 	  amongs nicht die anderen Spieler, wenn es nicht an die Reihe.
 
 	- Der Seehandel
-	  Hier kann der Spieler Ressourcenkarten ohne die Hilfe seiner Mitspieler handeln.
-	  Im einfachsten Austausch kann der Spieler vier Ressourcen Karten einer Art austauschen
-	  zu 1 Ressourcenkarte der Wahl. einen Hafen zu besitzen ist nicht erforderlich.
-	  Wenn jedoch ein Spieler ein Siedlung am Meer, kann er d viel interessanter Angebote.
-	  Bei einem einfachen Hafen (mit?) der Spieler kann immer drei gleiche Ressourcenkarten für
-	  eine weitere 1 der Wahl auszutauschen. An einem besonderen Hafen braucht der Spieler nur
-	  zwei identische Karten, wie dasselbe auf der abgebildeten Hafen, gegen eine neue
+	  Hier kann der Spieler Ressourcenkarten ohne die Hilfe seiner
+	  Mitspieler handeln. Im einfachsten Austausch kann der Spieler
+	  vier Ressourcen Karten einer Art austauschen zu 1 Ressourcenkarte
+	  der Wahl. einen Hafen zu besitzen ist nicht erforderlich. Wenn
+	  jedoch ein Spieler ein Siedlung am Meer, kann er d viel
+	  interessanter Angebote. Bei einem einfachen Hafen (mit?) der
+	  Spieler kann immer drei gleiche Ressourcenkarten für
+	  eine weitere 1 der Wahl auszutauschen. An einem besonderen
+	  Hafen braucht der Spieler nur zwei identische Karten, wie
+	  dasselbe auf der abgebildeten Hafen, gegen eine neue 
 	  Ressourcenkarte der Wahl auszutauschen.
 
 c) Gebäude
-Der Spieler, der am Zug ist, kann auch bauen seine Punkte zu erhöhen. Im Austausch für
-Kombinationen von Ressourcenkarten (Baukosten Karte) er viele Straßen bauen konnte,
-Siedlungen oder Städte.
+Der Spieler, der am Zug ist, kann auch bauen seine Punkte zu erhöhen.
+Im Austausch für Kombinationen von Ressourcenkarten (Baukosten Karte)
+er viele Straßen bauen konnte, Siedlungen oder Städte.
 
 Kosten:
 	Straße: Holz + Stein
-	In den bereits im Besitz Straßen, Dörfer und Städte Eine neue Straße muss als nächstes
-	gebaut. Auf jeder Straße nur eine Straße gebaut werden kann. Sobald ein Spieler eine hat
-	einen zusammenhängenden Weg von fünf Stücke, er erhält die Sonderkarte "längste Straße" ihm
-	zwei zusätzliche Punkte geben. Eine Straße kann sein unterbrochen oder ein anderer Spieler
-	kann eine längere Straße bauen. In diesem Moment wird die spezielle Karte gehen an den Spieler
-	mit der längsten Straße. Wenn zwei oder mehr Spieler eine ebenso lange Straße haben, ist die
-	Karte zurück zum Lager.
+	In den bereits im Besitz Straßen, Dörfer und Städte Eine neue
+	Straße muss als nächstes gebaut. Auf jeder Straße nur eine Straße
+	gebaut werden kann. Sobald ein Spieler eine hat einen
+	zusammenhängenden Weg von fünf Stücke, er erhält die Sonderkarte
+	"längste Straße" ihm zwei zusätzliche Punkte geben. Eine Straße
+	kann sein unterbrochen oder ein anderer Spieler kann eine längere
+	Straße bauen. In diesem Moment wird die spezielle Karte gehen an
+	den Spieler mit der längsten Straße. Wenn zwei oder mehr Spieler
+	eine ebenso lange Straße haben, ist die Karte zurück zum Lager.
 
 	Abrechnung: Holz + Stein + Getreide + Wolle
-	Unter Berücksichtigung der Abstandsregel. Die Abrechnung muss mindestens eine im Besitz
-	Straße platziert werden. Jede Siedlung auf dem Board bietet auch einen Punkt und ein
-	Spieler kann 1 Ressourcenkarte, wenn die Würfel verdienen bestimmen diese.
+	Unter Berücksichtigung der Abstandsregel. Die Abrechnung muss
+	mindestens eine im Besitz Straße platziert werden. Jede Siedlung
+	auf dem Board bietet auch einen Punkt und ein Spieler kann 1
+	Ressourcenkarte, wenn die Würfel verdienen bestimmen diese.
 
 	Stadt: 2 Korn + 3 Erz
-	Der Spieler setzt seine Siedlung in eine Stadt. Er ändert sich das Haus für eine Kirche.
-	Jede Stadt ist 2 Punkte wert und kann 2 Ressourcenkarten verdienen.
+	Der Spieler setzt seine Siedlung in eine Stadt. Er ändert sich
+	das Haus für eine Kirche. Jede Stadt ist 2 Punkte wert und kann
+	2 Ressourcenkarten verdienen.
 
 	Entwicklungskarte: Getreide + Wolle + Erz
-	Wenn ein Spieler eine Entwicklungskarte kaufen will, nimmt er die erste auf dem Stapel in
-	Austausch für die Ressourcenkarten drei erforderlich. Die daraus resultierende Entwicklung
-	Karte(n) gehalten wird, am besten ein Geheimnis für andere. Eine richtig gekauft Karte sollte
-	nicht sofort verwendet werden. Es gibt 14 Ritter, 6 Fortschrittskarten und 5 Punkte im Spiel.
+	Wenn ein Spieler eine Entwicklungskarte kaufen will, nimmt er
+	die erste auf dem Stapel in Austausch für die Ressourcenkarten
+	drei erforderlich. Die daraus resultierende Entwicklung Karte(n)
+	gehalten wird, am besten ein Geheimnis für andere. Eine richtig
+	gekauft Karte sollte nicht sofort verwendet werden. Es gibt 14
+	Ritter, 6 Fortschrittskarten und 5 Punkte im Spiel.
 
 d) Besondere Ereignisse + Karten
 
 	- Der Bandit
-	  Wenn ein Spieler 7 zu Beginn seines Zuges würfelt, muss der Spieler eine der beiden
-	  bewegen Banditen zu anderen Landkärtchen. Die Spieler, die Siedlungen oder Städte
-	  haben neben die Landplättchen, wo die Räuber auf platziert werden soll, und haben mehr
-	  als sieben Karten, geben die Hälfte ihrer Karten müssen. Diese Spieler auch erhalten keine
-	  Ressourcenkarten, bis die Bandit wurde erneut verschoben. Das Installationsprogramm des
-	  Banditen kann immer noch eine Ressource aus einem Diebstahl Spieler, dessen Siedlung oder eine
-	  Stadt neben einer Kachel, wo der Bandit auf platziert wurde, wenn verfügbar. Wenn mehrere
-	  Spieler sind, wählt er ein von einem Opfer der Wahl. Berauben selbst passieren wird geschlossen:
-	  Sie nicht sehen können, welche Art von Karte, die Sie stehlen. So lange wie
-	  ein Bandit auf eine Kachel steht, erhält kein Spieler Ressourcenkarten dieser Fliese.
+	  Wenn ein Spieler 7 zu Beginn seines Zuges würfelt, muss der
+	  Spieler eine der beiden bewegen Banditen zu anderen Landkärtchen.
+	  Die Spieler, die Siedlungen oder Städte haben neben die
+	  Landplättchen, wo die Räuber auf platziert werden soll, und haben
+	  mehr als sieben Karten, geben die Hälfte ihrer Karten müssen.
+	  Diese Spieler auch erhalten keine Ressourcenkarten, bis die
+	  Bandit wurde erneut verschoben. Das Installationsprogramm des 
+	  Banditen kann immer noch eine Ressource aus einem Diebstahl
+	  Spieler, dessen Siedlung oder eine Stadt neben einer Kachel,
+	  wo der Bandit auf platziert wurde, wenn verfügbar. Wenn
+	  mehrere Spieler sind, wählt er ein von einem Opfer der Wahl.
+	  Berauben selbst passieren wird geschlossen: Sie nicht sehen
+	  können, welche Art von Karte, die Sie stehlen. So lange wie
+	  ein Bandit auf eine Kachel steht, erhält kein Spieler
+	  Ressourcenkarten dieser Fliese.
 
 	- Wiedergabe von Entwicklungskarten
-	  Zu jeder Zeit während deines Zuges kannst du 1 Entwicklungskarte spielen. Aber es kann
-	  nicht eine Karte sein Sie kaufte im gleichen Zug!
+	  Zu jeder Zeit während deines Zuges kannst du 1 Entwicklungskarte
+	  spielen. Aber es kann nicht eine Karte sein Sie kaufte im
+	  gleichen Zug!
 
 	- Ritter
-	  Wenn ein Spieler diese Karte spielt, muss er den Rover auf einem anderen Landplättchen
-	  setzen. Er auch stiehlt eine Ressourcenkarte von jedem Spieler, der eine Siedlung oder
-	  eine Stadt neben der Fliese hat. Gespielt Ritter Karten bleiben für den Spieler offen
-	  auf dem Tisch. Ein Spieler mit 3-gespielt Ritterkarten erhält die Sonderkarte
-	  "Größte Armee". Das gibt ihm zwei zusätzliche Punkte. Diese Karte geht an die Lager zurück,
-	  wenn jemand anderes so viel Ritter Karten hat, oder geht an die zu diesem Zeitpunkt wieder,
-	  hat die "Größte Armee".
+	  Wenn ein Spieler diese Karte spielt, muss er den Rover auf
+	  einem anderen Landplättchen setzen. Er auch stiehlt eine
+	  Ressourcenkarte von jedem Spieler, der eine Siedlung oder
+	  eine Stadt neben der Fliese hat. Gespielt Ritter Karten
+	  bleiben für den Spieler offen auf dem Tisch. Ein Spieler mit
+	  3-gespielt Ritterkarten erhält die Sonderkarte "Größte Armee".
+	  Das gibt ihm zwei zusätzliche Punkte. Diese Karte geht an die
+	  Lager zurück, wenn jemand anderes so viel Ritter Karten hat,
+	  oder geht an die zu diesem Zeitpunkt wieder, hat die
+	  "Größte Armee".
 
 	- Fortschritt
-	  Die Person, die eine solche Karte spielt, muss der Befehl auf der Karte folgen.
-	  Die Karte dann muss
-	  Rückkehr unter den Stapel zurück.
-	- Straßen- und Wegebau: Der Spieler kann sofort bauen zwei neue Straßen (kostenlos)
-	- Entdeckung: Der Spieler kann sofort nehmen 2 Ressourcenkarten Ihrer Wahl
-	- Monopoly: alle Spieler müssen geben alle ihre Ressourcenkarten eines bestimmten
-	  Art - vom Spieler bestimmt werden unter Verwendung der Karte - zu diesem Spieler
-	- Punkte: diese Karten zusätzliche Punkte liefern, um die beste und erst am Ende des
-	  Spiels gezeigt.
+	  Die Person, die eine solche Karte spielt, muss der Befehl auf
+	  der Karte folgen. Die Karte dann muss Rückkehr unter den Stapel
+	  zurück.
+		- Straßen- und Wegebau: Der Spieler kann sofort bauen zwei neue Straßen (kostenlos)
+		- Entdeckung: Der Spieler kann sofort nehmen 2 Ressourcenkarten Ihrer Wahl
+		- Monopoly: alle Spieler müssen geben alle ihre Ressourcenkarten eines bestimmten
+	 	  Art - vom Spieler bestimmt werden unter Verwendung der Karte - zu diesem Spieler
+		- Punkte: diese Karten zusätzliche Punkte liefern, um die beste und erst am Ende des
+	 	  Spiels gezeigt.

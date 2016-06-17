@@ -27,7 +27,7 @@ only 1 time). They give the probability of the sum of the two dice.
 The larger the size of the number, the higher the probability that this sum
 is diced. The highest occurring combinations (6 and 8) are also very clear
 printed in red. No tokens are placed on the desert tiles.
-Once the board is structured, each player chooses a color and will recieve 5
+Once the board is structured, each player chooses a color and will receive 5
 villages (houses), 4 cities (churches), 15 blocks (streets) and a card of
 the building costs. The resource cards are placed in five open stacks next
 to the board. The variants are forest (wood), pasture (wool), field (grain),
