@@ -56,9 +56,9 @@ public class TestMapController extends MapController {
 	Scheduler.runAsyncLater(() -> {
 	    try {
 		view.updateRound(25);
-		view.updateConfig();
-		view.updateTurn(ClientRefrence.getThePlayer(), TurnState.WAITING);
 		view.updateScore(ClientRefrence.getThePlayer(), 69);
+		view.updateTurn(ClientRefrence.getThePlayer(), TurnState.WAITING);
+		view.updateConfig();
 	    } catch (Exception ex) {
 		ex.printStackTrace();
 	    }

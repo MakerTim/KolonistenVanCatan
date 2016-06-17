@@ -69,7 +69,7 @@ public class TurnInfoPane implements PaneHolder, UpdateRound {
 	lastTurn = who;
 	state = what;
 	String append = "";
-	if (ClientRefrence.getThePlayer().equals(who) || who == null) {
+	if (who == null || ClientRefrence.getThePlayer().equals(who)) {
 	    whoText.setText(TranslationManager.translate("turn.self"));
 	    append = ".self";
 	} else {

@@ -42,8 +42,9 @@ public class ScoreRoundPane implements PaneHolder, UpdateScore, UpdateRound {
 	roundText = new KvCText(TranslationManager.translate("game.round", round)).addShadow();
 	scoreText = new KvCText(TranslationManager.translate("game.score", score)).addShadow();
 	text.getChildren().addAll(roundText, scoreText);
-	layers.setAlignment(Pos.CENTER);
-	text.setAlignment(Pos.CENTER);
+	layers.setAlignment(Pos.TOP_CENTER);
+	text.setPadding(new Insets(60, 0, 0, 0));
+	text.setAlignment(Pos.TOP_CENTER);
 
 	layers.getChildren().addAll(shield, text);
 	return layers;
@@ -63,7 +64,7 @@ public class ScoreRoundPane implements PaneHolder, UpdateScore, UpdateRound {
 
     @Override
     public void updateScore(Player pl, int score) {
-	if (ClientRefrence.getThePlayer().equals(pl)) {
+	if (pl == null || ClientRefrence.getThePlayer().equals(pl)) {
 	    this.score = score;
 	    scoreText.setText(TranslationManager.translate("game.score", score));
 	}
