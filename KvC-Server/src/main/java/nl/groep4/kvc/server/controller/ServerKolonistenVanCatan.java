@@ -164,9 +164,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 
     @Override
     public void distrube() throws RemoteException {
-	for (Player pl : getPlayers()) {
-	    pl.getUpdateable().popup("ding" + lastThrow.getValue());
-	}
+	// FIXME: Distribute
     }
 
 }
