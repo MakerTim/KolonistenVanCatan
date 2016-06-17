@@ -1,5 +1,6 @@
 package nl.groep4.kvc.client.view.pane;
 
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -29,6 +30,7 @@ public class ScorePane implements PaneHolder {
 
 	scorePane.setOnMouseEntered(e -> clickOpen());
 	scorePane.setOnMouseExited(e -> clickClose());
+	scorePane.setAlignment(Pos.TOP_CENTER);
 	return scorePane;
     }
 
@@ -44,15 +46,15 @@ public class ScorePane implements PaneHolder {
 
     public Node getBanner() {
 	banner = new ImageView("img/game/banner.png");
-	banner.setFitHeight(390);
-	banner.setFitWidth(160);
+	banner.setFitHeight(398);
+	banner.setFitWidth(240);
 	return banner;
     }
 
     public Node getClosedBanner() {
 	closedBanner = new ImageView("img/game/banner_closed.png");
-	closedBanner.setFitHeight(200);
-	closedBanner.setFitWidth(160);
+	closedBanner.setFitHeight(120);
+	closedBanner.setFitWidth(240);
 	return closedBanner;
     }
 

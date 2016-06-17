@@ -147,7 +147,7 @@ public class StockPane implements PaneHolder, UpdateStock {
 	information.setText(TranslationManager.translate("cards.monopoly.info"));
 	information.setText(TranslationManager.translate("cards.knight.info"));
 	information.setText(TranslationManager.translate("cards.road.info"));
-	information.setText(TranslationManager.translate("cards.cath.info"));
+	information.setText(TranslationManager.translate("cards.victory.info"));
 	information.setText(TranslationManager.translate("cards.invent.info"));
     }
 
@@ -172,7 +172,7 @@ public class StockPane implements PaneHolder, UpdateStock {
 	cathCard = new ImageView("img/cards/card_cathedral.png");
 	cathCard.setFitHeight(100);
 	cathCard.setFitWidth(80);
-	cathCard.setOnMouseEntered(e -> updateInfo(TranslationManager.translate("cards.cath.info")));
+	cathCard.setOnMouseEntered(e -> updateInfo(TranslationManager.translate("cards.victory.info")));
 	cathCard.setOnMouseExited(e -> updateInfo(""));
 	return cathCard;
     }
