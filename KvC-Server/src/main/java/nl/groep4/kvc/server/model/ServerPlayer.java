@@ -24,6 +24,8 @@ public class ServerPlayer implements Player {
     private Color color;
     private List<Card> cards = new ArrayList<>();
     private EnumMap<Resource, Integer> resources;
+    private int buildingsToBuild;
+    private int streetsToBuild;
 
     /**
      * Makes a new player on the basis of the username. When the username
@@ -81,5 +83,25 @@ public class ServerPlayer implements Player {
     @Override
     public EnumMap<Resource, Integer> getResources() throws RemoteException {
 	return resources;
+    }
+
+    @Override
+    public int getRemainingStreets() throws RemoteException {
+	return streetsToBuild;
+    }
+
+    @Override
+    public void addRemainingStreets(int streets) throws RemoteException {
+	streetsToBuild += streets;
+    }
+
+    @Override
+    public int getRemainingBuidlings() throws RemoteException {
+	return buildingsToBuild;
+    }
+
+    @Override
+    public void addRemainingBuidlings(int buildings) throws RemoteException {
+	buildingsToBuild += buildings;
     }
 }

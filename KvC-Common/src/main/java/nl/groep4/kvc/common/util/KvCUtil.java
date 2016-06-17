@@ -13,6 +13,8 @@ public class KvCUtil {
 	    if (pl != null) {
 		Updatable<?> updateable = pl.getUpdateable();
 		updateable.testConnection();
+	    } else {
+		return -1;
 	    }
 	} catch (Exception ex) {
 	    try {

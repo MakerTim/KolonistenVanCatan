@@ -12,11 +12,11 @@ import javafx.application.Platform;
  */
 public class Scheduler {
 
-    public static void runSyncd(List<Runnable> runs) {
-	runSyncd(runs.toArray(new Runnable[runs.size()]));
+    public static void runAsyncdSync(List<Runnable> runs) {
+	runAsyncdSync(runs.toArray(new Runnable[runs.size()]));
     }
 
-    public static void runSyncd(Runnable... runs) {
+    public static void runAsyncdSync(Runnable... runs) {
 	Thread[] threads = new Thread[runs.length];
 	for (int i = 0; i < runs.length; i++) {
 	    threads[i] = new Thread(runs[i]);

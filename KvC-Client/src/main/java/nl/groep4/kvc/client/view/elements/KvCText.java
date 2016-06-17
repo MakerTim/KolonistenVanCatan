@@ -10,7 +10,6 @@ public class KvCText extends Text {
 	setFont(ViewMaster.FONT);
 	setFill(Color.WHITE);
 	setStroke(Color.BLACK);
-	setEffect(TexturedButton.getShadowEffect());
     }
 
     public KvCText(String text) {
@@ -18,10 +17,14 @@ public class KvCText extends Text {
 	setText(text);
     }
 
-    public KvCText(String text, int x, int y) {
+    public KvCText(int x, int y, String text) {
 	this(text);
 	setLayoutX(x);
 	setLayoutY(y);
     }
 
+    public KvCText addShadow() {
+	setEffect(TexturedButton.getShadowEffect());
+	return this;
+    }
 }

@@ -7,11 +7,11 @@ import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
+import nl.groep4.kvc.client.view.elements.KvCText;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.enumeration.TurnState;
@@ -37,11 +37,9 @@ public class PausePane implements PaneHolder, UpdateRound {
 	VBox pausebox = new VBox();
 
 	continueButton = new MenuButton(425, 500, TranslationManager.translate("pause.button.continue"));
-	pause = new Text(TranslationManager.translate("pause.label.pause"));
+	pause = new KvCText(TranslationManager.translate("pause.label.pause"));
 
 	continueButton.setFont(ViewMaster.FONT);
-	pause.setFill(Color.WHITE);
-	pause.setStroke(Color.BLACK);
 	pause.setFont(ViewMaster.TITLE_FONT);
 
 	pausebox.setAlignment(Pos.CENTER);

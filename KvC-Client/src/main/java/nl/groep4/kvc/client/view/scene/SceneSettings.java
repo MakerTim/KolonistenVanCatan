@@ -5,7 +5,6 @@ import javafx.scene.control.Slider;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
@@ -14,6 +13,7 @@ import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.SoundUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
+import nl.groep4.kvc.client.view.elements.KvCText;
 import nl.groep4.kvc.client.view.elements.LanguageButton;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.elements.MenuSlider;
@@ -51,11 +51,8 @@ public class SceneSettings implements SceneHolder {
 	form.setLayoutX(410);
 	form.setLayoutY(100);
 
-	settings = new Text(TranslationManager.translate("settings.label.title"));
+	settings = new KvCText(TranslationManager.translate("settings.label.title"));
 	settings.setTextAlignment(TextAlignment.CENTER);
-	settings.setFont(ViewMaster.FONT);
-	settings.setFill(Color.WHITE);
-	settings.setStroke(Color.BLACK);
 	settings.prefWidth(175);
 
 	/* Build the settings menu in lobby */

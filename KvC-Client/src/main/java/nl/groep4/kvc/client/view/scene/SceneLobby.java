@@ -14,6 +14,7 @@ import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ExceptionDialog;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.ColorScroll;
+import nl.groep4.kvc.client.view.elements.KvCText;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.elements.SettingsButton;
 import nl.groep4.kvc.common.enumeration.Color;
@@ -54,16 +55,10 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
 	lobbyGrid.setLayoutX(200);
 	lobbyGrid.setLayoutY(200);
 	/* Build the settings menu in lobby */
-	lobbyLabel = new Text(873, 150, TranslationManager.translate("lobby.shield.title"));
-	lobbyLabel.setFont(ViewMaster.FONT);
-	lobbyLabel.setFill(javafx.scene.paint.Color.WHITE);
-	lobbyLabel.setStroke(javafx.scene.paint.Color.BLACK);
+	lobbyLabel = new KvCText(873, 150, TranslationManager.translate("lobby.shield.title"));
 	startGame = new MenuButton(415, 550, TranslationManager.translate("lobby.button.start"));
-	startGame.setFont(ViewMaster.FONT);
 	backButton = new MenuButton(215, 550, TranslationManager.translate("lobby.button.back"));
-	backButton.setFont(ViewMaster.FONT);
 	saveButton = new MenuButton(615, 550, TranslationManager.translate("lobby.button.loadsave"));
-	saveButton.setFont(ViewMaster.FONT);
 
 	startGame.registerClick(() -> controller.startGame());
 	backButton.registerClick(() -> controller.disconnect(ClientRefrence.getThePlayer()));
@@ -110,10 +105,10 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
 
     @Override
     public void updateConfig() {
-	lobbyLabel = new Text(873, 150, TranslationManager.translate("lobby.shield.title"));
-	startGame = new MenuButton(415, 550, TranslationManager.translate("lobby.button.start"));
-	backButton = new MenuButton(215, 550, TranslationManager.translate("lobby.button.back"));
-	saveButton = new MenuButton(615, 550, TranslationManager.translate("lobby.button.loadsave"));
+	lobbyLabel.setText(TranslationManager.translate("lobby.shield.title"));
+	startGame.updateText(TranslationManager.translate("lobby.button.start"));
+	backButton.updateText(TranslationManager.translate("lobby.button.back"));
+	saveButton.updateText(TranslationManager.translate("lobby.button.loadsave"));
 	Arrays.stream(scrolls).forEach(scroll -> scroll.updateTranslation());
     }
 
