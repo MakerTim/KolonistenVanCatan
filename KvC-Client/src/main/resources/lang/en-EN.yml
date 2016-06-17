@@ -67,7 +67,7 @@ login.error.ingame.details:Exception: 406 Not Accaptable
 lobby.label.ip:IP Address
 lobby.label.port:Port Number
 lobby.label.username:Username
-lobby.label.nocolor:No Colour
+lobby.label.nocolor:No Color
 lobby.label.confirmeverything:Confirm Everything
 lobby.label.nosound:No Sound
 lobby.button.join:Join
@@ -92,7 +92,7 @@ turn.self:You
 cards.monopoly.info:Monopoly: Obtain all recourcecards of choice from other players
 cards.knight.info:Knight: Replace the bandit to another tile and get a card from another player
 cards.road.info:Road construction: Place 2 streets for free this turn
-cards.cath.info:Cathedral: Adds 1 victory point on use
+cards.victory.info:Cathedral: Adds 1 victory point on use
 cards.invent.info:Invention: Obtain 2 free resourcecards from the bank
 
 #PausePane
