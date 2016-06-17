@@ -22,11 +22,14 @@ import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.MenuButton;
+import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.UpdateCosts;
 
 public class BuyPane extends Application implements PaneHolder, UpdateCosts {
     private Font font = new Font(ViewMaster.FONT.getName(), 30);
+
+    private SceneMap sceneMap;
 
     private MenuButton yes;
     private MenuButton no;
@@ -62,9 +65,12 @@ public class BuyPane extends Application implements PaneHolder, UpdateCosts {
 
     }
 
+    public BuyPane(SceneMap sceneMap) {
+	this.sceneMap = sceneMap;
+    }
+
     @Override
     public Pane getPane() {
-	// TODO: registerdclick at no Button
 	StackPane buypane = new StackPane();
 	BorderPane border = new BorderPane();
 
@@ -156,19 +162,26 @@ public class BuyPane extends Application implements PaneHolder, UpdateCosts {
 	hboxPrices.setAlignment(Pos.CENTER);
 	hboxPrices.setPadding(new Insets(200, 0, 0, 0));
 	hboxPrices.setSpacing(20);
+	hboxPrices.setPickOnBounds(false);
 
 	hbox.getChildren().addAll(yes, no);
 	hbox.setAlignment(Pos.CENTER);
 	hbox.setPadding(new Insets(0, 0, 160, 0));
 	hbox.setSpacing(150);
+	hbox.setPickOnBounds(false);
 
 	border.setTop(hboxPrices);
 	border.setCenter(buy);
 	border.setBottom(hbox);
+	border.setPickOnBounds(false);
 
 	Node background = SceneUtil.getGamePane();
 
 	buypane.getChildren().addAll(background, border);
+
+	no.registerClick(() -> {
+	    sceneMap.closeOverlay();
+	});
 
 	return buypane;
     }

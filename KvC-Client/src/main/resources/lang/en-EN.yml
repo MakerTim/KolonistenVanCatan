@@ -15,9 +15,9 @@ game.menu.back:Back
 game.menu.rules:Rules
 game.menu.title:Options
 game.menu.credits:Credits
-game.resourcename.wood:Brick
+game.resourcename.wood:Wood
 game.resourcename.ore:Ore
-game.resourcename.stone:Stone
+game.resourcename.stone:Brick
 game.resourcename.wool:Wool
 game.resourcename.wheat:Wheat
 
@@ -67,7 +67,7 @@ login.error.ingame.details:Exception: 406 Not Accaptable
 lobby.label.ip:IP Address
 lobby.label.port:Port Number
 lobby.label.username:Username
-lobby.label.nocolor:No Colour
+lobby.label.nocolor:No Color
 lobby.label.confirmeverything:Confirm Everything
 lobby.label.nosound:No Sound
 lobby.button.join:Join
@@ -89,11 +89,11 @@ turn.state.wait.self:Your turn
 turn.self:You
 
 #Cards
-cards.monopoly.info:Monopoly, on use: Obtain all recourcecards of choice from other players
-cards.knight.info:Knight, on use: Replace the bandit to another tile
-cards.road.info:Road construction, on use: Place 2 streets for free this turn
-cards.cath.info:Cathedral card, on use: Adds 1 victory point on use
-cards.invent.info:Invention Card, on use: Obtain 2 free resourcecards from the bank
+cards.monopoly.info:Monopoly: Obtain all recourcecards of choice from other players
+cards.knight.info:Knight: Replace the bandit to another tile and get a card from another player
+cards.road.info:Road construction: Place 2 streets for free this turn
+cards.victory.info:Cathedral: Adds 1 victory point on use
+cards.invent.info:Invention: Obtain 2 free resourcecards from the bank
 
 #PausePane
 pause.button.continue:hervatten
@@ -130,12 +130,22 @@ note.ingame.details:Switching colour is unavailable while game is running
 note.noplayers.title:Not enough people
 note.players.explanation:There are not enough people
 note.players.details:Exception: 503 Service Unavailable
+note.noturn.tile:It is not your turn
+note.noturn.explanation:It is not your turn yet
+note.noturn.details:Exception: 503 Service Unavailable
+note.nostreet.title:No streets to place
+note.nostreet.explanation:You don't have any streets to place
+note.nostreet.details:Exception: 503 Service Unavailable
+note.building.title:No buildings to place
+note.building.explanation:You don't have any buildings to place
+note.building.details:Exception: 503 Service Unavailable
 
 #Map
 map.throwdice.clickToThrow:Throw the dice
 map.throwdice.throw:Throw
 map.stock.show:Show cards
 map.stock.hide:Hide cards
+map.throwdice.clicktothrow.other:Dices are being rolled
 
 #SceneSettings
 settings.button.playmusic:Play Music
