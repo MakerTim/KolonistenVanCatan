@@ -3,20 +3,19 @@ package nl.groep4.kvc.client.view.pane;
 import java.rmi.RemoteException;
 import java.util.List;
 
-import javafx.beans.binding.Bindings;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.ScrollPane.ScrollBarPolicy;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
+import nl.groep4.kvc.client.view.elements.KvCText;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.interfaces.Trade;
@@ -38,41 +37,46 @@ public class TradePane implements PaneHolder, UpdateTrade {
 	this.sceneMap = sceneMap;
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public Pane getPane() {
 	plaats = new MenuButton(425, 500, TranslationManager.translate("trade.button.place"));
 	terug = new MenuButton(425, 500, TranslationManager.translate("trade.button.back"));
-	GridPane gp = new GridPane();
-	ScrollPane scrollpane = new ScrollPane(gp);
-	TableView<String> table = new TableView<>();
-	StackPane stackpane = new StackPane();
+	HBox hboxScrollpane = new HBox();
+	VBox vboxButtons = new VBox();
 	HBox buttons = new HBox();
-	VBox vbox = new VBox();
 	HBox tb = new HBox();
-	vbox.setAlignment(Pos.CENTER);
+	HBox paneContent = new HBox();
+	StackPane stackpane = new StackPane();
+	ScrollPane scrollpane = new ScrollPane();
+	BorderPane borderpane = new BorderPane();
+
+	Text wheat = new KvCText("Wheat").addShadow();
+	Text wood = new KvCText("Wood").addShadow();
+	Text wool = new KvCText("Wool").addShadow();
+	Text stone = new KvCText("Stone").addShadow();
+	Text ore = new KvCText("Ore").addShadow();
+
+	hboxScrollpane.setAlignment(Pos.CENTER);
+	vboxButtons.setAlignment(Pos.CENTER);
 	tb.setAlignment(Pos.CENTER);
 
-	TableColumn<String, ?> emptyCol = new TableColumn<>("\n");
-	TableColumn<String, ?> wheatCol = new TableColumn<>("Wheat");
-	TableColumn<String, ?> woodCol = new TableColumn<>("Wood");
-	TableColumn<String, ?> woolCol = new TableColumn<>("Wool");
-	TableColumn<String, ?> stoneCol = new TableColumn<>("Stone");
-	TableColumn<String, ?> oreCol = new TableColumn<>("Ore");
+	VBox vboxWheat = new VBox();
+	VBox vboxWood = new VBox();
+	VBox vboxWool = new VBox();
+	VBox vboxStone = new VBox();
+	VBox vboxOre = new VBox();
 
-	table.getColumns().addAll(emptyCol, wheatCol, woodCol, woolCol, stoneCol, oreCol);
-	table.setFixedCellSize(300);
-	table.prefHeightProperty()
-		.bind(table.fixedCellSizeProperty().multiply(Bindings.size(table.getItems()).add(1.01)));
-	table.minHeightProperty().bind(table.prefHeightProperty());
-	table.maxHeightProperty().bind(table.prefHeightProperty());
+	HBox hboxResources = new HBox();
 
-	table.getStylesheets().add("/assets/stylesheet.css");
-	scrollpane.getStylesheets().add("/assets/stylesheet.css");
-	scrollpane.setHbarPolicy(ScrollBarPolicy.NEVER);
-	scrollpane.setVbarPolicy(ScrollBarPolicy.ALWAYS);
-	scrollpane.setMinHeight(280);
-	scrollpane.setMinWidth(575);
+	vboxWheat.getChildren().addAll(wheat);
+	vboxWood.getChildren().addAll(wood);
+	vboxWool.getChildren().addAll(wool);
+	vboxStone.getChildren().addAll(stone);
+	vboxOre.getChildren().addAll(ore);
+
+	hboxResources.setAlignment(Pos.CENTER);
+	hboxResources.setPadding(new Insets(200, 0, 0, 0));
+	hboxResources.setSpacing(20);
 
 	plaats.setFont(ViewMaster.FONT);
 	terug.setFont(ViewMaster.FONT);
@@ -81,9 +85,15 @@ public class TradePane implements PaneHolder, UpdateTrade {
 	stackpane.setAlignment(Pos.CENTER);
 
 	buttons.getChildren().addAll(terug, plaats);
-	vbox.getChildren().addAll(table, buttons);
-	tb.getChildren().addAll(vbox);
-	stackpane.getChildren().addAll(SceneUtil.getGamePane(), tb);
+
+	hboxScrollpane.getChildren().addAll(scrollpane);
+	vboxButtons.getChildren().addAll(buttons);
+	hboxResources.getChildren().addAll(vboxWheat, vboxWood, vboxWool, vboxStone, vboxOre);
+
+	borderpane.setTop(hboxResources);
+	borderpane.setCenter(scrollpane);
+
+	stackpane.getChildren().addAll(SceneUtil.getGamePane(), borderpane);
 
 	terug.setOnMouseClicked(klick -> onBackClick());
 	plaats.setOnMouseClicked(klick -> onPlaceClick());
@@ -96,14 +106,17 @@ public class TradePane implements PaneHolder, UpdateTrade {
     }
 
     private void onPlaceClick() {
-
+	sceneMap.openPlaceTradePane();
     }
 
     @Override
     public void updateTranslation() {
-	terug.updateText(TranslationManager.translate("trade.button.back"));
-	plaats.updateText(TranslationManager.translate("trade.button.plaats"));
-
+	if (terug != null) {
+	    terug.updateText(TranslationManager.translate("trade.button.back"));
+	}
+	if (plaats != null) {
+	    plaats.updateText(TranslationManager.translate("trade.button.plaats"));
+	}
     }
 
     @Override
