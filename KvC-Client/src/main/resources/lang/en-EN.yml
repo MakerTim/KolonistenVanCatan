@@ -89,11 +89,11 @@ turn.state.wait.self:Your turn
 turn.self:You
 
 #Cards
-cards.monopoly.info:Monopoly
-cards.knight.info:Knight
-cards.road.info:Road construction
-cards.cath.info:Cathedral
-cards.invent.info:Invention
+cards.monopoly.info:Monopoly, on use: Obtain all recourcecards of choice from other players
+cards.knight.info:Knight, on use: Replace the bandit to another tile
+cards.road.info:Road construction, on use: Place 2 streets for free this turn
+cards.cath.info:Cathedral card, on use: Adds 1 victory point on use
+cards.invent.info:Invention Card, on use: Obtain 2 free resourcecards from the bank
 
 #PausePane
 pause.button.continue:hervatten
