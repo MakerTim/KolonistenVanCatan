@@ -24,10 +24,11 @@ public class PausePane implements PaneHolder, UpdateRound {
     private Text pause;
 
     private SceneMap sceneMap;
+    private boolean isMyTurn;
 
-    public PausePane(SceneMap sceneMap) {
+    public PausePane(SceneMap sceneMap, boolean ismyturn) {
 	this.sceneMap = sceneMap;
-	this.sceneMap.toString();
+	this.isMyTurn = ismyturn;
     }
 
     @Override
@@ -36,17 +37,21 @@ public class PausePane implements PaneHolder, UpdateRound {
 	StackPane pausepane = new StackPane();
 	VBox pausebox = new VBox();
 
-	continueButton = new MenuButton(425, 500, TranslationManager.translate("pause.button.continue"));
+	if (isMyTurn) {
+	    continueButton = new MenuButton(425, 500, TranslationManager.translate("pause.button.continue"));
+	    continueButton.setFont(ViewMaster.FONT);
+	    continueButton.registerClick(() -> setPause());
+	    pausebox.getChildren().add(continueButton);
+	}
 	pause = new KvCText(TranslationManager.translate("pause.label.pause"));
 
-	continueButton.setFont(ViewMaster.FONT);
 	pause.setFont(ViewMaster.TITLE_FONT);
 
 	pausebox.setAlignment(Pos.CENTER);
 
 	Node background = SceneUtil.getGamePane();
 
-	pausebox.getChildren().addAll(pause, continueButton);
+	pausebox.getChildren().add(0, pause);
 	pausepane.getChildren().addAll(background, pausebox);
 
 	return pausepane;
@@ -59,6 +64,14 @@ public class PausePane implements PaneHolder, UpdateRound {
 	}
 	if (pause != null) {
 	    pause.setText(TranslationManager.translate("pause.label.pause"));
+	}
+    }
+
+    public void setPause() {
+	if (isMyTurn) {
+	    isMyTurn = false;
+	    sceneMap.getController().setPause();
+	    continueButton.setDisabled();
 	}
     }
 

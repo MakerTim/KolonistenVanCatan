@@ -89,11 +89,11 @@ turn.state.wait.self:Sind neben
 turn.self:Sie
 
 #Cards
-cards.monopoly.info:Monopolie: Erhalten Sie alle Ressourcenkarten für eine Art von Wahl
-cards.knight.info:Ridder: Bewegen der Bandit und  ziehen eine Ressourcen Karte von einem anderen Spieler
-cards.road.info:Stratenbouw: Bereit eine (kostenlose) Straßen bauen
-cards.victory.info:Overwinningspunt: Ein freier Punkt
-cards.invent.info:Uitvinding: Ziehen zwei Ressourcenkarten von der Bank der Wahl
+cards.monopoly.info:Monopol: Erhalten Sie alle Ressourcenkarten für eine Art von Wahl
+cards.knight.info:Ritter: Bewegen der Bandit und  ziehen eine Ressourcen Karte von einem anderen Spieler
+cards.road.info:Straßenbau: Bereit eine (kostenlose) Straßen bauen
+cards.victory.info:Siegpunkt: Ein freier Punkt
+cards.invent.info:Erfindung: Ziehen zwei Ressourcenkarten von der Bank der Wahl
 
 #PausePane
 pause.button.continue:fortsetzen

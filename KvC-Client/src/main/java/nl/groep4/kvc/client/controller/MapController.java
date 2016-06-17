@@ -56,4 +56,12 @@ public class MapController implements Controller {
 	    ex.printStackTrace();
 	}
     }
+
+    public void setPause() {
+	try {
+	    // model.setPause();
+	} catch (Exception ex) {
+	    ex.printStackTrace();
+	}
+    }
 }
