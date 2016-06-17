@@ -35,7 +35,7 @@ public class RulesPane implements PaneHolder {
 
 	VBox vbox = new VBox();
 	vbox.setAlignment(Pos.CENTER);
-	vbox.setPadding(new Insets(30, 80, 0, 80));
+	vbox.setPadding(new Insets(40, 80, 0, 80));
 
 	HBox hbox = new HBox();
 
@@ -46,7 +46,7 @@ public class RulesPane implements PaneHolder {
 
 	TextArea area = new TextArea();
 	area.setStyle("-fx-text-fill: white;");
-	area.setPrefRowCount(21);
+	area.setPrefRowCount(18);
 	area.setMaxWidth(600);
 	area.setEditable(false);
 	area.setOnKeyPressed(key -> key.consume());
