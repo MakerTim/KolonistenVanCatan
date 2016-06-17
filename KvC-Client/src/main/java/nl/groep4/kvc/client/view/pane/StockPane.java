@@ -6,6 +6,8 @@ import java.util.List;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -18,13 +20,24 @@ import nl.groep4.kvc.client.view.elements.KvCText;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.elements.ResourceCardUtil;
 import nl.groep4.kvc.client.view.scene.SceneMap;
+import nl.groep4.kvc.common.enumeration.CardType;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.Card;
 import nl.groep4.kvc.common.interfaces.UpdateStock;
+import nl.groep4.kvc.common.interfaces.VictoryCard;
+
+/**
+ * The card pane show all obtained cards
+ * 
+ * @version 1.0
+ * @author Luc
+ * 
+ **/
 
 public class StockPane implements PaneHolder, UpdateStock {
 
     StackPane cardPane;
+    ScrollPane development;
     HBox devCards;
     HBox resCards;
     VBox woodText;
@@ -104,22 +117,28 @@ public class StockPane implements PaneHolder, UpdateStock {
 	resCards.getChildren().addAll(wood, wheat, wool, stone, ore);
 	resCards.setAlignment(Pos.CENTER);
 	buttons.getChildren().addAll(showCards);
-	information = new KvCText();
+	information = new KvCText("");
 
 	devCards.setMaxHeight(150);
 	devCards.setMaxWidth(600);
-	devCards.getChildren().addAll(getKnightCard(), getInventCard(), getMonoCard(), getCathCard(), getRoadCard());
 	devCards.setAlignment(Pos.CENTER);
 	devCards.setPadding(new Insets(8, 0, 8, 0));
+	devCards.getChildren().addAll();
+	development = new ScrollPane(devCards);
+	development.setMaxWidth(600);
 
 	allThings.setAlignment(Pos.BOTTOM_CENTER);
 	cardPane.setMouseTransparent(true);
+	cardPane.getStylesheets().add("/assets/stylesheet.css");
+	development.setHbarPolicy(ScrollBarPolicy.AS_NEEDED);
+	development.setVbarPolicy(ScrollBarPolicy.NEVER);
+	development.setMinHeight(100);
 	return cardPane;
     }
 
     public void openStock() {
 	isOpen = true;
-	allThings.getChildren().addAll(resCards, devCards, information);
+	allThings.getChildren().addAll(resCards, development, information);
 	cardPane.getChildren().remove(allThings);
 	cardPane.getChildren().addAll(cards.getCardPlank(), allThings);
 	cardPane.setMouseTransparent(false);
@@ -128,7 +147,7 @@ public class StockPane implements PaneHolder, UpdateStock {
 
     public void closeStock() {
 	isOpen = false;
-	allThings.getChildren().removeAll(resCards, devCards, information);
+	allThings.getChildren().removeAll(resCards, development, information);
 	cardPane.getChildren().removeAll(cards.getCardPlank());
 	cardPane.setMouseTransparent(true);
     }
@@ -158,8 +177,45 @@ public class StockPane implements PaneHolder, UpdateStock {
 
     @Override
     public void updateStock(List<Card> cards) {
-	// TODO Auto-generated method stub
-
+	for (Card card : cards) {
+	    CardType type = card.getType();
+	    switch (type) {
+	    case FREE_STREETS:
+		devCards.getChildren().add(getRoadCard());
+		break;
+	    case INVENTION:
+		devCards.getChildren().add(getInventCard());
+		break;
+	    case KNIGHT:
+		devCards.getChildren().add(getKnightCard());
+		break;
+	    case MONOPOLY:
+		devCards.getChildren().add(getMonoCard());
+		break;
+	    case VICTORY:
+		VictoryCard victoryCard = (VictoryCard) card;
+		switch (victoryCard.getVictoryType()) {
+		case CHAPEL:
+		    devCards.getChildren().add(getCathCard());
+		    break;
+		case LIBARY:
+		    devCards.getChildren().add(getCathCard());
+		    break;
+		case MARKET:
+		    devCards.getChildren().add(getCathCard());
+		    break;
+		case PARLIAMENT:
+		    devCards.getChildren().add(getCathCard());
+		    break;
+		case UNIVERSITY:
+		    devCards.getChildren().add(getCathCard());
+		    break;
+		default:
+		    break;
+		}
+		break;
+	    }
+	}
     }
 
     /**
@@ -236,4 +292,5 @@ public class StockPane implements PaneHolder, UpdateStock {
 	roadCard.setOnMouseExited(e -> updateInfo(""));
 	return roadCard;
     }
+
 }
