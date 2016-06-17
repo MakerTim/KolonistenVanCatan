@@ -88,6 +88,13 @@ turn.state.wait:Tourne
 turn.state.wait.self:Êtes à côté
 turn.self:Vous
 
+#Cards
+cards.monopoly.info:Monopolie: Obtenez toutes les cartes de ressources d'un type de choix
+cards.knight.info:Ridder: Déplacer highwayman et tirez la carte des ressources d'un autre joueur
+cards.road.info:Stratenbouw: Prêt à construire une rue (gratuit)
+cards.victory.info:Overwinningspunt: Un point libre
+cards.invent.info:Uitvinding: Tirer deux cartes de ressources choisies par la banque
+
 cards.monopoly.info:Monopole
 cards.knight.info:chevalier
 cards.road.info:la construction de routes
@@ -129,12 +136,22 @@ note.ingame.details:Pendant le jeu, vous ne pouvez pas changer de couleur
 note.noplayers.title:Pas assez de gens
 note.players.explanation:Il n'y a pas assez de personnes présentes
 note.players.details:Exception: 503 Service Unavailable
+note.noturn.tile:Vous n'êtes pas d'agir
+note.noturn.explanation:Vous n'êtes même pas tourner
+note.noturn.details:Exception: 503 Service Unavailable
+note.nostreet.title:Il n'y a pas de rues à des endroits
+note.nostreet.explanation:Vous ne devez pas placer des rues
+note.nostreet.details:Exception: 503 Service Unavailable
+note.building.title:Il n'y a pas de bâtiments à placer
+note.building.explanation:Vous avez pas de bâtiments à placer
+note.building.details:Exception: 503 Service Unavailable
 
 #Map
 map.throwdice.clickToThrow:Jouer aux dés
 map.throwdice.throw:Cliquez pour jouer aux dés
 map.stock.show:Show cartes
 map.stock.hide:Cacher cartes
+map.throwdice.clicktothrow.other:Dés sont lancés
 
 #SceneSettings
 settings.button.playmusic:Son on
