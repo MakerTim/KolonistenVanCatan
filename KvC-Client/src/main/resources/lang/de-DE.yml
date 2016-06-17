@@ -88,6 +88,13 @@ turn.state.wait:Drehen
 turn.state.wait.self:Sind neben
 turn.self:Sie
 
+#Cards
+cards.monopoly.info:Monopol: Erhalten Sie alle Ressourcenkarten für eine Art von Wahl
+cards.knight.info:Ritter: Bewegen der Bandit und  ziehen eine Ressourcen Karte von einem anderen Spieler
+cards.road.info:Straßenbau: Bereit eine (kostenlose) Straßen bauen
+cards.victory.info:Siegpunkt: Ein freier Punkt
+cards.invent.info:Erfindung: Ziehen zwei Ressourcenkarten von der Bank der Wahl
+
 #PausePane
 pause.button.continue:fortsetzen
 pause.label.pause:Pause
@@ -119,12 +126,22 @@ note.ingame.details:Schalt Farbe ist nicht verfügbar, während Spiel läuft
 note.noplayers.title:Nicht genug Menschen
 note.players.explanation:Es gibt nicht genug Menschen vorhanden
 note.players.details:Exception: 503 Service Unavailable
+note.noturn.tile:Sie sind nicht zu handeln
+note.noturn.explanation:Sie sind nicht einmal umdrehen
+note.noturn.details:Exception: 503 Service Unavailable
+note.nostreet.title:Keine Straßen zu Ort
+note.nostreet.explanation:Sie müssen keine Straßen platzieren
+note.nostreet.details:Exception: 503 Service Unavailable
+note.building.title:Es gibt keine Gebäude zu platzieren
+note.building.explanation:Sie haben keine Gebäude zu platzieren
+note.building.details:Exception: 503 Service Unavailable
 
 #Map
 map.throwdice.clickToThrow:Wirf den Würfel
 map.throwdice.throw:Werfen
 map.stock.show:Show Ressourcen
-map.stock.hide:verstecken Ressourcen
+map.stock.hide:Ton Ressourcen
+map.throwdice.clicktothrow.other:Würfel Werden gerollt
 
 #SceneSettings
 settings.button.playmusic:Spiel Musik

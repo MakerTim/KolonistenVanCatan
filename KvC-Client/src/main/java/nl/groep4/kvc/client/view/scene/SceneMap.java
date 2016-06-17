@@ -99,8 +99,8 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    infoPane = new TurnInfoPane();
 	    buildPane = new BuildPane(this);
 	    tradePane = new TradePane(this);
-	    pausePane = new PausePane(this);
-	    buyPane = new BuyPane();
+	    pausePane = new PausePane(this, false);
+	    buyPane = new BuyPane(this);
 	    playerPane = new ScorePane();
 
 	    /* Build top */

@@ -89,11 +89,11 @@ turn.state.wait.self:Bent aan zet
 turn.self:U
 
 #Cards
-cards.monopoly.info:Monopolie
-cards.knight.info:Ridder
-cards.road.info:Stratenbouw
-cards.cath.info:Kathedraal
-cards.invent.info:Uitvinding
+cards.monopoly.info:Monopolie: Krijg alle grondstofkaarten van één soort naar keuze
+cards.knight.info:Ridder: Verplaats struikrover en trek grondstofkaart van andere speler
+cards.road.info:Stratenbouw: Direct twee (gratis) straten bouwen
+cards.victory.info:Overwinningspunt: Een gratis punt
+cards.invent.info:Uitvinding: Trek twee grondstofkaarten naar keuze van de bank
 
 #PausePane
 pause.button.continue:Hervatten
@@ -130,12 +130,22 @@ note.ingame.details:Tijdens het spel kunt u niet van kleur veranderen
 note.noplayers.title:Niet genoeg mensen
 note.players.explanation:Niet genoeg mensen zijn aanwezig
 note.players.details:Exception: 503 Service Unavailable
+note.noturn.tile:U bent niet aan de beurt
+note.noturn.explanation:U bent nog niet aan de beurt
+note.noturn.details:Exception: 503 Service Unavailable
+note.nostreet.title:Geen straten om te plaatsen
+note.nostreet.explanation:U heeft geen straten om te plaatsen
+note.nostreet.details:Exception: 503 Service Unavailable
+note.building.title:Geen gebouwen om te plaatsen
+note.building.explanation:U heeft geen gebouwen om te plaatsen
+note.building.details:Exception: 503 Service Unavailable
 
 #Map
 map.throwdice.clickToThrow:Dobbelen
 map.throwdice.throw:Klik om te dobbelen
 map.stock.show:Toon kaarten
 map.stock.hide:Verberg kaarten
+map.throwdice.clicktothrow.other:Er wordt gedobbeld
 
 #SceneSettings
 settings.button.playmusic:Muziek aan
