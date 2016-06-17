@@ -15,6 +15,15 @@ import nl.groep4.kvc.common.enumeration.Resource;
  * @author Tim
  */
 public interface Player extends Remote {
+
+    public int getRemainingStreets() throws RemoteException;
+
+    public void addRemainingStreets(int streets) throws RemoteException;
+
+    public int getRemainingBuidlings() throws RemoteException;
+
+    public void addRemainingBuidlings(int buildings) throws RemoteException;
+
     /**
      * 
      * @return get updates from {@link Lobby}

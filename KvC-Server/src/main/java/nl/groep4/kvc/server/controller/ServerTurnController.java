@@ -1,9 +1,13 @@
 package nl.groep4.kvc.server.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import nl.groep4.kvc.common.enumeration.TurnState;
 import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.UpdateMap;
+import nl.groep4.kvc.common.map.Street;
 
 public class ServerTurnController {
 
@@ -13,11 +17,26 @@ public class ServerTurnController {
 	this.controller = serverKolonistenVanCatan;
     }
 
+    public void initTurn() {
+	try {
+	    System.out.printf("Initial turn for %s", controller.getPlayersOrded().get(0).getUsername());
+	    List<Street> availbleStreets = new ArrayList<>();
+	    for (Street street : controller.getMap().getAllStreets()) {
+		if (street.getOwner() == null) {
+		    availbleStreets.add(street);
+		}
+	    }
+	    controller.getTurn().getUpdateable(UpdateMap.class).highlightStreets(availbleStreets);
+	} catch (Exception ex) {
+	    ex.printStackTrace();
+	}
+    }
+
     public void onTurn() {
 	try {
-	    System.out.println(controller.getPlayersOrded().get(0).getUsername() + "'s turn is now.");
+	    System.out.println(controller.getTurn().getUsername() + "'s turn is now.");
 	    {
-		UpdateMap view = controller.getPlayersOrded().get(0).getUpdateable(UpdateMap.class);
+		UpdateMap view = controller.getTurn().getUpdateable(UpdateMap.class);
 		view.unblockActions();
 		view.openDicePane(true);
 	    }
@@ -42,6 +61,10 @@ public class ServerTurnController {
 	} catch (Exception ex) {
 	    ex.printStackTrace();
 	}
+    }
+
+    public void endGame() {
+	// TODO: ENDGAME?
     }
 
 }
