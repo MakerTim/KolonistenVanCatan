@@ -64,19 +64,15 @@ public class BuyPane extends Application implements PaneHolder, UpdateCosts {
 
     @Override
     public Pane getPane() {
+	// TODO: registerdclick at no Button
 	StackPane buypane = new StackPane();
 	BorderPane border = new BorderPane();
+
 	HBox hbox = new HBox();
 
 	yes = new MenuButton(425, 500, TranslationManager.translate("buycard.decision.yes"));
 	no = new MenuButton(425, 500, TranslationManager.translate("buycard.decision.no"));
 	buy = new Text(TranslationManager.translate("buycard.msg.buycard"));
-
-	yes.setFont(ViewMaster.FONT);
-	no.setFont(ViewMaster.FONT);
-	buy.setFont(font);
-	buy.setFill(Color.WHITE);
-	buy.setStroke(Color.BLACK);
 
 	brick = new Text(TranslationManager.translate("buypane.text.brick"));
 	wool = new Text(TranslationManager.translate("buypane.text.wool"));
@@ -91,6 +87,21 @@ public class BuyPane extends Application implements PaneHolder, UpdateCosts {
 	wheatAmount = new Text("0");
 	oreAmount = new Text("0");
 	woodAmount = new Text("0");
+
+	vboxPrices = new VBox();
+	vboxWheat = new VBox();
+	vboxWood = new VBox();
+	vboxWool = new VBox();
+	vboxBrick = new VBox();
+	vboxOre = new VBox();
+
+	hboxPrices = new HBox();
+
+	buy.setFont(font);
+	yes.setFont(ViewMaster.FONT);
+	no.setFont(ViewMaster.FONT);
+	buy.setFill(Color.WHITE);
+	buy.setStroke(Color.BLACK);
 
 	brick.setFont(ViewMaster.FONT);
 	wool.setFont(ViewMaster.FONT);
@@ -134,15 +145,6 @@ public class BuyPane extends Application implements PaneHolder, UpdateCosts {
 	oreAmount.setStroke(Color.BLACK);
 	woodAmount.setStroke(Color.BLACK);
 
-	vboxPrices = new VBox();
-	vboxWheat = new VBox();
-	vboxWood = new VBox();
-	vboxWool = new VBox();
-	vboxBrick = new VBox();
-	vboxOre = new VBox();
-
-	hboxPrices = new HBox();
-
 	vboxPrices.getChildren().addAll(resources, cards);
 	vboxWheat.getChildren().addAll(wheat, wheatAmount);
 	vboxWood.getChildren().addAll(wood, woodAmount);
@@ -155,10 +157,10 @@ public class BuyPane extends Application implements PaneHolder, UpdateCosts {
 	hboxPrices.setPadding(new Insets(200, 0, 0, 0));
 	hboxPrices.setSpacing(20);
 
+	hbox.getChildren().addAll(yes, no);
+	hbox.setAlignment(Pos.CENTER);
 	hbox.setPadding(new Insets(0, 0, 160, 0));
 	hbox.setSpacing(150);
-	hbox.setAlignment(Pos.CENTER);
-	hbox.getChildren().addAll(yes, no);
 
 	border.setTop(hboxPrices);
 	border.setCenter(buy);
