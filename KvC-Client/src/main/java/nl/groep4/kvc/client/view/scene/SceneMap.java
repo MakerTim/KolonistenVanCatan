@@ -104,6 +104,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
 
 	    /* Build top */
 	    BorderPane top = new BorderPane();
+	    top.setPickOnBounds(false);
 	    HBox topLeftCorner = new HBox();
 	    topLeftCorner.getChildren().addAll(scorePane.getPane(), infoPane.getPane());
 	    top.setLeft(topLeftCorner);
