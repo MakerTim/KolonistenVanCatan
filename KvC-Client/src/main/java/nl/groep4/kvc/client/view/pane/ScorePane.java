@@ -28,8 +28,18 @@ public class ScorePane implements PaneHolder {
 	return scorePane;
     }
 
+    public void clickOpen() {
+	scorePane.getChildren().addAll(getBanner(), content);
+    }
+
+    public void clickClose() {
+	scorePane.getChildren().removeAll(getBanner(), content);
+    }
+
     public Node getBanner() {
 	banner = new ImageView("img/game/banner.png");
+	banner.setFitHeight(482);
+	banner.setFitWidth(200);
 	return banner;
     }
 
