@@ -87,15 +87,19 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	if (turn++ >= players.size() - 1) {
 	    turn = 0;
 	    nextRound();
+	    if (state == GameState.INIT && round == 0) {
+		state = GameState.IN_GAME;
+	    }
 	}
+	turnController.fixButtons();
 	switch (state) {
 	case END:
-	    turnController.initTurn();
 	    break;
 	case INIT:
-	    turnController.onTurn();
+	    turnController.initTurnStreet();
 	    break;
 	case IN_GAME:
+	    turnController.onTurn();
 	    break;
 	}
     }
@@ -116,21 +120,39 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 
     @Override
     public void placeBuilding(Coordinate coord, Player newOwner, BuildingType type) throws RemoteException {
-	Building building = map.getBuilding(coord);
-	building.setOwner(newOwner);
-	building.setBuildingType(type);
-	update();
+	if (newOwner.equals(getTurn())) {
+	    if (newOwner.getRemainingBuidlings() > 0) {
+		Building building = map.getBuilding(coord);
+		building.setOwner(newOwner);
+		building.setBuildingType(type);
+		update();
+		if (state == GameState.INIT) {
+		    nextTurn();
+		}
+	    } else {
+		newOwner.getUpdateable().popup("nobuilding");
+	    }
+	} else {
+	    newOwner.getUpdateable().popup("noturn");
+	}
     }
 
     @Override
     public void placeStreet(Coordinate coord, Player newOwner) throws RemoteException {
-	Street street = map.getStreet(coord);
-	try {
-	    street.setOwner(newOwner);
-	} catch (Exception ex) {
-	    System.err.println(ex);
+	if (newOwner.equals(getTurn())) {
+	    if (newOwner.getRemainingStreets() > 0) {
+		Street street = map.getStreet(coord);
+		street.setOwner(newOwner);
+		update();
+		if (state == GameState.INIT) {
+		    turnController.initTurnBuilding(street);
+		}
+	    } else {
+		newOwner.getUpdateable().popup("nostreet");
+	    }
+	} else {
+	    newOwner.getUpdateable().popup("noturn");
 	}
-	update();
     }
 
     @Override

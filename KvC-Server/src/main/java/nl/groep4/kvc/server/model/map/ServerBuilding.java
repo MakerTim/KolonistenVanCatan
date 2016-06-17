@@ -75,4 +75,13 @@ public class ServerBuilding implements Building {
     public String toString() {
 	return "Building @" + getPosition().toString() + " owned by " + getOwner();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+	if (obj instanceof Building) {
+	    Building other = (Building) obj;
+	    return other.getPosition().equals(getPosition());
+	}
+	return super.equals(obj);
+    }
 }

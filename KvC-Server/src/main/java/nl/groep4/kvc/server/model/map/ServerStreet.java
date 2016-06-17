@@ -65,4 +65,13 @@ public class ServerStreet implements Street {
 	return tiles;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+	if (obj instanceof Street) {
+	    Street other = (Street) obj;
+	    return other.getPosition().equals(getPosition());
+	}
+	return super.equals(obj);
+    }
+
 }

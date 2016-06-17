@@ -53,19 +53,6 @@ public class ServerPlayer implements Player {
     }
 
     @Override
-    public boolean equals(Object obj) {
-	if (obj instanceof Player) {
-	    Player other = (Player) obj;
-	    try {
-		return other.getUsername().equals(getUsername());
-	    } catch (RemoteException ex) {
-		ex.printStackTrace();
-	    }
-	}
-	return super.equals(obj);
-    }
-
-    @Override
     public Color getColor() throws RemoteException {
 	return color;
     }
@@ -103,5 +90,18 @@ public class ServerPlayer implements Player {
     @Override
     public void addRemainingBuidlings(int buildings) throws RemoteException {
 	buildingsToBuild += buildings;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+	if (obj instanceof Player) {
+	    Player other = (Player) obj;
+	    try {
+		return other.getUsername().equals(getUsername());
+	    } catch (RemoteException ex) {
+		ex.printStackTrace();
+	    }
+	}
+	return super.equals(obj);
     }
 }

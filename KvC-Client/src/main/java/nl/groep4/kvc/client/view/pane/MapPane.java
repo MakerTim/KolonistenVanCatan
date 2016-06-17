@@ -1,6 +1,8 @@
 package nl.groep4.kvc.client.view.pane;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javafx.geometry.Pos;
@@ -10,11 +12,11 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import nl.groep4.kvc.client.controller.MapController;
 import nl.groep4.kvc.client.view.elements.ClientTile;
-import nl.groep4.kvc.client.view.elements.ClientTile.SelectState;
 import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.enumeration.BuildingType;
 import nl.groep4.kvc.common.enumeration.Direction;
 import nl.groep4.kvc.common.enumeration.Point;
+import nl.groep4.kvc.common.enumeration.SelectState;
 import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Map;
@@ -69,10 +71,9 @@ public class MapPane implements PaneHolder {
 	    ClientTile clientTile = getTile(tile.getPosition());
 	    clientTile.setTile(tile);
 	}
-	tiles.forEach(clientTile -> clientTile.setSelectState(SelectState.STREET));
     }
 
-    public void highlightStreet(List<Street> streets) {
+    public void highlightStreet(Collection<Street> streets) {
 	for (ClientTile tile : tiles) {
 	    for (Direction direction : Direction.values()) {
 		tile.highLightStreet(direction, false);
@@ -85,7 +86,7 @@ public class MapPane implements PaneHolder {
 	}
     }
 
-    public void highlightBuilding(List<Building> buildings, BuildingType type) {
+    public void highlightBuilding(Collection<Building> buildings, BuildingType type) {
 	for (ClientTile tile : tiles) {
 	    for (Point point : Point.values()) {
 		tile.highLightBuilding(point, BuildingType.EMPTY);
@@ -96,5 +97,9 @@ public class MapPane implements PaneHolder {
 		}
 	    }
 	}
+    }
+
+    public void setSelectable(SelectState selectables) throws RemoteException {
+	tiles.forEach(clientTile -> clientTile.setSelectState(selectables));
     }
 }

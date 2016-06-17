@@ -1,6 +1,7 @@
 package nl.groep4.kvc.client.view.scene;
 
 import java.rmi.RemoteException;
+import java.util.Collection;
 import java.util.EnumMap;
 import java.util.List;
 
@@ -38,6 +39,7 @@ import nl.groep4.kvc.client.view.pane.TradePane;
 import nl.groep4.kvc.client.view.pane.TurnInfoPane;
 import nl.groep4.kvc.common.enumeration.BuildingType;
 import nl.groep4.kvc.common.enumeration.Resource;
+import nl.groep4.kvc.common.enumeration.SelectState;
 import nl.groep4.kvc.common.enumeration.TurnState;
 import nl.groep4.kvc.common.interfaces.Card;
 import nl.groep4.kvc.common.interfaces.NotCloseable;
@@ -371,12 +373,12 @@ public class SceneMap implements SceneHolder, UpdateMap {
     }
 
     @Override
-    public void highlightStreets(List<Street> streets) {
+    public void highlightStreets(Collection<Street> streets) {
 	gamepane.highlightStreet(streets);
     }
 
     @Override
-    public void highlightBuildings(List<Building> buildings, BuildingType type) {
+    public void highlightBuildings(Collection<Building> buildings, BuildingType type) {
 	gamepane.highlightBuilding(buildings, type);
     }
 
@@ -413,5 +415,10 @@ public class SceneMap implements SceneHolder, UpdateMap {
 		ex.printStackTrace();
 	    }
 	}
+    }
+
+    @Override
+    public void setSelectable(SelectState selectables) throws RemoteException {
+	gamepane.setSelectable(selectables);
     }
 }
