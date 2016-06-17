@@ -17,11 +17,13 @@ import nl.groep4.kvc.common.enumeration.Direction;
 import nl.groep4.kvc.common.enumeration.Point;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.enumeration.TurnState;
+import nl.groep4.kvc.common.enumeration.VictoryCardType;
 import nl.groep4.kvc.common.interfaces.Card;
 import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.Trade;
 import nl.groep4.kvc.common.interfaces.Updatable;
+import nl.groep4.kvc.common.interfaces.VictoryCard;
 import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Map;
@@ -102,13 +104,31 @@ public class TestMapController extends MapController {
 		view.updateStock(new EnumMap<>(resources));
 		List<Card> cards = new ArrayList<>();
 		for (CardType card : CardType.values()) {
-		    for (int i = 0; i < 25; i++) {
-			cards.add(new Card() {
-			    @Override
-			    public CardType getType() {
-				return card;
-			    }
-			});
+		    for (VictoryCardType victory : VictoryCardType.values()) {
+			if (card == CardType.VICTORY) {
+			    cards.add(new VictoryCard() {
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				public CardType getType() {
+				    return card;
+				}
+
+				@Override
+				public VictoryCardType getVictoryType() {
+				    return victory;
+				}
+			    });
+			} else {
+			    cards.add(new Card() {
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				public CardType getType() {
+				    return card;
+				}
+			    });
+			}
 		    }
 		}
 		view.updateStock(cards);
