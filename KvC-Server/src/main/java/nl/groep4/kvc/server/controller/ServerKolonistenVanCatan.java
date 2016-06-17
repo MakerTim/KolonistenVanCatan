@@ -88,7 +88,21 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	    turn = 0;
 	    nextRound();
 	}
-	turnController.onTurn();
+	switch (state) {
+	case END:
+	    turnController.initTurn();
+	    break;
+	case INIT:
+	    turnController.onTurn();
+	    break;
+	case IN_GAME:
+	    break;
+	}
+    }
+
+    @Override
+    public Player getTurn() {
+	return getPlayersOrded().get(0);
     }
 
     @Override
