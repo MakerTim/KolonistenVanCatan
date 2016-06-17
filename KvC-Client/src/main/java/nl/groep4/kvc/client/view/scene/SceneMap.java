@@ -32,6 +32,7 @@ import nl.groep4.kvc.client.view.pane.OptionPane;
 import nl.groep4.kvc.client.view.pane.PaneHolder;
 import nl.groep4.kvc.client.view.pane.PausePane;
 import nl.groep4.kvc.client.view.pane.RulesPane;
+import nl.groep4.kvc.client.view.pane.ScorePane;
 import nl.groep4.kvc.client.view.pane.ScoreRoundPane;
 import nl.groep4.kvc.client.view.pane.StockPane;
 import nl.groep4.kvc.client.view.pane.TradePane;
@@ -74,6 +75,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
     private TradePane tradePane;
     private PausePane pausePane;
     private BuyPane buyPane;
+    private ScorePane playerPane;
 
     @Override
     public void registerController(Controller controller) {
@@ -98,12 +100,14 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    tradePane = new TradePane(this);
 	    pausePane = new PausePane(this);
 	    buyPane = new BuyPane();
+	    playerPane = new ScorePane();
 
 	    /* Build top */
 	    BorderPane top = new BorderPane();
 	    HBox topLeftCorner = new HBox();
 	    topLeftCorner.getChildren().addAll(scorePane.getPane(), infoPane.getPane());
 	    top.setLeft(topLeftCorner);
+	    top.setRight(playerPane.getPane());
 	    screen.setTop(top);
 
 	    /* Build bottom */
