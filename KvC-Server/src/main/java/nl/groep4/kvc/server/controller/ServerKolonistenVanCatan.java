@@ -96,7 +96,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	case END:
 	    break;
 	case INIT:
-	    turnController.initTurnStreet();
+	    turnController.initTurnBuilding();
 	    break;
 	case IN_GAME:
 	    turnController.onTurn();
@@ -127,7 +127,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 		building.setBuildingType(type);
 		update();
 		if (state == GameState.INIT) {
-		    nextTurn();
+		    turnController.initTurnStreet(building);
 		}
 	    } else {
 		newOwner.getUpdateable().popup("nobuilding");
@@ -145,7 +145,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 		street.setOwner(newOwner);
 		update();
 		if (state == GameState.INIT) {
-		    turnController.initTurnBuilding(street);
+		    nextTurn();
 		}
 	    } else {
 		newOwner.getUpdateable().popup("nostreet");
@@ -164,6 +164,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 
     @Override
     public void distrube() throws RemoteException {
+	lastThrow.toString();
 	// FIXME: Distribute
     }
 

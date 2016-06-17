@@ -25,13 +25,19 @@ public class ServerTurnController {
 	this.controller = serverKolonistenVanCatan;
     }
 
-    public void initTurnStreet() {
+    public void initTurnStreet(Building building) {
 	try {
 	    System.out.printf("Initial turn for %s\n", controller.getPlayersOrded().get(0).getUsername());
 	    Set<Street> availbleStreets = new HashSet<>();
-	    for (Street street : controller.getMap().getAllStreets()) {
-		if (street.getOwner() == null) {
-		    availbleStreets.add(street);
+	    Tile[] tiles = building.getConnectedTiles();
+	    for (Tile tile : tiles) {
+		for (Point point : Point.values()) {
+		    if (building.equals(tile.getBuilding(point))) {
+			availbleStreets
+				.add(tile.getStreet(CollectionUtil.getInRange(Direction.values(), point.ordinal())));
+			availbleStreets.add(
+				tile.getStreet(CollectionUtil.getInRange(Direction.values(), point.ordinal() + 1)));
+		    }
 		}
 	    }
 	    for (Player pl : controller.getPlayers()) {
@@ -46,19 +52,11 @@ public class ServerTurnController {
 	}
     }
 
-    public void initTurnBuilding(Street street) {
+    public void initTurnBuilding() {
 	try {
 	    Set<Building> availbleBuidlings = new HashSet<>();
-	    Tile[] tiles = street.getConnectedTiles();
-	    for (Tile tile : tiles) {
-		for (Direction direction : Direction.values()) {
-		    if (street.equals(tile.getStreet(direction))) {
-			availbleBuidlings.add(
-				tile.getBuilding(CollectionUtil.getInRange(Point.values(), direction.ordinal() - 1)));
-			availbleBuidlings
-				.add(tile.getBuilding(CollectionUtil.getInRange(Point.values(), direction.ordinal())));
-		    }
-		}
+	    for (Building building : controller.getMap().getAllBuildings()) {
+		availbleBuidlings.add(building);
 	    }
 	    for (Player pl : controller.getPlayers()) {
 		pl.getUpdateable(UpdateMap.class).updateTurn(controller.getTurn(), TurnState.BUILDING_BUILDING);
