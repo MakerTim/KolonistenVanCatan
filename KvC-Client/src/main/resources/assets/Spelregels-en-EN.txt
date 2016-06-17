@@ -3,57 +3,63 @@ Original author: Klaus Tauber
 
 
 Goal
-The player who will score the first 10 or more points wins the game. The number of points may varies
-between 10 and 15, depending on what you agree in advance.
+The player who will score the first 10 or more points wins the game. The number 
+of points may vary between 10 and 15, depending on what you agree in advance.
 
 
 Structure of the board
-Divide the land and sea spaces. Leave a land tile in the middle, followed by two desert fields there
-parallel to. Continue with the rest of the land tiles in a spiral shape around the middle, so that
-the country is a symmetry. And finally place the sea tile around the island. You do this alternately
-in the order Water - 2: 1 harbor - Water - 3: 1 harbor. The rotation of the harbor is random, but
-both harbor points must connect with the mainland.
+Divide the land and sea spaces. Leave a land tile in the middle, followed by
+two desert fields there parallel to. Continue with the rest of the land tiles
+in a spiral shape around the middle, so that the country is a symmetry.
+And finally place the sea tile around the island. You do this alternately
+in the order Water - 2: 1 harbor - Water - 3: 1 harbor. The rotation of the
+harbor is random, but both harbor points must connect with the mainland.
 
 
-Then the number tokens are placed on the game board with the letters up and this in
-a spiral shape, starting from a tile corner of choice. If all the tokens are placed on the board,
-they are turned over so that the numbers are clearly visible.
+Then the number tokens are placed on the game board with the letters up and
+this in a spiral shape, starting from a tile corner of choice. If all the
+tokens are placed on the board, they are turned over so that the numbers are
+clearly visible.
 
 
 The numbers (2 to 12) are each twice in the game (except the 2 and 12 itself:
 only 1 time). They give the probability of the sum of the two dice.
-The larger the size of the number, the higher the probability that this sum is diced.
-The highest occurring combinations (6 and 8) are also very clear printed in red.
-No tokens are placed on the desert tiles.
+The larger the size of the number, the higher the probability that this sum
+is diced. The highest occurring combinations (6 and 8) are also very clear
+printed in red. No tokens are placed on the desert tiles.
 Once the board is structured, each player chooses a color and will recieve 5
-villages (houses), 4 cities (churches), 15 blocks (streets) and a card of the building costs.
-The resource cards are placed in five open stacks next to the board. The
-variants are forest (wood), pasture (wool), field (grain), Hill (stones), mountain (ore).
-The development cards (darker back) are placed face down in a pile. The bandit (black pawn)
-needs to be placed in the desert. The two special cards and dice be ready next to the board.
+villages (houses), 4 cities (churches), 15 blocks (streets) and a card of
+the building costs. The resource cards are placed in five open stacks next
+to the board. The variants are forest (wood), pasture (wool), field (grain),
+Hill (stones), mountain (ore). The development cards (darker back) are placed
+face down in a pile. The bandit (black pawn) needs to be placed in the desert.
+The two special cards and dice be ready next to the board.
 
 
 Settlement Phase
-This phase is spread over two rounds. Each player is given the opportunity to build two
-settlements and two lanes before starting the game itself.
+This phase is spread over two rounds. Each player is given the opportunity
+to build two settlements and two lanes before starting the game itself.
 
 First round
-Who dices the highest begins. He places one settlement on a corner of choice and connects
-this to a street in a direction of choice. Subsequently, the other players are in the
-direction clockwise turn. However, there should be kept in mind that there is a distance rule!
+Who dices the highest begins. He places one settlement on a corner of choice
+and connects this to a street in a direction of choice. Subsequently, the
+other players are in the direction clockwise turn. However, there should be
+kept in mind that there is a distance rule!
 	- Distance rule
 	  A settlement may only be put on a free intersection if the three
-	  nearest intersections are free of settlements or cities. It does not matter who
-	  stands there, the intersection should be remain unoccupied.
+	  nearest intersections are free of settlements or cities. It does not
+	  matter who stands there, the intersection should be remain unoccupied.
 
 Second round
-After this, the person who was last in the first round, must place a second settlements. The
-other players will follow in counterclockwise direction. The second settlements may be 
-- taking into account the distance rule - placed everywhere. Immediately after placing the
-second settlements, each player will receive their first resources. For each land tile that is
-adjacent to a settlement, the player will receive one corresponding resource card from the
-stock. The Players keep these resource cards hidden from each other. When the last player placed
-his second settlement, the game begins.
+After this, the person who was last in the first round, must place a second
+settlements. The other players will follow in counterclockwise direction.
+The second settlements may be 
+	- taking into account the distance rule - placed everywhere. Immediately
+	  after placing the second settlements, each player will receive their
+	  first resources. For each land tile that is adjacent to a settlement,
+	  the player will receive one corresponding resource card from the stock.
+	  The Players keep these resource cards hidden from each other. When the
+	  last player placed his second settlement, the game begins.
 
 Gameplay
 Each player goes through per turn the following three phases:
@@ -64,90 +70,105 @@ Each player goes through per turn the following three phases:
 
 
 a) Earnings from the land
-The player whos turn it is must roll both dice. The sum of the two dice determines
-the number on the land tile that provides resources. Any player who has a settlement or city on
-this piece of land, receives a resource card (two if it is a city). If there are no more resource
-cards in stock, no player will receive the card in that turn.
+The player whos turn it is must roll both dice. The sum of the two dice
+determines the number on the land tile that provides resources. Any player who
+has a settlement or city on this piece of land, receives a resource card
+(two if it is a city). If there are no more resource cards in stock, no player
+will receive the card in that turn.
 
 b) Trading
-After this the player can trade with other players in order to get the resources that he misses.
-We distinguish the winning domestic trade and maritime trade.
+After this the player can trade with other players in order to get the
+resources that he misses. We distinguish the winning domestic trade and
+maritime trade.
 
 	- Domestic Trade
-	  The player may trade resource cards with all players. He shares with the other players what
-	  he needs and what he is willing to give in exchange for it. It is important that there can
-	  only be exchanged with the player whose turn it is, not amongs the other players when it's
-	  not their turn.
+	  The player may trade resource cards with all players. He shares with the
+	  other players what he needs and what he is willing to give in exchange
+	  for it. It is important that there can only be exchanged with the player
+	  whose turn it is, not amongs the other players when it's not their turn.
 
 	- Maritime trade
-	  Here the player can trade resource cards without the help of his fellow players.
-	  In the most simple exchange, the player can exchange 4 resource cards of one kind to 1
-	  resource card of choice. Owning a harbor is not necessary. When a player however has a
-	  settlement at the sea, he can d much more interesting deals. At a simple harbor (with ?)
-	  the player can always exchange three identical resource cards for another 1 of choice.
-	  At a special harbor the player needs only two identical cards, the same as pictured on the
-	  harbor, to exchange against one new resource card of choice.
+	  Here the player can trade resource cards without the help of his fellow
+	  players. In the most simple exchange, the player can exchange 4 resource
+	  cards of one kind to 1 resource card of choice. Owning a harbor is not
+	  necessary. When a player however has a settlement at the sea, he can do
+	  much more interesting deals. At a simple harbor (with ?) the player can
+	  always exchange three identical resource cards for another 1 of choice.
+	  At a special harbor the player needs only two identical cards, the same
+	  as pictured on the harbor, to exchange against one new resource card
+	  of choice.
 
 c) Building
-The player whose turn it is can also build to increase his points. In exchange for
-combinations of resource cards (Building costs card) he could build many streets,
-settlements or cities.
+The player whose turn it is can also build to increase his points. In exchange
+for combinations of resource cards (Building costs card) he could build many
+streets, settlements or cities.
 
 Costs:
 	street: wood + stone
-	A new street must be built next to already owned streets, villages and cities. On
-	each street only one street can be built. Once a player a has a contiguous road of five pieces,
-	he receives the special card "longest Road" giving him two extra points. A road can be
-	interrupted or another player can build a longer road. At that moment, the special card will
-	go to the player with the longest road. When two or more players have an equally long street, the card is
-	back to the stock.
+	A new street must be built next to already owned streets, villages and
+	cities. On each street only one street can be built. Once a player a has
+	a contiguous road of five pieces, he receives the special card
+	"longest Road" giving him two extra points. A road can be interrupted or
+	another player can build a longer road. At that moment, the special card
+	will go to the player with the longest road. When two or more players have
+	an equally long street, the card is back to the stock.
 
 	Settlement: wood + stone + grain + wool
-	Taking into account the distance rule. The settlement must be placed at at least one owned street.
-	Any settlement on the board also provides one point and a player can earn 1 resource card if the dice
-	determine this.
+	Taking into account the distance rule. The settlement must be placed at at
+	least one owned street. Any settlement on the board also provides one point
+	and a player can earn 1 resource card if the dice determine this.
 
 	City: 2 grain + 3 ore
-	The player converts his settlement into a city. He changes the house for a church.
-	Each city is worth 2 points and can earn 2 resource cards.
+	The player converts his settlement into a city. He changes the house for
+	a church. Each city is worth 2 points and can earn 2 resource cards.
 
 	Development card: grain + wool + ore
-	If a player wants to buy a development card, he takes the first one on the stack in
-	exchange for the three required resource cards. The resulting development card(s) is best kept a secret
-	for others. A properly purchased card should not be used right away. There are 14 knights,
-	6 Progress cards and 5 points in the game.
+	If a player wants to buy a development card, he takes the first one on
+	the stack in exchange for the three required resource cards. The resulting
+	development card(s) is best kept a secret for others. A properly purchased
+	card should not be used right away. There are 14 knights, 6 Progress cards
+	and 5 points in the game.
 
 d) Special events + cards
 
 	- The bandit
-	  When a player dices 7 at the beginning of his turn, the player must move one of the two
-	  bandits to any other land tile. The players who have settlements or cities adjacent to
-	  the land tiles where the robbers will be placed on, and have more than seven cards,
-	  must give half of their cards. These players also do not receive resource cards until the
-	  bandit has been moved again. The installer of the bandit can still steal a resource from a
-	  player whose settlement or city adjacent to a tile where the bandit has been placed on,
-	  if available. When there are several players, he chooses one from a victim of choice.
-	  Robbing itself will happen closed: you can not see what kind of card you steal. As long as
-	  a bandit stands on a tile, no player receives resource cards of that tile.
+	  When a player dices 7 at the beginning of his turn, the player must
+	  move one of the two bandits to any other land tile. The players who have
+	  settlements or cities adjacent to the land tiles where the robbers will
+	  be placed on, and have more than seven cards, must give half of their
+	  cards. These players also do not receive resource cards until the bandit
+	  has been moved again. The installer of the bandit can still steal a
+	  resource from a player whose settlement or city adjacent to a tile where
+	  the bandit has been placed on, if available. When there are several
+	  players, he chooses one from a victim of choice. Robbing itself will
+	  happen closed: you can not see what kind of card you steal. As long as
+	  a bandit stands on a tile, no player receives resource cards of that
+	  tile.
 
 	- Playing Development Cards
-	  At any time during your turn you may play 1 Development Card. But it may not be a card
-	  you bought during the same turn!
+	  At any time during your turn you may play 1 Development Card. But it
+	  may not be a card you bought during the same turn!
 
 	- Knight
-	  When a player plays this card, he must put the rover on another land tile. He also
-	  steals one resource card of any player who has a settlement or city adjacent to the tile.
-	  Played Knight cards remain open for the player on the table. A player with 3-played
-	  Knight cards receives the special card "Largest Army". This gives him 2 extra points.
-	  This card goes back to the stock if someone else has as much Knight cards, or goes to who
-	  at that time again, has the "Largest Army".
+	  When a player plays this card, he must put the rover on another land
+	  tile. He also steals one resource card of any player who has a
+	  settlement or city adjacent to the tile. Played Knight cards remain
+	  open for the player on the table. A player with 3-played Knight cards
+	  receives the special card "Largest Army". This gives him 2 extra points.
+	  This card goes back to the stock if someone else has as much Knight
+	  cards, or goes to who at that time again, has the "Largest Army".
 
 	- Progress
-	  The person who plays such a card, must follow the command on the card. The card then must
-	  return back under the pile.
-	  - Road construction: the player may immediately build two new streets (free)
-	  - Discovery: the player may immediately take 2 resource cards of your choice
-	  - Monopoly: all players must give all their resource cards of a certain
-		kind - to be determined by the player using the card - to that player
-	  - Points: these cards provide additional points to be the best and only shown on the end
+	  The person who plays such a card, must follow the command on the card.
+	  The card then must return back under the pile.
+	  - Road construction: the player may immediately build two new
+	    streets (free)
+	  - Discovery: the player may immediately take 2 resource cards
+	    of your choice
+	  - Monopoly: all players must give all their resource cards of
+	    a certain
+		kind - to be determined by the player using the card - to
+		that player
+	  - Points: these cards provide additional points to be the best and
+	    only shown on the end
 	  	of the game.
