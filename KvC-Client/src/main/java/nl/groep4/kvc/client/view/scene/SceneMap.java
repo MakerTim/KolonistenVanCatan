@@ -14,7 +14,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import nl.groep4.kvc.client.controller.ClientRefrence;
 import nl.groep4.kvc.client.controller.Controller;
 import nl.groep4.kvc.client.controller.MapController;
 import nl.groep4.kvc.client.util.SceneUtil;
@@ -368,9 +367,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
 
     @Override
     public void updateScore(Player pl, int score) throws RemoteException {
-	if (ClientRefrence.getThePlayer().equals(pl)) {
-	    scorePane.updateScore(pl, score);
-	}
+	scorePane.updateScore(pl, score);
     }
 
     @Override
