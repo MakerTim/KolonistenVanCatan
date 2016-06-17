@@ -35,7 +35,7 @@ public class RulesPane implements PaneHolder {
 
 	VBox vbox = new VBox();
 	vbox.setAlignment(Pos.CENTER);
-	vbox.setPadding(new Insets(40, 80, 0, 80));
+	vbox.setPadding(new Insets(40, 80, 40, 80));
 
 	HBox hbox = new HBox();
 
