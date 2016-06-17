@@ -60,7 +60,7 @@ public class ServerLobbyController {
 		}
 	    });
 	}
-	Scheduler.runSyncd(runners);
+	Scheduler.runAsyncdSync(runners);
 	Scheduler.runAsync(() -> {
 	    boolean hasCastException;
 	    do {
@@ -151,7 +151,7 @@ public class ServerLobbyController {
 		    });
 		}
 	    }
-	    Scheduler.runSyncd(runs);
+	    Scheduler.runAsyncdSync(runs);
 	}
     }
 

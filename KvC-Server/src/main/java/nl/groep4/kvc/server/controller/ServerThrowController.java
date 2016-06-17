@@ -45,7 +45,7 @@ public class ServerThrowController {
 		    }
 		});
 	    }
-	    Scheduler.runSyncd(runs);
+	    Scheduler.runAsyncdSync(runs);
 	    Scheduler.runAsyncLater(() -> {
 		try {
 		    controller.distrube();

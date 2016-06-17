@@ -5,10 +5,8 @@ import java.util.Map.Entry;
 
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import nl.groep4.kvc.client.util.TranslationManager;
-import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.common.enumeration.Resource;
 
 public class ResourceCardUtil {
