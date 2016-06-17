@@ -54,9 +54,12 @@ public class PausePane implements PaneHolder, UpdateRound {
 
     @Override
     public void updateTranslation() {
-	continueButton.updateText(TranslationManager.translate("pause.label.pause"));
-	pause.setText(TranslationManager.translate("pause.label.pause"));
-
+	if (continueButton != null) {
+	    continueButton.updateText(TranslationManager.translate("pause.label.pause"));
+	}
+	if (pause != null) {
+	    pause.setText(TranslationManager.translate("pause.label.pause"));
+	}
     }
 
     @Override
