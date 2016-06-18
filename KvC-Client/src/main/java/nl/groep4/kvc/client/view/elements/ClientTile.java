@@ -66,28 +66,29 @@ public class ClientTile extends StackPane {
 		int j = i;
 		Coordinate a = CollectionUtil.getInRange(Point.values(), i - 1).realOffset().multiply(offset);
 		Coordinate b = CollectionUtil.getInRange(Point.values(), i).realOffset().multiply(offset);
-		lines[i] = new Line(a.getX() * SceneMap.scale + xyOffset, -a.getY() * SceneMap.scale + xyOffset,
+		Line line = new Line(a.getX() * SceneMap.scale + xyOffset, -a.getY() * SceneMap.scale + xyOffset,
 			b.getX() * SceneMap.scale + xyOffset, -b.getY() * SceneMap.scale + xyOffset);
-		lines[i].setStroke(new Color(Math.random(), 0, 0, 1));
-		lines[i].setStrokeWidth(10);
-		lines[i].setOnMouseClicked(click -> {
-		    System.out.println("street");
-		    onStreetClick(coord.add(Direction.values()[j].offset(coord).multiply(0.5)));
+		line.setStroke(new Color(Math.random(), 0, 0, 1));
+		line.setStrokeWidth(10);
+		line.setOnMouseClicked(click -> {
+		    if (line.getStroke().isOpaque()) {
+			onStreetClick(coord.add(Direction.values()[j].offset(coord).multiply(0.5)));
+		    }
 		});
-		overlayPane.getChildren().add(lines[i]);
+		overlayPane.getChildren().add((lines[i] = line));
 	    }
 	}
 
 	for (int i = 0; i < houses.length; i++) {
 	    int j = i;
 	    Coordinate offset = CollectionUtil.getInRange(Point.values(), i + 4).realOffset().multiply(SceneMap.scale);
-	    houses[i] = new ImageView(cacheImage("img/buildings/house_RED.png"));
-	    houses[i].setLayoutX(offset.getX());
-	    houses[i].setLayoutY(-offset.getY());
-	    houses[i].setOnMouseClicked(click -> {
+	    ImageView house = new ImageView(cacheImage("img/buildings/house_RED.png"));
+	    house.setLayoutX(offset.getX());
+	    house.setLayoutY(-offset.getY());
+	    house.setOnMouseClicked(click -> {
 		onBuildingClick(Point.values()[j + 4].addTo(coord));
 	    });
-	    overlayPane.getChildren().add(houses[i]);
+	    overlayPane.getChildren().add((houses[i] = house));
 	}
 	overlayPane.setTranslateX(xFix * SceneMap.scale * 0.81);
 	overlayPane.setTranslateY(yFix * SceneMap.scale * 0.7);

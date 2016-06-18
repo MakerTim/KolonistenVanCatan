@@ -15,6 +15,7 @@ import nl.groep4.kvc.common.interfaces.UpdateMap;
 import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Street;
 import nl.groep4.kvc.common.map.Tile;
+import nl.groep4.kvc.common.map.TileResource;
 import nl.groep4.kvc.common.util.CollectionUtil;
 
 public class ServerTurnController {

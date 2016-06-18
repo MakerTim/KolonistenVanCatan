@@ -53,42 +53,42 @@ public class ServerPlayer implements Player {
     }
 
     @Override
-    public Color getColor() throws RemoteException {
+    public Color getColor() {
 	return color;
     }
 
     @Override
-    public void setColor(Color color) throws RemoteException {
+    public void setColor(Color color) {
 	this.color = color;
     }
 
     @Override
-    public List<Card> getCards() throws RemoteException {
+    public List<Card> getCards() {
 	return cards;
     }
 
     @Override
-    public EnumMap<Resource, Integer> getResources() throws RemoteException {
+    public EnumMap<Resource, Integer> getResources() {
 	return resources;
     }
 
     @Override
-    public int getRemainingStreets() throws RemoteException {
+    public int getRemainingStreets() {
 	return streetsToBuild;
     }
 
     @Override
-    public void addRemainingStreets(int streets) throws RemoteException {
+    public void addRemainingStreets(int streets) {
 	streetsToBuild += streets;
     }
 
     @Override
-    public int getRemainingBuidlings() throws RemoteException {
+    public int getRemainingBuidlings() {
 	return buildingsToBuild;
     }
 
     @Override
-    public void addRemainingBuidlings(int buildings) throws RemoteException {
+    public void addRemainingBuidlings(int buildings) {
 	buildingsToBuild += buildings;
     }
 

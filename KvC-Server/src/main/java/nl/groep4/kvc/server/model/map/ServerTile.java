@@ -87,9 +87,6 @@ public abstract class ServerTile implements Tile {
 	boolean validPlace = true;
 	boolean hasLandTile = false;
 	for (Tile tile : getBuilding(point).getConnectedTiles()) {
-	    if (tile == null) {
-		continue;
-	    }
 	    if (tile instanceof TileLand) {
 		hasLandTile = true;
 	    }

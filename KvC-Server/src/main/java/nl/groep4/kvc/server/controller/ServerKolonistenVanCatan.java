@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nl.groep4.kvc.common.enumeration.BuildingType;
+import nl.groep4.kvc.common.enumeration.Direction;
 import nl.groep4.kvc.common.enumeration.GameState;
+import nl.groep4.kvc.common.enumeration.Point;
 import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.Throw;
@@ -13,6 +15,7 @@ import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Map;
 import nl.groep4.kvc.common.map.Street;
+import nl.groep4.kvc.common.map.Tile;
 import nl.groep4.kvc.server.model.map.ServerMap;
 
 /**
@@ -124,11 +127,26 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	if (newOwner.equals(getTurn())) {
 	    if (newOwner.getRemainingBuidlings() > 0) {
 		Building building = map.getBuilding(coord);
-		building.setOwner(newOwner);
-		building.setBuildingType(type);
-		update();
-		if (state == GameState.INIT) {
-		    turnController.initTurnStreet(building);
+		boolean validAction = true;
+		for (Tile tile : building.getConnectedTiles()) {
+		    for (Point point : Point.values()) {
+			if (building.equals(tile.getBuilding(point))) {
+			    if (!tile.isValidPlace(map, point)) {
+				validAction = false;
+				break;
+			    }
+			}
+		    }
+		}
+		if (validAction) {
+		    building.setOwner(newOwner);
+		    building.setBuildingType(type);
+		    update();
+		    if (state == GameState.INIT) {
+			turnController.initTurnStreet(building);
+		    }
+		} else {
+		    newOwner.getUpdateable().popup("alreadbuilding");
 		}
 	    } else {
 		newOwner.getUpdateable().popup("nobuilding");
@@ -143,10 +161,25 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	if (newOwner.equals(getTurn())) {
 	    if (newOwner.getRemainingStreets() > 0) {
 		Street street = map.getStreet(coord);
-		street.setOwner(newOwner);
-		update();
-		if (state == GameState.INIT) {
-		    nextTurn();
+		boolean validAction = true;
+		for (Tile tile : street.getConnectedTiles()) {
+		    for (Direction direction : Direction.values()) {
+			if (street.equals(tile.getStreet(direction))) {
+			    if (!tile.isValidPlace(map, direction)) {
+				validAction = false;
+				break;
+			    }
+			}
+		    }
+		}
+		if (validAction) {
+		    street.setOwner(newOwner);
+		    update();
+		    if (state == GameState.INIT) {
+			nextTurn();
+		    }
+		} else {
+		    newOwner.getUpdateable().popup("alreadstreet");
 		}
 	    } else {
 		newOwner.getUpdateable().popup("nostreet");
