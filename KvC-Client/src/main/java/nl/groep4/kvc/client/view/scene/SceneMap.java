@@ -74,7 +74,6 @@ public class SceneMap implements SceneHolder, UpdateMap {
     private TurnInfoPane infoPane;
     private BuildPane buildPane;
     private TradePane tradePane;
-    private PausePane pausePane;
     private BuyPane buyPane;
     private ScorePane playerPane;
 
@@ -99,7 +98,6 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    infoPane = new TurnInfoPane();
 	    buildPane = new BuildPane(this);
 	    tradePane = new TradePane(this);
-	    pausePane = new PausePane(this, false);
 	    buyPane = new BuyPane(this);
 	    playerPane = new ScorePane();
 
@@ -227,8 +225,8 @@ public class SceneMap implements SceneHolder, UpdateMap {
     }
 
     @Override
-    public void openPausePane() {
-	setOverlay(pausePane);
+    public void openPausePane(boolean isTurn) {
+	setOverlay(new PausePane(this, isTurn));
     }
 
     @Override
@@ -294,7 +292,6 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	infoPane.updateTranslation();
 	buildPane.updateTranslation();
 	tradePane.updateTranslation();
-	pausePane.updateTranslation();
 	buyPane.updateTranslation();
     }
 
@@ -357,14 +354,12 @@ public class SceneMap implements SceneHolder, UpdateMap {
     public void updateRound(int round) throws RemoteException {
 	scorePane.updateRound(round);
 	infoPane.updateRound(round);
-	pausePane.updateRound(round);
     }
 
     @Override
     public void updateTurn(Player who, TurnState what) throws RemoteException {
 	scorePane.updateTurn(who, what);
 	infoPane.updateTurn(who, what);
-	pausePane.updateTurn(who, what);
     }
 
     @Override

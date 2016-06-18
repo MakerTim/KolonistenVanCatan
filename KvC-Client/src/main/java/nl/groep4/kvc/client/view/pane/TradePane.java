@@ -120,7 +120,7 @@ public class TradePane implements PaneHolder, UpdateTrade {
 	    terug.updateText(TranslationManager.translate("trade.button.back"));
 	}
 	if (plaats != null) {
-	    plaats.updateText(TranslationManager.translate("trade.button.plaats"));
+	    plaats.updateText(TranslationManager.translate("trade.button.place"));
 	}
     }
 

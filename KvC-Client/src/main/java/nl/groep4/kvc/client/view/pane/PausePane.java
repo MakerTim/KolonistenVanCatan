@@ -1,7 +1,5 @@
 package nl.groep4.kvc.client.view.pane;
 
-import java.rmi.RemoteException;
-
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
@@ -14,11 +12,9 @@ import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.KvCText;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.scene.SceneMap;
-import nl.groep4.kvc.common.enumeration.TurnState;
-import nl.groep4.kvc.common.interfaces.Player;
-import nl.groep4.kvc.common.interfaces.UpdateRound;
+import nl.groep4.kvc.common.interfaces.NotCloseable;
 
-public class PausePane implements PaneHolder, UpdateRound {
+public class PausePane implements PaneHolder, NotCloseable {
 
     private MenuButton continueButton;
     private Text pause;
@@ -73,13 +69,5 @@ public class PausePane implements PaneHolder, UpdateRound {
 	    sceneMap.getController().setPause();
 	    continueButton.setDisabled();
 	}
-    }
-
-    @Override
-    public void updateRound(int round) throws RemoteException {
-    }
-
-    @Override
-    public void updateTurn(Player who, TurnState what) throws RemoteException {
     }
 }

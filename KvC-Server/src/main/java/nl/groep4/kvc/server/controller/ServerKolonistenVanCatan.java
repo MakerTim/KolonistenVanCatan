@@ -12,6 +12,7 @@ import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.Throw;
+import nl.groep4.kvc.common.interfaces.UpdateMap;
 import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Map;
@@ -200,6 +201,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 
     @Override
     public void distrube() throws RemoteException {
+	System.out.printf("Giving players resources for tiles with number '%d'\n", lastThrow.getValue());
 	for (Tile tile : map.getTiles()) {
 	    if (tile instanceof TileResource) {
 		TileResource tileResource = (TileResource) tile;
@@ -221,6 +223,10 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 		}
 	    }
 	}
+	for (Player pl : getPlayers()) {
+	    for (Player player : getPlayers()) {
+		pl.getUpdateable(UpdateMap.class).updateStock(player, player.getResources());
+	    }
+	}
     }
-
 }

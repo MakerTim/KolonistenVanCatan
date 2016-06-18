@@ -164,12 +164,12 @@ public class StockPane implements PaneHolder, UpdateStock {
 
     @Override
     public void updateTranslation() {
-	cards.updateTranslation();
-	information.setText(TranslationManager.translate("cards.monopoly.info"));
-	information.setText(TranslationManager.translate("cards.knight.info"));
-	information.setText(TranslationManager.translate("cards.road.info"));
-	information.setText(TranslationManager.translate("cards.victory.info"));
-	information.setText(TranslationManager.translate("cards.invent.info"));
+	if (cards != null) {
+	    cards.updateTranslation();
+	}
+	if (information != null) {
+	    information.setText("");
+	}
     }
 
     @Override

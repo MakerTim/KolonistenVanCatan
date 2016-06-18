@@ -28,7 +28,7 @@ public interface UpdateMap
 
     public void openCreditsPane() throws RemoteException;
 
-    public void openPausePane() throws RemoteException;
+    public void openPausePane(boolean isOwner) throws RemoteException;
 
     public void openSavePane() throws RemoteException;
 

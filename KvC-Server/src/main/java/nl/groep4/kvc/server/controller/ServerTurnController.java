@@ -50,13 +50,13 @@ public class ServerTurnController {
 	    }
 	    for (Player player : controller.getPlayers()) {
 		UpdateMap view = player.getUpdateable(UpdateMap.class);
-		view.updateTurn(controller.getTurn(), TurnState.BUILDING_STREET);
+		view.updateTurn(pl, TurnState.BUILDING_STREET);
 		view.updateStock(pl, pl.getResources());
 	    }
 	    UpdateMap view = controller.getTurn().getUpdateable(UpdateMap.class);
 	    view.highlightStreets(availbleStreets);
 	    view.setSelectable(SelectState.STREET);
-	    controller.getTurn().addRemainingStreets(1);
+	    pl.addRemainingStreets(1);
 	} catch (Exception ex) {
 	    ex.printStackTrace();
 	}
