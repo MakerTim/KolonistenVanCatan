@@ -8,6 +8,7 @@ import nl.groep4.kvc.common.enumeration.BuildingType;
 import nl.groep4.kvc.common.enumeration.Direction;
 import nl.groep4.kvc.common.enumeration.GameState;
 import nl.groep4.kvc.common.enumeration.Point;
+import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.Throw;
@@ -16,6 +17,7 @@ import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Map;
 import nl.groep4.kvc.common.map.Street;
 import nl.groep4.kvc.common.map.Tile;
+import nl.groep4.kvc.common.map.TileResource;
 import nl.groep4.kvc.server.model.map.ServerMap;
 
 /**
@@ -198,8 +200,27 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 
     @Override
     public void distrube() throws RemoteException {
-	lastThrow.toString();
-	// FIXME: Distribute
+	for (Tile tile : map.getTiles()) {
+	    if (tile instanceof TileResource) {
+		TileResource tileResource = (TileResource) tile;
+		if (!tileResource.hasRover() && tileResource.getNumber() == lastThrow.getValue()) {
+		    Resource resource = tileResource.getResource();
+		    for (Building building : tile.getBuildings()) {
+			if (building != null && building.getOwner() != null) {
+			    Player pl = building.getOwner();
+			    switch (building.getBuildingType()) {
+			    case CITY:
+				pl.giveResource(resource);
+			    case VILLAGE:
+				pl.giveResource(resource);
+			    case EMPTY:
+				break;
+			    }
+			}
+		    }
+		}
+	    }
+	}
     }
 
 }

@@ -28,7 +28,14 @@ public class ServerTurnController {
 
     public void initTurnStreet(Building building) {
 	try {
-	    System.out.printf("Initial turn for %s\n", controller.getPlayersOrded().get(0).getUsername());
+	    Player pl = controller.getTurn();
+	    System.out.printf("Initial turn for %s\n", pl.getUsername());
+	    for (Tile tile : building.getConnectedTiles()) {
+		if (tile instanceof TileResource) {
+		    TileResource resource = (TileResource) tile;
+		    pl.giveResource(resource.getResource());
+		}
+	    }
 	    Set<Street> availbleStreets = new HashSet<>();
 	    Tile[] tiles = building.getConnectedTiles();
 	    for (Tile tile : tiles) {
@@ -41,8 +48,10 @@ public class ServerTurnController {
 		    }
 		}
 	    }
-	    for (Player pl : controller.getPlayers()) {
-		pl.getUpdateable(UpdateMap.class).updateTurn(controller.getTurn(), TurnState.BUILDING_STREET);
+	    for (Player player : controller.getPlayers()) {
+		UpdateMap view = player.getUpdateable(UpdateMap.class);
+		view.updateTurn(controller.getTurn(), TurnState.BUILDING_STREET);
+		view.updateStock(pl, pl.getResources());
 	    }
 	    UpdateMap view = controller.getTurn().getUpdateable(UpdateMap.class);
 	    view.highlightStreets(availbleStreets);

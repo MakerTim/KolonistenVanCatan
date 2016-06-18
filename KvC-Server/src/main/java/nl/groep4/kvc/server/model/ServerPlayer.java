@@ -3,7 +3,9 @@ package nl.groep4.kvc.server.model;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import nl.groep4.kvc.common.enumeration.Color;
 import nl.groep4.kvc.common.enumeration.Resource;
@@ -23,7 +25,7 @@ public class ServerPlayer implements Player {
     private Updatable<?> updatable;
     private Color color;
     private List<Card> cards = new ArrayList<>();
-    private EnumMap<Resource, Integer> resources;
+    private EnumMap<Resource, Integer> resources;;
     private int buildingsToBuild;
     private int streetsToBuild;
 
@@ -35,6 +37,11 @@ public class ServerPlayer implements Player {
      */
     public ServerPlayer(String username) {
 	this.username = username.substring(0, Math.min(20, username.length()));
+	Map<Resource, Integer> resources = new HashMap<>();
+	for (Resource resource : Resource.values()) {
+	    resources.put(resource, 0);
+	}
+	this.resources = new EnumMap<>(resources);
     }
 
     @Override

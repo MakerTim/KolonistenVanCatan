@@ -14,6 +14,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import nl.groep4.kvc.client.controller.ClientRefrence;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.KvCText;
@@ -23,6 +24,7 @@ import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.enumeration.CardType;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.Card;
+import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.UpdateStock;
 import nl.groep4.kvc.common.interfaces.VictoryCard;
 
@@ -171,49 +173,53 @@ public class StockPane implements PaneHolder, UpdateStock {
     }
 
     @Override
-    public void updateStock(EnumMap<Resource, Integer> resources) {
-	cards.updateStock(resources);
+    public void updateStock(Player pl, EnumMap<Resource, Integer> resources) {
+	if (ClientRefrence.getThePlayer() == null || ClientRefrence.getThePlayer().equals(pl)) {
+	    cards.updateStock(resources);
+	}
     }
 
     @Override
-    public void updateStock(List<Card> cards) {
-	for (Card card : cards) {
-	    CardType type = card.getType();
-	    switch (type) {
-	    case FREE_STREETS:
-		devCards.getChildren().add(getRoadCard());
-		break;
-	    case INVENTION:
-		devCards.getChildren().add(getInventCard());
-		break;
-	    case KNIGHT:
-		devCards.getChildren().add(getKnightCard());
-		break;
-	    case MONOPOLY:
-		devCards.getChildren().add(getMonoCard());
-		break;
-	    case VICTORY:
-		VictoryCard victoryCard = (VictoryCard) card;
-		switch (victoryCard.getVictoryType()) {
-		case CHAPEL:
-		    devCards.getChildren().add(getCathCard());
+    public void updateStock(Player pl, List<Card> cards) {
+	if (ClientRefrence.getThePlayer() == null || ClientRefrence.getThePlayer().equals(pl)) {
+	    for (Card card : cards) {
+		CardType type = card.getType();
+		switch (type) {
+		case FREE_STREETS:
+		    devCards.getChildren().add(getRoadCard());
 		    break;
-		case LIBARY:
-		    devCards.getChildren().add(getCathCard());
+		case INVENTION:
+		    devCards.getChildren().add(getInventCard());
 		    break;
-		case MARKET:
-		    devCards.getChildren().add(getCathCard());
+		case KNIGHT:
+		    devCards.getChildren().add(getKnightCard());
 		    break;
-		case PARLIAMENT:
-		    devCards.getChildren().add(getCathCard());
+		case MONOPOLY:
+		    devCards.getChildren().add(getMonoCard());
 		    break;
-		case UNIVERSITY:
-		    devCards.getChildren().add(getCathCard());
-		    break;
-		default:
+		case VICTORY:
+		    VictoryCard victoryCard = (VictoryCard) card;
+		    switch (victoryCard.getVictoryType()) {
+		    case CHAPEL:
+			devCards.getChildren().add(getCathCard());
+			break;
+		    case LIBARY:
+			devCards.getChildren().add(getCathCard());
+			break;
+		    case MARKET:
+			devCards.getChildren().add(getCathCard());
+			break;
+		    case PARLIAMENT:
+			devCards.getChildren().add(getCathCard());
+			break;
+		    case UNIVERSITY:
+			devCards.getChildren().add(getCathCard());
+			break;
+		    default:
+			break;
+		    }
 		    break;
 		}
-		break;
 	    }
 	}
     }

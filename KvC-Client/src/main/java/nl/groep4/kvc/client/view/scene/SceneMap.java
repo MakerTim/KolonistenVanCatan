@@ -315,13 +315,13 @@ public class SceneMap implements SceneHolder, UpdateMap {
     }
 
     @Override
-    public void updateStock(EnumMap<Resource, Integer> resources) {
-	stockPane.updateStock(resources);
+    public void updateStock(Player pl, EnumMap<Resource, Integer> resources) {
+	stockPane.updateStock(pl, resources);
     }
 
     @Override
-    public void updateStock(List<Card> cards) {
-	stockPane.updateStock(cards);
+    public void updateStock(Player pl, List<Card> cards) {
+	stockPane.updateStock(pl, cards);
     }
 
     @Override
