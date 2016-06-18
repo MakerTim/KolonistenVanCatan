@@ -4,10 +4,11 @@ import nl.groep4.kvc.common.enumeration.Direction;
 import nl.groep4.kvc.common.enumeration.Point;
 import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Coordinate;
+import nl.groep4.kvc.common.map.Map;
 import nl.groep4.kvc.common.map.Street;
 import nl.groep4.kvc.common.map.Tile;
+import nl.groep4.kvc.common.map.TileLand;
 import nl.groep4.kvc.common.map.TileType;
-import nl.groep4.kvc.common.util.CollectionUtil;
 
 /**
  * Instance of Tile
@@ -33,6 +34,16 @@ public abstract class ServerTile implements Tile {
     public ServerTile(TileType type, Coordinate position) {
 	this.type = type;
 	this.position = position;
+    }
+
+    @Override
+    public Building[] getBuildings() {
+	return buildings;
+    }
+
+    @Override
+    public Street[] getStreets() {
+	return streets;
     }
 
     @Override
@@ -66,13 +77,30 @@ public abstract class ServerTile implements Tile {
     }
 
     @Override
-    public boolean isValidPlace(Point point) {
-	for (int i = 0; i < 2; i++) {
-	    if (streets[CollectionUtil.modInRange(streets, i)] == null) {
-		return false;
+    public boolean isValidPlace(Map map, Point point) {
+	if (getBuilding(point) == null) {
+	    return false;
+	}
+	if (getBuilding(point).getOwner() != null) {
+	    return false;
+	}
+	boolean validPlace = true;
+	boolean hasLandTile = false;
+	for (Tile tile : getBuilding(point).getConnectedTiles()) {
+	    if (tile == null) {
+		continue;
+	    }
+	    if (tile instanceof TileLand) {
+		hasLandTile = true;
+	    }
+	    for (Point neighbour : point.getConnected()) {
+		Building neighbourBuilding = tile.getBuilding(neighbour);
+		if (neighbourBuilding != null && neighbourBuilding.getOwner() != null) {
+		    validPlace = false;
+		}
 	    }
 	}
-	return true;
+	return validPlace && hasLandTile;
     }
 
     @Override

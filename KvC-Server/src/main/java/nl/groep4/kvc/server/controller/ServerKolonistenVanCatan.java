@@ -94,6 +94,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	turnController.fixButtons();
 	switch (state) {
 	case END:
+	    turnController.endGame();
 	    break;
 	case INIT:
 	    turnController.initTurnBuilding();

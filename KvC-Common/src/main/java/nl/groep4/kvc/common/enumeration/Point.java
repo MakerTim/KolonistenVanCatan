@@ -2,6 +2,7 @@ package nl.groep4.kvc.common.enumeration;
 
 import nl.groep4.kvc.common.interfaces.Offsetable;
 import nl.groep4.kvc.common.map.Coordinate;
+import nl.groep4.kvc.common.util.CollectionUtil;
 
 /**
  * Points available for interaction
@@ -12,6 +13,12 @@ import nl.groep4.kvc.common.map.Coordinate;
 public enum Point implements Offsetable {
 
     NORTH_EAST, EAST, SOUTH_EAST, SOUTH_WEST, WEST, NORTH_WEST;
+
+    @Override
+    public Point[] getConnected() {
+	return new Point[] { CollectionUtil.getInRange(Point.values(), ordinal() - 1),
+		CollectionUtil.getInRange(Point.values(), ordinal() + 1) };
+    }
 
     @Override
     public Coordinate addTo(Coordinate original) {

@@ -32,6 +32,10 @@ public interface Tile extends Serializable, Locatable {
      */
     public Building getBuilding(Point point);
 
+    public Street[] getStreets();
+
+    public Building[] getBuildings();
+
     /**
      *
      * @param streets
@@ -51,7 +55,7 @@ public interface Tile extends Serializable, Locatable {
      * @param point
      * @return
      */
-    public boolean isValidPlace(Point point);
+    public boolean isValidPlace(Map map, Point point);
 
     /**
      *
@@ -60,7 +64,8 @@ public interface Tile extends Serializable, Locatable {
      * @return
      */
     public default boolean isValidPlace(Map map, Direction direction) {
-	return this instanceof TileLand || map.getRelativeTile(this, direction) instanceof TileLand;
+	return (this instanceof TileLand || map.getRelativeTile(this, direction) instanceof TileLand)
+		&& getStreet(direction) != null && getStreet(direction).getOwner() == null;
     }
 
 }

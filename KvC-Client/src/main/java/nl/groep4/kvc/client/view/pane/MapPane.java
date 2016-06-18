@@ -78,6 +78,9 @@ public class MapPane implements PaneHolder {
 	    for (Direction direction : Direction.values()) {
 		tile.highLightStreet(direction, false);
 		for (Street street : streets) {
+		    if (street == null) {
+			continue;
+		    }
 		    if (street.equals(tile.getTile().getStreet(direction))) {
 			tile.highLightStreet(direction, true);
 		    }

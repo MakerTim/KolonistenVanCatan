@@ -55,8 +55,12 @@ public class ServerTurnController {
     public void initTurnBuilding() {
 	try {
 	    Set<Building> availbleBuidlings = new HashSet<>();
-	    for (Building building : controller.getMap().getAllBuildings()) {
-		availbleBuidlings.add(building);
+	    for (Tile tile : controller.getMap().getTiles()) {
+		for (Point point : Point.values()) {
+		    if (tile.isValidPlace(controller.getMap(), point)) {
+			availbleBuidlings.add(tile.getBuilding(point));
+		    }
+		}
 	    }
 	    for (Player pl : controller.getPlayers()) {
 		pl.getUpdateable(UpdateMap.class).updateTurn(controller.getTurn(), TurnState.BUILDING_BUILDING);

@@ -10,4 +10,6 @@ public interface Offsetable {
 
     public Coordinate offset(boolean isEvenRow);
 
+    public Offsetable[] getConnected();
+
 }
