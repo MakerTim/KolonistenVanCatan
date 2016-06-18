@@ -26,6 +26,13 @@ public class ServerTurnController {
 	this.controller = serverKolonistenVanCatan;
     }
 
+    // TODO: Highlight streets method
+    // TODO: Highlight buildings method
+    // TODO: buy x
+    // TODO: buy card
+    // TODO: use card
+    // TODO: trading
+
     public void initTurnStreet(Building building) {
 	try {
 	    Player pl = controller.getTurn();
@@ -37,8 +44,7 @@ public class ServerTurnController {
 		}
 	    }
 	    Set<Street> availbleStreets = new HashSet<>();
-	    Tile[] tiles = building.getConnectedTiles();
-	    for (Tile tile : tiles) {
+	    for (Tile tile : building.getConnectedTiles()) {
 		for (Point point : Point.values()) {
 		    if (building.equals(tile.getBuilding(point))) {
 			availbleStreets
