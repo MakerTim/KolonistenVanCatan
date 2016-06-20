@@ -163,6 +163,11 @@ public class ClientTile extends StackPane {
 	    setStreetClickable(true);
 	    setTileClickable(false);
 	    break;
+	case ROVER:
+	    setBuildClickable(false);
+	    setStreetClickable(false);
+	    setTileClickable(true);
+	    break;
 	case TILE:
 	    setBuildClickable(false);
 	    setStreetClickable(false);
