@@ -28,30 +28,31 @@ public class BuildPane implements PaneHolder, UpdateCosts {
     MenuButton citybutton = new MenuButton(425, 500, TranslationManager.translate("build.button.city"));
     MenuButton backbutton = new MenuButton(425, 500, TranslationManager.translate("build.button.back"));
 
-    private Text city;
-    private Text street;
-    private Text village;
-    private Text prices;
+    private Text prices = new Text(TranslationManager.translate("build.text.prices"));
+    private Text city = new Text(TranslationManager.translate("build.text.city"));
+    private Text village = new Text(TranslationManager.translate("build.text.village"));
+    private Text street = new Text(TranslationManager.translate("build.text.street"));
 
-    private Text brstreet;
-    private Text orstreet;
-    private Text whstreet;
-    private Text wolstreet;
-    private Text wodstreet;
+    private Text brstreet = new Text("0");
+    private Text orstreet = new Text("0");
+    private Text whstreet = new Text("0");
+    private Text wolstreet = new Text("0");
+    private Text wodstreet = new Text("0");
 
-    private Text brvillage;
-    private Text orvillage;
-    private Text whvillage;
-    private Text wolvillage;
-    private Text wodvillage;
+    private Text brvillage = new Text("0");
+    private Text orvillage = new Text("0");
+    private Text whvillage = new Text("0");
+    private Text wolvillage = new Text("0");
+    private Text wodvillage = new Text("0");
 
-    private Text brcity;
-    private Text orcity;
-    private Text whcity;
-    private Text wolcity;
-    private Text wodcity;
+    private Text brcity = new Text("0");
+    private Text orcity = new Text("0");
+    private Text whcity = new Text("0");
+    private Text wolcity = new Text("0");
+    private Text wodcity = new Text("0");
 
     private HBox hboxprices;
+    private HBox hboxbuttons;
     private VBox vboxprices;
     private VBox vboxwheat;
     private VBox vboxwood;
@@ -59,11 +60,11 @@ public class BuildPane implements PaneHolder, UpdateCosts {
     private VBox vboxbrick;
     private VBox vboxore;
 
-    private Text wheat;
-    private Text wood;
-    private Text wool;
-    private Text brick;
-    private Text ore;
+    private Text wood = new Text(TranslationManager.translate("build.materials.wood"));
+    private Text wheat = new Text(TranslationManager.translate("build.materials.wheat"));
+    private Text wool = new Text(TranslationManager.translate("build.materials.wool"));
+    private Text brick = new Text(TranslationManager.translate("build.materials.stone"));
+    private Text ore = new Text(TranslationManager.translate("build.materials.ore"));
 
     /*
      * private Text brickAmount; private Text woolAmount; private Text
@@ -92,40 +93,12 @@ public class BuildPane implements PaneHolder, UpdateCosts {
 
     @Override
     public Pane getPane() {
-	MenuButton streetbutton = new MenuButton(425, 500, TranslationManager.translate("build.button.road"));
-	MenuButton villagebutton = new MenuButton(425, 500, TranslationManager.translate("build.button.village"));
-	MenuButton citybutton = new MenuButton(425, 500, TranslationManager.translate("build.button.city"));
-	MenuButton backbutton = new MenuButton(425, 500, TranslationManager.translate("build.button.back"));
+	streetbutton = new MenuButton(425, 500, TranslationManager.translate("build.button.road"));
+	villagebutton = new MenuButton(425, 500, TranslationManager.translate("build.button.village"));
+	citybutton = new MenuButton(425, 500, TranslationManager.translate("build.button.city"));
+	backbutton = new MenuButton(425, 500, TranslationManager.translate("build.button.back"));
 
-	wood = new Text(TranslationManager.translate("build.materials.wood"));
-	wheat = new Text(TranslationManager.translate("build.materials.wheat"));
-	wool = new Text(TranslationManager.translate("build.materials.wool"));
-	brick = new Text(TranslationManager.translate("build.materials.stone"));
-	ore = new Text(TranslationManager.translate("build.materials.ore"));
-	prices = new Text(TranslationManager.translate("build.text.prices"));
-	city = new Text(TranslationManager.translate("build.text.city"));
-	village = new Text(TranslationManager.translate("build.text.village"));
-	street = new Text(TranslationManager.translate("build.text.street"));
-
-	brstreet = new Text("0");
-	orstreet = new Text("0");
-	whstreet = new Text("0");
-	wodstreet = new Text("0");
-	wolstreet = new Text("0");
-
-	brvillage = new Text("0");
-	orvillage = new Text("0");
-	whvillage = new Text("0");
-	wodvillage = new Text("0");
-	wolvillage = new Text("0");
-
-	brcity = new Text("0");
-	orcity = new Text("0");
-	whcity = new Text("0");
-	wodcity = new Text("0");
-	wolcity = new Text("0");
-
-	Font FONT = new Font("Impact", 20);
+	Font FONT = new Font("Impact", 25);
 
 	wheat.setFont(FONT);
 	wood.setFont(FONT);
@@ -202,9 +175,9 @@ public class BuildPane implements PaneHolder, UpdateCosts {
 	wodstreet.setStroke(Color.BLACK);
 	wolstreet.setStroke(Color.BLACK);
 
-	VBox vbox = new VBox(8);
+	VBox vbox = new VBox();
 	vbox.setPrefWidth(100);
-	vbox.setPrefHeight(350);
+	vbox.setPrefHeight(380);
 	vbox.setAlignment(Pos.CENTER);
 
 	GridPane gp = new GridPane();
@@ -225,6 +198,7 @@ public class BuildPane implements PaneHolder, UpdateCosts {
 	vboxore = new VBox();
 
 	hboxprices = new HBox();
+	hboxbuttons = new HBox();
 
 	vboxprices.getChildren().addAll(prices, city, village, street);
 	vboxwheat.getChildren().addAll(wheat, whstreet, whvillage, whcity);
@@ -232,10 +206,21 @@ public class BuildPane implements PaneHolder, UpdateCosts {
 	vboxwool.getChildren().addAll(wool, wolstreet, wolvillage, wolcity);
 	vboxbrick.getChildren().addAll(brick, brstreet, brvillage, brcity);
 	vboxore.getChildren().addAll(ore, orstreet, orvillage, orcity);
+
+	vboxprices.setSpacing(15);
+	vboxwheat.setSpacing(10);
+	vboxwood.setSpacing(10);
+	vboxwool.setSpacing(10);
+	vboxbrick.setSpacing(10);
+	vboxore.setSpacing(10);
+
 	hboxprices.getChildren().addAll(vboxprices, vboxwheat, vboxwood, vboxwool, vboxbrick, vboxore);
 	hboxprices.setAlignment(Pos.CENTER);
-	hboxprices.setPadding(new Insets(150, 0, 0, 0));
 	hboxprices.setSpacing(20);
+
+	hboxbuttons.setAlignment(Pos.CENTER);
+	hboxbuttons.setSpacing(10);
+	hboxbuttons.setPadding(new Insets(30, 0, 80, 0));
 
 	Font BuildFont = new Font("Impact", 22);
 	prices.setFont(BuildFont);
@@ -256,7 +241,8 @@ public class BuildPane implements PaneHolder, UpdateCosts {
 	backbutton.registerClick(() -> {
 	    sceneMap.closeOverlay();
 	});
-	vbox.getChildren().addAll(hboxprices, streetbutton, villagebutton, citybutton, backbutton);
+	hboxbuttons.getChildren().addAll(streetbutton, villagebutton, citybutton);
+	vbox.getChildren().addAll(hboxprices, hboxbuttons, backbutton);
 	Build.getChildren().addAll(SceneUtil.getGamePane(), vbox);
 
 	return Build;
