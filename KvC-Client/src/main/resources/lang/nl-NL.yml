@@ -38,9 +38,9 @@ lobby.parchment.color.white:Wit
 build.button.road:Straat
 build.button.village:Dorp
 build.button.city:Stad
-build.village.row:Dorp
-build.city.row:Stad
-build.road.row:Straat
+build.text.village:Dorp
+build.text.city:Stad
+build.text.street:Straat
 build.materials.row:Materialen
 build.materials.wood:Hout
 build.materials.stone:Steen
@@ -48,6 +48,7 @@ build.materials.wool:Wol
 build.materials.ore:Erts
 build.materials.wheat:Graan
 build.materials.row.prices:Prijzen
+build.button.back:Terug
 
 #Login
 login.error.nousername.title:Login fout
@@ -128,8 +129,8 @@ gamenote.ingame.title:Spel is begonnen
 gamenote.ingame.explanation:U kunt niet meer van kleur switchen als het spel al begonnen is
 gamenote.ingame.details:Tijdens het spel kunt u niet van kleur veranderen
 note.noplayers.title:Niet genoeg mensen
-note.players.explanation:Niet genoeg mensen zijn aanwezig
-note.players.details:Exception: 503 Service Unavailable
+note.noplayers.explanation:Niet genoeg mensen zijn aanwezig
+note.noplayers.details:Exception: 503 Service Unavailable
 note.noturn.tile:U bent niet aan de beurt
 note.noturn.explanation:U bent nog niet aan de beurt
 note.noturn.details:Exception: 503 Service Unavailable

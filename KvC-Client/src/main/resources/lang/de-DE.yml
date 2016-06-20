@@ -38,9 +38,9 @@ lobby.parchment.color.red:Rot
 build.button.road:Straße
 build.button.village:Dorf
 build.button.city:Stadt
-build.village.row:Dorf
-build.city.row:Stadt
-build.road.row:Straße
+build.text.village:Dorf
+build.text.city:Stadt
+build.text.road:Straße
 build.materials.row:Materialien
 build.materials.wood:Holz
 build.materials.stone:Stein
@@ -48,6 +48,7 @@ build.materials.wool:Wolle
 build.materials.ore:Erz
 build.materials.wheat:Korn
 build.materials.row.prices:Preis
+build.button.back:Zurück
 
 #Login
 login.error.nousername.title:Keine Benutzername
@@ -128,8 +129,8 @@ gamenote.ingame.title:Spile im Gange
 gamenote.ingame.explanation:Sie können nicht mehr eine andere Farbe
 gamenote.ingame.details:Schalt Farbe ist nicht verfügbar, während Spiel läuft
 note.noplayers.title:Nicht genug Menschen
-note.players.explanation:Es gibt nicht genug Menschen vorhanden
-note.players.details:Exception: 503 Service Unavailable
+note.noplayers.explanation:Es gibt nicht genug Menschen vorhanden
+note.noplayers.details:Exception: 503 Service Unavailable
 note.noturn.tile:Sie sind nicht zu handeln
 note.noturn.explanation:Sie sind nicht einmal umdrehen
 note.noturn.details:Exception: 503 Service Unavailable

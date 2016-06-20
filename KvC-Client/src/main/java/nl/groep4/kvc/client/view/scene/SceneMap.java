@@ -314,11 +314,13 @@ public class SceneMap implements SceneHolder, UpdateMap {
     @Override
     public void updateStock(Player pl, EnumMap<Resource, Integer> resources) {
 	stockPane.updateStock(pl, resources);
+	playerPane.updateStock(pl, resources);
     }
 
     @Override
     public void updateStock(Player pl, List<Card> cards) {
 	stockPane.updateStock(pl, cards);
+	playerPane.updateStock(pl, cards);
     }
 
     @Override
@@ -415,5 +417,10 @@ public class SceneMap implements SceneHolder, UpdateMap {
     @Override
     public void setSelectable(SelectState selectables) throws RemoteException {
 	gamepane.setSelectable(selectables);
+    }
+
+    @Override
+    public void updatePlayerOrder(List<Player> order) throws RemoteException {
+	playerPane.updatePlayerOrder(order);
     }
 }

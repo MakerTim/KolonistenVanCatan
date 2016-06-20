@@ -2,12 +2,17 @@ package nl.groep4.kvc.common.interfaces;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import nl.groep4.kvc.common.enumeration.BuildingType;
 import nl.groep4.kvc.common.enumeration.GameState;
+import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Map;
+import nl.groep4.kvc.common.map.Street;
+import nl.groep4.kvc.common.util.Scheduler;
 
 public interface KolonistenVanCatan extends Remote {
 
@@ -30,12 +35,16 @@ public interface KolonistenVanCatan extends Remote {
     public Map getMap() throws RemoteException;
 
     public default void update() throws RemoteException {
+	List<Runnable> runs = new ArrayList<>();
 	for (Player pl : getPlayers()) {
-	    try {
-		pl.getUpdateable(UpdateMap.class).setModel(getMap());
-	    } catch (Exception ex) {
-	    }
+	    runs.add(() -> {
+		try {
+		    pl.getUpdateable(UpdateMap.class).setModel(getMap());
+		} catch (Exception ex) {
+		}
+	    });
 	}
+	Scheduler.runAsyncdSync(runs);
     }
 
     public List<Player> getPlayers() throws RemoteException;
@@ -51,4 +60,13 @@ public interface KolonistenVanCatan extends Remote {
     public void throwDices() throws RemoteException;
 
     public void distrube() throws RemoteException;
+
+    public default void highlightStreets(Player pl, Collection<Street> streets) throws RemoteException {
+	pl.getUpdateable(UpdateMap.class).highlightStreets(streets);
+    }
+
+    public default void highlightBuilgin(Player pl, Collection<Building> buildings, BuildingType type)
+	    throws RemoteException {
+	pl.getUpdateable(UpdateMap.class).highlightBuildings(buildings, type);
+    }
 }

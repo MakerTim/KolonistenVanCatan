@@ -38,9 +38,9 @@ lobby.parchment.color.white:blanc
 build.button.road:Rue
 build.button.village:Village
 build.button.city:Ville
-build.village.row:Village
-build.city.row:Ville
-build.road.row:Rue
+build.text.village:Village
+build.text.city:Ville
+build.text.road:Rue
 build.materials.row:Matériels
 build.materials.wood:Bois
 build.materials.stone:Pierre
@@ -48,6 +48,7 @@ build.materials.wool:Laine
 build.materials.ore:Minerai
 build.materials.wheat:Grain
 build.materials.row.prices:Prix
+build.button.back:Retourner
 
 #Login
 login.error.nousername.title:Erreur de connexion
@@ -128,8 +129,9 @@ gamenote.ingame.title:Le jeu a commencé
 gamenote.ingame.explanation:Vous ne pouvez pas changer plus de couleur quand le jeu a déjà commencé
 gamenote.ingame.details:Pendant le jeu, vous ne pouvez pas changer de couleur
 gamenote.noplayers.title:Pas assez de gens
-note.players.explanation:Il n'y a pas assez de personnes présentes
-note.players.details:Exception: 503 Service Unavailable
+note.noplayers.title:Pas assez de joueurs
+note.noplayers.explanation:Il n'y a pas assez de personnes présentes
+note.noplayers.details:Exception: 503 Service Unavailable
 note.noturn.tile:Vous n'êtes pas d'agir
 note.noturn.explanation:Vous n'êtes même pas tourner
 note.noturn.details:Exception: 503 Service Unavailable

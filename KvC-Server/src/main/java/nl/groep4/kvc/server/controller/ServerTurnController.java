@@ -1,11 +1,13 @@
 package nl.groep4.kvc.server.controller;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import nl.groep4.kvc.common.enumeration.BuildingType;
 import nl.groep4.kvc.common.enumeration.Direction;
+import nl.groep4.kvc.common.enumeration.GameState;
 import nl.groep4.kvc.common.enumeration.Point;
 import nl.groep4.kvc.common.enumeration.SelectState;
 import nl.groep4.kvc.common.enumeration.TurnState;
@@ -17,6 +19,7 @@ import nl.groep4.kvc.common.map.Street;
 import nl.groep4.kvc.common.map.Tile;
 import nl.groep4.kvc.common.map.TileResource;
 import nl.groep4.kvc.common.util.CollectionUtil;
+import nl.groep4.kvc.common.util.Scheduler;
 
 public class ServerTurnController {
 
@@ -32,9 +35,15 @@ public class ServerTurnController {
     // TODO: buy card
     // TODO: use card
     // TODO: trading
+    // TODO: Rover verplaatsen
+    // TODO: Punten berekenen
+    // TODO: Pause serversided - warning if niet aan beurt
 
     public void initTurnStreet(Building building) {
 	try {
+	    if (controller.getState() != GameState.INIT) {
+		return;
+	    }
 	    Player pl = controller.getTurn();
 	    System.out.printf("Initial turn for %s\n", pl.getUsername());
 	    for (Tile tile : building.getConnectedTiles()) {
@@ -54,13 +63,21 @@ public class ServerTurnController {
 		    }
 		}
 	    }
+	    List<Runnable> runs = new ArrayList<>();
 	    for (Player player : controller.getPlayers()) {
-		UpdateMap view = player.getUpdateable(UpdateMap.class);
-		view.updateTurn(pl, TurnState.BUILDING_STREET);
-		view.updateStock(pl, pl.getResources());
+		runs.add(() -> {
+		    try {
+			UpdateMap view = player.getUpdateable(UpdateMap.class);
+			view.updateTurn(pl, TurnState.BUILDING_STREET);
+			view.updateStock(pl, pl.getResources());
+		    } catch (Exception e) {
+			e.printStackTrace();
+		    }
+		});
 	    }
+	    Scheduler.runAsyncdSync(runs);
 	    UpdateMap view = controller.getTurn().getUpdateable(UpdateMap.class);
-	    view.highlightStreets(availbleStreets);
+	    controller.highlightStreets(pl, availbleStreets);
 	    view.setSelectable(SelectState.STREET);
 	    pl.addRemainingStreets(1);
 	} catch (Exception ex) {
@@ -70,6 +87,9 @@ public class ServerTurnController {
 
     public void initTurnBuilding() {
 	try {
+	    if (controller.getState() != GameState.INIT) {
+		return;
+	    }
 	    Set<Building> availbleBuidlings = new HashSet<>();
 	    for (Tile tile : controller.getMap().getTiles()) {
 		for (Point point : Point.values()) {
@@ -78,9 +98,17 @@ public class ServerTurnController {
 		    }
 		}
 	    }
+	    List<Runnable> runs = new ArrayList<>();
 	    for (Player pl : controller.getPlayers()) {
-		pl.getUpdateable(UpdateMap.class).updateTurn(controller.getTurn(), TurnState.BUILDING_BUILDING);
+		runs.add(() -> {
+		    try {
+			pl.getUpdateable(UpdateMap.class).updateTurn(controller.getTurn(), TurnState.BUILDING_BUILDING);
+		    } catch (Exception ex) {
+			ex.printStackTrace();
+		    }
+		});
 	    }
+	    Scheduler.runAsyncdSync(runs);
 	    UpdateMap view = controller.getTurn().getUpdateable(UpdateMap.class);
 	    view.highlightBuildings(availbleBuidlings, BuildingType.VILLAGE);
 	    view.setSelectable(SelectState.BUILDING);
@@ -92,6 +120,9 @@ public class ServerTurnController {
 
     public void onTurn() {
 	try {
+	    if (controller.getState() != GameState.IN_GAME) {
+		return;
+	    }
 	    System.out.println(controller.getTurn().getUsername() + "'s turn is now.");
 	    {
 		UpdateMap view = controller.getTurn().getUpdateable(UpdateMap.class);
@@ -127,9 +158,17 @@ public class ServerTurnController {
 	try {
 	    controller.getTurn().getUpdateable(UpdateMap.class).unblockActions();
 	    List<Player> orderd = controller.getPlayersOrded();
-	    for (int i = 1; i < orderd.size(); i++) {
-		orderd.get(i).getUpdateable(UpdateMap.class).blockActions();
+	    List<Runnable> runs = new ArrayList<>();
+	    for (Player player : orderd) {
+		runs.add(() -> {
+		    try {
+			player.getUpdateable(UpdateMap.class).blockActions();
+		    } catch (Exception ex) {
+			ex.printStackTrace();
+		    }
+		});
 	    }
+	    Scheduler.runAsyncdSync(runs);
 	} catch (Exception ex) {
 	    ex.printStackTrace();
 	}
