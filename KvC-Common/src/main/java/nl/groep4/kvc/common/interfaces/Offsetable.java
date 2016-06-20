@@ -12,4 +12,8 @@ public interface Offsetable {
 
     public Offsetable[] getConnected();
 
+    public Offsetable[] getAttached();
+
+    public Offsetable opposite();
+
 }

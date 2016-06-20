@@ -222,6 +222,7 @@ public class ClientTile extends StackPane {
 	    Building building = tile.getBuilding(Point.values()[i]);
 	    ImageView house = houses[i - 4];
 	    if (building == null) {
+		house.setImage(cacheImage("img/buildings/house_null.png"));
 		return;
 	    }
 	    if (building.getOwner() != null) {
