@@ -5,14 +5,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nl.groep4.kvc.common.enumeration.BuildingType;
+import nl.groep4.kvc.common.enumeration.Direction;
 import nl.groep4.kvc.common.enumeration.GameState;
+import nl.groep4.kvc.common.enumeration.Point;
+import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.Throw;
+import nl.groep4.kvc.common.interfaces.UpdateMap;
 import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Map;
 import nl.groep4.kvc.common.map.Street;
+import nl.groep4.kvc.common.map.Tile;
+import nl.groep4.kvc.common.map.TileResource;
 import nl.groep4.kvc.server.model.map.ServerMap;
 
 /**
@@ -87,15 +93,20 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	if (turn++ >= players.size() - 1) {
 	    turn = 0;
 	    nextRound();
+	    if (state == GameState.INIT && round == 0) {
+		state = GameState.IN_GAME;
+	    }
 	}
+	turnController.fixButtons();
 	switch (state) {
 	case END:
-	    turnController.initTurn();
+	    turnController.endGame();
 	    break;
 	case INIT:
-	    turnController.onTurn();
+	    turnController.initTurnBuilding();
 	    break;
 	case IN_GAME:
+	    turnController.onTurn();
 	    break;
 	}
     }
@@ -116,21 +127,69 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 
     @Override
     public void placeBuilding(Coordinate coord, Player newOwner, BuildingType type) throws RemoteException {
-	Building building = map.getBuilding(coord);
-	building.setOwner(newOwner);
-	building.setBuildingType(type);
-	update();
+	if (newOwner.equals(getTurn())) {
+	    if (newOwner.getRemainingBuidlings() > 0) {
+		Building building = map.getBuilding(coord);
+		boolean validAction = true;
+		for (Tile tile : building.getConnectedTiles()) {
+		    for (Point point : Point.values()) {
+			if (building.equals(tile.getBuilding(point))) {
+			    if (!tile.isValidPlace(map, point)) {
+				validAction = false;
+				break;
+			    }
+			}
+		    }
+		}
+		if (validAction) {
+		    building.setOwner(newOwner);
+		    building.setBuildingType(type);
+		    update();
+		    if (state == GameState.INIT) {
+			turnController.initTurnStreet(building);
+		    }
+		} else {
+		    newOwner.getUpdateable().popup("alreadbuilding");
+		}
+	    } else {
+		newOwner.getUpdateable().popup("nobuilding");
+	    }
+	} else {
+	    newOwner.getUpdateable().popup("noturn");
+	}
     }
 
     @Override
     public void placeStreet(Coordinate coord, Player newOwner) throws RemoteException {
-	Street street = map.getStreet(coord);
-	try {
-	    street.setOwner(newOwner);
-	} catch (Exception ex) {
-	    System.err.println(ex);
+	if (newOwner.equals(getTurn())) {
+	    if (newOwner.getRemainingStreets() > 0) {
+		Street street = map.getStreet(coord);
+		boolean validAction = true;
+		for (Tile tile : street.getConnectedTiles()) {
+		    for (Direction direction : Direction.values()) {
+			if (street.equals(tile.getStreet(direction))) {
+			    if (!tile.isValidPlace(map, direction)) {
+				validAction = false;
+				break;
+			    }
+			}
+		    }
+		}
+		if (validAction) {
+		    street.setOwner(newOwner);
+		    update();
+		    if (state == GameState.INIT) {
+			nextTurn();
+		    }
+		} else {
+		    newOwner.getUpdateable().popup("alreadstreet");
+		}
+	    } else {
+		newOwner.getUpdateable().popup("nostreet");
+	    }
+	} else {
+	    newOwner.getUpdateable().popup("noturn");
 	}
-	update();
     }
 
     @Override
@@ -142,9 +201,32 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 
     @Override
     public void distrube() throws RemoteException {
+	System.out.printf("Giving players resources for tiles with number '%d'\n", lastThrow.getValue());
+	for (Tile tile : map.getTiles()) {
+	    if (tile instanceof TileResource) {
+		TileResource tileResource = (TileResource) tile;
+		if (!tileResource.hasRover() && tileResource.getNumber() == lastThrow.getValue()) {
+		    Resource resource = tileResource.getResource();
+		    for (Building building : tile.getBuildings()) {
+			if (building != null && building.getOwner() != null) {
+			    Player pl = building.getOwner();
+			    switch (building.getBuildingType()) {
+			    case CITY:
+				pl.giveResource(resource);
+			    case VILLAGE:
+				pl.giveResource(resource);
+			    case EMPTY:
+				break;
+			    }
+			}
+		    }
+		}
+	    }
+	}
 	for (Player pl : getPlayers()) {
-	    pl.getUpdateable().popup("ding" + lastThrow.getValue());
+	    for (Player player : getPlayers()) {
+		pl.getUpdateable(UpdateMap.class).updateStock(player, player.getResources());
+	    }
 	}
     }
-
 }

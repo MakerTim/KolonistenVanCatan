@@ -84,7 +84,7 @@ public class TestMapController extends MapController {
 		for (Resource resource : Resource.values()) {
 		    resources.put(resource, new Random().nextInt(100));
 		}
-		view.updateStock(new EnumMap<>(resources));
+		view.updateStock(ClientRefrence.getThePlayer(), new EnumMap<>(resources));
 		List<Card> cards = new ArrayList<>();
 		for (CardType card : CardType.values()) {
 		    for (VictoryCardType victory : VictoryCardType.values()) {
@@ -114,7 +114,7 @@ public class TestMapController extends MapController {
 			}
 		    }
 		}
-		view.updateStock(cards);
+		view.updateStock(ClientRefrence.getThePlayer(), cards);
 	    } catch (Exception ex) {
 		ex.printStackTrace();
 	    }

@@ -145,21 +145,45 @@ public class BuildPane implements PaneHolder, UpdateCosts {
 
     @Override
     public void updateTranslation() {
-	road.updateText(TranslationManager.translate("build.button.road"));
-	village.updateText(TranslationManager.translate("build.button.village"));
-	prices = (TranslationManager.translate("build.materials.row") + " " + whe + wod + wol + sto + ore);
-	city.updateText(TranslationManager.translate("build.button.city"));
-	wod = (TranslationManager.translate("build.materials.wood"));
-	whe = (TranslationManager.translate("build.materials.wheat"));
-	sto = (TranslationManager.translate("build.materials.stone"));
-	ore = (TranslationManager.translate("build.materials.ore"));
-	wol = (TranslationManager.translate("build.materials.wool"));
-	RoadPrices.setText(TranslationManager.translate("build.road.row") + " " + brStreet + orStreet + whStreet
-		+ wodStreet + wolStreet);
-	VillagePrices.setText(TranslationManager.translate("build.village.row") + " " + brVillage + orVillage
-		+ whVillage + wodVillage + wolVillage);
-	CityPrices.setText(
-		TranslationManager.translate("build.city.row") + " " + brCity + orCity + whCity + wodCity + wolCity);
+	if (road != null) {
+	    road.updateText(TranslationManager.translate("build.button.road"));
+	}
+	if (village != null) {
+	    village.updateText(TranslationManager.translate("build.button.village"));
+	}
+	if (prices != null) {
+	    prices = (TranslationManager.translate("build.materials.row") + " " + whe + wod + wol + sto + ore);
+	}
+	if (city != null) {
+	    city.updateText(TranslationManager.translate("build.button.city"));
+	}
+	if (wod != null) {
+	    wod = (TranslationManager.translate("build.materials.wood"));
+	}
+	if (whe != null) {
+	    whe = (TranslationManager.translate("build.materials.wheat"));
+	}
+	if (sto != null) {
+	    sto = (TranslationManager.translate("build.materials.stone"));
+	}
+	if (ore != null) {
+	    ore = (TranslationManager.translate("build.materials.ore"));
+	}
+	if (wol != null) {
+	    wol = (TranslationManager.translate("build.materials.wool"));
+	}
+	if (RoadPrices != null) {
+	    RoadPrices.setText(TranslationManager.translate("build.road.row") + " " + brStreet + orStreet + whStreet
+		    + wodStreet + wolStreet);
+	}
+	if (VillagePrices != null) {
+	    VillagePrices.setText(TranslationManager.translate("build.village.row") + " " + brVillage + orVillage
+		    + whVillage + wodVillage + wolVillage);
+	}
+	if (CityPrices != null) {
+	    CityPrices.setText(TranslationManager.translate("build.city.row") + " " + brCity + orCity + whCity + wodCity
+		    + wolCity);
+	}
 
     }
 

@@ -83,4 +83,37 @@ public interface Player extends Remote {
     public List<Card> getCards() throws RemoteException;
 
     public EnumMap<Resource, Integer> getResources() throws RemoteException;
+
+    public default int getResourceAmount(Resource resource) throws RemoteException {
+	if (!getResources().containsKey(resource)) {
+	    getResources().put(resource, 0);
+	}
+	return getResources().get(resource);
+    }
+
+    public default void giveResource(Resource resource, int amount) throws RemoteException {
+	for (int i = 0; i < amount; i++) {
+	    giveResource(resource);
+	}
+    }
+
+    public default void giveResource(Resource resource) throws RemoteException {
+	if (!getResources().containsKey(resource)) {
+	    getResources().put(resource, 0);
+	}
+	getResources().put(resource, getResources().get(resource) + 1);
+    }
+
+    public default void takeResource(Resource resource, int amount) throws RemoteException {
+	for (int i = 0; i < amount; i++) {
+	    takeResource(resource);
+	}
+    }
+
+    public default void takeResource(Resource resource) throws RemoteException {
+	if (!getResources().containsKey(resource)) {
+	    getResources().put(resource, 0);
+	}
+	getResources().put(resource, Math.max(0, getResources().get(resource) - 1));
+    }
 }

@@ -16,6 +16,7 @@ import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.enumeration.BuildingType;
 import nl.groep4.kvc.common.enumeration.Direction;
 import nl.groep4.kvc.common.enumeration.Point;
+import nl.groep4.kvc.common.enumeration.SelectState;
 import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Street;
@@ -26,10 +27,6 @@ import nl.groep4.kvc.common.map.TileSea;
 import nl.groep4.kvc.common.util.CollectionUtil;
 
 public class ClientTile extends StackPane {
-
-    public enum SelectState {
-	STREET, BUILDING, TILE
-    }
 
     private static final Map<String, Image> CACHE = new HashMap<>();
 
@@ -69,28 +66,29 @@ public class ClientTile extends StackPane {
 		int j = i;
 		Coordinate a = CollectionUtil.getInRange(Point.values(), i - 1).realOffset().multiply(offset);
 		Coordinate b = CollectionUtil.getInRange(Point.values(), i).realOffset().multiply(offset);
-		lines[i] = new Line(a.getX() * SceneMap.scale + xyOffset, -a.getY() * SceneMap.scale + xyOffset,
+		Line line = new Line(a.getX() * SceneMap.scale + xyOffset, -a.getY() * SceneMap.scale + xyOffset,
 			b.getX() * SceneMap.scale + xyOffset, -b.getY() * SceneMap.scale + xyOffset);
-		lines[i].setStroke(new Color(Math.random(), 0, 0, 1));
-		lines[i].setStrokeWidth(10);
-		lines[i].setOnMouseClicked(click -> {
-		    System.out.println("street");
-		    onStreetClick(coord.add(Direction.values()[j].offset(coord).multiply(0.5)));
+		line.setStroke(new Color(Math.random(), 0, 0, 1));
+		line.setStrokeWidth(10);
+		line.setOnMouseClicked(click -> {
+		    if (line.getStroke().isOpaque()) {
+			onStreetClick(coord.add(Direction.values()[j].offset(coord).multiply(0.5)));
+		    }
 		});
-		overlayPane.getChildren().add(lines[i]);
+		overlayPane.getChildren().add((lines[i] = line));
 	    }
 	}
 
 	for (int i = 0; i < houses.length; i++) {
 	    int j = i;
 	    Coordinate offset = CollectionUtil.getInRange(Point.values(), i + 4).realOffset().multiply(SceneMap.scale);
-	    houses[i] = new ImageView(cacheImage("img/buildings/house_RED.png"));
-	    houses[i].setLayoutX(offset.getX());
-	    houses[i].setLayoutY(-offset.getY());
-	    houses[i].setOnMouseClicked(click -> {
+	    ImageView house = new ImageView(cacheImage("img/buildings/house_RED.png"));
+	    house.setLayoutX(offset.getX());
+	    house.setLayoutY(-offset.getY());
+	    house.setOnMouseClicked(click -> {
 		onBuildingClick(Point.values()[j + 4].addTo(coord));
 	    });
-	    overlayPane.getChildren().add(houses[i]);
+	    overlayPane.getChildren().add((houses[i] = house));
 	}
 	overlayPane.setTranslateX(xFix * SceneMap.scale * 0.81);
 	overlayPane.setTranslateY(yFix * SceneMap.scale * 0.7);
@@ -202,7 +200,7 @@ public class ClientTile extends StackPane {
     public void highLightStreet(Direction direction, boolean doesHighlight) {
 	if (doesHighlight) {
 	    Line line = lines[direction.ordinal()];
-	    line.setStroke(new Color(0, 0, 0, 1));
+	    line.setStroke(Color.BLACK);
 	} else {
 	    Line line = lines[direction.ordinal()];
 	    Street street = tile.getStreet(direction);
@@ -223,35 +221,35 @@ public class ClientTile extends StackPane {
 	    int i = point.ordinal();
 	    Building building = tile.getBuilding(Point.values()[i]);
 	    ImageView house = houses[i - 4];
-	    switch (type) {
-	    case EMPTY:
-		if (building != null && building.getOwner() != null) {
-		    try {
-			switch (building.getBuildingType()) {
-			case CITY:
-			    house.setImage(cacheImage("img/buildings/city_" + building.getOwner().getColor() + ".png"));
-			    break;
-			case EMPTY:
-			    house.setImage(cacheImage("img/buildings/house_null.png"));
-			    break;
-			case VILLAGE:
-			    house.setImage(
-				    cacheImage("img/buildings/house_" + building.getOwner().getColor() + ".png"));
-			    break;
-			}
-		    } catch (Exception ex) {
-			ex.printStackTrace();
+	    if (building == null) {
+		return;
+	    }
+	    if (building.getOwner() != null) {
+		try {
+		    switch (building.getBuildingType()) {
+		    case CITY:
+		    case EMPTY:
+			house.setImage(cacheImage("img/buildings/city_" + building.getOwner().getColor() + ".png"));
+			break;
+		    case VILLAGE:
+			house.setImage(cacheImage("img/buildings/house_" + building.getOwner().getColor() + ".png"));
+			break;
 		    }
-		} else {
-		    house.setImage(cacheImage("img/buildings/house_null.png"));
+		} catch (Exception ex) {
+		    ex.printStackTrace();
 		}
-		break;
-	    case CITY:
-		house.setImage(cacheImage("img/buildings/city_highlight.png"));
-		break;
-	    case VILLAGE:
-		house.setImage(cacheImage("img/buildings/house_highlight.png"));
-		break;
+	    } else {
+		switch (type) {
+		case EMPTY:
+		    house.setImage(cacheImage("img/buildings/house_null.png"));
+		    break;
+		case CITY:
+		    house.setImage(cacheImage("img/buildings/city_highlight.png"));
+		    break;
+		case VILLAGE:
+		    house.setImage(cacheImage("img/buildings/house_highlight.png"));
+		    break;
+		}
 	    }
 	}
     }

@@ -52,7 +52,7 @@ public class ServerThrowController {
 		} catch (RemoteException ex) {
 		    ex.printStackTrace();
 		}
-	    }, 1700L);
+	    });
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();
 	}

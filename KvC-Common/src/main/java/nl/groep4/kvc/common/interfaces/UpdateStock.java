@@ -8,7 +8,7 @@ import nl.groep4.kvc.common.enumeration.Resource;
 
 public interface UpdateStock {
 
-    public void updateStock(EnumMap<Resource, Integer> resources) throws RemoteException;
+    public void updateStock(Player pl, EnumMap<Resource, Integer> resources) throws RemoteException;
 
-    public void updateStock(List<Card> cards) throws RemoteException;
+    public void updateStock(Player pl, List<Card> cards) throws RemoteException;
 }

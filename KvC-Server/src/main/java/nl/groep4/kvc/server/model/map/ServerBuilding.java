@@ -1,5 +1,8 @@
 package nl.groep4.kvc.server.model.map;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import nl.groep4.kvc.common.enumeration.BuildingType;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.map.Building;
@@ -19,7 +22,7 @@ public class ServerBuilding implements Building {
     private BuildingType type;
     private Player owner;
     private Coordinate location;
-    private Tile[] tiles = new Tile[3];
+    private List<Tile> tiles = new ArrayList<>();
 
     /**
      * Makes empty buildings at the corners of the tiles
@@ -47,13 +50,7 @@ public class ServerBuilding implements Building {
 
     @Override
     public void registerTile(Tile tile) {
-	for (int i = 0; i < tiles.length; i++) {
-	    if (tiles[i] == null) {
-		tiles[i] = tile;
-		return;
-	    }
-	}
-	throw new IllegalArgumentException("A building can only have 3 tiles.");
+	tiles.add(tile);
     }
 
     @Override
@@ -63,7 +60,7 @@ public class ServerBuilding implements Building {
 
     @Override
     public Tile[] getConnectedTiles() {
-	return tiles;
+	return tiles.toArray(new Tile[tiles.size()]);
     }
 
     @Override
@@ -74,5 +71,14 @@ public class ServerBuilding implements Building {
     @Override
     public String toString() {
 	return "Building @" + getPosition().toString() + " owned by " + getOwner();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+	if (obj instanceof Building) {
+	    Building other = (Building) obj;
+	    return other.getPosition().equals(getPosition());
+	}
+	return super.equals(obj);
     }
 }

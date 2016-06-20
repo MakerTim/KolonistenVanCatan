@@ -10,6 +10,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import nl.groep4.kvc.common.enumeration.Color;
 import nl.groep4.kvc.common.enumeration.Direction;
 import nl.groep4.kvc.common.enumeration.Point;
 import nl.groep4.kvc.common.map.Coordinate;
@@ -18,6 +19,7 @@ import nl.groep4.kvc.common.map.Street;
 import nl.groep4.kvc.common.map.Tile;
 import nl.groep4.kvc.common.map.TileLand;
 import nl.groep4.kvc.common.map.TileType;
+import nl.groep4.kvc.server.model.ServerPlayer;
 import nl.groep4.kvc.server.model.map.ServerMap;
 
 public class MapTester {
@@ -296,23 +298,23 @@ public class MapTester {
 
 	Tile evengetalTile = map.getTile(new Coordinate(0, -2));
 
-	assertTrue(evengetalTile.isValidPlace(Point.NORTH_EAST));
-	assertTrue(evengetalTile.isValidPlace(Point.EAST));
-	assertTrue(evengetalTile.isValidPlace(Point.SOUTH_EAST));
-	assertTrue(evengetalTile.isValidPlace(Point.NORTH_WEST));
-	assertTrue(evengetalTile.isValidPlace(Point.WEST));
-	assertTrue(evengetalTile.isValidPlace(Point.SOUTH_WEST));
+	assertTrue(evengetalTile.isValidPlace(map, Point.NORTH_EAST));
+	assertTrue(evengetalTile.isValidPlace(map, Point.EAST));
+	assertTrue(evengetalTile.isValidPlace(map, Point.SOUTH_EAST));
+	assertTrue(evengetalTile.isValidPlace(map, Point.NORTH_WEST));
+	assertTrue(evengetalTile.isValidPlace(map, Point.WEST));
+	assertTrue(evengetalTile.isValidPlace(map, Point.SOUTH_WEST));
 
 	// 2) bij een onevengetal tile
 
 	Tile OnevengetalTile = map.getTile(new Coordinate(0, -2));
 
-	assertTrue(OnevengetalTile.isValidPlace(Point.NORTH_EAST));
-	assertTrue(OnevengetalTile.isValidPlace(Point.EAST));
-	assertTrue(OnevengetalTile.isValidPlace(Point.SOUTH_EAST));
-	assertTrue(OnevengetalTile.isValidPlace(Point.NORTH_WEST));
-	assertTrue(OnevengetalTile.isValidPlace(Point.WEST));
-	assertTrue(OnevengetalTile.isValidPlace(Point.SOUTH_WEST));
+	assertTrue(OnevengetalTile.isValidPlace(map, Point.NORTH_EAST));
+	assertTrue(OnevengetalTile.isValidPlace(map, Point.EAST));
+	assertTrue(OnevengetalTile.isValidPlace(map, Point.SOUTH_EAST));
+	assertTrue(OnevengetalTile.isValidPlace(map, Point.NORTH_WEST));
+	assertTrue(OnevengetalTile.isValidPlace(map, Point.WEST));
+	assertTrue(OnevengetalTile.isValidPlace(map, Point.SOUTH_WEST));
 
 	Tile landtileEven1 = map.getTile(new Coordinate(0, -3));
 	Tile landtileEven2 = map.getTile(new Coordinate(0, -1));
@@ -431,6 +433,21 @@ public class MapTester {
 	assertTrue(!normalTile4.hasRover());
 	assertTrue(!normalTile5.hasRover());
 
+    }
+
+    @Test
+    public void onValidTest() {
+	ServerPlayer testUser = new ServerPlayer("TEST_PERSOON");
+	testUser.setColor(Color.BLUE);
+	Tile north = map.getTile(new Coordinate(0, -1));
+	Tile center = map.getTile(new Coordinate(0, 0));
+
+	north.getBuilding(Point.SOUTH_EAST).setOwner(testUser);
+	assertTrue(!center.isValidPlace(map, Point.NORTH_EAST));
+	assertTrue(!center.isValidPlace(map, Point.NORTH_WEST));
+	assertTrue(!center.isValidPlace(map, Point.EAST));
+	assertTrue(center.isValidPlace(map, Point.SOUTH_EAST));
+	assertTrue(center.isValidPlace(map, Point.WEST));
     }
 
 }

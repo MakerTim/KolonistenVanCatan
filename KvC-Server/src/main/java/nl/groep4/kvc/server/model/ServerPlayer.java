@@ -3,7 +3,9 @@ package nl.groep4.kvc.server.model;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import nl.groep4.kvc.common.enumeration.Color;
 import nl.groep4.kvc.common.enumeration.Resource;
@@ -23,7 +25,7 @@ public class ServerPlayer implements Player {
     private Updatable<?> updatable;
     private Color color;
     private List<Card> cards = new ArrayList<>();
-    private EnumMap<Resource, Integer> resources;
+    private EnumMap<Resource, Integer> resources;;
     private int buildingsToBuild;
     private int streetsToBuild;
 
@@ -35,6 +37,11 @@ public class ServerPlayer implements Player {
      */
     public ServerPlayer(String username) {
 	this.username = username.substring(0, Math.min(20, username.length()));
+	Map<Resource, Integer> resources = new HashMap<>();
+	for (Resource resource : Resource.values()) {
+	    resources.put(resource, 0);
+	}
+	this.resources = new EnumMap<>(resources);
     }
 
     @Override
@@ -53,6 +60,46 @@ public class ServerPlayer implements Player {
     }
 
     @Override
+    public Color getColor() {
+	return color;
+    }
+
+    @Override
+    public void setColor(Color color) {
+	this.color = color;
+    }
+
+    @Override
+    public List<Card> getCards() {
+	return cards;
+    }
+
+    @Override
+    public EnumMap<Resource, Integer> getResources() {
+	return resources;
+    }
+
+    @Override
+    public int getRemainingStreets() {
+	return streetsToBuild;
+    }
+
+    @Override
+    public void addRemainingStreets(int streets) {
+	streetsToBuild += streets;
+    }
+
+    @Override
+    public int getRemainingBuidlings() {
+	return buildingsToBuild;
+    }
+
+    @Override
+    public void addRemainingBuidlings(int buildings) {
+	buildingsToBuild += buildings;
+    }
+
+    @Override
     public boolean equals(Object obj) {
 	if (obj instanceof Player) {
 	    Player other = (Player) obj;
@@ -63,45 +110,5 @@ public class ServerPlayer implements Player {
 	    }
 	}
 	return super.equals(obj);
-    }
-
-    @Override
-    public Color getColor() throws RemoteException {
-	return color;
-    }
-
-    @Override
-    public void setColor(Color color) throws RemoteException {
-	this.color = color;
-    }
-
-    @Override
-    public List<Card> getCards() throws RemoteException {
-	return cards;
-    }
-
-    @Override
-    public EnumMap<Resource, Integer> getResources() throws RemoteException {
-	return resources;
-    }
-
-    @Override
-    public int getRemainingStreets() throws RemoteException {
-	return streetsToBuild;
-    }
-
-    @Override
-    public void addRemainingStreets(int streets) throws RemoteException {
-	streetsToBuild += streets;
-    }
-
-    @Override
-    public int getRemainingBuidlings() throws RemoteException {
-	return buildingsToBuild;
-    }
-
-    @Override
-    public void addRemainingBuidlings(int buildings) throws RemoteException {
-	buildingsToBuild += buildings;
     }
 }

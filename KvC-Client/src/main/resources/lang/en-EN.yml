@@ -141,7 +141,7 @@ note.building.explanation:You don't have any buildings to place
 note.building.details:Exception: 503 Service Unavailable
 
 #Map
-map.throwdice.clickToThrow:Throw the dice
+map.throwdice.clickToThrow:Roll the dice
 map.throwdice.throw:Throw
 map.stock.show:Show cards
 map.stock.hide:Hide cards

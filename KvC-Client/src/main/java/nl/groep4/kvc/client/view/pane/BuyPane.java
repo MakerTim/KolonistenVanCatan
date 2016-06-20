@@ -188,14 +188,27 @@ public class BuyPane extends Application implements PaneHolder, UpdateCosts {
 
     @Override
     public void updateTranslation() {
-
-	brick.setText(TranslationManager.translate("buypane.text.brick"));
-	wool.setText(TranslationManager.translate("buypane.text.wool"));
-	wheat.setText(TranslationManager.translate("buypane.text.wheat"));
-	ore.setText(TranslationManager.translate("buypane.text.ore"));
-	wood.setText(TranslationManager.translate("buypane.text.wood"));
-	resources.setText(TranslationManager.translate("buypane.text.resources"));
-	cards.setText(TranslationManager.translate("buypane.text.cards"));
+	if (brick != null) {
+	    brick.setText(TranslationManager.translate("buypane.text.brick"));
+	}
+	if (wool != null) {
+	    wool.setText(TranslationManager.translate("buypane.text.wool"));
+	}
+	if (wheat != null) {
+	    wheat.setText(TranslationManager.translate("buypane.text.wheat"));
+	}
+	if (ore != null) {
+	    ore.setText(TranslationManager.translate("buypane.text.ore"));
+	}
+	if (wood != null) {
+	    wood.setText(TranslationManager.translate("buypane.text.wood"));
+	}
+	if (resources != null) {
+	    resources.setText(TranslationManager.translate("buypane.text.resources"));
+	}
+	if (cards != null) {
+	    cards.setText(TranslationManager.translate("buypane.text.cards"));
+	}
     }
 
     public static void main(String[] args) {

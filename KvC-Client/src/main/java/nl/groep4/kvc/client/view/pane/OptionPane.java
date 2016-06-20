@@ -79,7 +79,8 @@ public class OptionPane implements PaneHolder {
     }
 
     private void onPauseClick() {
-	map.openPausePane();
+	// FIXME: pause moet zijn controller#pausegame
+	map.openPausePane(true);
     }
 
     private void onSaveClick() {

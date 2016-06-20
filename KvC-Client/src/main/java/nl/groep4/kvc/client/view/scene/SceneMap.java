@@ -1,6 +1,7 @@
 package nl.groep4.kvc.client.view.scene;
 
 import java.rmi.RemoteException;
+import java.util.Collection;
 import java.util.EnumMap;
 import java.util.List;
 
@@ -38,6 +39,7 @@ import nl.groep4.kvc.client.view.pane.TradePane;
 import nl.groep4.kvc.client.view.pane.TurnInfoPane;
 import nl.groep4.kvc.common.enumeration.BuildingType;
 import nl.groep4.kvc.common.enumeration.Resource;
+import nl.groep4.kvc.common.enumeration.SelectState;
 import nl.groep4.kvc.common.enumeration.TurnState;
 import nl.groep4.kvc.common.interfaces.Card;
 import nl.groep4.kvc.common.interfaces.NotCloseable;
@@ -72,7 +74,6 @@ public class SceneMap implements SceneHolder, UpdateMap {
     private TurnInfoPane infoPane;
     private BuildPane buildPane;
     private TradePane tradePane;
-    private PausePane pausePane;
     private BuyPane buyPane;
     private ScorePane playerPane;
 
@@ -97,7 +98,6 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    infoPane = new TurnInfoPane();
 	    buildPane = new BuildPane(this);
 	    tradePane = new TradePane(this);
-	    pausePane = new PausePane(this);
 	    buyPane = new BuyPane(this);
 	    playerPane = new ScorePane();
 
@@ -225,8 +225,8 @@ public class SceneMap implements SceneHolder, UpdateMap {
     }
 
     @Override
-    public void openPausePane() {
-	setOverlay(pausePane);
+    public void openPausePane(boolean isTurn) {
+	setOverlay(new PausePane(this, isTurn));
     }
 
     @Override
@@ -292,7 +292,6 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	infoPane.updateTranslation();
 	buildPane.updateTranslation();
 	tradePane.updateTranslation();
-	pausePane.updateTranslation();
 	buyPane.updateTranslation();
     }
 
@@ -313,13 +312,13 @@ public class SceneMap implements SceneHolder, UpdateMap {
     }
 
     @Override
-    public void updateStock(EnumMap<Resource, Integer> resources) {
-	stockPane.updateStock(resources);
+    public void updateStock(Player pl, EnumMap<Resource, Integer> resources) {
+	stockPane.updateStock(pl, resources);
     }
 
     @Override
-    public void updateStock(List<Card> cards) {
-	stockPane.updateStock(cards);
+    public void updateStock(Player pl, List<Card> cards) {
+	stockPane.updateStock(pl, cards);
     }
 
     @Override
@@ -355,14 +354,12 @@ public class SceneMap implements SceneHolder, UpdateMap {
     public void updateRound(int round) throws RemoteException {
 	scorePane.updateRound(round);
 	infoPane.updateRound(round);
-	pausePane.updateRound(round);
     }
 
     @Override
     public void updateTurn(Player who, TurnState what) throws RemoteException {
 	scorePane.updateTurn(who, what);
 	infoPane.updateTurn(who, what);
-	pausePane.updateTurn(who, what);
     }
 
     @Override
@@ -371,12 +368,12 @@ public class SceneMap implements SceneHolder, UpdateMap {
     }
 
     @Override
-    public void highlightStreets(List<Street> streets) {
+    public void highlightStreets(Collection<Street> streets) {
 	gamepane.highlightStreet(streets);
     }
 
     @Override
-    public void highlightBuildings(List<Building> buildings, BuildingType type) {
+    public void highlightBuildings(Collection<Building> buildings, BuildingType type) {
 	gamepane.highlightBuilding(buildings, type);
     }
 
@@ -413,5 +410,10 @@ public class SceneMap implements SceneHolder, UpdateMap {
 		ex.printStackTrace();
 	    }
 	}
+    }
+
+    @Override
+    public void setSelectable(SelectState selectables) throws RemoteException {
+	gamepane.setSelectable(selectables);
     }
 }

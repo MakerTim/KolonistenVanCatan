@@ -89,17 +89,11 @@ turn.state.wait.self:Êtes à côté
 turn.self:Vous
 
 #Cards
-cards.monopoly.info:Monopolie: Obtenez toutes les cartes de ressources d'un type de choix
-cards.knight.info:Ridder: Déplacer highwayman et tirez la carte des ressources d'un autre joueur
-cards.road.info:Stratenbouw: Prêt à construire une rue (gratuit)
-cards.victory.info:Overwinningspunt: Un point libre
-cards.invent.info:Uitvinding: Tirer deux cartes de ressources choisies par la banque
-
-cards.monopoly.info:Monopole
-cards.knight.info:chevalier
-cards.road.info:la construction de routes
-cards.cath.info:Cathédrale
-cards.invent.info:Invention
+cards.monopoly.info:Monopole: Obtenez toutes les cartes de ressources d'un type de choix
+cards.knight.info:Chevalier: Déplacer highwayman et tirez la carte des ressources d'un autre joueur
+cards.road.info:Construction rue: Prêt à construire une rue (gratuit)
+cards.victory.info:point de victoire: Un point libre
+cards.invent.info:Invention: Tirer deux cartes de ressources choisies par la banque
 
 #PausePane
 pause.button.continue:Résumé
