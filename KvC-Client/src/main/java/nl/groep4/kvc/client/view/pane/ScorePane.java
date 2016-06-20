@@ -1,8 +1,8 @@
 package nl.groep4.kvc.client.view.pane;
 
+import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
-import java.util.Map.Entry;
 
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -13,6 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import nl.groep4.kvc.client.view.ViewMaster;
+import nl.groep4.kvc.client.view.elements.PlayerScore;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.Card;
 import nl.groep4.kvc.common.interfaces.Player;
@@ -22,45 +23,39 @@ import nl.groep4.kvc.common.interfaces.UpdateStock;
 public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder {
 
     StackPane scorePane;
-    VBox players;
+    VBox playersBox;
     VBox content;
     ImageView banner;
     ImageView closedBanner;
     Text title;
-    Text firstSlot;
-    Text secondSlot;
-    Text thirdSlot;
-    Text fourthSlot;
-    Text fifthSlot;
-    Text sixthSlot;
+    Text scoreBrick;
+    Text scoreWood;
+    Text scoreOre;
+    Text scoreWool;
+    Text scoreWheat;
+
+    Pane playerSlot;
+    Text playerName;
+    Text playerScore;
+
+    PlayerScore ps;
+
+    ArrayList<PlayerScore> scores;
 
     @Override
     public Pane getPane() {
+	ps = new PlayerScore(null);
+	scores = new ArrayList<>();
 	scorePane = new StackPane();
-	players = new VBox();
+	playersBox = new VBox();
 	content = new VBox();
 	title = new Text("Title");
-	firstSlot = new Text("player 1\n1 0 1 2 0");
-	firstSlot.setFill(Color.WHITE);
-	secondSlot = new Text("player 2\n1 0 1 2 0");
-	secondSlot.setFill(Color.WHITE);
-	thirdSlot = new Text("player 3\n1 0 1 2 0");
-	thirdSlot.setFill(Color.WHITE);
-	fourthSlot = new Text("player 4\n1 0 1 2 0");
-	fourthSlot.setFill(Color.WHITE);
-	fifthSlot = new Text("player 5\n1 0 1 2 0");
-	fifthSlot.setFill(Color.WHITE);
-	sixthSlot = new Text("player 6\n1 0 1 2 0");
-	sixthSlot.setFill(Color.WHITE);
+	scorePane.getChildren().addAll(getClosedBanner());
 	title.setFont(ViewMaster.FONT);
 	title.setFill(Color.WHITE);
 	title.setStroke(Color.BLACK);
-
-	content.getChildren().addAll(title, players, firstSlot, secondSlot, thirdSlot, fourthSlot, fifthSlot,
-		sixthSlot);
+	content.getChildren().addAll(title);
 	content.setAlignment(Pos.TOP_CENTER);
-
-	scorePane.getChildren().addAll(getClosedBanner());
 
 	scorePane.setOnMouseEntered(e -> clickOpen());
 	scorePane.setOnMouseExited(e -> clickClose());
@@ -100,22 +95,10 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder {
 
     @Override
     public void updateStock(Player pl, EnumMap<Resource, Integer> resources) {
-	for (Entry<Resource, Integer> resource : resources.entrySet()) {
-	    Resource res = resource.getKey();
-	    String amnt = resource.getValue().toString();
-	    switch (res) {
-	    case BRICK:
-		break;
-	    case ORE:
-		break;
-	    case WHEAT:
-		break;
-	    case WOOD:
-		break;
-	    case WOOL:
-		break;
+	for (PlayerScore playerScore : scores) {
+	    if (pl == null || playerScore.getPlayer().equals(pl)) {
+		playerScore.updateResources(resources);
 	    }
-
 	}
     }
 
@@ -127,6 +110,10 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder {
 
     @Override
     public void updatePlayerOrder(List<Player> order) {
-
+	content.getChildren().clear();
+	for (Player player : order) {
+	    scores.add(new PlayerScore(player));
+	    content.getChildren().add(ps.getPane(player));
+	}
     }
 }
