@@ -1,5 +1,6 @@
 package nl.groep4.kvc.server.controller;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -28,8 +29,6 @@ public class ServerTurnController {
 	this.controller = serverKolonistenVanCatan;
     }
 
-    // TODO: Highlight streets method
-    // TODO: Highlight buildings method
     // TODO: buy x
     // TODO: buy card
     // TODO: use card
@@ -37,6 +36,39 @@ public class ServerTurnController {
     // TODO: Rover verplaatsen
     // TODO: Punten berekenen
     // TODO: Pause serversided - warning if niet aan beurt
+
+    public void nextTurn() {
+	if (controller.newTurn() >= controller.getPlayers().size() - 1) {
+	    controller.resetTurn();
+	    controller.nextRound();
+	    if (controller.getState() == GameState.INIT && controller.getRound() == 1) {
+		controller.setState(GameState.IN_GAME);
+	    }
+	}
+	fixButtons();
+	switch (controller.getState()) {
+	case END:
+	    endGame();
+	    break;
+	case INIT:
+	    initTurnBuilding();
+	    break;
+	case IN_GAME:
+	    onTurn();
+	    break;
+	}
+	List<Runnable> runs = new ArrayList<>();
+	for (Player pl : controller.getPlayers()) {
+	    runs.add(() -> {
+		try {
+		    pl.getUpdateable(UpdateMap.class).updatePlayerOrder(controller.getPlayersOrded());
+		} catch (RemoteException ex) {
+		    ex.printStackTrace();
+		}
+	    });
+	}
+	Scheduler.runAsyncdSync(runs);
+    }
 
     public void initTurnStreet(Building building) {
 	try {
@@ -164,5 +196,4 @@ public class ServerTurnController {
 	    ex.printStackTrace();
 	}
     }
-
 }

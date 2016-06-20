@@ -20,7 +20,7 @@ public class MapController implements Controller {
 
     public void placeBuilding(Coordinate coord) {
 	try {
-	    model.placeBuilding(coord, ClientRefrence.getThePlayer(), BuildingType.VILLAGE);
+	    model.placeBuilding(coord, BuildingType.VILLAGE);
 	} catch (RemoteException ex) {
 	    ExceptionManager.handleRemoteException(ex);
 	}
@@ -28,7 +28,7 @@ public class MapController implements Controller {
 
     public void placeStreet(Coordinate coord) {
 	try {
-	    model.placeStreet(coord, ClientRefrence.getThePlayer());
+	    model.placeStreet(coord);
 	} catch (RemoteException ex) {
 	    ExceptionManager.handleRemoteException(ex);
 	}

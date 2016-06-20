@@ -31,18 +31,7 @@ public interface KolonistenVanCatan extends Remote {
 
     public Map getMap() throws RemoteException;
 
-    public default void update() throws RemoteException {
-	List<Runnable> runs = new ArrayList<>();
-	for (Player pl : getPlayers()) {
-	    runs.add(() -> {
-		try {
-		    pl.getUpdateable(UpdateMap.class).setModel(getMap());
-		} catch (Exception ex) {
-		}
-	    });
-	}
-	Scheduler.runAsyncdSync(runs);
-    }
+    public void updateModel() throws RemoteException;
 
     public List<Player> getPlayers() throws RemoteException;
 
@@ -50,9 +39,9 @@ public interface KolonistenVanCatan extends Remote {
 
     public Player getTurn() throws RemoteException;
 
-    public void placeBuilding(Coordinate coord, Player newOwner, BuildingType type) throws RemoteException;
+    public void placeBuilding(Coordinate coord, BuildingType type) throws RemoteException;
 
-    public void placeStreet(Coordinate coord, Player newOwner) throws RemoteException;
+    public void placeStreet(Coordinate coord) throws RemoteException;
 
     public void throwDices() throws RemoteException;
 

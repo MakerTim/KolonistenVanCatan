@@ -31,13 +31,13 @@ import nl.groep4.kvc.server.model.map.ServerMap;
  */
 public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 
-    private ServerTurnController turnController;
-    private ServerShopController shopController;
-    private ServerMapController mapController;
+    ServerTurnController turnController;
+    ServerShopController shopController;
+    ServerMapController mapController;
 
     private final List<Player> players;
     private ServerMap map = new ServerMap();
-    private int round = -2;
+    private int round = -1;
     private int turn = -1;
     private Throw lastThrow;
     private GameState state;
@@ -79,6 +79,10 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	return this.state;
     }
 
+    public void setState(GameState state) {
+	this.state = state;
+    }
+
     @Override
     public int getRound() {
 	return round;
@@ -89,6 +93,14 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	round++;
     }
 
+    public int newTurn() {
+	return ++turn - 1;
+    }
+
+    public void resetTurn() {
+	turn = 0;
+    }
+
     @Override
     public List<Player> getPlayers() {
 	return players;
@@ -96,36 +108,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 
     @Override
     public void nextTurn() {
-	if (turn++ >= players.size() - 1) {
-	    turn = 0;
-	    nextRound();
-	    if (state == GameState.INIT && round == 0) {
-		state = GameState.IN_GAME;
-	    }
-	}
-	turnController.fixButtons();
-	switch (state) {
-	case END:
-	    turnController.endGame();
-	    break;
-	case INIT:
-	    turnController.initTurnBuilding();
-	    break;
-	case IN_GAME:
-	    turnController.onTurn();
-	    break;
-	}
-	List<Runnable> runs = new ArrayList<>();
-	for (Player pl : getPlayers()) {
-	    runs.add(() -> {
-		try {
-		    pl.getUpdateable(UpdateMap.class).updatePlayerOrder(getPlayersOrded());
-		} catch (RemoteException ex) {
-		    ex.printStackTrace();
-		}
-	    });
-	}
-	Scheduler.runAsyncdSync(runs);
+	turnController.nextTurn();
     }
 
     @Override
@@ -143,70 +126,13 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     }
 
     @Override
-    public void placeBuilding(Coordinate coord, Player newOwner, BuildingType type) throws RemoteException {
-	if (newOwner.equals(getTurn())) {
-	    if (newOwner.getRemainingBuidlings() > 0) {
-		Building building = map.getBuilding(coord);
-		boolean validAction = true;
-		for (Tile tile : building.getConnectedTiles()) {
-		    for (Point point : Point.values()) {
-			if (building.equals(tile.getBuilding(point))) {
-			    if (!tile.isValidPlace(map, point)) {
-				validAction = false;
-				break;
-			    }
-			}
-		    }
-		}
-		if (validAction) {
-		    building.setOwner(newOwner);
-		    building.setBuildingType(type);
-		    update();
-		    if (state == GameState.INIT) {
-			turnController.initTurnStreet(building);
-		    }
-		} else {
-		    newOwner.getUpdateable().popup("alreadbuilding");
-		}
-	    } else {
-		newOwner.getUpdateable().popup("nobuilding");
-	    }
-	} else {
-	    newOwner.getUpdateable().popup("noturn");
-	}
+    public void placeBuilding(Coordinate coord, BuildingType type) throws RemoteException {
+	mapController.placeBuilding(coord, type);
     }
 
     @Override
-    public void placeStreet(Coordinate coord, Player newOwner) throws RemoteException {
-	if (newOwner.equals(getTurn())) {
-	    if (newOwner.getRemainingStreets() > 0) {
-		Street street = map.getStreet(coord);
-		boolean validAction = true;
-		for (Tile tile : street.getConnectedTiles()) {
-		    for (Direction direction : Direction.values()) {
-			if (street.equals(tile.getStreet(direction))) {
-			    if (!tile.isValidPlace(map, direction)) {
-				validAction = false;
-				break;
-			    }
-			}
-		    }
-		}
-		if (validAction) {
-		    street.setOwner(newOwner);
-		    update();
-		    if (state == GameState.INIT) {
-			nextTurn();
-		    }
-		} else {
-		    newOwner.getUpdateable().popup("alreadstreet");
-		}
-	    } else {
-		newOwner.getUpdateable().popup("nostreet");
-	    }
-	} else {
-	    newOwner.getUpdateable().popup("noturn");
-	}
+    public void placeStreet(Coordinate coord) throws RemoteException {
+	mapController.placeStreet(coord);
     }
 
     @Override
@@ -301,5 +227,19 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     @Override
     public void buyCity() throws RemoteException {
 	shopController.buyCity();
+    }
+
+    @Override
+    public void updateModel() throws RemoteException {
+	List<Runnable> runs = new ArrayList<>();
+	for (Player pl : getPlayers()) {
+	    runs.add(() -> {
+		try {
+		    pl.getUpdateable(UpdateMap.class).setModel(getMap());
+		} catch (Exception ex) {
+		}
+	    });
+	}
+	Scheduler.runAsyncdSync(runs);
     }
 }
