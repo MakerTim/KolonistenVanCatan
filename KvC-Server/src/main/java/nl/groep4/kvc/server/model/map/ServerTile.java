@@ -7,7 +7,6 @@ import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Map;
 import nl.groep4.kvc.common.map.Street;
 import nl.groep4.kvc.common.map.Tile;
-import nl.groep4.kvc.common.map.TileLand;
 import nl.groep4.kvc.common.map.TileType;
 
 /**
@@ -22,7 +21,7 @@ public abstract class ServerTile implements Tile {
 
     private Coordinate position;
     private Street[] streets;
-    private Building[] buildings;
+    private Building[] buildings = new Building[6];
     private TileType type;
 
     /**
@@ -57,6 +56,11 @@ public abstract class ServerTile implements Tile {
     }
 
     @Override
+    public Tile getRelative(Map map, Direction direction) {
+	return map.getRelativeTile(this, direction);
+    }
+
+    @Override
     public Street getStreet(Direction direction) {
 	return streets[direction.ordinal()];
     }
@@ -85,19 +89,13 @@ public abstract class ServerTile implements Tile {
 	    return false;
 	}
 	boolean validPlace = true;
-	boolean hasLandTile = false;
-	for (Tile tile : getBuilding(point).getConnectedTiles()) {
-	    if (tile instanceof TileLand) {
-		hasLandTile = true;
-	    }
-	    for (Point neighbour : point.getConnected()) {
-		Building neighbourBuilding = tile.getBuilding(neighbour);
-		if (neighbourBuilding != null && neighbourBuilding.getOwner() != null) {
-		    validPlace = false;
-		}
+	for (Point neighbour : point.getConnected()) {
+	    Building neighbourBuilding = getBuilding(neighbour);
+	    if (neighbourBuilding != null && neighbourBuilding.getOwner() != null) {
+		validPlace = false;
 	    }
 	}
-	return validPlace && hasLandTile;
+	return validPlace;
     }
 
     @Override

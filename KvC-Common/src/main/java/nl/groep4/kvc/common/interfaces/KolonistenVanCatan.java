@@ -61,6 +61,10 @@ public interface KolonistenVanCatan extends Remote {
 
     public void distrube() throws RemoteException;
 
+    public default void highlightStreets(Player pl) throws RemoteException {
+
+    }
+
     public default void highlightStreets(Player pl, Collection<Street> streets) throws RemoteException {
 	pl.getUpdateable(UpdateMap.class).highlightStreets(streets);
     }
