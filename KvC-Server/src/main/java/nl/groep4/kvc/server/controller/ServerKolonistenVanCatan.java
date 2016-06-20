@@ -11,7 +11,6 @@ import nl.groep4.kvc.common.enumeration.BuildingType;
 import nl.groep4.kvc.common.enumeration.Direction;
 import nl.groep4.kvc.common.enumeration.GameState;
 import nl.groep4.kvc.common.enumeration.Point;
-import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.Throw;
@@ -21,7 +20,6 @@ import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Map;
 import nl.groep4.kvc.common.map.Street;
 import nl.groep4.kvc.common.map.Tile;
-import nl.groep4.kvc.common.map.TileResource;
 import nl.groep4.kvc.common.util.Scheduler;
 import nl.groep4.kvc.server.model.map.ServerMap;
 
@@ -34,6 +32,8 @@ import nl.groep4.kvc.server.model.map.ServerMap;
 public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 
     private ServerTurnController turnController;
+    private ServerShopController shopController;
+    private ServerMapController mapController;
 
     private final List<Player> players;
     private ServerMap map = new ServerMap();
@@ -46,6 +46,8 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	System.out.println("Starting game!");
 	this.players = players;
 	turnController = new ServerTurnController(this);
+	shopController = new ServerShopController(this);
+	mapController = new ServerMapController(this);
 	players.sort((pl1, pl2) -> {
 	    return Integer.compare(pl1.hashCode(), pl2.hashCode());
 	});
@@ -214,43 +216,13 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	diceController.updateThrow();
     }
 
+    public Throw getLastThrow() {
+	return this.lastThrow;
+    }
+
     @Override
-    public void distrube() throws RemoteException {
-	System.out.printf("Giving players resources for tiles with number '%d'\n", lastThrow.getValue());
-	for (Tile tile : map.getTiles()) {
-	    if (tile instanceof TileResource) {
-		TileResource tileResource = (TileResource) tile;
-		if (!tileResource.hasRover() && tileResource.getNumber() == lastThrow.getValue()) {
-		    Resource resource = tileResource.getResource();
-		    for (Building building : tile.getBuildings()) {
-			if (building != null && building.getOwner() != null) {
-			    Player pl = building.getOwner();
-			    switch (building.getBuildingType()) {
-			    case CITY:
-				pl.giveResource(resource);
-			    case VILLAGE:
-				pl.giveResource(resource);
-			    case EMPTY:
-				break;
-			    }
-			}
-		    }
-		}
-	    }
-	}
-	List<Runnable> runs = new ArrayList<>();
-	for (Player pl : getPlayers()) {
-	    runs.add(() -> {
-		for (Player player : getPlayers()) {
-		    try {
-			pl.getUpdateable(UpdateMap.class).updateStock(player, player.getResources());
-		    } catch (Exception ex) {
-			ex.printStackTrace();
-		    }
-		}
-	    });
-	}
-	Scheduler.runAsyncdSync(runs);
+    public void distribute() throws RemoteException {
+	mapController.distribute();
     }
 
     public void highlightBuildings(Player pl, BuildingType type) {
@@ -314,5 +286,20 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();
 	}
+    }
+
+    @Override
+    public void buyStreet() throws RemoteException {
+	shopController.buyStreet();
+    }
+
+    @Override
+    public void buyVillage() throws RemoteException {
+	shopController.buyVillage();
+    }
+
+    @Override
+    public void buyCity() throws RemoteException {
+	shopController.buyCity();
     }
 }

@@ -48,7 +48,7 @@ public class ServerThrowController {
 	    Scheduler.runAsyncdSync(runs);
 	    Scheduler.runAsyncLater(() -> {
 		try {
-		    controller.distrube();
+		    controller.distribute();
 		} catch (RemoteException ex) {
 		    ex.printStackTrace();
 		}

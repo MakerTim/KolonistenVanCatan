@@ -56,6 +56,12 @@ public interface KolonistenVanCatan extends Remote {
 
     public void throwDices() throws RemoteException;
 
-    public void distrube() throws RemoteException;
+    public void distribute() throws RemoteException;
+
+    public void buyStreet() throws RemoteException;
+
+    public void buyVillage() throws RemoteException;
+
+    public void buyCity() throws RemoteException;
 
 }
