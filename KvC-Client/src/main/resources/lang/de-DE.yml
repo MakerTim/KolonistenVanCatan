@@ -38,9 +38,9 @@ lobby.parchment.color.red:Rot
 build.button.road:Straße
 build.button.village:Dorf
 build.button.city:Stadt
-build.village.row:Dorf
-build.city.row:Stadt
-build.road.row:Straße
+build.text.village:Dorf
+build.text.city:Stadt
+build.text.road:Straße
 build.materials.row:Materialien
 build.materials.wood:Holz
 build.materials.stone:Stein
@@ -48,6 +48,7 @@ build.materials.wool:Wolle
 build.materials.ore:Erz
 build.materials.wheat:Korn
 build.materials.row.prices:Preis
+build.button.back:Zurück
 
 #Login
 login.error.nousername.title:Keine Benutzername

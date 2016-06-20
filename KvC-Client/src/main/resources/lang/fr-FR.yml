@@ -38,9 +38,9 @@ lobby.parchment.color.white:blanc
 build.button.road:Rue
 build.button.village:Village
 build.button.city:Ville
-build.village.row:Village
-build.city.row:Ville
-build.road.row:Rue
+build.text.village:Village
+build.text.city:Ville
+build.text.road:Rue
 build.materials.row:Matériels
 build.materials.wood:Bois
 build.materials.stone:Pierre
@@ -48,6 +48,7 @@ build.materials.wool:Laine
 build.materials.ore:Minerai
 build.materials.wheat:Grain
 build.materials.row.prices:Prix
+build.button.back:Retourner
 
 #Login
 login.error.nousername.title:Erreur de connexion
