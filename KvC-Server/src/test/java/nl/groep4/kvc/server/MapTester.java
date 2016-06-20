@@ -441,6 +441,7 @@ public class MapTester {
 	testUser.setColor(Color.BLUE);
 	Tile north = map.getTile(new Coordinate(0, -1));
 	Tile center = map.getTile(new Coordinate(0, 0));
+	// Tile east = map.getTile(new Coordinate(0, ))
 
 	north.getBuilding(Point.SOUTH_EAST).setOwner(testUser);
 	assertTrue(!center.isValidPlace(map, Point.NORTH_EAST));
@@ -448,6 +449,8 @@ public class MapTester {
 	assertTrue(!center.isValidPlace(map, Point.EAST));
 	assertTrue(center.isValidPlace(map, Point.SOUTH_EAST));
 	assertTrue(center.isValidPlace(map, Point.WEST));
+
+	// Toevoegen
     }
 
 }
