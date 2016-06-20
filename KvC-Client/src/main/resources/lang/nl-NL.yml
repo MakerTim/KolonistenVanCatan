@@ -128,8 +128,8 @@ gamenote.ingame.title:Spel is begonnen
 gamenote.ingame.explanation:U kunt niet meer van kleur switchen als het spel al begonnen is
 gamenote.ingame.details:Tijdens het spel kunt u niet van kleur veranderen
 note.noplayers.title:Niet genoeg mensen
-note.players.explanation:Niet genoeg mensen zijn aanwezig
-note.players.details:Exception: 503 Service Unavailable
+note.noplayers.explanation:Niet genoeg mensen zijn aanwezig
+note.noplayers.details:Exception: 503 Service Unavailable
 note.noturn.tile:U bent niet aan de beurt
 note.noturn.explanation:U bent nog niet aan de beurt
 note.noturn.details:Exception: 503 Service Unavailable

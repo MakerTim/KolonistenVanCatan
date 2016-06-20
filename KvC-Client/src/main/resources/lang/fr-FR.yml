@@ -128,8 +128,9 @@ gamenote.ingame.title:Le jeu a commencé
 gamenote.ingame.explanation:Vous ne pouvez pas changer plus de couleur quand le jeu a déjà commencé
 gamenote.ingame.details:Pendant le jeu, vous ne pouvez pas changer de couleur
 gamenote.noplayers.title:Pas assez de gens
-note.players.explanation:Il n'y a pas assez de personnes présentes
-note.players.details:Exception: 503 Service Unavailable
+note.noplayers.title:Pas assez de joueurs
+note.noplayers.explanation:Il n'y a pas assez de personnes présentes
+note.noplayers.details:Exception: 503 Service Unavailable
 note.noturn.tile:Vous n'êtes pas d'agir
 note.noturn.explanation:Vous n'êtes même pas tourner
 note.noturn.details:Exception: 503 Service Unavailable

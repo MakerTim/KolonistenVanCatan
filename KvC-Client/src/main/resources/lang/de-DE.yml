@@ -128,8 +128,8 @@ gamenote.ingame.title:Spile im Gange
 gamenote.ingame.explanation:Sie können nicht mehr eine andere Farbe
 gamenote.ingame.details:Schalt Farbe ist nicht verfügbar, während Spiel läuft
 note.noplayers.title:Nicht genug Menschen
-note.players.explanation:Es gibt nicht genug Menschen vorhanden
-note.players.details:Exception: 503 Service Unavailable
+note.noplayers.explanation:Es gibt nicht genug Menschen vorhanden
+note.noplayers.details:Exception: 503 Service Unavailable
 note.noturn.tile:Sie sind nicht zu handeln
 note.noturn.explanation:Sie sind nicht einmal umdrehen
 note.noturn.details:Exception: 503 Service Unavailable
