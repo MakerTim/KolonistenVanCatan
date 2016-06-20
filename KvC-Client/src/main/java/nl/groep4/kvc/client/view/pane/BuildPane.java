@@ -53,6 +53,7 @@ public class BuildPane implements PaneHolder, UpdateCosts {
 
     private HBox hboxprices;
     private HBox hboxbuttons;
+    private HBox hboxback;
     private VBox vboxprices;
     private VBox vboxwheat;
     private VBox vboxwood;
@@ -199,6 +200,7 @@ public class BuildPane implements PaneHolder, UpdateCosts {
 
 	hboxprices = new HBox();
 	hboxbuttons = new HBox();
+	hboxback = new HBox();
 
 	vboxprices.getChildren().addAll(prices, city, village, street);
 	vboxwheat.getChildren().addAll(wheat, whstreet, whvillage, whcity);
@@ -222,6 +224,8 @@ public class BuildPane implements PaneHolder, UpdateCosts {
 	hboxbuttons.setSpacing(10);
 	hboxbuttons.setPadding(new Insets(30, 0, 80, 0));
 
+	hboxback.setAlignment(Pos.CENTER);
+
 	Font BuildFont = new Font("Impact", 22);
 	prices.setFont(BuildFont);
 	street.setFont(BuildFont);
@@ -241,8 +245,9 @@ public class BuildPane implements PaneHolder, UpdateCosts {
 	backbutton.registerClick(() -> {
 	    sceneMap.closeOverlay();
 	});
+	hboxback.getChildren().add(backbutton);
 	hboxbuttons.getChildren().addAll(streetbutton, villagebutton, citybutton);
-	vbox.getChildren().addAll(hboxprices, hboxbuttons, backbutton);
+	vbox.getChildren().addAll(hboxprices, hboxbuttons, hboxback);
 	Build.getChildren().addAll(SceneUtil.getGamePane(), vbox);
 
 	return Build;
