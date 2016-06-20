@@ -124,9 +124,9 @@ credits.button.back:Terug
 credits.text.credits:Credits
 
 #Note
-note.ingame.title:Spel is begonnen
-note.ingame.explanation:U kunt niet meer van kleur switchen als het spel al begonnen is
-note.ingame.details:Tijdens het spel kunt u niet van kleur veranderen
+gamenote.ingame.title:Spel is begonnen
+gamenote.ingame.explanation:U kunt niet meer van kleur switchen als het spel al begonnen is
+gamenote.ingame.details:Tijdens het spel kunt u niet van kleur veranderen
 note.noplayers.title:Niet genoeg mensen
 note.players.explanation:Niet genoeg mensen zijn aanwezig
 note.players.details:Exception: 503 Service Unavailable
@@ -139,10 +139,13 @@ note.nostreet.details:Exception: 503 Service Unavailable
 note.building.title:Geen gebouwen om te plaatsen
 note.building.explanation:U heeft geen gebouwen om te plaatsen
 note.building.details:Exception: 503 Service Unavailable
+note.alreadstreet.title:Er is al gebouwd
+note.alreadstreet.explanation:Er is hier al gebouwd
+note.alreadstreet.details:Exception: 503 Service Unavailable
 
 #Map
 map.throwdice.clickToThrow:Dobbelen
-map.throwdice.throw:Klik om te dobbelen
+map.throwdice.throw:Dobbelen
 map.stock.show:Toon kaarten
 map.stock.hide:Verberg kaarten
 map.throwdice.clicktothrow.other:Er wordt gedobbeld
@@ -163,9 +166,9 @@ kicked.nocolor.details.Spelers zonder een kleur kunnen niet meedoen
 kicked.started.title:Het spel is al begonnen
 kicked.started.explanation:Het spel waar u aan probeert mee te doen is al begonnen
 kicked.started.details:Spel wordt al gespeeld
-kicked.close.title:Server gesloten
-kicked.close.explanation:De server is gesloten
-kicked.close.details:Exception: 503 Service Unavailable
+kicked.closed.title:Server gesloten
+kicked.closed.explanation:De server is gesloten
+kicked.closed.details:Exception: 503 Service Unavailable
 
 #ExceptionManager
 error.connect.notfound.title:Server is niet gevonden
