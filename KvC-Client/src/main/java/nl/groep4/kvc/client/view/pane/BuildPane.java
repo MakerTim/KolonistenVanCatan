@@ -162,7 +162,7 @@ public class BuildPane implements PaneHolder, UpdateCosts {
 	vboxore.getChildren().addAll(ore, orstreet, orvillage, orcity);
 	hboxprices.getChildren().addAll(vboxprices, vboxwheat, vboxwood, vboxwool, vboxbrick, vboxore);
 	hboxprices.setAlignment(Pos.CENTER);
-	hboxprices.setPadding(new Insets(200, 0, 0, 0));
+	hboxprices.setPadding(new Insets(150, 0, 0, 0));
 	hboxprices.setSpacing(20);
 
 	Font BuildFont = new Font("Impact", 22);
