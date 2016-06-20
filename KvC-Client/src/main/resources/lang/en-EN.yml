@@ -128,8 +128,8 @@ gamenote.ingame.title:Game in progress
 gamenote.ingame.explanation:You can no longer pick a different colour
 gamenote.ingame.details:Switching colour is unavailable while game is running
 note.noplayers.title:Not enough people
-note.players.explanation:There are not enough people
-note.players.details:Exception: 503 Service Unavailable
+note.noplayers.explanation:There are not enough people
+note.noplayers.details:Exception: 503 Service Unavailable
 note.noturn.tile:It is not your turn
 note.noturn.explanation:It is not your turn yet
 note.noturn.details:Exception: 503 Service Unavailable
