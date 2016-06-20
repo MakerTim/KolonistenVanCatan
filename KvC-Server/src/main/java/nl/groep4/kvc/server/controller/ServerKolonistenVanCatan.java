@@ -2,7 +2,10 @@ package nl.groep4.kvc.server.controller;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import nl.groep4.kvc.common.enumeration.BuildingType;
 import nl.groep4.kvc.common.enumeration.Direction;
@@ -248,5 +251,68 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	    });
 	}
 	Scheduler.runAsyncdSync(runs);
+    }
+
+    public void highlightBuildings(Player pl, BuildingType type) {
+	Set<Building> buildings;
+	switch (type) {
+	case VILLAGE:
+	    buildings = new HashSet<>(getMap().getAllBuildings());
+	    for (Tile tile : getMap().getTiles()) {
+		for (Point point : Point.values()) {
+		    if (!tile.isValidPlace(getMap(), point)) {
+			buildings.remove(tile.getBuilding(point));
+		    }
+		}
+	    }
+	    break;
+	case CITY:
+	    buildings = new HashSet<>();
+	    for (Building building : getMap().getAllBuildings()) {
+		if (pl.equals(building.getOwner())) {
+		    buildings.add(building);
+		}
+	    }
+	    break;
+	default:
+	case EMPTY:
+	    buildings = new HashSet<>();
+	    break;
+	}
+	highlightBuildings(pl, buildings, type);
+    }
+
+    public void highlightStreet(Player pl) {
+	Set<Street> streets = new HashSet<>();
+	for (Tile tile : getMap().getTiles()) {
+	    for (Direction direction : Direction.values()) {
+		Street street = tile.getStreet(direction);
+		if (street != null && pl.equals(street.getOwner())) {
+		    for (Direction connectedDirection : direction.getConnected()) {
+			Street connected = tile.getStreet(connectedDirection);
+			if (connected != null) {
+			    streets.add(connected);
+			}
+		    }
+		}
+	    }
+	}
+	highlightStreets(pl, streets);
+    }
+
+    public void highlightBuildings(Player pl, Collection<Building> buildings, BuildingType type) {
+	try {
+	    pl.getUpdateable(UpdateMap.class).highlightBuildings(buildings, type);
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
+    }
+
+    public void highlightStreets(Player pl, Collection<Street> streets) {
+	try {
+	    pl.getUpdateable(UpdateMap.class).highlightStreets(streets);
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
     }
 }

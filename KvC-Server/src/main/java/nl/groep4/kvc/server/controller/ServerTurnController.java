@@ -11,7 +11,6 @@ import nl.groep4.kvc.common.enumeration.GameState;
 import nl.groep4.kvc.common.enumeration.Point;
 import nl.groep4.kvc.common.enumeration.SelectState;
 import nl.groep4.kvc.common.enumeration.TurnState;
-import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.UpdateMap;
 import nl.groep4.kvc.common.map.Building;
@@ -23,9 +22,9 @@ import nl.groep4.kvc.common.util.Scheduler;
 
 public class ServerTurnController {
 
-    private KolonistenVanCatan controller;
+    private ServerKolonistenVanCatan controller;
 
-    public ServerTurnController(KolonistenVanCatan serverKolonistenVanCatan) {
+    public ServerTurnController(ServerKolonistenVanCatan serverKolonistenVanCatan) {
 	this.controller = serverKolonistenVanCatan;
     }
 
@@ -90,14 +89,6 @@ public class ServerTurnController {
 	    if (controller.getState() != GameState.INIT) {
 		return;
 	    }
-	    Set<Building> availbleBuidlings = new HashSet<>();
-	    for (Tile tile : controller.getMap().getTiles()) {
-		for (Point point : Point.values()) {
-		    if (tile.isValidPlace(controller.getMap(), point)) {
-			availbleBuidlings.add(tile.getBuilding(point));
-		    }
-		}
-	    }
 	    List<Runnable> runs = new ArrayList<>();
 	    for (Player pl : controller.getPlayers()) {
 		runs.add(() -> {
@@ -110,7 +101,7 @@ public class ServerTurnController {
 	    }
 	    Scheduler.runAsyncdSync(runs);
 	    UpdateMap view = controller.getTurn().getUpdateable(UpdateMap.class);
-	    view.highlightBuildings(availbleBuidlings, BuildingType.VILLAGE);
+	    controller.highlightBuildings(controller.getTurn(), BuildingType.VILLAGE);
 	    view.setSelectable(SelectState.BUILDING);
 	    controller.getTurn().addRemainingBuidlings(1);
 	} catch (Exception ex) {
