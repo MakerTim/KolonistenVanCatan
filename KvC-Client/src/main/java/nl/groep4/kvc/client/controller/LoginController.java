@@ -94,7 +94,6 @@ public class LoginController implements Controller {
 	case IN_GAME:
 	case STARTING:
 	    new LobbyController(model).reopenGame(pl);
-	    // TODO: Resync all data!
 	    break;
 	default:
 	    break;

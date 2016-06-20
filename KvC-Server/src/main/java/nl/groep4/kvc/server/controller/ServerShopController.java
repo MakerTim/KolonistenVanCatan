@@ -65,12 +65,7 @@ public class ServerShopController {
 	    Player who = controller.getTurn();
 	    if (hasAllResources(ServerCosts.VILLAGE_COSTS.entrySet())) {
 		takeResources(ServerCosts.VILLAGE_COSTS.entrySet());
-		who.addRemainingVillages(1);
-		UpdateMap view = who.getUpdateable(UpdateMap.class);
-		view.closeOverlay();
-		view.setSelectable(SelectState.BUILDING);
-		controller.highlightBuildings(who, BuildingType.VILLAGE);
-		controller.updateResources();
+		controller.buildVillageModus(1);
 	    } else {
 		who.getUpdateable(UpdateMap.class).popup("noresources");
 	    }
@@ -84,12 +79,7 @@ public class ServerShopController {
 	    Player who = controller.getTurn();
 	    if (hasAllResources(ServerCosts.CITY_COSTS.entrySet())) {
 		takeResources(ServerCosts.CITY_COSTS.entrySet());
-		who.addRemainingCitys(1);
-		UpdateMap view = who.getUpdateable(UpdateMap.class);
-		view.closeOverlay();
-		view.setSelectable(SelectState.BUILDING);
-		controller.highlightBuildings(who, BuildingType.CITY);
-		controller.updateResources();
+		controller.buildCityModus(1);
 	    } else {
 		who.getUpdateable(UpdateMap.class).popup("noresources");
 	    }

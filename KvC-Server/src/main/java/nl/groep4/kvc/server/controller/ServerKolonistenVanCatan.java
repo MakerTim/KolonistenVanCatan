@@ -458,7 +458,36 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	    UpdateMap view = who.getUpdateable(UpdateMap.class);
 	    view.closeOverlay();
 	    view.setSelectable(SelectState.STREET);
+	    view.blockActions();
 	    highlightStreet(who);
+	    updateResources();
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
+    }
+
+    public void buildVillageModus(int villageToBuild) {
+	try {
+	    Player who = getTurn();
+	    who.addRemainingVillages(villageToBuild);
+	    UpdateMap view = who.getUpdateable(UpdateMap.class);
+	    view.closeOverlay();
+	    view.setSelectable(SelectState.BUILDING);
+	    highlightBuildings(who, BuildingType.VILLAGE);
+	    updateResources();
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
+    }
+
+    public void buildCityModus(int cityToBuild) {
+	try {
+	    Player who = getTurn();
+	    who.addRemainingCitys(cityToBuild);
+	    UpdateMap view = who.getUpdateable(UpdateMap.class);
+	    view.closeOverlay();
+	    view.setSelectable(SelectState.BUILDING);
+	    highlightBuildings(who, BuildingType.CITY);
 	    updateResources();
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();
