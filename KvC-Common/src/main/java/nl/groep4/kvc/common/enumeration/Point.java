@@ -15,9 +15,20 @@ public enum Point implements Offsetable {
     NORTH_EAST, EAST, SOUTH_EAST, SOUTH_WEST, WEST, NORTH_WEST;
 
     @Override
+    public Point opposite() {
+	return CollectionUtil.getInRange(Point.values(), Point.values().length / 2);
+    }
+
+    @Override
     public Point[] getConnected() {
 	return new Point[] { CollectionUtil.getInRange(Point.values(), ordinal() - 1),
 		CollectionUtil.getInRange(Point.values(), ordinal() + 1) };
+    }
+
+    @Override
+    public Direction[] getAttached() {
+	return new Direction[] { CollectionUtil.getInRange(Direction.values(), ordinal()),
+		CollectionUtil.getInRange(Direction.values(), ordinal() + 1) };
     }
 
     @Override

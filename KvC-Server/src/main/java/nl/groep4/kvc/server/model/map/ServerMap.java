@@ -82,7 +82,12 @@ public class ServerMap implements Map {
     }
 
     private void setupBuildings() {
+	List<Tile> toRegister = new ArrayList<>();
 	for (Tile tile : getTiles()) {
+	    if (!(tile instanceof TileLand)) {
+		toRegister.add(tile);
+		continue;
+	    }
 	    Building[] buildings = new Building[Point.values().length];
 	    for (int i = 0; i < buildings.length; i++) {
 		Coordinate location = Point.values()[i].addTo(tile.getPosition());
@@ -95,6 +100,17 @@ public class ServerMap implements Map {
 		buildings[i] = building;
 	    }
 	    tile.setupBuilding(buildings);
+	}
+	for (Tile todo : toRegister) {
+	    Building[] buildings = new Building[Point.values().length];
+	    for (Point point : Point.values()) {
+		for (Direction direction : point.getAttached()) {
+		    Tile relative = todo.getRelative(this, direction);
+		    if (relative != null) {
+			// TODO: Hier was ik
+		    }
+		}
+	    }
 	}
     }
 

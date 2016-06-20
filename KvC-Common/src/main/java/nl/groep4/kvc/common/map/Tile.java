@@ -57,6 +57,8 @@ public interface Tile extends Serializable, Locatable {
      */
     public boolean isValidPlace(Map map, Point point);
 
+    public Tile getRelative(Map map, Direction direction);
+
     /**
      *
      * @param map
