@@ -19,6 +19,7 @@ import nl.groep4.kvc.common.map.Map;
 import nl.groep4.kvc.common.map.Street;
 import nl.groep4.kvc.common.map.Tile;
 import nl.groep4.kvc.common.map.TileResource;
+import nl.groep4.kvc.common.util.Scheduler;
 import nl.groep4.kvc.server.model.map.ServerMap;
 
 /**
@@ -109,6 +110,17 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	    turnController.onTurn();
 	    break;
 	}
+	List<Runnable> runs = new ArrayList<>();
+	for (Player pl : getPlayers()) {
+	    runs.add(() -> {
+		try {
+		    pl.getUpdateable(UpdateMap.class).updatePlayerOrder(getPlayersOrded());
+		} catch (RemoteException ex) {
+		    ex.printStackTrace();
+		}
+	    });
+	}
+	Scheduler.runAsyncdSync(runs);
     }
 
     @Override
@@ -223,10 +235,18 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 		}
 	    }
 	}
+	List<Runnable> runs = new ArrayList<>();
 	for (Player pl : getPlayers()) {
-	    for (Player player : getPlayers()) {
-		pl.getUpdateable(UpdateMap.class).updateStock(player, player.getResources());
-	    }
+	    runs.add(() -> {
+		for (Player player : getPlayers()) {
+		    try {
+			pl.getUpdateable(UpdateMap.class).updateStock(player, player.getResources());
+		    } catch (Exception ex) {
+			ex.printStackTrace();
+		    }
+		}
+	    });
 	}
+	Scheduler.runAsyncdSync(runs);
     }
 }
