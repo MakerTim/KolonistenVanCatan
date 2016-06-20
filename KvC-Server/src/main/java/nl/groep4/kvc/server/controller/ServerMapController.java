@@ -22,6 +22,8 @@ public class ServerMapController {
 	this.controller = serverKolonistenVanCatan;
     }
 
+    // TODO: Rover verplaats modus.
+
     public void distribute() {
 	try {
 	    System.out.printf("Giving players resources for tiles with number '%d'\n",

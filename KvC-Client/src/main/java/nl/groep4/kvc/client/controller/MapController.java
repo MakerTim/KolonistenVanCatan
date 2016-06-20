@@ -56,7 +56,7 @@ public class MapController implements Controller {
 
     public void setPause() {
 	try {
-	    // model.setPause();
+	    model.openPausePane(ClientRefrence.getThePlayer());
 	} catch (Exception ex) {
 	    ex.printStackTrace();
 	}

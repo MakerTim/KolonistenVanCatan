@@ -105,6 +105,7 @@ public class LobbyController implements Controller {
 		}
 	    }
 	    start();
+	    model.getGame().reconnect();
 	} catch (RemoteException ex) {
 	    ExceptionManager.handleRemoteException(ex);
 	}

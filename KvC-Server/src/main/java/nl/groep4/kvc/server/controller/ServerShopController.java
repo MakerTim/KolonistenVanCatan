@@ -9,11 +9,13 @@ import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.enumeration.SelectState;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.UpdateMap;
+import nl.groep4.kvc.server.model.ServerCardHolder;
 import nl.groep4.kvc.server.model.ServerCosts;
 
 public class ServerShopController {
 
     private ServerKolonistenVanCatan controller;
+    private ServerCardHolder holder = new ServerCardHolder();
 
     public ServerShopController(ServerKolonistenVanCatan serverKolonistenVanCatan) {
 	this.controller = serverKolonistenVanCatan;
@@ -49,12 +51,7 @@ public class ServerShopController {
 	    Player who = controller.getTurn();
 	    if (hasAllResources(ServerCosts.STREET_COSTS.entrySet())) {
 		takeResources(ServerCosts.STREET_COSTS.entrySet());
-		who.addRemainingStreets(1);
-		UpdateMap view = who.getUpdateable(UpdateMap.class);
-		view.closeOverlay();
-		view.setSelectable(SelectState.STREET);
-		controller.highlightStreet(who);
-		controller.updateResources();
+		controller.buildStreetModus(1);
 	    } else {
 		who.getUpdateable(UpdateMap.class).popup("noresources");
 	    }
@@ -102,7 +99,25 @@ public class ServerShopController {
     }
 
     public void buyCard() {
-	// TODO: buy card
+	try {
+	    Player who = controller.getTurn();
+	    if (holder.hasCards()) {
+		if (hasAllResources(ServerCosts.CITY_COSTS.entrySet())) {
+		    takeResources(ServerCosts.CITY_COSTS.entrySet());
+		    who.addCard(holder.drawCard());
+		    UpdateMap view = who.getUpdateable(UpdateMap.class);
+		    view.closeOverlay();
+		    controller.updateCards();
+		    ;
+		} else {
+		    who.getUpdateable(UpdateMap.class).popup("noresources");
+		}
+	    } else {
+		who.getUpdateable(UpdateMap.class).popup("nocards");
+	    }
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
     }
 
 }

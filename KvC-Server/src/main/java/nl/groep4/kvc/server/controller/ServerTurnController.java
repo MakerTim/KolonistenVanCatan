@@ -28,13 +28,10 @@ public class ServerTurnController {
 	this.controller = serverKolonistenVanCatan;
     }
 
-    // TODO: buy x
-    // TODO: buy card
-    // TODO: use card
-    // TODO: trading
+    // TODO: card.newpanes
+    // TODO: trading.use
     // TODO: Rover verplaatsen
     // TODO: Punten berekenen
-    // TODO: Pause serversided - warning if niet aan beurt
 
     public void nextTurn() {
 	if (controller.newTurn() >= controller.getPlayers().size() - 1) {

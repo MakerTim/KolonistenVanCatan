@@ -71,6 +71,16 @@ public class ServerPlayer implements Player {
     }
 
     @Override
+    public void addCard(Card drawnCard) throws RemoteException {
+	cards.add(drawnCard);
+    }
+
+    @Override
+    public void useCard(Card usedCard) throws RemoteException {
+	cards.remove(usedCard);
+    }
+
+    @Override
     public List<Card> getCards() {
 	return cards;
     }

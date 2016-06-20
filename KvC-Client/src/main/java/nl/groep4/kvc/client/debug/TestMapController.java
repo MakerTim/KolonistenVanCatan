@@ -5,6 +5,7 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 import nl.groep4.kvc.client.controller.ClientRefrence;
 import nl.groep4.kvc.client.controller.MapController;
@@ -27,6 +28,7 @@ public class TestMapController extends MapController {
 	    List<Trade> trades = new ArrayList<>();
 	    trades.add(new Trade() {
 		private static final long serialVersionUID = 1L;
+		UUID key = UUID.randomUUID();
 
 		@Override
 		public Player getPlayer() {
@@ -45,6 +47,11 @@ public class TestMapController extends MapController {
 		    java.util.Map<Resource, Integer> request = new HashMap<>();
 		    request.put(Resource.BRICK, 1);
 		    return new EnumMap<Resource, Integer>(request);
+		}
+
+		@Override
+		public UUID getID() {
+		    return key;
 		}
 	    });
 	    try {

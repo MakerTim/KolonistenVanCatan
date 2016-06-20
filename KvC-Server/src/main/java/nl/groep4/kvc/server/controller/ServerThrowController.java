@@ -5,7 +5,6 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.Throw;
 import nl.groep4.kvc.common.interfaces.UpdateMap;
@@ -14,11 +13,11 @@ import nl.groep4.kvc.server.model.ServerThrow;
 
 public class ServerThrowController {
 
-    private KolonistenVanCatan controller;
+    private ServerKolonistenVanCatan controller;
 
     private Throw lastThrow;
 
-    public ServerThrowController(KolonistenVanCatan serverKolonistenVanCatan) {
+    public ServerThrowController(ServerKolonistenVanCatan serverKolonistenVanCatan) {
 	this.controller = serverKolonistenVanCatan;
 	try {
 	    lastThrow = (Throw) UnicastRemoteObject.exportObject(new ServerThrow(), 0);
@@ -33,29 +32,29 @@ public class ServerThrowController {
     }
 
     public void updateThrow() {
-	try {
-	    List<Runnable> runs = new ArrayList<>();
-	    for (Player player : controller.getPlayers()) {
-		runs.add(() -> {
-		    try {
-			player.getUpdateable(UpdateMap.class).updateDices(lastThrow.getDiceLeft(),
-				lastThrow.getDiceRight());
-		    } catch (RemoteException ex) {
-			ex.printStackTrace();
-		    }
-		});
-	    }
-	    Scheduler.runAsyncdSync(runs);
-	    Scheduler.runAsyncLater(() -> {
+	List<Runnable> runs = new ArrayList<>();
+	for (Player player : controller.getPlayers()) {
+	    runs.add(() -> {
 		try {
-		    controller.distribute();
+		    player.getUpdateable(UpdateMap.class).updateDices(lastThrow.getDiceLeft(),
+			    lastThrow.getDiceRight());
 		} catch (RemoteException ex) {
 		    ex.printStackTrace();
 		}
 	    });
-	} catch (RemoteException ex) {
-	    ex.printStackTrace();
 	}
+	Scheduler.runAsyncdSync(runs);
+	Scheduler.runAsyncLater(() -> {
+	    try {
+		if (lastThrow.isBanditThrow()) {
+		    controller.moveBanditModus();
+		} else {
+		    controller.distribute();
+		}
+	    } catch (RemoteException ex) {
+		ex.printStackTrace();
+	    }
+	});
     }
 
 }

@@ -6,11 +6,14 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 import nl.groep4.kvc.common.enumeration.BuildingType;
 import nl.groep4.kvc.common.enumeration.Direction;
 import nl.groep4.kvc.common.enumeration.GameState;
 import nl.groep4.kvc.common.enumeration.Point;
+import nl.groep4.kvc.common.enumeration.Resource;
+import nl.groep4.kvc.common.enumeration.SelectState;
 import nl.groep4.kvc.common.enumeration.TurnState;
 import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Player;
@@ -265,6 +268,34 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     }
 
     @Override
+    public void useCard() throws RemoteException {
+
+    }
+
+    @Override
+    public void addTrade(Player player, java.util.Map<Resource, Integer> request,
+	    java.util.Map<Resource, Integer> reward) throws RemoteException {
+	tradeController.addTrade(player, request, reward);
+	updateTrades();
+    }
+
+    @Override
+    public void remvoeTrade(UUID key) throws RemoteException {
+	tradeController.removeTrade(key);
+	updateTrades();
+    }
+
+    @Override
+    public void reconnect() throws RemoteException {
+	updateModel();
+	updateResources();
+	updateTrades();
+	updateRound();
+	updateTurn();
+	updateTrades();
+    }
+
+    @Override
     public void updateModel() {
 	List<Runnable> runs = new ArrayList<>();
 	for (Player pl : getPlayers()) {
@@ -395,6 +426,40 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 		}
 	    }
 	    getTurn().getUpdateable(UpdateMap.class).openDicePane(true);
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
+    }
+
+    @Override
+    public void openPausePane(Player requester) {
+	try {
+	    for (Player pl : getPlayers()) {
+		try {
+		    pl.getUpdateable(UpdateMap.class).openPausePane(false);
+		} catch (RemoteException ex) {
+		    ex.printStackTrace();
+		}
+	    }
+	    requester.getUpdateable(UpdateMap.class).openPausePane(true);
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
+    }
+
+    public void moveBanditModus() {
+	// TODO: move rover modus
+    }
+
+    public void buildStreetModus(int streetsToBuild) {
+	try {
+	    Player who = getTurn();
+	    who.addRemainingStreets(streetsToBuild);
+	    UpdateMap view = who.getUpdateable(UpdateMap.class);
+	    view.closeOverlay();
+	    view.setSelectable(SelectState.STREET);
+	    highlightStreet(who);
+	    updateResources();
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();
 	}

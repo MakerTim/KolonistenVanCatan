@@ -89,6 +89,10 @@ public interface Player extends Remote {
      */
     public void setColor(Color color) throws RemoteException;
 
+    public void addCard(Card drawnCard) throws RemoteException;
+
+    public void useCard(Card usedCard) throws RemoteException;
+
     public List<Card> getCards() throws RemoteException;
 
     public EnumMap<Resource, Integer> getResources() throws RemoteException;
@@ -125,4 +129,5 @@ public interface Player extends Remote {
 	}
 	getResources().put(resource, Math.max(0, getResources().get(resource) - 1));
     }
+
 }
