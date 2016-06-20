@@ -7,7 +7,6 @@ import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.enumeration.BuildingType;
 import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.map.Coordinate;
-import nl.groep4.kvc.common.util.Scheduler;
 
 public class MapController implements Controller {
 
@@ -28,13 +27,11 @@ public class MapController implements Controller {
     }
 
     public void placeStreet(Coordinate coord) {
-	Scheduler.runAsync(() -> {
-	    try {
-		model.placeStreet(coord, ClientRefrence.getThePlayer());
-	    } catch (RemoteException ex) {
-		ExceptionManager.handleRemoteException(ex);
-	    }
-	});
+	try {
+	    model.placeStreet(coord, ClientRefrence.getThePlayer());
+	} catch (RemoteException ex) {
+	    ExceptionManager.handleRemoteException(ex);
+	}
     }
 
     public void openBuyPane() {

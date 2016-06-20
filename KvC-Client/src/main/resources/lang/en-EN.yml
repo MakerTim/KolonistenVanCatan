@@ -38,9 +38,9 @@ lobby.parchment.color.red:Red
 build.button.road:Street
 build.button.village:Village
 build.button.city:City
-build.village.row:Village
-build.city.row:City
-build.road.row:Road
+build.text.village:Village
+build.text.city:City
+build.text.road:Road
 build.materials.row:Materials
 build.materials.wood:Wood
 build.materials.stone:Brick
@@ -48,6 +48,7 @@ build.materials.wool:Wool
 build.materials.ore:Ore
 build.materials.wheat:Wheat
 build.materials.row.prices:Prices
+build.button.back:Back
 
 #Login
 login.error.nousername.title: No Username
@@ -100,7 +101,7 @@ pause.button.continue:hervatten
 pause.label.pause:Pauze
 
 #TradePane
-trade.button.place:Place
+trade.button.place:Add
 trade.button.back:Back
 
 #RulesPane
@@ -124,12 +125,12 @@ credits.button.back:Back
 credits.text.credits:Credits
 
 #IngameNotices
-note.ingame.title:Game in progress
-note.ingame.explanation:You can no longer pick a different colour
-note.ingame.details:Switching colour is unavailable while game is running
+gamenote.ingame.title:Game in progress
+gamenote.ingame.explanation:You can no longer pick a different colour
+gamenote.ingame.details:Switching colour is unavailable while game is running
 note.noplayers.title:Not enough people
-note.players.explanation:There are not enough people
-note.players.details:Exception: 503 Service Unavailable
+note.noplayers.explanation:There are not enough people
+note.noplayers.details:Exception: 503 Service Unavailable
 note.noturn.tile:It is not your turn
 note.noturn.explanation:It is not your turn yet
 note.noturn.details:Exception: 503 Service Unavailable
@@ -139,10 +140,13 @@ note.nostreet.details:Exception: 503 Service Unavailable
 note.building.title:No buildings to place
 note.building.explanation:You don't have any buildings to place
 note.building.details:Exception: 503 Service Unavailable
+note.alreadstreet.title:Place not available
+note.alreadstreet.explanation:Here stands a building already
+note.alreadstreet.details:Exception: 503 Service Unavailable
 
 #Map
 map.throwdice.clickToThrow:Roll the dice
-map.throwdice.throw:Throw
+map.throwdice.throw:Roll
 map.stock.show:Show cards
 map.stock.hide:Hide cards
 map.throwdice.clicktothrow.other:Dices are being rolled
@@ -163,9 +167,9 @@ kicked.nocolor.details:User was kicked for not selecting a colour before the gam
 kicked.started.title:The game has already commenced 
 kicked.started.explanation:The game you are trying to join has already begun
 kicked.started.details:Unable to join game in progress
-kicked.close.title:Server closed
-kicked.close.explanation:The server has been closed
-kicked.close.details:Exception: 503 Service Unavailable
+kicked.closed.title:Server closed
+kicked.closed.explanation:The server has been closed
+kicked.closed.details:Exception: 503 Service Unavailable
 
 #ExceptionManager
 error.connect.notfound.title:Server not found

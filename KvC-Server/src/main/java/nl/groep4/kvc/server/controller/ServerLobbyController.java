@@ -42,9 +42,17 @@ public class ServerLobbyController {
 	    }
 	    return;
 	}
+	List<Runnable> runs = new ArrayList<>();
 	for (Player player : playersUnready) {
-	    player.getUpdateable(UpdateLobby.class).close("nocolor");
+	    runs.add(() -> {
+		try {
+		    player.getUpdateable(UpdateLobby.class).close("nocolor");
+		} catch (Exception ex) {
+		    ex.printStackTrace();
+		}
+	    });
 	}
+	Scheduler.runAsyncdSync(runs);
 	KolonistenVanCatan kvc = (KolonistenVanCatan) UnicastRemoteObject
 		.exportObject(new ServerKolonistenVanCatan(lobby.getPlayers()), 0);
 	kvc.createMap();

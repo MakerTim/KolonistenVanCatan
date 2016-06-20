@@ -38,9 +38,9 @@ lobby.parchment.color.red:Rot
 build.button.road:Straße
 build.button.village:Dorf
 build.button.city:Stadt
-build.village.row:Dorf
-build.city.row:Stadt
-build.road.row:Straße
+build.text.village:Dorf
+build.text.city:Stadt
+build.text.road:Straße
 build.materials.row:Materialien
 build.materials.wood:Holz
 build.materials.stone:Stein
@@ -48,6 +48,7 @@ build.materials.wool:Wolle
 build.materials.ore:Erz
 build.materials.wheat:Korn
 build.materials.row.prices:Preis
+build.button.back:Zurück
 
 #Login
 login.error.nousername.title:Keine Benutzername
@@ -99,6 +100,10 @@ cards.invent.info:Erfindung: Ziehen zwei Ressourcenkarten von der Bank der Wahl
 pause.button.continue:fortsetzen
 pause.label.pause:Pause
 
+#TradePane
+trade.button.place:Platz
+trade.button.back:Zurück
+
 #RulesPane
 rules.button.back:Zurück
 rules.text.rules:Regeln
@@ -120,12 +125,12 @@ credits.button.back:Zurück
 credits.text.credits:Kredite
 
 #Note
-note.ingame.title:Spile im Gange
-note.ingame.explanation:Sie können nicht mehr eine andere Farbe
-note.ingame.details:Schalt Farbe ist nicht verfügbar, während Spiel läuft
+gamenote.ingame.title:Spile im Gange
+gamenote.ingame.explanation:Sie können nicht mehr eine andere Farbe
+gamenote.ingame.details:Schalt Farbe ist nicht verfügbar, während Spiel läuft
 note.noplayers.title:Nicht genug Menschen
-note.players.explanation:Es gibt nicht genug Menschen vorhanden
-note.players.details:Exception: 503 Service Unavailable
+note.noplayers.explanation:Es gibt nicht genug Menschen vorhanden
+note.noplayers.details:Exception: 503 Service Unavailable
 note.noturn.tile:Sie sind nicht zu handeln
 note.noturn.explanation:Sie sind nicht einmal umdrehen
 note.noturn.details:Exception: 503 Service Unavailable
@@ -135,6 +140,9 @@ note.nostreet.details:Exception: 503 Service Unavailable
 note.building.title:Es gibt keine Gebäude zu platzieren
 note.building.explanation:Sie haben keine Gebäude zu platzieren
 note.building.details:Exception: 503 Service Unavailable
+note.alreadstreet.title:Setzen Sie nicht verfügbar
+note.alreadstreet.explanation:Hier steht ein Gebäude bereits
+note.alreadstreet.details:Exception: 503 Service Unavailable
 
 #Map
 map.throwdice.clickToThrow:Wirf den Würfel
@@ -159,6 +167,9 @@ kicked.nocolor.details:Der Benutzer hat keine Farbe ausgewählt
 kicked.started.title:Das Spiel hat begonnen
 kicked.started.explanation:Das Spiel, das Sie zu verbinden versuchen, hat bereits begonnen
 kicked.started.details:Unfähig Spiel im Gange beitreten
+kicked.closed.title:Server geschlossen
+kicked.closed.explanation:Der Server wurde geschlossen
+kicked.closed.details:Exception: 503 Service Unavailable
 
 #ExceptionManager
 error.connect.notfound.title:Server nicht gefunden
