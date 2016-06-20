@@ -40,7 +40,8 @@ build.button.village:Dorf
 build.button.city:Stadt
 build.text.village:Dorf
 build.text.city:Stadt
-build.text.road:Straße
+build.text.street:Straße
+build.text.prices:Preis
 build.materials.row:Materialien
 build.materials.wood:Holz
 build.materials.stone:Stein

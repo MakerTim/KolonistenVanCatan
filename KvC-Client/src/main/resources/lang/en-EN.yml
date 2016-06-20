@@ -40,7 +40,8 @@ build.button.village:Village
 build.button.city:City
 build.text.village:Village
 build.text.city:City
-build.text.road:Road
+build.text.street:Street
+build.text.prices:Prices
 build.materials.row:Materials
 build.materials.wood:Wood
 build.materials.stone:Brick

@@ -41,6 +41,7 @@ build.button.city:Stad
 build.text.village:Dorp
 build.text.city:Stad
 build.text.street:Straat
+build.text.prices:Prijzen
 build.materials.row:Materialen
 build.materials.wood:Hout
 build.materials.stone:Steen
@@ -49,6 +50,7 @@ build.materials.ore:Erts
 build.materials.wheat:Graan
 build.materials.row.prices:Prijzen
 build.button.back:Terug
+
 
 #Login
 login.error.nousername.title:Login fout
