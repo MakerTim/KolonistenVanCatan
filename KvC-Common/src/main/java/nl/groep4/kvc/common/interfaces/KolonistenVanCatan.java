@@ -2,14 +2,12 @@ package nl.groep4.kvc.common.interfaces;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.List;
 
 import nl.groep4.kvc.common.enumeration.BuildingType;
 import nl.groep4.kvc.common.enumeration.GameState;
 import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Map;
-import nl.groep4.kvc.common.util.Scheduler;
 
 public interface KolonistenVanCatan extends Remote {
 
@@ -53,4 +51,5 @@ public interface KolonistenVanCatan extends Remote {
 
     public void buyCity() throws RemoteException;
 
+    public void buyCard() throws RemoteException;
 }

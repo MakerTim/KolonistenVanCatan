@@ -61,4 +61,36 @@ public class MapController implements Controller {
 	    ex.printStackTrace();
 	}
     }
+
+    public void buyStreet() {
+	try {
+	    model.buyStreet();
+	} catch (Exception ex) {
+	    ex.printStackTrace();
+	}
+    }
+
+    public void buyVillage() {
+	try {
+	    model.buyVillage();
+	} catch (Exception ex) {
+	    ex.printStackTrace();
+	}
+    }
+
+    public void buyCity() {
+	try {
+	    model.buyCity();
+	} catch (Exception ex) {
+	    ex.printStackTrace();
+	}
+    }
+
+    public void buyCard() {
+	try {
+	    model.buyCard();
+	} catch (Exception ex) {
+	    ex.printStackTrace();
+	}
+    }
 }

@@ -1,8 +1,6 @@
 package nl.groep4.kvc.server.controller;
 
 import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.List;
 
 import nl.groep4.kvc.common.enumeration.BuildingType;
 import nl.groep4.kvc.common.enumeration.Direction;
@@ -10,13 +8,11 @@ import nl.groep4.kvc.common.enumeration.GameState;
 import nl.groep4.kvc.common.enumeration.Point;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.Player;
-import nl.groep4.kvc.common.interfaces.UpdateMap;
 import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Street;
 import nl.groep4.kvc.common.map.Tile;
 import nl.groep4.kvc.common.map.TileResource;
-import nl.groep4.kvc.common.util.Scheduler;
 
 public class ServerMapController {
 
@@ -51,19 +47,7 @@ public class ServerMapController {
 		    }
 		}
 	    }
-	    List<Runnable> runs = new ArrayList<>();
-	    for (Player pl : controller.getPlayers()) {
-		runs.add(() -> {
-		    for (Player player : controller.getPlayers()) {
-			try {
-			    pl.getUpdateable(UpdateMap.class).updateStock(player, player.getResources());
-			} catch (Exception ex) {
-			    ex.printStackTrace();
-			}
-		    }
-		});
-	    }
-	    Scheduler.runAsyncdSync(runs);
+	    controller.updateResources();
 	} catch (Exception ex) {
 	    ex.printStackTrace();
 	}
@@ -72,7 +56,7 @@ public class ServerMapController {
     public void placeBuilding(Coordinate coord, BuildingType type) {
 	Player newOwner = controller.getTurn();
 	try {
-	    if (newOwner.getRemainingBuidlings() > 0) {
+	    if (newOwner.getRemainingVillages() > 0) {
 		Building building = controller.getMap().getBuilding(coord);
 		boolean validAction = true;
 		for (Tile tile : building.getConnectedTiles()) {

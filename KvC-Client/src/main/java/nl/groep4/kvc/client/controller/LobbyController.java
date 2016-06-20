@@ -100,7 +100,7 @@ public class LobbyController implements Controller {
 		if (player.equals(pl)) {
 		    try {
 			player.getUpdateable().close("other");
-		    } catch (Exception ex) {
+		    } catch (RemoteException ex) {
 		    }
 		}
 	    }

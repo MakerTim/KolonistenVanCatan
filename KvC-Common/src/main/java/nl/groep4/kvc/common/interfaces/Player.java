@@ -7,6 +7,7 @@ import java.util.List;
 
 import nl.groep4.kvc.common.enumeration.Color;
 import nl.groep4.kvc.common.enumeration.Resource;
+import nl.groep4.kvc.common.enumeration.SelectState;
 
 /**
  * Stores username and colour
@@ -20,9 +21,13 @@ public interface Player extends Remote {
 
     public void addRemainingStreets(int streets) throws RemoteException;
 
-    public int getRemainingBuidlings() throws RemoteException;
+    public int getRemainingVillages() throws RemoteException;
 
-    public void addRemainingBuidlings(int buildings) throws RemoteException;
+    public void addRemainingVillages(int villages) throws RemoteException;
+
+    public int getRemainingCitys() throws RemoteException;
+
+    public void addRemainingCitys(int citys) throws RemoteException;
 
     /**
      * 
@@ -67,6 +72,10 @@ public interface Player extends Remote {
      */
     public default <T extends Updatable<?>> T getUpdateable(Class<T> type) throws RemoteException {
 	return (T) getUpdateable();
+    }
+
+    public default void setSelectable(SelectState selectables) throws RemoteException {
+	getUpdateable(UpdateMap.class).setSelectable(selectables);
     }
 
     public Color getColor() throws RemoteException;
