@@ -182,7 +182,7 @@ public class BuildPane implements PaneHolder, UpdateCosts {
 	villagebutton.setFont(ViewMaster.FONT);
 	citybutton.setFont(ViewMaster.FONT);
 
-	vbox.getChildren().addAll(empty, empty2, vboxprices, streetbutton, villagebutton, citybutton, backbutton);
+	vbox.getChildren().addAll(hboxprices, streetbutton, villagebutton, citybutton, backbutton);
 	Build.getChildren().addAll(SceneUtil.getGamePane(), vbox);
 
 	return Build;
