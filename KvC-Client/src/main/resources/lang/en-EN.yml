@@ -38,9 +38,9 @@ lobby.parchment.color.red:Red
 build.button.road:Street
 build.button.village:Village
 build.button.city:City
-build.village.row:Village
-build.city.row:City
-build.road.row:Road
+build.text.village:Village
+build.text.city:City
+build.text.road:Road
 build.materials.row:Materials
 build.materials.wood:Wood
 build.materials.stone:Brick
@@ -48,6 +48,7 @@ build.materials.wool:Wool
 build.materials.ore:Ore
 build.materials.wheat:Wheat
 build.materials.row.prices:Prices
+build.button.back:Back
 
 #Login
 login.error.nousername.title: No Username
