@@ -1,6 +1,5 @@
 package nl.groep4.kvc.client.view.pane;
 
-import java.rmi.RemoteException;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map.Entry;
@@ -100,7 +99,7 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder {
     }
 
     @Override
-    public void updateStock(Player pl, EnumMap<Resource, Integer> resources) throws RemoteException {
+    public void updateStock(Player pl, EnumMap<Resource, Integer> resources) {
 	for (Entry<Resource, Integer> resource : resources.entrySet()) {
 	    Resource res = resource.getKey();
 	    String amnt = resource.getValue().toString();
@@ -121,13 +120,13 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder {
     }
 
     @Override
-    public void updateStock(Player pl, List<Card> cards) throws RemoteException {
+    public void updateStock(Player pl, List<Card> cards) {
 	// TODO Auto-generated method stub
 
     }
 
     @Override
-    public void updatePlayerOrder(List<Player> order) throws RemoteException {
+    public void updatePlayerOrder(List<Player> order) {
 
     }
 }
