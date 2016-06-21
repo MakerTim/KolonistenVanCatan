@@ -203,7 +203,7 @@ public class BuildPane implements PaneHolder, UpdateCosts {
 	hboxbuttons = new HBox();
 	hboxback = new HBox();
 
-	vboxprices.getChildren().addAll(prices, city, village, street);
+	vboxprices.getChildren().addAll(prices, street, village, city);
 	vboxwheat.getChildren().addAll(wheat, whstreet, whvillage, whcity);
 	vboxwood.getChildren().addAll(wood, wodstreet, wodvillage, wodcity);
 	vboxwool.getChildren().addAll(wool, wolstreet, wolvillage, wolcity);

@@ -12,6 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import nl.groep4.kvc.client.util.SceneUtil;
@@ -28,8 +29,8 @@ public class BuyPane implements PaneHolder, UpdateCosts {
 
     private SceneMap sceneMap;
 
-    private MenuButton yes;
-    private MenuButton no;
+    private MenuButton yes = new MenuButton(425, 500, TranslationManager.translate("buycard.decision.yes"));
+    private MenuButton no = new MenuButton(425, 500, TranslationManager.translate("buycard.decision.no"));
 
     private Text buy = new Text(TranslationManager.translate("buycard.msg.buycard"));
     private Text brickAmount = new KvCText("0");
@@ -77,6 +78,8 @@ public class BuyPane implements PaneHolder, UpdateCosts {
 	hboxPrices = new HBox();
 
 	buy.setFont(font);
+	buy.setFill(Color.WHITE);
+	buy.setStroke(Color.BLACK);
 
 	vboxPrices.getChildren().addAll(resources, cards);
 	vboxWheat.getChildren().addAll(wheat, wheatAmount);
@@ -115,36 +118,16 @@ public class BuyPane implements PaneHolder, UpdateCosts {
 
     @Override
     public void updateTranslation() {
-	if (brick != null) {
-	    brick.setText(TranslationManager.translate("buypane.text.brick"));
-	}
-	if (wool != null) {
-	    wool.setText(TranslationManager.translate("buypane.text.wool"));
-	}
-	if (wheat != null) {
-	    wheat.setText(TranslationManager.translate("buypane.text.wheat"));
-	}
-	if (ore != null) {
-	    ore.setText(TranslationManager.translate("buypane.text.ore"));
-	}
-	if (wood != null) {
-	    wood.setText(TranslationManager.translate("buypane.text.wood"));
-	}
-	if (resources != null) {
-	    resources.setText(TranslationManager.translate("buypane.text.resources"));
-	}
-	if (cards != null) {
-	    cards.setText(TranslationManager.translate("buypane.text.cards"));
-	}
-	if (buy != null) {
-	    buy.setText(TranslationManager.translate("buycard.msg.buycard"));
-	}
-	if (no != null) {
-	    no.updateText(TranslationManager.translate("buycard.decision.no"));
-	}
-	if (yes != null) {
-	    yes.updateText(TranslationManager.translate("buycard.decision.yes"));
-	}
+	brick.setText(TranslationManager.translate("buypane.text.brick"));
+	wool.setText(TranslationManager.translate("buypane.text.wool"));
+	wheat.setText(TranslationManager.translate("buypane.text.wheat"));
+	ore.setText(TranslationManager.translate("buypane.text.ore"));
+	wood.setText(TranslationManager.translate("buypane.text.wood"));
+	resources.setText(TranslationManager.translate("buypane.text.resources"));
+	cards.setText(TranslationManager.translate("buypane.text.cards"));
+	buy.setText(TranslationManager.translate("buycard.msg.buycard"));
+	no.updateText(TranslationManager.translate("buycard.decision.no"));
+	yes.updateText(TranslationManager.translate("buycard.decision.yes"));
     }
 
     @Override
