@@ -94,6 +94,13 @@ public class LobbyController implements Controller {
 	}
     }
 
+    /**
+     * Let player reconnect into the game
+     * 
+     * @param pl
+     *            name of player that will be compared with all players that
+     *            joined the game
+     */
     public void reopenGame(Player pl) {
 	try {
 	    for (Player player : model.getGame().getPlayers()) {
@@ -111,6 +118,9 @@ public class LobbyController implements Controller {
 	}
     }
 
+    /**
+     * when clicked on start this method will set the map
+     */
     public void start() {
 	try {
 	    KolonistenVanCatan model = this.model.getGame();

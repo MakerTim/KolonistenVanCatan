@@ -15,6 +15,12 @@ import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.Trade;
 
+/**
+ * Generates layout of trades which are added to TradePane
+ * 
+ * @author Matthijs
+ * @version 1.0
+ */
 public class TradeEntry implements PaneHolder {
 
     private SceneMap scenemap;
@@ -49,6 +55,12 @@ public class TradeEntry implements PaneHolder {
 
     private Trade theTrade;
 
+    /**
+     * 
+     * 
+     * @param trade
+     * @param scenemap
+     */
     public TradeEntry(Trade trade, SceneMap scenemap) {
 	this.theTrade = trade;
 	this.scenemap = scenemap;
@@ -66,7 +78,7 @@ public class TradeEntry implements PaneHolder {
 	ore.getChildren().addAll(giveOre, receiveOre);
 
 	hboxusername.getChildren().addAll(username);
-	hboxtrades.getChildren().addAll(trade, wheat, wood, wool, brick, ore);
+	hboxtrades.getChildren().addAll(trade, wood, brick, wool, wheat, ore);
 
 	hboxusername.setSpacing(10);
 	hboxtrades.setSpacing(55);
@@ -78,7 +90,7 @@ public class TradeEntry implements PaneHolder {
 	pane.setMaxWidth(460);
 	pane.setPadding(new Insets(10, 10, 10, 10));
 	pane.setStyle(
-		"-fx-background-color: rgba(255, 255, 255, 0.4); -fx-border-color: black; -fx-border-style: solid;");
+		"-fx-background-color: rgba(255, 255, 255, 0.4); -fx-border-color: black; -fx-border-style: solid; -fx-border-radius: 10px; -fx-background-radius: 10px;");
 
 	pane.setOnMouseClicked(klick -> onPaneClick());
 
@@ -93,8 +105,8 @@ public class TradeEntry implements PaneHolder {
     public void updateTranslation() {
 	try {
 	    username.setText(theTrade.getPlayer().getUsername());
-	    give.setText(TranslationManager.translate("trade.text.give"));
-	    receive.setText(TranslationManager.translate("trade.text.receive"));
+	    give.setText(TranslationManager.translate("trade.text.search"));
+	    receive.setText(TranslationManager.translate("trade.text.offer"));
 
 	    giveWood.setText(getResource(theTrade.getReward(), Resource.WOOD));
 	    giveWheat.setText(getResource(theTrade.getReward(), Resource.WHEAT));

@@ -10,7 +10,7 @@ import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.enumeration.SelectState;
 
 /**
- * Stores username and colour
+ * Stores username and color
  * 
  * @version 1.0
  * @author Tim
@@ -90,7 +90,7 @@ public interface Player extends Remote {
 
     /**
      * 
-     * @return Gets colour
+     * @return Gets color
      * @throws RemoteException
      *             in case connection between RMI and client is lost
      */
@@ -107,7 +107,7 @@ public interface Player extends Remote {
     /**
      * 
      * @param color
-     *            Refers to colour set by {@link Lobby}
+     *            Refers to color set by {@link Lobby}
      * @throws RemoteException
      *             in case connection between RMI and client is lost
      */

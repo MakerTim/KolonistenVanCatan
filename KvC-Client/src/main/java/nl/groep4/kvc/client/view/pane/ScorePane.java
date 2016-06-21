@@ -1,5 +1,6 @@
 package nl.groep4.kvc.client.view.pane;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
@@ -10,9 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.PlayerScore;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.Card;
@@ -27,7 +26,6 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder {
     VBox content;
     ImageView banner;
     ImageView closedBanner;
-    Text title;
     Text scoreBrick;
     Text scoreWood;
     Text scoreOre;
@@ -46,12 +44,7 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder {
 	scorePane = new StackPane();
 	playersBox = new VBox();
 	content = new VBox();
-	title = new Text("Title");
 	scorePane.getChildren().addAll(getClosedBanner());
-	title.setFont(ViewMaster.FONT);
-	title.setFill(Color.WHITE);
-	title.setStroke(Color.BLACK);
-	content.getChildren().addAll(title);
 	content.setAlignment(Pos.TOP_CENTER);
 
 	scorePane.setOnMouseEntered(e -> clickOpen());
@@ -70,7 +63,7 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder {
     }
 
     /**
-     * Closed the banner with player resources by removing children from the
+     * Closes the banner with player resources by removing children from the
      * pane
      * 
      */
@@ -114,14 +107,22 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder {
 	for (PlayerScore playerScore : scores) {
 	    if (pl == null || playerScore.getPlayer().equals(pl)) {
 		playerScore.updateResources(resources);
+
 	    }
 	}
     }
 
     @Override
     public void updateStock(Player pl, List<Card> cards) {
-	for (Card card : cards) {
+	for (PlayerScore playerScore : scores) {
+	    if (pl == null || playerScore.getPlayer().equals(pl)) {
+		try {
+		    playerScore.updateStock(pl, cards);
+		} catch (RemoteException e) {
+		    e.printStackTrace();
+		}
 
+	    }
 	}
     }
 
