@@ -105,8 +105,8 @@ public class TradeEntry implements PaneHolder {
     public void updateTranslation() {
 	try {
 	    username.setText(theTrade.getPlayer().getUsername());
-	    give.setText(TranslationManager.translate("trade.text.give"));
-	    receive.setText(TranslationManager.translate("trade.text.receive"));
+	    give.setText(TranslationManager.translate("trade.text.search"));
+	    receive.setText(TranslationManager.translate("trade.text.offer"));
 
 	    giveWood.setText(getResource(theTrade.getReward(), Resource.WOOD));
 	    giveWheat.setText(getResource(theTrade.getReward(), Resource.WHEAT));
