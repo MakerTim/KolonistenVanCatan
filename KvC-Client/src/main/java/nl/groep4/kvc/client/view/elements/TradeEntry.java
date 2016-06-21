@@ -86,7 +86,7 @@ public class TradeEntry implements PaneHolder {
     }
 
     private void onPaneClick() {
-	scenemap.getController().doTrade(null);
+	scenemap.getController().doTrade(theTrade.getID());
     }
 
     @Override
