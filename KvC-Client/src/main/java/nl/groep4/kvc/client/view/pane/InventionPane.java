@@ -19,8 +19,10 @@ import nl.groep4.kvc.client.view.elements.ResourceCardUtil;
 
 public class InventionPane extends Application implements PaneHolder {
     private Font font = new Font(ViewMaster.FONT.getName(), 30);
+    private Font font2 = new Font(ViewMaster.FONT.getName(), 50);
 
     private Text choice = new Text(TranslationManager.translate("invention.text.choice"));
+    private Text invention = new Text(TranslationManager.translate("invention.text.invention"));
     private ResourceCardUtil cards;
     private VBox woodText;
     private VBox oreText;
@@ -36,8 +38,11 @@ public class InventionPane extends Application implements PaneHolder {
 	StackPane inventionpane = new StackPane();
 
 	choice.setFont(font);
+	invention.setFont(font2);
 	choice.setFill(Color.WHITE);
+	invention.setFill(Color.WHITE);
 	choice.setStroke(Color.BLACK);
+	invention.setStroke(Color.BLACK);
 
 	woodText = new VBox();
 	wheatText = new VBox();
@@ -76,7 +81,7 @@ public class InventionPane extends Application implements PaneHolder {
 	resCards.setAlignment(Pos.CENTER);
 	allThings.setAlignment(Pos.CENTER);
 	allThings.setSpacing(30);
-	allThings.getChildren().addAll(choice, resCards);
+	allThings.getChildren().addAll(invention, choice, resCards);
 	inventionpane.getChildren().addAll(background, allThings);
 
 	Scene scene = new Scene(inventionpane);
@@ -114,6 +119,7 @@ public class InventionPane extends Application implements PaneHolder {
     @Override
     public void updateTranslation() {
 	choice.setText(TranslationManager.translate("invention.text.choice"));
+	invention.setText(TranslationManager.translate("invention.text.invention"));
 
     }
 

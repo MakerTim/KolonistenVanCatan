@@ -192,6 +192,14 @@ settings.button.stopmusic:Stop Music
 settings.button.accept:Accept
 settings.label.title:Settings
 
+#Invention
+invention.text.choice:Which card will you choose?
+invention.text.invention:Invention
+
+#MonopolyPane
+monopoly.text.choice:Wich cards will you choose?
+monopoly.text.monopoly:Monopoly
+
 #Kicked
 kicked.other.title:You have been removed from the lobby
 kicked.other.explanation:Another user has logged on under the same name

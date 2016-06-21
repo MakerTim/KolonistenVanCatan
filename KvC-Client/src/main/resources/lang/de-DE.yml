@@ -193,6 +193,14 @@ settings.button.stopmusic:Halt Musik
 settings.button.accept:Akzeptieren
 settings.label.title:Einstellungen
 
+#Invention
+invention.text.choice:Welche Karten wählen Sie?
+invention.text.invention:Erfindung
+
+#MonopolyPane
+monopoly.text.choice:welche Karten Sie wählen?
+monopoly.text.monopoly:Monopol
+
 #Kicked
 kicked.other.title:Sie wurden von der Lobby entfernt
 kicked.other.explanation:Ein anderer Benutzer hat unter dem gleichen Namen angemeldet
