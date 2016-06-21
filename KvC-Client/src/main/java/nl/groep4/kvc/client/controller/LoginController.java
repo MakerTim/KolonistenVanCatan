@@ -26,8 +26,10 @@ public class LoginController implements Controller {
     private SceneLogin view;
 
     /**
+     * Gets the current view
      * 
      * @param view
+     *            the view which is used
      */
     public LoginController(SceneLogin view) {
 	this.view = view;

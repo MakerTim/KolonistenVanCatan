@@ -13,16 +13,36 @@ import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.map.Coordinate;
 
+/**
+ * All functions that can be called while you are in the game
+ * 
+ * @author Tim
+ * @version 1.0
+ */
 public class MapController implements Controller {
 
     private KolonistenVanCatan model;
     private SceneMap view;
 
+    /**
+     * Gets the current model and view
+     * 
+     * @param model
+     *            the model which is used
+     * @param view
+     *            the view which is used
+     */
     public MapController(KolonistenVanCatan model, SceneMap view) {
 	this.model = model;
 	this.view = view;
     }
 
+    /**
+     * Calls trade with unique trade id
+     * 
+     * @param tradeID
+     *            unique trade id
+     */
     public void doTrade(UUID tradeID) {
 	try {
 	    model.trade(tradeID, ClientRefrence.getThePlayer());
@@ -55,6 +75,16 @@ public class MapController implements Controller {
 	}
     }
 
+    /**
+     * Adds player, request and reward to trade list
+     * 
+     * @param who
+     *            the player
+     * @param request
+     *            the resources the player wants to get
+     * @param reward
+     *            the resources the player wants to give for it
+     */
     public void placeTrade(Player who, Map<Resource, Integer> request, Map<Resource, Integer> reward) {
 	try {
 	    model.addTrade(who, request, reward);
@@ -63,6 +93,12 @@ public class MapController implements Controller {
 	}
     }
 
+    /**
+     * Places building at the given coordinate
+     * 
+     * @param coord
+     *            coordinate to place building
+     */
     public void placeBuilding(Coordinate coord) {
 	try {
 	    model.placeBuilding(ClientRefrence.getThePlayer(), coord, BuildingType.VILLAGE);
@@ -71,6 +107,12 @@ public class MapController implements Controller {
 	}
     }
 
+    /**
+     * Places street on given coordinate
+     * 
+     * @param coord
+     *            coordinate to place street
+     */
     public void placeStreet(Coordinate coord) {
 	try {
 	    model.placeStreet(ClientRefrence.getThePlayer(), coord);
@@ -79,10 +121,16 @@ public class MapController implements Controller {
 	}
     }
 
+    /**
+     * Opens BuyPane
+     */
     public void openBuyPane() {
 	view.openBuildPane();
     }
 
+    /**
+     * Goes to the next turn
+     */
     public void nextTurn() {
 	try {
 	    model.nextTurn();
@@ -91,6 +139,9 @@ public class MapController implements Controller {
 	}
     }
 
+    /**
+     * Calls the trowDices() class
+     */
     public void throwDice() {
 	try {
 	    model.throwDices();
@@ -99,6 +150,9 @@ public class MapController implements Controller {
 	}
     }
 
+    /**
+     * Sets the game on pause
+     */
     public void setPause() {
 	try {
 	    model.openPausePane(ClientRefrence.getThePlayer());
@@ -107,6 +161,9 @@ public class MapController implements Controller {
 	}
     }
 
+    /**
+     * Resumes the game
+     */
     public void unpause() {
 	try {
 	    model.closePausePane();
@@ -115,6 +172,9 @@ public class MapController implements Controller {
 	}
     }
 
+    /**
+     * Buys a street
+     */
     public void buyStreet() {
 	try {
 	    model.buyStreet();
@@ -123,6 +183,9 @@ public class MapController implements Controller {
 	}
     }
 
+    /**
+     * Buys village
+     */
     public void buyVillage() {
 	try {
 	    model.buyVillage();
@@ -131,6 +194,9 @@ public class MapController implements Controller {
 	}
     }
 
+    /**
+     * Buys city
+     */
     public void buyCity() {
 	try {
 	    model.buyCity();
@@ -139,6 +205,9 @@ public class MapController implements Controller {
 	}
     }
 
+    /**
+     * Buys card
+     */
     public void buyCard() {
 	try {
 	    model.buyCard();
