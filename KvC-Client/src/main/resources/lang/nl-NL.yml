@@ -20,6 +20,11 @@ game.resourcename.ore:Erts
 game.resourcename.stone:Steen
 game.resourcename.wool:Wol
 game.resourcename.wheat:Graan
+game.score.woodletter:H
+game.score.woolletter:W
+game.score.oreletter:E
+game.score.brickletter:S
+game.score.wheatletter:G
 
 #SceneLobby
 lobby.shield.title:Lobby
@@ -78,15 +83,15 @@ lobby.button.join:Meedoen
 lobby.button.settings:Instellingen
 
 #Turn
-turn.state.building:Is een gebouw aan het bouwen
+turn.state.building:Bouwt een gebouw
 turn.state.building.self:Plaatst een gebouw
-turn.state.street:Is een straat aan het bouwen
+turn.state.street:Bouwt een straat
 turn.state.street.self:Plaatst een straat
-turn.state.card:Is een kaart aan het kopen
+turn.state.card:Koopt een kaart
 turn.state.card.self:Koopt een kaart
-turn.state.dice:Is aan het dobbelen
+turn.state.dice:Dobbelt
 turn.state.dice.self:Bent aan het dobbelen
-turn.state.trade:Is in het veilingshuis
+turn.state.trade:In het veilingshuis
 turn.state.trade.self:Bent in het veilinghuis
 turn.state.wait:Is aan de beurt
 turn.state.wait.self:Bent aan zet
@@ -106,9 +111,17 @@ pause.label.pause:Pauze
 #TradePane
 trade.button.place:Plaats
 trade.button.back:Terug
-trade.text.Search:Zoek
-trade.text.Offer:Bied
+trade.text.search:Zoek
+trade.text.offer:Bied
 trade.text.resources:Grondstof
+trade.text.wheat:Graan
+trade.text.wood:Hout
+trade.text.wool:Wol
+trade.text.brick:Steen
+trade.text.ore:Erts
+trade.button.back:Terug
+trade.text.give:Geven
+trade.text.receive:Ontvangen
 trade.text.wheat:Graan
 trade.text.wood:Hout
 trade.text.wool:Wol
@@ -142,18 +155,32 @@ gamenote.ingame.details:Tijdens het spel kunt u niet van kleur veranderen
 note.noplayers.title:Niet genoeg mensen
 note.noplayers.explanation:Niet genoeg mensen zijn aanwezig
 note.noplayers.details:Exception: 503 Service Unavailable
-note.noturn.tile:U bent niet aan de beurt
-note.noturn.explanation:U bent nog niet aan de beurt
-note.noturn.details:Exception: 503 Service Unavailable
-note.nostreet.title:Geen straten om te plaatsen
-note.nostreet.explanation:U heeft geen straten om te plaatsen
-note.nostreet.details:Exception: 503 Service Unavailable
-note.building.title:Geen gebouwen om te plaatsen
-note.building.explanation:U heeft geen gebouwen om te plaatsen
-note.building.details:Exception: 503 Service Unavailable
-note.alreadstreet.title:Er is al gebouwd
-note.alreadstreet.explanation:Er is hier al gebouwd
-note.alreadstreet.details:Exception: 503 Service Unavailable
+gamenote.noturn.tile:U bent niet aan de beurt
+gamenote.noturn.explanation:U bent nog niet aan de beurt
+gamenote.noturn.details:Exception: 503 Service Unavailable
+gamenote.nostreet.title:Geen straten om te plaatsen
+gamenote.nostreet.explanation:U heeft geen straten om te plaatsen
+gamenote.nostreet.details:Exception: 503 Service Unavailable
+gamenote.nobuilding.title:Geen gebouwen om te plaatsen
+gamenote.nobuilding.explanation:U heeft geen gebouwen om te plaatsen
+gamenote.nobuilding.details:Exception: 503 Service Unavailable
+gamenote.alreadstreet.title:Er is al gebouwd
+gamenote.alreadstreet.explanation:Er is hier al gebouwd
+gamenote.alreadstreet.details:Exception: 503 Service Unavailable
+gamenote.alreadbuilding.title:Er is al gebouwd
+gamenote.alreadbuilding.explanation:Er is hier al gebouwd
+gamenote.alreadbuilding.details:Exception: 503 Service Unavailable
+gamenote.noresources.title:Niet genoeg grondstoffen
+gamenote.noresources.explanation:U heeft niet genoeg grondstoffen
+gamenote.noresources.details:Exception: 503 Service Unavailable
+gamenote.nocards.title:Niet genoeg kaarten
+gamenote.nocards.explanation:U heeft niet genoeg kaarten
+gamenote.nocard.details:Exception: 503 Service Unavailable
+gamenote.noowner.title:Niet de eigenaar
+gamenote.noowner.explanation:U bent niet de eigenaar van dit gebouw
+gamenote.noowner.details:Exception: 503 Service Unavailable
+
+
 
 #Map
 map.throwdice.clickToThrow:Dobbelen

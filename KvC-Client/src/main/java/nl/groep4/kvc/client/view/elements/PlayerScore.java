@@ -95,8 +95,8 @@ public class PlayerScore {
     /**
      * updates the resources within the object everytime this method is called
      * 
-     * @param enumeration
-     *            of resources
+     * @param resources
+     *            all the resources
      */
     public void updateResources(EnumMap<Resource, Integer> resources) {
 
