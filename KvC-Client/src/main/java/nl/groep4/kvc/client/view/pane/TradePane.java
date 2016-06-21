@@ -1,6 +1,7 @@
 package nl.groep4.kvc.client.view.pane;
 
 import java.rmi.RemoteException;
+import java.util.EnumMap;
 import java.util.List;
 
 import javafx.geometry.Insets;
@@ -18,6 +19,7 @@ import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.KvCText;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.scene.SceneMap;
+import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.Trade;
 import nl.groep4.kvc.common.interfaces.UpdateTrade;
 
@@ -32,6 +34,7 @@ public class TradePane implements PaneHolder, UpdateTrade {
     private SceneMap sceneMap;
     private MenuButton plaats;
     private MenuButton terug;
+    Text test;
 
     public TradePane(SceneMap sceneMap) {
 	this.sceneMap = sceneMap;
@@ -46,6 +49,7 @@ public class TradePane implements PaneHolder, UpdateTrade {
 	VBox vbox = new VBox();
 	HBox buttons = new HBox();
 	HBox tb = new HBox();
+	HBox testbox = new HBox();
 	StackPane stackpane = new StackPane();
 	ScrollPane scrollpane = new ScrollPane();
 
@@ -54,6 +58,14 @@ public class TradePane implements PaneHolder, UpdateTrade {
 	Text wool = new KvCText("Wool").addShadow();
 	Text stone = new KvCText("Stone").addShadow();
 	Text ore = new KvCText("Ore").addShadow();
+
+	Text wheatAmount = new Text("0");
+	Text woodAmount = new Text("0");
+	Text oreAmount = new Text("0");
+	Text brickAmount = new Text("0");
+	Text woolAmount = new Text("0");
+
+	testbox.getChildren().addAll(wheatAmount, woodAmount, brickAmount, woolAmount);
 
 	scrollpane.setHbarPolicy(ScrollBarPolicy.NEVER);
 	scrollpane.setVbarPolicy(ScrollBarPolicy.ALWAYS);
@@ -98,7 +110,7 @@ public class TradePane implements PaneHolder, UpdateTrade {
 	vboxButtons.getChildren().addAll(tb);
 
 	vbox.getChildren().addAll(hboxResources, hboxScrollpane, vboxButtons);
-	stackpane.getChildren().addAll(SceneUtil.getGamePane(), vbox);
+	stackpane.getChildren().addAll(SceneUtil.getGamePane(), vbox, testbox);
 
 	terug.setOnMouseClicked(klick -> onBackClick());
 	plaats.setOnMouseClicked(klick -> onPlaceClick());
@@ -120,12 +132,17 @@ public class TradePane implements PaneHolder, UpdateTrade {
 	    terug.updateText(TranslationManager.translate("trade.button.back"));
 	}
 	if (plaats != null) {
-	    plaats.updateText(TranslationManager.translate("trade.button.place"));
+	    plaats.updateText(TranslationManager.translate("trade.button.plaats"));
 	}
     }
 
     @Override
     public void updateTrades(List<Trade> allTrades) throws RemoteException {
+	for (Trade trade : allTrades) {
+	    String name = trade.getPlayer().getUsername();
+	    EnumMap<Resource, Integer> request = trade.getRequest();
+	    EnumMap<Resource, Integer> reward = trade.getReward();
 
+	}
     }
 }
