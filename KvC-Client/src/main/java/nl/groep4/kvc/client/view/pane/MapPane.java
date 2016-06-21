@@ -39,7 +39,7 @@ public class MapPane implements PaneHolder {
 	    rowws.setAlignment(Pos.CENTER);
 	    for (int row = 0; row < rows; row++) {
 		Coordinate coord = new Coordinate(col - Map.COLUMS / 2, row - rows / 2);
-		ClientTile tile = new ClientTile(controller, coord);
+		ClientTile tile = new ClientTile(coord);
 		rowws.getChildren().add(tile);
 		tiles.add(tile);
 	    }
