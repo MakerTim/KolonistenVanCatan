@@ -124,10 +124,21 @@ public class ColorScroll extends StackPane {
 	colorLabel.setText(TranslationManager.translate("lobby.parchment.color." + color.name().toLowerCase()));
     }
 
+    /**
+     * gets the player
+     * 
+     * @return the player
+     */
     public Player getPlayer() {
 	return player;
     }
 
+    /**
+     * sets ping speed
+     * 
+     * @param pong
+     *            ping to display
+     */
     public void setPing(long pong) {
 	if (pong < 0) {
 	    pingLabel.setText("");
