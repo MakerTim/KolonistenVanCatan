@@ -10,6 +10,9 @@ import javafx.scene.layout.Pane;
  **/
 public interface PaneHolder {
 
+    /**
+     * gets pane
+     */
     public Pane getPane();
 
     /**

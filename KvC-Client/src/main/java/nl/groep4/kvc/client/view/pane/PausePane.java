@@ -74,6 +74,9 @@ public class PausePane implements PaneHolder, NotCloseable {
 	}
     }
 
+    /**
+     * resumes game
+     */
     public void unpause() {
 	if (isMyTurn) {
 	    isMyTurn = false;

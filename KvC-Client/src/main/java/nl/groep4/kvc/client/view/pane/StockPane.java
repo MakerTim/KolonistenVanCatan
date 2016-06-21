@@ -35,7 +35,6 @@ import nl.groep4.kvc.common.interfaces.VictoryCard;
  * @author Luc
  * 
  **/
-
 public class StockPane implements PaneHolder, UpdateStock {
 
     StackPane cardPane;
@@ -68,6 +67,12 @@ public class StockPane implements PaneHolder, UpdateStock {
 
     private SceneMap view;
 
+    /**
+     * view of stockpane
+     * 
+     * @param view
+     *            current view
+     */
     public StockPane(SceneMap view) {
 	this.view = view;
     }
@@ -135,6 +140,9 @@ public class StockPane implements PaneHolder, UpdateStock {
 	return cardPane;
     }
 
+    /**
+     * method to open stock
+     */
     public void openStock() {
 	isOpen = true;
 	allThings.getChildren().addAll(resCards, development, information);
@@ -144,6 +152,9 @@ public class StockPane implements PaneHolder, UpdateStock {
 
     }
 
+    /**
+     * closes stock
+     */
     public void closeStock() {
 	isOpen = false;
 	allThings.getChildren().removeAll(resCards, development, information);
@@ -151,10 +162,21 @@ public class StockPane implements PaneHolder, UpdateStock {
 	cardPane.setMouseTransparent(true);
     }
 
+    /**
+     * returns true if open and fals when closed
+     * 
+     * @return true or false
+     */
     public boolean isOpen() {
 	return this.isOpen;
     }
 
+    /**
+     * updates info
+     * 
+     * @param info
+     *            to be updated
+     */
     public void updateInfo(String info) {
 	information.setText(info);
     }

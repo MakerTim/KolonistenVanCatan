@@ -13,6 +13,12 @@ import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.elements.SettingsButton;
 import nl.groep4.kvc.client.view.scene.SceneMap;
 
+/**
+ * Pane that displays all settings which can be changed
+ * 
+ * @author Tim
+ * @version 1.0
+ */
 public class OptionPane implements PaneHolder {
 
     private SceneMap map;
@@ -25,6 +31,12 @@ public class OptionPane implements PaneHolder {
     private MenuButton exit;
     private MenuButton back;
 
+    /**
+     * gives current SceneMap
+     * 
+     * @param map
+     *            current map settings
+     */
     public OptionPane(SceneMap map) {
 	this.map = map;
     }

@@ -19,6 +19,12 @@ import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.UpdatePlayerOrder;
 import nl.groep4.kvc.common.interfaces.UpdateStock;
 
+/**
+ * Scorepane that gets updates
+ * 
+ * @author Luc
+ * @version 1.0
+ */
 public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder {
 
     StackPane scorePane;

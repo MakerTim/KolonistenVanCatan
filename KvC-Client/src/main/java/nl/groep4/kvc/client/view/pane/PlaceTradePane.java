@@ -63,6 +63,12 @@ public class PlaceTradePane implements PaneHolder {
 
     private SceneMap scenemap;
 
+    /**
+     * gives current SceneMap
+     * 
+     * @param scenemap
+     *            current map settings
+     */
     public PlaceTradePane(SceneMap scenemap) {
 	this.scenemap = scenemap;
     }
