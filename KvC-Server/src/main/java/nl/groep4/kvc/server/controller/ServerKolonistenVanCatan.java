@@ -131,13 +131,13 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     }
 
     @Override
-    public void placeBuilding(Coordinate coord, BuildingType type) {
-	mapController.placeBuilding(coord, type);
+    public void placeBuilding(Player newOwner, Coordinate coord, BuildingType type) {
+	mapController.placeBuilding(newOwner, coord, type);
     }
 
     @Override
-    public void placeStreet(Coordinate coord) {
-	mapController.placeStreet(coord);
+    public void placeStreet(Player newOwner, Coordinate coord) {
+	mapController.placeStreet(newOwner, coord);
     }
 
     @Override
@@ -234,6 +234,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     public void highlightBuildings(Player pl, Collection<Building> buildings, BuildingType type) {
 	try {
 	    pl.getUpdateable(UpdateMap.class).highlightBuildings(buildings, type);
+	    pl.setSelectable(SelectState.BUILDING);
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();
 	}
@@ -242,6 +243,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     public void highlightStreets(Player pl, Collection<Street> streets) {
 	try {
 	    pl.getUpdateable(UpdateMap.class).highlightStreets(streets);
+	    pl.setSelectable(SelectState.STREET);
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();
 	}
