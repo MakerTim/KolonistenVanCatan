@@ -201,7 +201,6 @@ public class PlaceTradePane implements PaneHolder {
 
     /**
      * When there is a click on the button, the TradePane will be opened
-     * 
      */
     public void onBackClick() {
 	scenemap.openTradePane();
