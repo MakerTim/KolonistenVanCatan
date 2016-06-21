@@ -221,7 +221,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 		if (street != null && pl.equals(street.getOwner())) {
 		    for (Direction connectedDirection : direction.getConnected()) {
 			Street connected = tile.getStreet(connectedDirection);
-			if (connected != null) {
+			if (connected != null && connected.getOwner() == null) {
 			    streets.add(connected);
 			}
 		    }
