@@ -1,20 +1,20 @@
 package nl.groep4.kvc.client.view.elements;
 
-import javafx.application.Application;
-import javafx.scene.Scene;
+import java.rmi.RemoteException;
+import java.util.EnumMap;
+
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.pane.PaneHolder;
-import nl.groep4.kvc.common.interfaces.Player;
+import nl.groep4.kvc.common.enumeration.Resource;
+import nl.groep4.kvc.common.interfaces.Trade;
 
-public class TradeEntry extends Application implements PaneHolder {
+public class TradeEntry implements PaneHolder {
 
-    private StackPane pane = new StackPane();
     private HBox hboxtrades = new HBox();
     private HBox hboxgive = new HBox();
     private HBox hboxusername = new HBox();
@@ -42,16 +42,16 @@ public class TradeEntry extends Application implements PaneHolder {
     private Text receiveOre = new KvCText("0");
     private Text receiveBrick = new KvCText("0");
     private Text receiveWool = new KvCText("0");
-    private String us;
-    private Player player;
+
+    private Trade theTrade;
+
+    public TradeEntry(Trade trade) {
+	this.theTrade = trade;
+    }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-	// TODO Auto-generated method stub
-
-	// us = player.getUsername();
-	us = "Matthijs";
-	username.setText(us);
+    public Pane getPane() {
+	StackPane pane = new StackPane();
 
 	trade.getChildren().addAll(give, receive);
 	wheat.getChildren().addAll(giveWheat, receiveWheat);
@@ -69,40 +69,37 @@ public class TradeEntry extends Application implements PaneHolder {
 
 	vbox.getChildren().addAll(hboxusername, hboxgive, hboxtrades);
 	pane.getChildren().add(vbox);
-
-	Scene scene = new Scene(pane);
-	primaryStage.setScene(scene);
-	primaryStage.show();
-
-    }
-
-    public static void main(String[] args) throws Exception {
-	Application.launch(args);
-    }
-
-    @Override
-    public Pane getPane() {
-	// TODO Auto-generated method stub
-	return null;
+	return pane;
     }
 
     @Override
     public void updateTranslation() {
-	username.setText(TranslationManager.translate("trade.text.username"));
-	give.setText(TranslationManager.translate("trade.text.give"));
-	receive.setText(TranslationManager.translate("trade.text.receive"));
+	try {
+	    username.setText(theTrade.getPlayer().getUsername());
+	    give.setText(TranslationManager.translate("trade.text.give"));
+	    receive.setText(TranslationManager.translate("trade.text.receive"));
 
-	giveWood.setText(TranslationManager.translate("trade.text.givewood"));
-	giveWheat.setText(TranslationManager.translate("trade.text.givewheat"));
-	giveOre.setText(TranslationManager.translate("trade.text.givere"));
-	giveBrick.setText(TranslationManager.translate("trade.text.givebrick"));
-	giveWool.setText(TranslationManager.translate("trade.text.givewool"));
+	    giveWood.setText(getResource(theTrade.getReward(), Resource.WOOD));
+	    giveWheat.setText(getResource(theTrade.getReward(), Resource.WHEAT));
+	    giveOre.setText(getResource(theTrade.getReward(), Resource.ORE));
+	    giveBrick.setText(getResource(theTrade.getReward(), Resource.BRICK));
+	    giveWool.setText(getResource(theTrade.getReward(), Resource.WOOL));
 
-	receiveWood.setText(TranslationManager.translate("trade.text.receivewood"));
-	receiveWheat.setText(TranslationManager.translate("trade.text.receivewheat"));
-	receiveOre.setText(TranslationManager.translate("trade.text.receiveore"));
-	receiveBrick.setText(TranslationManager.translate("trade.text.receivebrick"));
-	receiveWool.setText(TranslationManager.translate("trade.text.receivewool"));
+	    receiveWood.setText(getResource(theTrade.getRequest(), Resource.WOOD));
+	    receiveWheat.setText(getResource(theTrade.getRequest(), Resource.WHEAT));
+	    receiveOre.setText(getResource(theTrade.getRequest(), Resource.ORE));
+	    receiveBrick.setText(getResource(theTrade.getRequest(), Resource.BRICK));
+	    receiveWool.setText(getResource(theTrade.getRequest(), Resource.WOOL));
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
+    }
+
+    private String getResource(EnumMap<Resource, Integer> resources, Resource toGet) {
+	if (resources.containsKey(toGet)) {
+	    return Integer.toString(resources.get(toGet));
+	}
+	return "0";
     }
 
 }

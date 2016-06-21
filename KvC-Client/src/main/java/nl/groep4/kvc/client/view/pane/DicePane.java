@@ -90,6 +90,11 @@ public class DicePane implements PaneHolder, UpdateDice, NotCloseable {
 	}
     }
 
+    /**
+     * calls the throwDice method and disables the throw button
+     * 
+     * 
+     */
     public void throwDice() {
 	if (isMyTurn) {
 	    isMyTurn = false;

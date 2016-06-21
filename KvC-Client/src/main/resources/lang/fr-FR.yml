@@ -20,6 +20,12 @@ game.resourcename.ore:Minerai
 game.resourcename.stone:Pierre
 game.resourcename.wool:Laine
 game.resourcename.wheat:Grain
+game.score.woodletter:B
+game.score.woolletter:L
+game.score.oreletter:M
+game.score.brickletter:P
+game.score.wheatletter:G
+
 
 #SceneLobby
 lobby.shield.title:Hall
@@ -76,16 +82,16 @@ lobby.button.join:Participer
 lobby.button.settings:Réglages
 
 #Turn
-turn.state.building:Est un bâtiment à la construction
-turn.state.building.self:Construisez un bâtiment
-turn.state.street:Est une rue à la construction
-turn.state.street.self:Placer une rue
-turn.state.card:Est une carte pour acheter
-turn.state.card.self:Achetez une carte
+turn.state.building:Construit
+turn.state.building.self:Construisez
+turn.state.street:Construit
+turn.state.street.self:Construisez
+turn.state.card:Acheter
+turn.state.card.self:Achetez
 turn.state.dice:Est dés
 turn.state.dice.self:êtes les dés
 turn.state.trade:Était à la vente aux enchères
-turn.state.trade.self:Êtes à la vente aux enchères
+turn.state.trade.self:À la vente aux enchères
 turn.state.wait:Tourne
 turn.state.wait.self:Êtes à côté
 turn.self:Vous
@@ -104,12 +110,19 @@ pause.label.pause:Pause
 #TradePane
 trade.button.place:Additionner
 trade.button.back:Retourner
-trade.text.Search:Recherche
-trade.text.Offer:Offre
+trade.text.search:Recherche
+trade.text.offer:Offre
 trade.text.resources:Ressource
 trade.text.wheat:Grain
 trade.text.wood:Wood
 trade.text.wool:Bois
+trade.text.brick:Pierre
+trade.text.ore:Minerai
+trade.text.give:Donner
+trade.text.receive:Recevoir
+trade.text.wheat:Grain
+trade.text.wood:Bois
+trade.text.wool:Laine
 trade.text.brick:Pierre
 trade.text.ore:Minerai
 
@@ -141,18 +154,31 @@ gamenote.noplayers.title:Pas assez de gens
 note.noplayers.title:Pas assez de joueurs
 note.noplayers.explanation:Il n'y a pas assez de personnes présentes
 note.noplayers.details:Exception: 503 Service Unavailable
-note.noturn.tile:Vous n'êtes pas d'agir
-note.noturn.explanation:Vous n'êtes même pas tourner
-note.noturn.details:Exception: 503 Service Unavailable
-note.nostreet.title:Il n'y a pas de rues à des endroits
-note.nostreet.explanation:Vous ne devez pas placer des rues
-note.nostreet.details:Exception: 503 Service Unavailable
-note.building.title:Il n'y a pas de bâtiments à placer
-note.building.explanation:Vous avez pas de bâtiments à placer
-note.building.details:Exception: 503 Service Unavailable
-note.alreadstreet.title:A été construite
-note.alreadstreet.explanation:Il a déjà été construit ici
-note.alreadstreet.details:Exception: 503 Service Unavailable
+gamenote.noturn.tile:Vous n'êtes pas d'agir
+gamenote.noturn.explanation:Vous n'êtes même pas tourner
+gamenote.noturn.details:Exception: 503 Service Unavailable
+gamenote.nostreet.title:Il n'y a pas de rues à des endroits
+gamenote.nostreet.explanation:Vous ne devez pas placer des rues
+gamenote.nostreet.details:Exception: 503 Service Unavailable
+gamenote.nobuilding.title:Il n'y a pas de bâtiments à placer
+gamenote.nobuilding.explanation:Vous avez pas de bâtiments à placer
+gamenote.nobuilding.details:Exception: 503 Service Unavailable
+gamenote.alreadstreet.title:A été construite
+gamenote.alreadstreet.explanation:Il a déjà été construit ici
+gamenote.alreadstreet.details:Exception: 503 Service Unavailable
+gamenote.alreadbuilding.title:A été construite
+gamenote.alreadbuilding.explanation:Il a déjà été construit ici
+gamenote.alreadbuilding.details:Exception: 503 Service Unavailable
+gamenote.noresources.title:Pas assez de ressources
+gamenote.noresources.explanation:Vous ne disposez pas de suffisamment de ressources
+gamenote.noresources.details:Exception: 503 Service Unavailable
+gamenote.nocards.title:Pas assez de cartes
+gamenote.nocards.explanation:Vous n'avez pas assez de cartes
+gamenote.nocard.details:Exception: 503 Service Unavailable
+gamenote.noowner.title:Pas le propriétaire
+gamenote.noowner.explanation:Vous n'êtes pas le propriétaire de ce bâtiment
+gamenote.noowner.details:Exception: 503 Service Unavailable
+
 
 #Map
 map.throwdice.clickToThrow:Jouer aux dés

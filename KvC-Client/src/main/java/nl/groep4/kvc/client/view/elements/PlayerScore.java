@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import javafx.geometry.Pos;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -35,6 +34,11 @@ public class PlayerScore {
     String woolLetter = "";
     String oreLetter = "";
 
+    /**
+     * Gets the resources element for each player in game
+     * 
+     * @return VBox with player name and player resources
+     */
     public VBox getPane() {
 	playerScorePane = new VBox();
 
@@ -56,6 +60,10 @@ public class PlayerScore {
 	return playerScorePane;
     }
 
+    /**
+     * contructor for setting up object for PlayerScore
+     * 
+     */
     public PlayerScore(Player player) {
 	this.player = player;
 	playerRes = new KvCText();
@@ -67,12 +75,13 @@ public class PlayerScore {
 	oreLetter = (TranslationManager.translate("game.score.oreletter"));
     }
 
+    /**
+     * getter for Player class
+     * 
+     * @return the player in the object
+     */
     public Player getPlayer() {
 	return player;
-    }
-
-    public Pane getPlayerScorePane() {
-	return playerScorePane;
     }
 
     public void updateTranslation() {
@@ -83,6 +92,12 @@ public class PlayerScore {
 	oreLetter = (TranslationManager.translate("game.score.oreletter"));
     }
 
+    /**
+     * updates the resources within the object everytime this method is called
+     * 
+     * @param resources
+     *            all the resources
+     */
     public void updateResources(EnumMap<Resource, Integer> resources) {
 
 	for (Entry<Resource, Integer> resource : resources.entrySet()) {
@@ -106,7 +121,6 @@ public class PlayerScore {
 		break;
 
 	    }
-	    // TODO: makerluc
 	}
 	playerRes.setText(woodLetter + " " + woodAmount + " " + brickLetter + " " + brickAmount + " " + woolLetter + " "
 		+ woolAmount + " " + wheatLetter + " " + wheatAmount + " " + oreLetter + " " + oreAmount);

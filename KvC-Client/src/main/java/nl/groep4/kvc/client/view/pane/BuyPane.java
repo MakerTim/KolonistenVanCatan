@@ -24,6 +24,12 @@ import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.UpdateCosts;
 
+/**
+ * The BuyPane, where you can buy a development card.
+ * 
+ * @author Lisa
+ *
+ */
 public class BuyPane implements PaneHolder, UpdateCosts {
     private Font font = new Font(ViewMaster.FONT.getName(), 30);
 
@@ -54,6 +60,11 @@ public class BuyPane implements PaneHolder, UpdateCosts {
     private VBox vboxBrick;
     private VBox vboxOre;
 
+    /**
+     * Sets up the BuyPane
+     * 
+     * @param sceneMap
+     */
     public BuyPane(SceneMap sceneMap) {
 	this.sceneMap = sceneMap;
     }

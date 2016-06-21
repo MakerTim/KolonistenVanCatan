@@ -11,7 +11,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import jdk.nashorn.api.scripting.URLReader;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
@@ -20,32 +19,42 @@ import nl.groep4.kvc.client.view.elements.KvCText;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.scene.SceneMap;
 
+/**
+ * Pane for the rules of the game
+ * 
+ * @author Lisa
+ *
+ */
 public class RulesPane implements PaneHolder {
-    // TODO: set Text to KvCText
-    private Text rules;
+    private KvCText rules = new KvCText(TranslationManager.translate("rules.text.rules"));
     private SceneMap view;
     private MenuButton back;
 
+    /**
+     * Sets up the Rulespane
+     * 
+     * @param view
+     */
     public RulesPane(SceneMap view) {
 	this.view = view;
 
     }
 
+    @Override
     public Pane getPane() {
 	StackPane rulepane = new StackPane();
 
+	TextArea area = new TextArea();
+
 	VBox vbox = new VBox();
+	HBox hbox = new HBox();
+
 	vbox.setAlignment(Pos.CENTER);
 	vbox.setPadding(new Insets(40, 80, 40, 80));
-
-	HBox hbox = new HBox();
 
 	back = new MenuButton(425, 500, TranslationManager.translate("rules.button.back"));
 	back.setFont(ViewMaster.FONT);
 
-	rules = new KvCText(TranslationManager.translate("rules.text.rules"));
-
-	TextArea area = new TextArea();
 	area.setStyle("-fx-text-fill: white;");
 	area.setPrefRowCount(18);
 	area.setMaxWidth(600);
@@ -55,10 +64,9 @@ public class RulesPane implements PaneHolder {
 	Node background = SceneUtil.getGamePane();
 
 	hbox.setAlignment(Pos.CENTER);
+
 	hbox.getChildren().add(back);
-
 	vbox.getChildren().addAll(rules, area, hbox);
-
 	rulepane.getChildren().addAll(background, vbox);
 
 	BufferedReader fileReader = new BufferedReader(new URLReader(TranslationManager.class

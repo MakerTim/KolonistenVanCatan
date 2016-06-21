@@ -14,6 +14,12 @@ import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.interfaces.NotCloseable;
 
+/**
+ * This pane will be shown when the game is on pause.
+ * 
+ * @author Lisa
+ *
+ */
 public class PausePane implements PaneHolder, NotCloseable {
     private MenuButton continueButton;
     private Text pause;

@@ -60,16 +60,30 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder {
 	return scorePane;
     }
 
+    /**
+     * Opens the banner with player resources by adding children to the pane
+     * 
+     */
     public void clickOpen() {
 	scorePane.getChildren().addAll(getBanner(), content);
 	scorePane.getChildren().remove(closedBanner);
     }
 
+    /**
+     * Closed the banner with player resources by removing children from the
+     * pane
+     * 
+     */
     public void clickClose() {
 	scorePane.getChildren().add(getClosedBanner());
 	scorePane.getChildren().removeAll(banner, content);
     }
 
+    /**
+     * Gets the banner texture
+     * 
+     * @return image of the banner in the game
+     */
     public Node getBanner() {
 	banner = new ImageView("img/game/banner.png");
 	banner.setFitHeight(380);
@@ -77,6 +91,11 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder {
 	return banner;
     }
 
+    /**
+     * Gets the closed banner texture
+     * 
+     * @return image of the closed banner in the game
+     */
     public Node getClosedBanner() {
 	closedBanner = new ImageView("img/game/banner_closed.png");
 	closedBanner.setFitHeight(120);
@@ -101,8 +120,9 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder {
 
     @Override
     public void updateStock(Player pl, List<Card> cards) {
-	// TODO Auto-generated method stub
+	for (Card card : cards) {
 
+	}
     }
 
     @Override
