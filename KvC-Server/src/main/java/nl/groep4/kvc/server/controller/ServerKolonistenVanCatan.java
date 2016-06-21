@@ -281,7 +281,12 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 
     @Override
     public void useCard() throws RemoteException {
+	// TODO use card
+    }
 
+    @Override
+    public void trade(UUID tradeKey, Player with) throws RemoteException {
+	tradeController.onTrade(tradeController.getTrade(tradeKey), with);
     }
 
     @Override

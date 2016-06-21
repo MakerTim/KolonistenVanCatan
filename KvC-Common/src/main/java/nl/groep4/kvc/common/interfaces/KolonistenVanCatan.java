@@ -57,6 +57,8 @@ public interface KolonistenVanCatan extends Remote {
 
     public void useCard() throws RemoteException;
 
+    public void trade(UUID tradeKey, Player with) throws RemoteException;
+
     public void addTrade(Player player, java.util.Map<Resource, Integer> request,
 	    java.util.Map<Resource, Integer> reward) throws RemoteException;
 

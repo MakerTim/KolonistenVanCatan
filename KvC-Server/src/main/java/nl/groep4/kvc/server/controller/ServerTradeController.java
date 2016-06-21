@@ -1,5 +1,6 @@
 package nl.groep4.kvc.server.controller;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -32,6 +33,13 @@ public class ServerTradeController {
     }
 
     public void onTrade(Trade trade, Player with) {
+	if (trade == null) {
+	    try {
+		with.getUpdateable().popup("notrade");
+	    } catch (RemoteException ex) {
+		ex.printStackTrace();
+	    }
+	}
 	// TODO: Handle trade
 	if (with == null) {
 	    // Trade with bank
@@ -52,5 +60,9 @@ public class ServerTradeController {
 		tradesIT.remove();
 	    }
 	}
+    }
+
+    public Trade getTrade(UUID tradeKey) {
+	return trades.stream().filter(trade -> trade.getID().equals(tradeKey)).findFirst().orElse(null);
     }
 }

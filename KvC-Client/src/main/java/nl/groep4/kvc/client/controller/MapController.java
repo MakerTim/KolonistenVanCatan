@@ -2,6 +2,7 @@ package nl.groep4.kvc.client.controller;
 
 import java.rmi.RemoteException;
 import java.util.Map;
+import java.util.UUID;
 
 import nl.groep4.kvc.client.util.ExceptionManager;
 import nl.groep4.kvc.client.view.scene.SceneMap;
@@ -19,6 +20,14 @@ public class MapController implements Controller {
     public MapController(KolonistenVanCatan model, SceneMap view) {
 	this.model = model;
 	this.view = view;
+    }
+
+    public void doTrade(UUID tradeID) {
+	try {
+	    model.trade(tradeID, ClientRefrence.getThePlayer());
+	} catch (RemoteException ex) {
+	    ExceptionManager.handleRemoteException(ex);
+	}
     }
 
     public void placeTrade(Player who, Map<Resource, Integer> request, Map<Resource, Integer> reward) {
