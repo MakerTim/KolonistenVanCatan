@@ -235,6 +235,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	try {
 	    pl.getUpdateable(UpdateMap.class).highlightBuildings(buildings, type);
 	    pl.setSelectable(SelectState.BUILDING);
+	    updateState(TurnState.BUILDING_BUILDING);
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();
 	}
@@ -244,6 +245,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	try {
 	    pl.getUpdateable(UpdateMap.class).highlightStreets(streets);
 	    pl.setSelectable(SelectState.STREET);
+	    updateState(TurnState.BUILDING_STREET);
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();
 	}
