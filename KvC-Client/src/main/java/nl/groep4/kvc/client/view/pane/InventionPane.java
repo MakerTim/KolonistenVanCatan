@@ -1,9 +1,7 @@
 package nl.groep4.kvc.client.view.pane;
 
-import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -11,13 +9,18 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.ResourceCardUtil;
 
-public class InventionPane extends Application implements PaneHolder {
+/**
+ * The pane when an inventioncard (developmentcard) is used.
+ * 
+ * @author Lisa
+ * @version 1.0
+ */
+public class InventionPane implements PaneHolder {
     private Font font = new Font(ViewMaster.FONT.getName(), 30);
     private Font font2 = new Font(ViewMaster.FONT.getName(), 50);
 
@@ -33,7 +36,7 @@ public class InventionPane extends Application implements PaneHolder {
     private VBox allThings;
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public Pane getPane() {
 	cards = new ResourceCardUtil();
 	StackPane inventionpane = new StackPane();
 
@@ -84,16 +87,7 @@ public class InventionPane extends Application implements PaneHolder {
 	allThings.getChildren().addAll(invention, choice, resCards);
 	inventionpane.getChildren().addAll(background, allThings);
 
-	Scene scene = new Scene(inventionpane);
-	stage.setScene(scene);
-	stage.show();
-
-    }
-
-    @Override
-    public Pane getPane() {
-	// TODO Auto-generated method stub
-	return null;
+	return inventionpane;
     }
 
     public void onWoodClick() {
@@ -121,9 +115,5 @@ public class InventionPane extends Application implements PaneHolder {
 	choice.setText(TranslationManager.translate("invention.text.choice"));
 	invention.setText(TranslationManager.translate("invention.text.invention"));
 
-    }
-
-    public static void main(String[] args) {
-	launch(args);
     }
 }
