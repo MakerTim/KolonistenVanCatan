@@ -40,6 +40,12 @@ public class InventionPane implements PaneHolder, NotCloseable {
 
     private SceneMap scenemap;
 
+    /**
+     * sets scenemap
+     * 
+     * @param sceneMap
+     *            current settings for scenemap
+     */
     public InventionPane(SceneMap sceneMap) {
 	this.scenemap = sceneMap;
     }
@@ -99,22 +105,37 @@ public class InventionPane implements PaneHolder, NotCloseable {
 	return inventionpane;
     }
 
+    /**
+     * when clicked on wood it will be given to the player
+     */
     public void onWoodClick() {
 	scenemap.getController().targetInvention(Resource.WOOD);
     }
 
+    /**
+     * when clicked on brick it will be given to the player
+     */
     public void onBrickClick() {
 	scenemap.getController().targetInvention(Resource.BRICK);
     }
 
+    /**
+     * when clicked on wool it will be given to the player
+     */
     public void onWoolClick() {
 	scenemap.getController().targetInvention(Resource.WOOL);
     }
 
+    /**
+     * when clicked on wheat it will be given to the player
+     */
     public void onWheatClick() {
 	scenemap.getController().targetInvention(Resource.WHEAT);
     }
 
+    /**
+     * when clicked on ore it will be given to the player
+     */
     public void onOreClick() {
 	scenemap.getController().targetInvention(Resource.ORE);
     }

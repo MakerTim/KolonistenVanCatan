@@ -81,7 +81,6 @@ public class BuildPane implements PaneHolder, UpdateCosts {
      * 
      * @param sceneMap
      */
-
     public BuildPane(SceneMap sceneMap) {
 	this.sceneMap = sceneMap;
     }

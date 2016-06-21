@@ -16,6 +16,14 @@ import nl.groep4.kvc.common.interfaces.NotCloseable;
 import nl.groep4.kvc.common.interfaces.UpdateDice;
 import nl.groep4.kvc.common.util.Scheduler;
 
+/**
+ * Pane that gets automatically displayed and rolls the dice when clicked on a
+ * button
+ * 
+ * @author Tim
+ * @author Luc
+ * @version 1.0
+ */
 public class DicePane implements PaneHolder, UpdateDice, NotCloseable {
 
     private Text throwLabel;
@@ -28,6 +36,14 @@ public class DicePane implements PaneHolder, UpdateDice, NotCloseable {
     private boolean isMyTurn;
     private boolean hasNumber;
 
+    /**
+     * Determines whose turn it is and displays button
+     * 
+     * @param view
+     *            view to display
+     * @param isMyTurn
+     *            the turn for the given player
+     */
     public DicePane(SceneMap view, boolean isMyTurn) {
 	this.view = view;
 	this.isMyTurn = isMyTurn;
@@ -92,8 +108,6 @@ public class DicePane implements PaneHolder, UpdateDice, NotCloseable {
 
     /**
      * calls the throwDice method and disables the throw button
-     * 
-     * 
      */
     public void throwDice() {
 	if (isMyTurn) {
@@ -116,8 +130,8 @@ public class DicePane implements PaneHolder, UpdateDice, NotCloseable {
 		dices.getChildren().add(text);
 		Scheduler.runSyncLater(() -> {
 		    view.closeOverlay();
-		}, 5000L);
-	    }, 2500L);
-	}, 200L);
+		} , 5000L);
+	    } , 2500L);
+	} , 200L);
     }
 }
