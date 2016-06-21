@@ -258,10 +258,10 @@ public class SceneMap implements SceneHolder, UpdateMap {
 		}
 		theOverlayBackground = new Rectangle(0, 0, ViewMaster.GAME_WIDHT, ViewMaster.GAME_HEIGHT);
 		theOverlayBackground.setFill(new Color(0.1, 0.1, 0.1, 0.5));
-		if (!(theOverlayPane instanceof NotCloseable)) {
+		if (!(pane instanceof NotCloseable)) {
 		    theOverlayBackground.setOnMouseClicked(click -> closeOverlay());
-		    layers.getChildren().add(theOverlayBackground);
 		}
+		layers.getChildren().add(theOverlayBackground);
 		layers.getChildren().add(theOverlayPane);
 		SceneUtil.fadeIn(theOverlayPane);
 	    } else {
@@ -343,8 +343,12 @@ public class SceneMap implements SceneHolder, UpdateMap {
 
     @Override
     public void updateCardCosts(EnumMap<Resource, Integer> resources) throws RemoteException {
-	buildPane.updateCardCosts(resources);
-	buyPane.updateCardCosts(resources);
+	try {
+	    buildPane.updateCardCosts(resources);
+	    buyPane.updateCardCosts(resources);
+	} catch (Exception ex) {
+	    ex.printStackTrace();
+	}
     }
 
     @Override

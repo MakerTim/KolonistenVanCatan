@@ -103,14 +103,11 @@ public class ServerMap implements Map {
 	}
 	for (Tile todo : toRegister) {
 	    Building[] buildings = new Building[Point.values().length];
-	    for (Point point : Point.values()) {
-		for (Direction direction : point.getAttached()) {
-		    Tile relative = todo.getRelative(this, direction);
-		    if (relative != null) {
-			// TODO: Hier was ik
-		    }
-		}
+	    for (int i = 0; i < Point.values().length; i++) {
+		Coordinate location = Point.values()[i].addTo(todo.getPosition());
+		buildings[i] = getBuilding(location);
 	    }
+	    todo.setupBuilding(buildings);
 	}
     }
 

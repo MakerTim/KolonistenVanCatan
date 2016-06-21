@@ -2,13 +2,19 @@ package nl.groep4.kvc.server.controller;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
 import nl.groep4.kvc.common.enumeration.BuildingType;
 import nl.groep4.kvc.common.enumeration.Direction;
 import nl.groep4.kvc.common.enumeration.GameState;
 import nl.groep4.kvc.common.enumeration.Point;
 import nl.groep4.kvc.common.enumeration.Resource;
+import nl.groep4.kvc.common.enumeration.SelectState;
+import nl.groep4.kvc.common.enumeration.TurnState;
 import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.Throw;
@@ -18,8 +24,8 @@ import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Map;
 import nl.groep4.kvc.common.map.Street;
 import nl.groep4.kvc.common.map.Tile;
-import nl.groep4.kvc.common.map.TileResource;
 import nl.groep4.kvc.common.util.Scheduler;
+import nl.groep4.kvc.server.model.ServerCosts;
 import nl.groep4.kvc.server.model.map.ServerMap;
 
 /**
@@ -30,11 +36,14 @@ import nl.groep4.kvc.server.model.map.ServerMap;
  */
 public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 
-    private ServerTurnController turnController;
+    ServerTradeController tradeController;
+    ServerTurnController turnController;
+    ServerShopController shopController;
+    ServerMapController mapController;
 
     private final List<Player> players;
     private ServerMap map = new ServerMap();
-    private int round = -2;
+    private int round = -1;
     private int turn = -1;
     private Throw lastThrow;
     private GameState state;
@@ -42,7 +51,10 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     public ServerKolonistenVanCatan(List<Player> players) {
 	System.out.println("Starting game!");
 	this.players = players;
+	tradeController = new ServerTradeController(this);
 	turnController = new ServerTurnController(this);
+	shopController = new ServerShopController(this);
+	mapController = new ServerMapController(this);
 	players.sort((pl1, pl2) -> {
 	    return Integer.compare(pl1.hashCode(), pl2.hashCode());
 	});
@@ -53,6 +65,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     public void start() {
 	System.out.println("\tStarted game!");
 	state = GameState.INIT;
+	updateCosts();
 	nextTurn();
     }
 
@@ -61,9 +74,6 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	return map;
     }
 
-    /**
-     * Creates the map
-     */
     @Override
     public void createMap() {
 	map.createMap();
@@ -72,6 +82,10 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     @Override
     public GameState getState() {
 	return this.state;
+    }
+
+    public void setState(GameState state) {
+	this.state = state;
     }
 
     @Override
@@ -84,6 +98,14 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	round++;
     }
 
+    public int newTurn() {
+	return ++turn - 1;
+    }
+
+    public void resetTurn() {
+	turn = 0;
+    }
+
     @Override
     public List<Player> getPlayers() {
 	return players;
@@ -91,36 +113,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 
     @Override
     public void nextTurn() {
-	if (turn++ >= players.size() - 1) {
-	    turn = 0;
-	    nextRound();
-	    if (state == GameState.INIT && round == 0) {
-		state = GameState.IN_GAME;
-	    }
-	}
-	turnController.fixButtons();
-	switch (state) {
-	case END:
-	    turnController.endGame();
-	    break;
-	case INIT:
-	    turnController.initTurnBuilding();
-	    break;
-	case IN_GAME:
-	    turnController.onTurn();
-	    break;
-	}
-	List<Runnable> runs = new ArrayList<>();
-	for (Player pl : getPlayers()) {
-	    runs.add(() -> {
-		try {
-		    pl.getUpdateable(UpdateMap.class).updatePlayerOrder(getPlayersOrded());
-		} catch (RemoteException ex) {
-		    ex.printStackTrace();
-		}
-	    });
-	}
-	Scheduler.runAsyncdSync(runs);
+	turnController.nextTurn();
     }
 
     @Override
@@ -138,103 +131,186 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     }
 
     @Override
-    public void placeBuilding(Coordinate coord, Player newOwner, BuildingType type) throws RemoteException {
-	if (newOwner.equals(getTurn())) {
-	    if (newOwner.getRemainingBuidlings() > 0) {
-		Building building = map.getBuilding(coord);
-		boolean validAction = true;
-		for (Tile tile : building.getConnectedTiles()) {
-		    for (Point point : Point.values()) {
-			if (building.equals(tile.getBuilding(point))) {
-			    if (!tile.isValidPlace(map, point)) {
-				validAction = false;
-				break;
-			    }
-			}
-		    }
-		}
-		if (validAction) {
-		    building.setOwner(newOwner);
-		    building.setBuildingType(type);
-		    update();
-		    if (state == GameState.INIT) {
-			turnController.initTurnStreet(building);
-		    }
-		} else {
-		    newOwner.getUpdateable().popup("alreadbuilding");
-		}
-	    } else {
-		newOwner.getUpdateable().popup("nobuilding");
-	    }
-	} else {
-	    newOwner.getUpdateable().popup("noturn");
-	}
+    public void placeBuilding(Coordinate coord, BuildingType type) {
+	mapController.placeBuilding(coord, type);
     }
 
     @Override
-    public void placeStreet(Coordinate coord, Player newOwner) throws RemoteException {
-	if (newOwner.equals(getTurn())) {
-	    if (newOwner.getRemainingStreets() > 0) {
-		Street street = map.getStreet(coord);
-		boolean validAction = true;
-		for (Tile tile : street.getConnectedTiles()) {
-		    for (Direction direction : Direction.values()) {
-			if (street.equals(tile.getStreet(direction))) {
-			    if (!tile.isValidPlace(map, direction)) {
-				validAction = false;
-				break;
-			    }
-			}
-		    }
-		}
-		if (validAction) {
-		    street.setOwner(newOwner);
-		    update();
-		    if (state == GameState.INIT) {
-			nextTurn();
-		    }
-		} else {
-		    newOwner.getUpdateable().popup("alreadstreet");
-		}
-	    } else {
-		newOwner.getUpdateable().popup("nostreet");
-	    }
-	} else {
-	    newOwner.getUpdateable().popup("noturn");
-	}
+    public void placeStreet(Coordinate coord) {
+	mapController.placeStreet(coord);
     }
 
     @Override
-    public void throwDices() throws RemoteException {
+    public void throwDices() {
 	ServerThrowController diceController = new ServerThrowController(this);
 	lastThrow = diceController.getThrow();
 	diceController.updateThrow();
     }
 
+    public Throw getLastThrow() {
+	return this.lastThrow;
+    }
+
     @Override
-    public void distrube() throws RemoteException {
-	System.out.printf("Giving players resources for tiles with number '%d'\n", lastThrow.getValue());
-	for (Tile tile : map.getTiles()) {
-	    if (tile instanceof TileResource) {
-		TileResource tileResource = (TileResource) tile;
-		if (!tileResource.hasRover() && tileResource.getNumber() == lastThrow.getValue()) {
-		    Resource resource = tileResource.getResource();
-		    for (Building building : tile.getBuildings()) {
-			if (building != null && building.getOwner() != null) {
-			    Player pl = building.getOwner();
-			    switch (building.getBuildingType()) {
-			    case CITY:
-				pl.giveResource(resource);
-			    case VILLAGE:
-				pl.giveResource(resource);
-			    case EMPTY:
-				break;
+    public void distribute() {
+	mapController.distribute();
+    }
+
+    public void highlightBuildings(Player pl, BuildingType type) {
+	Set<Building> buildings;
+	switch (type) {
+	case VILLAGE:
+	    switch (getState()) {
+	    case INIT:
+		buildings = new HashSet<>(getMap().getAllBuildings());
+		for (Tile tile : getMap().getTiles()) {
+		    for (Point point : Point.values()) {
+			if (!tile.isValidPlace(getMap(), point)) {
+			    buildings.remove(tile.getBuilding(point));
+			}
+		    }
+		}
+		break;
+	    case IN_GAME:
+		buildings = new HashSet<>();
+		for (Tile tile : getMap().getTiles()) {
+		    for (Direction direction : Direction.values()) {
+			if (tile.getStreet(direction) != null
+				&& getTurn().equals(tile.getStreet(direction).getOwner())) {
+			    for (Point point : direction.getAttached()) {
+				buildings.add(tile.getBuilding(point));
 			    }
+			}
+		    }
+		}
+		for (Tile tile : getMap().getTiles()) {
+		    for (Point point : Point.values()) {
+			if (!tile.isValidPlace(getMap(), point)) {
+			    buildings.remove(tile.getBuilding(point));
+			}
+		    }
+		}
+		break;
+	    default:
+	    case END:
+		buildings = new HashSet<>();
+		break;
+	    }
+	    break;
+	case CITY:
+	    buildings = new HashSet<>();
+	    for (Building building : getMap().getAllBuildings()) {
+		if (pl.equals(building.getOwner())) {
+		    buildings.add(building);
+		}
+	    }
+	    break;
+	default:
+	case EMPTY:
+	    buildings = new HashSet<>();
+	    break;
+	}
+	highlightBuildings(pl, buildings, type);
+    }
+
+    public void highlightStreet(Player pl) {
+	Set<Street> streets = new HashSet<>();
+	for (Tile tile : getMap().getTiles()) {
+	    for (Direction direction : Direction.values()) {
+		Street street = tile.getStreet(direction);
+		if (street != null && pl.equals(street.getOwner())) {
+		    for (Direction connectedDirection : direction.getConnected()) {
+			Street connected = tile.getStreet(connectedDirection);
+			if (connected != null) {
+			    streets.add(connected);
 			}
 		    }
 		}
 	    }
 	}
+	highlightStreets(pl, streets);
+    }
+
+    public void highlightBuildings(Player pl, Collection<Building> buildings, BuildingType type) {
+	try {
+	    pl.getUpdateable(UpdateMap.class).highlightBuildings(buildings, type);
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
+    }
+
+    public void highlightStreets(Player pl, Collection<Street> streets) {
+	try {
+	    pl.getUpdateable(UpdateMap.class).highlightStreets(streets);
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
+    }
+
+    @Override
+    public void buyStreet() {
+	shopController.buyStreet();
+    }
+
+    @Override
+    public void buyVillage() {
+	shopController.buyVillage();
+    }
+
+    @Override
+    public void buyCity() {
+	shopController.buyCity();
+    }
+
+    @Override
+    public void buyCard() {
+	shopController.buyCard();
+    }
+
+    @Override
+    public void useCard() throws RemoteException {
+
+    }
+
+    @Override
+    public void addTrade(Player player, java.util.Map<Resource, Integer> request,
+	    java.util.Map<Resource, Integer> reward) throws RemoteException {
+	tradeController.addTrade(player, request, reward);
+	updateTrades();
+    }
+
+    @Override
+    public void remvoeTrade(UUID key) throws RemoteException {
+	tradeController.removeTrade(key);
+	updateTrades();
+    }
+
+    @Override
+    public void reconnect() throws RemoteException {
+	updateModel();
+	updateResources();
+	updateTrades();
+	updateRound();
+	updateTurn();
+	updateTrades();
+    }
+
+    @Override
+    public void updateModel() {
+	List<Runnable> runs = new ArrayList<>();
+	for (Player pl : getPlayers()) {
+	    runs.add(() -> {
+		try {
+		    pl.getUpdateable(UpdateMap.class).setModel(getMap());
+		} catch (RemoteException ex) {
+		    ex.printStackTrace();
+		}
+	    });
+	}
+	Scheduler.runAsyncdSync(runs);
+    }
+
+    public void updateResources() {
 	List<Runnable> runs = new ArrayList<>();
 	for (Player pl : getPlayers()) {
 	    runs.add(() -> {
@@ -249,4 +325,173 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	}
 	Scheduler.runAsyncdSync(runs);
     }
+
+    public void updateCards() {
+	List<Runnable> runs = new ArrayList<>();
+	for (Player pl : getPlayers()) {
+	    runs.add(() -> {
+		for (Player player : getPlayers()) {
+		    try {
+			pl.getUpdateable(UpdateMap.class).updateStock(player, player.getCards());
+		    } catch (Exception ex) {
+			ex.printStackTrace();
+		    }
+		}
+	    });
+	}
+	Scheduler.runAsyncdSync(runs);
+    }
+
+    public void updateCosts() {
+	List<Runnable> runs = new ArrayList<>();
+	for (Player pl : getPlayers()) {
+	    runs.add(() -> {
+		try {
+		    UpdateMap view = pl.getUpdateable(UpdateMap.class);
+		    view.updateCardCosts(ServerCosts.DEVELOPMENT_CARD_COSTS);
+		    view.updateCityCosts(ServerCosts.CITY_COSTS);
+		    view.updateVillageCosts(ServerCosts.VILLAGE_COSTS);
+		    view.updateStreetCosts(ServerCosts.STREET_COSTS);
+		} catch (Exception ex) {
+		    ex.printStackTrace();
+		}
+	    });
+	}
+	Scheduler.runAsyncdSync(runs);
+    }
+
+    public void updateTrades() {
+	List<Runnable> runs = new ArrayList<>();
+	for (Player pl : getPlayers()) {
+	    runs.add(() -> {
+		try {
+		    pl.getUpdateable(UpdateMap.class).updateTrades(tradeController.getTrades());
+		} catch (Exception ex) {
+		    ex.printStackTrace();
+		}
+	    });
+	}
+	Scheduler.runAsyncdSync(runs);
+    }
+
+    public void updateRound() {
+	List<Runnable> runs = new ArrayList<>();
+	for (Player pl : getPlayers()) {
+	    runs.add(() -> {
+		try {
+		    pl.getUpdateable(UpdateMap.class).updateRound(getRound());
+		} catch (Exception ex) {
+		    ex.printStackTrace();
+		}
+	    });
+	}
+	Scheduler.runAsyncdSync(runs);
+    }
+
+    public void updateState(TurnState state) {
+	List<Runnable> runs = new ArrayList<>();
+	for (Player pl : getPlayers()) {
+	    runs.add(() -> {
+		try {
+		    pl.getUpdateable(UpdateMap.class).updateTurn(getTurn(), state);
+		} catch (Exception ex) {
+		    ex.printStackTrace();
+		}
+	    });
+	}
+	Scheduler.runAsyncdSync(runs);
+    }
+
+    public void updateTurn() {
+	List<Runnable> runs = new ArrayList<>();
+	for (Player pl : getPlayers()) {
+	    runs.add(() -> {
+		try {
+		    pl.getUpdateable(UpdateMap.class).updatePlayerOrder(getPlayersOrded());
+		} catch (Exception ex) {
+		    ex.printStackTrace();
+		}
+	    });
+	}
+	Scheduler.runAsyncdSync(runs);
+    }
+
+    public void openDicePane() {
+	try {
+	    for (Player pl : getPlayersOrded()) {
+		try {
+		    pl.getUpdateable(UpdateMap.class).openDicePane(false);
+		} catch (RemoteException ex) {
+		    ex.printStackTrace();
+		}
+	    }
+	    getTurn().getUpdateable(UpdateMap.class).openDicePane(true);
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
+    }
+
+    @Override
+    public void openPausePane(Player requester) {
+	try {
+	    for (Player pl : getPlayers()) {
+		try {
+		    pl.getUpdateable(UpdateMap.class).openPausePane(false);
+		} catch (RemoteException ex) {
+		    ex.printStackTrace();
+		}
+	    }
+	    requester.getUpdateable(UpdateMap.class).openPausePane(true);
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
+    }
+
+    public void moveBanditModus() {
+	// TODO: move rover modus
+    }
+
+    public void buildStreetModus(int streetsToBuild) {
+	try {
+	    Player who = getTurn();
+	    who.addRemainingStreets(streetsToBuild);
+	    UpdateMap view = who.getUpdateable(UpdateMap.class);
+	    view.closeOverlay();
+	    view.setSelectable(SelectState.STREET);
+	    view.blockActions();
+	    highlightStreet(who);
+	    updateResources();
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
+    }
+
+    public void buildVillageModus(int villageToBuild) {
+	try {
+	    Player who = getTurn();
+	    who.addRemainingVillages(villageToBuild);
+	    UpdateMap view = who.getUpdateable(UpdateMap.class);
+	    view.closeOverlay();
+	    view.setSelectable(SelectState.BUILDING);
+	    highlightBuildings(who, BuildingType.VILLAGE);
+	    updateResources();
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
+    }
+
+    public void buildCityModus(int cityToBuild) {
+	try {
+	    Player who = getTurn();
+	    who.addRemainingCitys(cityToBuild);
+	    UpdateMap view = who.getUpdateable(UpdateMap.class);
+	    view.closeOverlay();
+	    view.setSelectable(SelectState.BUILDING);
+	    highlightBuildings(who, BuildingType.CITY);
+	    updateResources();
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
+    }
+
 }

@@ -11,7 +11,6 @@ import nl.groep4.kvc.common.enumeration.GameState;
 import nl.groep4.kvc.common.enumeration.Point;
 import nl.groep4.kvc.common.enumeration.SelectState;
 import nl.groep4.kvc.common.enumeration.TurnState;
-import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.UpdateMap;
 import nl.groep4.kvc.common.map.Building;
@@ -23,21 +22,39 @@ import nl.groep4.kvc.common.util.Scheduler;
 
 public class ServerTurnController {
 
-    private KolonistenVanCatan controller;
+    private ServerKolonistenVanCatan controller;
 
-    public ServerTurnController(KolonistenVanCatan serverKolonistenVanCatan) {
+    public ServerTurnController(ServerKolonistenVanCatan serverKolonistenVanCatan) {
 	this.controller = serverKolonistenVanCatan;
     }
 
-    // TODO: Highlight streets method
-    // TODO: Highlight buildings method
-    // TODO: buy x
-    // TODO: buy card
-    // TODO: use card
-    // TODO: trading
+    // TODO: card.newpanes
+    // TODO: trading.use
     // TODO: Rover verplaatsen
     // TODO: Punten berekenen
-    // TODO: Pause serversided - warning if niet aan beurt
+
+    public void nextTurn() {
+	if (controller.newTurn() >= controller.getPlayers().size() - 1) {
+	    controller.resetTurn();
+	    controller.nextRound();
+	    if (controller.getState() == GameState.INIT && controller.getRound() == 1) {
+		controller.setState(GameState.IN_GAME);
+	    }
+	}
+	fixButtons();
+	switch (controller.getState()) {
+	case END:
+	    endGame();
+	    break;
+	case INIT:
+	    initTurnBuilding();
+	    break;
+	case IN_GAME:
+	    onTurn();
+	    break;
+	}
+	controller.updateTurn();
+    }
 
     public void initTurnStreet(Building building) {
 	try {
@@ -46,10 +63,12 @@ public class ServerTurnController {
 	    }
 	    Player pl = controller.getTurn();
 	    System.out.printf("Initial turn for %s\n", pl.getUsername());
-	    for (Tile tile : building.getConnectedTiles()) {
-		if (tile instanceof TileResource) {
-		    TileResource resource = (TileResource) tile;
-		    pl.giveResource(resource.getResource());
+	    if (controller.getRound() >= 0) {
+		for (Tile tile : building.getConnectedTiles()) {
+		    if (tile instanceof TileResource) {
+			TileResource resource = (TileResource) tile;
+			pl.giveResource(resource.getResource());
+		    }
 		}
 	    }
 	    Set<Street> availbleStreets = new HashSet<>();
@@ -63,22 +82,10 @@ public class ServerTurnController {
 		    }
 		}
 	    }
-	    List<Runnable> runs = new ArrayList<>();
-	    for (Player player : controller.getPlayers()) {
-		runs.add(() -> {
-		    try {
-			UpdateMap view = player.getUpdateable(UpdateMap.class);
-			view.updateTurn(pl, TurnState.BUILDING_STREET);
-			view.updateStock(pl, pl.getResources());
-		    } catch (Exception e) {
-			e.printStackTrace();
-		    }
-		});
-	    }
-	    Scheduler.runAsyncdSync(runs);
-	    UpdateMap view = controller.getTurn().getUpdateable(UpdateMap.class);
+	    controller.updateState(TurnState.BUILDING_STREET);
+	    controller.updateResources();
 	    controller.highlightStreets(pl, availbleStreets);
-	    view.setSelectable(SelectState.STREET);
+	    pl.setSelectable(SelectState.STREET);
 	    pl.addRemainingStreets(1);
 	} catch (Exception ex) {
 	    ex.printStackTrace();
@@ -90,29 +97,11 @@ public class ServerTurnController {
 	    if (controller.getState() != GameState.INIT) {
 		return;
 	    }
-	    Set<Building> availbleBuidlings = new HashSet<>();
-	    for (Tile tile : controller.getMap().getTiles()) {
-		for (Point point : Point.values()) {
-		    if (tile.isValidPlace(controller.getMap(), point)) {
-			availbleBuidlings.add(tile.getBuilding(point));
-		    }
-		}
-	    }
-	    List<Runnable> runs = new ArrayList<>();
-	    for (Player pl : controller.getPlayers()) {
-		runs.add(() -> {
-		    try {
-			pl.getUpdateable(UpdateMap.class).updateTurn(controller.getTurn(), TurnState.BUILDING_BUILDING);
-		    } catch (Exception ex) {
-			ex.printStackTrace();
-		    }
-		});
-	    }
-	    Scheduler.runAsyncdSync(runs);
-	    UpdateMap view = controller.getTurn().getUpdateable(UpdateMap.class);
-	    view.highlightBuildings(availbleBuidlings, BuildingType.VILLAGE);
-	    view.setSelectable(SelectState.BUILDING);
-	    controller.getTurn().addRemainingBuidlings(1);
+	    Player pl = controller.getTurn();
+	    controller.updateState(TurnState.BUILDING_BUILDING);
+	    controller.highlightBuildings(controller.getTurn(), BuildingType.VILLAGE);
+	    pl.setSelectable(SelectState.BUILDING);
+	    pl.addRemainingVillages(1);
 	} catch (Exception ex) {
 	    ex.printStackTrace();
 	}
@@ -124,27 +113,9 @@ public class ServerTurnController {
 		return;
 	    }
 	    System.out.println(controller.getTurn().getUsername() + "'s turn is now.");
-	    {
-		UpdateMap view = controller.getTurn().getUpdateable(UpdateMap.class);
-		view.openDicePane(true);
-	    }
-	    for (int i = 1; i < controller.getPlayersOrded().size(); i++) {
-		try {
-		    UpdateMap view = controller.getPlayersOrded().get(i).getUpdateable(UpdateMap.class);
-		    view.openDicePane(false);
-		} catch (Exception ex) {
-		    ex.printStackTrace();
-		}
-	    }
-	    for (Player pl : controller.getPlayers()) {
-		try {
-		    UpdateMap view = pl.getUpdateable(UpdateMap.class);
-		    view.updateRound(controller.getRound());
-		    view.updateTurn(controller.getTurn(), TurnState.THROWING_DICE);
-		} catch (Exception ex) {
-		    ex.printStackTrace();
-		}
-	    }
+	    controller.openDicePane();
+	    controller.updateRound();
+	    controller.updateState(TurnState.THROWING_DICE);
 	} catch (Exception ex) {
 	    ex.printStackTrace();
 	}
@@ -156,10 +127,8 @@ public class ServerTurnController {
 
     public void fixButtons() {
 	try {
-	    controller.getTurn().getUpdateable(UpdateMap.class).unblockActions();
-	    List<Player> orderd = controller.getPlayersOrded();
 	    List<Runnable> runs = new ArrayList<>();
-	    for (Player player : orderd) {
+	    for (Player player : controller.getPlayersOrded()) {
 		runs.add(() -> {
 		    try {
 			player.getUpdateable(UpdateMap.class).blockActions();
@@ -169,9 +138,9 @@ public class ServerTurnController {
 		});
 	    }
 	    Scheduler.runAsyncdSync(runs);
+	    controller.getTurn().getUpdateable(UpdateMap.class).unblockActions();
 	} catch (Exception ex) {
 	    ex.printStackTrace();
 	}
     }
-
 }

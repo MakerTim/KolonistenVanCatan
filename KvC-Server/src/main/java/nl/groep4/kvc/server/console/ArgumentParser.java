@@ -36,7 +36,14 @@ public class ArgumentParser {
 	case "kick":
 	    kick();
 	    break;
+	case "trigger":
+	    trigger();
+	    break;
 	}
+    }
+
+    private void trigger() throws RemoteException {
+	ServerStarter.getLobby().getGame().throwDices();
     }
 
     private void exit() throws RemoteException {

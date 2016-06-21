@@ -26,7 +26,8 @@ public class ServerPlayer implements Player {
     private Color color;
     private List<Card> cards = new ArrayList<>();
     private EnumMap<Resource, Integer> resources;;
-    private int buildingsToBuild;
+    private int villagesToBuild;
+    private int citysToBuild;
     private int streetsToBuild;
 
     /**
@@ -70,6 +71,16 @@ public class ServerPlayer implements Player {
     }
 
     @Override
+    public void addCard(Card drawnCard) throws RemoteException {
+	cards.add(drawnCard);
+    }
+
+    @Override
+    public void useCard(Card usedCard) throws RemoteException {
+	cards.remove(usedCard);
+    }
+
+    @Override
     public List<Card> getCards() {
 	return cards;
     }
@@ -90,13 +101,23 @@ public class ServerPlayer implements Player {
     }
 
     @Override
-    public int getRemainingBuidlings() {
-	return buildingsToBuild;
+    public int getRemainingVillages() {
+	return villagesToBuild;
     }
 
     @Override
-    public void addRemainingBuidlings(int buildings) {
-	buildingsToBuild += buildings;
+    public void addRemainingVillages(int villages) {
+	villagesToBuild += villages;
+    }
+
+    @Override
+    public int getRemainingCitys() throws RemoteException {
+	return citysToBuild;
+    }
+
+    @Override
+    public void addRemainingCitys(int citys) throws RemoteException {
+	citysToBuild += citys;
     }
 
     @Override
@@ -111,4 +132,5 @@ public class ServerPlayer implements Player {
 	}
 	return super.equals(obj);
     }
+
 }

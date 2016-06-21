@@ -9,7 +9,7 @@ import nl.groep4.kvc.common.enumeration.Color;
 public interface Lobby extends Remote {
 
     public static enum State {
-	LOBBY, IN_GAME
+	LOBBY, STARTING, IN_GAME
     }
 
     public KolonistenVanCatan getGame() throws RemoteException;

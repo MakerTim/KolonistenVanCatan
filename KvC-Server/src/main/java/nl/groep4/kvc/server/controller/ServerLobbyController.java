@@ -27,6 +27,9 @@ public class ServerLobbyController {
     }
 
     public void startGame() throws RemoteException {
+	if (lobby.getState() != State.LOBBY) {
+	    lobby.setState(State.STARTING);
+	}
 	List<Player> playersReady = new ArrayList<>();
 	List<Player> playersUnready = new ArrayList<>();
 	for (Player player : lobby.getPlayers()) {
@@ -95,6 +98,7 @@ public class ServerLobbyController {
     public Player registerPlayer(String username) throws RemoteException {
 	switch (lobby.getState()) {
 	case IN_GAME:
+	case STARTING:
 	    for (Player kvcPlayer : lobby.getGame().getPlayers()) {
 		if (kvcPlayer.getUsername().equals(username)) {
 		    return kvcPlayer;
@@ -118,6 +122,8 @@ public class ServerLobbyController {
 	    lobby.getPlayers().add(pl);
 	    System.out.printf("Player %s has joined!\n", pl.getUsername());
 	    return pl;
+	default:
+	    break;
 	}
 	return null;
     }
@@ -131,6 +137,7 @@ public class ServerLobbyController {
 	    }
 	});
 	switch (lobby.getState()) {
+	case STARTING:
 	case IN_GAME:
 	    pl.getUpdateable().popup("ingame");
 	    break;

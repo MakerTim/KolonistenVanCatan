@@ -92,7 +92,10 @@ public class LoginController implements Controller {
 	    }
 	    break;
 	case IN_GAME:
+	case STARTING:
 	    new LobbyController(model).reopenGame(pl);
+	    break;
+	default:
 	    break;
 	}
 
