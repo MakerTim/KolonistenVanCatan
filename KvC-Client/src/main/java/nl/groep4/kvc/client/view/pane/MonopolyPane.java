@@ -41,7 +41,7 @@ public class MonopolyPane implements PaneHolder, NotCloseable {
     private SceneMap scenemap;
 
     public MonopolyPane(SceneMap sceneMap) {
-	this.scenemap = scenemap;
+	this.scenemap = sceneMap;
     }
 
     @Override
