@@ -125,7 +125,6 @@ public class StockPane implements PaneHolder, UpdateStock {
 	devCards.setMaxWidth(600);
 	devCards.setAlignment(Pos.CENTER);
 	devCards.setPadding(new Insets(8, 0, 8, 0));
-	devCards.getChildren().addAll();
 	development = new ScrollPane(devCards);
 	development.setMaxWidth(600);
 
