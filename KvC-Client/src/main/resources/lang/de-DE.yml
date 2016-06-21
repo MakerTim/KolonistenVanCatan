@@ -20,6 +20,12 @@ game.resourcename.ore:Erz
 game.resourcename.stone:Stein
 game.resourcename.wool:Wolle
 game.resourcename.wheat:Korn
+game.score.woodletter:H
+game.score.woolletter:W
+game.score.oreletter:E
+game.score.brickletter:S
+game.score.wheatletter:K
+
 
 #SceneLobby
 lobby.shield.title:Lobby
@@ -76,16 +82,16 @@ lobby.button.join:Entreiten
 lobby.button.settings:Einstellungen
 
 #Turn
-turn.state.building:Baut auf Gebäude
-turn.state.building.self:Plazieren eines Gebäudes
-turn.state.street:Ist eine Straße zum Gebäude
-turn.state.street.self:Einsetzen einer Straße
-turn.state.card:Ist eine Karte kaufen
-turn.state.card.self:Kaufen eine Karte
+turn.state.building:Baut
+turn.state.building.self:Bauen
+turn.state.street:Baut
+turn.state.street.self:Bauen
+turn.state.card:Ist kaufen
+turn.state.card.self:Kaufen
 turn.state.dice:Die Würfel
 turn.state.dice.self:Sind die Würfel
-turn.state.trade:Ist auf der Auktion
-turn.state.trade.self:Befinden sich in der Auktion
+turn.state.trade:Auf der Auktion
+turn.state.trade.self:In der Auktion
 turn.state.wait:Drehen
 turn.state.wait.self:Sind neben
 turn.self:Sie
@@ -104,9 +110,16 @@ pause.label.pause:Pause
 #TradePane
 trade.button.place:Platz
 trade.button.back:Zurück
-trade.text.Search:Suche
-trade.text.Offer:Gebot
+trade.text.search:Suche
+trade.text.offer:Gebot
 trade.text.resources:Ressourcen
+trade.text.wheat:Korn
+trade.text.wood:Holz
+trade.text.wool:Wolle
+trade.text.brick:Stein
+trade.text.ore:Erz
+trade.text.give:Geben
+trade.text.receive:Erhalten
 trade.text.wheat:Korn
 trade.text.wood:Holz
 trade.text.wool:Wolle
@@ -140,18 +153,31 @@ gamenote.ingame.details:Schalt Farbe ist nicht verfügbar, während Spiel läuft
 note.noplayers.title:Nicht genug Menschen
 note.noplayers.explanation:Es gibt nicht genug Menschen vorhanden
 note.noplayers.details:Exception: 503 Service Unavailable
-note.noturn.tile:Sie sind nicht zu handeln
-note.noturn.explanation:Sie sind nicht einmal umdrehen
-note.noturn.details:Exception: 503 Service Unavailable
-note.nostreet.title:Keine Straßen zu Ort
-note.nostreet.explanation:Sie müssen keine Straßen platzieren
-note.nostreet.details:Exception: 503 Service Unavailable
-note.building.title:Es gibt keine Gebäude zu platzieren
-note.building.explanation:Sie haben keine Gebäude zu platzieren
-note.building.details:Exception: 503 Service Unavailable
-note.alreadstreet.title:Setzen Sie nicht verfügbar
-note.alreadstreet.explanation:Hier steht ein Gebäude bereits
-note.alreadstreet.details:Exception: 503 Service Unavailable
+gamenote.noturn.tile:Sie sind nicht zu handeln
+gamenote.noturn.explanation:Sie sind nicht einmal umdrehen
+gamenote.noturn.details:Exception: 503 Service Unavailable
+gamenote.nostreet.title:Keine Straßen zu Ort
+gamenote.nostreet.explanation:Sie müssen keine Straßen platzieren
+gamenote.nostreet.details:Exception: 503 Service Unavailable
+gamenote.nobuilding.title:Es gibt keine Gebäude zu platzieren
+gamenote.nobuilding.explanation:Sie haben keine Gebäude zu platzieren
+gamenote.nobuilding.details:Exception: 503 Service Unavailable
+gamenote.alreadstreet.title:Setzen Sie nicht verfügbar
+gamenote.alreadstreet.explanation:Hier steht ein Gebäude bereits
+gamenote.alreadstreet.details:Exception: 503 Service Unavailable
+gamenote.alreadbuilding.title:Setzen Sie nicht verfügbar
+gamenote.alreadbuilding.explanation:Hier steht ein Gebäude bereits
+gamenote.alreadbuilding.details:Exception: 503 Service Unavailable
+gamenote.noresources.title:Nicht genügend Ressourcen
+gamenote.noresources.explanation:Sie verfügen nicht über genügend Ressourcen
+gamenote.noresources.details:Exception: 503 Service Unavailable
+gamenote.nocards.title:Nicht genügend Karten
+gamenote.nocards.explanation:Sie haben nicht genug Karten
+gamenote.nocard.details:Exception: 503 Service Unavailable
+gamenote.noowner.title:Nicht der Besitzer
+gamenote.noowner.explanation:Sie sind nicht der Eigentümer dieses Gebäudes
+gamenote.noowner.details:Exception: 503 Service Unavailable
+
 
 #Map
 map.throwdice.clickToThrow:Wirf den Würfel

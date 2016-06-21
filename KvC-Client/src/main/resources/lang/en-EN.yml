@@ -20,6 +20,12 @@ game.resourcename.ore:Ore
 game.resourcename.stone:Brick
 game.resourcename.wool:Wool
 game.resourcename.wheat:Wheat
+game.score.woodletter:W
+game.score.woolletter:W
+game.score.oreletter:O
+game.score.brickletter:B
+game.score.wheatletter:W
+
 
 #SceneLobby
 lobby.shield.title:Lobby
@@ -76,16 +82,16 @@ lobby.button.join:Join
 lobby.button.settings:Settings
 
 #Turn
-turn.state.building:Is building a building
-turn.state.building.self:Are building a building
-turn.state.street:Is building a street
-turn.state.street.self:Are building a street
-turn.state.card:Is buying a card
-turn.state.card.self:Are buying a card
-turn.state.dice:Is throwing dices
-turn.state.dice.self:Are throwing dices
-turn.state.trade:Is in the auction house
-turn.state.trade.self:are in the auctionhouse
+turn.state.building:Is building
+turn.state.building.self:Are building
+turn.state.street:Is building
+turn.state.street.self:Are building
+turn.state.card:Is buying
+turn.state.card.self:Are buying
+turn.state.dice:Is throwing
+turn.state.dice.self:Are throwing
+turn.state.trade:In the auctionhouse
+turn.state.trade.self:In the auctionhouse
 turn.state.wait:Turn
 turn.state.wait.self:Your turn
 turn.self:You
@@ -104,9 +110,16 @@ pause.label.pause:Pauze
 #TradePane
 trade.button.place:Add
 trade.button.back:Back
-trade.text.Search:Search
-trade.text.Offer:Offer
+trade.text.search:Search
+trade.text.offer:Offer
 trade.text.resources:Resources
+trade.text.wheat:Wheat
+trade.text.wood:Wood
+trade.text.wool:Wool
+trade.text.brick:Brick
+trade.text.ore:Ore
+trade.text.give:Give
+trade.text.receive:Receive
 trade.text.wheat:Wheat
 trade.text.wood:Wood
 trade.text.wool:Wool
@@ -140,18 +153,31 @@ gamenote.ingame.details:Switching colour is unavailable while game is running
 note.noplayers.title:Not enough people
 note.noplayers.explanation:There are not enough people
 note.noplayers.details:Exception: 503 Service Unavailable
-note.noturn.tile:It is not your turn
-note.noturn.explanation:It is not your turn yet
-note.noturn.details:Exception: 503 Service Unavailable
-note.nostreet.title:No streets to place
-note.nostreet.explanation:You don't have any streets to place
-note.nostreet.details:Exception: 503 Service Unavailable
-note.building.title:No buildings to place
-note.building.explanation:You don't have any buildings to place
-note.building.details:Exception: 503 Service Unavailable
-note.alreadstreet.title:Place not available
-note.alreadstreet.explanation:Here stands a building already
-note.alreadstreet.details:Exception: 503 Service Unavailable
+gamenote.noturn.tile:It is not your turn
+gamenote.noturn.explanation:It is not your turn yet
+gamenote.noturn.details:Exception: 503 Service Unavailable
+gamenote.nostreet.title:No streets to place
+gamenote.nostreet.explanation:You don't have any streets to place
+gamenote.nostreet.details:Exception: 503 Service Unavailable
+gamenote.nobuilding.title:No buildings to place
+gamenote.nobuilding.explanation:You don't have any buildings to place
+gamenote.nobuilding.details:Exception: 503 Service Unavailable
+gamenote.alreadstreet.title:Place not available
+gamenote.alreadstreet.explanation:Here stands a building already
+gamenote.alreadstreet.details:Exception: 503 Service Unavailable
+gamenote.alreadbuilding.title:Place not available
+gamenote.alreadbuilding.explanation:Here stands a building already
+gamenote.alreadbuilding.details:Exception: 503 Service Unavailable
+gamenote.noresources.title:Not enough resources
+gamenote.noresources.explanation:You don't have enough resources
+gamenote.noresources.details:Exception: 503 Service Unavailable
+gamenote.nocards.title:Not enough cards
+gamenote.nocards.explanation:You don't have enough cards
+gamenote.nocard.details:Exception: 503 Service Unavailable
+gamenote.noowner.title:Not the owner
+gamenote.noowner.explanation:You are not the owner of this building
+gamenote.noowner.details:Exception: 503 Service Unavailable
+
 
 #Map
 map.throwdice.clickToThrow:Roll the dice
