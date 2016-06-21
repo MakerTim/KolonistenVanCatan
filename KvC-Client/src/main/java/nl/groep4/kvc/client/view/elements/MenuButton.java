@@ -4,7 +4,7 @@ import javafx.scene.image.Image;
 import nl.groep4.kvc.client.util.SoundUtil;
 
 /**
- * Lobby buttons, extension of {@link TexturedButton}
+ * Lobby buttons, extension of TexturedButton
  * 
  * @version 1.0
  * @author Tim

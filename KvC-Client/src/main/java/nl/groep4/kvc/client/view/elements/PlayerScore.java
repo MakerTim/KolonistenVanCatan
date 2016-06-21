@@ -22,6 +22,12 @@ import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.Card;
 import nl.groep4.kvc.common.interfaces.Player;
 
+/**
+ * Updates score and stock
+ * 
+ * @author Luc
+ * @version 1.0
+ */
 public class PlayerScore {
 
     private Player player;
@@ -83,8 +89,9 @@ public class PlayerScore {
     }
 
     /**
-     * contructor for setting up object for PlayerScore
-     * 
+     * Constructor for setting up object for PlayerScore
+     *
+     * @param player
      */
     public PlayerScore(Player player) {
 	this.player = player;
@@ -117,6 +124,9 @@ public class PlayerScore {
 	return player;
     }
 
+    /**
+     * updates all resources
+     */
     public void updateTranslation() {
 	woodLetter = (TranslationManager.translate("game.score.woodletter"));
 	brickLetter = (TranslationManager.translate("game.score.brickletter"));
@@ -126,7 +136,7 @@ public class PlayerScore {
     }
 
     /**
-     * updates the resources within the object everytime this method is called
+     * Updates the resources within the object everytime this method is called
      * 
      * @param resources
      *            all the resources
@@ -160,30 +170,66 @@ public class PlayerScore {
 		new KvCText(oreAmount));
     }
 
+    /**
+     * Updates the resource cards in stock
+     * 
+     * @param pl
+     *            player
+     * @param cards
+     *            resource cards
+     * @throws RemoteException
+     *             signals that an exception has been thrown by a remote method
+     *             on the server
+     */
     public void updateStock(Player pl, List<Card> cards) throws RemoteException {
 	playerCards.setText(" " + cards.size());
     }
 
+    /**
+     * gets woodIcon
+     * 
+     * @return a wood icon
+     */
     public Node getWoodIcon() {
 	woodIcon = new ImageView("img/etc/wood.png");
 	return woodIcon;
     }
 
+    /**
+     * gets wool icon
+     * 
+     * @return woolIcon
+     */
     public Node getWoolIcon() {
 	woolIcon = new ImageView("/img/etc/wool.png");
 	return woolIcon;
     }
 
+    /**
+     * gets wheat icon
+     * 
+     * @return wheatIcon
+     */
     public Node getWheatIcon() {
 	wheatIcon = new ImageView("/img/etc/wheat.png");
 	return wheatIcon;
     }
 
+    /**
+     * gets brick icon
+     * 
+     * @return brickIcon
+     */
     public Node getBrickIcon() {
 	brickIcon = new ImageView("/img/etc/brick.png");
 	return brickIcon;
     }
 
+    /**
+     * gets ore icon
+     * 
+     * @return oreIcon
+     */
     public Node getOreIcon() {
 	oreIcon = new ImageView("/img/etc/ore.png");
 	return oreIcon;
