@@ -12,27 +12,38 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
+import nl.groep4.kvc.client.view.elements.KvCText;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.scene.SceneMap;
 
+/**
+ * The pane with the credits.
+ * 
+ * @author Lisa
+ *
+ */
 public class CreditsPane implements PaneHolder {
-    // TODO set Text to KvCText
     private Font font = new Font(ViewMaster.FONT.getName(), 40);
 
     private SceneMap sceneMap;
 
-    private Text credits;
-    private Text bachir;
-    private Text matthijs;
-    private Text Tim;
-    private Text Luc;
-    private Text Lisa;
+    private Text credits = new KvCText(TranslationManager.translate("credits.text.credits"));
+    private Text bachir = new Text("Bachir Talbi");
+    private Text matthijs = new Text("Matthijs Mandjes");
+    private Text Tim = new Text("Tim Biesenbeek");
+    private Text Luc = new Text("Luc Runge");
+    private Text Lisa = new Text("Lisa Groenendijk");
 
     private ImageView boardbackground;
     private ImageView board;
 
-    private MenuButton back;
+    private MenuButton back = new MenuButton(425, 500, TranslationManager.translate("credits.button.back"));
 
+    /**
+     * Sets up the CreditsPane
+     * 
+     * @param sceneMap
+     */
     public CreditsPane(SceneMap sceneMap) {
 	this.sceneMap = sceneMap;
     }
@@ -43,20 +54,11 @@ public class CreditsPane implements PaneHolder {
 	StackPane creditspane = new StackPane();
 
 	HBox hbox = new HBox();
-
 	VBox vbox = new VBox();
 
 	boardbackground = new ImageView("img/game/board_background.gif");
 	board = new ImageView("img/game/board.png");
 
-	credits = new Text(TranslationManager.translate("credits.text.credits"));
-	bachir = new Text("Bachir Talbi");
-	matthijs = new Text("Matthijs Mandjes");
-	Tim = new Text("Tim Biesenbeek");
-	Luc = new Text("Luc Runge");
-	Lisa = new Text("Lisa Groenendijk");
-
-	back = new MenuButton(425, 500, TranslationManager.translate("credits.button.back"));
 	back.setFont(ViewMaster.FONT);
 
 	credits.setFont(ViewMaster.TITLE_FONT);

@@ -17,6 +17,12 @@ import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.enumeration.Resource;
 
+/**
+ * The pane were you can place an ad on.
+ * 
+ * @author Lisa
+ *
+ */
 public class PlaceTradePane implements PaneHolder {
 
     private MenuButton place = new MenuButton(425, 400, TranslationManager.translate("trade.button.place"));
@@ -159,6 +165,10 @@ public class PlaceTradePane implements PaneHolder {
 	return placetradepane;
     }
 
+    /**
+     * When there is a click on the button, the tradepane will be opened
+     * 
+     */
     public void onBackClick() {
 	scenemap.openTradePane();
     }
