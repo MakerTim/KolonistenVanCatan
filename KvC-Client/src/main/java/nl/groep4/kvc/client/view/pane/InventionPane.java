@@ -13,6 +13,7 @@ import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.ResourceCardUtil;
+import nl.groep4.kvc.client.view.scene.SceneMap;
 
 /**
  * The pane when an inventioncard (developmentcard) is used.
@@ -34,6 +35,10 @@ public class InventionPane implements PaneHolder {
     private VBox wheatText;
     private HBox resCards;
     private VBox allThings;
+
+    public InventionPane(SceneMap sceneMap) {
+	// TODO Auto-generated constructor stub
+    }
 
     @Override
     public Pane getPane() {
