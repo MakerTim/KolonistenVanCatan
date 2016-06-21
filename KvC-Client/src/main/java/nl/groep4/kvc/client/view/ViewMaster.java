@@ -80,6 +80,12 @@ public class ViewMaster extends Application {
 	});
     }
 
+    /**
+     * sets sceneSynced
+     * 
+     * @param scene
+     *            current scene
+     */
     public static void setSceneSynced(SceneHolder scene) {
 	Scene theScene = scene.getScene();
 	lastScene = scene;
@@ -87,6 +93,11 @@ public class ViewMaster extends Application {
 	stage.setScene(theScene);
     }
 
+    /**
+     * gets lastScene
+     * 
+     * @return previous scene
+     */
     public static SceneHolder getLastScene() {
 	return lastScene;
     }

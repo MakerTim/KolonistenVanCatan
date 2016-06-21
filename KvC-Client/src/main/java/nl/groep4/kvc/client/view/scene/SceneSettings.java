@@ -38,6 +38,12 @@ public class SceneSettings implements SceneHolder {
     private SceneHolder parent;
     private Slider slider;
 
+    /**
+     * Current settings
+     * 
+     * @param parent
+     *            of sceneSettings
+     */
     public SceneSettings(SceneHolder parent) {
 	this.parent = parent;
     }

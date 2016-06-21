@@ -11,6 +11,9 @@ import nl.groep4.kvc.client.controller.Controller;
  **/
 public interface SceneHolder {
 
+    /**
+     * gets scene
+     */
     public Scene getScene();
 
     /**
@@ -18,5 +21,8 @@ public interface SceneHolder {
      */
     public void updateConfig();
 
+    /**
+     * registers controller
+     */
     public void registerController(Controller controller);
 }

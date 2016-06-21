@@ -56,6 +56,12 @@ import nl.groep4.kvc.common.map.Map;
 import nl.groep4.kvc.common.map.Street;
 import nl.groep4.kvc.common.util.Scheduler;
 
+/**
+ * Calls all panes from map
+ * 
+ * @author Tim
+ * @version 1.0
+ */
 public class SceneMap implements SceneHolder, UpdateMap {
 
     public static /* final */ double scale = 100/* px */;
@@ -169,6 +175,11 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	}
     }
 
+    /**
+     * gets controller
+     * 
+     * @return current controller
+     */
     public MapController getController() {
 	return this.controller;
     }
@@ -219,6 +230,9 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	setOverlay(buyPane);
     }
 
+    /**
+     * opens placeTradePane
+     */
     public void openPlaceTradePane() {
 	setOverlay(new PlaceTradePane(this));
     }
@@ -258,6 +272,12 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	setOverlay(null);
     }
 
+    /**
+     * Overlays other panes
+     * 
+     * @param pane
+     *            to overlay
+     */
     public void setOverlay(PaneHolder pane) {
 	Scheduler.runSync(() -> {
 	    if (theOverlayPane != null) {

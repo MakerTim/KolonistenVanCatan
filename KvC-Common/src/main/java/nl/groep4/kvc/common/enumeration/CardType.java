@@ -16,6 +16,11 @@ public enum CardType {
 	this.amount = amount;
     }
 
+    /**
+     * gets amount
+     * 
+     * @return current amount
+     */
     public int getAmount() {
 	return amount;
     }
