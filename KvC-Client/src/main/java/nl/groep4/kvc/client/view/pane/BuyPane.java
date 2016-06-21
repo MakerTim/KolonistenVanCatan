@@ -119,12 +119,16 @@ public class BuyPane implements PaneHolder, UpdateCosts {
 	Node background = SceneUtil.getGamePane();
 
 	buypane.getChildren().addAll(background, border);
-
+	yes.registerClick(() -> onYesClick());
 	no.registerClick(() -> {
 	    sceneMap.closeOverlay();
 	});
 
 	return buypane;
+    }
+
+    private void onYesClick() {
+	sceneMap.getController().buyCard();
     }
 
     @Override

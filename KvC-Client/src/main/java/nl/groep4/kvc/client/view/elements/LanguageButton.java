@@ -6,7 +6,7 @@ import nl.groep4.kvc.client.util.TranslationManager;
 /**
  * Changes language into another when clicked on button
  * 
- * @author unknown
+ * @author Tim
  * @version 1.0
  */
 public class LanguageButton extends TexturedButton {

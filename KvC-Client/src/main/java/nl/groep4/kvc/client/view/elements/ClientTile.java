@@ -28,6 +28,13 @@ import nl.groep4.kvc.common.map.TileResource;
 import nl.groep4.kvc.common.map.TileSea;
 import nl.groep4.kvc.common.util.CollectionUtil;
 
+/**
+ * Generates map by setting tile coordinates. Adds the use of buildings and
+ * streets.
+ * 
+ * @author Tim
+ * @version 1.0
+ */
 public class ClientTile extends StackPane {
 
     private static final Map<String, Image> CACHE = new HashMap<>();
@@ -42,7 +49,14 @@ public class ClientTile extends StackPane {
     private ImageView fiche;
     private Text number;
 
-    public ClientTile(MapController controller, Coordinate coord) {
+    /**
+     * Arranges the width, coordinates and layout settings for fiches and
+     * numbers that will be places upon the fiches.
+     * 
+     * @param coord
+     *            gives the coordinate where the fiche should be places
+     */
+    public ClientTile(Coordinate coord) {
 	this.coord = coord;
 	Pane overlayPane = new Pane();
 	image = new ImageView();
@@ -99,15 +113,31 @@ public class ClientTile extends StackPane {
 	getChildren().addAll(image, fiche, number, overlayPane);
     }
 
+    /**
+     * renders and sets tile
+     * 
+     * @param tile
+     *            current tile settings
+     */
     public void setTile(Tile tile) {
 	this.tile = tile;
 	renderTile();
     }
 
+    /**
+     * gets tile
+     * 
+     * @return tile
+     */
     public Tile getTile() {
 	return tile;
     }
 
+    /**
+     * gets coordinate
+     * 
+     * @return current coordinate
+     */
     public Coordinate getPosition() {
 	return this.coord;
     }
@@ -119,6 +149,12 @@ public class ClientTile extends StackPane {
 	return CACHE.get(url);
     }
 
+    /**
+     * sets controller
+     * 
+     * @param controller
+     *            controller for the map
+     */
     public void setController(MapController controller) {
 	this.controller = controller;
     }
@@ -153,6 +189,12 @@ public class ClientTile extends StackPane {
 	}
     }
 
+    /**
+     * Sets given variable in select to true
+     * 
+     * @param select
+     *            contains building, street, bandit or tile
+     */
     public void setSelectState(SelectState select) {
 	switch (select) {
 	case BUILDING:
@@ -224,6 +266,14 @@ public class ClientTile extends StackPane {
 	controller.placeBuilding(coord);
     }
 
+    /**
+     * Highlights streets
+     * 
+     * @param direction
+     *            the direction to highlight
+     * @param doesHighlight
+     *            highlights streets when doesHiglight is true
+     */
     public void highLightStreet(Direction direction, boolean doesHighlight) {
 	if (doesHighlight) {
 	    Line line = lines[direction.ordinal()];
@@ -243,6 +293,14 @@ public class ClientTile extends StackPane {
 	}
     }
 
+    /**
+     * Highlights buildings
+     * 
+     * @param point
+     *            location to highlight
+     * @param type
+     *            kind of building
+     */
     public void highLightBuilding(Point point, BuildingType type) {
 	if (point == Point.WEST || point == Point.NORTH_WEST) {
 	    int i = point.ordinal();
