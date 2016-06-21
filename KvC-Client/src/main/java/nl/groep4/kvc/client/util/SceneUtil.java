@@ -136,6 +136,11 @@ public class SceneUtil {
 	return gamepane;
     }
 
+    /**
+     * gets settingspane
+     * 
+     * @return settingspane with it's background
+     */
     public static Node getSettingsPane() {
 	if (settingsPane == null) {
 	    settingsPane = new ImageView("img/menu/settings.png");
