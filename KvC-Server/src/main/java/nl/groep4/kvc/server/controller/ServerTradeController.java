@@ -27,6 +27,8 @@ public class ServerTradeController {
 
     public void addTrade(Player player, Map<Resource, Integer> request, Map<Resource, Integer> reward) {
 	trades.add(new ServerTrade(player, request, reward));
+	validateTrades();
+	controller.updateTrades();
     }
 
     public void onTrade(Trade trade, Player with) {

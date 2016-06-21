@@ -3,6 +3,8 @@ package nl.groep4.kvc.client.view.elements;
 import java.util.HashMap;
 import java.util.Map;
 
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Effect;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -157,28 +159,48 @@ public class ClientTile extends StackPane {
 	    setBuildClickable(true);
 	    setStreetClickable(false);
 	    setTileClickable(false);
+	    setFicheClickable(false);
 	    break;
 	case STREET:
 	    setBuildClickable(false);
 	    setStreetClickable(true);
 	    setTileClickable(false);
+	    setFicheClickable(false);
 	    break;
 	case BANDIT:
 	    setBuildClickable(false);
 	    setStreetClickable(false);
 	    setTileClickable(true);
+	    setFicheClickable(true);
 	    break;
 	case TILE:
 	    setBuildClickable(false);
 	    setStreetClickable(false);
 	    setTileClickable(true);
+	    setFicheClickable(false);
 	    break;
+	}
+    }
+
+    private Effect shadow() {
+	DropShadow shadow = new DropShadow();
+	shadow.setOffsetX(5);
+	shadow.setOffsetY(5);
+	shadow.setColor(Color.LIGHTGOLDENRODYELLOW);
+	return shadow;
+    }
+
+    private void setFicheClickable(boolean clickAble) {
+	fiche.setMouseTransparent(!clickAble);
+	if (clickAble) {
+	    fiche.setEffect(shadow());
+	} else {
+	    fiche.setEffect(null);
 	}
     }
 
     private void setTileClickable(boolean clickAble) {
 	image.setMouseTransparent(!clickAble);
-	fiche.setMouseTransparent(!clickAble);
 	number.setMouseTransparent(!clickAble);
     }
 
