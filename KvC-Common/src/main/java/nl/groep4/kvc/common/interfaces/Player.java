@@ -21,13 +21,25 @@ public interface Player extends Remote {
 
     public void addRemainingStreets(int streets) throws RemoteException;
 
+    public default boolean hasRemainingStreets() throws RemoteException {
+	return getRemainingStreets() > 0;
+    }
+
     public int getRemainingVillages() throws RemoteException;
 
     public void addRemainingVillages(int villages) throws RemoteException;
 
+    public default boolean hasRemainingVillages() throws RemoteException {
+	return getRemainingVillages() > 0;
+    }
+
     public int getRemainingCitys() throws RemoteException;
 
     public void addRemainingCitys(int citys) throws RemoteException;
+
+    public default boolean hasRemainingCitys() throws RemoteException {
+	return getRemainingCitys() > 0;
+    }
 
     /**
      * 
