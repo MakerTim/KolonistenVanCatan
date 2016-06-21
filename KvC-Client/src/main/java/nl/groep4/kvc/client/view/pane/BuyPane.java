@@ -198,6 +198,15 @@ public class BuyPane implements PaneHolder, UpdateCosts {
 	if (cards != null) {
 	    cards.setText(TranslationManager.translate("buypane.text.cards"));
 	}
+	if (buy != null) {
+	    buy.setText(TranslationManager.translate("buycard.msg.buycard"));
+	}
+	if (no != null) {
+	    no.updateText(TranslationManager.translate("buycard.decision.no"));
+	}
+	if (yes != null) {
+	    yes.updateText(TranslationManager.translate("buycard.decision.yes"));
+	}
     }
 
     @Override
