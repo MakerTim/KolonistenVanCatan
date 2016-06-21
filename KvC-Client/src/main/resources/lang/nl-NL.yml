@@ -20,6 +20,11 @@ game.resourcename.ore:Erts
 game.resourcename.stone:Steen
 game.resourcename.wool:Wol
 game.resourcename.wheat:Graan
+game.score.woodletter:H
+game.score.woolletter:W
+game.score.oreletter:E
+game.score.brickletter:S
+game.score.wheatletter:G
 
 #SceneLobby
 lobby.shield.title:Lobby
@@ -114,6 +119,14 @@ trade.text.wood:Hout
 trade.text.wool:Wol
 trade.text.brick:Steen
 trade.text.ore:Erts
+trade.button.back:Terug
+trade.text.give:Geven
+trade.text.receive:Ontvangen
+trade.text.wheat:Graan
+trade.text.wood:Hout
+trade.text.wool:Wol
+trade.text.brick:Steen
+trade.text.ore:Erts
 
 #RulesPane
 rules.button.back:Terug
@@ -157,6 +170,17 @@ gamenote.alreadstreet.details:Exception: 503 Service Unavailable
 gamenote.alreadbuilding.title:Er is al gebouwd
 gamenote.alreadbuilding.explanation:Er is hier al gebouwd
 gamenote.alreadbuilding.details:Exception: 503 Service Unavailable
+gamenote.noresources.title:Niet genoeg grondstoffen
+gamenote.noresources.explanation:U heeft niet genoeg grondstoffen
+gamenote.noresources.details:Exception: 503 Service Unavailable
+gamenote.nocards.title:Niet genoeg kaarten
+gamenote.nocards.explanation:U heeft niet genoeg kaarten
+gamenote.nocard.details:Exception: 503 Service Unavailable
+gamenote.noowner.title:Niet de eigenaar
+gamenote.noowner.explanation:U bent niet de eigenaar van dit gebouw
+gamenote.noowner.details:Exception: 503 Service Unavailable
+
+
 
 #Map
 map.throwdice.clickToThrow:Dobbelen

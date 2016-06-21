@@ -20,6 +20,12 @@ game.resourcename.ore:Ore
 game.resourcename.stone:Brick
 game.resourcename.wool:Wool
 game.resourcename.wheat:Wheat
+game.score.woodletter:W
+game.score.woolletter:W
+game.score.oreletter:O
+game.score.brickletter:B
+game.score.wheatletter:W
+
 
 #SceneLobby
 lobby.shield.title:Lobby
@@ -112,6 +118,13 @@ trade.text.wood:Wood
 trade.text.wool:Wool
 trade.text.brick:Brick
 trade.text.ore:Ore
+trade.text.give:Give
+trade.text.receive:Receive
+trade.text.wheat:Wheat
+trade.text.wood:Wood
+trade.text.wool:Wool
+trade.text.brick:Brick
+trade.text.ore:Ore
 
 #RulesPane
 rules.button.back:Back
@@ -155,6 +168,16 @@ gamenote.alreadstreet.details:Exception: 503 Service Unavailable
 gamenote.alreadbuilding.title:Place not available
 gamenote.alreadbuilding.explanation:Here stands a building already
 gamenote.alreadbuilding.details:Exception: 503 Service Unavailable
+gamenote.noresources.title:Not enough resources
+gamenote.noresources.explanation:You don't have enough resources
+gamenote.noresources.details:Exception: 503 Service Unavailable
+gamenote.nocards.title:Not enough cards
+gamenote.nocards.explanation:You don't have enough cards
+gamenote.nocard.details:Exception: 503 Service Unavailable
+gamenote.noowner.title:Not the owner
+gamenote.noowner.explanation:You are not the owner of this building
+gamenote.noowner.details:Exception: 503 Service Unavailable
+
 
 #Map
 map.throwdice.clickToThrow:Roll the dice

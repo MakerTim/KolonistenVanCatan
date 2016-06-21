@@ -20,6 +20,12 @@ game.resourcename.ore:Minerai
 game.resourcename.stone:Pierre
 game.resourcename.wool:Laine
 game.resourcename.wheat:Grain
+game.score.woodletter:B
+game.score.woolletter:L
+game.score.oreletter:M
+game.score.brickletter:P
+game.score.wheatletter:G
+
 
 #SceneLobby
 lobby.shield.title:Hall
@@ -112,6 +118,13 @@ trade.text.wood:Wood
 trade.text.wool:Bois
 trade.text.brick:Pierre
 trade.text.ore:Minerai
+trade.text.give:Donner
+trade.text.receive:Recevoir
+trade.text.wheat:Grain
+trade.text.wood:Bois
+trade.text.wool:Laine
+trade.text.brick:Pierre
+trade.text.ore:Minerai
 
 #RulesPane
 rules.button.back:Retourner
@@ -156,6 +169,16 @@ gamenote.alreadstreet.details:Exception: 503 Service Unavailable
 gamenote.alreadbuilding.title:A été construite
 gamenote.alreadbuilding.explanation:Il a déjà été construit ici
 gamenote.alreadbuilding.details:Exception: 503 Service Unavailable
+gamenote.noresources.title:Pas assez de ressources
+gamenote.noresources.explanation:Vous ne disposez pas de suffisamment de ressources
+gamenote.noresources.details:Exception: 503 Service Unavailable
+gamenote.nocards.title:Pas assez de cartes
+gamenote.nocards.explanation:Vous n'avez pas assez de cartes
+gamenote.nocard.details:Exception: 503 Service Unavailable
+gamenote.noowner.title:Pas le propriétaire
+gamenote.noowner.explanation:Vous n'êtes pas le propriétaire de ce bâtiment
+gamenote.noowner.details:Exception: 503 Service Unavailable
+
 
 #Map
 map.throwdice.clickToThrow:Jouer aux dés

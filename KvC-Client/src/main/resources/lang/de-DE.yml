@@ -20,6 +20,12 @@ game.resourcename.ore:Erz
 game.resourcename.stone:Stein
 game.resourcename.wool:Wolle
 game.resourcename.wheat:Korn
+game.score.woodletter:H
+game.score.woolletter:W
+game.score.oreletter:E
+game.score.brickletter:S
+game.score.wheatletter:K
+
 
 #SceneLobby
 lobby.shield.title:Lobby
@@ -112,6 +118,13 @@ trade.text.wood:Holz
 trade.text.wool:Wolle
 trade.text.brick:Stein
 trade.text.ore:Erz
+trade.text.give:Geben
+trade.text.receive:Erhalten
+trade.text.wheat:Korn
+trade.text.wood:Holz
+trade.text.wool:Wolle
+trade.text.brick:Stein
+trade.text.ore:Erz
 
 #RulesPane
 rules.button.back:Zurück
@@ -155,6 +168,16 @@ gamenote.alreadstreet.details:Exception: 503 Service Unavailable
 gamenote.alreadbuilding.title:Setzen Sie nicht verfügbar
 gamenote.alreadbuilding.explanation:Hier steht ein Gebäude bereits
 gamenote.alreadbuilding.details:Exception: 503 Service Unavailable
+gamenote.noresources.title:Nicht genügend Ressourcen
+gamenote.noresources.explanation:Sie verfügen nicht über genügend Ressourcen
+gamenote.noresources.details:Exception: 503 Service Unavailable
+gamenote.nocards.title:Nicht genügend Karten
+gamenote.nocards.explanation:Sie haben nicht genug Karten
+gamenote.nocard.details:Exception: 503 Service Unavailable
+gamenote.noowner.title:Nicht der Besitzer
+gamenote.noowner.explanation:Sie sind nicht der Eigentümer dieses Gebäudes
+gamenote.noowner.details:Exception: 503 Service Unavailable
+
 
 #Map
 map.throwdice.clickToThrow:Wirf den Würfel
