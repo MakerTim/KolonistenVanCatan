@@ -22,7 +22,7 @@ public interface Player extends Remote {
     public void addRemainingStreets(int streets) throws RemoteException;
 
     public default void removeRemainingStreet() throws RemoteException {
-	addRemainingCitys(-1);
+	addRemainingStreets(-1);
     }
 
     public default boolean hasRemainingStreets() throws RemoteException {
@@ -33,7 +33,7 @@ public interface Player extends Remote {
 
     public void addRemainingVillages(int villages) throws RemoteException;
 
-    public default void removeRemainingVillages() throws RemoteException {
+    public default void removeRemainingVillage() throws RemoteException {
 	addRemainingVillages(-1);
     }
 
@@ -45,7 +45,7 @@ public interface Player extends Remote {
 
     public void addRemainingCitys(int citys) throws RemoteException;
 
-    public default void removeRemainingCitys() throws RemoteException {
+    public default void removeRemainingCity() throws RemoteException {
 	addRemainingCitys(-1);
     }
 
