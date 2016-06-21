@@ -99,7 +99,7 @@ public class BuyPane implements PaneHolder, UpdateCosts {
 	vboxBrick.getChildren().addAll(brick, brickAmount);
 	vboxOre.getChildren().addAll(ore, oreAmount);
 
-	hboxPrices.getChildren().addAll(vboxPrices, vboxWheat, vboxWood, vboxWool, vboxBrick, vboxOre);
+	hboxPrices.getChildren().addAll(vboxPrices, vboxWood, vboxBrick, vboxWool, vboxWheat, vboxOre);
 	hboxPrices.setAlignment(Pos.CENTER);
 	hboxPrices.setPadding(new Insets(200, 0, 0, 0));
 	hboxPrices.setSpacing(20);

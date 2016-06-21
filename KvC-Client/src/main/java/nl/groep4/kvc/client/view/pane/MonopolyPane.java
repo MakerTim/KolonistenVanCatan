@@ -1,8 +1,16 @@
 package nl.groep4.kvc.client.view.pane;
 
+import javafx.application.Application;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
-public class MonopolyPane implements PaneHolder {
+public class MonopolyPane extends Application implements PaneHolder {
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+	// TODO Auto-generated method stub
+
+    }
 
     @Override
     public Pane getPane() {
@@ -14,6 +22,10 @@ public class MonopolyPane implements PaneHolder {
     public void updateTranslation() {
 	// TODO Auto-generated method stub
 
+    }
+
+    public static void main(String[] args) {
+	launch(args);
     }
 
 }

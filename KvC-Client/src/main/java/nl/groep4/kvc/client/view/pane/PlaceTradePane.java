@@ -148,10 +148,10 @@ public class PlaceTradePane implements PaneHolder {
 	Node background = SceneUtil.getGamePane();
 
 	vboxtrade.getChildren().addAll(resources, search, offer);
-	vboxwheat.getChildren().addAll(wheat, spinnerSearchWheat, spinnerOfferWheat);
 	vboxwood.getChildren().addAll(wood, spinnerSearchWood, spinnerOfferWood);
-	vboxwool.getChildren().addAll(wool, spinnerSearchWool, spinnerOfferWool);
 	vboxbrick.getChildren().addAll(brick, spinnerSearchBrick, spinnerOfferBrick);
+	vboxwool.getChildren().addAll(wool, spinnerSearchWool, spinnerOfferWool);
+	vboxwheat.getChildren().addAll(wheat, spinnerSearchWheat, spinnerOfferWheat);
 	vboxore.getChildren().addAll(ore, spinnerSearchOre, spinnerOfferOre);
 
 	vboxtrade.setSpacing(15);
@@ -168,7 +168,7 @@ public class PlaceTradePane implements PaneHolder {
 	hbox.setSpacing(20);
 	hbox.setPadding(new Insets(230, 0, 0, 0));
 
-	hbox.getChildren().addAll(vboxtrade, vboxwheat, vboxwood, vboxwool, vboxbrick, vboxore);
+	hbox.getChildren().addAll(vboxtrade, vboxwood, vboxbrick, vboxwool, vboxwheat, vboxore);
 	hboxbuttons.getChildren().addAll(place, back);
 	vbox.getChildren().addAll(hbox, hboxbuttons);
 	placetradepane.getChildren().addAll(background, vbox);
