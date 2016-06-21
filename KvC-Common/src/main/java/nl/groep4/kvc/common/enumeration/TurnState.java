@@ -1,9 +1,20 @@
 package nl.groep4.kvc.common.enumeration;
 
+/**
+ * All activities that can be done
+ * 
+ * @author Tim
+ * @version 1.0
+ */
 public enum TurnState {
 
     THROWING_DICE, BUILDING_STREET, BUILDING_BUILDING, BUYING_CARD, WAITING, TRADING;
 
+    /**
+     * all translation of this method
+     * 
+     * @return all translations
+     */
     public String translate() {
 	switch (this) {
 	case BUILDING_BUILDING:

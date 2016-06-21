@@ -60,6 +60,11 @@ public enum Point implements Offsetable {
 	}
     }
 
+    /**
+     * Coordinates of the offsets
+     * 
+     * @return offset coordinates
+     */
     public Coordinate realOffset() {
 	switch (this) {
 	default:
