@@ -14,6 +14,8 @@ import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.ResourceCardUtil;
 import nl.groep4.kvc.client.view.scene.SceneMap;
+import nl.groep4.kvc.common.enumeration.Resource;
+import nl.groep4.kvc.common.interfaces.NotCloseable;
 
 /**
  * The pane when an inventioncard (developmentcard) is used.
@@ -21,7 +23,7 @@ import nl.groep4.kvc.client.view.scene.SceneMap;
  * @author Lisa
  * @version 1.0
  */
-public class MonopolyPane implements PaneHolder {
+public class MonopolyPane implements PaneHolder, NotCloseable {
     private Font font = new Font(ViewMaster.FONT.getName(), 30);
     private Font font2 = new Font(ViewMaster.FONT.getName(), 50);
 
@@ -36,8 +38,10 @@ public class MonopolyPane implements PaneHolder {
     private HBox resCards;
     private VBox allThings;
 
+    private SceneMap scenemap;
+
     public MonopolyPane(SceneMap sceneMap) {
-	// TODO Auto-generated constructor stub
+	this.scenemap = scenemap;
     }
 
     @Override
@@ -96,23 +100,23 @@ public class MonopolyPane implements PaneHolder {
     }
 
     public void onWoodClick() {
-
+	scenemap.getController().targetMonopoly(Resource.WOOD);
     }
 
     public void onBrickClick() {
-
+	scenemap.getController().targetMonopoly(Resource.BRICK);
     }
 
     public void onWoolClick() {
-
+	scenemap.getController().targetMonopoly(Resource.WOOL);
     }
 
     public void onWheatClick() {
-
+	scenemap.getController().targetMonopoly(Resource.WHEAT);
     }
 
     public void onOreClick() {
-
+	scenemap.getController().targetMonopoly(Resource.ORE);
     }
 
     @Override

@@ -14,6 +14,8 @@ import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.ResourceCardUtil;
 import nl.groep4.kvc.client.view.scene.SceneMap;
+import nl.groep4.kvc.common.enumeration.Resource;
+import nl.groep4.kvc.common.interfaces.NotCloseable;
 
 /**
  * The pane when an inventioncard (developmentcard) is used.
@@ -21,7 +23,7 @@ import nl.groep4.kvc.client.view.scene.SceneMap;
  * @author Lisa
  * @version 1.0
  */
-public class InventionPane implements PaneHolder {
+public class InventionPane implements PaneHolder, NotCloseable {
     private Font font = new Font(ViewMaster.FONT.getName(), 30);
     private Font font2 = new Font(ViewMaster.FONT.getName(), 50);
 
@@ -36,8 +38,10 @@ public class InventionPane implements PaneHolder {
     private HBox resCards;
     private VBox allThings;
 
+    private SceneMap scenemap;
+
     public InventionPane(SceneMap sceneMap) {
-	// TODO Auto-generated constructor stub
+	this.scenemap = scenemap;
     }
 
     @Override
@@ -96,23 +100,23 @@ public class InventionPane implements PaneHolder {
     }
 
     public void onWoodClick() {
-
+	scenemap.getController().targetInvention(Resource.WOOD);
     }
 
     public void onBrickClick() {
-
+	scenemap.getController().targetInvention(Resource.BRICK);
     }
 
     public void onWoolClick() {
-
+	scenemap.getController().targetInvention(Resource.WOOL);
     }
 
     public void onWheatClick() {
-
+	scenemap.getController().targetInvention(Resource.WHEAT);
     }
 
     public void onOreClick() {
-
+	scenemap.getController().targetInvention(Resource.ORE);
     }
 
     @Override
