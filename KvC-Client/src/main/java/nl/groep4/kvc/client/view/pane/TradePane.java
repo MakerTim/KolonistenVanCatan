@@ -1,7 +1,6 @@
 package nl.groep4.kvc.client.view.pane;
 
 import java.rmi.RemoteException;
-import java.util.EnumMap;
 import java.util.List;
 
 import javafx.geometry.Insets;
@@ -18,8 +17,8 @@ import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.KvCText;
 import nl.groep4.kvc.client.view.elements.MenuButton;
+import nl.groep4.kvc.client.view.elements.TradeEntry;
 import nl.groep4.kvc.client.view.scene.SceneMap;
-import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.Trade;
 import nl.groep4.kvc.common.interfaces.UpdateTrade;
 
@@ -35,6 +34,7 @@ public class TradePane implements PaneHolder, UpdateTrade {
     private MenuButton plaats;
     private MenuButton terug;
     Text test;
+    private VBox entries = new VBox(10);
 
     public TradePane(SceneMap sceneMap) {
 	this.sceneMap = sceneMap;
@@ -59,14 +59,6 @@ public class TradePane implements PaneHolder, UpdateTrade {
 	Text stone = new KvCText("Stone").addShadow();
 	Text ore = new KvCText("Ore").addShadow();
 
-	Text wheatAmount = new Text("0");
-	Text woodAmount = new Text("0");
-	Text oreAmount = new Text("0");
-	Text brickAmount = new Text("0");
-	Text woolAmount = new Text("0");
-
-	testbox.getChildren().addAll(wheatAmount, woodAmount, brickAmount, woolAmount);
-
 	scrollpane.setHbarPolicy(ScrollBarPolicy.NEVER);
 	scrollpane.setVbarPolicy(ScrollBarPolicy.ALWAYS);
 	scrollpane.setMinWidth(500);
@@ -74,6 +66,7 @@ public class TradePane implements PaneHolder, UpdateTrade {
 	scrollpane.setMinHeight(300);
 	scrollpane.setMaxHeight(300);
 	scrollpane.getStylesheets().add("/assets/stylesheet.css");
+	scrollpane.setContent(entries);
 	hboxScrollpane.setAlignment(Pos.CENTER);
 	tb.setAlignment(Pos.BOTTOM_CENTER);
 
@@ -138,11 +131,9 @@ public class TradePane implements PaneHolder, UpdateTrade {
 
     @Override
     public void updateTrades(List<Trade> allTrades) throws RemoteException {
+	entries.getChildren().clear();
 	for (Trade trade : allTrades) {
-	    String name = trade.getPlayer().getUsername();
-	    EnumMap<Resource, Integer> request = trade.getRequest();
-	    EnumMap<Resource, Integer> reward = trade.getReward();
-
+	    entries.getChildren().add(new TradeEntry(trade).getPane());
 	}
     }
 }
