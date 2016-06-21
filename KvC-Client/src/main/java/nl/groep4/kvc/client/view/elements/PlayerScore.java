@@ -19,11 +19,11 @@ public class PlayerScore {
     private Text username;
     private Text playerRes;
     String playerResources = "Init fase";
-    private String brickAmount;
-    private String oreAmount;
-    private String woodAmount;
-    private String woolAmount;
-    private String wheatAmount;
+    private String brickAmount = "";
+    private String oreAmount = "";
+    private String woodAmount = "";
+    private String woolAmount = "";
+    private String wheatAmount = "";
 
     public VBox getPane(Player player) {
 	playerScorePane = new VBox();
@@ -32,7 +32,7 @@ public class PlayerScore {
 	    username = new KvCText(player.getUsername());
 	    username.setFill(player.getColor().getColor());
 	    username.setStroke(Color.BLACK);
-	    playerRes = new Text(playerResources);
+	    playerRes = new Text("Init fase");
 
 	} catch (RemoteException e) {
 	    e.printStackTrace();
@@ -44,6 +44,8 @@ public class PlayerScore {
 
     public PlayerScore(Player player) {
 	this.player = player;
+	playerRes = new Text(brickAmount + " " + woodAmount);
+	System.out.println("Constructor called");
     }
 
     public Player getPlayer() {
@@ -77,7 +79,9 @@ public class PlayerScore {
 		break;
 
 	    }
-	    // playerRes.setText(woodAmount + " " + woolAmount);
+	    System.out.println("Method called");
+
+	    playerRes.setText(woodAmount + " " + brickAmount + " " + woolAmount + " " + wheatAmount + " " + oreAmount);
 	    // TODO: makerluc
 	}
     }

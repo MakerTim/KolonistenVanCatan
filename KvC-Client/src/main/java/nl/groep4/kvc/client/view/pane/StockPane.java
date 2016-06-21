@@ -116,7 +116,7 @@ public class StockPane implements PaneHolder, UpdateStock {
 	stone.getChildren().addAll(cards.getStoneCard(), stoneText);
 	wool.getChildren().addAll(cards.getWoolCard(), woolText);
 
-	resCards.getChildren().addAll(wood, stone, wheat, wool, ore);
+	resCards.getChildren().addAll(wood, stone, wool, wheat, ore);
 	resCards.setAlignment(Pos.CENTER);
 	buttons.getChildren().addAll(showCards);
 	information = new KvCText("");
