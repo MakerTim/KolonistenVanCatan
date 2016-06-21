@@ -133,7 +133,7 @@ public class TradePane implements PaneHolder, UpdateTrade {
     public void updateTrades(List<Trade> allTrades) throws RemoteException {
 	entries.getChildren().clear();
 	for (Trade trade : allTrades) {
-	    entries.getChildren().add(new TradeEntry(trade).getPane());
+	    entries.getChildren().add(new TradeEntry(trade, sceneMap).getPane());
 	}
     }
 }

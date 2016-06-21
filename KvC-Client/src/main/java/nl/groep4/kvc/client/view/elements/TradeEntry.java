@@ -3,6 +3,7 @@ package nl.groep4.kvc.client.view.elements;
 import java.rmi.RemoteException;
 import java.util.EnumMap;
 
+import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -10,10 +11,13 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.pane.PaneHolder;
+import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.Trade;
 
 public class TradeEntry implements PaneHolder {
+
+    private SceneMap scenemap;
 
     private HBox hboxtrades = new HBox();
     private HBox hboxgive = new HBox();
@@ -27,8 +31,8 @@ public class TradeEntry implements PaneHolder {
     private VBox wood = new VBox();
     private VBox ore = new VBox();
 
-    private Text give = new KvCText(TranslationManager.translate("trade.text.give"));
-    private Text receive = new KvCText(TranslationManager.translate("trade.text.receive"));
+    private Text give = new KvCText(TranslationManager.translate("trade.text.offer"));
+    private Text receive = new KvCText(TranslationManager.translate("trade.text.search"));
 
     private Text username = new KvCText();
     private Text giveWood = new KvCText("0");
@@ -45,8 +49,9 @@ public class TradeEntry implements PaneHolder {
 
     private Trade theTrade;
 
-    public TradeEntry(Trade trade) {
+    public TradeEntry(Trade trade, SceneMap scenemap) {
 	this.theTrade = trade;
+	this.scenemap = scenemap;
     }
 
     @Override
@@ -64,12 +69,24 @@ public class TradeEntry implements PaneHolder {
 	hboxtrades.getChildren().addAll(trade, wheat, wood, wool, brick, ore);
 
 	hboxusername.setSpacing(10);
-	hboxtrades.setSpacing(10);
+	hboxtrades.setSpacing(55);
 	hboxgive.setSpacing(10);
 
 	vbox.getChildren().addAll(hboxusername, hboxgive, hboxtrades);
 	pane.getChildren().add(vbox);
+	pane.setMinWidth(460);
+	pane.setMaxWidth(460);
+	pane.setPadding(new Insets(10, 10, 10, 10));
+	pane.setStyle(
+		"-fx-background-color: rgba(255, 255, 255, 0.4); -fx-border-color: black; -fx-border-style: solid;");
+
+	pane.setOnMouseClicked(klick -> onPaneClick());
+
 	return pane;
+    }
+
+    private void onPaneClick() {
+	scenemap.getController().doTrade(null);
     }
 
     @Override
