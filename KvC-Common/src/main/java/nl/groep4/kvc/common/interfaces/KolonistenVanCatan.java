@@ -68,4 +68,8 @@ public interface KolonistenVanCatan extends Remote {
     public void closePausePane() throws RemoteException;
 
     public void reconnect() throws RemoteException;
+
+    public void targetInvention(Resource resource) throws RemoteException;
+
+    public void targetMonopoly(Resource resource) throws RemoteException;
 }

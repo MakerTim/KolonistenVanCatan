@@ -30,6 +30,22 @@ public class MapController implements Controller {
 	}
     }
 
+    public void targetMonopoly(Resource resource) {
+	try {
+	    model.targetMonopoly(resource);
+	} catch (RemoteException ex) {
+	    ExceptionManager.handleRemoteException(ex);
+	}
+    }
+
+    public void targetInvention(Resource resource) {
+	try {
+	    model.targetInvention(resource);
+	} catch (RemoteException ex) {
+	    ExceptionManager.handleRemoteException(ex);
+	}
+    }
+
     public void placeTrade(Player who, Map<Resource, Integer> request, Map<Resource, Integer> reward) {
 	try {
 	    model.addTrade(who, request, reward);

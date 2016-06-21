@@ -526,4 +526,13 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	}
     }
 
+    @Override
+    public void targetInvention(Resource resource) throws RemoteException {
+	// TODO Invention
+    }
+
+    @Override
+    public void targetMonopoly(Resource resource) throws RemoteException {
+	// TODO Monopoly
+    }
 }
