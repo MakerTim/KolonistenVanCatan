@@ -120,8 +120,9 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder {
 
     @Override
     public void updateStock(Player pl, List<Card> cards) {
-	// TODO Auto-generated method stub
+	for (Card card : cards) {
 
+	}
     }
 
     @Override
