@@ -194,6 +194,14 @@ settings.button.stopmusic:Son off
 settings.button.accept:Accepter
 settings.label.title:Réglages
 
+#InventionPane
+invention.text.choice:Quelles cartes que vous choisissez?
+invention.text.invention:Invention
+
+#MonopolyPane
+monopoly.text.choice:Quelles cartes que vous choisissez
+monopoly.text.monopoly:Monopole
+
 #kicked
 kicked.other.title:Vous êtes retiré du hall
 kicked.other.explanation:Quelqu'un d'autre connecté avec le même nom d'utilisateur

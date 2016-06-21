@@ -196,6 +196,14 @@ settings.button.stopmusic:Muziek uit
 settings.button.accept:Accepteren
 settings.label.title:Instellingen
 
+#InventionPane
+invention.text.choice:Welke kaarten kiest u?
+invention.text.invention:Uitvinding
+
+#MonopolyPane
+monopoly.text.choice:Welke kaarten kiest u?
+monopoly.text.monopoly:Monopolie
+
 #kicked
 kicked.other.title:U bent verwijderd uit de lobby
 kicked.other.explanation:Iemand anders heeft ingelogd met dezelfde gebruikersnaam

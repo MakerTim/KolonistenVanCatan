@@ -103,7 +103,7 @@ public class TradePane implements PaneHolder, UpdateTrade {
 	tb.getChildren().addAll(buttons);
 
 	hboxScrollpane.getChildren().addAll(scrollpane);
-	hboxResources.getChildren().addAll(vboxWheat, vboxWood, vboxWool, vboxStone, vboxOre);
+	hboxResources.getChildren().addAll(vboxWood, vboxStone, vboxWool, vboxWheat, vboxOre);
 
 	vboxButtons.getChildren().addAll(tb);
 

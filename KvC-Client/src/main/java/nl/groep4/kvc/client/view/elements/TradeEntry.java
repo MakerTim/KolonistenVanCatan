@@ -78,7 +78,7 @@ public class TradeEntry implements PaneHolder {
 	ore.getChildren().addAll(giveOre, receiveOre);
 
 	hboxusername.getChildren().addAll(username);
-	hboxtrades.getChildren().addAll(trade, wheat, wood, wool, brick, ore);
+	hboxtrades.getChildren().addAll(trade, wood, brick, wool, wheat, ore);
 
 	hboxusername.setSpacing(10);
 	hboxtrades.setSpacing(55);
