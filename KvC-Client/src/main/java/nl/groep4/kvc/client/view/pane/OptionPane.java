@@ -80,7 +80,7 @@ public class OptionPane implements PaneHolder {
     }
 
     private void onPauseClick() {
-	map.openPausePane(true);
+	map.getController().setPause();
     }
 
     private void onSaveClick() {

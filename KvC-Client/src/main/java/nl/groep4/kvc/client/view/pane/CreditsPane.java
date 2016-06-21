@@ -16,6 +16,7 @@ import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.scene.SceneMap;
 
 public class CreditsPane implements PaneHolder {
+    // TODO set Text to KvCText
     private Font font = new Font(ViewMaster.FONT.getName(), 40);
 
     private SceneMap sceneMap;

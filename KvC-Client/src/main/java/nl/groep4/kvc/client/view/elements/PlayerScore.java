@@ -2,6 +2,7 @@ package nl.groep4.kvc.client.view.elements;
 
 import java.rmi.RemoteException;
 import java.util.EnumMap;
+import java.util.Map.Entry;
 
 import javafx.geometry.Pos;
 import javafx.scene.layout.Pane;
@@ -17,6 +18,12 @@ public class PlayerScore {
     private VBox playerScorePane;
     private Text username;
     private Text playerRes;
+    String playerResources = "Init fase";
+    private String brickAmount = "";
+    private String oreAmount = "";
+    private String woodAmount = "";
+    private String woolAmount = "";
+    private String wheatAmount = "";
 
     public VBox getPane(Player player) {
 	playerScorePane = new VBox();
@@ -25,12 +32,7 @@ public class PlayerScore {
 	    username = new KvCText(player.getUsername());
 	    username.setFill(player.getColor().getColor());
 	    username.setStroke(Color.BLACK);
-	    String res = "";
-	    for (int i = 0; i < Resource.values().length; i++) {
-		res += 0 + " ";
-	    }
-	    ;
-	    playerRes = new Text(res);
+	    playerRes = new Text("Init fase");
 
 	} catch (RemoteException e) {
 	    e.printStackTrace();
@@ -42,6 +44,8 @@ public class PlayerScore {
 
     public PlayerScore(Player player) {
 	this.player = player;
+	playerRes = new Text(brickAmount + " " + woodAmount);
+	System.out.println("Constructor called");
     }
 
     public Player getPlayer() {
@@ -54,5 +58,31 @@ public class PlayerScore {
 
     public void updateResources(EnumMap<Resource, Integer> resources) {
 
+	for (Entry<Resource, Integer> resource : resources.entrySet()) {
+	    Resource res = resource.getKey();
+	    String amount = resource.getValue().toString();
+	    switch (res) {
+	    case BRICK:
+		brickAmount = amount;
+		break;
+	    case ORE:
+		oreAmount = amount;
+		break;
+	    case WHEAT:
+		wheatAmount = amount;
+		break;
+	    case WOOD:
+		woodAmount = amount;
+		break;
+	    case WOOL:
+		woolAmount = amount;
+		break;
+
+	    }
+	    System.out.println("Method called");
+
+	    playerRes.setText(woodAmount + " " + brickAmount + " " + woolAmount + " " + wheatAmount + " " + oreAmount);
+	    // TODO: makerluc
+	}
     }
 }

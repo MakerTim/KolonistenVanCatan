@@ -20,7 +20,7 @@ public class MapController implements Controller {
 
     public void placeBuilding(Coordinate coord) {
 	try {
-	    model.placeBuilding(coord, ClientRefrence.getThePlayer(), BuildingType.VILLAGE);
+	    model.placeBuilding(coord, BuildingType.VILLAGE);
 	} catch (RemoteException ex) {
 	    ExceptionManager.handleRemoteException(ex);
 	}
@@ -28,7 +28,7 @@ public class MapController implements Controller {
 
     public void placeStreet(Coordinate coord) {
 	try {
-	    model.placeStreet(coord, ClientRefrence.getThePlayer());
+	    model.placeStreet(coord);
 	} catch (RemoteException ex) {
 	    ExceptionManager.handleRemoteException(ex);
 	}
@@ -56,7 +56,39 @@ public class MapController implements Controller {
 
     public void setPause() {
 	try {
-	    // model.setPause();
+	    model.openPausePane(ClientRefrence.getThePlayer());
+	} catch (Exception ex) {
+	    ex.printStackTrace();
+	}
+    }
+
+    public void buyStreet() {
+	try {
+	    model.buyStreet();
+	} catch (Exception ex) {
+	    ex.printStackTrace();
+	}
+    }
+
+    public void buyVillage() {
+	try {
+	    model.buyVillage();
+	} catch (Exception ex) {
+	    ex.printStackTrace();
+	}
+    }
+
+    public void buyCity() {
+	try {
+	    model.buyCity();
+	} catch (Exception ex) {
+	    ex.printStackTrace();
+	}
+    }
+
+    public void buyCard() {
+	try {
+	    model.buyCard();
 	} catch (Exception ex) {
 	    ex.printStackTrace();
 	}

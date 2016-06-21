@@ -23,6 +23,7 @@ import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.UpdateCosts;
 
 public class BuildPane implements PaneHolder, UpdateCosts {
+    // TODO: set Text to KvCText
     MenuButton streetbutton = new MenuButton(425, 500, TranslationManager.translate("build.button.road"));
     MenuButton villagebutton = new MenuButton(425, 500, TranslationManager.translate("build.button.village"));
     MenuButton citybutton = new MenuButton(425, 500, TranslationManager.translate("build.button.city"));
@@ -99,7 +100,7 @@ public class BuildPane implements PaneHolder, UpdateCosts {
 	citybutton = new MenuButton(425, 500, TranslationManager.translate("build.button.city"));
 	backbutton = new MenuButton(425, 500, TranslationManager.translate("build.button.back"));
 
-	Font FONT = new Font("Impact", 25);
+	Font FONT = new Font(ViewMaster.FONT.getName(), 25);
 
 	wheat.setFont(FONT);
 	wood.setFont(FONT);
@@ -245,6 +246,10 @@ public class BuildPane implements PaneHolder, UpdateCosts {
 	backbutton.registerClick(() -> {
 	    sceneMap.closeOverlay();
 	});
+
+	streetbutton.setOnMouseClicked(mouse -> onBuyStreetClick());
+	villagebutton.setOnMouseClicked(mouse -> onBuyVillageClick());
+	citybutton.setOnMouseClicked(mouse -> onBuyCityClick());
 	hboxback.getChildren().add(backbutton);
 	hboxbuttons.getChildren().addAll(streetbutton, villagebutton, citybutton);
 	vbox.getChildren().addAll(hboxprices, hboxbuttons, hboxback);
@@ -252,6 +257,18 @@ public class BuildPane implements PaneHolder, UpdateCosts {
 
 	return Build;
 
+    }
+
+    private void onBuyCityClick() {
+	sceneMap.getController().buyCity();
+    }
+
+    private void onBuyVillageClick() {
+	sceneMap.getController().buyVillage();
+    }
+
+    private void onBuyStreetClick() {
+	sceneMap.getController().buyStreet();
     }
 
     @Override

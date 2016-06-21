@@ -21,6 +21,7 @@ import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.scene.SceneMap;
 
 public class RulesPane implements PaneHolder {
+    // TODO: set Text to KvCText
     private Text rules;
     private SceneMap view;
     private MenuButton back;

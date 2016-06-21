@@ -15,7 +15,7 @@ import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.interfaces.NotCloseable;
 
 public class PausePane implements PaneHolder, NotCloseable {
-
+    // TODO: set Text to KvCText
     private MenuButton continueButton;
     private Text pause;
 
