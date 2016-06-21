@@ -72,7 +72,7 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder {
 
     public Node getBanner() {
 	banner = new ImageView("img/game/banner.png");
-	banner.setFitHeight(398);
+	banner.setFitHeight(380);
 	banner.setFitWidth(240);
 	return banner;
     }
