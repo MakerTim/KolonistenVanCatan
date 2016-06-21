@@ -156,6 +156,14 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	mapController.distribute();
     }
 
+    public void highlightBandit(Player pl) {
+	try {
+	    pl.setSelectable(SelectState.BANDIT);
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
+    }
+
     public void highlightBuildings(Player pl, BuildingType type) {
 	Set<Building> buildings;
 	switch (type) {

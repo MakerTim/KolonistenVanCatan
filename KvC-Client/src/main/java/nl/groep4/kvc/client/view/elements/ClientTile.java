@@ -163,7 +163,7 @@ public class ClientTile extends StackPane {
 	    setStreetClickable(true);
 	    setTileClickable(false);
 	    break;
-	case ROVER:
+	case BANDIT:
 	    setBuildClickable(false);
 	    setStreetClickable(false);
 	    setTileClickable(true);
