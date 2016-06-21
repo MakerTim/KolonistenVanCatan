@@ -62,6 +62,14 @@ public class MapController implements Controller {
 	}
     }
 
+    public void unpause() {
+	try {
+	    model.closePausePane();
+	} catch (Exception ex) {
+	    ex.printStackTrace();
+	}
+    }
+
     public void buyStreet() {
 	try {
 	    model.buyStreet();

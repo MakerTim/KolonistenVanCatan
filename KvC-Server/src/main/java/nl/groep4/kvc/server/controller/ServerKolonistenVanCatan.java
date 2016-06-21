@@ -451,6 +451,21 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	}
     }
 
+    @Override
+    public void closePausePane() throws RemoteException {
+	List<Runnable> runs = new ArrayList<>();
+	for (Player pl : getPlayers()) {
+	    runs.add(() -> {
+		try {
+		    pl.getUpdateable(UpdateMap.class).closeOverlay();
+		} catch (RemoteException ex) {
+		    ex.printStackTrace();
+		}
+	    });
+	}
+	Scheduler.runAsyncdSync(runs);
+    }
+
     public void moveBanditModus() {
 	// TODO: move rover modus
     }

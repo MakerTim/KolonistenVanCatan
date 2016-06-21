@@ -64,5 +64,7 @@ public interface KolonistenVanCatan extends Remote {
 
     public void openPausePane(Player requester) throws RemoteException;
 
+    public void closePausePane() throws RemoteException;
+
     public void reconnect() throws RemoteException;
 }
