@@ -104,8 +104,8 @@ pause.label.pause:Pause
 #TradePane
 trade.button.place:Platz
 trade.button.back:Zurück
-trade.text.Search:Suche
-trade.text.Offer:Gebot
+trade.text.search:Suche
+trade.text.offer:Gebot
 trade.text.resources:Ressourcen
 trade.text.wheat:Korn
 trade.text.wood:Holz

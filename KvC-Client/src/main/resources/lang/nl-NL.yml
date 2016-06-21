@@ -106,8 +106,8 @@ pause.label.pause:Pauze
 #TradePane
 trade.button.place:Plaats
 trade.button.back:Terug
-trade.text.Search:Zoek
-trade.text.Offer:Bied
+trade.text.search:Zoek
+trade.text.offer:Bied
 trade.text.resources:Grondstof
 trade.text.wheat:Graan
 trade.text.wood:Hout
