@@ -41,7 +41,7 @@ public class InventionPane implements PaneHolder, NotCloseable {
     private SceneMap scenemap;
 
     public InventionPane(SceneMap sceneMap) {
-	this.scenemap = scenemap;
+	this.scenemap = sceneMap;
     }
 
     @Override
