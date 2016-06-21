@@ -22,6 +22,13 @@ import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.UpdateCosts;
 
+/**
+ * The BuildPane, where you can buy a building
+ * 
+ * @author Bachir
+ * @version 1.0
+ */
+
 public class BuildPane implements PaneHolder, UpdateCosts {
     MenuButton streetbutton = new MenuButton(425, 500, TranslationManager.translate("build.button.road"));
     MenuButton villagebutton = new MenuButton(425, 500, TranslationManager.translate("build.button.village"));
@@ -67,26 +74,13 @@ public class BuildPane implements PaneHolder, UpdateCosts {
     private Text brick = new Text(TranslationManager.translate("build.materials.stone"));
     private Text ore = new Text(TranslationManager.translate("build.materials.ore"));
 
-    /*
-     * private Text brickAmount; private Text woolAmount; private Text
-     * wheatAmount; private Text oreAmount; private Text woodAmount; private
-     * Text brick; private Text wool; private Text wheat; private Text ore;
-     * private Text wood; private Text resources; private Text street; private
-     * Text village; private Text city;
-     * 
-     * private Text wheatStreet; private Text wheatVillage; private Text
-     * wheatCity; private Text woeatStreet; private Text woodVillage; private
-     * Text woodStreet; private Text woodCity; private Text woolStreet; private
-     * Text woolVillage; private Text woolCity; private Text brickStreet;
-     * private Text brickVillage; private Text brickCity; private Text
-     * oreStreet; private Text oreVillage; private Text oreCity;
-     * 
-     * private HBox hboxPrices; private VBox vboxBuilding; private VBox
-     * vboxWheat; private VBox vboxWood; private VBox vboxWool; private VBox
-     * vboxBrick; private VBox vboxOre;
-     */
-
     private SceneMap sceneMap;
+
+    /**
+     * Sets up the BuyPane
+     * 
+     * @param sceneMap
+     */
 
     public BuildPane(SceneMap sceneMap) {
 	this.sceneMap = sceneMap;
