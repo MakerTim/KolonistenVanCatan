@@ -27,6 +27,7 @@ import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.UpdateCosts;
 
 public class BuyPane extends Application implements PaneHolder, UpdateCosts {
+    // TODO: set Text to KvCText
     private Font font = new Font(ViewMaster.FONT.getName(), 30);
 
     private SceneMap sceneMap;
