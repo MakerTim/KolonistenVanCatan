@@ -104,8 +104,8 @@ cards.victory.info:Cathedral: Adds 1 victory point on use
 cards.invent.info:Invention: Obtain 2 free resourcecards from the bank
 
 #PausePane
-pause.button.continue:hervatten
-pause.label.pause:Pauze
+pause.button.continue:Continue
+pause.label.pause:Pause
 
 #TradePane
 trade.button.place:Add
@@ -118,8 +118,6 @@ trade.text.wood:Wood
 trade.text.wool:Wool
 trade.text.brick:Brick
 trade.text.ore:Ore
-trade.text.give:Give
-trade.text.receive:Receive
 trade.text.wheat:Wheat
 trade.text.wood:Wood
 trade.text.wool:Wool
@@ -177,7 +175,9 @@ gamenote.nocard.details:Exception: 503 Service Unavailable
 gamenote.noowner.title:Not the owner
 gamenote.noowner.explanation:You are not the owner of this building
 gamenote.noowner.details:Exception: 503 Service Unavailable
-
+gamenote.notrade.title:No trade
+gamenote.notrade.explanation:can't trade, because trade has not been found
+gamenote.notrade.details:Exception: 503 Service Unavailable
 
 #Map
 map.throwdice.clickToThrow:Roll the dice

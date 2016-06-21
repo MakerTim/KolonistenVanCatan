@@ -1,5 +1,7 @@
 package nl.groep4.kvc.client.view.pane;
 
+import java.util.HashMap;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -21,7 +23,7 @@ import nl.groep4.kvc.common.enumeration.Resource;
  * The pane were you can place an ad on.
  * 
  * @author Lisa
- *
+ * @version 1.0
  */
 public class PlaceTradePane implements PaneHolder {
 
@@ -44,6 +46,17 @@ public class PlaceTradePane implements PaneHolder {
     private VBox vboxbrick;
     private VBox vboxore;
     private VBox vbox;
+
+    private Spinner<Integer> spinnerOfferWheat;
+    private Spinner<Integer> spinnerOfferWood;
+    private Spinner<Integer> spinnerOfferWool;
+    private Spinner<Integer> spinnerOfferBrick;
+    private Spinner<Integer> spinnerOfferOre;
+    private Spinner<Integer> spinnerSearchWheat;
+    private Spinner<Integer> spinnerSearchWood;
+    private Spinner<Integer> spinnerSearchWool;
+    private Spinner<Integer> spinnerSearchBrick;
+    private Spinner<Integer> spinnerSearchOre;
 
     private HBox hbox;
     private HBox hboxbuttons;
@@ -88,16 +101,16 @@ public class PlaceTradePane implements PaneHolder {
 	    spinOfferOre = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
 	}
 
-	Spinner<Integer> spinnerOfferWheat = new Spinner<>(spinOfferWheat);
-	Spinner<Integer> spinnerOfferWood = new Spinner<>(spinOfferWood);
-	Spinner<Integer> spinnerOfferWool = new Spinner<>(spinOfferWool);
-	Spinner<Integer> spinnerOfferBrick = new Spinner<>(spinOfferBrick);
-	Spinner<Integer> spinnerOfferOre = new Spinner<>(spinOfferOre);
-	Spinner<Integer> spinnerSearchWheat = new Spinner<>(spinSearchWheat);
-	Spinner<Integer> spinnerSearchWood = new Spinner<>(spinSearchWood);
-	Spinner<Integer> spinnerSearchWool = new Spinner<>(spinSearchWool);
-	Spinner<Integer> spinnerSearchBrick = new Spinner<>(spinSearchBrick);
-	Spinner<Integer> spinnerSearchOre = new Spinner<>(spinSearchOre);
+	spinnerOfferWheat = new Spinner<>(spinOfferWheat);
+	spinnerOfferWood = new Spinner<>(spinOfferWood);
+	spinnerOfferWool = new Spinner<>(spinOfferWool);
+	spinnerOfferBrick = new Spinner<>(spinOfferBrick);
+	spinnerOfferOre = new Spinner<>(spinOfferOre);
+	spinnerSearchWheat = new Spinner<>(spinSearchWheat);
+	spinnerSearchWood = new Spinner<>(spinSearchWood);
+	spinnerSearchWool = new Spinner<>(spinSearchWool);
+	spinnerSearchBrick = new Spinner<>(spinSearchBrick);
+	spinnerSearchOre = new Spinner<>(spinSearchOre);
 
 	spinnerOfferWheat.setEditable(true);
 	spinnerOfferWood.setEditable(true);
@@ -149,7 +162,7 @@ public class PlaceTradePane implements PaneHolder {
 	vboxore.setSpacing(15);
 
 	hboxbuttons.setAlignment(Pos.CENTER);
-	hboxbuttons.setPadding(new Insets(160, 0, 0, 200));
+	hboxbuttons.setPadding(new Insets(190, 0, 0, 200));
 
 	hbox.setAlignment(Pos.CENTER);
 	hbox.setSpacing(20);
@@ -160,13 +173,34 @@ public class PlaceTradePane implements PaneHolder {
 	vbox.getChildren().addAll(hbox, hboxbuttons);
 	placetradepane.getChildren().addAll(background, vbox);
 
+	place.setOnMouseClicked(klick -> onPlaceClick());
 	back.setOnMouseClicked(klick -> onBackClick());
 
 	return placetradepane;
     }
 
     /**
-     * When there is a click on the button, the tradepane will be opened
+     * When there is a click on the button, the ad will be updated to the Server
+     * and set in the TradePane.
+     */
+    private void onPlaceClick() {
+	HashMap<Resource, Integer> request = new HashMap<>();
+	HashMap<Resource, Integer> reward = new HashMap<>();
+	reward.put(Resource.WHEAT, spinnerOfferWheat.getValue());
+	reward.put(Resource.WOOD, spinnerOfferWood.getValue());
+	reward.put(Resource.WOOL, spinnerOfferWool.getValue());
+	reward.put(Resource.BRICK, spinnerOfferBrick.getValue());
+	reward.put(Resource.ORE, spinnerOfferOre.getValue());
+	request.put(Resource.WHEAT, spinnerSearchWheat.getValue());
+	request.put(Resource.WOOD, spinnerSearchWood.getValue());
+	request.put(Resource.WOOL, spinnerSearchWool.getValue());
+	request.put(Resource.BRICK, spinnerSearchBrick.getValue());
+	request.put(Resource.ORE, spinnerSearchOre.getValue());
+	scenemap.getController().placeTrade(ClientRefrence.getThePlayer(), request, reward);
+    }
+
+    /**
+     * When there is a click on the button, the TradePane will be opened
      * 
      */
     public void onBackClick() {

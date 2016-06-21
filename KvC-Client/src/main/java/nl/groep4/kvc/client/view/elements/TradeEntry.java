@@ -15,6 +15,12 @@ import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.Trade;
 
+/**
+ * Generates layout of trades which are added to TradePane
+ * 
+ * @author Matthijs
+ * @version 1.0
+ */
 public class TradeEntry implements PaneHolder {
 
     private SceneMap scenemap;
@@ -49,6 +55,12 @@ public class TradeEntry implements PaneHolder {
 
     private Trade theTrade;
 
+    /**
+     * 
+     * 
+     * @param trade
+     * @param scenemap
+     */
     public TradeEntry(Trade trade, SceneMap scenemap) {
 	this.theTrade = trade;
 	this.scenemap = scenemap;
@@ -78,7 +90,7 @@ public class TradeEntry implements PaneHolder {
 	pane.setMaxWidth(460);
 	pane.setPadding(new Insets(10, 10, 10, 10));
 	pane.setStyle(
-		"-fx-background-color: rgba(255, 255, 255, 0.4); -fx-border-color: black; -fx-border-style: solid;");
+		"-fx-background-color: rgba(255, 255, 255, 0.4); -fx-border-color: black; -fx-border-style: solid; -fx-border-radius: 10px; -fx-background-radius: 10px;");
 
 	pane.setOnMouseClicked(klick -> onPaneClick());
 

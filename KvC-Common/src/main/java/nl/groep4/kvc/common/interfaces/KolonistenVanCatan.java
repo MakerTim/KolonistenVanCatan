@@ -16,7 +16,6 @@ public interface KolonistenVanCatan extends Remote {
     public void createMap() throws RemoteException;
 
     /**
-     * 
      * @return gets current round
      */
     public int getRound() throws RemoteException;

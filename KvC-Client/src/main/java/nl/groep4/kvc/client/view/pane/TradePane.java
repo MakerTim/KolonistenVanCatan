@@ -36,6 +36,11 @@ public class TradePane implements PaneHolder, UpdateTrade {
     Text test;
     private VBox entries = new VBox(10);
 
+    /**
+     * Sets up the TradePane
+     * 
+     * @param sceneMap
+     */
     public TradePane(SceneMap sceneMap) {
 	this.sceneMap = sceneMap;
     }
@@ -111,10 +116,16 @@ public class TradePane implements PaneHolder, UpdateTrade {
 	return stackpane;
     }
 
+    /**
+     * When there is a click on the button, the tradepane will be closed
+     */
     private void onBackClick() {
 	sceneMap.closeOverlay();
     }
 
+    /**
+     * When there is a click on the button, the PlaceTradePane will be opened
+     */
     private void onPlaceClick() {
 	sceneMap.openPlaceTradePane();
     }

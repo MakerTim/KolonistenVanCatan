@@ -118,8 +118,6 @@ trade.text.wood:Wood
 trade.text.wool:Bois
 trade.text.brick:Pierre
 trade.text.ore:Minerai
-trade.text.give:Donner
-trade.text.receive:Recevoir
 trade.text.wheat:Grain
 trade.text.wood:Bois
 trade.text.wool:Laine
@@ -178,6 +176,9 @@ gamenote.nocard.details:Exception: 503 Service Unavailable
 gamenote.noowner.title:Pas le propriétaire
 gamenote.noowner.explanation:Vous n'êtes pas le propriétaire de ce bâtiment
 gamenote.noowner.details:Exception: 503 Service Unavailable
+gamenote.notrade.title:pas d'échange
+gamenote.notrade.explanation:ne peut pas négocier, parce que le commerce n'a pas été trouvé
+gamenote.notrade.details:Exception: 503 Service Unavailable
 
 
 #Map
