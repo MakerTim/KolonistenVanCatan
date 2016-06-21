@@ -56,10 +56,12 @@ public class TradeEntry implements PaneHolder {
     private Trade theTrade;
 
     /**
-     * 
+     * current trade settings and scenemap
      * 
      * @param trade
+     *            trade settings
      * @param scenemap
+     *            scenemap settings
      */
     public TradeEntry(Trade trade, SceneMap scenemap) {
 	this.theTrade = trade;
