@@ -104,6 +104,14 @@ pause.label.pause:Pause
 #TradePane
 trade.button.place:Platz
 trade.button.back:Zurück
+trade.text.Search:Suche
+trade.text.Offer:Gebot
+trade.text.resources:Ressourcen
+trade.text.wheat:Korn
+trade.text.wood:Holz
+trade.text.wool:Wolle
+trade.text.brick:Stein
+trade.text.ore:Erz
 
 #RulesPane
 rules.button.back:Zurück

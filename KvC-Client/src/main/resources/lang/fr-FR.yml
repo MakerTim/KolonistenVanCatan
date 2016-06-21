@@ -104,6 +104,14 @@ pause.label.pause:Pause
 #TradePane
 trade.button.place:Additionner
 trade.button.back:Retourner
+trade.text.Search:Recherche
+trade.text.Offer:Offre
+trade.text.resources:Ressource
+trade.text.wheat:Grain
+trade.text.wood:Wood
+trade.text.wool:Bois
+trade.text.brick:Pierre
+trade.text.ore:Minerai
 
 #RulesPane
 rules.button.back:Retourner

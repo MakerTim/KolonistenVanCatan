@@ -19,17 +19,17 @@ import nl.groep4.kvc.common.enumeration.Resource;
 
 public class PlaceTradePane implements PaneHolder {
 
-    private MenuButton place;
-    private MenuButton back;
+    private MenuButton place = new MenuButton(425, 400, TranslationManager.translate("trade.button.place"));
+    private MenuButton back = new MenuButton(425, 400, TranslationManager.translate("trade.button.back"));
 
-    private KvCText search;
-    private KvCText offer;
-    private KvCText resources;
-    private KvCText wheat;
-    private KvCText wood;
-    private KvCText wool;
-    private KvCText brick;
-    private KvCText ore;
+    private KvCText search = new KvCText(TranslationManager.translate("trade.text.search"));
+    private KvCText offer = new KvCText(TranslationManager.translate("trade.text.offer"));
+    private KvCText resources = new KvCText(TranslationManager.translate("trade.text.resources"));
+    private KvCText wheat = new KvCText(TranslationManager.translate("trade.text.wheat"));
+    private KvCText wood = new KvCText(TranslationManager.translate("trade.text.wood"));
+    private KvCText wool = new KvCText(TranslationManager.translate("trade.text.wool"));
+    private KvCText brick = new KvCText(TranslationManager.translate("trade.text.brick"));
+    private KvCText ore = new KvCText(TranslationManager.translate("trade.text.ore"));
 
     private VBox vboxtrade;
     private VBox vboxwheat;
@@ -50,19 +50,7 @@ public class PlaceTradePane implements PaneHolder {
 
     @Override
     public Pane getPane() {
-	place = new MenuButton(425, 400, TranslationManager.translate("trade.button.place"));
-	back = new MenuButton(425, 400, TranslationManager.translate("trade.button.back"));
-
 	StackPane placetradepane = new StackPane();
-
-	search = new KvCText(TranslationManager.translate("trade.text.give"));
-	offer = new KvCText(TranslationManager.translate("trade.text.receive"));
-	resources = new KvCText(TranslationManager.translate("trade.text.resources"));
-	wheat = new KvCText(TranslationManager.translate("trade.text.wheat"));
-	wood = new KvCText(TranslationManager.translate("trade.text.wood"));
-	wool = new KvCText(TranslationManager.translate("trade.text.wool"));
-	brick = new KvCText(TranslationManager.translate("trade.text.brick"));
-	ore = new KvCText(TranslationManager.translate("trade.text.ore"));
 
 	SpinnerValueFactory spinOfferWheat;
 	SpinnerValueFactory spinOfferWood;
@@ -177,7 +165,16 @@ public class PlaceTradePane implements PaneHolder {
 
     @Override
     public void updateTranslation() {
-	// TODO Auto-generated method stub
+	place.updateText(TranslationManager.translate("trade.button.place"));
+	back.updateText(TranslationManager.translate("trade.button.back"));
+	search.setText(TranslationManager.translate("trade.text.search"));
+	offer.setText(TranslationManager.translate("trade.text.offer"));
+	resources.setText(TranslationManager.translate("trade.text.resources"));
+	wheat.setText(TranslationManager.translate("trade.text.wheat"));
+	wood.setText(TranslationManager.translate("trade.text.wood"));
+	wool.setText(TranslationManager.translate("trade.text.wool"));
+	brick.setText(TranslationManager.translate("trade.text.brick"));
+	ore.setText(TranslationManager.translate("trade.text.ore"));
 
     }
 

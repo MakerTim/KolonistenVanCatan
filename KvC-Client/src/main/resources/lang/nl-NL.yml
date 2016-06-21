@@ -52,6 +52,7 @@ build.materials.row.prices:Prijzen
 build.button.back:Terug
 
 
+
 #Login
 login.error.nousername.title:Login fout
 login.error.nousername.explanation:Gebruikersnaam is niet ingevuld
@@ -105,6 +106,14 @@ pause.label.pause:Pauze
 #TradePane
 trade.button.place:Plaats
 trade.button.back:Terug
+trade.text.Search:Zoek
+trade.text.Offer:Bied
+trade.text.resources:Grondstof
+trade.text.wheat:Graan
+trade.text.wood:Hout
+trade.text.wool:Wol
+trade.text.brick:Steen
+trade.text.ore:Erts
 
 #RulesPane
 rules.button.back:Terug
