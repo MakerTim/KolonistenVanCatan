@@ -1,2 +1,24 @@
+<<<<<<< HEAD
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLLabProfile="http:///schemas/UMLLabProfile/NS/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/UMLLabProfile/NS/0 pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile-Annotation_2-UMLLabProfile">
+  <uml:Model xmi:id="_MOiYMDbhEeaCiaAt9_FgYg" name="KolonistenVanCatan">
+    <eAnnotations xmi:id="_M1CXgDbhEeaCiaAt9_FgYg" source="http://ns.yatta.de/umllab">
+      <contents xmi:type="ecore:EAnnotation" xmi:id="_M1Fa0DbhEeaCiaAt9_FgYg" source="codegen">
+        <details xmi:id="_M1GB4DbhEeaCiaAt9_FgYg" key="codegenDirectory" value="/KolonistenVanCatan/KvC-Client/src/main/java"/>
+      </contents>
+    </eAnnotations>
+    <profileApplication xmi:id="_M1LhcDbhEeaCiaAt9_FgYg">
+      <eAnnotations xmi:id="_M1Py4DbhEeaCiaAt9_FgYg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile-Annotation_2-UMLLabProfile"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLLabProfile:TargetLanguage xmi:id="_M1YVwDbhEeaCiaAt9_FgYg" base_Package="_MOiYMDbhEeaCiaAt9_FgYg">
+    <languageName>java</languageName>
+  </UMLLabProfile:TargetLanguage>
+</xmi:XMI>
+=======
 <?xml version="1.0" encoding="UTF-8"?>
 <uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_MOiYMDbhEeaCiaAt9_FgYg" name="KolonistenVanCatan"/>
+>>>>>>> branch 'master' of http://gitlab.frii.nl/IPSEN_Groep_4/Kolonisten_van_Catan.git
