@@ -38,13 +38,10 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder {
     Text playerName;
     Text playerScore;
 
-    PlayerScore ps;
-
     ArrayList<PlayerScore> scores;
 
     @Override
     public Pane getPane() {
-	ps = new PlayerScore(null);
 	scores = new ArrayList<>();
 	scorePane = new StackPane();
 	playersBox = new VBox();
@@ -75,7 +72,7 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder {
 
     public Node getBanner() {
 	banner = new ImageView("img/game/banner.png");
-	banner.setFitHeight(398);
+	banner.setFitHeight(380);
 	banner.setFitWidth(240);
 	return banner;
     }
@@ -112,8 +109,9 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder {
     public void updatePlayerOrder(List<Player> order) {
 	content.getChildren().clear();
 	for (Player player : order) {
-	    scores.add(new PlayerScore(player));
-	    content.getChildren().add(ps.getPane(player));
+	    PlayerScore ps = new PlayerScore(player);
+	    scores.add(ps);
+	    content.getChildren().add(ps.getPane());
 	}
     }
 }

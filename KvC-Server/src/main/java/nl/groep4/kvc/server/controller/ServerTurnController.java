@@ -9,7 +9,6 @@ import nl.groep4.kvc.common.enumeration.BuildingType;
 import nl.groep4.kvc.common.enumeration.Direction;
 import nl.groep4.kvc.common.enumeration.GameState;
 import nl.groep4.kvc.common.enumeration.Point;
-import nl.groep4.kvc.common.enumeration.SelectState;
 import nl.groep4.kvc.common.enumeration.TurnState;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.UpdateMap;
@@ -85,7 +84,6 @@ public class ServerTurnController {
 	    controller.updateState(TurnState.BUILDING_STREET);
 	    controller.updateResources();
 	    controller.highlightStreets(pl, availbleStreets);
-	    pl.setSelectable(SelectState.STREET);
 	    pl.addRemainingStreets(1);
 	} catch (Exception ex) {
 	    ex.printStackTrace();
@@ -100,7 +98,6 @@ public class ServerTurnController {
 	    Player pl = controller.getTurn();
 	    controller.updateState(TurnState.BUILDING_BUILDING);
 	    controller.highlightBuildings(controller.getTurn(), BuildingType.VILLAGE);
-	    pl.setSelectable(SelectState.BUILDING);
 	    pl.addRemainingVillages(1);
 	} catch (Exception ex) {
 	    ex.printStackTrace();

@@ -4,9 +4,7 @@ import java.rmi.RemoteException;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import nl.groep4.kvc.common.enumeration.BuildingType;
 import nl.groep4.kvc.common.enumeration.Resource;
-import nl.groep4.kvc.common.enumeration.SelectState;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.UpdateMap;
 import nl.groep4.kvc.server.model.ServerCardHolder;

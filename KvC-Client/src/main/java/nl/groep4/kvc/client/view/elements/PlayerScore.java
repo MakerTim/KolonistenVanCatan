@@ -2,13 +2,18 @@ package nl.groep4.kvc.client.view.elements;
 
 import java.rmi.RemoteException;
 import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import javafx.geometry.Pos;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import nl.groep4.kvc.client.util.TranslationManager;
+import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.Player;
 
@@ -24,15 +29,24 @@ public class PlayerScore {
     private String woodAmount = "";
     private String woolAmount = "";
     private String wheatAmount = "";
+    String woodLetter = "";
+    String brickLetter = "";
+    String wheatLetter = "";
+    String woolLetter = "";
+    String oreLetter = "";
 
-    public VBox getPane(Player player) {
+    public VBox getPane() {
 	playerScorePane = new VBox();
 
 	try {
 	    username = new KvCText(player.getUsername());
 	    username.setFill(player.getColor().getColor());
 	    username.setStroke(Color.BLACK);
-	    playerRes = new Text("Init fase");
+	    Map<Resource, Integer> emptylist = new HashMap<>();
+	    for (Resource resource : Resource.values()) {
+		emptylist.put(resource, 0);
+	    }
+	    updateResources(new EnumMap<>(emptylist));
 
 	} catch (RemoteException e) {
 	    e.printStackTrace();
@@ -44,8 +58,13 @@ public class PlayerScore {
 
     public PlayerScore(Player player) {
 	this.player = player;
-	playerRes = new Text(brickAmount + " " + woodAmount);
-	System.out.println("Constructor called");
+	playerRes = new KvCText();
+	playerRes.setFont(new Font(ViewMaster.FONT.getName(), 14));
+	woodLetter = (TranslationManager.translate("game.score.woodletter"));
+	brickLetter = (TranslationManager.translate("game.score.brickletter"));
+	wheatLetter = (TranslationManager.translate("game.score.wheatletter"));
+	woolLetter = (TranslationManager.translate("game.score.woolletter"));
+	oreLetter = (TranslationManager.translate("game.score.oreletter"));
     }
 
     public Player getPlayer() {
@@ -54,6 +73,14 @@ public class PlayerScore {
 
     public Pane getPlayerScorePane() {
 	return playerScorePane;
+    }
+
+    public void updateTranslation() {
+	woodLetter = (TranslationManager.translate("game.score.woodletter"));
+	brickLetter = (TranslationManager.translate("game.score.brickletter"));
+	wheatLetter = (TranslationManager.translate("game.score.wheatletter"));
+	woolLetter = (TranslationManager.translate("game.score.woolletter"));
+	oreLetter = (TranslationManager.translate("game.score.oreletter"));
     }
 
     public void updateResources(EnumMap<Resource, Integer> resources) {
@@ -79,10 +106,10 @@ public class PlayerScore {
 		break;
 
 	    }
-	    System.out.println("Method called");
-
-	    playerRes.setText(woodAmount + " " + brickAmount + " " + woolAmount + " " + wheatAmount + " " + oreAmount);
 	    // TODO: makerluc
 	}
+	playerRes.setText(woodLetter + " " + woodAmount + " " + brickLetter + " " + brickAmount + " " + woolLetter + " "
+		+ woolAmount + " " + wheatLetter + " " + wheatAmount + " " + oreLetter + " " + oreAmount);
+
     }
 }

@@ -7,7 +7,9 @@ import nl.groep4.kvc.common.enumeration.Direction;
 import nl.groep4.kvc.common.enumeration.GameState;
 import nl.groep4.kvc.common.enumeration.Point;
 import nl.groep4.kvc.common.enumeration.Resource;
+import nl.groep4.kvc.common.enumeration.SelectState;
 import nl.groep4.kvc.common.interfaces.Player;
+import nl.groep4.kvc.common.interfaces.UpdateMap;
 import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Street;
@@ -55,43 +57,74 @@ public class ServerMapController {
 	}
     }
 
-    public void placeBuilding(Coordinate coord, BuildingType type) {
-	Player newOwner = controller.getTurn();
+    public void placeBuilding(Player newOwner, Coordinate coord, BuildingType type) {
 	try {
-	    if (newOwner.getRemainingVillages() > 0) {
-		Building building = controller.getMap().getBuilding(coord);
-		boolean validAction = true;
-		for (Tile tile : building.getConnectedTiles()) {
-		    for (Point point : Point.values()) {
-			if (building.equals(tile.getBuilding(point))
-				&& !tile.isValidPlace(controller.getMap(), point)) {
-			    validAction = false;
-			    break;
+	    if ((!newOwner.hasRemainingVillages() && type == BuildingType.VILLAGE)
+		    || (!newOwner.hasRemainingCitys() && type == BuildingType.CITY)) {
+		newOwner.getUpdateable().popup("nobuilding");
+		return;
+	    }
+	    switch (type) {
+	    case VILLAGE:
+		if (newOwner.hasRemainingVillages()) {
+		    Building building = controller.getMap().getBuilding(coord);
+		    boolean validAction = true;
+		    for (Tile tile : building.getConnectedTiles()) {
+			for (Point point : Point.values()) {
+			    if (building.equals(tile.getBuilding(point))
+				    && !tile.isValidPlace(controller.getMap(), point)) {
+				validAction = false;
+				break;
+			    }
 			}
 		    }
+		    if (validAction) {
+			building.setOwner(newOwner);
+			building.setBuildingType(type);
+			controller.updateModel();
+			newOwner.setSelectable(SelectState.TILE);
+			if (controller.getState() == GameState.INIT) {
+			    controller.turnController.initTurnStreet(building);
+			} else if (newOwner.hasRemainingVillages()) {
+			    controller.highlightBuildings(newOwner, BuildingType.VILLAGE);
+			} else {
+			    newOwner.getUpdateable(UpdateMap.class).unblockActions();
+			}
+		    } else {
+			newOwner.getUpdateable().popup("alreadbuilding");
+		    }
 		}
-		if (validAction) {
+		break;
+	    case CITY:
+		if (newOwner.hasRemainingCitys()) {
+		    Building building = controller.getMap().getBuilding(coord);
+		    if (building != null && !building.getOwner().equals(newOwner)) {
+			newOwner.getUpdateable().popup("noowner");
+		    }
 		    building.setOwner(newOwner);
 		    building.setBuildingType(type);
 		    controller.updateModel();
+		    newOwner.setSelectable(SelectState.TILE);
 		    if (controller.getState() == GameState.INIT) {
 			controller.turnController.initTurnStreet(building);
+		    } else if (newOwner.hasRemainingCitys()) {
+			controller.highlightBuildings(newOwner, BuildingType.CITY);
+		    } else {
+			newOwner.getUpdateable(UpdateMap.class).unblockActions();
 		    }
-		} else {
-		    newOwner.getUpdateable().popup("alreadbuilding");
 		}
-	    } else {
-		newOwner.getUpdateable().popup("nobuilding");
+		break;
+	    case EMPTY:
+		break;
 	    }
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();
 	}
     }
 
-    public void placeStreet(Coordinate coord) {
-	Player newOwner = controller.getTurn();
+    public void placeStreet(Player newOwner, Coordinate coord) {
 	try {
-	    if (newOwner.getRemainingStreets() > 0) {
+	    if (newOwner.hasRemainingStreets()) {
 		Street street = controller.getMap().getStreet(coord);
 		boolean validAction = true;
 		for (Tile tile : street.getConnectedTiles()) {
@@ -109,6 +142,10 @@ public class ServerMapController {
 		    controller.updateModel();
 		    if (controller.getState() == GameState.INIT) {
 			controller.nextTurn();
+		    } else if (newOwner.hasRemainingStreets()) {
+			controller.highlightStreet(newOwner);
+		    } else {
+			newOwner.getUpdateable(UpdateMap.class).unblockActions();
 		    }
 		} else {
 		    newOwner.getUpdateable().popup("alreadstreet");
