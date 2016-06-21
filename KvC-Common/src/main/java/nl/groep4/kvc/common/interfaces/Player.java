@@ -154,4 +154,15 @@ public interface Player extends Remote {
 	getResources().put(resource, Math.max(0, getResources().get(resource) - 1));
     }
 
+    public default boolean hasResource(Resource resource, int amount) throws RemoteException {
+	if (!getResources().containsKey(resource)) {
+	    getResources().put(resource, 0);
+	}
+	return getResources().get(resource) >= amount;
+    }
+
+    public default boolean hasResource(Resource resource) throws RemoteException {
+	return hasResource(resource, 1);
+    }
+
 }

@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.EnumMap;
 import java.util.List;
 
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -354,7 +355,13 @@ public class SceneMap implements SceneHolder, UpdateMap {
 
     @Override
     public void updateTrades(List<Trade> allTrades) throws RemoteException {
-	tradePane.updateTrades(allTrades);
+	Platform.runLater(() -> {
+	    try {
+		tradePane.updateTrades(allTrades);
+	    } catch (Exception ex) {
+		ex.printStackTrace();
+	    }
+	});
     }
 
     @Override

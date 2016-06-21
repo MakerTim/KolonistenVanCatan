@@ -8,6 +8,7 @@ import nl.groep4.kvc.common.enumeration.GameState;
 import nl.groep4.kvc.common.enumeration.Point;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.enumeration.SelectState;
+import nl.groep4.kvc.common.enumeration.TurnState;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.UpdateMap;
 import nl.groep4.kvc.common.map.Building;
@@ -51,6 +52,7 @@ public class ServerMapController {
 		    }
 		}
 	    }
+	    controller.updateState(TurnState.WAITING);
 	    controller.updateResources();
 	} catch (Exception ex) {
 	    ex.printStackTrace();
@@ -84,6 +86,7 @@ public class ServerMapController {
 			building.setBuildingType(type);
 			controller.updateModel();
 			newOwner.setSelectable(SelectState.TILE);
+			controller.updateState(TurnState.WAITING);
 			if (controller.getState() == GameState.INIT) {
 			    controller.turnController.initTurnStreet(building);
 			} else if (newOwner.hasRemainingVillages()) {
@@ -107,6 +110,7 @@ public class ServerMapController {
 		    building.setBuildingType(type);
 		    controller.updateModel();
 		    newOwner.setSelectable(SelectState.TILE);
+		    controller.updateState(TurnState.WAITING);
 		    if (controller.getState() == GameState.INIT) {
 			controller.turnController.initTurnStreet(building);
 		    } else if (newOwner.hasRemainingCitys()) {
@@ -143,6 +147,8 @@ public class ServerMapController {
 		    newOwner.removeRemainingStreet();
 		    street.setOwner(newOwner);
 		    controller.updateModel();
+		    newOwner.setSelectable(SelectState.TILE);
+		    controller.updateState(TurnState.WAITING);
 		    if (controller.getState() == GameState.INIT) {
 			controller.nextTurn();
 		    } else if (newOwner.hasRemainingStreets()) {
