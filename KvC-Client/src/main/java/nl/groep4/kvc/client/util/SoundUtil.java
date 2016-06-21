@@ -24,6 +24,9 @@ public class SoundUtil {
     private static Clip teamsongKvC;
     private static Clip playMusic;
 
+    /**
+     * Sound that will be played when user clicks on the button "End turn"
+     */
     public static void playNextTurn() {
 	playSound("sound/newturn.wav");
     }
@@ -113,6 +116,7 @@ public class SoundUtil {
     }
 
     /**
+     * Determines volume level
      * 
      * @return gets volume level
      */
