@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.Player;
@@ -28,6 +29,11 @@ public class PlayerScore {
     private String woodAmount = "";
     private String woolAmount = "";
     private String wheatAmount = "";
+    String woodLetter = "";
+    String brickLetter = "";
+    String wheatLetter = "";
+    String woolLetter = "";
+    String oreLetter = "";
 
     public VBox getPane() {
 	playerScorePane = new VBox();
@@ -54,6 +60,11 @@ public class PlayerScore {
 	this.player = player;
 	playerRes = new KvCText();
 	playerRes.setFont(new Font(ViewMaster.FONT.getName(), 14));
+	woodLetter = (TranslationManager.translate("game.score.woodletter"));
+	brickLetter = (TranslationManager.translate("game.score.brickletter"));
+	wheatLetter = (TranslationManager.translate("game.score.wheatletter"));
+	woolLetter = (TranslationManager.translate("game.score.woolletter"));
+	oreLetter = (TranslationManager.translate("game.score.oreletter"));
     }
 
     public Player getPlayer() {
@@ -62,6 +73,14 @@ public class PlayerScore {
 
     public Pane getPlayerScorePane() {
 	return playerScorePane;
+    }
+
+    public void updateTranslation() {
+	woodLetter = (TranslationManager.translate("game.score.woodletter"));
+	brickLetter = (TranslationManager.translate("game.score.brickletter"));
+	wheatLetter = (TranslationManager.translate("game.score.wheatletter"));
+	woolLetter = (TranslationManager.translate("game.score.woolletter"));
+	oreLetter = (TranslationManager.translate("game.score.oreletter"));
     }
 
     public void updateResources(EnumMap<Resource, Integer> resources) {
@@ -89,7 +108,8 @@ public class PlayerScore {
 	    }
 	    // TODO: makerluc
 	}
-	playerRes.setText(woodAmount + " " + brickAmount + " " + woolAmount + " " + wheatAmount + " " + oreAmount);
+	playerRes.setText(woodLetter + " " + woodAmount + " " + brickLetter + " " + brickAmount + " " + woolLetter + " "
+		+ woolAmount + " " + wheatLetter + " " + wheatAmount + " " + oreLetter + " " + oreAmount);
 
     }
 }
