@@ -98,7 +98,6 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder {
 
     @Override
     public void updateTranslation() {
-	// TODO Auto-generated method stub
 
     }
 

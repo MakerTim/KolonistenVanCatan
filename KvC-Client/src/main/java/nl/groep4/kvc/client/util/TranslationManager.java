@@ -9,6 +9,8 @@ import jdk.nashorn.api.scripting.URLReader;
 import nl.groep4.kvc.client.view.ExceptionDialog;
 
 /**
+ * Filters right language translation and updates all strings that need
+ * translation
  * 
  * @author Bachir
  * @version 1.0
@@ -29,6 +31,7 @@ public class TranslationManager {
      * in that language will be put in the array.
      * 
      * @param languageKey
+     *            language to translate
      */
     public static void setLanguage(String languageKey) {
 	current = languageKey;
@@ -51,6 +54,11 @@ public class TranslationManager {
 	}
     }
 
+    /**
+     * Gets current language
+     * 
+     * @return the current language
+     */
     public static String getCurrentLanguage() {
 	return current;
     }
@@ -59,7 +67,9 @@ public class TranslationManager {
      * Reading the file and filter out the correct translation.
      * 
      * @param key
+     *            string which contains a language
      * @param args
+     *            command-line arguments to execute
      * @return the correct translation
      */
     public static String translate(String key, Object... args) {

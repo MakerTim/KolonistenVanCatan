@@ -70,8 +70,6 @@ public class StockPane implements PaneHolder, UpdateStock {
 
     public StockPane(SceneMap view) {
 	this.view = view;
-	this.view.toString();
-	// TODO: Luc: Controller aanroepen via view.getController().useCard()
     }
 
     @Override
@@ -185,34 +183,34 @@ public class StockPane implements PaneHolder, UpdateStock {
 		CardType type = card.getType();
 		switch (type) {
 		case FREE_STREETS:
-		    devCards.getChildren().add(getRoadCard());
+		    devCards.getChildren().add(getRoadCard(card));
 		    break;
 		case INVENTION:
-		    devCards.getChildren().add(getInventCard());
+		    devCards.getChildren().add(getInventCard(card));
 		    break;
 		case KNIGHT:
-		    devCards.getChildren().add(getKnightCard());
+		    devCards.getChildren().add(getKnightCard(card));
 		    break;
 		case MONOPOLY:
-		    devCards.getChildren().add(getMonoCard());
+		    devCards.getChildren().add(getMonoCard(card));
 		    break;
 		case VICTORY:
 		    VictoryCard victoryCard = (VictoryCard) card;
 		    switch (victoryCard.getVictoryType()) {
 		    case CHAPEL:
-			devCards.getChildren().add(getCathCard());
+			devCards.getChildren().add(getCathCard(card));
 			break;
 		    case LIBARY:
-			devCards.getChildren().add(getCathCard());
+			devCards.getChildren().add(getCathCard(card));
 			break;
 		    case MARKET:
-			devCards.getChildren().add(getCathCard());
+			devCards.getChildren().add(getCathCard(card));
 			break;
 		    case PARLIAMENT:
-			devCards.getChildren().add(getCathCard());
+			devCards.getChildren().add(getCathCard(card));
 			break;
 		    case UNIVERSITY:
-			devCards.getChildren().add(getCathCard());
+			devCards.getChildren().add(getCathCard(card));
 			break;
 		    default:
 			break;
@@ -228,13 +226,16 @@ public class StockPane implements PaneHolder, UpdateStock {
      * 
      * @return image of the cathedral card
      */
-    public Node getCathCard() {
+    public Node getCathCard(Card card) {
 	ImageView cathCard;
 	cathCard = new ImageView("img/cards/card_cathedral.png");
 	cathCard.setFitHeight(100);
 	cathCard.setFitWidth(80);
 	cathCard.setOnMouseEntered(e -> updateInfo(TranslationManager.translate("cards.victory.info")));
 	cathCard.setOnMouseExited(e -> updateInfo(""));
+	cathCard.setOnMouseClicked(e -> {
+	    view.getController().useCard(card);
+	});
 	return cathCard;
     }
 
@@ -243,13 +244,16 @@ public class StockPane implements PaneHolder, UpdateStock {
      * 
      * @return image of the monopoly card
      */
-    public Node getMonoCard() {
+    public Node getMonoCard(Card card) {
 	ImageView monoCard;
 	monoCard = new ImageView("img/cards/card_monopoly.png");
 	monoCard.setFitHeight(100);
 	monoCard.setFitWidth(80);
 	monoCard.setOnMouseEntered(e -> updateInfo(TranslationManager.translate("cards.monopoly.info")));
 	monoCard.setOnMouseExited(e -> updateInfo(""));
+	monoCard.setOnMouseClicked(e -> {
+	    view.getController().useCard(card);
+	});
 	return monoCard;
     }
 
@@ -258,13 +262,16 @@ public class StockPane implements PaneHolder, UpdateStock {
      * 
      * @return image of the knight card
      */
-    public Node getKnightCard() {
+    public Node getKnightCard(Card card) {
 	ImageView knightCard;
 	knightCard = new ImageView("img/cards/card_knight.png");
 	knightCard.setFitHeight(100);
 	knightCard.setFitWidth(80);
 	knightCard.setOnMouseEntered(e -> updateInfo(TranslationManager.translate("cards.knight.info")));
 	knightCard.setOnMouseExited(e -> updateInfo(""));
+	knightCard.setOnMouseClicked(e -> {
+	    view.getController().useCard(card);
+	});
 	return knightCard;
     }
 
@@ -273,13 +280,16 @@ public class StockPane implements PaneHolder, UpdateStock {
      * 
      * @return image of the invention card
      */
-    public Node getInventCard() {
+    public Node getInventCard(Card card) {
 	ImageView inventCard;
 	inventCard = new ImageView("img/cards/card_invention.png");
 	inventCard.setFitHeight(100);
 	inventCard.setFitWidth(80);
 	inventCard.setOnMouseEntered(e -> updateInfo(TranslationManager.translate("cards.invent.info")));
 	inventCard.setOnMouseExited(e -> updateInfo(""));
+	inventCard.setOnMouseClicked(e -> {
+	    view.getController().useCard(card);
+	});
 	return inventCard;
     }
 
@@ -288,13 +298,16 @@ public class StockPane implements PaneHolder, UpdateStock {
      * 
      * @return image of the road card
      */
-    public Node getRoadCard() {
+    public Node getRoadCard(Card card) {
 	ImageView roadCard;
 	roadCard = new ImageView("img/cards/card_road.png");
 	roadCard.setFitHeight(100);
 	roadCard.setFitWidth(80);
 	roadCard.setOnMouseEntered(e -> updateInfo(TranslationManager.translate("cards.road.info")));
 	roadCard.setOnMouseExited(e -> updateInfo(""));
+	roadCard.setOnMouseClicked(e -> {
+	    view.getController().useCard(card);
+	});
 	return roadCard;
     }
 
