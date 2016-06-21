@@ -40,6 +40,12 @@ public class MonopolyPane implements PaneHolder, NotCloseable {
 
     private SceneMap scenemap;
 
+    /**
+     * Development card settings
+     * 
+     * @param sceneMap
+     *            to be displayed
+     */
     public MonopolyPane(SceneMap sceneMap) {
 	this.scenemap = sceneMap;
     }
@@ -99,22 +105,37 @@ public class MonopolyPane implements PaneHolder, NotCloseable {
 	return monopolypane;
     }
 
+    /**
+     * Get resource wood when clicked on
+     */
     public void onWoodClick() {
 	scenemap.getController().targetMonopoly(Resource.WOOD);
     }
 
+    /**
+     * Get resource brick when clicked on
+     */
     public void onBrickClick() {
 	scenemap.getController().targetMonopoly(Resource.BRICK);
     }
 
+    /**
+     * Get resource wool when clicked on
+     */
     public void onWoolClick() {
 	scenemap.getController().targetMonopoly(Resource.WOOL);
     }
 
+    /**
+     * Get resource wheat when clicked on
+     */
     public void onWheatClick() {
 	scenemap.getController().targetMonopoly(Resource.WHEAT);
     }
 
+    /**
+     * Get resource ore when clicked on
+     */
     public void onOreClick() {
 	scenemap.getController().targetMonopoly(Resource.ORE);
     }
