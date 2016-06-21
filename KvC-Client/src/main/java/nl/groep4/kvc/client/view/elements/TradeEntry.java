@@ -40,7 +40,7 @@ public class TradeEntry implements PaneHolder {
     private Text give = new KvCText(TranslationManager.translate("trade.text.offer"));
     private Text receive = new KvCText(TranslationManager.translate("trade.text.search"));
 
-    private Text username = new KvCText();
+    private Text username = new KvCText("The UserName");
     private Text giveWood = new KvCText("0");
     private Text giveWheat = new KvCText("0");
     private Text giveOre = new KvCText("0");
@@ -93,7 +93,7 @@ public class TradeEntry implements PaneHolder {
 		"-fx-background-color: rgba(255, 255, 255, 0.4); -fx-border-color: black; -fx-border-style: solid; -fx-border-radius: 10px; -fx-background-radius: 10px;");
 
 	pane.setOnMouseClicked(klick -> onPaneClick());
-
+	updateTranslation();
 	return pane;
     }
 
@@ -105,8 +105,8 @@ public class TradeEntry implements PaneHolder {
     public void updateTranslation() {
 	try {
 	    username.setText(theTrade.getPlayer().getUsername());
-	    give.setText(TranslationManager.translate("trade.text.give"));
-	    receive.setText(TranslationManager.translate("trade.text.receive"));
+	    give.setText(TranslationManager.translate("trade.text.offer"));
+	    receive.setText(TranslationManager.translate("trade.text.search"));
 
 	    giveWood.setText(getResource(theTrade.getReward(), Resource.WOOD));
 	    giveWheat.setText(getResource(theTrade.getReward(), Resource.WHEAT));

@@ -11,6 +11,7 @@ import java.util.UUID;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.Trade;
+import nl.groep4.kvc.common.interfaces.UpdateMap;
 import nl.groep4.kvc.server.model.ServerTrade;
 
 public class ServerTradeController {
@@ -28,10 +29,16 @@ public class ServerTradeController {
     }
 
     public void addTrade(Player player, Map<Resource, Integer> request, Map<Resource, Integer> reward) {
-	System.out.printf("Added new trade! %d -> %d\n", request.size(), reward.size());
-	trades.add(new ServerTrade(player, request, reward));
-	validateTrades();
-	controller.updateTrades();
+	try {
+	    System.out.printf("Added new trade! %s [\t%s : %s]\n", player.getUsername(), request.toString(),
+		    reward.toString());
+	    trades.add(new ServerTrade(player, request, reward));
+	    validateTrades();
+	    controller.updateTrades();
+	    player.getUpdateable(UpdateMap.class).closeOverlay();
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
     }
 
     public void onTrade(Trade trade, Player player) {
@@ -56,9 +63,8 @@ public class ServerTradeController {
 		    player.giveResource(reward.getKey(), reward.getValue());
 		}
 		for (Entry<Resource, Integer> requested : trade.getRequest().entrySet()) {
-		    trade.getPlayer().giveResource(requested.getKey(), requested.getValue());
 		    player.takeResource(requested.getKey(), requested.getValue());
-
+		    trade.getPlayer().giveResource(requested.getKey(), requested.getValue());
 		}
 	    }
 	    removeTrade(trade.getID());
