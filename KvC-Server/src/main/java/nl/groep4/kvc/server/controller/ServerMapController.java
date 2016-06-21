@@ -79,6 +79,7 @@ public class ServerMapController {
 			}
 		    }
 		    if (validAction) {
+			newOwner.removeRemainingVillages();
 			building.setOwner(newOwner);
 			building.setBuildingType(type);
 			controller.updateModel();
@@ -101,6 +102,7 @@ public class ServerMapController {
 		    if (building != null && !building.getOwner().equals(newOwner)) {
 			newOwner.getUpdateable().popup("noowner");
 		    }
+		    newOwner.removeRemainingCitys();
 		    building.setOwner(newOwner);
 		    building.setBuildingType(type);
 		    controller.updateModel();
@@ -138,6 +140,7 @@ public class ServerMapController {
 		    }
 		}
 		if (validAction) {
+		    newOwner.removeRemainingStreet();
 		    street.setOwner(newOwner);
 		    controller.updateModel();
 		    if (controller.getState() == GameState.INIT) {
