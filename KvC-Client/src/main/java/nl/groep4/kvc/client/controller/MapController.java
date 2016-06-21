@@ -1,11 +1,14 @@
 package nl.groep4.kvc.client.controller;
 
 import java.rmi.RemoteException;
+import java.util.Map;
 
 import nl.groep4.kvc.client.util.ExceptionManager;
 import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.enumeration.BuildingType;
+import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
+import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.map.Coordinate;
 
 public class MapController implements Controller {
@@ -16,6 +19,14 @@ public class MapController implements Controller {
     public MapController(KolonistenVanCatan model, SceneMap view) {
 	this.model = model;
 	this.view = view;
+    }
+
+    public void placeTrade(Player who, Map<Resource, Integer> request, Map<Resource, Integer> reward) {
+	try {
+	    model.addTrade(who, request, reward);
+	} catch (RemoteException ex) {
+	    ExceptionManager.handleRemoteException(ex);
+	}
     }
 
     public void placeBuilding(Coordinate coord) {
