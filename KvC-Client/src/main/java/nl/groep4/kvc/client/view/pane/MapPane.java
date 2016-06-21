@@ -27,7 +27,6 @@ public class MapPane implements PaneHolder {
 
     private List<ClientTile> tiles = new ArrayList<>();
     private Pane pane;
-    private MapController controller;
 
     public MapPane() {
 	pane = new StackPane();
@@ -49,7 +48,6 @@ public class MapPane implements PaneHolder {
     }
 
     public void registerController(MapController controller) {
-	this.controller = controller;
 	tiles.forEach(tile -> tile.setController(controller));
     }
 
