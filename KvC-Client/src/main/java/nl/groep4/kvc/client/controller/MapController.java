@@ -8,6 +8,7 @@ import nl.groep4.kvc.client.util.ExceptionManager;
 import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.enumeration.BuildingType;
 import nl.groep4.kvc.common.enumeration.Resource;
+import nl.groep4.kvc.common.interfaces.Card;
 import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.map.Coordinate;
@@ -30,9 +31,17 @@ public class MapController implements Controller {
 	}
     }
 
+    public void useCard(Card card) {
+	try {
+	    model.useCard(card);
+	} catch (RemoteException ex) {
+	    ExceptionManager.handleRemoteException(ex);
+	}
+    }
+
     public void targetMonopoly(Resource resource) {
 	try {
-	    model.targetMonopoly(resource);
+	    model.targetMonopoly(ClientRefrence.getThePlayer(), resource);
 	} catch (RemoteException ex) {
 	    ExceptionManager.handleRemoteException(ex);
 	}
@@ -40,7 +49,7 @@ public class MapController implements Controller {
 
     public void targetInvention(Resource resource) {
 	try {
-	    model.targetInvention(resource);
+	    model.targetInvention(ClientRefrence.getThePlayer(), resource);
 	} catch (RemoteException ex) {
 	    ExceptionManager.handleRemoteException(ex);
 	}

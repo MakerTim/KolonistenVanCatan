@@ -15,6 +15,7 @@ import nl.groep4.kvc.common.enumeration.Point;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.enumeration.SelectState;
 import nl.groep4.kvc.common.enumeration.TurnState;
+import nl.groep4.kvc.common.interfaces.Card;
 import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.Throw;
@@ -40,6 +41,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     ServerTurnController turnController;
     ServerShopController shopController;
     ServerMapController mapController;
+    ServerCardController cardController;
 
     private final List<Player> players;
     private ServerMap map = new ServerMap();
@@ -55,6 +57,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	turnController = new ServerTurnController(this);
 	shopController = new ServerShopController(this);
 	mapController = new ServerMapController(this);
+	cardController = new ServerCardController(this);
 	players.sort((pl1, pl2) -> {
 	    return Integer.compare(pl1.hashCode(), pl2.hashCode());
 	});
@@ -280,8 +283,8 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     }
 
     @Override
-    public void useCard() throws RemoteException {
-	// TODO use card
+    public void useCard(Card card) throws RemoteException {
+	cardController.useCard(getTurn(), card);
     }
 
     @Override
@@ -527,12 +530,12 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     }
 
     @Override
-    public void targetInvention(Resource resource) throws RemoteException {
-	// TODO Invention
+    public void targetInvention(Player who, Resource resource) throws RemoteException {
+	cardController.useInvention(who, resource);
     }
 
     @Override
-    public void targetMonopoly(Resource resource) throws RemoteException {
-	// TODO Monopoly
+    public void targetMonopoly(Player who, Resource resource) throws RemoteException {
+	cardController.targetMonopoly(who, resource);
     }
 }

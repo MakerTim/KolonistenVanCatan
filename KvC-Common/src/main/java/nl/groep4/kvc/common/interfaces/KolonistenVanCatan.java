@@ -54,7 +54,7 @@ public interface KolonistenVanCatan extends Remote {
 
     public void buyCard() throws RemoteException;
 
-    public void useCard() throws RemoteException;
+    public void useCard(Card card) throws RemoteException;
 
     public void trade(UUID tradeKey, Player with) throws RemoteException;
 
@@ -69,7 +69,7 @@ public interface KolonistenVanCatan extends Remote {
 
     public void reconnect() throws RemoteException;
 
-    public void targetInvention(Resource resource) throws RemoteException;
+    public void targetInvention(Player who, Resource resource) throws RemoteException;
 
-    public void targetMonopoly(Resource resource) throws RemoteException;
+    public void targetMonopoly(Player who, Resource resource) throws RemoteException;
 }

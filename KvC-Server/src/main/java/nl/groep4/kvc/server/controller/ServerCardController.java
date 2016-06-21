@@ -2,8 +2,10 @@ package nl.groep4.kvc.server.controller;
 
 import java.rmi.RemoteException;
 
+import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.Card;
 import nl.groep4.kvc.common.interfaces.Player;
+import nl.groep4.kvc.common.interfaces.UpdateMap;
 
 public class ServerCardController {
     private ServerKolonistenVanCatan controller;
@@ -19,13 +21,13 @@ public class ServerCardController {
 		controller.buildStreetModus(3);
 		break;
 	    case INVENTION:
-		// TODO: pak 2 grondstoffen = new pane
+		from.getUpdateable(UpdateMap.class).openInventionPane();
 		break;
 	    case KNIGHT:
 		controller.moveBanditModus();
 		break;
 	    case MONOPOLY:
-		// TODO: pak grondstof van iedereen af = new pane
+		from.getUpdateable(UpdateMap.class).openMonopolyPane();
 		break;
 	    case VICTORY:
 		return;
@@ -35,5 +37,27 @@ public class ServerCardController {
 	    ex.printStackTrace();
 	}
 	controller.updateCards();
+    }
+
+    public void useInvention(Player who, Resource resource) {
+	try {
+	    who.giveResource(resource, 2);
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
+	controller.updateResources();
+    }
+
+    public void targetMonopoly(Player who, Resource resource) {
+	for (Player pl : controller.getPlayers()) {
+	    try {
+		int am = pl.getResourceAmount(resource);
+		pl.takeResource(resource, am);
+		who.giveResource(resource, am);
+	    } catch (Exception ex) {
+		ex.printStackTrace();
+	    }
+	}
+	controller.updateResources();
     }
 }
