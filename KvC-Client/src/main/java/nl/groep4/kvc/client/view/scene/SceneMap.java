@@ -31,6 +31,7 @@ import nl.groep4.kvc.client.view.pane.MapPane;
 import nl.groep4.kvc.client.view.pane.OptionPane;
 import nl.groep4.kvc.client.view.pane.PaneHolder;
 import nl.groep4.kvc.client.view.pane.PausePane;
+import nl.groep4.kvc.client.view.pane.PlaceTradePane;
 import nl.groep4.kvc.client.view.pane.RulesPane;
 import nl.groep4.kvc.client.view.pane.ScorePane;
 import nl.groep4.kvc.client.view.pane.ScoreRoundPane;
@@ -216,7 +217,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
     }
 
     public void openPlaceTradePane() {
-	// setOverlay(new PlaceTradePane());
+	setOverlay(new PlaceTradePane(this));
     }
 
     @Override

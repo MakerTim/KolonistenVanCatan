@@ -1,49 +1,35 @@
 package nl.groep4.kvc.client.view.pane;
 
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import nl.groep4.kvc.client.controller.ClientRefrence;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.elements.KvCText;
 import nl.groep4.kvc.client.view.elements.MenuButton;
+import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.enumeration.Resource;
 
-public class PlaceTradePane extends Application implements PaneHolder {
+public class PlaceTradePane implements PaneHolder {
 
     private MenuButton place;
     private MenuButton back;
 
-    private KvCText give;
-    private KvCText receive;
+    private KvCText search;
+    private KvCText offer;
     private KvCText resources;
     private KvCText wheat;
     private KvCText wood;
     private KvCText wool;
     private KvCText brick;
     private KvCText ore;
-
-    private TextField givewheat;
-    private TextField givewood;
-    private TextField givewool;
-    private TextField givebrick;
-    private TextField giveore;
-    private TextField receivewheat;
-    private TextField receivewood;
-    private TextField receivewool;
-    private TextField receivebrick;
-    private TextField receiveore;
 
     private VBox vboxtrade;
     private VBox vboxwheat;
@@ -56,17 +42,21 @@ public class PlaceTradePane extends Application implements PaneHolder {
     private HBox hbox;
     private HBox hboxbuttons;
 
-    @Override
-    public void start(Stage stage) throws Exception {
-	// TODO Auto-generated method stub
+    private SceneMap scenemap;
 
+    public PlaceTradePane(SceneMap scenemap) {
+	this.scenemap = scenemap;
+    }
+
+    @Override
+    public Pane getPane() {
 	place = new MenuButton(425, 400, TranslationManager.translate("trade.button.place"));
 	back = new MenuButton(425, 400, TranslationManager.translate("trade.button.back"));
 
 	StackPane placetradepane = new StackPane();
 
-	give = new KvCText(TranslationManager.translate("trade.text.give"));
-	receive = new KvCText(TranslationManager.translate("trade.text.receive"));
+	search = new KvCText(TranslationManager.translate("trade.text.give"));
+	offer = new KvCText(TranslationManager.translate("trade.text.receive"));
 	resources = new KvCText(TranslationManager.translate("trade.text.resources"));
 	wheat = new KvCText(TranslationManager.translate("trade.text.wheat"));
 	wood = new KvCText(TranslationManager.translate("trade.text.wood"));
@@ -74,43 +64,68 @@ public class PlaceTradePane extends Application implements PaneHolder {
 	brick = new KvCText(TranslationManager.translate("trade.text.brick"));
 	ore = new KvCText(TranslationManager.translate("trade.text.ore"));
 
-	givewheat = new TextField();
-	givewood = new TextField();
-	givewool = new TextField();
-	givebrick = new TextField();
-	giveore = new TextField();
-	receivewheat = new TextField();
-	receivewood = new TextField();
-	receivewool = new TextField();
-	receivebrick = new TextField();
-	receiveore = new TextField();
+	SpinnerValueFactory spinOfferWheat;
+	SpinnerValueFactory spinOfferWood;
+	SpinnerValueFactory spinOfferWool;
+	SpinnerValueFactory spinOfferBrick;
+	SpinnerValueFactory spinOfferOre;
+	SpinnerValueFactory spinSearchWheat = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+	SpinnerValueFactory spinSearchWood = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+	SpinnerValueFactory spinSearchWool = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+	SpinnerValueFactory spinSearchBrick = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+	SpinnerValueFactory spinSearchOre = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+	try {
+	    spinOfferWheat = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,
+		    ClientRefrence.getThePlayer().getResourceAmount(Resource.WHEAT));
+	    spinOfferWood = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,
+		    ClientRefrence.getThePlayer().getResourceAmount(Resource.WOOD));
+	    spinOfferWool = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,
+		    ClientRefrence.getThePlayer().getResourceAmount(Resource.WOOL));
+	    spinOfferBrick = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,
+		    ClientRefrence.getThePlayer().getResourceAmount(Resource.BRICK));
+	    spinOfferOre = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,
+		    ClientRefrence.getThePlayer().getResourceAmount(Resource.ORE));
 
-	SpinnerValueFactory spinWheat = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,
-		ClientRefrence.getThePlayer().getResourceAmount(Resource.WHEAT));
-	SpinnerValueFactory spinWood = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,
-		ClientRefrence.getThePlayer().getResourceAmount(Resource.WOOD));
-	SpinnerValueFactory spinWool = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,
-		ClientRefrence.getThePlayer().getResourceAmount(Resource.WOOL));
-	SpinnerValueFactory spinBrick = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,
-		ClientRefrence.getThePlayer().getResourceAmount(Resource.BRICK));
-	SpinnerValueFactory spinOre = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,
-		ClientRefrence.getThePlayer().getResourceAmount(Resource.ORE));
+	} catch (Exception ex) {
+	    spinOfferWheat = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+	    spinOfferWood = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+	    spinOfferWool = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+	    spinOfferBrick = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+	    spinOfferOre = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+	}
 
-	Spinner spinnerWheat = new Spinner<Integer>(spinBrick);
-	Spinner spinnerwood = new Spinner<Integer>(spinWheat);
-	Spinner spinnerWhool = new Spinner<Integer>(spinWood);
-	Spinner spinnerBrick = new Spinner<Integer>(spinWool);
-	Spinner spinnerOre = new Spinner<Integer>(spinOre);
+	Spinner<Integer> spinnerOfferWheat = new Spinner<>(spinOfferWheat);
+	Spinner<Integer> spinnerOfferWood = new Spinner<>(spinOfferWood);
+	Spinner<Integer> spinnerOfferWool = new Spinner<>(spinOfferWool);
+	Spinner<Integer> spinnerOfferBrick = new Spinner<>(spinOfferBrick);
+	Spinner<Integer> spinnerOfferOre = new Spinner<>(spinOfferOre);
+	Spinner<Integer> spinnerSearchWheat = new Spinner<>(spinSearchWheat);
+	Spinner<Integer> spinnerSearchWood = new Spinner<>(spinSearchWood);
+	Spinner<Integer> spinnerSearchWool = new Spinner<>(spinSearchWool);
+	Spinner<Integer> spinnerSearchBrick = new Spinner<>(spinSearchBrick);
+	Spinner<Integer> spinnerSearchOre = new Spinner<>(spinSearchOre);
 
-	givewood.setMaxWidth(60);
-	givewool.setMaxWidth(60);
-	givebrick.setMaxWidth(60);
-	giveore.setMaxWidth(60);
-	receivewheat.setMaxWidth(60);
-	receivewood.setMaxWidth(60);
-	receivewool.setMaxWidth(60);
-	receivebrick.setMaxWidth(60);
-	receiveore.setMaxWidth(60);
+	spinnerOfferWheat.setEditable(true);
+	spinnerOfferWood.setEditable(true);
+	spinnerOfferWool.setEditable(true);
+	spinnerOfferBrick.setEditable(true);
+	spinnerOfferOre.setEditable(true);
+	spinnerSearchWheat.setEditable(true);
+	spinnerSearchWood.setEditable(true);
+	spinnerSearchWool.setEditable(true);
+	spinnerSearchBrick.setEditable(true);
+	spinnerSearchOre.setEditable(true);
+
+	spinnerOfferWheat.setMaxWidth(80);
+	spinnerOfferWood.setMaxWidth(80);
+	spinnerOfferWool.setMaxWidth(80);
+	spinnerOfferBrick.setMaxWidth(80);
+	spinnerOfferOre.setMaxWidth(80);
+	spinnerSearchWheat.setMaxWidth(80);
+	spinnerSearchWood.setMaxWidth(80);
+	spinnerSearchWool.setMaxWidth(80);
+	spinnerSearchBrick.setMaxWidth(80);
+	spinnerSearchOre.setMaxWidth(80);
 
 	vboxtrade = new VBox();
 	vboxwheat = new VBox();
@@ -125,12 +140,12 @@ public class PlaceTradePane extends Application implements PaneHolder {
 
 	Node background = SceneUtil.getGamePane();
 
-	vboxtrade.getChildren().addAll(resources, give, receive);
-	vboxwheat.getChildren().addAll(wheat, givewheat, receivewheat);
-	vboxwood.getChildren().addAll(wood, givewood, receivewood);
-	vboxwool.getChildren().addAll(wool, givewool, receivewool);
-	vboxbrick.getChildren().addAll(brick, givebrick, receivebrick);
-	vboxore.getChildren().addAll(ore, giveore, receiveore);
+	vboxtrade.getChildren().addAll(resources, search, offer);
+	vboxwheat.getChildren().addAll(wheat, spinnerSearchWheat, spinnerOfferWheat);
+	vboxwood.getChildren().addAll(wood, spinnerSearchWood, spinnerOfferWood);
+	vboxwool.getChildren().addAll(wool, spinnerSearchWool, spinnerOfferWool);
+	vboxbrick.getChildren().addAll(brick, spinnerSearchBrick, spinnerOfferBrick);
+	vboxore.getChildren().addAll(ore, spinnerSearchOre, spinnerOfferOre);
 
 	vboxtrade.setSpacing(15);
 	vboxwheat.setSpacing(15);
@@ -140,37 +155,30 @@ public class PlaceTradePane extends Application implements PaneHolder {
 	vboxore.setSpacing(15);
 
 	hboxbuttons.setAlignment(Pos.CENTER);
-	hboxbuttons.setPadding(new Insets(120, 0, 0, 200));
+	hboxbuttons.setPadding(new Insets(160, 0, 0, 200));
 
 	hbox.setAlignment(Pos.CENTER);
 	hbox.setSpacing(20);
-	hbox.setPadding(new Insets(150, 0, 0, 0));
+	hbox.setPadding(new Insets(230, 0, 0, 0));
 
 	hbox.getChildren().addAll(vboxtrade, vboxwheat, vboxwood, vboxwool, vboxbrick, vboxore);
 	hboxbuttons.getChildren().addAll(place, back);
 	vbox.getChildren().addAll(hbox, hboxbuttons);
 	placetradepane.getChildren().addAll(background, vbox);
 
-	Scene scene = new Scene(placetradepane);
-	stage.setScene(scene);
-	stage.show();
+	back.setOnMouseClicked(klick -> onBackClick());
 
+	return placetradepane;
     }
 
-    @Override
-    public Pane getPane() {
-	// TODO Auto-generated method stub
-	return null;
+    public void onBackClick() {
+	scenemap.openTradePane();
     }
 
     @Override
     public void updateTranslation() {
 	// TODO Auto-generated method stub
 
-    }
-
-    public static void main(String[] args) {
-	launch(args);
     }
 
 }
