@@ -88,8 +88,6 @@ public class TradeEntry extends Application implements PaneHolder {
 
     @Override
     public void updateTranslation() {
-	// TODO Auto-generated method stub
-
 	username.setText(TranslationManager.translate("trade.text.username"));
 	give.setText(TranslationManager.translate("trade.text.give"));
 	receive.setText(TranslationManager.translate("trade.text.receive"));
@@ -105,7 +103,6 @@ public class TradeEntry extends Application implements PaneHolder {
 	receiveOre.setText(TranslationManager.translate("trade.text.receiveore"));
 	receiveBrick.setText(TranslationManager.translate("trade.text.receivebrick"));
 	receiveWool.setText(TranslationManager.translate("trade.text.receivewool"));
-
     }
 
 }

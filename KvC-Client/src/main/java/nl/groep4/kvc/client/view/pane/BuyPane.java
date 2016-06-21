@@ -12,19 +12,18 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
+import nl.groep4.kvc.client.view.elements.KvCText;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.UpdateCosts;
 
 public class BuyPane implements PaneHolder, UpdateCosts {
-    // TODO: set Text to KvCText
     private Font font = new Font(ViewMaster.FONT.getName(), 30);
 
     private SceneMap sceneMap;
@@ -32,19 +31,19 @@ public class BuyPane implements PaneHolder, UpdateCosts {
     private MenuButton yes;
     private MenuButton no;
 
-    private Text buy;
-    private Text brickAmount;
-    private Text woolAmount;
-    private Text wheatAmount;
-    private Text oreAmount;
-    private Text woodAmount;
-    private Text brick;
-    private Text wool;
-    private Text wheat;
-    private Text ore;
-    private Text wood;
-    private Text resources;
-    private Text cards;
+    private Text buy = new Text(TranslationManager.translate("buycard.msg.buycard"));
+    private Text brickAmount = new KvCText("0");
+    private Text woolAmount = new KvCText("0");
+    private Text wheatAmount = new KvCText("0");
+    private Text oreAmount = new KvCText("0");
+    private Text woodAmount = new KvCText("0");
+    private Text brick = new KvCText(TranslationManager.translate("buypane.text.brick"));
+    private Text wool = new KvCText(TranslationManager.translate("buypane.text.wool"));
+    private Text wheat = new KvCText(TranslationManager.translate("buypane.text.wheat"));
+    private Text ore = new KvCText(TranslationManager.translate("buypane.text.ore"));
+    private Text wood = new KvCText(TranslationManager.translate("buypane.text.wood"));
+    private Text resources = new KvCText(TranslationManager.translate("buypane.text.resources"));
+    private Text cards = new KvCText(TranslationManager.translate("buypane.text.cards"));
 
     private HBox hboxPrices;
     private VBox vboxPrices;
@@ -67,21 +66,6 @@ public class BuyPane implements PaneHolder, UpdateCosts {
 
 	yes = new MenuButton(425, 500, TranslationManager.translate("buycard.decision.yes"));
 	no = new MenuButton(425, 500, TranslationManager.translate("buycard.decision.no"));
-	buy = new Text(TranslationManager.translate("buycard.msg.buycard"));
-
-	brick = new Text(TranslationManager.translate("buypane.text.brick"));
-	wool = new Text(TranslationManager.translate("buypane.text.wool"));
-	wheat = new Text(TranslationManager.translate("buypane.text.wheat"));
-	ore = new Text(TranslationManager.translate("buypane.text.ore"));
-	wood = new Text(TranslationManager.translate("buypane.text.wood"));
-	resources = new Text(TranslationManager.translate("buypane.text.resources"));
-	cards = new Text(TranslationManager.translate("buypane.text.cards"));
-
-	brickAmount = new Text("0");
-	woolAmount = new Text("0");
-	wheatAmount = new Text("0");
-	oreAmount = new Text("0");
-	woodAmount = new Text("0");
 
 	vboxPrices = new VBox();
 	vboxWheat = new VBox();
@@ -93,52 +77,6 @@ public class BuyPane implements PaneHolder, UpdateCosts {
 	hboxPrices = new HBox();
 
 	buy.setFont(font);
-	yes.setFont(ViewMaster.FONT);
-	no.setFont(ViewMaster.FONT);
-	buy.setFill(Color.WHITE);
-	buy.setStroke(Color.BLACK);
-
-	brick.setFont(ViewMaster.FONT);
-	wool.setFont(ViewMaster.FONT);
-	wheat.setFont(ViewMaster.FONT);
-	ore.setFont(ViewMaster.FONT);
-	wood.setFont(ViewMaster.FONT);
-	resources.setFont(ViewMaster.FONT);
-	cards.setFont(ViewMaster.FONT);
-
-	brickAmount.setFont(ViewMaster.FONT);
-	woolAmount.setFont(ViewMaster.FONT);
-	wheatAmount.setFont(ViewMaster.FONT);
-	oreAmount.setFont(ViewMaster.FONT);
-	woodAmount.setFont(ViewMaster.FONT);
-
-	brick.setFill(Color.WHITE);
-	wool.setFill(Color.WHITE);
-	wheat.setFill(Color.WHITE);
-	ore.setFill(Color.WHITE);
-	wood.setFill(Color.WHITE);
-	resources.setFill(Color.WHITE);
-	cards.setFill(Color.WHITE);
-
-	brickAmount.setFill(Color.WHITE);
-	woolAmount.setFill(Color.WHITE);
-	wheatAmount.setFill(Color.WHITE);
-	oreAmount.setFill(Color.WHITE);
-	woodAmount.setFill(Color.WHITE);
-
-	brick.setStroke(Color.BLACK);
-	wool.setStroke(Color.BLACK);
-	wheat.setStroke(Color.BLACK);
-	ore.setStroke(Color.BLACK);
-	wood.setStroke(Color.BLACK);
-	resources.setStroke(Color.BLACK);
-	cards.setStroke(Color.BLACK);
-
-	brickAmount.setStroke(Color.BLACK);
-	woolAmount.setStroke(Color.BLACK);
-	wheatAmount.setStroke(Color.BLACK);
-	oreAmount.setStroke(Color.BLACK);
-	woodAmount.setStroke(Color.BLACK);
 
 	vboxPrices.getChildren().addAll(resources, cards);
 	vboxWheat.getChildren().addAll(wheat, wheatAmount);
