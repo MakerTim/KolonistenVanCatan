@@ -39,6 +39,12 @@ public final class ClientRefrence {
 	ClientRefrence.thePlayer = player;
     }
 
+    /**
+     * Updates the lobby
+     * 
+     * @param updatable
+     *            value to update
+     */
     public static void registerUpdateable(Updatable<?> updatable) {
 	try {
 	    getThePlayer().registerUpdateable((Updatable<Lobby>) UnicastRemoteObject.exportObject(updatable, 0));
