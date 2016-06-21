@@ -28,7 +28,9 @@ import nl.groep4.kvc.client.view.pane.BuildPane;
 import nl.groep4.kvc.client.view.pane.BuyPane;
 import nl.groep4.kvc.client.view.pane.CreditsPane;
 import nl.groep4.kvc.client.view.pane.DicePane;
+import nl.groep4.kvc.client.view.pane.InventionPane;
 import nl.groep4.kvc.client.view.pane.MapPane;
+import nl.groep4.kvc.client.view.pane.MonopolyPane;
 import nl.groep4.kvc.client.view.pane.OptionPane;
 import nl.groep4.kvc.client.view.pane.PaneHolder;
 import nl.groep4.kvc.client.view.pane.PausePane;
@@ -233,7 +235,17 @@ public class SceneMap implements SceneHolder, UpdateMap {
 
     @Override
     public void openSavePane() {
-	// setOverlay(new SavePane());
+	// TODO: setOverlay(new SavePane());
+    }
+
+    @Override
+    public void openInventionPane() throws RemoteException {
+	setOverlay(new InventionPane(this));
+    }
+
+    @Override
+    public void openMonopolyPane() throws RemoteException {
+	setOverlay(new MonopolyPane(this));
     }
 
     @Override

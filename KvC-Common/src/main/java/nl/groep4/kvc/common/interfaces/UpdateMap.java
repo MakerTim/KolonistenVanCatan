@@ -26,6 +26,10 @@ public interface UpdateMap extends Updatable<Map>, UpdateDice, UpdateStock, Upda
 
     public void openTradePane() throws RemoteException;
 
+    public void openMonopolyPane() throws RemoteException;
+
+    public void openInventionPane() throws RemoteException;
+
     public void openCreditsPane() throws RemoteException;
 
     public void openPausePane(boolean isOwner) throws RemoteException;
