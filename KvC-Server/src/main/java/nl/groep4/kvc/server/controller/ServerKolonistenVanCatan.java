@@ -87,6 +87,11 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	return this.state;
     }
 
+    @Override
+    public boolean isMovingRover() {
+	return mapController.isMovingRover();
+    }
+
     public void setState(GameState state) {
 	this.state = state;
     }
@@ -141,6 +146,20 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     @Override
     public void placeStreet(Player newOwner, Coordinate coord) {
 	mapController.placeStreet(newOwner, coord);
+    }
+
+    @Override
+    public void moveFromRover(Player turn, Coordinate position) throws RemoteException {
+	if (getTurn().equals(turn)) {
+	    mapController.moveRoverFrom(position);
+	}
+    }
+
+    @Override
+    public void moveToRover(Player turn, Coordinate position) throws RemoteException {
+	if (getTurn().equals(turn)) {
+	    mapController.moveRoverTo(position);
+	}
     }
 
     @Override
@@ -307,7 +326,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 
     @Override
     public void reconnect() throws RemoteException {
-	updateModel();
+	updateMap();
 	updateResources();
 	updateTrades();
 	updateRound();
@@ -316,7 +335,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     }
 
     @Override
-    public void updateModel() {
+    public void updateMap() {
 	List<Runnable> runs = new ArrayList<>();
 	for (Player pl : getPlayers()) {
 	    runs.add(() -> {
