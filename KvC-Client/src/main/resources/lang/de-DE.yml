@@ -76,16 +76,16 @@ lobby.button.join:Entreiten
 lobby.button.settings:Einstellungen
 
 #Turn
-turn.state.building:Baut auf Gebäude
-turn.state.building.self:Plazieren eines Gebäudes
-turn.state.street:Ist eine Straße zum Gebäude
-turn.state.street.self:Einsetzen einer Straße
-turn.state.card:Ist eine Karte kaufen
-turn.state.card.self:Kaufen eine Karte
+turn.state.building:Baut
+turn.state.building.self:Bauen
+turn.state.street:Baut
+turn.state.street.self:Bauen
+turn.state.card:Ist kaufen
+turn.state.card.self:Kaufen
 turn.state.dice:Die Würfel
 turn.state.dice.self:Sind die Würfel
-turn.state.trade:Ist auf der Auktion
-turn.state.trade.self:Befinden sich in der Auktion
+turn.state.trade:Auf der Auktion
+turn.state.trade.self:In der Auktion
 turn.state.wait:Drehen
 turn.state.wait.self:Sind neben
 turn.self:Sie
@@ -140,18 +140,21 @@ gamenote.ingame.details:Schalt Farbe ist nicht verfügbar, während Spiel läuft
 note.noplayers.title:Nicht genug Menschen
 note.noplayers.explanation:Es gibt nicht genug Menschen vorhanden
 note.noplayers.details:Exception: 503 Service Unavailable
-note.noturn.tile:Sie sind nicht zu handeln
-note.noturn.explanation:Sie sind nicht einmal umdrehen
-note.noturn.details:Exception: 503 Service Unavailable
-note.nostreet.title:Keine Straßen zu Ort
-note.nostreet.explanation:Sie müssen keine Straßen platzieren
-note.nostreet.details:Exception: 503 Service Unavailable
-note.building.title:Es gibt keine Gebäude zu platzieren
-note.building.explanation:Sie haben keine Gebäude zu platzieren
-note.building.details:Exception: 503 Service Unavailable
-note.alreadstreet.title:Setzen Sie nicht verfügbar
-note.alreadstreet.explanation:Hier steht ein Gebäude bereits
-note.alreadstreet.details:Exception: 503 Service Unavailable
+gamenote.noturn.tile:Sie sind nicht zu handeln
+gamenote.noturn.explanation:Sie sind nicht einmal umdrehen
+gamenote.noturn.details:Exception: 503 Service Unavailable
+gamenote.nostreet.title:Keine Straßen zu Ort
+gamenote.nostreet.explanation:Sie müssen keine Straßen platzieren
+gamenote.nostreet.details:Exception: 503 Service Unavailable
+gamenote.nobuilding.title:Es gibt keine Gebäude zu platzieren
+gamenote.nobuilding.explanation:Sie haben keine Gebäude zu platzieren
+gamenote.nobuilding.details:Exception: 503 Service Unavailable
+gamenote.alreadstreet.title:Setzen Sie nicht verfügbar
+gamenote.alreadstreet.explanation:Hier steht ein Gebäude bereits
+gamenote.alreadstreet.details:Exception: 503 Service Unavailable
+gamenote.alreadbuilding.title:Setzen Sie nicht verfügbar
+gamenote.alreadbuilding.explanation:Hier steht ein Gebäude bereits
+gamenote.alreadbuilding.details:Exception: 503 Service Unavailable
 
 #Map
 map.throwdice.clickToThrow:Wirf den Würfel
