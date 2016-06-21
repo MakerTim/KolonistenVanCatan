@@ -23,7 +23,6 @@ import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.UpdateCosts;
 
 public class BuildPane implements PaneHolder, UpdateCosts {
-    // TODO: set Text to KvCText
     MenuButton streetbutton = new MenuButton(425, 500, TranslationManager.translate("build.button.road"));
     MenuButton villagebutton = new MenuButton(425, 500, TranslationManager.translate("build.button.village"));
     MenuButton citybutton = new MenuButton(425, 500, TranslationManager.translate("build.button.city"));
