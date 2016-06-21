@@ -190,10 +190,10 @@ public class ClientTile extends StackPane {
     }
 
     /**
-     * Highlights building, street, bandit or tile
+     * Sets given variable in select to true
      * 
      * @param select
-     *            contains what to highlight
+     *            contains building, street, bandit or tile
      */
     public void setSelectState(SelectState select) {
 	switch (select) {
@@ -267,10 +267,12 @@ public class ClientTile extends StackPane {
     }
 
     /**
-     * 
+     * Highlights streets
      * 
      * @param direction
+     *            the direction to highlight
      * @param doesHighlight
+     *            highlights streets when doesHiglight is true
      */
     public void highLightStreet(Direction direction, boolean doesHighlight) {
 	if (doesHighlight) {
@@ -291,6 +293,14 @@ public class ClientTile extends StackPane {
 	}
     }
 
+    /**
+     * Highlights buildings
+     * 
+     * @param point
+     *            location to highlight
+     * @param type
+     *            kind of building
+     */
     public void highLightBuilding(Point point, BuildingType type) {
 	if (point == Point.WEST || point == Point.NORTH_WEST) {
 	    int i = point.ordinal();
