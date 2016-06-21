@@ -71,16 +71,16 @@ public class PlaceTradePane implements PaneHolder {
     public Pane getPane() {
 	StackPane placetradepane = new StackPane();
 
-	SpinnerValueFactory spinOfferWheat;
-	SpinnerValueFactory spinOfferWood;
-	SpinnerValueFactory spinOfferWool;
-	SpinnerValueFactory spinOfferBrick;
-	SpinnerValueFactory spinOfferOre;
-	SpinnerValueFactory spinSearchWheat = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
-	SpinnerValueFactory spinSearchWood = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
-	SpinnerValueFactory spinSearchWool = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
-	SpinnerValueFactory spinSearchBrick = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
-	SpinnerValueFactory spinSearchOre = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+	SpinnerValueFactory<Integer> spinOfferWheat;
+	SpinnerValueFactory<Integer> spinOfferWood;
+	SpinnerValueFactory<Integer> spinOfferWool;
+	SpinnerValueFactory<Integer> spinOfferBrick;
+	SpinnerValueFactory<Integer> spinOfferOre;
+	SpinnerValueFactory<Integer> spinSearchWheat = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+	SpinnerValueFactory<Integer> spinSearchWood = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+	SpinnerValueFactory<Integer> spinSearchWool = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+	SpinnerValueFactory<Integer> spinSearchBrick = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+	SpinnerValueFactory<Integer> spinSearchOre = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
 	try {
 	    spinOfferWheat = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,
 		    ClientRefrence.getThePlayer().getResourceAmount(Resource.WHEAT));
