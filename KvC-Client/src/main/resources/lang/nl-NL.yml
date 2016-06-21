@@ -120,8 +120,6 @@ trade.text.wool:Wol
 trade.text.brick:Steen
 trade.text.ore:Erts
 trade.button.back:Terug
-trade.text.give:Geven
-trade.text.receive:Ontvangen
 trade.text.wheat:Graan
 trade.text.wood:Hout
 trade.text.wool:Wol
@@ -179,6 +177,9 @@ gamenote.nocard.details:Exception: 503 Service Unavailable
 gamenote.noowner.title:Niet de eigenaar
 gamenote.noowner.explanation:U bent niet de eigenaar van dit gebouw
 gamenote.noowner.details:Exception: 503 Service Unavailable
+gamenote.notrade.title:Geen ruil
+gamenote.notrade.explanation:Der Handel kann nicht, weil die Miete nicht gefunden wird
+gamenote.notrade.details:Exception: 503 Service Unavailable
 
 
 

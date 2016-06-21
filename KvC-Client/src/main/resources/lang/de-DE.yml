@@ -118,8 +118,6 @@ trade.text.wood:Holz
 trade.text.wool:Wolle
 trade.text.brick:Stein
 trade.text.ore:Erz
-trade.text.give:Geben
-trade.text.receive:Erhalten
 trade.text.wheat:Korn
 trade.text.wood:Holz
 trade.text.wool:Wolle
@@ -177,6 +175,9 @@ gamenote.nocard.details:Exception: 503 Service Unavailable
 gamenote.noowner.title:Nicht der Besitzer
 gamenote.noowner.explanation:Sie sind nicht der Eigentümer dieses Gebäudes
 gamenote.noowner.details:Exception: 503 Service Unavailable
+gamenote.notrade.title:Kein Austausch
+gamenote.notrade.explanation:can't trade, because trade has not been found
+gamenote.notrade.details:Exception: 503 Service Unavailable
 
 
 #Map

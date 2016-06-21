@@ -20,7 +20,7 @@ import nl.groep4.kvc.client.view.scene.SceneMap;
  * The pane with the credits.
  * 
  * @author Lisa
- *
+ * @version 1.0
  */
 public class CreditsPane implements PaneHolder {
     private Font font = new Font(ViewMaster.FONT.getName(), 40);

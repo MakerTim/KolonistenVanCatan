@@ -28,7 +28,7 @@ import nl.groep4.kvc.common.interfaces.UpdateCosts;
  * The BuyPane, where you can buy a development card.
  * 
  * @author Lisa
- *
+ * @version 1.0
  */
 public class BuyPane implements PaneHolder, UpdateCosts {
     private Font font = new Font(ViewMaster.FONT.getName(), 30);

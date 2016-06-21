@@ -18,7 +18,7 @@ import nl.groep4.kvc.common.interfaces.NotCloseable;
  * This pane will be shown when the game is on pause.
  * 
  * @author Lisa
- *
+ * @version 1.0
  */
 public class PausePane implements PaneHolder, NotCloseable {
     private MenuButton continueButton;
@@ -27,6 +27,12 @@ public class PausePane implements PaneHolder, NotCloseable {
     private SceneMap sceneMap;
     private boolean isMyTurn;
 
+    /**
+     * Sets up the Pausepane
+     * 
+     * @param sceneMap
+     * @param ismyturn
+     */
     public PausePane(SceneMap sceneMap, boolean ismyturn) {
 	this.sceneMap = sceneMap;
 	this.isMyTurn = ismyturn;

@@ -23,7 +23,7 @@ import nl.groep4.kvc.client.view.scene.SceneMap;
  * Pane for the rules of the game
  * 
  * @author Lisa
- *
+ * @version 1.0
  */
 public class RulesPane implements PaneHolder {
     private KvCText rules = new KvCText(TranslationManager.translate("rules.text.rules"));
