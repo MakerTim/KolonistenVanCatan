@@ -15,7 +15,6 @@ import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.interfaces.NotCloseable;
 
 public class PausePane implements PaneHolder, NotCloseable {
-    // TODO: set Text to KvCText
     private MenuButton continueButton;
     private Text pause;
 
@@ -36,7 +35,7 @@ public class PausePane implements PaneHolder, NotCloseable {
 	if (isMyTurn) {
 	    continueButton = new MenuButton(425, 500, TranslationManager.translate("pause.button.continue"));
 	    continueButton.setFont(ViewMaster.FONT);
-	    continueButton.registerClick(() -> setPause());
+	    continueButton.registerClick(() -> unpause());
 	    pausebox.getChildren().add(continueButton);
 	}
 	pause = new KvCText(TranslationManager.translate("pause.label.pause"));
@@ -63,10 +62,10 @@ public class PausePane implements PaneHolder, NotCloseable {
 	}
     }
 
-    public void setPause() {
+    public void unpause() {
 	if (isMyTurn) {
 	    isMyTurn = false;
-	    sceneMap.getController().setPause();
+	    sceneMap.getController().unpause();
 	    continueButton.setDisabled();
 	}
     }

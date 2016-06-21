@@ -221,7 +221,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 		if (street != null && pl.equals(street.getOwner())) {
 		    for (Direction connectedDirection : direction.getConnected()) {
 			Street connected = tile.getStreet(connectedDirection);
-			if (connected != null) {
+			if (connected != null && connected.getOwner() == null) {
 			    streets.add(connected);
 			}
 		    }
@@ -449,6 +449,21 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();
 	}
+    }
+
+    @Override
+    public void closePausePane() throws RemoteException {
+	List<Runnable> runs = new ArrayList<>();
+	for (Player pl : getPlayers()) {
+	    runs.add(() -> {
+		try {
+		    pl.getUpdateable(UpdateMap.class).closeOverlay();
+		} catch (RemoteException ex) {
+		    ex.printStackTrace();
+		}
+	    });
+	}
+	Scheduler.runAsyncdSync(runs);
     }
 
     public void moveBanditModus() {
