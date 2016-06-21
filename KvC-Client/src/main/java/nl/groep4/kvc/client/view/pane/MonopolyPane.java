@@ -12,7 +12,7 @@ import javafx.scene.text.Text;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
-import nl.groep4.kvc.client.view.elements.ResourceCardUtil;
+import nl.groep4.kvc.client.view.elements.ResourceCard;
 import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.NotCloseable;
@@ -29,7 +29,7 @@ public class MonopolyPane implements PaneHolder, NotCloseable {
 
     private Text choice = new Text(TranslationManager.translate("monopoly.text.choice"));
     private Text monopoly = new Text(TranslationManager.translate("monopoly.text.monopoly"));
-    private ResourceCardUtil cards;
+    private ResourceCard cards;
     private VBox woodText;
     private VBox oreText;
     private VBox stoneText;
@@ -46,7 +46,7 @@ public class MonopolyPane implements PaneHolder, NotCloseable {
 
     @Override
     public Pane getPane() {
-	cards = new ResourceCardUtil();
+	cards = new ResourceCard();
 	StackPane monopolypane = new StackPane();
 
 	choice.setFont(font);

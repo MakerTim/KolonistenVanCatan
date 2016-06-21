@@ -19,7 +19,7 @@ import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.KvCText;
 import nl.groep4.kvc.client.view.elements.MenuButton;
-import nl.groep4.kvc.client.view.elements.ResourceCardUtil;
+import nl.groep4.kvc.client.view.elements.ResourceCard;
 import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.enumeration.CardType;
 import nl.groep4.kvc.common.enumeration.Resource;
@@ -59,7 +59,7 @@ public class StockPane implements PaneHolder, UpdateStock {
     StackPane wool;
     MenuButton hideCards;
     MenuButton showCards;
-    ResourceCardUtil cards;
+    ResourceCard cards;
     VBox allThings;
     VBox buttons;
     Text information;
@@ -74,7 +74,7 @@ public class StockPane implements PaneHolder, UpdateStock {
 
     @Override
     public Pane getPane() {
-	cards = new ResourceCardUtil();
+	cards = new ResourceCard();
 	wood = new StackPane();
 	wheat = new StackPane();
 	ore = new StackPane();
