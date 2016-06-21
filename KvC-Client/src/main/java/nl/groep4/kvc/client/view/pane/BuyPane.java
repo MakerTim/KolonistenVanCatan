@@ -4,11 +4,9 @@ import java.rmi.RemoteException;
 import java.util.EnumMap;
 import java.util.Map.Entry;
 
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -17,7 +15,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
@@ -26,7 +23,7 @@ import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.UpdateCosts;
 
-public class BuyPane extends Application implements PaneHolder, UpdateCosts {
+public class BuyPane implements PaneHolder, UpdateCosts {
     // TODO: set Text to KvCText
     private Font font = new Font(ViewMaster.FONT.getName(), 30);
 
@@ -56,15 +53,6 @@ public class BuyPane extends Application implements PaneHolder, UpdateCosts {
     private VBox vboxWool;
     private VBox vboxBrick;
     private VBox vboxOre;
-
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-
-	Scene scene = new Scene(getPane());
-	primaryStage.setScene(scene);
-	primaryStage.show();
-
-    }
 
     public BuyPane(SceneMap sceneMap) {
 	this.sceneMap = sceneMap;
@@ -210,10 +198,6 @@ public class BuyPane extends Application implements PaneHolder, UpdateCosts {
 	if (cards != null) {
 	    cards.setText(TranslationManager.translate("buypane.text.cards"));
 	}
-    }
-
-    public static void main(String[] args) {
-	launch(args);
     }
 
     @Override
