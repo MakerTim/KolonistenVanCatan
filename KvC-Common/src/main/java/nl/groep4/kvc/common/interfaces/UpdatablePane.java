@@ -2,6 +2,14 @@ package nl.groep4.kvc.common.interfaces;
 
 import java.rmi.RemoteException;
 
+/**
+ * Updates panes and contains popup and close
+ * 
+ * @author Tim
+ * @version 1.0
+ * 
+ * @param <T>
+ */
 public interface UpdatablePane<T> extends Updatable<T> {
 
     @Override
