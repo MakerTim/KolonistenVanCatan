@@ -17,6 +17,7 @@ import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.Card;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.UpdatePlayerOrder;
+import nl.groep4.kvc.common.interfaces.UpdateScore;
 import nl.groep4.kvc.common.interfaces.UpdateStock;
 
 /**
@@ -25,7 +26,7 @@ import nl.groep4.kvc.common.interfaces.UpdateStock;
  * @author Tim, Luc
  * @version 1.0
  */
-public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder {
+public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder, UpdateScore {
 
     private StackPane scorePane;
     private VBox content;
@@ -114,11 +115,16 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder {
     public void updateStock(Player pl, List<Card> cards) {
 	for (PlayerScore playerScore : scores) {
 	    if (pl == null || playerScore.getPlayer().equals(pl)) {
-		try {
-		    playerScore.updateStock(pl, cards);
-		} catch (RemoteException e) {
-		    e.printStackTrace();
-		}
+		playerScore.updateStock(cards);
+	    }
+	}
+    }
+
+    @Override
+    public void updateScore(Player pl, int score) throws RemoteException {
+	for (PlayerScore playerScore : scores) {
+	    if (pl == null || playerScore.getPlayer().equals(pl)) {
+		playerScore.updateScore(score);
 	    }
 	}
     }

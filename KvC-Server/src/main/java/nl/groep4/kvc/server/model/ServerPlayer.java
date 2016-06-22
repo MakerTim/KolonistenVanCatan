@@ -30,6 +30,8 @@ public class ServerPlayer implements Player {
     private int citysToBuild;
     private int streetsToBuild;
     private int score;
+    private boolean hasLongestRoad;
+    private boolean hasMostRidders;
 
     /**
      * Makes a new player on the basis of the username. When the username
@@ -139,4 +141,28 @@ public class ServerPlayer implements Player {
 	return super.equals(obj);
     }
 
+    @Override
+    public void setPoints(int score) throws RemoteException {
+	this.score = score;
+    }
+
+    @Override
+    public boolean hasMostRidders() throws RemoteException {
+	return hasMostRidders;
+    }
+
+    @Override
+    public void setMostRidder(boolean hasMost) throws RemoteException {
+	this.hasMostRidders = hasMost;
+    }
+
+    @Override
+    public boolean hasLongestRoad() throws RemoteException {
+	return hasLongestRoad;
+    }
+
+    @Override
+    public void setHasLongestRoad(boolean hasLongest) throws RemoteException {
+	this.hasLongestRoad = hasLongest;
+    }
 }
