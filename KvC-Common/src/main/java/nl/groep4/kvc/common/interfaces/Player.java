@@ -165,4 +165,6 @@ public interface Player extends Remote {
 	return hasResource(resource, 1);
     }
 
+    public int getPoints() throws RemoteException;
+
 }

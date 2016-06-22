@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import nl.groep4.kvc.client.view.elements.PlayerScore;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.Card;
@@ -22,40 +22,31 @@ import nl.groep4.kvc.common.interfaces.UpdateStock;
 /**
  * Scorepane that gets updates
  * 
- * @author Luc
+ * @author Tim, Luc
  * @version 1.0
  */
 public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder {
 
-    StackPane scorePane;
-    VBox playersBox;
-    VBox content;
-    ImageView banner;
-    ImageView closedBanner;
-    Text scoreBrick;
-    Text scoreWood;
-    Text scoreOre;
-    Text scoreWool;
-    Text scoreWheat;
+    private StackPane scorePane;
+    private VBox content;
+    private Node first = new PlayerScore(null).getPane();
+    private ImageView banner;
+    private ImageView closedBanner;
 
-    Pane playerSlot;
-    Text playerName;
-    Text playerScore;
-
-    ArrayList<PlayerScore> scores;
+    private ArrayList<PlayerScore> scores;
 
     @Override
     public Pane getPane() {
 	scores = new ArrayList<>();
 	scorePane = new StackPane();
-	playersBox = new VBox();
 	content = new VBox();
 	scorePane.getChildren().addAll(getClosedBanner());
 	content.setAlignment(Pos.TOP_CENTER);
 
-	scorePane.setOnMouseEntered(e -> clickOpen());
-	scorePane.setOnMouseExited(e -> clickClose());
+	scorePane.setOnMouseEntered(e -> hoverIn());
+	scorePane.setOnMouseExited(e -> hoverOut());
 	scorePane.setAlignment(Pos.TOP_CENTER);
+	hoverOut();
 	return scorePane;
     }
 
@@ -63,9 +54,11 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder {
      * Opens the banner with player resources by adding children to the pane
      * 
      */
-    public void clickOpen() {
-	scorePane.getChildren().addAll(getBanner(), content);
-	scorePane.getChildren().remove(closedBanner);
+    public void hoverIn() {
+	scorePane.getChildren().clear();
+	VBox stack = new VBox(first, content);
+	stack.setAlignment(Pos.TOP_CENTER);
+	scorePane.getChildren().addAll(getBanner(), stack);
     }
 
     /**
@@ -73,9 +66,11 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder {
      * pane
      * 
      */
-    public void clickClose() {
-	scorePane.getChildren().add(getClosedBanner());
-	scorePane.getChildren().removeAll(banner, content);
+    public void hoverOut() {
+	scorePane.getChildren().clear();
+	VBox stack = new VBox(first);
+	stack.setAlignment(Pos.TOP_CENTER);
+	scorePane.getChildren().addAll(getClosedBanner(), stack);
     }
 
     /**
@@ -104,7 +99,6 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder {
 
     @Override
     public void updateTranslation() {
-
     }
 
     @Override
@@ -112,7 +106,6 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder {
 	for (PlayerScore playerScore : scores) {
 	    if (pl == null || playerScore.getPlayer().equals(pl)) {
 		playerScore.updateResources(resources);
-
 	    }
 	}
     }
@@ -126,18 +119,27 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder {
 		} catch (RemoteException e) {
 		    e.printStackTrace();
 		}
-
 	    }
 	}
     }
 
     @Override
     public void updatePlayerOrder(List<Player> order) {
-	content.getChildren().clear();
-	for (Player player : order) {
-	    PlayerScore ps = new PlayerScore(player);
-	    scores.add(ps);
-	    content.getChildren().add(ps.getPane());
-	}
+	Platform.runLater(() -> {
+	    content.getChildren().clear();
+	    if (!order.isEmpty()) {
+		PlayerScore ps = new PlayerScore(order.get(0));
+		scores.add(ps);
+		Pane parent = (Pane) first.getParent();
+		parent.getChildren().remove(first);
+		first = ps.getPane();
+		parent.getChildren().add(first);
+	    }
+	    for (int i = 1; i < order.size(); i++) {
+		PlayerScore ps = new PlayerScore(order.get(i));
+		scores.add(ps);
+		content.getChildren().add(ps.getPane());
+	    }
+	});
     }
 }

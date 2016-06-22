@@ -29,6 +29,7 @@ public class ServerPlayer implements Player {
     private int villagesToBuild;
     private int citysToBuild;
     private int streetsToBuild;
+    private int score;
 
     /**
      * Makes a new player on the basis of the username. When the username
@@ -118,6 +119,11 @@ public class ServerPlayer implements Player {
     @Override
     public void addRemainingCitys(int citys) throws RemoteException {
 	citysToBuild += citys;
+    }
+
+    @Override
+    public int getPoints() throws RemoteException {
+	return score;
     }
 
     @Override
