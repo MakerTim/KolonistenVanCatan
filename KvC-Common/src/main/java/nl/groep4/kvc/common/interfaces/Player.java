@@ -167,4 +167,13 @@ public interface Player extends Remote {
 
     public int getPoints() throws RemoteException;
 
+    public void setPoints(int score) throws RemoteException;
+
+    public boolean hasMostRidders() throws RemoteException;
+
+    public void setMostRidder(boolean hasMost) throws RemoteException;
+
+    public boolean hasLongestRoad() throws RemoteException;
+
+    public void setHasLongestRoad(boolean hasLongest) throws RemoteException;
 }

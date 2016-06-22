@@ -29,6 +29,7 @@ public class PlayerScore {
     private static final Font BOTTOM_FONT = new Font(ViewMaster.FONT.getName(), 15);
 
     private Player player;
+    private HBox bottom;
     private Text usernameLabel;
     private Text scoreLabel;
     private Text brickLabel;
@@ -44,6 +45,8 @@ public class PlayerScore {
     private ImageView oreIcon;
     private ImageView coinIcon;
     private ImageView cardIcon;
+    private ImageView ridderIcon;
+    private ImageView roadIcon;
 
     /**
      * Constructor for setting up object for PlayerScore
@@ -82,7 +85,8 @@ public class PlayerScore {
 	    usernameLabel.setText(player.getUsername());
 	    usernameLabel.setFill(player.getColor().getColor());
 	    updateResources(player.getResources());
-	    updateStock(player, player.getCards());
+	    updateStock(player.getCards());
+	    updateScore(player.getPoints());
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();
 	} catch (NullPointerException ex) {
@@ -98,7 +102,7 @@ public class PlayerScore {
 	VBox playerScorePane = new VBox();
 	HBox top = new HBox();
 	HBox mittle = new HBox();
-	HBox bottom = new HBox();
+	bottom = new HBox();
 	top.setAlignment(Pos.CENTER);
 	mittle.setAlignment(Pos.CENTER);
 	bottom.setAlignment(Pos.CENTER);
@@ -110,6 +114,8 @@ public class PlayerScore {
 	brickIcon = getBrickIcon();
 	coinIcon = getCoinIcon();
 	cardIcon = getCardIcon();
+	ridderIcon = getSwordIcon();
+	roadIcon = getRoadIcon();
 
 	top.getChildren().addAll(usernameLabel);
 	mittle.getChildren().addAll(woodIcon, woodLabel, brickIcon, brickLabel, woolIcon, woolLabel, wheatIcon,
@@ -166,6 +172,16 @@ public class PlayerScore {
 	}
 	try {
 	    scoreLabel.setText(Integer.toString(player.getPoints()));
+	    if (player.hasMostRidders()) {
+		bottom.getChildren().add(ridderIcon);
+	    } else {
+		bottom.getChildren().remove(ridderIcon);
+	    }
+	    if (player.hasLongestRoad()) {
+		bottom.getChildren().add(roadIcon);
+	    } else {
+		bottom.getChildren().remove(roadIcon);
+	    }
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();
 	} catch (NullPointerException ex) {
@@ -175,22 +191,42 @@ public class PlayerScore {
     /**
      * Updates the resource cards in stock
      * 
-     * @param pl
-     *            player
      * @param cards
      *            resource cards
      * @throws RemoteException
      *             signals that an exception has been thrown by a remote method
      *             on the server
      */
-    public void updateStock(Player pl, List<Card> cards) throws RemoteException {
+    public void updateStock(List<Card> cards) {
 	cardLabel.setText(Integer.toString(cards.size()));
 	try {
-	    scoreLabel.setText(Integer.toString(pl.getPoints()));
+	    scoreLabel.setText(Integer.toString(player.getPoints()));
+	    if (player.hasMostRidders()) {
+		bottom.getChildren().add(ridderIcon);
+	    } else {
+		bottom.getChildren().remove(ridderIcon);
+	    }
+	    if (player.hasLongestRoad()) {
+		bottom.getChildren().add(roadIcon);
+	    } else {
+		bottom.getChildren().remove(roadIcon);
+	    }
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();
 	} catch (NullPointerException ex) {
 	}
+    }
+
+    public void updateScore(int score) {
+	scoreLabel.setText(Integer.toString(score));
+    }
+
+    public ImageView getRoadIcon() {
+	return new ImageView("img/etc/road.png");
+    }
+
+    public ImageView getSwordIcon() {
+	return new ImageView("img/etc/swords.png");
     }
 
     /**
