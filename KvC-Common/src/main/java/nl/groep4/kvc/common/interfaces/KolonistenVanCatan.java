@@ -11,6 +11,12 @@ import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Map;
 
+/**
+ * The interfaces of the ServerKolonistenVanCatan
+ * 
+ * @author Tim
+ * @version
+ */
 public interface KolonistenVanCatan extends Remote {
 
     public void createMap() throws RemoteException;
@@ -195,19 +201,27 @@ public interface KolonistenVanCatan extends Remote {
     /**
      * Execute the trade
      * 
-     * @param tradeKey a unique key to validate the trade
-     * @param with the player with whom the trade will be done
-     * @throws RemoteException any remotely invoked method
+     * @param tradeKey
+     *            a unique key to validate the trade
+     * @param with
+     *            the player with whom the trade will be done
+     * @throws RemoteException
+     *             any remotely invoked method
      */
     public void trade(UUID tradeKey, Player with) throws RemoteException;
 
     /**
-     * The trades will be added to the TradePane so other players can respond on them
+     * The trades will be added to the TradePane so other players can respond on
+     * them
      * 
-     * @param player the owner of the trade
-     * @param request the request of the player
-     * @param reward the reward for the request
-     * @throws RemoteException any remotely invoked method
+     * @param player
+     *            the owner of the trade
+     * @param request
+     *            the request of the player
+     * @param reward
+     *            the reward for the request
+     * @throws RemoteException
+     *             any remotely invoked method
      */
     public void addTrade(Player player, java.util.Map<Resource, Integer> request,
 	    java.util.Map<Resource, Integer> reward) throws RemoteException;
@@ -215,66 +229,84 @@ public interface KolonistenVanCatan extends Remote {
     /**
      * When the trade is done, the trade will be removed from the TradePane
      * 
-     * @param key the unique key of the trade
-     * @throws RemoteException any remotely invoked method
+     * @param key
+     *            the unique key of the trade
+     * @throws RemoteException
+     *             any remotely invoked method
      */
     public void remvoeTrade(UUID key) throws RemoteException;
 
     /**
      * The pause pane will be opened
      * 
-     * @param requester the player who wants to pause the game
-     * @throws RemoteException any remotely invoked method
+     * @param requester
+     *            the player who wants to pause the game
+     * @throws RemoteException
+     *             any remotely invoked method
      */
     public void openPausePane(Player requester) throws RemoteException;
 
     /**
      * The pause pane will be closed
      * 
-     * @throws RemoteException any remotely invoked method
+     * @throws RemoteException
+     *             any remotely invoked method
      */
     public void closePausePane() throws RemoteException;
 
     /**
      * The player reconnects with the server
      * 
-     * @throws RemoteException any remotely invoked method
+     * @throws RemoteException
+     *             any remotely invoked method
      */
     public void reconnect() throws RemoteException;
 
     /**
      * The player who uses the card
      * 
-     * @param who the player who uses the card
-     * @param resource the resource that is chosen
-     * @throws RemoteException any remotely invoked method
+     * @param who
+     *            the player who uses the card
+     * @param resource
+     *            the resource that is chosen
+     * @throws RemoteException
+     *             any remotely invoked method
      */
     public void targetInvention(Player who, Resource resource) throws RemoteException;
 
     /**
      * The player who uses the card
      * 
-     * @param who the player who uses the card
-     * @param resource the resource that is chosen
-     * @throws RemoteException any remotely invoked method
+     * @param who
+     *            the player who uses the card
+     * @param resource
+     *            the resource that is chosen
+     * @throws RemoteException
+     *             any remotely invoked method
      */
     public void targetMonopoly(Player who, Resource resource) throws RemoteException;
 
     /**
      * Takes the Bandit from the tile
      * 
-     * @param turn the player who takes the bandit
-     * @param position the position of where the bandit is on
-     * @throws RemoteException any remotely invoked method
+     * @param turn
+     *            the player who takes the bandit
+     * @param position
+     *            the position of where the bandit is on
+     * @throws RemoteException
+     *             any remotely invoked method
      */
     public void moveFromRover(Player turn, Coordinate position) throws RemoteException;
 
     /**
      * Places the Bandit on a tile
      * 
-     * @param turn the player who places the bandit
-     * @param position the position of where the bandit will be placed on 
-     * @throws RemoteException any remotely invoked method
+     * @param turn
+     *            the player who places the bandit
+     * @param position
+     *            the position of where the bandit will be placed on
+     * @throws RemoteException
+     *             any remotely invoked method
      */
     public void moveToRover(Player turn, Coordinate position) throws RemoteException;
 }
