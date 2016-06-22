@@ -11,23 +11,65 @@ import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Map;
 
+/**
+ * Gets all activities that can be done
+ * 
+ * @author Tim
+ * @version 1.0
+ */
 public interface KolonistenVanCatan extends Remote {
 
+    /**
+     * creates the map
+     * 
+     * @throws RemoteException
+     *             signals when exception occurs
+     */
     public void createMap() throws RemoteException;
 
     /**
-     * @return gets current round
+     * gets current round
      */
     public int getRound() throws RemoteException;
 
+    /**
+     * Goes to the next round
+     * 
+     * @throws RemoteException
+     *             signals when exception occurs
+     */
     public void nextRound() throws RemoteException;
 
+    /**
+     * Goes to next turn
+     * 
+     * @throws RemoteException
+     *             signals when exception occurs
+     */
     public void nextTurn() throws RemoteException;
 
+    /**
+     * Starts the game
+     * 
+     * @throws RemoteException
+     *             signals when exception occurs
+     */
     public void start() throws RemoteException;
 
+    /**
+     * Gets state of the game
+     * 
+     * @throws RemoteException
+     *             signals when exception occurs
+     */
     public GameState getState() throws RemoteException;
 
+    /**
+     * Gets the map
+     * 
+     * @throws RemoteException
+     *             signals when exception occurs
+     */
     public Map getMap() throws RemoteException;
 
     public void updateModel() throws RemoteException;
