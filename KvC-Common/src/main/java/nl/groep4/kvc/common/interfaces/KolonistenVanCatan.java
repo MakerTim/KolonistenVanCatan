@@ -193,8 +193,10 @@ public interface KolonistenVanCatan extends Remote {
     /**
      * The player uses a card
      * 
-     * @param card the card that the player will use
-     * @throws RemoteException any remotely invoked method
+     * @param card
+     *            the card that the player will use
+     * @throws RemoteException
+     *             any remotely invoked method
      */
     public void useCard(Card card) throws RemoteException;
 
