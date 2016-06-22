@@ -171,7 +171,7 @@ public interface Player extends Remote {
     public void registerUpdateable(Updatable<?> updatable) throws RemoteException;
 
     /**
-     * Gets the view of the game
+     * Gets the view of the client
      * 
      * @return the view
      * @throws RemoteException
@@ -180,10 +180,12 @@ public interface Player extends Remote {
     public Updatable<?> getUpdateable() throws RemoteException;
 
     /**
-     * @param T
-     *            the updateable type
+     * {@link #registerUpdateable(Updatable)}
+     * 
+     * @param <T>
+     *            the class
      * @param type
-     *            the class where it will be casted to
+     *            class where it will be casted to
      * @return the view of the game
      * @throws RemoteException
      *             in case connection between RMI and client is lost
