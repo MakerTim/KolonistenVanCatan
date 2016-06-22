@@ -106,35 +106,37 @@ public class MonopolyPane implements PaneHolder, NotCloseable {
     }
 
     /**
-     * Get resource wood when clicked on
+     * when clicked on wood, the player gets all the wood cards of every player
      */
     public void onWoodClick() {
 	scenemap.getController().targetMonopoly(Resource.WOOD);
     }
 
     /**
-     * Get resource brick when clicked on
+     * when clicked on brick, the player gets all the brick cards of every
+     * player
      */
     public void onBrickClick() {
 	scenemap.getController().targetMonopoly(Resource.BRICK);
     }
 
     /**
-     * Get resource wool when clicked on
+     * when clicked on wool, the player gets all the wool cards of every player
      */
     public void onWoolClick() {
 	scenemap.getController().targetMonopoly(Resource.WOOL);
     }
 
     /**
-     * Get resource wheat when clicked on
+     * when clicked on wheat, the player gets all the wheat cards of every
+     * player
      */
     public void onWheatClick() {
 	scenemap.getController().targetMonopoly(Resource.WHEAT);
     }
 
     /**
-     * Get resource ore when clicked on
+     * when clicked on ore, the player gets all the ore cards of every player
      */
     public void onOreClick() {
 	scenemap.getController().targetMonopoly(Resource.ORE);

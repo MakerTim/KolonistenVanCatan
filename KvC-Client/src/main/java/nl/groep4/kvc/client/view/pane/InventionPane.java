@@ -106,35 +106,35 @@ public class InventionPane implements PaneHolder, NotCloseable {
     }
 
     /**
-     * when clicked on wood it will be given to the player
+     * when clicked on wood, two cards will be given to the player
      */
     public void onWoodClick() {
 	scenemap.getController().targetInvention(Resource.WOOD);
     }
 
     /**
-     * when clicked on brick it will be given to the player
+     * when clicked on brick, two cards will be given to the player
      */
     public void onBrickClick() {
 	scenemap.getController().targetInvention(Resource.BRICK);
     }
 
     /**
-     * when clicked on wool it will be given to the player
+     * when clicked on wool, two cards will be given to the player
      */
     public void onWoolClick() {
 	scenemap.getController().targetInvention(Resource.WOOL);
     }
 
     /**
-     * when clicked on wheat it will be given to the player
+     * when clicked on wheat, two cards will be given to the player
      */
     public void onWheatClick() {
 	scenemap.getController().targetInvention(Resource.WHEAT);
     }
 
     /**
-     * when clicked on ore it will be given to the player
+     * when clicked on ore, two cards will be given to the player
      */
     public void onOreClick() {
 	scenemap.getController().targetInvention(Resource.ORE);
