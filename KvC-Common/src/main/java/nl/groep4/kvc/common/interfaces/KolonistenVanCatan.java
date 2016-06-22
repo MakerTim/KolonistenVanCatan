@@ -15,7 +15,7 @@ import nl.groep4.kvc.common.map.Map;
  * The interfaces of the ServerKolonistenVanCatan
  * 
  * @author Tim
- * @version
+ * @version 1.0
  */
 public interface KolonistenVanCatan extends Remote {
 
