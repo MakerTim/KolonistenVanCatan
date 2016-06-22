@@ -1,22 +1,17 @@
 package nl.groep4.kvc.client.view.elements;
 
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.Card;
@@ -25,68 +20,30 @@ import nl.groep4.kvc.common.interfaces.Player;
 /**
  * Updates score and stock
  * 
- * @author Luc
+ * @author Tim en Luc
  * @version 1.0
  */
 public class PlayerScore {
 
+    private static final Font TOP_FONT = new Font(ViewMaster.FONT.getName(), 24);
+    private static final Font BOTTOM_FONT = new Font(ViewMaster.FONT.getName(), 15);
+
     private Player player;
-    private VBox playerScorePane;
-    HBox cards;
-    private Text username;
-    private Text playerRes;
-    private Text playerCards;
-    private String brickAmount = "";
-    private String oreAmount = "";
-    private String woodAmount = "";
-    private String woolAmount = "";
-    private String wheatAmount = "";
+    private Text usernameLabel;
+    private Text scoreLabel;
+    private Text brickLabel;
+    private Text oreLabel;
+    private Text woodLabel;
+    private Text woolLabel;
+    private Text wheatLabel;
+    private Text cardLabel;
     private ImageView woodIcon;
     private ImageView woolIcon;
     private ImageView wheatIcon;
     private ImageView brickIcon;
     private ImageView oreIcon;
-
-    String woodLetter = "";
-    String wheatLetter = "";
-    String woolLetter = "";
-    String oreLetter = "";
-
-    /**
-     * Gets the resources element for each player in game
-     * 
-     * @return VBox with player name and player resources
-     */
-    public VBox getPane() {
-	playerScorePane = new VBox();
-	cards = new HBox();
-	cards.setAlignment(Pos.CENTER);
-	getWoodIcon();
-	getOreIcon();
-	getWheatIcon();
-	getWoolIcon();
-	getBrickIcon();
-
-	try {
-	    username = new KvCText(player.getUsername());
-	    username.setFill(player.getColor().getColor());
-	    username.setFont(new Font(ViewMaster.FONT.getName(), 18));
-	    username.setStroke(Color.BLACK);
-	    Map<Resource, Integer> emptylist = new HashMap<>();
-	    for (Resource resource : Resource.values()) {
-		emptylist.put(resource, 0);
-	    }
-	    updateResources(new EnumMap<>(emptylist));
-	    updateStock(player, new ArrayList<>());
-	} catch (RemoteException e) {
-	    e.printStackTrace();
-	}
-
-	cards.getChildren().addAll(playerRes, playerCards);
-	playerScorePane.getChildren().addAll(username, cards);
-	playerScorePane.setAlignment(Pos.CENTER);
-	return playerScorePane;
-    }
+    private ImageView coinIcon;
+    private ImageView cardIcon;
 
     /**
      * Constructor for setting up object for PlayerScore
@@ -95,25 +52,74 @@ public class PlayerScore {
      */
     public PlayerScore(Player player) {
 	this.player = player;
-	woodIcon = new ImageView();
-	woolIcon = new ImageView();
-	wheatIcon = new ImageView();
-	brickIcon = new ImageView();
-	oreIcon = new ImageView();
-	playerRes = new KvCText();
-	playerCards = new KvCText(" ");
-	playerCards.setFont(new Font(ViewMaster.FONT.getName(), 24));
-	playerCards.setFill(Color.BISQUE);
-	playerRes.setFont(new Font(ViewMaster.FONT.getName(), 15));
-	woodLetter = (TranslationManager.translate("game.score.woodletter"));
-	brickLetter = (TranslationManager.translate("game.score.brickletter"));
-	wheatLetter = (TranslationManager.translate("game.score.wheatletter"));
-	woolLetter = (TranslationManager.translate("game.score.woolletter"));
-	oreLetter = (TranslationManager.translate("game.score.oreletter"));
+	usernameLabel = new KvCText();
+	brickLabel = new KvCText();
+	oreLabel = new KvCText();
+	woodLabel = new KvCText();
+	woolLabel = new KvCText();
+	wheatLabel = new KvCText();
+	scoreLabel = new KvCText();
+	cardLabel = new KvCText();
 
+	brickLabel.setFill(Color.BISQUE);
+	oreLabel.setFill(Color.BISQUE);
+	woodLabel.setFill(Color.BISQUE);
+	woolLabel.setFill(Color.BISQUE);
+	wheatLabel.setFill(Color.BISQUE);
+	scoreLabel.setFill(Color.BISQUE);
+	cardLabel.setFill(Color.BISQUE);
+
+	usernameLabel.setFont(TOP_FONT);
+	brickLabel.setFont(BOTTOM_FONT);
+	oreLabel.setFont(BOTTOM_FONT);
+	woodLabel.setFont(BOTTOM_FONT);
+	woolLabel.setFont(BOTTOM_FONT);
+	wheatLabel.setFont(BOTTOM_FONT);
+	scoreLabel.setFont(BOTTOM_FONT);
+	cardLabel.setFont(BOTTOM_FONT);
+
+	try {
+	    usernameLabel.setText(player.getUsername());
+	    usernameLabel.setFill(player.getColor().getColor());
+	    updateResources(player.getResources());
+	    updateStock(player, player.getCards());
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	} catch (NullPointerException ex) {
+	}
     }
 
-    String brickLetter = "";
+    /**
+     * Gets the resources element for each player in game
+     * 
+     * @return VBox with player name and player resources
+     */
+    public VBox getPane() {
+	VBox playerScorePane = new VBox();
+	HBox top = new HBox();
+	HBox mittle = new HBox();
+	HBox bottom = new HBox();
+	top.setAlignment(Pos.CENTER);
+	mittle.setAlignment(Pos.CENTER);
+	bottom.setAlignment(Pos.CENTER);
+
+	woodIcon = getWoodIcon();
+	oreIcon = getOreIcon();
+	wheatIcon = getWheatIcon();
+	woolIcon = getWoolIcon();
+	brickIcon = getBrickIcon();
+	coinIcon = getCoinIcon();
+	cardIcon = getCardIcon();
+
+	top.getChildren().addAll(usernameLabel);
+	mittle.getChildren().addAll(woodIcon, woodLabel, brickIcon, brickLabel, woolIcon, woolLabel, wheatIcon,
+		wheatLabel, oreIcon, oreLabel);
+	bottom.getChildren().addAll(coinIcon, scoreLabel, cardIcon, cardLabel);
+
+	playerScorePane.getChildren().addAll(top, mittle, bottom);
+	playerScorePane.setAlignment(Pos.CENTER);
+	return playerScorePane;
+    }
 
     /**
      * getter for Player class
@@ -128,11 +134,6 @@ public class PlayerScore {
      * updates all resources
      */
     public void updateTranslation() {
-	woodLetter = (TranslationManager.translate("game.score.woodletter"));
-	brickLetter = (TranslationManager.translate("game.score.brickletter"));
-	wheatLetter = (TranslationManager.translate("game.score.wheatletter"));
-	woolLetter = (TranslationManager.translate("game.score.woolletter"));
-	oreLetter = (TranslationManager.translate("game.score.oreletter"));
     }
 
     /**
@@ -142,32 +143,33 @@ public class PlayerScore {
      *            all the resources
      */
     public void updateResources(EnumMap<Resource, Integer> resources) {
-
 	for (Entry<Resource, Integer> resource : resources.entrySet()) {
 	    Resource res = resource.getKey();
 	    String amount = resource.getValue().toString();
 	    switch (res) {
 	    case BRICK:
-		brickAmount = amount;
+		brickLabel.setText(amount);
 		break;
 	    case ORE:
-		oreAmount = amount;
+		oreLabel.setText(amount);
 		break;
 	    case WHEAT:
-		wheatAmount = amount;
+		wheatLabel.setText(amount);
 		break;
 	    case WOOD:
-		woodAmount = amount;
+		woodLabel.setText(amount);
 		break;
 	    case WOOL:
-		woolAmount = amount;
+		woolLabel.setText(amount);
 		break;
-
 	    }
 	}
-	cards.getChildren().addAll(woodIcon, new KvCText(woodAmount + " "), brickIcon, new KvCText(brickAmount + " "),
-		woolIcon, new KvCText(woolAmount + " "), wheatIcon, new KvCText(wheatAmount + " "), oreIcon,
-		new KvCText(oreAmount));
+	try {
+	    scoreLabel.setText(Integer.toString(player.getPoints()));
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	} catch (NullPointerException ex) {
+	}
     }
 
     /**
@@ -182,7 +184,13 @@ public class PlayerScore {
      *             on the server
      */
     public void updateStock(Player pl, List<Card> cards) throws RemoteException {
-	playerCards.setText(" " + cards.size());
+	cardLabel.setText(Integer.toString(cards.size()));
+	try {
+	    scoreLabel.setText(Integer.toString(pl.getPoints()));
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	} catch (NullPointerException ex) {
+	}
     }
 
     /**
@@ -190,9 +198,8 @@ public class PlayerScore {
      * 
      * @return a wood icon
      */
-    public Node getWoodIcon() {
-	woodIcon = new ImageView("img/etc/wood.png");
-	return woodIcon;
+    public ImageView getWoodIcon() {
+	return new ImageView("img/etc/wood.png");
     }
 
     /**
@@ -200,9 +207,8 @@ public class PlayerScore {
      * 
      * @return woolIcon
      */
-    public Node getWoolIcon() {
-	woolIcon = new ImageView("/img/etc/wool.png");
-	return woolIcon;
+    public ImageView getWoolIcon() {
+	return new ImageView("/img/etc/wool.png");
     }
 
     /**
@@ -210,9 +216,8 @@ public class PlayerScore {
      * 
      * @return wheatIcon
      */
-    public Node getWheatIcon() {
-	wheatIcon = new ImageView("/img/etc/wheat.png");
-	return wheatIcon;
+    public ImageView getWheatIcon() {
+	return new ImageView("/img/etc/wheat.png");
     }
 
     /**
@@ -220,9 +225,12 @@ public class PlayerScore {
      * 
      * @return brickIcon
      */
-    public Node getBrickIcon() {
-	brickIcon = new ImageView("/img/etc/brick.png");
-	return brickIcon;
+    public ImageView getBrickIcon() {
+	return new ImageView("/img/etc/brick.png");
+    }
+
+    public ImageView getCoinIcon() {
+	return new ImageView("/img/etc/coin.png");
     }
 
     /**
@@ -230,9 +238,12 @@ public class PlayerScore {
      * 
      * @return oreIcon
      */
-    public Node getOreIcon() {
-	oreIcon = new ImageView("/img/etc/ore.png");
-	return oreIcon;
+    public ImageView getOreIcon() {
+	return new ImageView("/img/etc/ore.png");
+    }
+
+    public ImageView getCardIcon() {
+	return new ImageView("/img/etc/card.png");
     }
 
 }

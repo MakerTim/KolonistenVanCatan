@@ -123,6 +123,7 @@ public class TradeEntry implements PaneHolder {
 	    receiveWool.setText(getResource(theTrade.getRequest(), Resource.WOOL));
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();
+	} catch (NullPointerException ex) {
 	}
     }
 
