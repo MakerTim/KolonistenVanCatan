@@ -5,14 +5,52 @@ import java.util.EnumMap;
 
 import nl.groep4.kvc.common.enumeration.Resource;
 
+/**
+ * Gets the updates of the costs
+ * 
+ * @author Tim
+ *
+ */
 public interface UpdateCosts {
 
+    /**
+     * Updates the costs for the streets
+     * 
+     * @param resources
+     *            the costs of a street are the resources and the amount of it
+     * @throws RemoteException
+     *             any remotely invoked method
+     */
     public void updateStreetCosts(EnumMap<Resource, Integer> resources) throws RemoteException;
 
+    /**
+     * Updates the costs of the villages
+     * 
+     * @param resources
+     *            the costs of a village are the resources and the amount of it
+     * @throws RemoteException
+     *             any remotely invoked method
+     */
     public void updateVillageCosts(EnumMap<Resource, Integer> resources) throws RemoteException;
 
+    /**
+     * Updates the costs of the cities
+     * 
+     * @param resources
+     *            the costs of a city are the resources and the amount of it
+     * @throws RemoteException
+     *             any remotely invoked method
+     */
     public void updateCityCosts(EnumMap<Resource, Integer> resources) throws RemoteException;
 
+    /**
+     * Updates the costs of the cards
+     * 
+     * @param resources
+     *            the costs of a card are the resources and the amount of it
+     * @throws RemoteException
+     *             any remotely invoked method
+     */
     public void updateCardCosts(EnumMap<Resource, Integer> resources) throws RemoteException;
 
 }
