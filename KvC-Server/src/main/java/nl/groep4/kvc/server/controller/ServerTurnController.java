@@ -135,7 +135,15 @@ public class ServerTurnController {
 		});
 	    }
 	    Scheduler.runAsyncdSync(runs);
-	    controller.getTurn().getUpdateable(UpdateMap.class).unblockActions();
+	    switch (controller.getState()) {
+	    case END:
+		break;
+	    case INIT:
+		break;
+	    case IN_GAME:
+		controller.getTurn().getUpdateable(UpdateMap.class).unblockActions();
+		break;
+	    }
 	} catch (Exception ex) {
 	    ex.printStackTrace();
 	}
