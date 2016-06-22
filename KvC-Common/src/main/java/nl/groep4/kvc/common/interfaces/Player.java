@@ -369,13 +369,49 @@ public interface Player extends Remote {
      */
     public int getPoints() throws RemoteException;
 
+    /**
+     * Sets the points of the player
+     * 
+     * @param score
+     *            the score of the player
+     * @throws RemoteException
+     *             any remotely invoked method
+     */
     public void setPoints(int score) throws RemoteException;
 
+    /**
+     * True or false on if the player has the most knights
+     * 
+     * @return true or false on if the player has the most knights
+     * @throws RemoteException
+     */
     public boolean hasMostRidders() throws RemoteException;
 
+    /**
+     * Sets that the player has the most knights
+     * 
+     * @param hasMost
+     *            true or false on if the player has the most knights
+     * @throws RemoteException
+     *             any remotely invoked method
+     */
     public void setMostRidder(boolean hasMost) throws RemoteException;
 
+    /**
+     * True or false on if the player has the longest road
+     * 
+     * @return true or false on if the player has the longest road
+     * @throws RemoteException
+     *             any remotely invoked method
+     */
     public boolean hasLongestRoad() throws RemoteException;
 
+    /**
+     * Sets that the player has the longest road
+     * 
+     * @param hasLongest
+     *            true or false on if the player has the longest road
+     * @throws RemoteException
+     */
     public void setHasLongestRoad(boolean hasLongest) throws RemoteException;
 }
