@@ -193,9 +193,6 @@ public class PlayerScore {
      * 
      * @param cards
      *            resource cards
-     * @throws RemoteException
-     *             signals that an exception has been thrown by a remote method
-     *             on the server
      */
     public void updateStock(List<Card> cards) {
 	cardLabel.setText(Integer.toString(cards.size()));
