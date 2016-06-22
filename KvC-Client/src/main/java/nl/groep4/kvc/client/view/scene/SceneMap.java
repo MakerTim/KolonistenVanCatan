@@ -411,6 +411,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
     @Override
     public void updateScore(Player pl, int score) throws RemoteException {
 	scorePane.updateScore(pl, score);
+	playerPane.updateScore(pl, score);
     }
 
     @Override
