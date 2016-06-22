@@ -72,6 +72,17 @@ public class ClientTile extends StackPane {
 	number.setStrokeWidth(0.01 * SceneMap.scale);
 	number.setFill(Color.WHITE);
 
+	image.setOnMouseClicked(click -> {
+	    if (controller.isMovingRover()) {
+		onTileClick();
+	    }
+	});
+	fiche.setOnMouseClicked(click -> {
+	    if (fiche.getEffect() != null) {
+		onFicheClick();
+	    }
+	});
+
 	// Offset fix for fxpanes?
 	double xFix = 0.5;
 	double yFix = 0.5;
@@ -228,7 +239,7 @@ public class ClientTile extends StackPane {
 	DropShadow shadow = new DropShadow();
 	shadow.setOffsetX(5);
 	shadow.setOffsetY(5);
-	shadow.setColor(Color.LIGHTGOLDENRODYELLOW);
+	shadow.setColor(Color.BLACK);
 	return shadow;
     }
 
@@ -264,6 +275,14 @@ public class ClientTile extends StackPane {
 
     private void onBuildingClick(Coordinate coord) {
 	controller.placeBuilding(coord);
+    }
+
+    private void onFicheClick() {
+	controller.moveFromRover(tile.getPosition());
+    }
+
+    private void onTileClick() {
+	controller.moveToRover(tile.getPosition());
     }
 
     /**

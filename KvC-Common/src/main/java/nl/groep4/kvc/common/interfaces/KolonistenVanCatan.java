@@ -62,6 +62,8 @@ public interface KolonistenVanCatan extends Remote {
      * @throws RemoteException
      *             signals when exception occurs
      */
+    public boolean isMovingRover() throws RemoteException;
+
     public GameState getState() throws RemoteException;
 
     /**
@@ -72,7 +74,7 @@ public interface KolonistenVanCatan extends Remote {
      */
     public Map getMap() throws RemoteException;
 
-    public void updateModel() throws RemoteException;
+    public void updateMap() throws RemoteException;
 
     public List<Player> getPlayers() throws RemoteException;
 
@@ -114,4 +116,8 @@ public interface KolonistenVanCatan extends Remote {
     public void targetInvention(Player who, Resource resource) throws RemoteException;
 
     public void targetMonopoly(Player who, Resource resource) throws RemoteException;
+
+    public void moveFromRover(Player turn, Coordinate position) throws RemoteException;
+
+    public void moveToRover(Player turn, Coordinate position) throws RemoteException;
 }

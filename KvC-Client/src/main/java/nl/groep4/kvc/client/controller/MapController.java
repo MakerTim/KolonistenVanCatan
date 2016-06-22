@@ -215,4 +215,29 @@ public class MapController implements Controller {
 	    ex.printStackTrace();
 	}
     }
+
+    public void moveFromRover(Coordinate position) {
+	try {
+	    model.moveFromRover(ClientRefrence.getThePlayer(), position);
+	} catch (Exception ex) {
+	    ex.printStackTrace();
+	}
+    }
+
+    public void moveToRover(Coordinate position) {
+	try {
+	    model.moveToRover(ClientRefrence.getThePlayer(), position);
+	} catch (Exception ex) {
+	    ex.printStackTrace();
+	}
+    }
+
+    public boolean isMovingRover() {
+	try {
+	    return model.isMovingRover();
+	} catch (Exception ex) {
+	    ex.printStackTrace();
+	}
+	return false;
+    }
 }

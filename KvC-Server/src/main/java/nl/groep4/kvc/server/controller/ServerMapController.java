@@ -15,17 +15,17 @@ import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Street;
 import nl.groep4.kvc.common.map.Tile;
+import nl.groep4.kvc.common.map.TileLand;
 import nl.groep4.kvc.common.map.TileResource;
 
 public class ServerMapController {
 
     private ServerKolonistenVanCatan controller;
+    private Coordinate roverFrom;
 
     public ServerMapController(ServerKolonistenVanCatan serverKolonistenVanCatan) {
 	this.controller = serverKolonistenVanCatan;
     }
-
-    // TODO: Rover verplaats modus.
 
     public void distribute() {
 	try {
@@ -84,7 +84,7 @@ public class ServerMapController {
 			newOwner.removeRemainingVillage();
 			building.setOwner(newOwner);
 			building.setBuildingType(type);
-			controller.updateModel();
+			controller.updateMap();
 			newOwner.setSelectable(SelectState.TILE);
 			controller.updateState(TurnState.WAITING);
 			if (controller.getState() == GameState.INIT) {
@@ -108,7 +108,7 @@ public class ServerMapController {
 		    newOwner.removeRemainingCity();
 		    building.setOwner(newOwner);
 		    building.setBuildingType(type);
-		    controller.updateModel();
+		    controller.updateMap();
 		    newOwner.setSelectable(SelectState.TILE);
 		    controller.updateState(TurnState.WAITING);
 		    if (controller.getState() == GameState.INIT) {
@@ -146,7 +146,7 @@ public class ServerMapController {
 		if (validAction) {
 		    newOwner.removeRemainingStreet();
 		    street.setOwner(newOwner);
-		    controller.updateModel();
+		    controller.updateMap();
 		    newOwner.setSelectable(SelectState.TILE);
 		    controller.updateState(TurnState.WAITING);
 		    if (controller.getState() == GameState.INIT) {
@@ -165,5 +165,51 @@ public class ServerMapController {
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();
 	}
+    }
+
+    public void moveRoverTo(Coordinate position) {
+	try {
+	    if (roverFrom != null) {
+		Tile tile = controller.getMap().getTile(position);
+		if (tile instanceof TileLand) {
+		    TileLand land = (TileLand) tile;
+		    if (land.hasRover()) {
+			controller.getTurn().getUpdateable().popup("alreadyrover");
+			return;
+		    }
+		    land.placeRover();
+		    roverFrom = null;
+		    controller.getTurn().getUpdateable(UpdateMap.class).unblockActions();
+		    controller.getTurn().setSelectable(SelectState.TILE);
+		}
+	    }
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
+	controller.updateMap();
+    }
+
+    public void moveRoverFrom(Coordinate position) {
+	try {
+	    Tile tile = controller.getMap().getTile(position);
+	    if (tile instanceof TileLand) {
+		TileLand land = (TileLand) tile;
+		if (land.hasRover()) {
+		    roverFrom = position;
+		    controller.getTurn().setSelectable(SelectState.TILE);
+		    controller.getTurn().getUpdateable(UpdateMap.class).blockActions();
+		    land.removeRover();
+		} else {
+		    controller.getTurn().getUpdateable().popup("norover");
+		}
+	    }
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
+	controller.updateMap();
+    }
+
+    public boolean isMovingRover() {
+	return roverFrom != null;
     }
 }
