@@ -40,6 +40,7 @@ public interface Player extends Remote {
      * Removes a street of the amount of remaining streets
      * 
      * @throws RemoteException
+     *             any remotely invoked method
      */
     public default void removeRemainingStreet() throws RemoteException {
 	addRemainingStreets(-1);
@@ -79,8 +80,8 @@ public interface Player extends Remote {
     /**
      * Removes a village of the amount of remaining villages
      * 
-     * @throws RemoteExceptionany
-     *             remotely invoked method
+     * @throws RemoteException
+     *             any remotely invoked method
      */
     public default void removeRemainingVillage() throws RemoteException {
 	addRemainingVillages(-1);
@@ -181,11 +182,15 @@ public interface Player extends Remote {
     /**
      * @param T
      *            the updateable type
+     * @param type
+     *            the class where it will be casted to
      * @return the view of the game
      * @throws RemoteException
      *             in case connection between RMI and client is lost
+     * @throws ClassCastException
+     *             when casting is not valid
      */
-    public default <T extends Updatable<?>> T getUpdateable(Class<T> type) throws RemoteException {
+    public default <T extends Updatable<?>> T getUpdateable(Class<T> type) throws RemoteException, ClassCastException {
 	return (T) getUpdateable();
     }
 
