@@ -18,7 +18,7 @@ import nl.groep4.kvc.client.view.scene.SceneMap;
  * Pane that displays all settings which can be changed
  * 
  * @author Tim
- * @version 1.0
+ * @version 1.1
  */
 public class OptionPane implements PaneHolder {
 
