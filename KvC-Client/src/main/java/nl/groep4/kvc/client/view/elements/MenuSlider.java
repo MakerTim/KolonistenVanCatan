@@ -3,15 +3,16 @@ package nl.groep4.kvc.client.view.elements;
 import javafx.scene.control.Slider;
 
 /**
- * Design and settings of the MenuSlider
+ * Design and settings of the MenuSlider.
  * 
  * @author Luc
- * @version 1.0
+ * @version 1.1
  */
 public class MenuSlider extends Slider {
 
     /**
-     * sets background image for slider
+     * Sets background image for slider.
+     * 
      */
     public MenuSlider() {
 	super();
@@ -20,12 +21,12 @@ public class MenuSlider extends Slider {
     }
 
     /**
-     * Places the MenuSlider
+     * Places the MenuSlider.
      * 
      * @param xPos
-     *            the x-coordinate location of the MenuSlider
+     *            The x-coordinate location of the MenuSlider.
      * @param yPos
-     *            the y-coordinate location of the MenuSlider
+     *            The y-coordinate location of the MenuSlider.
      */
     public MenuSlider(int xPos, int yPos) {
 	this();
@@ -34,18 +35,18 @@ public class MenuSlider extends Slider {
     }
 
     /**
-     * the MenuSlider settings such as the range
+     * the MenuSlider settings such as the range.
      * 
      * @param xPos
-     *            the x-coordinate location of the MenuSlider
+     *            The x-coordinate location of the MenuSlider.
      * @param yPos
-     *            the y-coordinate location of the MenuSlider
+     *            The y-coordinate location of the MenuSlider.
      * @param min
-     *            the minimal number which the slider can select
+     *            The minimal number which the slider can select.
      * @param max
-     *            the maximal number which the slider can select
+     *            The maximal number which the slider can select.
      * @param value
-     *            the value that the slider selects
+     *            The value that the slider selects.
      */
     public MenuSlider(int xPos, int yPos, double min, double max, double value) {
 	this(xPos, yPos);
