@@ -195,8 +195,8 @@ gamenote.norover.details:Exception: 503 Service Unavailable
 gamenote.alreadyrover.title:Al een rover aanwezig
 gamenote.alreadyrover.explanation:Er staat al een rover op deze tegel
 gamenote.norover.details:Exception: 503 Service Unavailable
-gamenote.tradeself.title:Niet ruilen
-gamenote.tradeself.explanation:U mag niet met uzelf ruilen
+gamenote.tradeself.title:Trading stopped
+gamenote.tradeself.explanation:You have stopped your own trade
 gamenote.tradeself.details:Exception: 503 Service Unavailable
 gamenote.noplace.title:No place
 gamenote.noplace.explanation:There is no place for this building

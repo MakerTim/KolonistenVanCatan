@@ -71,6 +71,15 @@ login.error.ingame.title:Jeu a déjà commencé
 login.error.ingame.explanation:Le jeu a déjà commencé, vous ne pouvez pas joindre
 login.error.ingame.details:Exception: 406 Not Accaptable
 
+#Dialog
+dialog.title:Etes-vous sûr de vouloir continuer?
+dialog.confirm:Vous sûr?
+dialog.button.desc:Vous avez un bouton tenir
+dialog.rovermove.desc:vous avez sélectionné un bandit
+dialog.roverplace.desc:vous avez placé un bandit
+dialog.placestreet.desc:vous avez fait une rue
+dialog.placebuilding.desc:vous avez fait un bâtiment
+
 #SceneLogin
 lobby.label.ip:Adresse IP
 lobby.label.port:Numéro de port

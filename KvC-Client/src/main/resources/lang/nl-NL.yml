@@ -74,7 +74,7 @@ login.error.ingame.details:Exception: 406 Not Accaptable
 
 #Dialog
 dialog.title:Weet u zeker dat u door wilt gaan?
-dialog.confirm:Bent u zeker van dit?
+dialog.confirm:Weet u het zeker?
 dialog.button.desc:U heeft op een knop geklikt
 dialog.rovermove.desc:U heeft de struikrover geselecteerd
 dialog.roverplace.desc:U heeft de struikrover verplaatst
@@ -195,9 +195,12 @@ gamenote.norover.explanation:Er is geen tegel met rover geselecteerd
 gamenote.norover.details:Exception: 503 Service Unavailable
 gamenote.alreadyrover.title:Al een rover aanwezig
 gamenote.alreadyrover.explanation:Er staat al een rover op deze tegel
-gamenote.tradeself.title:Niet ruilen
-gamenote.tradeself.explanation:U mag niet met uzelf ruilen
+gamenote.tradeself.title:Ruil beëindigd
+gamenote.tradeself.explanation:U heeft uw eigen ruil beëindigd
 gamenote.tradeself.details:Exception: 503 Service Unavailable
+gamenote.noplace.title:No place
+gamenote.noplace.explanation:There is no place for this building
+gamenote.noplace.details:Exception: 503 Service Unavailable
 
 #Map
 map.throwdice.clickToThrow:Dobbelen
