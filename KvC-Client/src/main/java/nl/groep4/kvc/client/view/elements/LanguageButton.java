@@ -4,10 +4,10 @@ import javafx.scene.image.Image;
 import nl.groep4.kvc.client.util.TranslationManager;
 
 /**
- * Changes language into another when clicked on button
+ * Changes language into another when clicked on button.
  * 
  * @author Tim
- * @version 1.0
+ * @version 1.1
  */
 public class LanguageButton extends TexturedButton {
 
@@ -15,7 +15,8 @@ public class LanguageButton extends TexturedButton {
 
     /**
      * Checks when button is clicked and performs action in order to change
-     * language
+     * language.
+     * 
      */
     public LanguageButton() {
 	registerClick(() -> {
