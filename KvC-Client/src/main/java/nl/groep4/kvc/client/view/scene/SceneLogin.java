@@ -36,14 +36,12 @@ public class SceneLogin implements SceneHolder {
     private Text ipLabel;
     private Text portLabel;
     private Text usernameLabel;
-    private Text nocolorLabel;
     private Text confirmLabel;
     private Text nosoundLabel;
     private MenuButton joinButton;
     private TextField ipInput;
     private TextField portInput;
     private TextField usernameInput;
-    private CheckBox nocolorInput;
     private CheckBox confirmInput;
     private CheckBox nosoundInput;
 
@@ -81,8 +79,6 @@ public class SceneLogin implements SceneHolder {
 	    portInput = new MenuFilterdInputField(460, 345, "", KvCStatics.NUMERIC);
 	    usernameLabel = new Text(310, 410, TranslationManager.translate("lobby.label.username"));
 	    usernameInput = new MenuFilterdInputField(460, 380, "", KvCStatics.USERNAME);
-	    nocolorLabel = new Text(310, 450, TranslationManager.translate("lobby.label.nocolor"));
-	    nocolorInput = new MenuCheckBox(540, 434, false);
 	    confirmLabel = new Text(310, 470, TranslationManager.translate("lobby.label.confirmeverything"));
 	    confirmInput = new MenuCheckBox(540, 454, false);
 	    nosoundLabel = new Text(310, 490, TranslationManager.translate("lobby.label.nosound"));
@@ -96,7 +92,6 @@ public class SceneLogin implements SceneHolder {
 	    portInput.setText("1099");
 	    usernameLabel.setFont(ViewMaster.FONT);
 	    usernameInput.setFont(ViewMaster.FONT);
-	    nocolorLabel.setFont(ViewMaster.FONT);
 	    confirmLabel.setFont(ViewMaster.FONT);
 	    nosoundLabel.setFont(ViewMaster.FONT);
 	    joinButton.setFont(ViewMaster.FONT);
@@ -104,9 +99,11 @@ public class SceneLogin implements SceneHolder {
 	    joinButton.registerClick(() -> onConnectClick());
 	    confirmInput.selectedProperty()
 		    .addListener(confirm -> ClientRefrence.setConfirmModus(confirmInput.isSelected()));
+	    nosoundInput.selectedProperty()
+		    .addListener(confirm -> ClientRefrence.setNoSound(nosoundInput.isSelected()));
 
 	    form.getChildren().addAll(ipLabel, ipInput, portLabel, portInput, usernameLabel, usernameInput,
-		    nocolorLabel, nocolorInput, confirmLabel, confirmInput, nosoundLabel, nosoundInput, joinButton,
+		    confirmLabel, confirmInput, nosoundLabel, nosoundInput, joinButton,
 		    SettingsButton.getButton(this, 13, 645));
 	}
 	return form;
@@ -117,7 +114,6 @@ public class SceneLogin implements SceneHolder {
 	ipLabel.setText(TranslationManager.translate("lobby.label.ip"));
 	portLabel.setText(TranslationManager.translate("lobby.label.port"));
 	usernameLabel.setText(TranslationManager.translate("lobby.label.username"));
-	nocolorLabel.setText(TranslationManager.translate("lobby.label.nocolor"));
 	confirmLabel.setText(TranslationManager.translate("lobby.label.confirmeverything"));
 	nosoundLabel.setText(TranslationManager.translate("lobby.label.nosound"));
 	joinButton.updateText(TranslationManager.translate("lobby.button.join"));
@@ -155,15 +151,6 @@ public class SceneLogin implements SceneHolder {
      */
     public String getUsernameInput() {
 	return usernameInput.getText();
-    }
-
-    /**
-     * Gets the no color input
-     * 
-     * @return the no colorInput
-     */
-    public boolean getNocolorInput() {
-	return nocolorInput.isSelected();
     }
 
     /**

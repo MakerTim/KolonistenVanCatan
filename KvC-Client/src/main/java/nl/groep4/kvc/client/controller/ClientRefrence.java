@@ -17,6 +17,7 @@ public final class ClientRefrence {
 
     private static Player thePlayer;
     private static boolean confirmModus;
+    private static boolean noSound;
 
     private ClientRefrence() {
     }
@@ -58,7 +59,15 @@ public final class ClientRefrence {
 	return confirmModus;
     }
 
+    public static boolean isNoSound() {
+	return noSound;
+    }
+
     public static void setConfirmModus(boolean selected) {
 	confirmModus = selected;
+    }
+
+    public static void setNoSound(boolean selected) {
+	noSound = selected;
     }
 }

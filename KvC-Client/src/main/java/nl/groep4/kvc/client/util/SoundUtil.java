@@ -10,6 +10,7 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.binding.FloatExpression;
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.ReadOnlyFloatWrapper;
+import nl.groep4.kvc.client.controller.ClientRefrence;
 
 /**
  * Controls the theme-song which is playing in the lobby.
@@ -78,6 +79,9 @@ public class SoundUtil {
      * @return the clip that is played
      */
     public static Clip playSound(String soundName) {
+	if (ClientRefrence.isNoSound()) {
+	    return null;
+	}
 	try {
 	    AudioInputStream audioInputStream = AudioSystem
 		    .getAudioInputStream(SoundUtil.class.getClassLoader().getResource(soundName));
