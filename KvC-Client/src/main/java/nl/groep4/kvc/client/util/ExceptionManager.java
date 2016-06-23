@@ -16,12 +16,10 @@ import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.scene.SceneLogin;
 
 /**
- * Exceptionmanager.
- * 
- * Displays an exception stack trace.
+ * Manages errors. Displays an exception stack trace.
  * 
  * @author Tim
- * @version 1.0
+ * @version 1.1
  */
 public class ExceptionManager {
 
@@ -29,7 +27,7 @@ public class ExceptionManager {
      * Gives a warning and an exception stack trace.
      * 
      * @param rex
-     *            the RemoteException
+     *            The RemoteException.
      */
     public static void handleRemoteException(RemoteException rex) {
 	if (rex instanceof ConnectException || rex instanceof ConnectIOException) {

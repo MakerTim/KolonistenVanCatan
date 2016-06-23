@@ -21,7 +21,7 @@ import nl.groep4.kvc.common.interfaces.VictoryCard;
 import nl.groep4.kvc.common.util.Scheduler;
 
 /**
- * Meant for debugging, has no function in the actual program
+ * Meant for debugging, has no function in the actual program.
  * 
  * @author Tim
  * @version 1.0
@@ -65,7 +65,7 @@ public class TestMapController extends MapController {
 	    } catch (Exception ex) {
 		ex.printStackTrace();
 	    }
-	} , 3000L);
+	}, 3000L);
 	Scheduler.runAsyncLater(() -> {
 	    try {
 		view.updateRound(25);
@@ -75,7 +75,7 @@ public class TestMapController extends MapController {
 	    } catch (Exception ex) {
 		ex.printStackTrace();
 	    }
-	} , 3000L);
+	}, 3000L);
 	Scheduler.runAsyncLater(() -> {
 	    try {
 		java.util.Map<Resource, Integer> resources = new HashMap<>();
@@ -90,7 +90,7 @@ public class TestMapController extends MapController {
 	    } catch (Exception ex) {
 		ex.printStackTrace();
 	    }
-	} , 3000L);
+	}, 3000L);
 	Scheduler.runAsyncLater(() -> {
 	    try {
 		java.util.Map<Resource, Integer> resources = new HashMap<>();
@@ -131,6 +131,6 @@ public class TestMapController extends MapController {
 	    } catch (Exception ex) {
 		ex.printStackTrace();
 	    }
-	} , 3000L);
+	}, 3000L);
     }
 }

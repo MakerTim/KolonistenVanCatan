@@ -13,7 +13,7 @@ import javafx.util.Duration;
  * menu-settings background.
  * 
  * @author Tim
- * @version 1.0
+ * @version 1.1
  */
 public class SceneUtil {
 
@@ -29,9 +29,9 @@ public class SceneUtil {
     private static Node settingsPane;
 
     /**
-     * Gets the background for the menu
+     * Gets the background for the menu.
      * 
-     * @return background image of the menu
+     * @return Background image of the menu.
      */
     public static Node getMenuBackground() {
 	if (background == null) {
@@ -41,9 +41,9 @@ public class SceneUtil {
     }
 
     /**
-     * Gets the foreground of loginscreen
+     * Gets the foreground of the login screen.
      * 
-     * @return foreground image of the loginscreen
+     * @return Foreground image of the login screen.
      */
     public static Node getLoginForeground() {
 	if (forground == null) {
@@ -53,9 +53,9 @@ public class SceneUtil {
     }
 
     /**
-     * Gets the Braziers from the menu
+     * Gets the Braziers from the menu.
      * 
-     * @return brazier image
+     * @return The braziers image.
      */
     public static Node getMenuBrazier() {
 	if (brazier == null) {
@@ -65,9 +65,9 @@ public class SceneUtil {
     }
 
     /**
-     * Gets the foreground of the settings
+     * Gets the foreground of the settings.
      * 
-     * @return image of the foreground from the settings
+     * @return Image of the foreground from the settings.
      */
     public static Node getSettingsForeground() {
 	if (settings == null) {
@@ -77,9 +77,9 @@ public class SceneUtil {
     }
 
     /**
-     * Gets the foreground of the settings
+     * Gets the foreground of the settings.
      * 
-     * @return image of the foreground from the lobby
+     * @return Image of the foreground from the lobby.
      */
     public static Node getLobbyForeground() {
 	if (lobbyBack == null) {
@@ -89,9 +89,9 @@ public class SceneUtil {
     }
 
     /**
-     * Gets the cornershield image
+     * Gets the corner shield image.
      * 
-     * @return image of the corner shield
+     * @return Image of the corner shield.
      */
     public static Node getCornerShield() {
 	if (cornerShield == null) {
@@ -101,9 +101,9 @@ public class SceneUtil {
     }
 
     /**
-     * Gets the board
+     * Gets the board image.
      * 
-     * @return image of the Board
+     * @return Image of the Board.
      */
     public static Node getBoard() {
 	if (board == null) {
@@ -113,9 +113,9 @@ public class SceneUtil {
     }
 
     /**
-     * Gets background of the board
+     * Gets background of the board.
      * 
-     * @return image of the background from the board
+     * @return Image of the background from the board.
      */
     public static Node getBoardBackground() {
 	if (boardBackground == null) {
@@ -125,9 +125,9 @@ public class SceneUtil {
     }
 
     /**
-     * Gets background of the pane
+     * Gets background of the Pane.
      * 
-     * @return image of the background from the pane menus
+     * @return Image of the background from the Pane menus.
      */
     public static Node getGamePane() {
 	if (gamepane == null) {
@@ -137,9 +137,9 @@ public class SceneUtil {
     }
 
     /**
-     * gets settingspane
+     * Gets settingsPane.
      * 
-     * @return settingspane with it's background
+     * @return SettingsPane with its background.
      */
     public static Node getSettingsPane() {
 	if (settingsPane == null) {
@@ -149,29 +149,30 @@ public class SceneUtil {
     }
 
     /**
-     * Gives a fade-in for each element in the List
+     * Gives a fade-in for each element in the List.
      * 
      * @param elements
-     *            an element in the List
+     *            An element in the List.
      */
     public static void fadeIn(List<Node> elements) {
 	elements.forEach(element -> fadeIn(element));
     }
 
     /**
-     * Gives a fade-in for each element in the Array
+     * Gives a fade-in for each element in the Array.
      * 
      * @param elements
-     *            an element in the Array
+     *            An element in the Array.
      */
     public static void fadeIn(Node... elements) {
 	Arrays.stream(elements).forEach(element -> fadeIn(element));
     }
 
     /**
-     * Gives fade transition to element and plays it
+     * Gives fade transition to the element and plays it.
      * 
      * @param element
+     *            The element with the fadeIn transition.
      */
     public static void fadeIn(Node element) {
 	FadeTransition ft = new FadeTransition(Duration.millis(500), element);
@@ -181,19 +182,20 @@ public class SceneUtil {
     }
 
     /**
-     * Gives a fade-out for each element in the Array
+     * Gives a fade-out for each element in the Array.
      * 
      * @param elements
-     *            an element in the Array
+     *            An element in the Array.
      */
     public static void fadeOut(Node... elements) {
 	Arrays.stream(elements).forEach(element -> fadeOut(element));
     }
 
     /**
-     * Gives fade out transition to element and plays it
+     * Gives fade out transition to the element and plays it.
      * 
      * @param element
+     *            The element with the fadeOut transition.
      */
     public static void fadeOut(Node element) {
 	FadeTransition ft = new FadeTransition(Duration.millis(500), element);
