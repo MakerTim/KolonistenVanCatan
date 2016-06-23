@@ -2,6 +2,12 @@ package nl.groep4.kvc.common.map;
 
 import java.io.Serializable;
 
+/**
+ * 
+ * 
+ * @author Tim
+ * @version 1.0
+ */
 public final class Coordinate implements Serializable, Cloneable {
 
     private static final long serialVersionUID = 12345678987654321L;
