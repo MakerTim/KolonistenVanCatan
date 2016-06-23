@@ -1,5 +1,6 @@
 package nl.groep4.kvc.client.view.pane;
 
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -85,8 +86,10 @@ public class DicePane implements PaneHolder, UpdateDice, NotCloseable {
 	SceneUtil.fadeIn(SceneUtil.getGamePane(), lines);
 	Scheduler.runAsync(() -> {
 	    do {
-		leftDice.setText(Integer.toString(1 + (int) (Math.random() * 6)));
-		rightDice.setText(Integer.toString(1 + (int) (Math.random() * 6)));
+		Platform.runLater(() -> {
+		    leftDice.setText(Integer.toString(1 + (int) (Math.random() * 6)));
+		    rightDice.setText(Integer.toString(1 + (int) (Math.random() * 6)));
+		});
 		try {
 		    Thread.sleep(100L);
 		} catch (Exception ex) {
