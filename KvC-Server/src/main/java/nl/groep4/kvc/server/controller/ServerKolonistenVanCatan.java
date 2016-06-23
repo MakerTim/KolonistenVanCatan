@@ -458,6 +458,9 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     public void openDicePane() {
 	try {
 	    for (Player pl : getPlayersOrded()) {
+		if (pl.equals(getTurn())) {
+		    continue;
+		}
 		try {
 		    pl.getUpdateable(UpdateMap.class).openDicePane(false);
 		} catch (RemoteException ex) {

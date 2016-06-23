@@ -126,6 +126,9 @@ public class ServerTurnController {
 	try {
 	    List<Runnable> runs = new ArrayList<>();
 	    for (Player player : controller.getPlayersOrded()) {
+		if (player.equals(controller.getTurn())) {
+		    continue;
+		}
 		runs.add(() -> {
 		    try {
 			player.getUpdateable(UpdateMap.class).blockActions();

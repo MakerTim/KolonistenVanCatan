@@ -90,8 +90,8 @@ public class ServerShopController {
 	try {
 	    Player who = controller.getTurn();
 	    if (holder.hasCards()) {
-		if (hasAllResources(ServerCosts.CITY_COSTS.entrySet())) {
-		    takeResources(ServerCosts.CITY_COSTS.entrySet());
+		if (hasAllResources(ServerCosts.DEVELOPMENT_CARD_COSTS.entrySet())) {
+		    takeResources(ServerCosts.DEVELOPMENT_CARD_COSTS.entrySet());
 		    who.addCard(holder.drawCard());
 		    UpdateMap view = who.getUpdateable(UpdateMap.class);
 		    view.closeOverlay();
