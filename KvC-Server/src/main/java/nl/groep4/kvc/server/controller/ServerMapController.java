@@ -1,6 +1,8 @@
 package nl.groep4.kvc.server.controller;
 
 import java.rmi.RemoteException;
+import java.util.HashSet;
+import java.util.Set;
 
 import nl.groep4.kvc.common.enumeration.BuildingType;
 import nl.groep4.kvc.common.enumeration.Direction;
@@ -222,5 +224,80 @@ public class ServerMapController {
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();
 	}
+    }
+
+    public Set<Street> getValidStreetLocations() {
+	Set<Street> streets = new HashSet<>();
+	for (Tile tile : controller.getMap().getTiles()) {
+	    for (Direction direction : Direction.values()) {
+		Street street = tile.getStreet(direction);
+		if (street != null && controller.getTurn().equals(street.getOwner())) {
+		    for (Direction connectedDirection : direction.getConnected()) {
+			Street connected = tile.getStreet(connectedDirection);
+			if (connected != null && connected.getOwner() == null) {
+			    streets.add(connected);
+			}
+		    }
+		}
+	    }
+	}
+	return streets;
+    }
+
+    public Set<Building> getValidBuildingLocations(BuildingType type) {
+	Set<Building> buildings;
+	switch (type) {
+	case VILLAGE:
+	    switch (controller.getState()) {
+	    case INIT:
+		buildings = new HashSet<>(controller.getMap().getAllBuildings());
+		for (Tile tile : controller.getMap().getTiles()) {
+		    for (Point point : Point.values()) {
+			if (!tile.isValidPlace(controller.getMap(), point)) {
+			    buildings.remove(tile.getBuilding(point));
+			}
+		    }
+		}
+		break;
+	    case IN_GAME:
+		buildings = new HashSet<>();
+		for (Tile tile : controller.getMap().getTiles()) {
+		    for (Direction direction : Direction.values()) {
+			if (tile.getStreet(direction) != null
+				&& controller.getTurn().equals(tile.getStreet(direction).getOwner())) {
+			    for (Point point : direction.getAttached()) {
+				buildings.add(tile.getBuilding(point));
+			    }
+			}
+		    }
+		}
+		for (Tile tile : controller.getMap().getTiles()) {
+		    for (Point point : Point.values()) {
+			if (!tile.isValidPlace(controller.getMap(), point)) {
+			    buildings.remove(tile.getBuilding(point));
+			}
+		    }
+		}
+		break;
+	    default:
+	    case END:
+		buildings = new HashSet<>();
+		break;
+	    }
+	    break;
+	case CITY:
+	    buildings = new HashSet<>();
+	    for (Building building : controller.getMap().getAllBuildings()) {
+		if (controller.getTurn().equals(building.getOwner())) {
+		    buildings.add(building);
+		}
+	    }
+	    break;
+	default:
+	case EMPTY:
+	    buildings = new HashSet<>();
+	    break;
+	}
+	return buildings;
     }
 }

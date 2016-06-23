@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import nl.groep4.kvc.common.enumeration.BuildingType;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.UpdateMap;
@@ -48,11 +49,15 @@ public class ServerShopController {
     public void buyStreet() {
 	try {
 	    Player who = controller.getTurn();
-	    if (hasAllResources(ServerCosts.STREET_COSTS.entrySet())) {
-		takeResources(ServerCosts.STREET_COSTS.entrySet());
-		controller.buildStreetModus(1);
+	    if (!controller.mapController.getValidStreetLocations().isEmpty()) {
+		if (hasAllResources(ServerCosts.STREET_COSTS.entrySet())) {
+		    takeResources(ServerCosts.STREET_COSTS.entrySet());
+		    controller.buildStreetModus(1);
+		} else {
+		    who.getUpdateable(UpdateMap.class).popup("noresources");
+		}
 	    } else {
-		who.getUpdateable(UpdateMap.class).popup("noresources");
+		who.getUpdateable(UpdateMap.class).popup("noplace");
 	    }
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();
@@ -62,11 +67,15 @@ public class ServerShopController {
     public void buyVillage() {
 	try {
 	    Player who = controller.getTurn();
-	    if (hasAllResources(ServerCosts.VILLAGE_COSTS.entrySet())) {
-		takeResources(ServerCosts.VILLAGE_COSTS.entrySet());
-		controller.buildVillageModus(1);
+	    if (!controller.mapController.getValidBuildingLocations(BuildingType.VILLAGE).isEmpty()) {
+		if (hasAllResources(ServerCosts.VILLAGE_COSTS.entrySet())) {
+		    takeResources(ServerCosts.VILLAGE_COSTS.entrySet());
+		    controller.buildVillageModus(1);
+		} else {
+		    who.getUpdateable(UpdateMap.class).popup("noresources");
+		}
 	    } else {
-		who.getUpdateable(UpdateMap.class).popup("noresources");
+		who.getUpdateable(UpdateMap.class).popup("noplace");
 	    }
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();
@@ -76,11 +85,15 @@ public class ServerShopController {
     public void buyCity() {
 	try {
 	    Player who = controller.getTurn();
-	    if (hasAllResources(ServerCosts.CITY_COSTS.entrySet())) {
-		takeResources(ServerCosts.CITY_COSTS.entrySet());
-		controller.buildCityModus(1);
+	    if (!controller.mapController.getValidBuildingLocations(BuildingType.CITY).isEmpty()) {
+		if (hasAllResources(ServerCosts.CITY_COSTS.entrySet())) {
+		    takeResources(ServerCosts.CITY_COSTS.entrySet());
+		    controller.buildCityModus(1);
+		} else {
+		    who.getUpdateable(UpdateMap.class).popup("noresources");
+		}
 	    } else {
-		who.getUpdateable(UpdateMap.class).popup("noresources");
+		who.getUpdateable(UpdateMap.class).popup("noplace");
 	    }
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();
