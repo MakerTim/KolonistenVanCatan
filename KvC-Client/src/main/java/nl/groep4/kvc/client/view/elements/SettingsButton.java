@@ -10,7 +10,7 @@ import nl.groep4.kvc.client.view.scene.SceneSettings;
  * Button linked to settings menu. Updates when settings are changed.
  * 
  * @author Tim
- * @version 1.0
+ * @version 1.1
  */
 public class SettingsButton extends MenuButton {
 
@@ -19,7 +19,8 @@ public class SettingsButton extends MenuButton {
     private SceneHolder parent;
 
     /**
-     * Translates button and activates when registers a click
+     * Translates button and activates when registers a click.
+     * 
      */
     public SettingsButton() {
 	super(TranslationManager.translate("lobby.button.settings"));
@@ -38,21 +39,22 @@ public class SettingsButton extends MenuButton {
     }
 
     /**
-     * Translates button string
+     * Translates button string.
+     * 
      */
     public static void updateConfig() {
 	BUTTON.updateText(TranslationManager.translate("lobby.button.settings"));
     }
 
     /**
-     * gets button settings
+     * gets button settings.
      * 
      * @param parent
-     *            parent of button
+     *            Parent of button.
      * @param x
-     *            sets the value of the property layoutX
+     *            Sets the value of the property layoutX.
      * @param y
-     *            sets the value of the property layoutY
+     *            Sets the value of the property layoutY.
      * @return
      */
     public static SettingsButton getButton(SceneHolder parent, int x, int y) {

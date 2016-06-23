@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import nl.groep4.kvc.common.KvCStatics;
+import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.server.ServerStarter;
+import nl.groep4.kvc.server.controller.ServerKolonistenVanCatan;
 import nl.groep4.kvc.server.util.ConnectionUtil;
 
 public class ArgumentParser {
@@ -36,10 +39,54 @@ public class ArgumentParser {
 	case "kick":
 	    kick();
 	    break;
+	case "give":
+	    give();
+	    break;
 	case "trigger":
 	    trigger();
 	    break;
 	}
+    }
+
+    private void give() throws RemoteException {
+	if (args.length != 3) {
+	    System.err.println("not enough arguments, needed 3");
+	    return;
+	}
+	Player pl = null;
+	for (Player player : ServerStarter.getLobby().getGame().getPlayers()) {
+	    if (player.getUsername().equalsIgnoreCase(args[0])) {
+		pl = player;
+		break;
+	    }
+	}
+	if (pl == null) {
+	    System.err.printf("Player '%s' not found.\n", args[0]);
+	    return;
+	}
+	Resource resource = null;
+	for (Resource res : Resource.values()) {
+	    if (res.name().equalsIgnoreCase(args[1])) {
+		resource = res;
+		break;
+	    }
+	}
+	if (resource == null) {
+	    System.err.printf("Resource '%s' not found.\n", args[1]);
+	    return;
+	}
+	if (!KvCStatics.NUMERIC.matches(args[2])) {
+	    System.err.printf("Argument 3 needs to be a number, not '%s'.\n", args[2]);
+	    return;
+	}
+	int amount = Integer.parseInt(args[2]);
+	if (amount < 0) {
+	    System.err.println("Cant give negative resources");
+	    return;
+	}
+	ServerKolonistenVanCatan kvc = (ServerKolonistenVanCatan) ServerStarter.getLobby().getGame();
+	pl.giveResource(resource, amount);
+	kvc.updateCards();
     }
 
     private void trigger() throws RemoteException {

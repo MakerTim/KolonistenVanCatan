@@ -16,10 +16,10 @@ import nl.groep4.kvc.common.enumeration.Color;
 import nl.groep4.kvc.common.interfaces.Player;
 
 /**
- * Handles design of the lobby and click events
+ * Handles design of the lobby and click events.
  * 
  * @author Tim
- * @version 1.0
+ * @version 1.1
  */
 public class ColorScroll extends StackPane {
 
@@ -37,10 +37,10 @@ public class ColorScroll extends StackPane {
     protected List<Runnable> clickHandlers = new ArrayList<>();
 
     /**
-     * Handles when mouse clicks on the parchment image
+     * Handles when mouse clicks on the parchment image.
      * 
      * @param color
-     *            reference to change or add color to a player
+     *            The color of the player.
      */
     public ColorScroll(Color color) {
 	VBox tussenPane = new VBox();
@@ -71,10 +71,10 @@ public class ColorScroll extends StackPane {
     }
 
     /**
-     * sets font for colorLabel and usernameLabel
+     * Sets font for colorLabel and usernameLabel.
      * 
      * @param font
-     *            a letter type for labels
+     *            A font for the labels.
      */
     public void setFont(Font font) {
 	colorLabel.setFont(font);
@@ -82,9 +82,9 @@ public class ColorScroll extends StackPane {
     }
 
     /**
-     * gets color
+     * Gets the color.
      * 
-     * @return color type
+     * @return color The color.
      */
     public Color getColor() {
 	return color;
@@ -92,10 +92,10 @@ public class ColorScroll extends StackPane {
 
     /**
      * Updates labels when user chooses another parchment, also translates
-     * parchment text into given language
+     * parchment text into given language.
      * 
      * @param player
-     *            name of the user
+     *            The player in the game.
      */
     public void updatePlayer(Player player) {
 	try {
@@ -108,36 +108,37 @@ public class ColorScroll extends StackPane {
     }
 
     /**
-     * Check if player clicks another parchment
+     * Checks if the player clicks another parchment.
      * 
      * @param click
-     *            click that gets registers
+     *            Click that gets registered.
      */
     public void registerClick(Runnable click) {
 	clickHandlers.add(click);
     }
 
     /**
-     * Updates label text when user changes parchment
+     * Updates label text when user changes parchment.
+     * 
      */
     public void updateTranslation() {
 	colorLabel.setText(TranslationManager.translate("lobby.parchment.color." + color.name().toLowerCase()));
     }
 
     /**
-     * gets the player
+     * Gets the player in the game.
      * 
-     * @return the player
+     * @return The player.
      */
     public Player getPlayer() {
 	return player;
     }
 
     /**
-     * sets ping speed
+     * Sets ping speed.
      * 
      * @param pong
-     *            ping to display
+     *            Ping to display.
      */
     public void setPing(long pong) {
 	if (pong < 0) {

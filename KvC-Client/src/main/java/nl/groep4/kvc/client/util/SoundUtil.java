@@ -10,6 +10,7 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.binding.FloatExpression;
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.ReadOnlyFloatWrapper;
+import nl.groep4.kvc.client.controller.ClientRefrence;
 
 /**
  * Controls all the sounds in the game.
@@ -79,6 +80,9 @@ public class SoundUtil {
      * @return The clip that is played.
      */
     public static Clip playSound(String soundName) {
+	if (ClientRefrence.isNoSound()) {
+	    return null;
+	}
 	try {
 	    AudioInputStream audioInputStream = AudioSystem
 		    .getAudioInputStream(SoundUtil.class.getClassLoader().getResource(soundName));

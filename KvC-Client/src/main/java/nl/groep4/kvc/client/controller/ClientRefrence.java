@@ -16,6 +16,8 @@ import nl.groep4.kvc.common.interfaces.Updatable;
 public final class ClientRefrence {
 
     private static Player thePlayer;
+    private static boolean confirmModus;
+    private static boolean noSound;
 
     private ClientRefrence() {
     }
@@ -51,5 +53,21 @@ public final class ClientRefrence {
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();
 	}
+    }
+
+    public static boolean isConfirmModus() {
+	return confirmModus;
+    }
+
+    public static boolean isNoSound() {
+	return noSound;
+    }
+
+    public static void setConfirmModus(boolean selected) {
+	confirmModus = selected;
+    }
+
+    public static void setNoSound(boolean selected) {
+	noSound = selected;
     }
 }

@@ -16,10 +16,10 @@ import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.Trade;
 
 /**
- * Generates layout of trades which are added to TradePane
+ * Generates layout of trades which are added to TradePane.
  * 
  * @author Matthijs
- * @version 1.0
+ * @version 1.1
  */
 public class TradeEntry implements PaneHolder {
 
@@ -56,12 +56,12 @@ public class TradeEntry implements PaneHolder {
     private Trade theTrade;
 
     /**
-     * current trade settings and scenemap
+     * Current trade settings and scenemap.
      * 
      * @param trade
-     *            trade settings
+     *            Trade settings.
      * @param scenemap
-     *            scenemap settings
+     *            Scenemap settings.
      */
     public TradeEntry(Trade trade, SceneMap scenemap) {
 	this.theTrade = trade;

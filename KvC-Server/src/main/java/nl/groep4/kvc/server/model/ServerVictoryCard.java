@@ -20,4 +20,13 @@ public class ServerVictoryCard extends ServerCard implements VictoryCard {
 	return subType;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+	if (obj instanceof VictoryCard) {
+	    VictoryCard other = (VictoryCard) obj;
+	    return other.getType() == getType() && other.getVictoryType() == getVictoryType();
+	}
+	return super.equals(obj);
+    }
+
 }
