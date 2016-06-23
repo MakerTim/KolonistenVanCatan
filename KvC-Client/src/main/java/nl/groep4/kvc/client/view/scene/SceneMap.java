@@ -308,86 +308,116 @@ public class SceneMap implements SceneHolder, UpdateMap {
 
     @Override
     public void updateConfig() {
-	if (stockPane.isOpen()) {
-	    resourceButton.updateText(TranslationManager.translate("map.stock.hide"));
-	} else {
-	    resourceButton.updateText(TranslationManager.translate("map.stock.show"));
-	}
-	nxtButton.updateText(TranslationManager.translate("game.button.next"));
-	optionButton.updateText(TranslationManager.translate("game.button.settings"));
-	buildButton.updateText(TranslationManager.translate("game.button.build"));
-	tradeButton.updateText(TranslationManager.translate("game.button.trade"));
-	buyButton.updateText(TranslationManager.translate("game.button.buy"));
-	if (overlayPane != null) {
-	    overlayPane.updateTranslation();
-	}
-	gamepane.updateTranslation();
-	stockPane.updateTranslation();
-	scorePane.updateTranslation();
-	infoPane.updateTranslation();
-	buildPane.updateTranslation();
-	tradePane.updateTranslation();
-	buyPane.updateTranslation();
+	Platform.runLater(() -> {
+	    if (stockPane.isOpen()) {
+		resourceButton.updateText(TranslationManager.translate("map.stock.hide"));
+	    } else {
+		resourceButton.updateText(TranslationManager.translate("map.stock.show"));
+	    }
+	    nxtButton.updateText(TranslationManager.translate("game.button.next"));
+	    optionButton.updateText(TranslationManager.translate("game.button.settings"));
+	    buildButton.updateText(TranslationManager.translate("game.button.build"));
+	    tradeButton.updateText(TranslationManager.translate("game.button.trade"));
+	    buyButton.updateText(TranslationManager.translate("game.button.buy"));
+	    if (overlayPane != null) {
+		overlayPane.updateTranslation();
+	    }
+	    gamepane.updateTranslation();
+	    stockPane.updateTranslation();
+	    scorePane.updateTranslation();
+	    infoPane.updateTranslation();
+	    buildPane.updateTranslation();
+	    tradePane.updateTranslation();
+	    buyPane.updateTranslation();
+	});
     }
 
     @Override
     public void setModel(Map model) throws RemoteException {
-	gamepane.updateMap(model);
+	Platform.runLater(() -> {
+	    gamepane.updateMap(model);
+	});
     }
 
     @Override
     public void close(String reason) throws RemoteException {
-	ExceptionDialog.warning("kicked." + reason);
-	ViewMaster.setScene(new SceneLogin());
+	Platform.runLater(() -> {
+	    ExceptionDialog.warning("kicked." + reason);
+	    ViewMaster.setScene(new SceneLogin());
+	});
     }
 
     @Override
     public void popup(String key) throws RemoteException {
-	ExceptionDialog.warning("gamenote." + key);
+	Platform.runLater(() -> ExceptionDialog.warning("gamenote." + key));
     }
 
     @Override
     public void updateStock(Player pl, EnumMap<Resource, Integer> resources) {
-	stockPane.updateStock(pl, resources);
-	playerPane.updateStock(pl, resources);
+	Platform.runLater(() -> {
+	    stockPane.updateStock(pl, resources);
+	    playerPane.updateStock(pl, resources);
+	});
     }
 
     @Override
     public void updateStock(Player pl, List<Card> cards) {
-	stockPane.updateStock(pl, cards);
-	playerPane.updateStock(pl, cards);
+	Platform.runLater(() -> {
+	    stockPane.updateStock(pl, cards);
+	    playerPane.updateStock(pl, cards);
+	});
     }
 
     @Override
-    public void updateCityCosts(EnumMap<Resource, Integer> resources) throws RemoteException {
-	buildPane.updateCityCosts(resources);
-	buyPane.updateCityCosts(resources);
+    public void updateCityCosts(EnumMap<Resource, Integer> resources) {
+	Platform.runLater(() -> {
+	    try {
+		buildPane.updateCityCosts(resources);
+		buyPane.updateCityCosts(resources);
+	    } catch (RemoteException ex) {
+		ex.printStackTrace();
+	    }
+	});
     }
 
     @Override
-    public void updateStreetCosts(EnumMap<Resource, Integer> resources) throws RemoteException {
-	buildPane.updateStreetCosts(resources);
-	buyPane.updateStreetCosts(resources);
+    public void updateStreetCosts(EnumMap<Resource, Integer> resources) {
+	Platform.runLater(() -> {
+	    try {
+		buildPane.updateStreetCosts(resources);
+		buyPane.updateStreetCosts(resources);
+	    } catch (RemoteException ex) {
+		ex.printStackTrace();
+	    }
+	});
     }
 
     @Override
-    public void updateVillageCosts(EnumMap<Resource, Integer> resources) throws RemoteException {
-	buildPane.updateVillageCosts(resources);
-	buyPane.updateVillageCosts(resources);
+    public void updateVillageCosts(EnumMap<Resource, Integer> resources) {
+	Platform.runLater(() -> {
+	    try {
+		buildPane.updateVillageCosts(resources);
+		buyPane.updateVillageCosts(resources);
+	    } catch (RemoteException ex) {
+		ex.printStackTrace();
+	    }
+	});
     }
 
     @Override
-    public void updateCardCosts(EnumMap<Resource, Integer> resources) throws RemoteException {
-	try {
-	    buildPane.updateCardCosts(resources);
-	    buyPane.updateCardCosts(resources);
-	} catch (Exception ex) {
-	    ex.printStackTrace();
-	}
+    public void updateCardCosts(EnumMap<Resource, Integer> resources) {
+	Platform.runLater(() -> {
+	    try {
+		buildPane.updateCardCosts(resources);
+		buyPane.updateCardCosts(resources);
+	    } catch (Exception ex) {
+		ex.printStackTrace();
+	    }
+	});
     }
 
     @Override
-    public void updateTrades(List<Trade> allTrades) throws RemoteException {
+    public void updateTrades(List<Trade> allTrades) {
 	Platform.runLater(() -> {
 	    try {
 		tradePane.updateTrades(allTrades);
@@ -398,31 +428,49 @@ public class SceneMap implements SceneHolder, UpdateMap {
     }
 
     @Override
-    public void updateRound(int round) throws RemoteException {
-	scorePane.updateRound(round);
-	infoPane.updateRound(round);
+    public void updateRound(int round) {
+	Platform.runLater(() -> {
+	    try {
+		scorePane.updateRound(round);
+		infoPane.updateRound(round);
+	    } catch (RemoteException ex) {
+		ex.printStackTrace();
+	    }
+	});
     }
 
     @Override
-    public void updateTurn(Player who, TurnState what) throws RemoteException {
-	scorePane.updateTurn(who, what);
-	infoPane.updateTurn(who, what);
+    public void updateTurn(Player who, TurnState what) {
+	Platform.runLater(() -> {
+	    try {
+		scorePane.updateTurn(who, what);
+		infoPane.updateTurn(who, what);
+	    } catch (RemoteException ex) {
+		ex.printStackTrace();
+	    }
+	});
     }
 
     @Override
-    public void updateScore(Player pl, int score) throws RemoteException {
-	scorePane.updateScore(pl, score);
-	playerPane.updateScore(pl, score);
+    public void updateScore(Player pl, int score) {
+	Platform.runLater(() -> {
+	    try {
+		scorePane.updateScore(pl, score);
+		playerPane.updateScore(pl, score);
+	    } catch (RemoteException ex) {
+		ex.printStackTrace();
+	    }
+	});
     }
 
     @Override
     public void highlightStreets(Collection<Street> streets) {
-	gamepane.highlightStreet(streets);
+	Platform.runLater(() -> gamepane.highlightStreet(streets));
     }
 
     @Override
     public void highlightBuildings(Collection<Building> buildings, BuildingType type) {
-	gamepane.highlightBuilding(buildings, type);
+	Platform.runLater(() -> gamepane.highlightBuilding(buildings, type));
     }
 
     private void setBlockedButtons(boolean blocked) {
@@ -438,33 +486,41 @@ public class SceneMap implements SceneHolder, UpdateMap {
     }
 
     @Override
-    public void blockActions() throws RemoteException {
-	setBlockedButtons(true);
+    public void blockActions() {
+	Platform.runLater(() -> setBlockedButtons(true));
     }
 
     @Override
-    public void unblockActions() throws RemoteException {
-	setBlockedButtons(false);
+    public void unblockActions() {
+	Platform.runLater(() -> setBlockedButtons(false));
     }
 
     @Override
     public void updateDices(int dice1, int dice2) {
-	if (overlayPane instanceof UpdateDice) {
+	Platform.runLater(() -> {
+	    if (overlayPane instanceof UpdateDice) {
+		try {
+		    ((UpdateDice) overlayPane).updateDices(dice1, dice2);
+		} catch (RemoteException ex) {
+		    ex.printStackTrace();
+		}
+	    }
+	});
+    }
+
+    @Override
+    public void setSelectable(SelectState selectables) {
+	Platform.runLater(() -> {
 	    try {
-		((UpdateDice) overlayPane).updateDices(dice1, dice2);
+		gamepane.setSelectable(selectables);
 	    } catch (RemoteException ex) {
 		ex.printStackTrace();
 	    }
-	}
+	});
     }
 
     @Override
-    public void setSelectable(SelectState selectables) throws RemoteException {
-	gamepane.setSelectable(selectables);
-    }
-
-    @Override
-    public void updatePlayerOrder(List<Player> order) throws RemoteException {
-	playerPane.updatePlayerOrder(order);
+    public void updatePlayerOrder(List<Player> order) {
+	Platform.runLater(() -> playerPane.updatePlayerOrder(order));
     }
 }

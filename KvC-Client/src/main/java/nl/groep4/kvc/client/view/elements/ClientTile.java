@@ -123,7 +123,7 @@ public class ClientTile extends StackPane {
 	    house.setLayoutY(-offset.getY());
 	    house.setOnMouseClicked(click -> {
 		if (ConfirmDialog.confirm("placebuilding")) {
-		    onBuildingClick(Point.values()[j + 4].addTo(coord));
+		    onBuildingClick(Point.values()[j + 4].addTo(coord), house.getEffect() != null);
 		}
 	    });
 	    overlayPane.getChildren().add((houses[i] = house));
@@ -292,9 +292,9 @@ public class ClientTile extends StackPane {
 	controller.placeStreet(coord);
     }
 
-    private void onBuildingClick(Coordinate coord) {
+    private void onBuildingClick(Coordinate coord, boolean city) {
 	System.out.println("building click");
-	controller.placeBuilding(coord);
+	controller.placeBuilding(coord, city ? BuildingType.CITY : BuildingType.VILLAGE);
     }
 
     private void onFicheClick() {
@@ -351,19 +351,24 @@ public class ClientTile extends StackPane {
 		house.setImage(cacheImage("img/buildings/house_null.png"));
 		return;
 	    }
+	    house.setEffect(null);
 	    if (building.getOwner() != null) {
 		try {
 		    switch (building.getBuildingType()) {
 		    case CITY:
-			if (building.getOwner().equals(ClientRefrence.getThePlayer())
-				&& building.getBuildingType() == BuildingType.VILLAGE) {
-			    house.setImage(cacheImage("img/buildings/city_highlight.png"));
-			}
-		    case EMPTY:
 			house.setImage(cacheImage("img/buildings/city_" + building.getOwner().getColor() + ".png"));
 			break;
+		    case EMPTY:
+			house.setImage(cacheImage("img/buildings/house_null.png"));
+			break;
 		    case VILLAGE:
-			house.setImage(cacheImage("img/buildings/house_" + building.getOwner().getColor() + ".png"));
+			if (type == BuildingType.CITY && building.getOwner().equals(ClientRefrence.getThePlayer())) {
+			    house.setImage(cacheImage("img/buildings/city_hightlight.png"));
+			    house.setEffect(new DropShadow());
+			} else {
+			    house.setImage(
+				    cacheImage("img/buildings/house_" + building.getOwner().getColor() + ".png"));
+			}
 			break;
 		    }
 		} catch (Exception ex) {

@@ -529,7 +529,6 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	    who.addRemainingVillages(villageToBuild);
 	    UpdateMap view = who.getUpdateable(UpdateMap.class);
 	    view.closeOverlay();
-	    view.setSelectable(SelectState.BUILDING);
 	    highlightBuildings(who, BuildingType.VILLAGE);
 	    updateResources();
 	} catch (RemoteException ex) {
@@ -543,7 +542,6 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	    who.addRemainingCitys(cityToBuild);
 	    UpdateMap view = who.getUpdateable(UpdateMap.class);
 	    view.closeOverlay();
-	    view.setSelectable(SelectState.BUILDING);
 	    highlightBuildings(who, BuildingType.CITY);
 	    updateResources();
 	} catch (RemoteException ex) {

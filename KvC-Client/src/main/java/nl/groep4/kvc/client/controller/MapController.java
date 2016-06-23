@@ -119,9 +119,9 @@ public class MapController implements Controller {
      * @param coord
      *            Coordinate to place building.
      */
-    public void placeBuilding(Coordinate coord) {
+    public void placeBuilding(Coordinate coord, BuildingType type) {
 	try {
-	    model.placeBuilding(ClientRefrence.getThePlayer(), coord, BuildingType.VILLAGE);
+	    model.placeBuilding(ClientRefrence.getThePlayer(), coord, type);
 	} catch (RemoteException ex) {
 	    ExceptionManager.handleRemoteException(ex);
 	}
