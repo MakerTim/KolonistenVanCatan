@@ -46,5 +46,4 @@ public class ServerThrow implements Throw {
     public int getDiceRight() throws RemoteException {
 	return dices[1].getValue();
     }
-
 }

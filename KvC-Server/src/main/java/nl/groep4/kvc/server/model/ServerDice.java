@@ -6,6 +6,7 @@ import java.io.Serializable;
  * Dice class that takes care of the outcome of the thrown dice
  * 
  * @author Luc
+ * @author Tim
  * @version 1.0
  */
 public class ServerDice implements Serializable {
