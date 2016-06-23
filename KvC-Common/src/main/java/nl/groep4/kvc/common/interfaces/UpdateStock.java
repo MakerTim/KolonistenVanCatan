@@ -18,7 +18,7 @@ public interface UpdateStock {
      * Updates resources of the selected player.
      * 
      * @param pl
-     *            The player
+     *            The player.
      * @param resources
      *            Resources which the player haves.
      * @throws RemoteException
@@ -30,7 +30,7 @@ public interface UpdateStock {
      * Updates development cards of the selected player.
      * 
      * @param pl
-     *            The player
+     *            The player.
      * @param cards
      *            List of development cards.
      * @throws RemoteException

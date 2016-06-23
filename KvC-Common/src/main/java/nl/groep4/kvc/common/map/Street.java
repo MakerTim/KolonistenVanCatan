@@ -12,8 +12,19 @@ import nl.groep4.kvc.common.interfaces.Ownable;
  */
 public interface Street extends Ownable, Serializable, Locatable {
 
+    /**
+     * Registers tile.
+     * 
+     * @param tile
+     *            Tile to register.
+     */
     public void registerTile(Tile tile);
 
+    /**
+     * Gets connected tiles.
+     * 
+     * @return Connected tiles.
+     */
     public Tile[] getConnectedTiles();
 
 }
