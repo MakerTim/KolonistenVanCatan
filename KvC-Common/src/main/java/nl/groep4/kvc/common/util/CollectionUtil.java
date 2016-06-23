@@ -10,7 +10,7 @@ import java.util.Random;
 import java.util.function.Predicate;
 
 /**
- * Collection util is used for some missing features in Collections/subclasses
+ * Collection util is used for some missing features in Collections/subclasses.
  * 
  * @version 1.5
  * @author Sander Knauff
@@ -19,10 +19,11 @@ public class CollectionUtil {
     private static final Random RANDOM = new Random();
 
     /**
+     * Random parameter returns random item from array.
      * 
      * @param e
-     *            a random parameter for the array
-     * @return a random item from an array
+     *            A random parameter for the array.
+     * @return A random item from an array.
      */
     public static <E> E randomItem(E[] e) {
 	if (e.length == 0) {
@@ -32,10 +33,11 @@ public class CollectionUtil {
     }
 
     /**
+     * Random parameter returns random item from list.
      * 
      * @param e
-     *            a random parameter for the array
-     * @return a random item from a list
+     *            A random parameter for the array.
+     * @return A random item from a list.
      */
     public static <E> E randomItem(List<E> e) {
 	if (e.isEmpty()) {
@@ -45,10 +47,11 @@ public class CollectionUtil {
     }
 
     /**
+     * Gets first item on the list and returns outcome.
      * 
      * @param es
-     *            Refers to first item on list
-     * @return the outcome of e : es
+     *            Refers to first item on list.
+     * @return The outcome of e : es.
      */
     public static <E> E first(Collection<E> es) {
 	E ret = null;
@@ -60,10 +63,11 @@ public class CollectionUtil {
     }
 
     /**
+     * Gets first item and returns outcome.
      * 
      * @param es
-     *            Refers to first item on list
-     * @return the outcome of e :es
+     *            Refers to first item on list.
+     * @return The outcome of e :es.
      */
     public static <E> E first(E[] es) {
 	E ret = null;
@@ -75,11 +79,13 @@ public class CollectionUtil {
     }
 
     /**
+     * Gets items with list.
      * 
      * @param original
+     *            The original size.
      * @param items
-     *            set of items from list
-     * @return array of data
+     *            Set of items from list.
+     * @return Array of data.
      */
     public static <T> List<T> getItems(List<T> original, int... items) {
 	List<T> ret = new ArrayList<>();
@@ -92,11 +98,12 @@ public class CollectionUtil {
     }
 
     /**
+     * Adds item to list and addresses lists with items.
      * 
      * @param item
-     *            Adds item to list
+     *            Adds item to list.
      * @param lists
-     *            Addresses lists with items
+     *            Addresses lists with items.
      */
     @SafeVarargs
     public static <T> void addToAll(T item, List<T>... lists) {
@@ -106,6 +113,7 @@ public class CollectionUtil {
     }
 
     /**
+     * Generates array and sorts equally.
      * 
      * @param array
      *            Refers to array to be created
@@ -118,6 +126,7 @@ public class CollectionUtil {
     }
 
     /**
+     * Generates a random number and returns outcome of for loop.
      * 
      * @param list
      *            Refers to item list
@@ -136,36 +145,39 @@ public class CollectionUtil {
     }
 
     /**
+     * Lists and filters data in array and returns with applied filter.
      * 
      * @param array
-     *            Lists data in array
+     *            Lists data in array.
      * @param filter
-     *            Applies filter to array
-     * @return Array is returned with applied filter
+     *            Applies filter to array.
+     * @return Array is returned with applied filter.
      */
     public static <T> int timesFound(T[] array, Predicate<T> filter) {
 	return (int) Arrays.stream(array).filter(filter).count();
     }
 
     /**
+     * Draws Premade list and returns filtered list.
      * 
      * @param list
-     *            Draws data from premade list
+     *            Draws data from premade list.
      * @param filter
-     *            Represents a boolean from the predicate statement
-     * @return Filtered list
+     *            Represents a boolean from the predicate statement.
+     * @return Filtered list.
      */
     public static <T> int timesFound(List<T> list, Predicate<T> filter) {
 	return (int) list.stream().filter(filter).count();
     }
 
     /**
+     * Draws data and returns items in array list.
      * 
      * @param list
-     *            Draws data from premade list
+     *            Draws data from premade list.
      * @param filter
-     *            filters data to lower case
-     * @return Returns items in the form of an array list
+     *            Filters data to lower case.
+     * @return Returns items in the form of an array list.
      */
     public static String[] filter(String[] list, String filter) {
 	String[] items = new String[0];
@@ -179,11 +191,12 @@ public class CollectionUtil {
     }
 
     /**
+     * Returns itrator and filters for lower case.
      * 
      * @param list
-     *            Returns and itrator over the elements of T
+     *            Returns and itrator over the elements of T.
      * @param filter
-     *            Filters for lower case
+     *            Filters for lower case.
      */
     public static <T extends Iterable<String>> void filter(T list, String filter) {
 	Iterator<? extends String> strI = list.iterator();
@@ -195,10 +208,28 @@ public class CollectionUtil {
 	}
     }
 
+    /**
+     * Gets in range array and index.
+     * 
+     * @param array
+     *            Lists data in array.
+     * @param index
+     *            Current index.
+     * @return Array in range.
+     */
     public static <T> T getInRange(T[] array, int index) {
 	return array[modInRange(array, index)];
     }
 
+    /**
+     * Checks if in range.
+     * 
+     * @param array
+     *            Lists data in array.
+     * @param index
+     *            Current index.
+     * @return Index integer in range.
+     */
     public static int modInRange(Object[] array, int index) {
 	index %= array.length;
 	if (index < 0) {
@@ -208,6 +239,7 @@ public class CollectionUtil {
     }
 
     /**
+     * Selects specific items from list and returns outcome of boolean.
      * 
      * @param list
      *            Items in list
@@ -227,11 +259,12 @@ public class CollectionUtil {
     }
 
     /**
+     * Generates definition for key and value.
      *
      * @param <K>
-     *            Definition for key
+     *            Definition for key.
      * @param <V>
-     *            Definition for value
+     *            Definition for value.
      */
     public static class GeneticEntry<K, V> implements Entry<K, V> {
 
@@ -239,36 +272,28 @@ public class CollectionUtil {
 	private V value;
 
 	/**
+	 * Generates key and value.
 	 * 
 	 * @param key
-	 *            Random number entry
+	 *            Random number entry.
 	 * @param value
-	 *            Random value entry
+	 *            Random value entry.
 	 */
 	public GeneticEntry(K key, V value) {
 	    this.key = key;
 	    this.value = value;
 	}
 
-	/**
-	 * 
-	 */
 	@Override
 	public K getKey() {
 	    return key;
 	}
 
-	/**
-	 * 
-	 */
 	@Override
 	public V getValue() {
 	    return value;
 	}
 
-	/**
-	 * 
-	 */
 	@Override
 	public V setValue(V value) {
 	    this.value = value;
