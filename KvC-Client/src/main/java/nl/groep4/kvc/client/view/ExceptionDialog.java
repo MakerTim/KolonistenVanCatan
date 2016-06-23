@@ -20,14 +20,15 @@ import nl.groep4.kvc.client.util.TranslationManager;
  * 
  * @author Original Oliver Watkins
  * @author Changed by Tim
+ * @version 1.1
  */
 public class ExceptionDialog {
 
     /**
-     * warning text with translations
+     * Warning text with translations.
      * 
      * @param key
-     *            error type
+     *            Error type.
      */
     public static void warning(String key) {
 	warning(TranslationManager.translate(key + ".title"), TranslationManager.translate(key + ".explanation"),
@@ -35,14 +36,14 @@ public class ExceptionDialog {
     }
 
     /**
-     * warning message
+     * Warning message.
      * 
      * @param title
-     *            the title for the error message
+     *            The title for the error message.
      * @param header
-     *            text in the header
+     *            Text in the header.
      * @param message
-     *            the error message
+     *            The error message.
      */
     public static void warning(String title, String header, String message) {
 	Platform.runLater(() -> {
@@ -55,10 +56,10 @@ public class ExceptionDialog {
     }
 
     /**
-     * displays error message with all given settings
+     * Displays error message with all given settings.
      * 
      * @param thr
-     *            gets errors and exceptions
+     *            Gets errors and exceptions.
      */
     public static void error(Throwable thr) {
 	Platform.runLater(() -> {

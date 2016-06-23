@@ -24,10 +24,10 @@ import nl.groep4.kvc.common.KvCStatics;
 import nl.groep4.kvc.common.util.CollectionUtil;
 
 /**
- * Builds the Scene for logging in to servers - mainscreen
+ * Builds the Scene for logging in to Servers - main screen.
  * 
- * @version 1.0
  * @author Tim
+ * @version 1.1
  **/
 public class SceneLogin implements SceneHolder {
 
@@ -120,7 +120,7 @@ public class SceneLogin implements SceneHolder {
     }
 
     /**
-     * When mouse clicked a User gets registered
+     * When mouse clicked a User gets registered.
      */
     public void onConnectClick() {
 	controller.connect();
@@ -129,7 +129,7 @@ public class SceneLogin implements SceneHolder {
     /**
      * Gets input of the IpLabel.
      * 
-     * @return the input text of the Ip label.
+     * @return The input text of the Ip label.
      */
     public String getIpInput() {
 	return ipInput.getText();
@@ -138,25 +138,25 @@ public class SceneLogin implements SceneHolder {
     /**
      * Gets input of the portNumber label and converts it to an int.
      * 
-     * @return the input of the portNumber label in an int
+     * @return The input of the portNumber label in an int
      */
     public int getPortInput() throws NumberFormatException {
 	return Integer.parseInt(portInput.getText());
     }
 
     /**
-     * Gets the input of the username label
+     * Gets the input of the username label.
      * 
-     * @return the input of the username label
+     * @return The input of the username label.
      */
     public String getUsernameInput() {
 	return usernameInput.getText();
     }
 
     /**
-     * Gets the no sound input
+     * Gets the no sound input.
      * 
-     * @return the no sound input
+     * @return The no sound input.
      */
     public boolean getNosoundInput() {
 	return nosoundInput.isSelected();

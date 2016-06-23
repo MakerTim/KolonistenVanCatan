@@ -25,9 +25,9 @@ import nl.groep4.kvc.common.util.KvCUtil;
 import nl.groep4.kvc.common.util.Scheduler;
 
 /**
- * Builds scene settings menu
+ * Builds scene settings menu.
  * 
- * @version 1.2
+ * @version 1.3
  * @author Luc
  * @author Tim
  */

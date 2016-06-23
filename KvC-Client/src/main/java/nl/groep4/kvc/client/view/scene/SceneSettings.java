@@ -20,9 +20,9 @@ import nl.groep4.kvc.client.view.elements.MenuSlider;
 import nl.groep4.kvc.client.view.elements.TexturedButton;
 
 /**
- * Configuration Scene
+ * Configuration Scene.
  * 
- * @version 1.0
+ * @version 1.1
  * @author Luc
  **/
 public class SceneSettings implements SceneHolder {
@@ -39,10 +39,10 @@ public class SceneSettings implements SceneHolder {
     private Slider slider;
 
     /**
-     * Current settings
+     * Current settings.
      * 
      * @param parent
-     *            of sceneSettings
+     *            Of sceneSettings.
      */
     public SceneSettings(SceneHolder parent) {
 	this.parent = parent;
