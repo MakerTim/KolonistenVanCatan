@@ -9,11 +9,11 @@ import jdk.nashorn.api.scripting.URLReader;
 import nl.groep4.kvc.client.view.ExceptionDialog;
 
 /**
- * Filters right language translation and updates all strings that need
- * translation
+ * Filters the right translation and updates all strings that need a
+ * translation.
  * 
  * @author Bachir
- * @version 1.0
+ * @version 1.1
  */
 public class TranslationManager {
 
@@ -31,7 +31,7 @@ public class TranslationManager {
      * in that language will be put in the array.
      * 
      * @param languageKey
-     *            language to translate
+     *            Language to translate.
      */
     public static void setLanguage(String languageKey) {
 	current = languageKey;
@@ -55,9 +55,9 @@ public class TranslationManager {
     }
 
     /**
-     * Gets current language
+     * Gets current language.
      * 
-     * @return the current language
+     * @return The current language.
      */
     public static String getCurrentLanguage() {
 	return current;
@@ -67,10 +67,10 @@ public class TranslationManager {
      * Reading the file and filter out the correct translation.
      * 
      * @param key
-     *            string which contains a language
+     *            String which contains a language.
      * @param args
-     *            command-line arguments to execute
-     * @return the correct translation
+     *            Command-line arguments to execute.
+     * @return The correct translation.
      */
     public static String translate(String key, Object... args) {
 	for (String translation : CURRENT_LANGUAGES) {
