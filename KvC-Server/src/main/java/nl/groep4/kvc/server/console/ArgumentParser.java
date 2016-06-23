@@ -3,12 +3,14 @@ package nl.groep4.kvc.server.console;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 import nl.groep4.kvc.common.KvCStatics;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Player;
+import nl.groep4.kvc.common.util.Scheduler;
 import nl.groep4.kvc.server.ServerStarter;
 import nl.groep4.kvc.server.util.ConnectionUtil;
 
@@ -25,6 +27,7 @@ public class ArgumentParser {
     public void parse() throws Throwable {
 	switch (cmd.toLowerCase()) {
 	case "exit":
+	case "close":
 	    exit();
 	    break;
 	case "":
@@ -96,10 +99,18 @@ public class ArgumentParser {
 
     private void exit() throws RemoteException {
 	clean();
+	List<Runnable> runs = new ArrayList<>();
 	for (Player pl : new ArrayList<>(ServerStarter.getLobby().getPlayers())) {
-	    pl.getUpdateable().close("closed");
-	    ServerStarter.getLobby().disconnect(pl);
+	    runs.add(() -> {
+		try {
+		    pl.getUpdateable().close("closed");
+		    ServerStarter.getLobby().disconnect(pl);
+		} catch (Exception ex) {
+		    ex.printStackTrace();
+		}
+	    });
 	}
+	Scheduler.runAsyncdSync(runs);
 	System.exit(0);
     }
 
