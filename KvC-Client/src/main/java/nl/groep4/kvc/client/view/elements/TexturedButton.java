@@ -12,9 +12,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 /**
- * Button class what makes a combination of images looks like a real button
+ * Button class what makes a combination of images looks like a real button.
  * 
- * @version 1.0
+ * @version 1.1
  * @author Tim
  **/
 public abstract class TexturedButton extends StackPane {
@@ -23,7 +23,8 @@ public abstract class TexturedButton extends StackPane {
     protected List<Runnable> clickHandlers = new ArrayList<>();
 
     /**
-     * Generates button design
+     * Generates button design.
+     * 
      */
     public TexturedButton() {
 	ImageView background = new ImageView(getTexture());
@@ -43,10 +44,10 @@ public abstract class TexturedButton extends StackPane {
     }
 
     /**
-     * Updates the text of the button
+     * Updates the text of the button.
      * 
      * @param text
-     *            Text of the button
+     *            Text of the button.
      */
     public TexturedButton(String text) {
 	this();
@@ -54,40 +55,40 @@ public abstract class TexturedButton extends StackPane {
     }
 
     /**
-     * Sets the font of the label
+     * Sets the font of the label.
      * 
      * 
      * @param font
-     *            Font of the label
+     *            Font of the label.
      */
     public void setFont(Font font) {
 	label.setFont(font);
     }
 
     /**
-     * Updates the text of the label
+     * Updates the text of the label.
      * 
      * @param text
-     *            Text of the label
+     *            Text of the label.
      */
     public void updateText(String text) {
 	this.label.setText(text);
     }
 
     /**
-     * Gets the text of the label
+     * Gets the text of the label.
      * 
-     * @return text of the label
+     * @return Text of the label.
      */
     public String getText() {
 	return this.label.getText();
     }
 
     /**
-     * generates a shadow effect with color black
+     * Generates a shadow effect with color black.
      * 
-     * @return settings for shadow
-     * @return black shadow effect
+     * @return settings for shadow.
+     * @return black shadow effect.
      */
     public static DropShadow getShadowEffect() {
 	DropShadow shadow = new DropShadow();
@@ -98,10 +99,10 @@ public abstract class TexturedButton extends StackPane {
     }
 
     /**
-     * Registers the clicks in a List
+     * Registers the clicks in a List.
      * 
      * @param click
-     *            click that gets registers
+     *            Click that gets registers.
      */
     public void registerClick(Runnable click) {
 	clickHandlers.add(click);
@@ -116,17 +117,19 @@ public abstract class TexturedButton extends StackPane {
     }
 
     /**
-     * Gets texture of image
+     * Gets texture of image.
+     * 
      */
     public abstract Image getTexture();
 
     /**
-     * gets hover effect when hovering above image
+     * Gets hover effect when hovering above image.
+     * 
      */
     public abstract Image getHoverTexture();
 
     /**
-     * gets click effect when user clicks on image
+     * Gets click effect when user clicks on image.
      */
     public abstract Image getClickTexture();
 }

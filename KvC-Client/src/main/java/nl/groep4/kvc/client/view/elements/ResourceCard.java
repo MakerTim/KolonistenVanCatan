@@ -14,7 +14,7 @@ import nl.groep4.kvc.common.enumeration.Resource;
  * Sets images and names for resources in stock. Also update stock.
  * 
  * @author Luc
- * @version 1.0
+ * @version 1.1
  */
 public class ResourceCard {
 
@@ -37,9 +37,9 @@ public class ResourceCard {
     private Text nameStone;
 
     /**
-     * gets wood name
+     * Gets wood name.
      * 
-     * @return name of wood
+     * @return Name of wood.
      */
     public Text getWoodName() {
 	nameWood = new KvCText(TranslationManager.translate("game.resourcename.wood"));
@@ -47,9 +47,9 @@ public class ResourceCard {
     };
 
     /**
-     * gets stone name
+     * Gets stone name.
      * 
-     * @return name of stone
+     * @return Name of stone.
      */
     public Text getStoneName() {
 	nameStone = new KvCText(TranslationManager.translate("game.resourcename.stone"));
@@ -57,9 +57,9 @@ public class ResourceCard {
     };
 
     /**
-     * gets ore name
+     * Gets ore name.
      * 
-     * @return name of ore
+     * @return Name of ore.
      */
     public Text getOreName() {
 	nameOre = new KvCText(TranslationManager.translate("game.resourcename.ore"));
@@ -67,9 +67,9 @@ public class ResourceCard {
     };
 
     /**
-     * gets wool name
+     * Gets wool name.
      * 
-     * @return name of wool
+     * @return Name of wool.
      */
     public Text getWoolName() {
 	nameWool = new KvCText(TranslationManager.translate("game.resourcename.wool"));
@@ -77,9 +77,9 @@ public class ResourceCard {
     };
 
     /**
-     * gets wheat name
+     * Gets wheat name.
      * 
-     * @return name of wheat
+     * @return Name of wheat.
      */
     public Text getWheatName() {
 	nameWheat = new KvCText(TranslationManager.translate("game.resourcename.wheat"));
@@ -87,9 +87,9 @@ public class ResourceCard {
     };
 
     /**
-     * gets wood text
+     * Gets wood text.
      * 
-     * @return text of wood
+     * @return Text of wood.
      */
     public Text getWoodText() {
 	amntWood = new KvCText("0");
@@ -98,9 +98,9 @@ public class ResourceCard {
     }
 
     /**
-     * gets ore text
+     * Gets ore text.
      * 
-     * @return text of ore
+     * @return Text of ore.
      */
     public Text getOreText() {
 	amntOre = new KvCText("0");
@@ -109,9 +109,9 @@ public class ResourceCard {
     }
 
     /**
-     * gets wool text
+     * Gets wool text.
      * 
-     * @return text of wool
+     * @return Gext of wool.
      */
     public Text getWoolText() {
 	amntWool = new KvCText("0");
@@ -120,9 +120,9 @@ public class ResourceCard {
     }
 
     /**
-     * gets wheat text
+     * Gets wheat text.
      * 
-     * @return text of wheat
+     * @return Text of wheat.
      */
     public Text getWheatText() {
 	amntWheat = new KvCText("0");
@@ -131,9 +131,9 @@ public class ResourceCard {
     }
 
     /**
-     * gets stone text
+     * Gets stone text.
      * 
-     * @return text of stone
+     * @return Text of stone.
      */
     public Text getStoneText() {
 	amntStone = new KvCText("0");
@@ -142,9 +142,9 @@ public class ResourceCard {
     }
 
     /**
-     * gets image of cardPlank
+     * Gets image of cardPlank.
      * 
-     * @return the image of cardPlank
+     * @return The image of cardPlank.
      */
     public Node getCardPlank() {
 	if (cardPlank == null) {
@@ -166,9 +166,9 @@ public class ResourceCard {
     }
 
     /**
-     * Gets the resource for the stone card
+     * Gets the resource for the stone card.
      * 
-     * @return image of the stone card
+     * @return Image of the stone card.
      */
     public Node getStoneCard() {
 	stoneCard = new ImageView("img/cards/kaart_steen.png");
@@ -178,9 +178,9 @@ public class ResourceCard {
     }
 
     /**
-     * Gets the resource for the wool card
+     * Gets the resource for the wool card.
      * 
-     * @return image of the wool card
+     * @return Image of the wool card.
      */
     public Node getWoolCard() {
 	woolCard = new ImageView("img/cards/kaart_schaap.png");
@@ -190,9 +190,9 @@ public class ResourceCard {
     }
 
     /**
-     * Gets the resource for the wheat card
+     * Gets the resource for the wheat card.
      * 
-     * @return image of the wheat card
+     * @return Image of the wheat card.
      */
     public Node getWheatCard() {
 	wheatCard = new ImageView("img/cards/kaart_graan.png");
@@ -202,9 +202,9 @@ public class ResourceCard {
     }
 
     /**
-     * Gets the resource for the ore card
+     * Gets the resource for the ore card.
      * 
-     * @return image of the ore card
+     * @return Image of the ore card.
      */
     public Node getOreCard() {
 	oreCard = new ImageView("img/cards/kaart_erts.png");
@@ -214,7 +214,8 @@ public class ResourceCard {
     }
 
     /**
-     * updates translation of resources
+     * Updates translation of resources.
+     * 
      */
     public void updateTranslation() {
 	nameOre.setText(TranslationManager.translate("game.resourcename.ore"));
@@ -226,10 +227,10 @@ public class ResourceCard {
     }
 
     /**
-     * Updates stock with all resources
+     * Updates stock with all resources.
      * 
      * @param resources
-     *            that will be updated
+     *            Resources that will be updated.
      */
     public void updateStock(EnumMap<Resource, Integer> resources) {
 	for (Entry<Resource, Integer> resource : resources.entrySet()) {
