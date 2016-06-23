@@ -8,6 +8,7 @@ package nl.groep4.kvc.common.interfaces;
  */
 public interface Ownable {
     /**
+     * Gets owner
      * 
      * @return Retrieves owner
      */
@@ -16,7 +17,7 @@ public interface Ownable {
     /**
      * 
      * @param player
-     *            sets owner of current object
+     *            Sets owner of current object
      */
     public void setOwner(Player player);
 

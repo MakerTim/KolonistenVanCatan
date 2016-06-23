@@ -6,64 +6,93 @@ import nl.groep4.kvc.common.enumeration.Direction;
 import nl.groep4.kvc.common.enumeration.Point;
 
 /**
- * Define positions of tiles, streets and buildings
+ * Define positions of tiles, streets and buildings.
  *
  * @version 1.0
  * @author Tim
  */
-
 public interface Tile extends Serializable, Locatable {
 
     public TileType getType();
 
     /**
+     * Gets street.
      *
      * @param direction
-     *            Refers to {@link Direction}
-     * @return gets direction of street
+     *            Direction of street.
+     * @return Gets direction of street.
      */
     public Street getStreet(Direction direction);
 
     /**
+     * Gets building.
      *
      * @param point
-     *            Refers to {@link Point}
-     * @return gets interactable building points
+     *            Available points.
+     * @return Gets Interactable building points.
      */
     public Building getBuilding(Point point);
 
+    /**
+     * Gets streets.
+     * 
+     * @return Streets.
+     */
     public Street[] getStreets();
 
+    /**
+     * Gets buildings.
+     * 
+     * @return Buildings.
+     */
     public Building[] getBuildings();
 
     /**
-     *
+     * Sets streets.
+     * 
      * @param streets
-     *            Refers to {@link Map} for street location and direction
+     *            Street location and direction.
      */
     public void setupStreets(Street[] streets);
 
     /**
+     * Sets building.
      *
      * @param buildings
-     *            Refers to {@link Map} for building location and direction
+     *            Building location and direction.
      */
     public void setupBuilding(Building[] buildings);
 
     /**
+     * Returns true when place is valid and false when place is not valid.
      *
      * @param point
-     * @return
+     *            Available point.
+     * @param map
+     *            Valid place on map.
+     * @return True or false.
      */
     public boolean isValidPlace(Map map, Point point);
 
+    /**
+     * Get relative map and direction.
+     * 
+     * @param map
+     *            Valid place on map.
+     * @param direction
+     *            Available directions.
+     * @return Map and directions.
+     */
     public Tile getRelative(Map map, Direction direction);
 
     /**
+     * Checks if place is valid.
      *
      * @param map
+     *            Valid place on map.
      * @param direction
-     * @return
+     *            Available directions.
+     * @return Valid place and direction.
      */
     public default boolean isValidPlace(Map map, Direction direction) {
 	return (this instanceof TileLand || map.getRelativeTile(this, direction) instanceof TileLand)
