@@ -180,13 +180,15 @@ public interface Player extends Remote {
     public Updatable<?> getUpdateable() throws RemoteException;
 
     /**
-     * General method to update
+     * General method to update.
      * 
+     * @param <T>
+     *            Pane class which is used.
      * @param type
-     *            the updatable type
-     * @return the view of the game
+     *            The updatable type.
+     * @return The view of the game.
      * @throws RemoteException
-     *             any remotely invoked method
+     *             Any remotely invoked method.
      */
     public default <T extends Updatable<?>> T getUpdateable(Class<T> type) throws RemoteException {
 	return (T) getUpdateable();

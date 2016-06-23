@@ -5,10 +5,10 @@ import java.rmi.RemoteException;
 import nl.groep4.kvc.common.enumeration.TurnState;
 
 /**
- * Skeleton fot the UpdateRound
+ * Skeleton for the UpdateRound
  * 
  * @author Tim
- * @version
+ * @version 1.0
  */
 public interface UpdateRound {
 

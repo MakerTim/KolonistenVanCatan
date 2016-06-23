@@ -9,7 +9,7 @@ import java.rmi.RemoteException;
  * @author Tim
  * @version 1.0
  * @param <T>
- *            Pane class which used
+ *            Pane class which is used
  */
 public interface Updatable<T> extends Remote {
 
