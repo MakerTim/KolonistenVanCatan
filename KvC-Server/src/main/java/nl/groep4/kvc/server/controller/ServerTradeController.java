@@ -49,13 +49,16 @@ public class ServerTradeController {
 		} catch (RemoteException ex) {
 		    ex.printStackTrace();
 		}
+		return;
 	    }
 	    if (trade.getPlayer().equals(player)) {
 		try {
 		    player.getUpdateable().popup("tradeself");
+		    removeTrade(trade.getID());
 		} catch (RemoteException ex) {
 		    ex.printStackTrace();
 		}
+		return;
 	    }
 	    if (hasAllResources(trade)) {
 		if (player == null) {
@@ -108,6 +111,9 @@ public class ServerTradeController {
 	    boolean isBankTrade = true;
 	    int i = 0;
 	    for (Entry<Resource, Integer> reward : trade.getReward().entrySet()) {
+		if (reward.getValue() == 0) {
+		    continue;
+		}
 		if (reward.getValue() != 4) {
 		    isBankTrade = false;
 		    break;
@@ -115,6 +121,9 @@ public class ServerTradeController {
 		i += reward.getValue();
 	    }
 	    for (Entry<Resource, Integer> request : trade.getRequest().entrySet()) {
+		if (request.getValue() == 0) {
+		    continue;
+		}
 		if (request.getValue() != 1) {
 		    isBankTrade = false;
 		    break;

@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -80,7 +81,14 @@ public class ServerPlayer implements Player {
 
     @Override
     public void useCard(Card usedCard) throws RemoteException {
-	cards.remove(usedCard);
+	Iterator<Card> cardIT = cards.iterator();
+	while (cardIT.hasNext()) {
+	    Card card = (Card) cardIT.next();
+	    if (card.getType() == usedCard.getType()) {
+		cardIT.remove();
+		break;
+	    }
+	}
     }
 
     @Override

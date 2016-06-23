@@ -42,6 +42,7 @@ public class ServerCardController {
     public void useInvention(Player who, Resource resource) {
 	try {
 	    who.giveResource(resource, 2);
+	    who.getUpdateable(UpdateMap.class).closeOverlay();
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();
 	}
@@ -54,6 +55,7 @@ public class ServerCardController {
 		int am = pl.getResourceAmount(resource);
 		pl.takeResource(resource, am);
 		who.giveResource(resource, am);
+		who.getUpdateable(UpdateMap.class).closeOverlay();
 	    } catch (Exception ex) {
 		ex.printStackTrace();
 	    }

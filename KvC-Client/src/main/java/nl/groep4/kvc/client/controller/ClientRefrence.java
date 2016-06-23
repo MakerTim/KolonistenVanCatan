@@ -3,6 +3,7 @@ package nl.groep4.kvc.client.controller;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import nl.groep4.kvc.client.util.SoundUtil;
 import nl.groep4.kvc.common.interfaces.Lobby;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.Updatable;
@@ -69,5 +70,10 @@ public final class ClientRefrence {
 
     public static void setNoSound(boolean selected) {
 	noSound = selected;
+	if (noSound) {
+	    SoundUtil.stopThemesong();
+	} else {
+	    SoundUtil.playThemesong();
+	}
     }
 }

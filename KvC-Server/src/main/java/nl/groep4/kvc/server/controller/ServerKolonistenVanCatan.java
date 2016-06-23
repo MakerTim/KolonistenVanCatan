@@ -116,6 +116,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 
     @Override
     public void nextTurn() {
+	lastThrow = null;
 	turnController.nextTurn();
     }
 
@@ -236,12 +237,18 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 
     @Override
     public void trade(UUID tradeKey, Player with) throws RemoteException {
+	if (with.equals(getTurn())) {
+	    updateState(TurnState.TRADING);
+	}
 	tradeController.onTrade(tradeController.getTrade(tradeKey), with);
     }
 
     @Override
     public void addTrade(Player player, java.util.Map<Resource, Integer> request,
 	    java.util.Map<Resource, Integer> reward) throws RemoteException {
+	if (player.equals(getTurn())) {
+	    updateState(TurnState.TRADING);
+	}
 	tradeController.addTrade(player, request, reward);
 	updateTrades();
     }
@@ -404,6 +411,11 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     @Override
     public void openPausePane(Player requester) {
 	try {
+	    if (!requester.equals(getTurn())) {
+		requester.getUpdateable(UpdateMap.class).closeOverlay();
+		requester.getUpdateable().popup("noturn");
+		return;
+	    }
 	    for (Player pl : getPlayers()) {
 		try {
 		    pl.getUpdateable(UpdateMap.class).openPausePane(false);
@@ -458,6 +470,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	    UpdateMap view = who.getUpdateable(UpdateMap.class);
 	    view.closeOverlay();
 	    highlightBuildings(who, BuildingType.VILLAGE);
+	    view.blockActions();
 	    updateResources();
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();
@@ -471,6 +484,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	    UpdateMap view = who.getUpdateable(UpdateMap.class);
 	    view.closeOverlay();
 	    highlightBuildings(who, BuildingType.CITY);
+	    view.blockActions();
 	    updateResources();
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();

@@ -171,7 +171,7 @@ public class ServerMapController {
 
     public void moveRoverTo(Coordinate position) {
 	try {
-	    if (roverFrom != null) {
+	    if (roverFrom != null && !roverFrom.equals(position)) {
 		Tile tile = controller.getMap().getTile(position);
 		if (tile instanceof TileLand) {
 		    TileLand land = (TileLand) tile;
