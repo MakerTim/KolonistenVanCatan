@@ -194,7 +194,7 @@ public class ServerMapController {
 	    Tile tile = controller.getMap().getTile(position);
 	    if (tile instanceof TileLand) {
 		TileLand land = (TileLand) tile;
-		if (land.hasRover()) {
+		if (land.hasRover() && roverFrom.isSameLocation(Short.MAX_VALUE, Short.MAX_VALUE)) {
 		    roverFrom = position;
 		    controller.getTurn().setSelectable(SelectState.TILE);
 		    controller.getTurn().getUpdateable(UpdateMap.class).blockActions();
@@ -210,6 +210,17 @@ public class ServerMapController {
     }
 
     public boolean isMovingRover() {
-	return roverFrom != null;
+	return roverFrom != null && !roverFrom.isSameLocation(Short.MAX_VALUE, Short.MAX_VALUE);
+    }
+
+    public void moveBanditModus() {
+	try {
+	    System.out.println("Bandit is on the move! '7'");
+	    controller.getTurn().setSelectable(SelectState.BANDIT);
+	    controller.getTurn().getUpdateable(UpdateMap.class).blockActions();
+	    roverFrom = new Coordinate(Short.MAX_VALUE, Short.MAX_VALUE);
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
     }
 }

@@ -42,6 +42,7 @@ public class ServerShopController {
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();
 	}
+	controller.updateResources();
     }
 
     public void buyStreet() {
@@ -107,5 +108,4 @@ public class ServerShopController {
 	    ex.printStackTrace();
 	}
     }
-
 }

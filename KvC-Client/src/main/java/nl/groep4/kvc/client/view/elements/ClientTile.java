@@ -3,6 +3,7 @@ package nl.groep4.kvc.client.view.elements;
 import java.util.HashMap;
 import java.util.Map;
 
+import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Effect;
 import javafx.scene.image.Image;
@@ -47,6 +48,7 @@ public class ClientTile extends StackPane {
     private ImageView[] houses = new ImageView[2];
     private ImageView image;
     private ImageView fiche;
+    private Pane overlayPane;
     private Text number;
 
     /**
@@ -58,11 +60,13 @@ public class ClientTile extends StackPane {
      */
     public ClientTile(Coordinate coord) {
 	this.coord = coord;
-	Pane overlayPane = new Pane();
+	overlayPane = new Pane();
 	image = new ImageView();
 	fiche = new ImageView("img/tiles/fiche.png");
 	number = new Text();
 
+	number.setMouseTransparent(true);
+	fiche.setMouseTransparent(true);
 	image.setFitWidth(1 * SceneMap.scale);
 	image.setFitHeight(0.86 * SceneMap.scale);
 	fiche.setFitWidth(0.35 * SceneMap.scale);
@@ -73,13 +77,10 @@ public class ClientTile extends StackPane {
 	number.setFill(Color.WHITE);
 
 	image.setOnMouseClicked(click -> {
-	    if (controller.isMovingRover()) {
-		onTileClick();
-	    }
-	});
-	fiche.setOnMouseClicked(click -> {
 	    if (fiche.getEffect() != null) {
 		onFicheClick();
+	    } else if (controller.isMovingRover()) {
+		onTileClick();
 	    }
 	});
 
@@ -211,24 +212,28 @@ public class ClientTile extends StackPane {
 	case BUILDING:
 	    setBuildClickable(true);
 	    setStreetClickable(false);
+	    overlayPane.setMouseTransparent(false);
 	    setTileClickable(false);
 	    setFicheClickable(false);
 	    break;
 	case STREET:
 	    setBuildClickable(false);
 	    setStreetClickable(true);
+	    overlayPane.setMouseTransparent(false);
 	    setTileClickable(false);
 	    setFicheClickable(false);
 	    break;
 	case BANDIT:
 	    setBuildClickable(false);
 	    setStreetClickable(false);
+	    overlayPane.setMouseTransparent(true);
 	    setTileClickable(true);
 	    setFicheClickable(true);
 	    break;
 	case TILE:
 	    setBuildClickable(false);
 	    setStreetClickable(false);
+	    overlayPane.setMouseTransparent(true);
 	    setTileClickable(true);
 	    setFicheClickable(false);
 	    break;
@@ -237,16 +242,20 @@ public class ClientTile extends StackPane {
 
     private Effect shadow() {
 	DropShadow shadow = new DropShadow();
-	shadow.setOffsetX(5);
-	shadow.setOffsetY(5);
-	shadow.setColor(Color.BLACK);
+	shadow.setBlurType(BlurType.GAUSSIAN);
+	shadow.setRadius(127);
+	shadow.setWidth(50);
+	shadow.setHeight(50);
+	shadow.setSpread(0.5);
+	shadow.setColor(Color.WHITE);
 	return shadow;
     }
 
     private void setFicheClickable(boolean clickAble) {
-	fiche.setMouseTransparent(!clickAble);
 	if (clickAble) {
-	    fiche.setEffect(shadow());
+	    if (tile instanceof TileLand && ((TileLand) tile).hasRover() || tile == null) {
+		fiche.setEffect(shadow());
+	    }
 	} else {
 	    fiche.setEffect(null);
 	}
@@ -254,7 +263,6 @@ public class ClientTile extends StackPane {
 
     private void setTileClickable(boolean clickAble) {
 	image.setMouseTransparent(!clickAble);
-	number.setMouseTransparent(!clickAble);
     }
 
     private void setBuildClickable(boolean clickAble) {
@@ -270,18 +278,22 @@ public class ClientTile extends StackPane {
     }
 
     private void onStreetClick(Coordinate coord) {
+	System.out.println("street click");
 	controller.placeStreet(coord);
     }
 
     private void onBuildingClick(Coordinate coord) {
+	System.out.println("building click");
 	controller.placeBuilding(coord);
     }
 
     private void onFicheClick() {
+	System.out.println("fiche click");
 	controller.moveFromRover(tile.getPosition());
     }
 
     private void onTileClick() {
+	System.out.println("tile click");
 	controller.moveToRover(tile.getPosition());
     }
 

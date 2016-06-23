@@ -505,7 +505,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     }
 
     public void moveBanditModus() {
-	// TODO: move rover modus
+	mapController.moveBanditModus();
     }
 
     public void buildStreetModus(int streetsToBuild) {
