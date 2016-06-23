@@ -12,7 +12,6 @@ import nl.groep4.kvc.common.enumeration.CardType;
  **/
 public interface Card extends Serializable {
     /**
-     * 
      * @return Gets card type
      */
     public CardType getType();
