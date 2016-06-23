@@ -18,10 +18,10 @@ import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.NotCloseable;
 
 /**
- * The pane when an inventioncard (developmentcard) is used.
+ * The pane when an invention card (development card) is used.
  * 
  * @author Lisa
- * @version 1.0
+ * @version 1.1
  */
 public class InventionPane implements PaneHolder, NotCloseable {
     private Font font = new Font(ViewMaster.FONT.getName(), 30);
@@ -41,10 +41,10 @@ public class InventionPane implements PaneHolder, NotCloseable {
     private SceneMap scenemap;
 
     /**
-     * sets scenemap
+     * Sets scenemap.
      * 
      * @param sceneMap
-     *            current settings for scenemap
+     *            View of the map.
      */
     public InventionPane(SceneMap sceneMap) {
 	this.scenemap = sceneMap;

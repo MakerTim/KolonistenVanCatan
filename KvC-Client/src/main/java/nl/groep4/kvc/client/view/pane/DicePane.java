@@ -19,11 +19,11 @@ import nl.groep4.kvc.common.util.Scheduler;
 
 /**
  * Pane that gets automatically displayed and rolls the dice when clicked on a
- * button
+ * button.
  * 
  * @author Tim
  * @author Luc
- * @version 1.0
+ * @version 1.1
  */
 public class DicePane implements PaneHolder, UpdateDice, NotCloseable {
 
@@ -38,12 +38,12 @@ public class DicePane implements PaneHolder, UpdateDice, NotCloseable {
     private boolean hasNumber;
 
     /**
-     * Determines whose turn it is and displays button
+     * Determines whose turn it is and displays button.
      * 
      * @param view
-     *            view to display
+     *            View to display.
      * @param isMyTurn
-     *            the turn for the given player
+     *            The turn for the given player.
      */
     public DicePane(SceneMap view, boolean isMyTurn) {
 	this.view = view;
@@ -113,7 +113,8 @@ public class DicePane implements PaneHolder, UpdateDice, NotCloseable {
     }
 
     /**
-     * calls the throwDice method and disables the throw button
+     * Calls the throwDice method and disables the throw button.
+     * 
      */
     public void throwDice() {
 	if (isMyTurn) {
