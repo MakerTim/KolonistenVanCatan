@@ -107,7 +107,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
 
 	    stockPane = new StockPane(this);
 	    scorePane = new ScoreRoundPane();
-	    infoPane = new TurnInfoPane();
+	    infoPane = new TurnInfoPane(this.getController());
 	    buildPane = new BuildPane(this);
 	    tradePane = new TradePane(this);
 	    buyPane = new BuyPane(this);

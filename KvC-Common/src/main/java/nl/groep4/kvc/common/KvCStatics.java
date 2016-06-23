@@ -16,4 +16,5 @@ public class KvCStatics {
 
     /** REGEX: only characters, capital charcaters or numbers */
     public static final String USERNAME = "[a-zA-Z0-9]";
+
 }

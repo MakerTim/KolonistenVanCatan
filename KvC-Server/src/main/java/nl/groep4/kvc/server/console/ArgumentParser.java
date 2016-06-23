@@ -7,9 +7,9 @@ import java.util.Scanner;
 
 import nl.groep4.kvc.common.KvCStatics;
 import nl.groep4.kvc.common.enumeration.Resource;
+import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.server.ServerStarter;
-import nl.groep4.kvc.server.controller.ServerKolonistenVanCatan;
 import nl.groep4.kvc.server.util.ConnectionUtil;
 
 public class ArgumentParser {
@@ -75,7 +75,7 @@ public class ArgumentParser {
 	    System.err.printf("Resource '%s' not found.\n", args[1]);
 	    return;
 	}
-	if (!KvCStatics.NUMERIC.matches(args[2])) {
+	if (!args[2].matches(KvCStatics.NUMERIC + "+")) {
 	    System.err.printf("Argument 3 needs to be a number, not '%s'.\n", args[2]);
 	    return;
 	}
@@ -84,9 +84,9 @@ public class ArgumentParser {
 	    System.err.println("Cant give negative resources");
 	    return;
 	}
-	ServerKolonistenVanCatan kvc = (ServerKolonistenVanCatan) ServerStarter.getLobby().getGame();
+	KolonistenVanCatan kvc = ServerStarter.getLobby().getGame();
 	pl.giveResource(resource, amount);
-	kvc.updateCards();
+	kvc.updateResources();
     }
 
     private void trigger() throws RemoteException {

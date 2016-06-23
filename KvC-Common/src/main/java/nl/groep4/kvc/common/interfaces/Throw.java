@@ -1,6 +1,6 @@
 package nl.groep4.kvc.common.interfaces;
 
-import java.rmi.Remote;
+import java.io.Serializable;
 import java.rmi.RemoteException;
 
 /**
@@ -9,7 +9,7 @@ import java.rmi.RemoteException;
  * @author Tim
  * @version 1.0
  */
-public interface Throw extends Remote {
+public interface Throw extends Serializable {
 
     /**
      * Generates random number 1 till 6

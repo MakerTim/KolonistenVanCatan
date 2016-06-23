@@ -1,6 +1,6 @@
 package nl.groep4.kvc.server.model;
 
-import java.rmi.Remote;
+import java.io.Serializable;
 import java.rmi.RemoteException;
 
 /**
@@ -9,8 +9,9 @@ import java.rmi.RemoteException;
  * @author Luc
  * @version 1.0
  */
-public class ServerDice implements Remote {
+public class ServerDice implements Serializable {
 
+    private static final long serialVersionUID = 1111993L;
     private int dice;
 
     /**
@@ -18,7 +19,7 @@ public class ServerDice implements Remote {
      * 
      * @throws RemoteException
      */
-    public void throwDice() throws RemoteException {
+    public void throwDice() {
 	dice = 1 + (int) (Math.random() * 6D);
     }
 
@@ -28,7 +29,7 @@ public class ServerDice implements Remote {
      * @return the value of the thrown dice
      * @throws RemoteException
      */
-    public int getValue() throws RemoteException {
+    public int getValue() {
 	return dice;
     }
 
