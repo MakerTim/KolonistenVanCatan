@@ -119,7 +119,7 @@ public class LobbyController implements Controller {
     }
 
     /**
-     * when clicked on it starts this method will set the map
+     * When clicked on, the map will be set and the game will start.
      */
     public void start() {
 	try {

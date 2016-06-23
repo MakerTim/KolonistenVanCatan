@@ -16,29 +16,29 @@ import nl.groep4.kvc.common.interfaces.Lobby;
 import nl.groep4.kvc.common.interfaces.Player;
 
 /**
- * Connects with the lobby if all requirements matches
+ * Connects with the lobby if all the requirements match.
  * 
  * @author Tim
- * @version 1.0
+ * @version 1.1
  */
 public class LoginController implements Controller {
 
     private SceneLogin view;
 
     /**
-     * Gets the current view
+     * Gets the current view.
      * 
      * @param view
-     *            the view which is used
+     *            The view which is used.
      */
     public LoginController(SceneLogin view) {
 	this.view = view;
     }
 
     /**
-     * checks if all input fields are correct
+     * Checks if all input fields are correct.
      * 
-     * @return lobby key to connect with
+     * @return Lobby key to connect with.
      */
     public Lobby connect() {
 	String ip = "";

@@ -22,7 +22,7 @@ import nl.groep4.kvc.common.interfaces.VictoryCard;
 import nl.groep4.kvc.common.util.Scheduler;
 
 /**
- * Meant for debugging, has no function in the actual program
+ * Meant for debugging, has no function in the actual program.
  * 
  * @author Tim
  * @version 1.0

@@ -14,10 +14,10 @@ import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.map.Coordinate;
 
 /**
- * All functions that can be called while you are in the game
+ * All functions that can be called while you are in the game.
  * 
  * @author Tim
- * @version 1.0
+ * @version 1.1
  */
 public class MapController implements Controller {
 
@@ -25,12 +25,12 @@ public class MapController implements Controller {
     private SceneMap view;
 
     /**
-     * Gets the current model and view
+     * Gets the current model and view.
      * 
      * @param model
-     *            the model which is used
+     *            The model which is used.
      * @param view
-     *            the view which is used
+     *            The view which is used.
      */
     public MapController(KolonistenVanCatan model, SceneMap view) {
 	this.model = model;
@@ -38,10 +38,10 @@ public class MapController implements Controller {
     }
 
     /**
-     * Calls trade with unique trade id
+     * Calls trade with unique trade ID.
      * 
      * @param tradeID
-     *            unique trade id
+     *            Unique trade ID.
      */
     public void doTrade(UUID tradeID) {
 	try {
@@ -51,6 +51,12 @@ public class MapController implements Controller {
 	}
     }
 
+    /**
+     * Use a selected card.
+     * 
+     * @param card
+     *            The card that is selected.
+     */
     public void useCard(Card card) {
 	try {
 	    model.useCard(card);
@@ -59,6 +65,13 @@ public class MapController implements Controller {
 	}
     }
 
+    /**
+     * The player gets all the resource cards of one kind of choice from all the
+     * players.
+     * 
+     * @param resource
+     *            The resource of choice.
+     */
     public void targetMonopoly(Resource resource) {
 	try {
 	    model.targetMonopoly(ClientRefrence.getThePlayer(), resource);
@@ -67,6 +80,12 @@ public class MapController implements Controller {
 	}
     }
 
+    /**
+     * The player gets two of the same resource cards of choice from the bank.
+     * 
+     * @param resource
+     *            The resource of choice.
+     */
     public void targetInvention(Resource resource) {
 	try {
 	    model.targetInvention(ClientRefrence.getThePlayer(), resource);
@@ -76,14 +95,14 @@ public class MapController implements Controller {
     }
 
     /**
-     * Adds player, request and reward to trade list
+     * Adds player, request and reward to trade list.
      * 
      * @param who
-     *            the player
+     *            The player.
      * @param request
-     *            the resources the player wants to get
+     *            The resources the player wants to get.
      * @param reward
-     *            the resources the player wants to give for it
+     *            The resources the player wants to give for it.
      */
     public void placeTrade(Player who, Map<Resource, Integer> request, Map<Resource, Integer> reward) {
 	try {
@@ -94,10 +113,10 @@ public class MapController implements Controller {
     }
 
     /**
-     * Places building at the given coordinate
+     * Places building at the given coordinate.
      * 
      * @param coord
-     *            coordinate to place building
+     *            Coordinate to place building.
      */
     public void placeBuilding(Coordinate coord) {
 	try {
@@ -108,10 +127,10 @@ public class MapController implements Controller {
     }
 
     /**
-     * Places street on given coordinate
+     * Places street on given coordinate.
      * 
      * @param coord
-     *            coordinate to place street
+     *            Coordinate to place street.
      */
     public void placeStreet(Coordinate coord) {
 	try {
@@ -122,14 +141,14 @@ public class MapController implements Controller {
     }
 
     /**
-     * Opens BuyPane
+     * Opens BuyPane.
      */
     public void openBuyPane() {
 	view.openBuildPane();
     }
 
     /**
-     * Goes to the next turn
+     * Goes to the next turn.
      */
     public void nextTurn() {
 	try {
@@ -140,7 +159,7 @@ public class MapController implements Controller {
     }
 
     /**
-     * Calls the trowDices() class
+     * Calls the trowDices class.
      */
     public void throwDice() {
 	try {
@@ -151,7 +170,7 @@ public class MapController implements Controller {
     }
 
     /**
-     * Sets the game on pause
+     * Sets the game on pause.
      */
     public void setPause() {
 	try {
@@ -162,7 +181,7 @@ public class MapController implements Controller {
     }
 
     /**
-     * Resumes the game
+     * Resumes the game.
      */
     public void unpause() {
 	try {
@@ -173,7 +192,7 @@ public class MapController implements Controller {
     }
 
     /**
-     * Buys a street
+     * Buys a street.
      */
     public void buyStreet() {
 	try {
@@ -184,7 +203,7 @@ public class MapController implements Controller {
     }
 
     /**
-     * Buys village
+     * Buys a village.
      */
     public void buyVillage() {
 	try {
@@ -195,7 +214,7 @@ public class MapController implements Controller {
     }
 
     /**
-     * Buys city
+     * Buys a city.
      */
     public void buyCity() {
 	try {
@@ -206,7 +225,7 @@ public class MapController implements Controller {
     }
 
     /**
-     * Buys card
+     * Buys a card.
      */
     public void buyCard() {
 	try {
@@ -216,6 +235,12 @@ public class MapController implements Controller {
 	}
     }
 
+    /**
+     * Moves the bandit from a tile.
+     * 
+     * @param position
+     *            The coordinate of the tile.
+     */
     public void moveFromRover(Coordinate position) {
 	try {
 	    model.moveFromRover(ClientRefrence.getThePlayer(), position);
@@ -224,6 +249,12 @@ public class MapController implements Controller {
 	}
     }
 
+    /**
+     * Moves the bandit to a chosen tile.
+     * 
+     * @param position
+     *            The coordinate of the chosen tile
+     */
     public void moveToRover(Coordinate position) {
 	try {
 	    model.moveToRover(ClientRefrence.getThePlayer(), position);
@@ -232,6 +263,11 @@ public class MapController implements Controller {
 	}
     }
 
+    /**
+     * True or false on if the Bandit has moved.
+     * 
+     * @return True or false on if the Bandit has moved.
+     */
     public boolean isMovingRover() {
 	try {
 	    return model.isMovingRover();
