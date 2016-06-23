@@ -15,29 +15,29 @@ import nl.groep4.kvc.common.interfaces.Lobby;
 import nl.groep4.kvc.common.interfaces.Player;
 
 /**
- * Controls all lobby features
+ * Controls all lobby features.
  * 
  * @author Tim
- * @version 1.0
+ * @version 1.1
  */
 public class LobbyController implements Controller {
 
     private Lobby model;
 
     /**
-     * sets model
+     * Sets model.
      * 
      * @param model
-     *            references to lobby for connection
+     *            The lobby.
      */
     public LobbyController(Lobby model) {
 	this.model = model;
     }
 
     /**
-     * generates a list of players which are connected to the lobby
+     * Generates a list of players which are connected to the lobby.
      * 
-     * @return a list of players
+     * @return A list of players.
      */
     public List<Player> getPlayers() {
 	try {
@@ -49,10 +49,10 @@ public class LobbyController implements Controller {
     }
 
     /**
-     * disconnects the player from the server
+     * Disconnects the player from the server.
      * 
      * @param pl
-     *            references to ClientRefrence for disconnect
+     *            The player in the lobby.
      */
     public void disconnect(Player pl) {
 	try {
@@ -66,12 +66,12 @@ public class LobbyController implements Controller {
     }
 
     /**
-     * changes the color of a player
+     * Changes the color of a player.
      * 
      * @param player
-     *            name of player
+     *            The player in the lobby.
      * @param color
-     *            color to change
+     *            The color of the player.
      * 
      */
     public void changeColor(Player player, Color color) {
@@ -83,7 +83,7 @@ public class LobbyController implements Controller {
     }
 
     /**
-     * Starts the game
+     * Starts the game and stops the themesong from the lobby.
      */
     public void startGame() {
 	SoundUtil.stopThemesong();
@@ -95,11 +95,11 @@ public class LobbyController implements Controller {
     }
 
     /**
-     * Let player reconnect into the game
+     * Lets the player reconnect into the game.
      * 
      * @param pl
-     *            name of player that will be compared with all players that
-     *            joined the game
+     *            Name of player that will be compared with all players that
+     *            joined the game.
      */
     public void reopenGame(Player pl) {
 	try {
@@ -119,7 +119,7 @@ public class LobbyController implements Controller {
     }
 
     /**
-     * when clicked on start this method will set the map
+     * when clicked on it starts this method will set the map
      */
     public void start() {
 	try {

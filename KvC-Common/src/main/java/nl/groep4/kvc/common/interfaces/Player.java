@@ -171,7 +171,7 @@ public interface Player extends Remote {
     public void registerUpdateable(Updatable<?> updatable) throws RemoteException;
 
     /**
-     * Gets the view of the client
+     * Gets the view of the game
      * 
      * @return the view
      * @throws RemoteException
@@ -180,19 +180,15 @@ public interface Player extends Remote {
     public Updatable<?> getUpdateable() throws RemoteException;
 
     /**
-     * {@link #registerUpdateable(Updatable)}
+     * General method to update
      * 
-     * @param <T>
-     *            the class
      * @param type
-     *            class where it will be casted to
+     *            the updatable type
      * @return the view of the game
      * @throws RemoteException
-     *             in case connection between RMI and client is lost
-     * @throws ClassCastException
-     *             when casting is not valid
+     *             any remotely invoked method
      */
-    public default <T extends Updatable<?>> T getUpdateable(Class<T> type) throws RemoteException, ClassCastException {
+    public default <T extends Updatable<?>> T getUpdateable(Class<T> type) throws RemoteException {
 	return (T) getUpdateable();
     }
 
@@ -202,6 +198,7 @@ public interface Player extends Remote {
      * @param selectables
      *            the items
      * @throws RemoteException
+     *             any remotely invoked method
      */
     public default void setSelectable(SelectState selectables) throws RemoteException {
 	getUpdateable(UpdateMap.class).setSelectable(selectables);
@@ -391,6 +388,7 @@ public interface Player extends Remote {
      * 
      * @return true or false on if the player has the most knights
      * @throws RemoteException
+     *             any remotely invoked method
      */
     public boolean hasMostRidders() throws RemoteException;
 
@@ -419,6 +417,7 @@ public interface Player extends Remote {
      * @param hasLongest
      *            true or false on if the player has the longest road
      * @throws RemoteException
+     *             any remotely invoked method
      */
     public void setHasLongestRoad(boolean hasLongest) throws RemoteException;
 }

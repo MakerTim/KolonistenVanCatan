@@ -8,10 +8,10 @@ import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.Updatable;
 
 /**
- * Displays all client-side information
+ * Displays all client-side information.
  * 
  * @author Tim
- * @version 1.0
+ * @version 1.1
  */
 public final class ClientRefrence {
 
@@ -21,29 +21,29 @@ public final class ClientRefrence {
     }
 
     /**
-     * Gets the player name
+     * Gets the player name.
      * 
-     * @return the player
+     * @return The player.
      */
     public static Player getThePlayer() {
 	return thePlayer;
     }
 
     /**
-     * sets the player
+     * Sets the player.
      * 
      * @param player
-     *            Refers to the player in this class
+     *            The player in the game.
      */
     public static void setThePlayer(Player player) {
 	ClientRefrence.thePlayer = player;
     }
 
     /**
-     * Updates the lobby
+     * Updates the view from lobby.
      * 
      * @param updatable
-     *            value to update
+     *            Value to update.
      */
     public static void registerUpdateable(Updatable<?> updatable) {
 	try {

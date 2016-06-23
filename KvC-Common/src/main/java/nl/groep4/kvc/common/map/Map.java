@@ -13,102 +13,114 @@ import nl.groep4.kvc.common.enumeration.Point;
  * @version 1.0
  * @author Tim
  */
-
 public interface Map extends Serializable {
 
+    /**
+     * Amount of columns
+     */
     public static final int COLUMS = 9;
 
     /**
-     *
-     * @return a list of the tiles
+     * Gets tiles.
+     * 
+     * @return A list of the tiles.
      */
     public List<Tile> getTiles();
 
     /**
-     * creates map
+     * Creates map
      */
     public void createMap();
 
     /**
-     *
-     * @return gets a list of all buildings
+     * Gets all buildings.
+     * 
+     * @return Gets a list of all buildings.
      */
     public List<Building> getAllBuildings();
 
     /**
-     *
+     * Gets building location.
+     * 
      * @param location
-     *            Refers to {@link Coordinate} for building location
-     * @return Gets building coordinates
+     *            The coordinates of the building.
+     * @return Gets building coordinates.
      */
     public Building getBuilding(Coordinate location);
 
     /**
+     * Gets building tile and point.
      *
      * @param tile
-     *            Refers to {@link Tile} for tile location
+     *            Location of the tile.
      * @param point
-     *            Refers to {@link Point} for available placement points
-     * @return Gets building locations on the map
+     *            Available placement points.
+     * @return Gets building locations on the map.
      */
     public Building getBuilding(Tile tile, Point point);
 
     /**
+     * Gets all streets.
      *
-     * @return gets a list of all streets
+     * @return Gets a list of all streets.
      */
     public List<Street> getAllStreets();
 
     /**
+     * Gets street coordinate.
      *
      * @param location
-     *            Refers to {@link Coordinate} for street coordinates
-     * @return Gets street location
+     *            Street coordinates.
+     * @return Gets street location.
      */
     public Street getStreet(Coordinate location);
 
     /**
-     *
+     * Gets street tile and direction.
+     * 
      * @param tile
-     *            Refers to {@link Tile} to define street location
+     *            Defines street location.
      * @param direction
-     *            Refers to {@link Direction} to retrieve street direction on
-     *            map
-     * @return Gets street direction relative to map
+     *            Retrieves street location on map.
+     * @return Gets street direction relative to map.
      */
     public Street getStreet(Tile tile, Direction direction);
 
     /**
+     * Get relative tile and direction.
      *
      * @param direction
-     *            Refers to {@link Direction} for tile orientation
-     * @return Gets tile being interacted with
+     *            Refers to tile orientation.
+     * @return Gets tile being interacted with.
      */
     public Tile getRelativeTile(Tile tile, Direction direction);
 
     /**
+     * Gets adjacent Tile.
      *
      * @param building
-     *            Refers to {@link Building} for buildings on adjacent tiles
-     * @return Building and building type on adjacent tile
+     *            Refers to buildings on adjacent tiles.
+     * @return Building and building type on adjacent tile.
      */
     public Tile[] getAdjacentTile(Building building);
 
     /**
+     * Gets tile coordinate.
      *
      * @param coord
-     *            Refers to {@link Map} for tile position on map
-     * @return Gets Tile coordinates
+     *            Refers to tile position on map.
+     * @return Gets Tile coordinates.
      */
     public Tile getTile(Coordinate coord);
 
     /**
+     * Gets tile variables.
      *
      * @param x
-     *            Refers to {@link Map} for X coordinate relative to centre
+     *            X coordinate relative to centre.
      * @param y
-     *            Refers to {@link Map} for Y coordinate relative to centre
-     * @return Gets tile location relative to centre tile
+     *            Y coordinate relative to centre.
+     * @return Gets tile location relative to centre tile.
      */
     public Tile getTile(int x, int y);
 }
