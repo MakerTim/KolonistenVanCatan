@@ -1,9 +1,9 @@
 package nl.groep4.kvc.common.enumeration;
 
 /**
- * All building types
+ * All building types.
  * 
- * @version 1.0 30-5-2016
+ * @version 1.1
  * @author Tim
  */
 public enum BuildingType {

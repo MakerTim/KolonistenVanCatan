@@ -1,9 +1,9 @@
 package nl.groep4.kvc.common.enumeration;
 
 /**
- * All color codes
+ * All color codes.
  * 
- * @version 1.0
+ * @version 1.1
  * @author Tim
  */
 public enum Color {
@@ -21,9 +21,9 @@ public enum Color {
     }
 
     /**
-     * Returns color back to javafx defined color
+     * Returns color back to javafx defined color.
      * 
-     * @return Retrieves color
+     * @return Retrieves color.
      */
     public javafx.scene.paint.Color getColor() {
 	return new javafx.scene.paint.Color(red / 255D, green / 255D, blue / 255D, 1);
