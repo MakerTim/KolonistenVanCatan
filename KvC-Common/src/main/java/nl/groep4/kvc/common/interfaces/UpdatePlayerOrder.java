@@ -4,20 +4,20 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 /**
- * Updates in what order the players are displayed
+ * Updates in what order the players are displayed.
  * 
  * @author Tim
- * @version 1.0
+ * @version 1.1
  */
 public interface UpdatePlayerOrder {
 
     /**
-     * Updates the player list
+     * Updates the player list.
      * 
      * @param order
-     *            the sequence players are in the list
+     *            The sequence players are in the list.
      * @throws RemoteException
-     *             any remotely invoked method
+     *             Any remotely invoked method.
      */
     public void updatePlayerOrder(List<Player> order) throws RemoteException;
 
