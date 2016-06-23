@@ -100,8 +100,10 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	if (layers == null) {
 	    /* Build layer for the design */
 	    layers = new StackPane();
-	    BorderPane screen = new BorderPane();
-	    screen.setPickOnBounds(false);
+	    BorderPane screenTop = new BorderPane();
+	    BorderPane screenBottom = new BorderPane();
+	    screenTop.setPickOnBounds(false);
+	    screenBottom.setPickOnBounds(false);
 
 	    stockPane = new StockPane(this);
 	    scorePane = new ScoreRoundPane();
@@ -118,11 +120,10 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    topLeftCorner.getChildren().addAll(scorePane.getPane(), infoPane.getPane());
 	    top.setLeft(topLeftCorner);
 	    top.setRight(playerPane.getPane());
-	    screen.setTop(top);
+	    screenTop.setTop(top);
 
 	    /* Build bottom */
 	    BorderPane bottom = new BorderPane();
-
 	    VBox optionPane = new VBox();
 	    nxtButton = new MenuButton(TranslationManager.translate("game.button.next"));
 	    optionButton = new MenuButton(TranslationManager.translate("game.button.settings"));
@@ -155,11 +156,11 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    bottom.setRight(buttons);
 	    bottom.setPickOnBounds(false);
 	    BorderPane.setAlignment(bottom, Pos.BOTTOM_CENTER);
-	    screen.setBottom(bottom);
+	    screenBottom.setBottom(bottom);
 
 	    /* Add all layers */
 	    layers.getChildren().addAll(SceneUtil.getBoardBackground(), SceneUtil.getBoard(), gamepane.getPane(),
-		    screen);
+		    screenBottom, screenTop);
 	}
 	Scene scene = new Scene(layers);
 	return scene;

@@ -81,8 +81,8 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder, Up
      */
     public Node getBanner() {
 	banner = new ImageView("img/game/banner.png");
-	banner.setFitHeight(380);
-	banner.setFitWidth(240);
+	banner.setFitHeight(520);
+	banner.setFitWidth(220);
 	return banner;
     }
 
@@ -94,7 +94,7 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder, Up
     public Node getClosedBanner() {
 	closedBanner = new ImageView("img/game/banner_closed.png");
 	closedBanner.setFitHeight(120);
-	closedBanner.setFitWidth(240);
+	closedBanner.setFitWidth(220);
 	return closedBanner;
     }
 
