@@ -12,6 +12,7 @@ import nl.groep4.kvc.client.controller.MapController;
 import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.enumeration.CardType;
 import nl.groep4.kvc.common.enumeration.Resource;
+import nl.groep4.kvc.common.enumeration.SelectState;
 import nl.groep4.kvc.common.enumeration.TurnState;
 import nl.groep4.kvc.common.enumeration.VictoryCardType;
 import nl.groep4.kvc.common.interfaces.Card;
@@ -65,17 +66,18 @@ public class TestMapController extends MapController {
 	    } catch (Exception ex) {
 		ex.printStackTrace();
 	    }
-	} , 3000L);
+	}, 3000L);
 	Scheduler.runAsyncLater(() -> {
 	    try {
 		view.updateRound(25);
 		view.updateScore(ClientRefrence.getThePlayer(), 69);
 		view.updateTurn(ClientRefrence.getThePlayer(), TurnState.WAITING);
 		view.updateConfig();
+		view.setSelectable(SelectState.BANDIT);
 	    } catch (Exception ex) {
 		ex.printStackTrace();
 	    }
-	} , 3000L);
+	}, 3000L);
 	Scheduler.runAsyncLater(() -> {
 	    try {
 		java.util.Map<Resource, Integer> resources = new HashMap<>();
@@ -87,10 +89,13 @@ public class TestMapController extends MapController {
 		resources = new HashMap<>();
 		resources.put(Resource.WHEAT, 10);
 		view.updateVillageCosts(new EnumMap<>(resources));
+		resources = new HashMap<>();
+		resources.put(Resource.ORE, 10);
+		view.updateCardCosts(new EnumMap<>(resources));
 	    } catch (Exception ex) {
 		ex.printStackTrace();
 	    }
-	} , 3000L);
+	}, 3000L);
 	Scheduler.runAsyncLater(() -> {
 	    try {
 		java.util.Map<Resource, Integer> resources = new HashMap<>();
@@ -131,6 +136,6 @@ public class TestMapController extends MapController {
 	    } catch (Exception ex) {
 		ex.printStackTrace();
 	    }
-	} , 3000L);
+	}, 3000L);
     }
 }
