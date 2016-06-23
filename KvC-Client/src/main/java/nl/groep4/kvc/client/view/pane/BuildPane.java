@@ -23,10 +23,10 @@ import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.UpdateCosts;
 
 /**
- * The BuildPane, where you can buy a building
+ * The BuildPane, where you can buy a building.
  * 
  * @author Bachir
- * @version 1.1
+ * @version 1.2
  */
 
 public class BuildPane implements PaneHolder, UpdateCosts {
@@ -77,9 +77,10 @@ public class BuildPane implements PaneHolder, UpdateCosts {
     private SceneMap sceneMap;
 
     /**
-     * Sets up the BuyPane
+     * Sets up the BuyPane.
      * 
      * @param sceneMap
+     *            The view of the map.
      */
     public BuildPane(SceneMap sceneMap) {
 	this.sceneMap = sceneMap;

@@ -4,10 +4,10 @@ import javafx.scene.image.Image;
 import nl.groep4.kvc.client.util.SoundUtil;
 
 /**
- * Lobby buttons, extension of TexturedButton
+ * Lobby buttons, extension of TexturedButton.
  * 
- * @version 1.0
  * @author Tim
+ * @version 1.1
  **/
 public class MenuButton extends TexturedButton {
 
@@ -16,17 +16,17 @@ public class MenuButton extends TexturedButton {
     private static final Image BUTTON_PRESSED_IMAGE = new Image("img/etc/button_pressed.png");
 
     /**
-     * A menu button
+     * Makes the MenuButton.
      */
     public MenuButton() {
 	this("");
     }
 
     /**
-     * A sound effect that plays when button is clicked
+     * A sound effect that plays when button is clicked.
      * 
      * @param text
-     *            the string to display on the button
+     *            The string to display on the button.
      */
     public MenuButton(String text) {
 	super(text);
@@ -36,14 +36,14 @@ public class MenuButton extends TexturedButton {
     }
 
     /**
-     * Places MenuButton to location
+     * Places MenuButton to location.
      * 
      * @param xPos
-     *            the x-coordinate position of MenuButton
+     *            The x-coordinate position of MenuButton.
      * @param yPos
-     *            the y-coordinate position of MenuButton
+     *            The y-coordinate position of MenuButton.
      * @param text
-     *            the string to display on the button
+     *            The string to display on the button.
      */
     public MenuButton(int xPos, int yPos, String text) {
 	this(text);

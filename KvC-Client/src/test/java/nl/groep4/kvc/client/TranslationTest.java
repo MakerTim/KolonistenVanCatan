@@ -21,7 +21,7 @@ public class TranslationTest {
 
     @Test
     public void translateNothing() {
-	String randomWord = "jemoederisfuckinglelijk";
+	String randomWord = "DitIsEenRandomWord";
 	assertEquals("Not existing translation", randomWord, TranslationManager.translate(randomWord));
     }
 

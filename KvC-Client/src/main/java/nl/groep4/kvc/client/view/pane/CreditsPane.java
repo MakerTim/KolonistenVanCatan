@@ -20,7 +20,7 @@ import nl.groep4.kvc.client.view.scene.SceneMap;
  * The pane with the credits.
  * 
  * @author Lisa
- * @version 1.0
+ * @version 1.1
  */
 public class CreditsPane implements PaneHolder {
     private Font font = new Font(ViewMaster.FONT.getName(), 40);
@@ -40,9 +40,10 @@ public class CreditsPane implements PaneHolder {
     private MenuButton back = new MenuButton(425, 500, TranslationManager.translate("credits.button.back"));
 
     /**
-     * Sets up the CreditsPane
+     * Sets up the CreditsPane.
      * 
      * @param sceneMap
+     *            The view of the map.
      */
     public CreditsPane(SceneMap sceneMap) {
 	this.sceneMap = sceneMap;
@@ -93,11 +94,13 @@ public class CreditsPane implements PaneHolder {
 
 	creditspane.getChildren().addAll(boardbackground, board, vbox);
 
-	back.registerClick(() -> {
-	    sceneMap.closeOverlay();
-	});
+	back.registerClick(() -> onBackClick());
 
 	return creditspane;
+    }
+
+    private void onBackClick() {
+	sceneMap.closeOverlay();
     }
 
     @Override

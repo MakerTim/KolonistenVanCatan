@@ -19,9 +19,9 @@ import nl.groep4.kvc.client.view.scene.SceneLogin;
 import nl.groep4.kvc.common.util.CollectionUtil;
 
 /**
- * The application itself
+ * The application itself.
  * 
- * @version 1.0
+ * @version 1.1
  * @author Tim
  * @see SceneLogin main screen
  **/
@@ -31,7 +31,8 @@ public class ViewMaster extends Application {
     public static final int GAME_HEIGHT = 768;
 
     /**
-     * Gives the font type "Impact" with a size of 22
+     * Gives the font type "Impact" with a size of 22.
+     * 
      */
     public static final Font FONT = new Font("Impact", 22);
     public static final Font TITLE_FONT = new Font("Impact", 65);
@@ -69,10 +70,10 @@ public class ViewMaster extends Application {
     }
 
     /**
-     * Sets scene and sets the cursor image
+     * Sets scene and sets the cursor image.
      * 
      * @param scene
-     *            scene instance
+     *            Scene instance.
      */
     public static void setScene(SceneHolder scene) {
 	Platform.runLater(() -> {
@@ -81,10 +82,10 @@ public class ViewMaster extends Application {
     }
 
     /**
-     * sets sceneSynced
+     * Sets sceneSynced.
      * 
      * @param scene
-     *            current scene
+     *            Current scene.
      */
     public static void setSceneSynced(SceneHolder scene) {
 	Scene theScene = scene.getScene();
@@ -94,16 +95,16 @@ public class ViewMaster extends Application {
     }
 
     /**
-     * gets lastScene
+     * Gets lastScene.
      * 
-     * @return previous scene
+     * @return Previous scene.
      */
     public static SceneHolder getLastScene() {
 	return lastScene;
     }
 
     /**
-     * Update given settings from user
+     * Update given settings from user.
      */
     public static void updateConfig() {
 	SettingsButton.updateConfig();

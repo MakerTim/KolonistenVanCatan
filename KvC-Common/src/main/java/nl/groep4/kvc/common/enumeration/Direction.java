@@ -5,9 +5,9 @@ import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.util.CollectionUtil;
 
 /**
- * Directions to assign for relative tiles / buildings
+ * Directions to assign for relative tiles / buildings.
  * 
- * @version 1.0
+ * @version 1.1
  * @author Tim
  */
 public enum Direction implements Offsetable {

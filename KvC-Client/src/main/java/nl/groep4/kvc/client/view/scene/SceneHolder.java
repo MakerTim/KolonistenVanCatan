@@ -4,25 +4,28 @@ import javafx.scene.Scene;
 import nl.groep4.kvc.client.controller.Controller;
 
 /**
- * Interface for making code have some guideline
+ * Interface for making code have some guideline.
  * 
- * @version 1.0
  * @author Tim
+ * @version 1.1
  **/
 public interface SceneHolder {
 
     /**
-     * gets scene
+     * Gets scene.
+     * 
      */
     public Scene getScene();
 
     /**
-     * Update the configuration of sceneHolder
+     * Update the configuration of sceneHolder.
+     * 
      */
     public void updateConfig();
 
     /**
-     * registers controller
+     * Registers controller.
+     * 
      */
     public void registerController(Controller controller);
 }

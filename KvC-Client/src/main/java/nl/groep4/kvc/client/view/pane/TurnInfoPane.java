@@ -20,10 +20,10 @@ import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.UpdateRound;
 
 /**
- * The pane that gives some info on this turn
+ * The pane that gives some info on this turn.
  * 
  * @author Tim
- * @version 1.0
+ * @version 1.1
  */
 public class TurnInfoPane implements PaneHolder, UpdateRound {
 

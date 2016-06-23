@@ -23,7 +23,7 @@ import nl.groep4.kvc.common.enumeration.Resource;
  * The pane were you can place an ad on.
  * 
  * @author Lisa
- * @version 1.0
+ * @version 1.1
  */
 public class PlaceTradePane implements PaneHolder {
 
@@ -64,10 +64,10 @@ public class PlaceTradePane implements PaneHolder {
     private SceneMap scenemap;
 
     /**
-     * gives current SceneMap
+     * Gives current SceneMap.
      * 
      * @param scenemap
-     *            current map settings
+     *            The view of the Map.
      */
     public PlaceTradePane(SceneMap scenemap) {
 	this.scenemap = scenemap;
@@ -206,7 +206,8 @@ public class PlaceTradePane implements PaneHolder {
     }
 
     /**
-     * When there is a click on the button, the TradePane will be opened
+     * When there is a click on the button, the TradePane will be opened.
+     * 
      */
     public void onBackClick() {
 	scenemap.openTradePane();

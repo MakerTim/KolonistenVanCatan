@@ -4,50 +4,50 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 /**
- * Sets updatable for players closing and ingame pop-up parameters
+ * Sets updatable for players closing and ingame pop-up parameters.
  * 
  * @author Tim
- * @version 1.0
+ * @version 1.1
  * @param <T>
- *            Pane class which used
+ *            Pane class which is used
  */
 public interface Updatable<T> extends Remote {
 
     /**
-     * Sets model
+     * Sets model.
      * 
      * @param model
-     *            Refers to T to set model
+     *            The model.
      * @throws RemoteException
-     *             In case connection between RMI and client is lost
+     *             Any remotely invoked method.
      */
     public void setModel(T model) throws RemoteException;
 
     /**
-     * Used for closing
+     * Used for closing.
      * 
      * @param key
-     *            Refers to closing settings
+     *            The item that needs to be closed.
      * @throws RemoteException
-     *             In case connection between RMI and client is lost
+     *             Any remotely invoked method.
      */
     public void close(String key) throws RemoteException;
 
     /**
-     * Shows pop-ups with messages
+     * Shows pop-ups with messages.
      * 
      * @param key
-     *            Refers to ingame pop-up
+     *            The item that needs a popup.
      * @throws RemoteException
-     *             In case connection between RMI and client is lost
+     *             Any remotely invoked method.
      */
     public void popup(String key) throws RemoteException;
 
     /**
-     * A test connection
+     * A test connection.
      * 
      * @throws RemoteException
-     *             Signals when exception occurs
+     *             Any remotely invoked method.
      */
     public default void testConnection() throws RemoteException {
     }

@@ -24,10 +24,10 @@ import nl.groep4.kvc.common.map.Street;
 import nl.groep4.kvc.common.map.Tile;
 
 /**
- * Generates the map by setting coordinates for the tiles
+ * Generates the map by setting coordinates for the tiles.
  * 
  * @author Tim
- * @version 1.0
+ * @version 1.1
  */
 public class MapPane implements PaneHolder {
 
@@ -35,7 +35,8 @@ public class MapPane implements PaneHolder {
     private Pane pane;
 
     /**
-     * sets coordinates for tiles
+     * Sets coordinates for tiles.
+     * 
      */
     public MapPane() {
 	pane = new StackPane();
@@ -57,10 +58,10 @@ public class MapPane implements PaneHolder {
     }
 
     /**
-     * Sets controller for each tile
+     * Sets controller for each tile.
      * 
      * @param controller
-     *            sets per tile
+     *            Sets per tile.
      */
     public void registerController(MapController controller) {
 	tiles.forEach(tile -> tile.setController(controller));
@@ -76,21 +77,21 @@ public class MapPane implements PaneHolder {
     }
 
     /**
-     * gets coordinate of tile
+     * Gets coordinate of tile.
      * 
      * @param coord
-     *            coordinate of tile
-     * @return position and location of tile
+     *            Coordinate of tile.
+     * @return Position and location of tile.
      */
     public ClientTile getTile(Coordinate coord) {
 	return tiles.stream().filter(tile -> tile.getPosition().equals(coord)).findAny().orElse(null);
     }
 
     /**
-     * Updates the map
+     * Updates the map.
      * 
      * @param map
-     *            all the tiles which map contains
+     *            All the tiles which map contains.
      */
     public void updateMap(Map map) {
 	for (Tile tile : map.getTiles()) {
@@ -100,10 +101,10 @@ public class MapPane implements PaneHolder {
     }
 
     /**
-     * Highlights the streets
+     * Highlights the streets.
      * 
      * @param streets
-     *            settins of streets
+     *            Settings of streets.
      */
     public void highlightStreet(Collection<Street> streets) {
 	for (ClientTile tile : tiles) {
@@ -122,12 +123,12 @@ public class MapPane implements PaneHolder {
     }
 
     /**
-     * Highlights buildings
+     * Highlights buildings.
      * 
      * @param buildings
-     *            to be highlight
+     *            To be highlight.
      * @param type
-     *            building type
+     *            Building type.
      */
     public void highlightBuilding(Collection<Building> buildings, BuildingType type) {
 	for (ClientTile tile : tiles) {
@@ -143,12 +144,12 @@ public class MapPane implements PaneHolder {
     }
 
     /**
-     * state to select
+     * State to select.
      * 
      * @param selectables
-     *            state of tile
+     *            State of tile.
      * @throws RemoteException
-     *             signal given when exception occurs
+     *             Any remotely invoked method.
      */
     public void setSelectable(SelectState selectables) throws RemoteException {
 	tiles.forEach(clientTile -> clientTile.setSelectState(selectables));

@@ -21,6 +21,8 @@ public class CollectionUtil {
     /**
      * Random parameter returns random item from array.
      * 
+     * @param <E>
+     *            Class for array where you get random item.
      * @param e
      *            A random parameter for the array.
      * @return A random item from an array.
@@ -35,6 +37,8 @@ public class CollectionUtil {
     /**
      * Random parameter returns random item from list.
      * 
+     * @param <E>
+     *            Class for list where you get random item.
      * @param e
      *            A random parameter for the array.
      * @return A random item from a list.
@@ -49,6 +53,8 @@ public class CollectionUtil {
     /**
      * Gets first item on the list and returns outcome.
      * 
+     * @param <E>
+     *            Class for array where you get random item.
      * @param es
      *            Refers to first item on list.
      * @return The outcome of e : es.
@@ -65,6 +71,8 @@ public class CollectionUtil {
     /**
      * Gets first item and returns outcome.
      * 
+     * @param <E>
+     *            Class for array where you get random item.
      * @param es
      *            Refers to first item on list.
      * @return The outcome of e :es.
@@ -81,6 +89,8 @@ public class CollectionUtil {
     /**
      * Gets items with list.
      * 
+     * @param <T>
+     *            Class for array where you get random item.
      * @param original
      *            The original size.
      * @param items
@@ -100,6 +110,8 @@ public class CollectionUtil {
     /**
      * Adds item to list and addresses lists with items.
      * 
+     * @param <T>
+     *            Class for list where you get random item.
      * @param item
      *            Adds item to list.
      * @param lists
@@ -115,6 +127,8 @@ public class CollectionUtil {
     /**
      * Generates array and sorts equally.
      * 
+     * @param <T>
+     *            Class for array where you get random item.
      * @param array
      *            Refers to array to be created
      * @param equally
@@ -128,6 +142,8 @@ public class CollectionUtil {
     /**
      * Generates a random number and returns outcome of for loop.
      * 
+     * @param <T>
+     *            Class for list where you get random item.
      * @param list
      *            Refers to item list
      * @param equally
@@ -147,6 +163,8 @@ public class CollectionUtil {
     /**
      * Lists and filters data in array and returns with applied filter.
      * 
+     * @param <T>
+     *            Class for array where you get random item.
      * @param array
      *            Lists data in array.
      * @param filter
@@ -160,6 +178,8 @@ public class CollectionUtil {
     /**
      * Draws Premade list and returns filtered list.
      * 
+     * @param <T>
+     *            Class for list where you get random item.
      * @param list
      *            Draws data from premade list.
      * @param filter
@@ -193,6 +213,8 @@ public class CollectionUtil {
     /**
      * Returns itrator and filters for lower case.
      * 
+     * @param <T>
+     *            Class for list where you get random item.
      * @param list
      *            Returns and itrator over the elements of T.
      * @param filter
@@ -211,6 +233,8 @@ public class CollectionUtil {
     /**
      * Gets in range array and index.
      * 
+     * @param <T>
+     *            Class for array where you get random item.
      * @param array
      *            Lists data in array.
      * @param index
@@ -241,6 +265,8 @@ public class CollectionUtil {
     /**
      * Selects specific items from list and returns outcome of boolean.
      * 
+     * @param <T>
+     *            Class for list where you get random item.
      * @param list
      *            Items in list
      * @param item

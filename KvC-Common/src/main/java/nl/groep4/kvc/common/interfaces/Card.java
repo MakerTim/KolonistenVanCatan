@@ -5,15 +5,14 @@ import java.io.Serializable;
 import nl.groep4.kvc.common.enumeration.CardType;
 
 /**
- * Retrieves card type and displays to player
+ * Retrieves card type and displays to player.
  * 
- * @version 1.0
+ * @version 1.1
  * @author Tim
  **/
 public interface Card extends Serializable {
     /**
-     * 
-     * @return Gets card type
+     * @return Gets card type.
      */
     public CardType getType();
 

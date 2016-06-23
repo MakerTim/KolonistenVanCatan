@@ -36,7 +36,7 @@ import nl.groep4.kvc.common.util.CollectionUtil;
  * streets.
  * 
  * @author Tim
- * @version 1.0
+ * @version 1.1
  */
 public class ClientTile extends StackPane {
 
@@ -58,7 +58,7 @@ public class ClientTile extends StackPane {
      * numbers that will be places upon the fiches.
      * 
      * @param coord
-     *            gives the coordinate where the fiche should be places
+     *            Gives the coordinate where the fiche should be places.
      */
     public ClientTile(Coordinate coord) {
 	this.coord = coord;
@@ -136,10 +136,10 @@ public class ClientTile extends StackPane {
     }
 
     /**
-     * renders and sets tile
+     * Renders and sets tiles.
      * 
      * @param tile
-     *            current tile settings
+     *            Current tile settings.
      */
     public void setTile(Tile tile) {
 	this.tile = tile;
@@ -147,18 +147,18 @@ public class ClientTile extends StackPane {
     }
 
     /**
-     * gets tile
+     * Gets tile.
      * 
-     * @return tile
+     * @return tile The tile from the board.
      */
     public Tile getTile() {
 	return tile;
     }
 
     /**
-     * gets coordinate
+     * Gets coordinate.
      * 
-     * @return current coordinate
+     * @return current The coordinate.
      */
     public Coordinate getPosition() {
 	return this.coord;
@@ -172,10 +172,10 @@ public class ClientTile extends StackPane {
     }
 
     /**
-     * sets controller
+     * Sets controller.
      * 
      * @param controller
-     *            controller for the map
+     *            Controller for the map.
      */
     public void setController(MapController controller) {
 	this.controller = controller;
@@ -212,10 +212,10 @@ public class ClientTile extends StackPane {
     }
 
     /**
-     * Sets given variable in select to true
+     * Sets given variable in select to true.
      * 
      * @param select
-     *            contains building, street, bandit or tile
+     *            Contains building, street, bandit or tile.
      */
     public void setSelectState(SelectState select) {
 	switch (select) {
@@ -308,12 +308,12 @@ public class ClientTile extends StackPane {
     }
 
     /**
-     * Highlights streets
+     * Highlights streets.
      * 
      * @param direction
-     *            the direction to highlight
+     *            The direction to highlight.
      * @param doesHighlight
-     *            highlights streets when doesHiglight is true
+     *            Highlights streets when doesHiglight is true.
      */
     public void highLightStreet(Direction direction, boolean doesHighlight) {
 	if (doesHighlight) {
@@ -335,12 +335,12 @@ public class ClientTile extends StackPane {
     }
 
     /**
-     * Highlights buildings
+     * Highlights buildings.
      * 
      * @param point
-     *            location to highlight
+     *            Location to highlight.
      * @param type
-     *            kind of building
+     *            Kind of building.
      */
     public void highLightBuilding(Point point, BuildingType type) {
 	if (point == Point.WEST || point == Point.NORTH_WEST) {

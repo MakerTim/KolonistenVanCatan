@@ -8,7 +8,7 @@ import nl.groep4.kvc.client.view.ViewMaster;
  * Default font layout for the application
  * 
  * @author Tim
- * @version 1.0
+ * @version 1.1
  */
 public class KvCText extends Text {
 
@@ -22,10 +22,10 @@ public class KvCText extends Text {
     }
 
     /**
-     * sets font into text
+     * Sets font into text.
      * 
      * @param text
-     *            the adjusted font
+     *            The adjusted font.
      */
     public KvCText(String text) {
 	this();
@@ -33,14 +33,14 @@ public class KvCText extends Text {
     }
 
     /**
-     * 
+     * Is a text that will be used in the game with the right font and color.
      * 
      * @param x
-     *            sets the value of the property layoutX
+     *            Sets the value of the property layoutX.
      * @param y
-     *            sets the value of the property layoutY
+     *            Sets the value of the property layoutY.
      * @param text
-     *            the adjusted font
+     *            The adjusted font.
      */
     public KvCText(int x, int y, String text) {
 	this(text);
@@ -49,9 +49,9 @@ public class KvCText extends Text {
     }
 
     /**
-     * adds shadow to the font
+     * Adds shadow to the font.
      * 
-     * @return the shadow
+     * @return The shadow.
      */
     public KvCText addShadow() {
 	setEffect(TexturedButton.getShadowEffect());

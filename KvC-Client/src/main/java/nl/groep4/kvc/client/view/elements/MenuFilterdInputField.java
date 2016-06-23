@@ -5,18 +5,18 @@ import javafx.scene.paint.Color;
 import nl.groep4.kvc.client.util.SoundUtil;
 
 /**
- * InputField where only certain input is allowed
+ * InputField where only certain input is allowed.
  * 
- * @version 1.0
+ * @version 1.1
  * @author Tim
  **/
 public class MenuFilterdInputField extends MenuInputField {
 
     /**
-     * Filters input data
+     * Filters input data.
      * 
      * @param regex
-     *            input requirements
+     *            Input requirements.
      */
     public MenuFilterdInputField(String regex) {
 	super();
@@ -24,16 +24,16 @@ public class MenuFilterdInputField extends MenuInputField {
     }
 
     /**
-     * Places MenuFilterdInputField and checks regex
+     * Places MenuFilterdInputField and checks regex.
      * 
      * @param xPos
-     *            the x-coordinate location of MenuFilteredInputField
+     *            The x-coordinate location of MenuFilteredInputField.
      * @param yPos
-     *            the y-coordinate location of MenuFilteredInputField
+     *            The y-coordinate location of MenuFilteredInputField.
      * @param text
-     *            the string
+     *            The string.
      * @param regex
-     *            arguments that will be tested before going further
+     *            Arguments that will be tested before going further.
      */
     public MenuFilterdInputField(int xPos, int yPos, String text, String regex) {
 	super(xPos, yPos, text);

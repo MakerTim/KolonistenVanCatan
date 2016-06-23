@@ -1,23 +1,23 @@
 package nl.groep4.kvc.common.interfaces;
 
 /**
- * Tells items ownable by player
+ * Tells items ownable by player.
  * 
- * @version 1.0 31-5-2016
+ * @version 1.1
  * @author Tim
  */
 public interface Ownable {
     /**
-     * Gets owner
+     * Gets owner.
      * 
-     * @return Retrieves owner
+     * @return Retrieves owner.
      */
     public Player getOwner();
 
     /**
      * 
      * @param player
-     *            Sets owner of current object
+     *            Sets owner of current object.
      */
     public void setOwner(Player player);
 

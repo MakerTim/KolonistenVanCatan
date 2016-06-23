@@ -15,10 +15,10 @@ import nl.groep4.kvc.client.view.elements.SettingsButton;
 import nl.groep4.kvc.client.view.scene.SceneMap;
 
 /**
- * Pane that displays all settings which can be changed
+ * Pane that displays all settings which can be changed.
  * 
  * @author Tim
- * @version 1.1
+ * @version 1.2
  */
 public class OptionPane implements PaneHolder {
 
@@ -33,10 +33,10 @@ public class OptionPane implements PaneHolder {
     private MenuButton back;
 
     /**
-     * gives current SceneMap
+     * Gives current SceneMap.
      * 
      * @param map
-     *            current map settings
+     *            Current map settings.
      */
     public OptionPane(SceneMap map) {
 	this.map = map;

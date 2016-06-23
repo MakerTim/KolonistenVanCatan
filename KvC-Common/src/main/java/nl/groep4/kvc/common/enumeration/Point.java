@@ -5,9 +5,9 @@ import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.util.CollectionUtil;
 
 /**
- * Points available for interaction
+ * Points available for interaction.
  * 
- * @version 1.0
+ * @version 1.1
  * @author Tim
  */
 public enum Point implements Offsetable {
@@ -61,9 +61,9 @@ public enum Point implements Offsetable {
     }
 
     /**
-     * Coordinates of the offsets
+     * Coordinates of the offsets.
      * 
-     * @return offset coordinates
+     * @return Offset coordinates.
      */
     public Coordinate realOffset() {
 	switch (this) {

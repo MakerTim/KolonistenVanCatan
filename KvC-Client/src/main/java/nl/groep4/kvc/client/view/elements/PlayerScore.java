@@ -18,10 +18,10 @@ import nl.groep4.kvc.common.interfaces.Card;
 import nl.groep4.kvc.common.interfaces.Player;
 
 /**
- * Updates score and stock
+ * Updates score and stock.
  * 
  * @author Tim en Luc
- * @version 1.0
+ * @version 1.1
  */
 public class PlayerScore {
 
@@ -49,9 +49,10 @@ public class PlayerScore {
     private ImageView roadIcon;
 
     /**
-     * Constructor for setting up object for PlayerScore
+     * Constructor for setting up object for PlayerScore.
      *
      * @param player
+     *            The player.
      */
     public PlayerScore(Player player) {
 	this.player = player;
@@ -94,9 +95,9 @@ public class PlayerScore {
     }
 
     /**
-     * Gets the resources element for each player in game
+     * Gets the resources element for each player in game.
      * 
-     * @return VBox with player name and player resources
+     * @return VBox with player name and player resources.
      */
     public VBox getPane() {
 	VBox playerScorePane = new VBox();
@@ -128,25 +129,26 @@ public class PlayerScore {
     }
 
     /**
-     * getter for Player class
+     * Getter for Player class.
      * 
-     * @return the player in the object
+     * @return The player in the object.
      */
     public Player getPlayer() {
 	return player;
     }
 
     /**
-     * updates all resources
+     * Updates all resources.
+     * 
      */
     public void updateTranslation() {
     }
 
     /**
-     * Updates the resources within the object everytime this method is called
+     * Updates the resources within the object every time this method is called.
      * 
      * @param resources
-     *            all the resources
+     *            All the resources.
      */
     public void updateResources(EnumMap<Resource, Integer> resources) {
 	for (Entry<Resource, Integer> resource : resources.entrySet()) {
@@ -189,10 +191,10 @@ public class PlayerScore {
     }
 
     /**
-     * Updates the resource cards in stock
+     * Updates the resource cards in stock.
      * 
      * @param cards
-     *            resource cards
+     *            Resource cards.
      */
     public void updateStock(List<Card> cards) {
 	cardLabel.setText(Integer.toString(cards.size()));
@@ -227,36 +229,36 @@ public class PlayerScore {
     }
 
     /**
-     * gets woodIcon
+     * Gets woodIcon.
      * 
-     * @return a wood icon
+     * @return A woodicon.
      */
     public ImageView getWoodIcon() {
 	return new ImageView("img/etc/wood.png");
     }
 
     /**
-     * gets wool icon
+     * Gets wool icon.
      * 
-     * @return woolIcon
+     * @return A woolIcon.
      */
     public ImageView getWoolIcon() {
 	return new ImageView("/img/etc/wool.png");
     }
 
     /**
-     * gets wheat icon
+     * Gets wheat icon.
      * 
-     * @return wheatIcon
+     * @return a wheatIcon.
      */
     public ImageView getWheatIcon() {
 	return new ImageView("/img/etc/wheat.png");
     }
 
     /**
-     * gets brick icon
-     * 
-     * @return brickIcon
+     * Gets brick icon.
+     *
+     * @return A brickIcon.
      */
     public ImageView getBrickIcon() {
 	return new ImageView("/img/etc/brick.png");
@@ -267,9 +269,9 @@ public class PlayerScore {
     }
 
     /**
-     * gets ore icon
+     * Gets ore icon.
      * 
-     * @return oreIcon
+     * @return an OreIcon.
      */
     public ImageView getOreIcon() {
 	return new ImageView("/img/etc/ore.png");

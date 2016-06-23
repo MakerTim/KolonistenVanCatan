@@ -1,10 +1,10 @@
 package nl.groep4.kvc.common.enumeration;
 
 /**
- * All resources
+ * All resources.
  * 
  * @author Tim
- * @version 1.0
+ * @version 1.1
  */
 public enum Resource {
 

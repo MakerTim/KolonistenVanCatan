@@ -18,10 +18,10 @@ import nl.groep4.kvc.common.interfaces.UpdateRound;
 import nl.groep4.kvc.common.interfaces.UpdateScore;
 
 /**
- * The shield in where round and score can be on displayed
+ * The shield in where round and score can be on displayed.
  * 
  * @author Tim
- * @version 1.0
+ * @version 1.1
  */
 public class ScoreRoundPane implements PaneHolder, UpdateScore, UpdateRound {
 
