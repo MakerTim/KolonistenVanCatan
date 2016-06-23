@@ -50,6 +50,13 @@ public class ServerTradeController {
 		    ex.printStackTrace();
 		}
 	    }
+	    if (trade.getPlayer().equals(player)) {
+		try {
+		    player.getUpdateable().popup("tradeself");
+		} catch (RemoteException ex) {
+		    ex.printStackTrace();
+		}
+	    }
 	    if (player == null) {
 		for (Entry<Resource, Integer> reward : trade.getReward().entrySet()) {
 		    trade.getPlayer().takeResource(reward.getKey(), reward.getValue());

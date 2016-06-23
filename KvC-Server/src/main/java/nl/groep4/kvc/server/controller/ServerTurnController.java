@@ -27,9 +27,6 @@ public class ServerTurnController {
 	this.controller = serverKolonistenVanCatan;
     }
 
-    // TODO: card.newpanes
-    // TODO: trading.use
-    // TODO: Rover verplaatsen
     // TODO: Punten berekenen
 
     public void nextTurn() {
