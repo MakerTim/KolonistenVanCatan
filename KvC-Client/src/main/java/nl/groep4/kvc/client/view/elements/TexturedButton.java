@@ -10,6 +10,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import nl.groep4.kvc.client.util.ConfirmDialog;
 
 /**
  * Button class what makes a combination of images looks like a real button
@@ -32,8 +33,10 @@ public abstract class TexturedButton extends StackPane {
 	setOnMouseExited(mouseLeave -> background.setImage(getTexture()));
 	setOnMousePressed(mousePressed -> {
 	    background.setImage(getClickTexture());
-	    for (Runnable click : clickHandlers) {
-		click.run();
+	    if (ConfirmDialog.confirm("button")) {
+		for (Runnable click : clickHandlers) {
+		    click.run();
+		}
 	    }
 	});
 	setOnMouseReleased(mouseRelease -> background.setImage(getHoverTexture()));

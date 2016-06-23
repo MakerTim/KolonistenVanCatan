@@ -15,6 +15,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import nl.groep4.kvc.client.controller.MapController;
+import nl.groep4.kvc.client.util.ConfirmDialog;
 import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.enumeration.BuildingType;
 import nl.groep4.kvc.common.enumeration.Direction;
@@ -78,9 +79,13 @@ public class ClientTile extends StackPane {
 
 	image.setOnMouseClicked(click -> {
 	    if (fiche.getEffect() != null) {
-		onFicheClick();
+		if (ConfirmDialog.confirm("rovermove")) {
+		    onFicheClick();
+		}
 	    } else if (controller.isMovingRover()) {
-		onTileClick();
+		if (ConfirmDialog.confirm("roverplace")) {
+		    onTileClick();
+		}
 	    }
 	});
 
@@ -100,7 +105,9 @@ public class ClientTile extends StackPane {
 		line.setStrokeWidth(10);
 		line.setOnMouseClicked(click -> {
 		    if (line.getStroke().isOpaque()) {
-			onStreetClick(coord.add(Direction.values()[j].offset(coord).multiply(0.5)));
+			if (ConfirmDialog.confirm("placestreet")) {
+			    onStreetClick(coord.add(Direction.values()[j].offset(coord).multiply(0.5)));
+			}
 		    }
 		});
 		overlayPane.getChildren().add((lines[i] = line));
@@ -114,7 +121,9 @@ public class ClientTile extends StackPane {
 	    house.setLayoutX(offset.getX());
 	    house.setLayoutY(-offset.getY());
 	    house.setOnMouseClicked(click -> {
-		onBuildingClick(Point.values()[j + 4].addTo(coord));
+		if (ConfirmDialog.confirm("placebuilding")) {
+		    onBuildingClick(Point.values()[j + 4].addTo(coord));
+		}
 	    });
 	    overlayPane.getChildren().add((houses[i] = house));
 	}

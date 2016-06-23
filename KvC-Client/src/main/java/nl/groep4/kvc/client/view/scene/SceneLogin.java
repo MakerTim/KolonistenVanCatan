@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+import nl.groep4.kvc.client.controller.ClientRefrence;
 import nl.groep4.kvc.client.controller.Controller;
 import nl.groep4.kvc.client.controller.LoginController;
 import nl.groep4.kvc.client.util.SceneUtil;
@@ -99,7 +100,10 @@ public class SceneLogin implements SceneHolder {
 	    confirmLabel.setFont(ViewMaster.FONT);
 	    nosoundLabel.setFont(ViewMaster.FONT);
 	    joinButton.setFont(ViewMaster.FONT);
+
 	    joinButton.registerClick(() -> onConnectClick());
+	    confirmInput.selectedProperty()
+		    .addListener(confirm -> ClientRefrence.setConfirmModus(confirmInput.isSelected()));
 
 	    form.getChildren().addAll(ipLabel, ipInput, portLabel, portInput, usernameLabel, usernameInput,
 		    nocolorLabel, nocolorInput, confirmLabel, confirmInput, nosoundLabel, nosoundInput, joinButton,
@@ -169,14 +173,5 @@ public class SceneLogin implements SceneHolder {
      */
     public boolean getNosoundInput() {
 	return nosoundInput.isSelected();
-    }
-
-    /**
-     * Gets the confirmation input
-     * 
-     * @return the confirmation input
-     */
-    public boolean getConfirmInput() {
-	return confirmInput.isSelected();
     }
 }
