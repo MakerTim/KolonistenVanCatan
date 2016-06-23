@@ -18,10 +18,10 @@ import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.NotCloseable;
 
 /**
- * The pane when an inventioncard (developmentcard) is used.
+ * The pane when an monopoly card (development card) is used.
  * 
  * @author Lisa
- * @version 1.0
+ * @version 1.1
  */
 public class MonopolyPane implements PaneHolder, NotCloseable {
     private Font font = new Font(ViewMaster.FONT.getName(), 30);
@@ -41,10 +41,10 @@ public class MonopolyPane implements PaneHolder, NotCloseable {
     private SceneMap scenemap;
 
     /**
-     * Development card settings
+     * Development card settings.
      * 
      * @param sceneMap
-     *            to be displayed
+     *            The view of the map.
      */
     public MonopolyPane(SceneMap sceneMap) {
 	this.scenemap = sceneMap;
@@ -106,37 +106,42 @@ public class MonopolyPane implements PaneHolder, NotCloseable {
     }
 
     /**
-     * when clicked on wood, the player gets all the wood cards of every player
+     * When clicked on wood, the player gets all the wood cards of every player.
+     * 
      */
     public void onWoodClick() {
 	scenemap.getController().targetMonopoly(Resource.WOOD);
     }
 
     /**
-     * when clicked on brick, the player gets all the brick cards of every
-     * player
+     * When clicked on brick, the player gets all the brick cards of every
+     * player.
+     * 
      */
     public void onBrickClick() {
 	scenemap.getController().targetMonopoly(Resource.BRICK);
     }
 
     /**
-     * when clicked on wool, the player gets all the wool cards of every player
+     * When clicked on wool, the player gets all the wool cards of every player.
+     * 
      */
     public void onWoolClick() {
 	scenemap.getController().targetMonopoly(Resource.WOOL);
     }
 
     /**
-     * when clicked on wheat, the player gets all the wheat cards of every
-     * player
+     * When clicked on wheat, the player gets all the wheat cards of every
+     * player.
+     * 
      */
     public void onWheatClick() {
 	scenemap.getController().targetMonopoly(Resource.WHEAT);
     }
 
     /**
-     * when clicked on ore, the player gets all the ore cards of every player
+     * When clicked on ore, the player gets all the ore cards of every player.
+     * 
      */
     public void onOreClick() {
 	scenemap.getController().targetMonopoly(Resource.ORE);

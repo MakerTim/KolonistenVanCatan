@@ -18,7 +18,7 @@ import nl.groep4.kvc.common.interfaces.NotCloseable;
  * This pane will be shown when the game is on pause.
  * 
  * @author Lisa
- * @version 1.0
+ * @version 1.1
  */
 public class PausePane implements PaneHolder, NotCloseable {
     private MenuButton continueButton;
@@ -28,10 +28,12 @@ public class PausePane implements PaneHolder, NotCloseable {
     private boolean isMyTurn;
 
     /**
-     * Sets up the Pausepane
+     * Sets up the Pausepane.
      * 
      * @param sceneMap
+     *            View of the map
      * @param ismyturn
+     *            True or false on if it is the players turn.
      */
     public PausePane(SceneMap sceneMap, boolean ismyturn) {
 	this.sceneMap = sceneMap;
@@ -75,7 +77,8 @@ public class PausePane implements PaneHolder, NotCloseable {
     }
 
     /**
-     * resumes game
+     * Resumes game.
+     * 
      */
     public void unpause() {
 	if (isMyTurn) {
