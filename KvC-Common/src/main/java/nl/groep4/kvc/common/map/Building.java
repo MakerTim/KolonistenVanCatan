@@ -13,20 +13,33 @@ import nl.groep4.kvc.common.interfaces.Ownable;
  */
 public interface Building extends Ownable, Serializable, Locatable {
 
+    /**
+     * Registers tile
+     * 
+     * @param tile
+     *            Tile to register
+     */
     public void registerTile(Tile tile);
 
+    /**
+     * Gets connected tiles
+     * 
+     * @return The connected tiles
+     */
     public Tile[] getConnectedTiles();
 
     /**
+     * Gets building types
      * 
-     * @return gets building type
+     * @return Sets building type
      */
     public BuildingType getBuildingType();
 
     /**
-     * sets building type
+     * Sets building type
      * 
      * @param type
+     *            Kind of building
      */
     public void setBuildingType(BuildingType type);
 

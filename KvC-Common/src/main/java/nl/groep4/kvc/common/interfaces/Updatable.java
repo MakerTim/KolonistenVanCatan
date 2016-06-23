@@ -9,16 +9,17 @@ import java.rmi.RemoteException;
  * @author Tim
  * @version 1.0
  * @param <T>
+ *            Pane class which used
  */
 public interface Updatable<T> extends Remote {
 
     /**
-     * sets model
+     * Sets model
      * 
      * @param model
      *            Refers to T to set model
      * @throws RemoteException
-     *             in case connection between RMI and client is lost
+     *             In case connection between RMI and client is lost
      */
     public void setModel(T model) throws RemoteException;
 
@@ -28,7 +29,7 @@ public interface Updatable<T> extends Remote {
      * @param key
      *            Refers to closing settings
      * @throws RemoteException
-     *             in case connection between RMI and client is lost
+     *             In case connection between RMI and client is lost
      */
     public void close(String key) throws RemoteException;
 
@@ -38,7 +39,7 @@ public interface Updatable<T> extends Remote {
      * @param key
      *            Refers to ingame pop-up
      * @throws RemoteException
-     *             in case connection between RMI and client is lost
+     *             In case connection between RMI and client is lost
      */
     public void popup(String key) throws RemoteException;
 
@@ -46,7 +47,7 @@ public interface Updatable<T> extends Remote {
      * A test connection
      * 
      * @throws RemoteException
-     *             signals when exception occurs
+     *             Signals when exception occurs
      */
     public default void testConnection() throws RemoteException {
     }
