@@ -23,10 +23,10 @@ import nl.groep4.kvc.common.interfaces.Trade;
 import nl.groep4.kvc.common.interfaces.UpdateTrade;
 
 /**
- * Generates trade pane
+ * Generates trade pane.
  * 
  * @author Matthijs
- * @version 1.0
+ * @version 1.1
  */
 public class TradePane implements PaneHolder, UpdateTrade {
 
@@ -37,9 +37,10 @@ public class TradePane implements PaneHolder, UpdateTrade {
     private VBox entries = new VBox(10);
 
     /**
-     * Sets up the TradePane
+     * Sets up the TradePane.
      * 
      * @param sceneMap
+     *            The view of the map.
      */
     public TradePane(SceneMap sceneMap) {
 	this.sceneMap = sceneMap;
@@ -117,14 +118,14 @@ public class TradePane implements PaneHolder, UpdateTrade {
     }
 
     /**
-     * When there is a click on the button, the tradepane will be closed
+     * When there is a click on the button, the tradepane will be closed.
      */
     private void onBackClick() {
 	sceneMap.closeOverlay();
     }
 
     /**
-     * When there is a click on the button, the PlaceTradePane will be opened
+     * When there is a click on the button, the PlaceTradePane will be opened.
      */
     private void onPlaceClick() {
 	sceneMap.openPlaceTradePane();

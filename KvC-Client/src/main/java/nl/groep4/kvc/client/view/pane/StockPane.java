@@ -30,9 +30,9 @@ import nl.groep4.kvc.common.interfaces.UpdateStock;
 import nl.groep4.kvc.common.interfaces.VictoryCard;
 
 /**
- * The card pane show all obtained cards
+ * The card pane show all obtained cards.
  * 
- * @version 1.0
+ * @version 1.1
  * @author Luc
  * 
  **/
@@ -69,10 +69,10 @@ public class StockPane implements PaneHolder, UpdateStock {
     private SceneMap view;
 
     /**
-     * view of stockpane
+     * View of StockPane.
      * 
      * @param view
-     *            current view
+     *            View of the map.
      */
     public StockPane(SceneMap view) {
 	this.view = view;
@@ -142,7 +142,8 @@ public class StockPane implements PaneHolder, UpdateStock {
     }
 
     /**
-     * method to open stock
+     * Method to open stock.
+     * 
      */
     public void openStock() {
 	isOpen = true;
@@ -154,7 +155,8 @@ public class StockPane implements PaneHolder, UpdateStock {
     }
 
     /**
-     * closes stock
+     * Closes stock.
+     * 
      */
     public void closeStock() {
 	isOpen = false;
@@ -164,19 +166,19 @@ public class StockPane implements PaneHolder, UpdateStock {
     }
 
     /**
-     * returns true if open and fals when closed
+     * Returns true if open and false when closed.
      * 
-     * @return true or false
+     * @return True or false.
      */
     public boolean isOpen() {
 	return this.isOpen;
     }
 
     /**
-     * updates info
+     * Updates info.
      * 
      * @param info
-     *            to be updated
+     *            To be updated.
      */
     public void updateInfo(String info) {
 	information.setText(info);
@@ -247,9 +249,9 @@ public class StockPane implements PaneHolder, UpdateStock {
     }
 
     /**
-     * Gets the resource for the cathedral card
+     * Gets the resource for the cathedral card.
      * 
-     * @return image of the cathedral card
+     * @return Image of the cathedral card.
      */
     public Node getCathCard(Card card) {
 	ImageView cathCard;
@@ -265,9 +267,9 @@ public class StockPane implements PaneHolder, UpdateStock {
     }
 
     /**
-     * Gets the resource for the monopoly card
+     * Gets the resource for the monopoly card.
      * 
-     * @return image of the monopoly card
+     * @return Image of the monopoly card.
      */
     public Node getMonoCard(Card card) {
 	ImageView monoCard;
@@ -283,9 +285,9 @@ public class StockPane implements PaneHolder, UpdateStock {
     }
 
     /**
-     * Gets the resource for the knight card
+     * Gets the resource for the knight card.
      * 
-     * @return image of the knight card
+     * @return Image of the knight card.
      */
     public Node getKnightCard(Card card) {
 	ImageView knightCard;
@@ -301,9 +303,9 @@ public class StockPane implements PaneHolder, UpdateStock {
     }
 
     /**
-     * Gets the resource for the invention card
+     * Gets the resource for the invention card.
      * 
-     * @return image of the invention card
+     * @return Image of the invention card.
      */
     public Node getInventCard(Card card) {
 	ImageView inventCard;
@@ -319,9 +321,9 @@ public class StockPane implements PaneHolder, UpdateStock {
     }
 
     /**
-     * Gets the resource for the road card
+     * Gets the resource for the road card.
      * 
-     * @return image of the road card
+     * @return Image of the road card.
      */
     public Node getRoadCard(Card card) {
 	ImageView roadCard;
