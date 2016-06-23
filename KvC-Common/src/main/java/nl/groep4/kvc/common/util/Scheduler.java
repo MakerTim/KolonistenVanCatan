@@ -5,13 +5,18 @@ import java.util.List;
 import javafx.application.Platform;
 
 /**
- * Utility class for multi threading
+ * Utility class for multi threading.
  * 
  * @version 1.0
  * @author Tim
  */
 public class Scheduler {
 
+    /**
+     * 
+     * 
+     * @param runs
+     */
     public static void runAsyncdSync(List<Runnable> runs) {
 	runAsyncdSync(runs.toArray(new Runnable[runs.size()]));
     }
@@ -59,7 +64,7 @@ public class Scheduler {
     public static void runSyncLater(Runnable run, long millis) {
 	runAsyncLater(() -> {
 	    Platform.runLater(run);
-	}, millis);
+	} , millis);
     }
 
     public static void runAsyncLater(Runnable run, long millis) {

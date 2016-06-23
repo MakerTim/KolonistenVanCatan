@@ -13,7 +13,7 @@ public interface Offsetable {
     /**
      * Adds coordinate.
      * 
-     * @param Original
+     * @param original
      *            The original coordinate.
      * @return Coordinate.
      */
