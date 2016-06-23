@@ -20,10 +20,10 @@ import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.scene.SceneMap;
 
 /**
- * Pane for the rules of the game
+ * Pane for the rules of the game.
  * 
  * @author Lisa
- * @version 1.0
+ * @version 1.1
  */
 public class RulesPane implements PaneHolder {
     private KvCText rules = new KvCText(TranslationManager.translate("rules.text.rules"));
@@ -31,9 +31,10 @@ public class RulesPane implements PaneHolder {
     private MenuButton back;
 
     /**
-     * Sets up the Rulespane
+     * Sets up the Rulespane.
      * 
      * @param view
+     *            View of the map.
      */
     public RulesPane(SceneMap view) {
 	this.view = view;
@@ -84,15 +85,13 @@ public class RulesPane implements PaneHolder {
 
 	rulepane.getStylesheets().add("/assets/stylesheet.css");
 
-	back.registerClick(() -> {
-	    try {
-		view.closeOverlay();
-	    } catch (Exception e) {
-		e.printStackTrace();
-	    }
-	});
+	back.registerClick(() -> onBackClick());
 
 	return rulepane;
+    }
+
+    private void onBackClick() {
+	view.closeOverlay();
     }
 
     @Override

@@ -155,15 +155,11 @@ d) Besondere Ereignisse + Karten
 	  Landplättchen, wo die Räuber auf platziert werden soll, und haben
 	  mehr als sieben Karten, geben die Hälfte ihrer Karten müssen.
 	  Diese Spieler auch erhalten keine Ressourcenkarten, bis die
-	  Bandit wurde erneut verschoben. Das Installationsprogramm des 
-	  Banditen kann immer noch eine Ressource aus einem Diebstahl
-	  Spieler, dessen Siedlung oder eine Stadt neben einer Kachel,
-	  wo der Bandit auf platziert wurde, wenn verfügbar. Wenn
-	  mehrere Spieler sind, wählt er ein von einem Opfer der Wahl.
-	  Berauben selbst passieren wird geschlossen: Sie nicht sehen
-	  können, welche Art von Karte, die Sie stehlen. So lange wie
-	  ein Bandit auf eine Kachel steht, erhält kein Spieler
-	  Ressourcenkarten dieser Fliese.
+	  Bandit wurde erneut verschoben. Wenn mehrere Spieler sind,
+	  wählt er ein von einem Opfer der Wahl. Berauben selbst passieren
+	  wird geschlossen: Sie nicht sehen können, welche Art von Karte,
+	  die Sie stehlen. So lange wie ein Bandit auf eine Kachel steht,
+	  erhält kein Spieler Ressourcenkarten dieser Fliese.
 
 	- Wiedergabe von Entwicklungskarten
 	  Zu jeder Zeit während deines Zuges kannst du 1 Entwicklungskarte

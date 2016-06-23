@@ -7,51 +7,51 @@ import java.rmi.RemoteException;
  * Gets values from dices checks when bandit is thrown.
  * 
  * @author Tim
- * @version 1.0
+ * @version 1.1
  */
 public interface Throw extends Remote {
 
     /**
-     * Generates random number 1 till 6
+     * Generates random number 1 till 6.
      * 
      * @throws RemoteException
-     *             signals when exception occurs
+     *             Any remotely invoked method.
      */
     public void throwDice() throws RemoteException;
 
     /**
-     * Gets total value
+     * Gets total value.
      * 
-     * @return total value
+     * @return Total value.
      * @throws RemoteException
-     *             signals when exception occurs
+     *             Any remotely invoked method.
      */
     public int getValue() throws RemoteException;
 
     /**
-     * Gets value from left dice
+     * Gets value from left dice.
      * 
-     * @return value from left dice
+     * @return Value from left dice.
      * @throws RemoteException
-     *             signals when exception occurs
+     *             Any remotely invoked method.
      */
     public int getDiceLeft() throws RemoteException;
 
     /**
-     * Gets value from right dice
+     * Gets value from right dice.
      * 
-     * @return value from right dice
+     * @return Value from right dice.
      * @throws RemoteException
-     *             signals when exception occurs
+     *             Any remotely invoked method.
      */
     public int getDiceRight() throws RemoteException;
 
     /**
-     * Checks if bandit is thrown
+     * Checks if bandit is thrown.
      * 
-     * @return true when bandit is thrown if not it returns false
+     * @return True when bandit is thrown if not it returns false.
      * @throws RemoteException
-     *             signals when exception occurs
+     *             Any remotely invoked method.
      */
     public boolean isBanditThrow() throws RemoteException;
 }

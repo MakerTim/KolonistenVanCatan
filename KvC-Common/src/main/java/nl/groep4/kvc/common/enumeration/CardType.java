@@ -1,9 +1,9 @@
 package nl.groep4.kvc.common.enumeration;
 
 /**
- * All card types and amounts per type
+ * All card types and amounts per type.
  * 
- * @version 1.0 30-5-2016
+ * @version 1.1
  * @author Tim
  */
 public enum CardType {
@@ -17,9 +17,9 @@ public enum CardType {
     }
 
     /**
-     * gets amount
+     * Gets amount.
      * 
-     * @return current amount
+     * @return Current amount.
      */
     public int getAmount() {
 	return amount;

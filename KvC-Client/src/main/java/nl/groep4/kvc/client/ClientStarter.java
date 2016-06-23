@@ -4,9 +4,9 @@ import javafx.application.Application;
 import nl.groep4.kvc.client.view.ViewMaster;
 
 /**
- * Starts the client
+ * Starts the client.
  * 
- * @version 1.0
+ * @version 1.1
  * @author Tim
  */
 public class ClientStarter {
@@ -14,10 +14,10 @@ public class ClientStarter {
     public static String[] args;
 
     /**
-     * Launches the application
+     * Launches the application.
      * 
      * @param args
-     *            contains the supplied command-line arguments
+     *            Contains the supplied command-line arguments.
      */
     public static void main(String[] args) {
 	ClientStarter.args = args;

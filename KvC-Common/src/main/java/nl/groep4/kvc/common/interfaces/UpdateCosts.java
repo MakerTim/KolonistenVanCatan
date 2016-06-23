@@ -6,50 +6,50 @@ import java.util.EnumMap;
 import nl.groep4.kvc.common.enumeration.Resource;
 
 /**
- * Gets the updates of the costs
+ * Gets the updates of the costs.
  * 
  * @author Tim
- *
+ * @version 1.1
  */
 public interface UpdateCosts {
 
     /**
-     * Updates the costs for the streets
+     * Updates the costs for the streets.
      * 
      * @param resources
-     *            the costs of a street are the resources and the amount of it
+     *            The costs of a street are the resources and the amount of it.
      * @throws RemoteException
-     *             any remotely invoked method
+     *             Any remotely invoked method.
      */
     public void updateStreetCosts(EnumMap<Resource, Integer> resources) throws RemoteException;
 
     /**
-     * Updates the costs of the villages
+     * Updates the costs of the villages.
      * 
      * @param resources
-     *            the costs of a village are the resources and the amount of it
+     *            The costs of a village are the resources and the amount of it.
      * @throws RemoteException
-     *             any remotely invoked method
+     *             Any remotely invoked method.
      */
     public void updateVillageCosts(EnumMap<Resource, Integer> resources) throws RemoteException;
 
     /**
-     * Updates the costs of the cities
+     * Updates the costs of the cities.
      * 
      * @param resources
-     *            the costs of a city are the resources and the amount of it
+     *            The costs of a city are the resources and the amount of it.
      * @throws RemoteException
-     *             any remotely invoked method
+     *             Any remotely invoked method.
      */
     public void updateCityCosts(EnumMap<Resource, Integer> resources) throws RemoteException;
 
     /**
-     * Updates the costs of the cards
+     * Updates the costs of the cards.
      * 
      * @param resources
-     *            the costs of a card are the resources and the amount of it
+     *            The costs of a card are the resources and the amount of it.
      * @throws RemoteException
-     *             any remotely invoked method
+     *             Any remotely invoked method.
      */
     public void updateCardCosts(EnumMap<Resource, Integer> resources) throws RemoteException;
 

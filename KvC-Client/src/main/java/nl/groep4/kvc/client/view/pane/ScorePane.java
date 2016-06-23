@@ -21,10 +21,10 @@ import nl.groep4.kvc.common.interfaces.UpdateScore;
 import nl.groep4.kvc.common.interfaces.UpdateStock;
 
 /**
- * Scorepane that gets updates
+ * Scorepane that gets updates.
  * 
  * @author Tim, Luc
- * @version 1.0
+ * @version 1.1
  */
 public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder, UpdateScore {
 
@@ -52,7 +52,7 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder, Up
     }
 
     /**
-     * Opens the banner with player resources by adding children to the pane
+     * Opens the banner with player resources by adding children to the Pane.
      * 
      */
     public void hoverIn() {
@@ -64,7 +64,7 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder, Up
 
     /**
      * Closes the banner with player resources by removing children from the
-     * pane
+     * Pane.
      * 
      */
     public void hoverOut() {
@@ -75,9 +75,9 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder, Up
     }
 
     /**
-     * Gets the banner texture
+     * Gets the banner texture.
      * 
-     * @return image of the banner in the game
+     * @return Image of the banner in the game.
      */
     public Node getBanner() {
 	banner = new ImageView("img/game/banner.png");
@@ -87,9 +87,9 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder, Up
     }
 
     /**
-     * Gets the closed banner texture
+     * Gets the closed banner texture.
      * 
-     * @return image of the closed banner in the game
+     * @return Image of the closed banner in the game.
      */
     public Node getClosedBanner() {
 	closedBanner = new ImageView("img/game/banner_closed.png");

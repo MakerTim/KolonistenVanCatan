@@ -6,40 +6,40 @@ import nl.groep4.kvc.common.enumeration.BuildingType;
 import nl.groep4.kvc.common.interfaces.Ownable;
 
 /**
- * Defining building type
+ * Defining building type.
  * 
- * @version 1.0
+ * @version 1.1
  * @author Tim
  */
 public interface Building extends Ownable, Serializable, Locatable {
 
     /**
-     * Registers tile
+     * Registers tile.
      * 
      * @param tile
-     *            Tile to register
+     *            Tile to register.
      */
     public void registerTile(Tile tile);
 
     /**
-     * Gets connected tiles
+     * Gets connected tiles.
      * 
-     * @return The connected tiles
+     * @return The connected tiles.
      */
     public Tile[] getConnectedTiles();
 
     /**
-     * Gets building types
+     * Gets building types.
      * 
-     * @return Sets building type
+     * @return Sets building type.
      */
     public BuildingType getBuildingType();
 
     /**
-     * Sets building type
+     * Sets building type.
      * 
      * @param type
-     *            Kind of building
+     *            Kind of building.
      */
     public void setBuildingType(BuildingType type);
 
