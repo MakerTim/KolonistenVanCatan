@@ -11,29 +11,29 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 
 /**
- * InputField with a default style to fit in the lobby
+ * InputField with a default style to fit in the lobby.
  * 
- * @version 1.0
+ * @version 1.1
  * @author Tim
  **/
 public class MenuInputField extends TextField {
 
     /**
-     * sets border color to black
+     * Sets border color to black.
      */
     public MenuInputField() {
 	setBorderColor(Color.BLACK);
     }
 
     /**
-     * Places MenuInputField
+     * Places MenuInputField.
      * 
      * @param xPos
-     *            the x-coordinate location of MenuInputField
+     *            The x-coordinate location of MenuInputField.
      * @param yPos
-     *            the y-coordinate location of MenuInputField
+     *            The y-coordinate location of MenuInputField.
      * @param text
-     *            the string
+     *            The string.
      */
     public MenuInputField(int xPos, int yPos, String text) {
 	this();
@@ -46,10 +46,10 @@ public class MenuInputField extends TextField {
     }
 
     /**
-     * sets all border settings
+     * Sets all border settings.
      * 
      * @param color
-     *            the color of the border
+     *            The color of the border.
      */
     public void setBorderColor(Color color) {
 	setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
