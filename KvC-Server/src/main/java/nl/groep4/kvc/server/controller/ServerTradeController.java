@@ -68,6 +68,7 @@ public class ServerTradeController {
 		}
 	    }
 	    removeTrade(trade.getID());
+	    validateTrades();
 	    controller.updateResources();
 	    controller.updateTrades();
 	} catch (Exception ex) {
@@ -122,6 +123,7 @@ public class ServerTradeController {
 		tradesIT.remove();
 	    }
 	}
+	validateTrades();
     }
 
     public Trade getTrade(UUID tradeKey) {

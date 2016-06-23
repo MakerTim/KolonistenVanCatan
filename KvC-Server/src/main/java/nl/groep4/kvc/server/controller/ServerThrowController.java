@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import nl.groep4.kvc.common.enumeration.TurnState;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.Throw;
 import nl.groep4.kvc.common.interfaces.UpdateMap;
@@ -38,6 +39,7 @@ public class ServerThrowController {
 		try {
 		    player.getUpdateable(UpdateMap.class).updateDices(lastThrow.getDiceLeft(),
 			    lastThrow.getDiceRight());
+		    Scheduler.runAsyncLater(() -> controller.updateState(TurnState.WAITING), 2000);
 		} catch (RemoteException ex) {
 		    ex.printStackTrace();
 		}
@@ -56,5 +58,4 @@ public class ServerThrowController {
 	    }
 	});
     }
-
 }
