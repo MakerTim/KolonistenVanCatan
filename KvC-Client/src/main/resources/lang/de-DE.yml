@@ -71,6 +71,15 @@ login.error.ingame.title:Bereits begonnen Spiel
 login.error.ingame.explanation:Das Spiel hat bereits begonnen, können Sie nicht beitreten
 login.error.ingame.details:Exception: 406 Not Accaptable
 
+#Dialog
+dialog.title:Sind Sie sicher, dass Sie fortfahren möchten?
+dialog.confirm:Sind Sie sicher?
+dialog.button.desc:Sie haben einen Knopf gepresstem
+dialog.rovermove.desc:Sie haben die Bandit verhaftet
+dialog.roverplace.desc:Sie stellte die Bandit
+dialog.placestreet.desc:Sie haben eine Straße gepostet
+dialog.placebuilding.desc:Sie haben eine Gebäude gepostet
+
 #SceneLogin
 lobby.label.ip:IP Addresse
 lobby.label.port:Port-Nummer
