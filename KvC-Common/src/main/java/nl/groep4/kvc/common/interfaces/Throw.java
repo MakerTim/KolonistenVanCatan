@@ -22,6 +22,7 @@ public interface Throw extends Remote {
     /**
      * Gets total value
      * 
+     * @return total value
      * @throws RemoteException
      *             signals when exception occurs
      */
@@ -30,6 +31,7 @@ public interface Throw extends Remote {
     /**
      * Gets value from left dice
      * 
+     * @return value from left dice
      * @throws RemoteException
      *             signals when exception occurs
      */
@@ -38,6 +40,7 @@ public interface Throw extends Remote {
     /**
      * Gets value from right dice
      * 
+     * @return value from right dice
      * @throws RemoteException
      *             signals when exception occurs
      */
@@ -46,6 +49,7 @@ public interface Throw extends Remote {
     /**
      * Checks if bandit is thrown
      * 
+     * @return true when bandit is thrown if not it returns false
      * @throws RemoteException
      *             signals when exception occurs
      */
