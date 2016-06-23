@@ -11,7 +11,7 @@ import nl.groep4.kvc.common.enumeration.Color;
  * player, registers player and loads save.
  * 
  * @author Tim
- * @version 1.0
+ * @version 1.1
  */
 public interface Lobby extends Remote {
 
