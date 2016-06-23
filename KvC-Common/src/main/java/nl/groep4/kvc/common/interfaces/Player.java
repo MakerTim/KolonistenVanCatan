@@ -182,6 +182,8 @@ public interface Player extends Remote {
     /**
      * General method to update.
      * 
+     * @param <T>
+     *            Pane class which is used.
      * @param type
      *            The updatable type.
      * @return The view of the game.

@@ -1,7 +1,6 @@
 package nl.groep4.kvc.server.controller;
 
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +20,7 @@ public class ServerThrowController {
     public ServerThrowController(ServerKolonistenVanCatan serverKolonistenVanCatan) {
 	this.controller = serverKolonistenVanCatan;
 	try {
-	    lastThrow = (Throw) UnicastRemoteObject.exportObject(new ServerThrow(), 0);
+	    lastThrow = new ServerThrow();
 	    lastThrow.throwDice();
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();

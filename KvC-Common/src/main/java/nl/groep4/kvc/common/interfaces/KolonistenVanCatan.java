@@ -311,4 +311,8 @@ public interface KolonistenVanCatan extends Remote {
      *             Any remotely invoked method.
      */
     public void moveToRover(Player turn, Coordinate position) throws RemoteException;
+
+    public Throw getLastThrow() throws RemoteException;
+
+    public void updateResources() throws RemoteException;
 }

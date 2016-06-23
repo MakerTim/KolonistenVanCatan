@@ -50,21 +50,30 @@ public class ServerTradeController {
 		    ex.printStackTrace();
 		}
 	    }
-	    if (player == null) {
-		for (Entry<Resource, Integer> reward : trade.getReward().entrySet()) {
-		    trade.getPlayer().takeResource(reward.getKey(), reward.getValue());
+	    if (trade.getPlayer().equals(player)) {
+		try {
+		    player.getUpdateable().popup("tradeself");
+		} catch (RemoteException ex) {
+		    ex.printStackTrace();
 		}
-		for (Entry<Resource, Integer> requested : trade.getRequest().entrySet()) {
-		    trade.getPlayer().giveResource(requested.getKey(), requested.getValue());
-		}
-	    } else {
-		for (Entry<Resource, Integer> reward : trade.getReward().entrySet()) {
-		    trade.getPlayer().takeResource(reward.getKey(), reward.getValue());
-		    player.giveResource(reward.getKey(), reward.getValue());
-		}
-		for (Entry<Resource, Integer> requested : trade.getRequest().entrySet()) {
-		    player.takeResource(requested.getKey(), requested.getValue());
-		    trade.getPlayer().giveResource(requested.getKey(), requested.getValue());
+	    }
+	    if (hasAllResources(trade)) {
+		if (player == null) {
+		    for (Entry<Resource, Integer> reward : trade.getReward().entrySet()) {
+			trade.getPlayer().takeResource(reward.getKey(), reward.getValue());
+		    }
+		    for (Entry<Resource, Integer> requested : trade.getRequest().entrySet()) {
+			trade.getPlayer().giveResource(requested.getKey(), requested.getValue());
+		    }
+		} else {
+		    for (Entry<Resource, Integer> reward : trade.getReward().entrySet()) {
+			trade.getPlayer().takeResource(reward.getKey(), reward.getValue());
+			player.giveResource(reward.getKey(), reward.getValue());
+		    }
+		    for (Entry<Resource, Integer> requested : trade.getRequest().entrySet()) {
+			player.takeResource(requested.getKey(), requested.getValue());
+			trade.getPlayer().giveResource(requested.getKey(), requested.getValue());
+		    }
 		}
 	    }
 	    removeTrade(trade.getID());
@@ -76,20 +85,23 @@ public class ServerTradeController {
 	}
     }
 
+    public boolean hasAllResources(Trade trade) {
+	for (Entry<Resource, Integer> reward : trade.getReward().entrySet()) {
+	    try {
+		if (!trade.getPlayer().hasResource(reward.getKey(), reward.getValue())) {
+		    return false;
+		}
+	    } catch (RemoteException e) {
+		e.printStackTrace();
+		return false;
+	    }
+	}
+	return true;
+    }
+
     public void validateTrades() {
 	for (Trade trade : new ArrayList<>(trades)) {
-	    boolean validTrade = true;
-	    for (Entry<Resource, Integer> reward : trade.getReward().entrySet()) {
-		try {
-		    if (!trade.getPlayer().hasResource(reward.getKey(), reward.getValue())) {
-			validTrade = false;
-		    }
-		} catch (RemoteException e) {
-		    e.printStackTrace();
-		    validTrade = false;
-		}
-	    }
-	    if (!validTrade) {
+	    if (!hasAllResources(trade)) {
 		removeTrade(trade.getID());
 		continue;
 	    }

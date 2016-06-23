@@ -12,6 +12,7 @@ import nl.groep4.kvc.common.interfaces.Throw;
  */
 public class ServerThrow implements Throw {
 
+    private static final long serialVersionUID = 12121994L;
     private ServerDice[] dices = new ServerDice[2];
 
     @Override

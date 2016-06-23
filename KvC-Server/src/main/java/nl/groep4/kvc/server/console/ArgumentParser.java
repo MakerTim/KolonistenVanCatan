@@ -3,13 +3,15 @@ package nl.groep4.kvc.server.console;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 import nl.groep4.kvc.common.KvCStatics;
 import nl.groep4.kvc.common.enumeration.Resource;
+import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Player;
+import nl.groep4.kvc.common.util.Scheduler;
 import nl.groep4.kvc.server.ServerStarter;
-import nl.groep4.kvc.server.controller.ServerKolonistenVanCatan;
 import nl.groep4.kvc.server.util.ConnectionUtil;
 
 public class ArgumentParser {
@@ -25,6 +27,7 @@ public class ArgumentParser {
     public void parse() throws Throwable {
 	switch (cmd.toLowerCase()) {
 	case "exit":
+	case "close":
 	    exit();
 	    break;
 	case "":
@@ -75,7 +78,7 @@ public class ArgumentParser {
 	    System.err.printf("Resource '%s' not found.\n", args[1]);
 	    return;
 	}
-	if (!KvCStatics.NUMERIC.matches(args[2])) {
+	if (!args[2].matches(KvCStatics.NUMERIC + "+")) {
 	    System.err.printf("Argument 3 needs to be a number, not '%s'.\n", args[2]);
 	    return;
 	}
@@ -84,9 +87,10 @@ public class ArgumentParser {
 	    System.err.println("Cant give negative resources");
 	    return;
 	}
-	ServerKolonistenVanCatan kvc = (ServerKolonistenVanCatan) ServerStarter.getLobby().getGame();
+	KolonistenVanCatan kvc = ServerStarter.getLobby().getGame();
 	pl.giveResource(resource, amount);
-	kvc.updateCards();
+	kvc.updateResources();
+	System.out.printf("Gave player '%s' %s %d.\n", pl.getUsername(), resource.name(), amount);
     }
 
     private void trigger() throws RemoteException {
@@ -95,10 +99,18 @@ public class ArgumentParser {
 
     private void exit() throws RemoteException {
 	clean();
+	List<Runnable> runs = new ArrayList<>();
 	for (Player pl : new ArrayList<>(ServerStarter.getLobby().getPlayers())) {
-	    pl.getUpdateable().close("closed");
-	    ServerStarter.getLobby().disconnect(pl);
+	    runs.add(() -> {
+		try {
+		    pl.getUpdateable().close("closed");
+		    ServerStarter.getLobby().disconnect(pl);
+		} catch (Exception ex) {
+		    ex.printStackTrace();
+		}
+	    });
 	}
+	Scheduler.runAsyncdSync(runs);
 	System.exit(0);
     }
 

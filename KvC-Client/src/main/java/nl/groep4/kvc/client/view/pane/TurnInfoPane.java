@@ -11,6 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import nl.groep4.kvc.client.controller.ClientRefrence;
+import nl.groep4.kvc.client.controller.MapController;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.KvCText;
@@ -32,6 +33,13 @@ public class TurnInfoPane implements PaneHolder, UpdateRound {
 
     private Text whoText;
     private Text whatText;
+    private Text currentThrow;
+
+    private MapController controller;
+
+    public TurnInfoPane(MapController mapController) {
+	this.controller = mapController;
+    }
 
     @Override
     public Pane getPane() {
@@ -40,11 +48,13 @@ public class TurnInfoPane implements PaneHolder, UpdateRound {
 	VBox texts = new VBox();
 	whoText = new KvCText();
 	whatText = new KvCText();
+	currentThrow = new KvCText();
 	whoText.setFont(font);
 	whatText.setFont(font);
+	currentThrow.setFont(font);
 	texts.setAlignment(Pos.TOP_CENTER);
-	texts.setPadding(new Insets(40, 0, 0, 0));
-	texts.getChildren().addAll(whoText, whatText);
+	texts.setPadding(new Insets(30, 0, 0, 0));
+	texts.getChildren().addAll(whoText, whatText, currentThrow);
 	layers.getChildren().addAll(imageView, texts);
 	layers.setAlignment(Pos.TOP_CENTER);
 	layers.setPadding(new Insets(0, 0, 0, 10));
@@ -74,6 +84,11 @@ public class TurnInfoPane implements PaneHolder, UpdateRound {
 	    append = ".self";
 	} else {
 	    whoText.setText(who.getUsername());
+	}
+	if (controller.lastThrow() != null) {
+	    currentThrow.setText(TranslationManager.translate("turn.lastthrow", controller.lastThrow().getValue()));
+	} else {
+	    currentThrow.setText("");
 	}
 	whatText.setText(TranslationManager.translate(what.translate() + append));
     }

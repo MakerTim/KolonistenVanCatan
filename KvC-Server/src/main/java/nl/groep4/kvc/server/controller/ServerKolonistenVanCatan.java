@@ -3,15 +3,11 @@ package nl.groep4.kvc.server.controller;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 import nl.groep4.kvc.common.enumeration.BuildingType;
-import nl.groep4.kvc.common.enumeration.Direction;
 import nl.groep4.kvc.common.enumeration.GameState;
-import nl.groep4.kvc.common.enumeration.Point;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.enumeration.SelectState;
 import nl.groep4.kvc.common.enumeration.TurnState;
@@ -24,7 +20,6 @@ import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Map;
 import nl.groep4.kvc.common.map.Street;
-import nl.groep4.kvc.common.map.Tile;
 import nl.groep4.kvc.common.util.Scheduler;
 import nl.groep4.kvc.server.model.ServerCosts;
 import nl.groep4.kvc.server.model.map.ServerMap;
@@ -187,78 +182,11 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     }
 
     public void highlightBuildings(Player pl, BuildingType type) {
-	Set<Building> buildings;
-	switch (type) {
-	case VILLAGE:
-	    switch (getState()) {
-	    case INIT:
-		buildings = new HashSet<>(getMap().getAllBuildings());
-		for (Tile tile : getMap().getTiles()) {
-		    for (Point point : Point.values()) {
-			if (!tile.isValidPlace(getMap(), point)) {
-			    buildings.remove(tile.getBuilding(point));
-			}
-		    }
-		}
-		break;
-	    case IN_GAME:
-		buildings = new HashSet<>();
-		for (Tile tile : getMap().getTiles()) {
-		    for (Direction direction : Direction.values()) {
-			if (tile.getStreet(direction) != null
-				&& getTurn().equals(tile.getStreet(direction).getOwner())) {
-			    for (Point point : direction.getAttached()) {
-				buildings.add(tile.getBuilding(point));
-			    }
-			}
-		    }
-		}
-		for (Tile tile : getMap().getTiles()) {
-		    for (Point point : Point.values()) {
-			if (!tile.isValidPlace(getMap(), point)) {
-			    buildings.remove(tile.getBuilding(point));
-			}
-		    }
-		}
-		break;
-	    default:
-	    case END:
-		buildings = new HashSet<>();
-		break;
-	    }
-	    break;
-	case CITY:
-	    buildings = new HashSet<>();
-	    for (Building building : getMap().getAllBuildings()) {
-		if (pl.equals(building.getOwner())) {
-		    buildings.add(building);
-		}
-	    }
-	    break;
-	default:
-	case EMPTY:
-	    buildings = new HashSet<>();
-	    break;
-	}
-	highlightBuildings(pl, buildings, type);
+	highlightBuildings(pl, mapController.getValidBuildingLocations(type), type);
     }
 
     public void highlightStreet(Player pl) {
-	Set<Street> streets = new HashSet<>();
-	for (Tile tile : getMap().getTiles()) {
-	    for (Direction direction : Direction.values()) {
-		Street street = tile.getStreet(direction);
-		if (street != null && pl.equals(street.getOwner())) {
-		    for (Direction connectedDirection : direction.getConnected()) {
-			Street connected = tile.getStreet(connectedDirection);
-			if (connected != null && connected.getOwner() == null) {
-			    streets.add(connected);
-			}
-		    }
-		}
-	    }
-	}
-	highlightStreets(pl, streets);
+	highlightStreets(pl, mapController.getValidStreetLocations());
     }
 
     public void highlightBuildings(Player pl, Collection<Building> buildings, BuildingType type) {
@@ -529,7 +457,6 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	    who.addRemainingVillages(villageToBuild);
 	    UpdateMap view = who.getUpdateable(UpdateMap.class);
 	    view.closeOverlay();
-	    view.setSelectable(SelectState.BUILDING);
 	    highlightBuildings(who, BuildingType.VILLAGE);
 	    updateResources();
 	} catch (RemoteException ex) {
@@ -543,7 +470,6 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	    who.addRemainingCitys(cityToBuild);
 	    UpdateMap view = who.getUpdateable(UpdateMap.class);
 	    view.closeOverlay();
-	    view.setSelectable(SelectState.BUILDING);
 	    highlightBuildings(who, BuildingType.CITY);
 	    updateResources();
 	} catch (RemoteException ex) {

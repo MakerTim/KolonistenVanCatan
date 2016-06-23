@@ -27,9 +27,6 @@ public class ServerTurnController {
 	this.controller = serverKolonistenVanCatan;
     }
 
-    // TODO: card.newpanes
-    // TODO: trading.use
-    // TODO: Rover verplaatsen
     // TODO: Punten berekenen
 
     public void nextTurn() {
@@ -96,7 +93,6 @@ public class ServerTurnController {
 		return;
 	    }
 	    Player pl = controller.getTurn();
-	    controller.updateState(TurnState.BUILDING_BUILDING);
 	    controller.highlightBuildings(controller.getTurn(), BuildingType.VILLAGE);
 	    pl.addRemainingVillages(1);
 	} catch (Exception ex) {

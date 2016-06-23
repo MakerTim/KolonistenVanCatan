@@ -89,6 +89,8 @@ public interface Map extends Serializable {
     /**
      * Get relative tile and direction.
      *
+     * @param tile
+     *            Relative tile.
      * @param direction
      *            Refers to tile orientation.
      * @return Gets tile being interacted with.

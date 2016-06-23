@@ -11,6 +11,7 @@ import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.Card;
 import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Player;
+import nl.groep4.kvc.common.interfaces.Throw;
 import nl.groep4.kvc.common.map.Coordinate;
 
 /**
@@ -118,9 +119,9 @@ public class MapController implements Controller {
      * @param coord
      *            Coordinate to place building.
      */
-    public void placeBuilding(Coordinate coord) {
+    public void placeBuilding(Coordinate coord, BuildingType type) {
 	try {
-	    model.placeBuilding(ClientRefrence.getThePlayer(), coord, BuildingType.VILLAGE);
+	    model.placeBuilding(ClientRefrence.getThePlayer(), coord, type);
 	} catch (RemoteException ex) {
 	    ExceptionManager.handleRemoteException(ex);
 	}
@@ -275,5 +276,14 @@ public class MapController implements Controller {
 	    ex.printStackTrace();
 	}
 	return false;
+    }
+
+    public Throw lastThrow() {
+	try {
+	    return model.getLastThrow();
+	} catch (Exception ex) {
+	    ex.printStackTrace();
+	}
+	return null;
     }
 }
