@@ -26,7 +26,7 @@ import nl.groep4.kvc.common.interfaces.UpdateCosts;
  * The BuildPane, where you can buy a building
  * 
  * @author Bachir
- * @version 1.0
+ * @version 1.1
  */
 
 public class BuildPane implements PaneHolder, UpdateCosts {
@@ -209,7 +209,7 @@ public class BuildPane implements PaneHolder, UpdateCosts {
 	vboxbrick.setSpacing(10);
 	vboxore.setSpacing(10);
 
-	hboxprices.getChildren().addAll(vboxprices, vboxwheat, vboxwood, vboxwool, vboxbrick, vboxore);
+	hboxprices.getChildren().addAll(vboxprices, vboxwood, vboxbrick, vboxwool, vboxwheat, vboxore);
 	hboxprices.setAlignment(Pos.CENTER);
 	hboxprices.setSpacing(20);
 
