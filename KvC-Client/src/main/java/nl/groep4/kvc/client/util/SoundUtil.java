@@ -12,10 +12,10 @@ import javafx.beans.property.FloatProperty;
 import javafx.beans.property.ReadOnlyFloatWrapper;
 
 /**
- * Controls the theme-song which is playing in the lobby.
+ * Controls all the sounds in the game.
  * 
  * @author Tim
- * @version 1.0
+ * @version 1.1
  */
 public class SoundUtil {
 
@@ -25,21 +25,21 @@ public class SoundUtil {
     private static Clip playMusic;
 
     /**
-     * Sound that will be played when user clicks on the button "End turn"
+     * Sound that will be played when user clicks on the button "End turn".
      */
     public static void playNextTurn() {
 	playSound("sound/newturn.wav");
     }
 
     /**
-     * Music file to play if an error occurs
+     * Plays music file if an error occurs.
      */
     public static void playError() {
 	playSound("sound/no.wav");
     }
 
     /**
-     * Music file to play when in lobby
+     * Plays music file when the player is in the lobby.
      */
     public static void playThemesong() {
 	stopThemesong();
@@ -50,7 +50,7 @@ public class SoundUtil {
     }
 
     /**
-     * Music file to play when in game
+     * Plays music file when the player is in game.
      */
     public static void playGamesong() {
 	stopThemesong();
@@ -61,7 +61,7 @@ public class SoundUtil {
     }
 
     /**
-     * Stops the music
+     * Stops the theme song.
      */
     public static void stopThemesong() {
 	if (themesongIsPlaying()) {
@@ -72,10 +72,11 @@ public class SoundUtil {
     }
 
     /**
-     * Controls the sound volume
+     * Controls the sound volume.
      * 
      * @param soundName
-     * @return the clip that is played
+     *            The name of the sound.
+     * @return The clip that is played.
      */
     public static Clip playSound(String soundName) {
 	try {
@@ -107,28 +108,28 @@ public class SoundUtil {
     }
 
     /**
-     * TeamsongKvC is playing
+     * TeamsongKvC is playing.
      * 
-     * @return teamsongKvC not equal to null
+     * @return TeamsongKvC not equal to null.
      */
     public static boolean themesongIsPlaying() {
 	return teamsongKvC != null;
     }
 
     /**
-     * Determines volume level
+     * Determines volume level.
      * 
-     * @return gets volume level
+     * @return Volume level.
      */
     public static float getVolumeLevel() {
 	return SoundUtil.volume.get() / VOLUME_LEVEL;
     }
 
     /**
-     * sets volume level value
+     * Sets volume level value.
      * 
      * @param volume
-     *            The volume of the sound
+     *            The volume of the sound.
      */
     public static void setVolume(float volume) {
 	((FloatProperty) SoundUtil.volume).setValue(volume * VOLUME_LEVEL);
