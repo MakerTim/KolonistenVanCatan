@@ -53,6 +53,7 @@ public class DicePane implements PaneHolder, UpdateDice, NotCloseable {
     public Pane getPane() {
 	StackPane layers = new StackPane();
 	VBox lines = new VBox(20);
+	HBox hboxbutton = new HBox();
 	dices = new HBox(100);
 
 	throwLabel = new KvCText();
@@ -73,9 +74,11 @@ public class DicePane implements PaneHolder, UpdateDice, NotCloseable {
 	    throwButton = new MenuButton(0, 0, TranslationManager.translate("map.throwdice.throw"));
 	    throwButton.registerClick(() -> throwDice());
 	    throwButton.setFont(ViewMaster.FONT);
-	    lines.getChildren().add(throwButton);
+	    hboxbutton.getChildren().add(throwButton);
+	    lines.getChildren().add(hboxbutton);
 	}
 
+	hboxbutton.setAlignment(Pos.CENTER);
 	lines.setAlignment(Pos.CENTER);
 	dices.setAlignment(Pos.CENTER);
 	layers.getChildren().addAll(SceneUtil.getGamePane(), lines);
@@ -130,8 +133,8 @@ public class DicePane implements PaneHolder, UpdateDice, NotCloseable {
 		dices.getChildren().add(text);
 		Scheduler.runSyncLater(() -> {
 		    view.closeOverlay();
-		} , 5000L);
-	    } , 2500L);
-	} , 200L);
+		}, 5000L);
+	    }, 2500L);
+	}, 200L);
     }
 }
