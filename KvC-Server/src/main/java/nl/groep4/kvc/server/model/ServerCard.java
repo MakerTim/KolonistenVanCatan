@@ -18,4 +18,13 @@ public class ServerCard implements Card {
 	return type;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+	if (obj instanceof Card) {
+	    Card other = (Card) obj;
+	    return other.getType() == getType();
+	}
+	return super.equals(obj);
+    }
+
 }
