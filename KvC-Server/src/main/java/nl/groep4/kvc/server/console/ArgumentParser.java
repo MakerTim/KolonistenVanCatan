@@ -87,6 +87,7 @@ public class ArgumentParser {
 	KolonistenVanCatan kvc = ServerStarter.getLobby().getGame();
 	pl.giveResource(resource, amount);
 	kvc.updateResources();
+	System.out.printf("Gave player '%s' %s %d.\n", pl.getUsername(), resource.name(), amount);
     }
 
     private void trigger() throws RemoteException {
