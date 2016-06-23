@@ -37,6 +37,8 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     ServerShopController shopController;
     ServerMapController mapController;
     ServerCardController cardController;
+    ServerScoreController scoreController;
+    ServerSaveController saveController;
 
     private final List<Player> players;
     private ServerMap map = new ServerMap();
@@ -53,6 +55,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	shopController = new ServerShopController(this);
 	mapController = new ServerMapController(this);
 	cardController = new ServerCardController(this);
+	scoreController = new ServerScoreController(this);
 	players.sort((pl1, pl2) -> {
 	    return Integer.compare(pl1.hashCode(), pl2.hashCode());
 	});

@@ -83,7 +83,7 @@ public class ServerPlayer implements Player {
     public void useCard(Card usedCard) throws RemoteException {
 	Iterator<Card> cardIT = cards.iterator();
 	while (cardIT.hasNext()) {
-	    Card card = (Card) cardIT.next();
+	    Card card = cardIT.next();
 	    if (card.getType() == usedCard.getType()) {
 		cardIT.remove();
 		break;
