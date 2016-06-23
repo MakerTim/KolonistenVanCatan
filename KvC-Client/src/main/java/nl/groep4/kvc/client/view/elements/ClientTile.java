@@ -14,6 +14,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import nl.groep4.kvc.client.controller.ClientRefrence;
 import nl.groep4.kvc.client.controller.MapController;
 import nl.groep4.kvc.client.util.ConfirmDialog;
 import nl.groep4.kvc.client.view.scene.SceneMap;
@@ -354,6 +355,10 @@ public class ClientTile extends StackPane {
 		try {
 		    switch (building.getBuildingType()) {
 		    case CITY:
+			if (building.getOwner().equals(ClientRefrence.getThePlayer())
+				&& building.getBuildingType() == BuildingType.VILLAGE) {
+			    house.setImage(cacheImage("img/buildings/city_highlight.png"));
+			}
 		    case EMPTY:
 			house.setImage(cacheImage("img/buildings/city_" + building.getOwner().getColor() + ".png"));
 			break;
@@ -367,10 +372,8 @@ public class ClientTile extends StackPane {
 	    } else {
 		switch (type) {
 		case EMPTY:
-		    house.setImage(cacheImage("img/buildings/house_null.png"));
-		    break;
 		case CITY:
-		    house.setImage(cacheImage("img/buildings/city_highlight.png"));
+		    house.setImage(cacheImage("img/buildings/house_null.png"));
 		    break;
 		case VILLAGE:
 		    house.setImage(cacheImage("img/buildings/house_highlight.png"));
