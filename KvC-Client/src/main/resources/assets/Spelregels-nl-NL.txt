@@ -126,14 +126,12 @@ d) Speciale gebeurtenissen + kaarten
 
 	- Rover
 	  Als een speler een 7 dobbelt bij het begin van zijn beurt, moet deze speler een van de twee
-	  rovers verplaatst naar een willekeurig ander landveld. De spelers die dorpen of steden hebben
-	  aan de landveld waar de rovers op word geplaatst en meer dan 7 kaarten hebben, moeten de helft
+	  rovers verplaatsen naar een willekeurig ander landveld. De spelers die dorpen of steden hebben
+	  aan de landveld waar de rover op wordt geplaatst en meer dan 7 kaarten hebben, moeten de helft
 	  van hun kaarten inleveren. Deze spelers ontvangen ook geen grondstoffen totdat de rover weer
-	  verplaatst is. Dan mag de plaatser van de rover nog een grondstof stelen van een speler die aan
-	  de tegel staat waar de rover op geplaatst is, mits aanwezig. Zijn er meerdere spelers voorhanden,
-	  dan kiest hij 1 slachtoffer uit. Het roven zelf gebeurt gesloten: je mag niet zien welke soort
-	  kaart je steelt. Zolang een rover op een tegel staat, ontvangt geen enkele speler grondstoffen
-	  van die tegel.
+	  verplaatst is. Zijn er meerdere spelers voorhanden, dan kiest hij 1 slachtoffer uit.
+	  Het roven zelf gebeurt gesloten: je mag niet zien welke soort kaart je steelt. Zolang een
+	  rover op een tegel staat, ontvangt geen enkele speler grondstoffen van die tegel.
 	  
 	- Ontwikkelingskaart uitspelen
 	  Een speler die aan de beurt is, mag op gelijk welk ogenblik tijdens zijn beurt 1

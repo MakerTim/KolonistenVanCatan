@@ -128,10 +128,8 @@ d) événements + cartes spéciales
 	  adjacentes à les carreaux de terre où les voleurs seront placés sur, et ont plus de
 	  sept cartes, doit donner la moitié de leurs cartes. Ces joueurs ont également ne reçoivent
 	  pas les cartes de ressources jusqu'à ce que le bandit a été déplacé à nouveau.
-	  Le programme d'installation du bandit peut encore voler une ressource à partir d'un joueur
-	  dont le règlement ou la ville adjacente à une tuile où le bandit a été placé sur,
-	  si disponible. Quand il y a plusieurs joueurs, il choisit l'un d'une victime
-	  de choix. Se Robbing arrivera fermé: vous ne pouvez pas voir ce genre de carte que vous voler.
+	  Quand il y a plusieurs joueurs, il choisit l'un d'une victime de choix. Se Robbing
+	  arrivera fermé: vous ne pouvez pas voir ce genre de carte que vous voler.
 	  Aussi longtemps que un bandit se dresse sur une tuile, aucun joueur reçoit des cartes de
 	  ressources de cette tuile.
 

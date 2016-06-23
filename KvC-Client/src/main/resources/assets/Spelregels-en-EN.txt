@@ -138,13 +138,10 @@ d) Special events + cards
 	  settlements or cities adjacent to the land tiles where the robbers will
 	  be placed on, and have more than seven cards, must give half of their
 	  cards. These players also do not receive resource cards until the bandit
-	  has been moved again. The installer of the bandit can still steal a
-	  resource from a player whose settlement or city adjacent to a tile where
-	  the bandit has been placed on, if available. When there are several
-	  players, he chooses one from a victim of choice. Robbing itself will
-	  happen closed: you can not see what kind of card you steal. As long as
-	  a bandit stands on a tile, no player receives resource cards of that
-	  tile.
+	  has been moved again. When there are several players, he chooses one
+	  from a victim of choice. Robbing itself will happen closed: you can
+	  not see what kind of card you steal. As long as a bandit stands on
+	  a tile, no player receives resource cards of that tile.
 
 	- Playing Development Cards
 	  At any time during your turn you may play 1 Development Card. But it
