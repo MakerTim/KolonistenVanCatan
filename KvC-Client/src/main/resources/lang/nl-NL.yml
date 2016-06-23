@@ -72,6 +72,16 @@ login.error.ingame.title:Spel al begonnen
 login.error.ingame.explanation:Het spel is al begonnen, u kunt niet meer joinen
 login.error.ingame.details:Exception: 406 Not Accaptable
 
+#Dialog
+dialog.title:Weet u zeker dat u door wilt gaan?
+dialog.confirm:Bent u zeker van dit?
+dialog.button.desc:U heeft op een knop geklikt
+dialog.rovermove.desc:U heeft de struikrover geselecteerd
+dialog.roverplace.desc:U heeft de struikrover verplaatst
+dialog.placestreet.desc:U heeft een straat geplaatst
+dialog.placebuilding.desc:U heeft een gebouw geplaatst
+
+
 #SceneLogin
 lobby.label.ip:IP Adres
 lobby.label.port:Poort Nummer
@@ -178,10 +188,16 @@ gamenote.noowner.title:Niet de eigenaar
 gamenote.noowner.explanation:U bent niet de eigenaar van dit gebouw
 gamenote.noowner.details:Exception: 503 Service Unavailable
 gamenote.notrade.title:Geen ruil
-gamenote.notrade.explanation:Der Handel kann nicht, weil die Miete nicht gefunden wird
+gamenote.notrade.explanation:Er kan niet geruild worden, want de ruil is niet gevonden
 gamenote.notrade.details:Exception: 503 Service Unavailable
-
-
+gamenote.norover.title:Geen rover
+gamenote.norover.explanation:Er is geen tegel met rover geselecteerd
+gamenote.norover.details:Exception: 503 Service Unavailable
+gamenote.alreadyrover.title:Al een rover aanwezig
+gamenote.alreadyrover.explanation:Er staat al een rover op deze tegel
+gamenote.tradeself.title:Niet ruilen
+gamenote.tradeself.explanation:U mag niet met uzelf ruilen
+gamenote.tradeself.details:Exception: 503 Service Unavailable
 
 #Map
 map.throwdice.clickToThrow:Dobbelen

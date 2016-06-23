@@ -71,6 +71,16 @@ login.error.ingame.title:Game already started
 login.error.ingame.explanation:The game already started, you can't join anymore
 login.error.ingame.details:Exception: 406 Not Accaptable
 
+#Dialog
+dialog.title:Are you sure you want to continue?
+dialog.confirm:Are you sure with this?
+dialog.button.desc:You clicked a button
+dialog.rovermove.desc:You picked the bandit
+dialog.roverplace.desc:You placed the bandit
+dialog.placestreet.desc:You placed a street
+dialog.placebuilding.desc:You placed a building
+
+
 #SceneLogin
 lobby.label.ip:IP Address
 lobby.label.port:Port Number
@@ -95,6 +105,7 @@ turn.state.trade.self:In the auctionhouse
 turn.state.wait:Turn
 turn.state.wait.self:Your turn
 turn.self:You
+turn.lastthrow:Last throw %d
 
 #Cards
 cards.monopoly.info:Monopoly: Obtain all recourcecards of choice from other players
@@ -178,6 +189,18 @@ gamenote.noowner.details:Exception: 503 Service Unavailable
 gamenote.notrade.title:No trade
 gamenote.notrade.explanation:can't trade, because trade has not been found
 gamenote.notrade.details:Exception: 503 Service Unavailable
+gamenote.norover.title:No bandit
+gamenote.norover.explanation:No tile with bandit is selected
+gamenote.norover.details:Exception: 503 Service Unavailable
+gamenote.alreadyrover.title:Al een rover aanwezig
+gamenote.alreadyrover.explanation:Er staat al een rover op deze tegel
+gamenote.norover.details:Exception: 503 Service Unavailable
+gamenote.tradeself.title:Niet ruilen
+gamenote.tradeself.explanation:U mag niet met uzelf ruilen
+gamenote.tradeself.details:Exception: 503 Service Unavailable
+gamenote.noplace.title:No place
+gamenote.noplace.explanation:There is no place for this building
+gamenote.noplace.details:Exception: 503 Service Unavailable
 
 #Map
 map.throwdice.clickToThrow:Roll the dice

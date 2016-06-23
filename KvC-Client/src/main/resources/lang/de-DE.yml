@@ -176,9 +176,17 @@ gamenote.noowner.title:Nicht der Besitzer
 gamenote.noowner.explanation:Sie sind nicht der Eigentümer dieses Gebäudes
 gamenote.noowner.details:Exception: 503 Service Unavailable
 gamenote.notrade.title:Kein Austausch
-gamenote.notrade.explanation:can't trade, because trade has not been found
+gamenote.notrade.explanation:Der Handel kann nicht, weil die Miete nicht gefunden wird
 gamenote.notrade.details:Exception: 503 Service Unavailable
-
+gamenote.norover.title:Keine Bandit
+gamenote.norover.explanation:Kein LandKärtchen durch Räuber ausgewählt
+gamenote.norover.details:Exception: 503 Service Unavailable
+gamenote.alreadyrover.title:Es gibt bereits ein Bandit vorhanden
+gamenote.alreadyrover.explanation:Es gibt bereits einen Rover auf der LandKärtche
+gamenote.norover.details:Exception: 503 Service Unavailable
+gamenote.tradeself.title:nicht Austausch
+gamenote.tradeself.explanation:Sie handeln nicht mit sich selbst
+gamenote.tradeself.details:Exception: 503 Service Unavailable
 
 #Map
 map.throwdice.clickToThrow:Wirf den Würfel
