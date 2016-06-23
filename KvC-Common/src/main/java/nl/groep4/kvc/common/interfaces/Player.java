@@ -40,6 +40,7 @@ public interface Player extends Remote {
      * Removes a street of the amount of remaining streets
      * 
      * @throws RemoteException
+     *             any remotely invoked method
      */
     public default void removeRemainingStreet() throws RemoteException {
 	addRemainingStreets(-1);
@@ -79,8 +80,8 @@ public interface Player extends Remote {
     /**
      * Removes a village of the amount of remaining villages
      * 
-     * @throws RemoteExceptionany
-     *             remotely invoked method
+     * @throws RemoteException
+     *             any remotely invoked method
      */
     public default void removeRemainingVillage() throws RemoteException {
 	addRemainingVillages(-1);
@@ -179,11 +180,13 @@ public interface Player extends Remote {
     public Updatable<?> getUpdateable() throws RemoteException;
 
     /**
-     * @param T
-     *            the updateable type
+     * General method to update
+     * 
+     * @param type
+     *            the updatable type
      * @return the view of the game
      * @throws RemoteException
-     *             in case connection between RMI and client is lost
+     *             any remotely invoked method
      */
     public default <T extends Updatable<?>> T getUpdateable(Class<T> type) throws RemoteException {
 	return (T) getUpdateable();
@@ -195,6 +198,7 @@ public interface Player extends Remote {
      * @param selectables
      *            the items
      * @throws RemoteException
+     *             any remotely invoked method
      */
     public default void setSelectable(SelectState selectables) throws RemoteException {
 	getUpdateable(UpdateMap.class).setSelectable(selectables);
@@ -384,6 +388,7 @@ public interface Player extends Remote {
      * 
      * @return true or false on if the player has the most knights
      * @throws RemoteException
+     *             any remotely invoked method
      */
     public boolean hasMostRidders() throws RemoteException;
 
@@ -412,6 +417,7 @@ public interface Player extends Remote {
      * @param hasLongest
      *            true or false on if the player has the longest road
      * @throws RemoteException
+     *             any remotely invoked method
      */
     public void setHasLongestRoad(boolean hasLongest) throws RemoteException;
 }
