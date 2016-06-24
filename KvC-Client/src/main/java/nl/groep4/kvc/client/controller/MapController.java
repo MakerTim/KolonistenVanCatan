@@ -60,7 +60,7 @@ public class MapController implements Controller {
      */
     public void useCard(Card card) {
 	try {
-	    model.useCard(card);
+	    model.useCard(ClientRefrence.getThePlayer(), card);
 	} catch (RemoteException ex) {
 	    ExceptionManager.handleRemoteException(ex);
 	}

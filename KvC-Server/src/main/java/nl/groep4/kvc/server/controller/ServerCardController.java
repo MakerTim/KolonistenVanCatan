@@ -36,6 +36,10 @@ public class ServerCardController {
      */
     public void useCard(Player from, Card card) {
 	try {
+	    if (!from.useCard(card)) {
+		System.out.printf("Player %s used a card that he shouldn have.\n", from.getUsername());
+		return;
+	    }
 	    switch (card.getType()) {
 	    case FREE_STREETS:
 		controller.buildStreetModus(3);
@@ -52,7 +56,6 @@ public class ServerCardController {
 	    case VICTORY:
 		return;
 	    }
-	    from.useCard(card);
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();
 	}

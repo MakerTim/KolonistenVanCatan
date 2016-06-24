@@ -76,6 +76,12 @@ public class MonopolyPane implements PaneHolder, NotCloseable {
 	StackPane wool = new StackPane();
 	StackPane stone = new StackPane();
 
+	wood.setOnMouseClicked(click -> onWoodClick());
+	wheat.setOnMouseClicked(click -> onWheatClick());
+	ore.setOnMouseClicked(click -> onOreClick());
+	stone.setOnMouseClicked(click -> onBrickClick());
+	wool.setOnMouseClicked(click -> onWoolClick());
+
 	woodText.setAlignment(Pos.CENTER);
 	woodText.getChildren().addAll(cards.getWoodText(), cards.getWoodName());
 	oreText.setAlignment(Pos.CENTER);

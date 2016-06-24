@@ -18,16 +18,18 @@ public class ServerCardHolder {
 	List<CardType> types = CardFactory.getAllCards();
 	for (int i = 0; i < types.size(); i++) {
 	    CardType type = types.get(i);
-	    switch (type) {
-	    case FREE_STREETS:
-	    case INVENTION:
-	    case KNIGHT:
-	    case MONOPOLY:
-		cards.add(new ServerCard(type));
-		break;
-	    case VICTORY:
-		cards.add(new ServerVictoryCard(type, VictoryCardType.values()[i]));
-		break;
+	    for (int j = 0; j < type.getAmount(); j++) {
+		switch (type) {
+		case FREE_STREETS:
+		case INVENTION:
+		case KNIGHT:
+		case MONOPOLY:
+		    cards.add(new ServerCard(type));
+		    break;
+		case VICTORY:
+		    cards.add(new ServerVictoryCard(type, VictoryCardType.values()[j]));
+		    break;
+		}
 	    }
 	}
     }

@@ -80,15 +80,18 @@ public class ServerPlayer implements Player {
     }
 
     @Override
-    public void useCard(Card usedCard) throws RemoteException {
+    public boolean useCard(Card usedCard) throws RemoteException {
+	boolean hasCard = false;
 	Iterator<Card> cardIT = cards.iterator();
 	while (cardIT.hasNext()) {
 	    Card card = (Card) cardIT.next();
 	    if (card.getType() == usedCard.getType()) {
 		cardIT.remove();
+		hasCard = true;
 		break;
 	    }
 	}
+	return hasCard;
     }
 
     @Override
