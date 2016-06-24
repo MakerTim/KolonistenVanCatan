@@ -227,16 +227,16 @@ public class StockPane implements PaneHolder, UpdateStock {
 			    devCards.getChildren().add(getCathCard(card));
 			    break;
 			case LIBARY:
-			    devCards.getChildren().add(getCathCard(card));
+			    devCards.getChildren().add(getLibraryCard(card));
 			    break;
 			case MARKET:
-			    devCards.getChildren().add(getCathCard(card));
+			    devCards.getChildren().add(getMarketCard(card));
 			    break;
 			case PARLIAMENT:
-			    devCards.getChildren().add(getCathCard(card));
+			    devCards.getChildren().add(getParlemCard(card));
 			    break;
 			case UNIVERSITY:
-			    devCards.getChildren().add(getCathCard(card));
+			    devCards.getChildren().add(getUniCard(card));
 			    break;
 			default:
 			    break;
@@ -264,6 +264,78 @@ public class StockPane implements PaneHolder, UpdateStock {
 	    view.getController().useCard(card);
 	});
 	return cathCard;
+    }
+
+    /**
+     * Gets the resource for the cathedral card.
+     * 
+     * @return Image of the cathedral card.
+     */
+    public Node getUniCard(Card card) {
+	ImageView uniCard;
+	uniCard = new ImageView("img/cards/ont_uni.png");
+	uniCard.setFitHeight(100);
+	uniCard.setFitWidth(80);
+	uniCard.setOnMouseEntered(e -> updateInfo(TranslationManager.translate("cards.victory.info")));
+	uniCard.setOnMouseExited(e -> updateInfo(""));
+	uniCard.setOnMouseClicked(e -> {
+	    view.getController().useCard(card);
+	});
+	return uniCard;
+    }
+
+    /**
+     * Gets the resource for the cathedral card.
+     * 
+     * @return Image of the cathedral card.
+     */
+    public Node getMarketCard(Card card) {
+	ImageView marketCard;
+	marketCard = new ImageView("img/cards/card_market.png");
+	marketCard.setFitHeight(100);
+	marketCard.setFitWidth(80);
+	marketCard.setOnMouseEntered(e -> updateInfo(TranslationManager.translate("cards.victory.info")));
+	marketCard.setOnMouseExited(e -> updateInfo(""));
+	marketCard.setOnMouseClicked(e -> {
+	    view.getController().useCard(card);
+	});
+	return marketCard;
+    }
+
+    /**
+     * Gets the resource for the cathedral card.
+     * 
+     * @return Image of the cathedral card.
+     */
+    public Node getParlemCard(Card card) {
+	ImageView parlemCard;
+	parlemCard = new ImageView("img/cards/ont_parlem.png");
+	parlemCard.setFitHeight(100);
+	parlemCard.setFitWidth(80);
+	parlemCard.setOnMouseEntered(e -> updateInfo(TranslationManager.translate("cards.victory.info")));
+	parlemCard.setOnMouseExited(e -> updateInfo(""));
+	parlemCard.setOnMouseClicked(e -> {
+	    view.getController().useCard(card);
+	});
+	return parlemCard;
+    }
+
+    /**
+     * Gets the resource for the cathedral card.
+     * 
+     * @return Image of the cathedral card.
+     */
+    public Node getLibraryCard(Card card) {
+	ImageView libCard;
+	libCard = new ImageView("img/cards/card_library.png");
+	libCard.setFitHeight(100);
+	libCard.setFitWidth(80);
+	libCard.setOnMouseEntered(e -> updateInfo(TranslationManager.translate("cards.victory.info")));
+	libCard.setOnMouseExited(e -> updateInfo(""));
+	libCard.setOnMouseClicked(e -> {
+	    view.getController().useCard(card);
+	});
+	return libCard;
     }
 
     /**
