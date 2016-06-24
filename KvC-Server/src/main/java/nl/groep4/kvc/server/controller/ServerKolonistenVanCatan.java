@@ -109,6 +109,10 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	turn = 0;
     }
 
+    private void updateScores() {
+	new ServerScoreController(getPlayers(), getMap());
+    }
+
     @Override
     public List<Player> getPlayers() {
 	return players;
@@ -117,6 +121,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     @Override
     public void nextTurn() {
 	lastThrow = null;
+	updateScores();
 	turnController.nextTurn();
     }
 
@@ -137,6 +142,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     @Override
     public void placeBuilding(Player newOwner, Coordinate coord, BuildingType type) {
 	mapController.placeBuilding(newOwner, coord, type);
+	updateScores();
     }
 
     @Override
@@ -156,6 +162,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	if (getTurn().equals(turn)) {
 	    mapController.moveRoverTo(position);
 	}
+	updateScores();
     }
 
     @Override

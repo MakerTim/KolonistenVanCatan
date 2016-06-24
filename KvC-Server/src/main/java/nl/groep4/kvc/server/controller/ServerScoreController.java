@@ -8,6 +8,7 @@ import nl.groep4.kvc.common.interfaces.Card;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.VictoryCard;
 import nl.groep4.kvc.common.map.Building;
+import nl.groep4.kvc.common.map.Map;
 import nl.groep4.kvc.common.util.Scheduler;
 
 public class ServerScoreController {
@@ -18,12 +19,12 @@ public class ServerScoreController {
      * langste route = win
      */
 
-    private ServerKolonistenVanCatan controller;
     private List<Player> players;
+    private Map map;
 
-    public ServerScoreController(ServerKolonistenVanCatan controller) {
-	this.controller = controller;
-	this.players = controller.getPlayers();
+    public ServerScoreController(List<Player> players, Map map) {
+	this.players = players;
+	this.map = map;
 	updateScores();
     }
 
@@ -38,7 +39,7 @@ public class ServerScoreController {
 			    ++score;
 			}
 		    }
-		    for (Building building : controller.getMap().getAllBuildings()) {
+		    for (Building building : map.getAllBuildings()) {
 			if (player.equals(building.getOwner())) {
 			    switch (building.getBuildingType()) {
 			    case CITY:
