@@ -14,6 +14,12 @@ import nl.groep4.kvc.common.util.Scheduler;
 import nl.groep4.kvc.server.ServerStarter;
 import nl.groep4.kvc.server.util.ConnectionUtil;
 
+/**
+ * Console arguments used for testing
+ * 
+ * @author Tim
+ * @version 1.0
+ */
 public class ArgumentParser {
 
     private String cmd;

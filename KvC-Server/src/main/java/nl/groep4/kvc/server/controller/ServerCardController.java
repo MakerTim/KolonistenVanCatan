@@ -7,13 +7,33 @@ import nl.groep4.kvc.common.interfaces.Card;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.UpdateMap;
 
+/**
+ * Uses all type of cards and executes them.
+ * 
+ * @author Tim
+ * @version 1.0
+ */
 public class ServerCardController {
     private ServerKolonistenVanCatan controller;
 
+    /**
+     * Gets current controller.
+     * 
+     * @param serverKolonistenVanCatan
+     *            Current controller.
+     */
     public ServerCardController(ServerKolonistenVanCatan serverKolonistenVanCatan) {
 	this.controller = serverKolonistenVanCatan;
     }
 
+    /**
+     * Uses selected card.
+     * 
+     * @param from
+     *            From whom the card is.
+     * @param card
+     *            Type of card that will be used.
+     */
     public void useCard(Player from, Card card) {
 	try {
 	    switch (card.getType()) {
@@ -39,6 +59,14 @@ public class ServerCardController {
 	controller.updateCards();
     }
 
+    /**
+     * Uses invention.
+     * 
+     * @param who
+     *            Player to give resources.
+     * @param resource
+     *            Resource to give.
+     */
     public void useInvention(Player who, Resource resource) {
 	try {
 	    who.giveResource(resource, 2);
@@ -49,6 +77,15 @@ public class ServerCardController {
 	controller.updateResources();
     }
 
+    /**
+     * When this carded is pulled player gets one type of resource of all
+     * players.
+     * 
+     * @param who
+     *            Player who gets the resources.
+     * @param resource
+     *            Selected type of resource.
+     */
     public void targetMonopoly(Player who, Resource resource) {
 	for (Player pl : controller.getPlayers()) {
 	    try {
