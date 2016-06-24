@@ -40,7 +40,7 @@ public class StockPane implements PaneHolder, UpdateStock {
 
     StackPane cardPane;
     ScrollPane development;
-    HBox devCards;
+    HBox devCards = new HBox();
     HBox resCards;
     VBox woodText;
     VBox oreText;
@@ -106,7 +106,6 @@ public class StockPane implements PaneHolder, UpdateStock {
 
 	resCards = new HBox();
 	cardPane = new StackPane();
-	devCards = new HBox();
 	allThings = new VBox();
 	buttons = new VBox();
 	hideCards = new MenuButton(TranslationManager.translate("map.stock.hide"));
