@@ -45,6 +45,12 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     private Throw lastThrow;
     private GameState state;
 
+    /**
+     * Gives a list of players.
+     * 
+     * @param players
+     *            List of players on the server.
+     */
     public ServerKolonistenVanCatan(List<Player> players) {
 	System.out.println("Starting game!");
 	this.players = players;
@@ -87,6 +93,12 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	return mapController.isMovingRover();
     }
 
+    /**
+     * Sets the game state.
+     * 
+     * @param state
+     *            State of the game.
+     */
     public void setState(GameState state) {
 	this.state = state;
     }
