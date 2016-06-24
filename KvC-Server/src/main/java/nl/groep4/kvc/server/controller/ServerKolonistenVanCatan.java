@@ -253,6 +253,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     @Override
     public void buyCard() {
 	shopController.buyCard();
+	updateScores();
     }
 
     @Override
@@ -260,6 +261,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	if (getTurn().equals(player)) {
 	    cardController.useCard(player, card);
 	}
+	updateScores();
     }
 
     @Override
@@ -294,6 +296,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	updateRound();
 	updateTurn();
 	updateTrades();
+	updateScores();
     }
 
     @Override
@@ -309,6 +312,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	    });
 	}
 	Scheduler.runAsyncdSync(runs);
+	updateScores();
     }
 
     public void updateResources() {
