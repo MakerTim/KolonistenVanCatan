@@ -204,6 +204,7 @@ public class StockPane implements PaneHolder, UpdateStock {
     @Override
     public void updateStock(Player pl, List<Card> cards) {
 	Platform.runLater(() -> {
+	    devCards.getChildren().clear();
 	    if (ClientRefrence.getThePlayer() == null || ClientRefrence.getThePlayer().equals(pl)) {
 		for (Card card : cards) {
 		    CardType type = card.getType();
