@@ -87,6 +87,12 @@ public class InventionPane implements PaneHolder, NotCloseable {
 	woolText.setAlignment(Pos.CENTER);
 	woolText.getChildren().addAll(cards.getWoolText(), cards.getWoolName());
 
+	wood.setOnMouseClicked(click -> onWoodClick());
+	wheat.setOnMouseClicked(click -> onWheatClick());
+	ore.setOnMouseClicked(click -> onOreClick());
+	stone.setOnMouseClicked(click -> onBrickClick());
+	wool.setOnMouseClicked(click -> onWoolClick());
+
 	wood.getChildren().addAll(cards.getWoodCard(), woodText);
 	wheat.getChildren().addAll(cards.getWheatCard(), wheatText);
 	ore.getChildren().addAll(cards.getOreCard(), oreText);
