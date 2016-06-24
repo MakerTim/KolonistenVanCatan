@@ -93,6 +93,7 @@ public class ServerTurnController {
 		return;
 	    }
 	    Player pl = controller.getTurn();
+	    pl.getUpdateable(UpdateMap.class).blockActions();
 	    controller.highlightBuildings(controller.getTurn(), BuildingType.VILLAGE);
 	    pl.addRemainingVillages(1);
 	} catch (Exception ex) {

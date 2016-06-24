@@ -80,7 +80,7 @@ public class ServerScoreController {
 		    most = pl;
 		    highest = knights;
 		} else {
-		    most.setMostRidder(false);
+		    pl.setMostRidder(false);
 		}
 	    } catch (RemoteException ex) {
 		ex.printStackTrace();

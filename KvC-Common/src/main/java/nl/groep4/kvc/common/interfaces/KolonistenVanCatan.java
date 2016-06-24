@@ -198,7 +198,7 @@ public interface KolonistenVanCatan extends Remote {
      * @throws RemoteException
      *             Any remotely invoked method.
      */
-    public void useCard(Card card) throws RemoteException;
+    public void useCard(Player player, Card card) throws RemoteException;
 
     /**
      * Execute the trade.
