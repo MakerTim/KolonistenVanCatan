@@ -38,10 +38,8 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     ServerMapController mapController;
     ServerCardController cardController;
 
-    // card not used
-    // rover not taking resrouces
-    // 10 = win
-    // Invension / monopoly lockes screen
+    // TODO: rover not taking resrouces
+    // TODO:Invension / monopoly lockes screen
 
     private final List<Player> players;
     private ServerMap map = new ServerMap();
@@ -115,7 +113,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     }
 
     private void updateScores() {
-	new ServerScoreController(getPlayers(), getMap());
+	new ServerScoreController(getPlayers(), getMap()).updateScores();
 	List<Runnable> runs = new ArrayList<>();
 	for (Player pl : getPlayers()) {
 	    runs.add(() -> {
@@ -129,6 +127,26 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	    });
 	}
 	Scheduler.runAsyncdSync(runs);
+	for (Player pl : getPlayers()) {
+	    try {
+		if (pl.getPoints() >= 10) {
+		    runs = new ArrayList<>();
+		    setState(GameState.END);
+		    runs.add(() -> {
+			for (Player player : getPlayers()) {
+			    try {
+				player.getUpdateable(UpdateMap.class).openEnd(pl);
+			    } catch (RemoteException ex) {
+				ex.printStackTrace();
+			    }
+			}
+		    });
+		    Scheduler.runAsyncdSync(runs);
+		}
+	    } catch (RemoteException ex) {
+		ex.printStackTrace();
+	    }
+	}
     }
 
     @Override

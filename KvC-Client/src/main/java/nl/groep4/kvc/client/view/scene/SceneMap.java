@@ -41,6 +41,7 @@ import nl.groep4.kvc.client.view.pane.ScoreRoundPane;
 import nl.groep4.kvc.client.view.pane.StockPane;
 import nl.groep4.kvc.client.view.pane.TradePane;
 import nl.groep4.kvc.client.view.pane.TurnInfoPane;
+import nl.groep4.kvc.client.view.pane.WinPane;
 import nl.groep4.kvc.common.enumeration.BuildingType;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.enumeration.SelectState;
@@ -204,6 +205,11 @@ public class SceneMap implements SceneHolder, UpdateMap {
 
     private void onBuyClick() {
 	openBuyPane();
+    }
+
+    @Override
+    public void openEnd(Player pl) {
+	setOverlay(new WinPane(pl));
     }
 
     @Override

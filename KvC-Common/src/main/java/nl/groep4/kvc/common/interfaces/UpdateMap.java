@@ -165,4 +165,6 @@ public interface UpdateMap extends Updatable<Map>, UpdateDice, UpdateStock, Upda
      *             Any remotely invoked method.
      */
     public void setSelectable(SelectState selectables) throws RemoteException;
+
+    public void openEnd(Player pl) throws RemoteException;
 }

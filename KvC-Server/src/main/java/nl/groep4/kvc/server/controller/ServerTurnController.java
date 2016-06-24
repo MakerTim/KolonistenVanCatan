@@ -27,8 +27,6 @@ public class ServerTurnController {
 	this.controller = serverKolonistenVanCatan;
     }
 
-    // TODO: Punten berekenen
-
     public void nextTurn() {
 	if (controller.newTurn() >= controller.getPlayers().size() - 1) {
 	    controller.resetTurn();

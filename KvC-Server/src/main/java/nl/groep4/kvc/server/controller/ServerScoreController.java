@@ -25,10 +25,9 @@ public class ServerScoreController {
     public ServerScoreController(List<Player> players, Map map) {
 	this.players = players;
 	this.map = map;
-	updateScores();
     }
 
-    private void updateScores() {
+    public void updateScores() {
 	Scheduler.runAsync(() -> {
 	    Player highestKnight = getMostKnights();
 	    for (Player player : players) {
