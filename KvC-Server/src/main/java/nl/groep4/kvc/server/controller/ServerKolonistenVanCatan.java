@@ -38,9 +38,6 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     ServerMapController mapController;
     ServerCardController cardController;
 
-    // TODO: rover not taking resrouces
-    // TODO:Invension / monopoly lockes screen
-
     private final List<Player> players;
     private ServerMap map = new ServerMap();
     private int round = -1;

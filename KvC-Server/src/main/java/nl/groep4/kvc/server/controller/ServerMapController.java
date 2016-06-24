@@ -181,6 +181,26 @@ public class ServerMapController {
 		    }
 		    land.placeRover();
 		    roverFrom = null;
+		    Set<Player> attached = new HashSet<>();
+		    for (Building building : land.getBuildings()) {
+			if (building.getOwner() != null) {
+			    attached.add(building.getOwner());
+			}
+		    }
+		    for (Player pl : attached) {
+			int amount = 0;
+			do {
+			    if (amount > 7) {
+				for (Resource resource : Resource.values()) {
+				    pl.takeResource(resource, pl.getResourceAmount(resource) / 2);
+				}
+			    }
+			    amount = 0;
+			    for (Resource resource : Resource.values()) {
+				amount += pl.getResourceAmount(resource);
+			    }
+			} while (amount > 7);
+		    }
 		    controller.getTurn().getUpdateable(UpdateMap.class).unblockActions();
 		    controller.getTurn().setSelectable(SelectState.TILE);
 		}
