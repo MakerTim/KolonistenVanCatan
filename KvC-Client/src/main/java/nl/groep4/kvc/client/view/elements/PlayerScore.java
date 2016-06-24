@@ -174,15 +174,13 @@ public class PlayerScore {
 	}
 	try {
 	    scoreLabel.setText(Integer.toString(player.getPoints()));
+	    bottom.getChildren().remove(ridderIcon);
 	    if (player.hasMostRidders()) {
 		bottom.getChildren().add(ridderIcon);
-	    } else {
-		bottom.getChildren().remove(ridderIcon);
 	    }
+	    bottom.getChildren().remove(roadIcon);
 	    if (player.hasLongestRoad()) {
 		bottom.getChildren().add(roadIcon);
-	    } else {
-		bottom.getChildren().remove(roadIcon);
 	    }
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();
