@@ -114,7 +114,7 @@ public class ServerTurnController {
     }
 
     public void endGame() {
-	// TODO: ENDGAME?
+	System.out.println("La fin.");
     }
 
     public void fixButtons() {
