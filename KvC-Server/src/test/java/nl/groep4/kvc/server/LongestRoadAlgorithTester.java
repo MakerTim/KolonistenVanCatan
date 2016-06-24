@@ -2,9 +2,11 @@ package nl.groep4.kvc.server;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.Before;
+import java.rmi.RemoteException;
+
 import org.junit.Test;
 
+import nl.groep4.kvc.common.enumeration.Color;
 import nl.groep4.kvc.common.enumeration.Direction;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.map.Map;
@@ -22,14 +24,21 @@ public class LongestRoadAlgorithTester {
 	return map;
     }
 
-    @Before
     public void setupMap() {
 	map = new ServerMap();
 	map.createMap();
 
 	Player makerTim = new ServerPlayer("MakerTim");
 	Player bachir = new ServerPlayer("Bachir");
+
 	Player lisa = new ServerPlayer("Lisa");
+	try {
+	    makerTim.setColor(Color.ORANGE);
+	    makerTim.setColor(Color.RED);
+	    makerTim.setColor(Color.BLUE);
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
 	players = new Player[] { makerTim, bachir, lisa };
 
 	/* SETUP TEST ROADS */
@@ -64,6 +73,7 @@ public class LongestRoadAlgorithTester {
 
     @Test
     public void playerStreetAmount() {
+	setupMap();
 	assertEquals(9, map.getAllStreets().stream().filter(street -> {
 	    return street.getOwner() != null && street.getOwner().equals(players[0]);
 	}).count());
@@ -77,11 +87,29 @@ public class LongestRoadAlgorithTester {
 
     @Test
     public void algorithmCheck() {
+	setupMap();
+	LongestRoadAlgorith lra = new LongestRoadAlgorith(map);
+	java.util.Map<Player, Integer> roadLenght = lra.getLongestRoad();
+	assertEquals("MakerTim route (orange).", 8, roadLenght.get(players[0]).intValue());
+	assertEquals("Bachir route (blue).", 3, roadLenght.get(players[1]).intValue());
+	assertEquals("Lisa route (red).", 7, roadLenght.get(players[2]).intValue());
+    }
+
+    @Test
+    public void algorithmDoubleCheck() {
+	setupMap();
+	// Set lisa one longer
+	Tile tile$0_0 = map.getTile(0, 0);
+	tile$0_0.getStreet(Direction.SOUTH_WEST).setOwner(players[2]);
+	// Extra one sized road
+	tile$0_0.getStreet(Direction.SOUTH_EAST).setOwner(players[02]);
+
 	LongestRoadAlgorith lra = new LongestRoadAlgorith(map);
 	java.util.Map<Player, Integer> roadLenght = lra.getLongestRoad();
 	assertEquals("MakerTim route (orange).", 8, roadLenght.get(players[0]).intValue());
 	assertEquals("Bachir route (blue).", 3, roadLenght.get(players[1]).intValue());
 	assertEquals("Lisa route (red).", 8, roadLenght.get(players[2]).intValue());
+
     }
 
 }
