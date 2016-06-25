@@ -281,6 +281,7 @@ public class MapController implements Controller {
     public Throw lastThrow() {
 	try {
 	    return model.getLastThrow();
+	} catch (NullPointerException ex) {
 	} catch (Exception ex) {
 	    ex.printStackTrace();
 	}
