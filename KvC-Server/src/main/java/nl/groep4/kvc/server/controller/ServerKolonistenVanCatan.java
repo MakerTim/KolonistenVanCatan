@@ -61,7 +61,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	shopController = new ServerShopController(this);
 	mapController = new ServerMapController(this);
 	cardController = new ServerCardController(this);
-	scoreController = new ServerScoreController(this);
+	scoreController = new ServerScoreController(getPlayers(), getMap());
 	players.sort((pl1, pl2) -> {
 	    return Integer.compare(pl1.hashCode(), pl2.hashCode());
 	});

@@ -11,7 +11,6 @@ import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.VictoryCard;
 import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Map;
-import nl.groep4.kvc.common.util.CollectionUtil;
 import nl.groep4.kvc.common.util.Scheduler;
 import nl.groep4.kvc.server.util.RoadFinder;
 
