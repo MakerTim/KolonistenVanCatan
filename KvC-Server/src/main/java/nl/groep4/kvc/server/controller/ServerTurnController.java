@@ -27,8 +27,6 @@ public class ServerTurnController {
 	this.controller = serverKolonistenVanCatan;
     }
 
-    // TODO: Punten berekenen
-
     public void nextTurn() {
 	if (controller.newTurn() >= controller.getPlayers().size() - 1) {
 	    controller.resetTurn();
@@ -93,6 +91,7 @@ public class ServerTurnController {
 		return;
 	    }
 	    Player pl = controller.getTurn();
+	    pl.getUpdateable(UpdateMap.class).blockActions();
 	    controller.highlightBuildings(controller.getTurn(), BuildingType.VILLAGE);
 	    pl.addRemainingVillages(1);
 	} catch (Exception ex) {
@@ -115,7 +114,7 @@ public class ServerTurnController {
     }
 
     public void endGame() {
-	// TODO: ENDGAME?
+	System.out.println("La fin.");
     }
 
     public void fixButtons() {

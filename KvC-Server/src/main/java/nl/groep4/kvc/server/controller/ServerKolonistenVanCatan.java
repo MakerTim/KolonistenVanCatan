@@ -47,6 +47,12 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     private Throw lastThrow;
     private GameState state;
 
+    /**
+     * Gives a list of players.
+     * 
+     * @param players
+     *            List of players on the server.
+     */
     public ServerKolonistenVanCatan(List<Player> players) {
 	System.out.println("Starting game!");
 	this.players = players;
@@ -90,6 +96,12 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	return mapController.isMovingRover();
     }
 
+    /**
+     * Sets the game state.
+     * 
+     * @param state
+     *            State of the game.
+     */
     public void setState(GameState state) {
 	this.state = state;
     }
@@ -112,6 +124,43 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	turn = 0;
     }
 
+    private void updateScores() {
+	new ServerScoreController(getPlayers(), getMap()).updateScores();
+	List<Runnable> runs = new ArrayList<>();
+	for (Player pl : getPlayers()) {
+	    runs.add(() -> {
+		for (Player player : getPlayers()) {
+		    try {
+			pl.getUpdateable(UpdateMap.class).updateScore(player, player.getPoints());
+		    } catch (RemoteException ex) {
+			ex.printStackTrace();
+		    }
+		}
+	    });
+	}
+	Scheduler.runAsyncdSync(runs);
+	for (Player pl : getPlayers()) {
+	    try {
+		if (pl.getPoints() >= 10) {
+		    runs = new ArrayList<>();
+		    setState(GameState.END);
+		    runs.add(() -> {
+			for (Player player : getPlayers()) {
+			    try {
+				player.getUpdateable(UpdateMap.class).openEnd(pl);
+			    } catch (RemoteException ex) {
+				ex.printStackTrace();
+			    }
+			}
+		    });
+		    Scheduler.runAsyncdSync(runs);
+		}
+	    } catch (RemoteException ex) {
+		ex.printStackTrace();
+	    }
+	}
+    }
+
     @Override
     public List<Player> getPlayers() {
 	return players;
@@ -120,6 +169,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     @Override
     public void nextTurn() {
 	lastThrow = null;
+	updateScores();
 	turnController.nextTurn();
     }
 
@@ -140,6 +190,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     @Override
     public void placeBuilding(Player newOwner, Coordinate coord, BuildingType type) {
 	mapController.placeBuilding(newOwner, coord, type);
+	updateScores();
     }
 
     @Override
@@ -159,6 +210,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	if (getTurn().equals(turn)) {
 	    mapController.moveRoverTo(position);
 	}
+	updateScores();
     }
 
     @Override
@@ -231,11 +283,15 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     @Override
     public void buyCard() {
 	shopController.buyCard();
+	updateScores();
     }
 
     @Override
-    public void useCard(Card card) throws RemoteException {
-	cardController.useCard(getTurn(), card);
+    public void useCard(Player player, Card card) throws RemoteException {
+	if (getTurn().equals(player)) {
+	    cardController.useCard(player, card);
+	}
+	updateScores();
     }
 
     @Override
@@ -270,6 +326,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	updateRound();
 	updateTurn();
 	updateTrades();
+	updateScores();
     }
 
     @Override
@@ -285,6 +342,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	    });
 	}
 	Scheduler.runAsyncdSync(runs);
+	updateScores();
     }
 
     public void updateResources() {

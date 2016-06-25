@@ -19,6 +19,12 @@ import nl.groep4.kvc.common.map.Map;
  */
 public interface KolonistenVanCatan extends Remote {
 
+    /**
+     * Creates the map.
+     * 
+     * @throws RemoteException
+     *             Any remotely invoked method.
+     */
     public void createMap() throws RemoteException;
 
     /**
@@ -26,7 +32,7 @@ public interface KolonistenVanCatan extends Remote {
      * 
      * @return Gets current round.
      * @throws RemoteException
-     *             any remotely invoked method.
+     *             Any remotely invoked method.
      */
     public int getRound() throws RemoteException;
 
@@ -198,7 +204,7 @@ public interface KolonistenVanCatan extends Remote {
      * @throws RemoteException
      *             Any remotely invoked method.
      */
-    public void useCard(Card card) throws RemoteException;
+    public void useCard(Player player, Card card) throws RemoteException;
 
     /**
      * Execute the trade.
@@ -312,7 +318,20 @@ public interface KolonistenVanCatan extends Remote {
      */
     public void moveToRover(Player turn, Coordinate position) throws RemoteException;
 
+    /**
+     * Gets last throw.
+     * 
+     * @return Last throw.
+     * @throws RemoteException
+     *             Any remotely invoked method.
+     */
     public Throw getLastThrow() throws RemoteException;
 
+    /**
+     * Updates resources.
+     * 
+     * @throws RemoteException
+     *             Any remotely invoked method.
+     */
     public void updateResources() throws RemoteException;
 }

@@ -237,7 +237,7 @@ public interface Player extends Remote {
      * @throws RemoteException
      *             Any remotely invoked method.
      */
-    public void useCard(Card usedCard) throws RemoteException;
+    public boolean useCard(Card usedCard) throws RemoteException;
 
     /**
      * Gets a list of all the cards from the player.
@@ -392,7 +392,7 @@ public interface Player extends Remote {
      * @throws RemoteException
      *             Any remotely invoked method.
      */
-    public boolean hasMostRidders() throws RemoteException;
+    public boolean hasMostKnights() throws RemoteException;
 
     /**
      * Sets that the player has the most knights.

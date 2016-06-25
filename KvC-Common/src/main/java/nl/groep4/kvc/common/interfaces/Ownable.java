@@ -3,7 +3,7 @@ package nl.groep4.kvc.common.interfaces;
 /**
  * Tells items ownable by player.
  * 
- * @version 1.1
+ * @version 1.2
  * @author Tim
  */
 public interface Ownable {
@@ -15,6 +15,7 @@ public interface Ownable {
     public Player getOwner();
 
     /**
+     * Sets owner.
      * 
      * @param player
      *            Sets owner of current object.
