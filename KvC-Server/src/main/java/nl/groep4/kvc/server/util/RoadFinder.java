@@ -40,7 +40,6 @@ public class RoadFinder {
     private void findRoads() {
 	roads = new HashSet<>();
 	for (Street street : streetsToCheck) {
-	    /* START om ConcurrentModificationException te voorkomen */
 	    boolean skip = false;
 	    for (Road road : roads) {
 		if (road.hasStreet(street)) {
@@ -51,7 +50,6 @@ public class RoadFinder {
 	    if (skip) {
 		continue;
 	    }
-	    /* END om ConcurrentModificationException te voorkomen */
 	    Set<Street> road = new HashSet<>();
 	    getAllConnected(street, road);
 	    roads.add(new Road(road));

@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.rmi.RemoteException;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import nl.groep4.kvc.common.enumeration.Color;
@@ -24,6 +25,7 @@ public class LongestRoadAlgorithTester {
 	return map;
     }
 
+    @Before
     public void setupMap() {
 	map = new ServerMap();
 	map.createMap();
@@ -106,7 +108,6 @@ public class LongestRoadAlgorithTester {
 	assertEquals("MakerTim route (orange).", 8, roadLenght.get(players[0]).intValue());
 	assertEquals("Bachir route (blue).", 3, roadLenght.get(players[1]).intValue());
 	assertEquals("Lisa route (red).", 8, roadLenght.get(players[2]).intValue());
-	setupMap();
     }
 
 }
