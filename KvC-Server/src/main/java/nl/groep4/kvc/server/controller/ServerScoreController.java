@@ -1,7 +1,9 @@
 package nl.groep4.kvc.server.controller;
 
 import java.rmi.RemoteException;
+
 import java.util.List;
+import java.util.Map.Entry;
 
 import nl.groep4.kvc.common.enumeration.CardType;
 import nl.groep4.kvc.common.interfaces.Card;
@@ -9,7 +11,9 @@ import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.VictoryCard;
 import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Map;
+import nl.groep4.kvc.common.util.CollectionUtil;
 import nl.groep4.kvc.common.util.Scheduler;
+import nl.groep4.kvc.server.util.RoadFinder;
 
 public class ServerScoreController {
 
@@ -29,7 +33,8 @@ public class ServerScoreController {
 
     public void updateScores() {
 	Scheduler.runAsync(() -> {
-	    Player highestKnight = getMostKnights();
+	    checkMostKnights();
+	    checkLongestRoute();
 	    for (Player player : players) {
 		try {
 		    int score = 0;
@@ -51,7 +56,10 @@ public class ServerScoreController {
 			    }
 			}
 		    }
-		    if (player.equals(highestKnight)) {
+		    if (player.hasLongestRoad()) {
+			++score;
+		    }
+		    if (player.hasMostKnights()) {
 			++score;
 		    }
 		    player.setPoints(score);
@@ -62,7 +70,31 @@ public class ServerScoreController {
 	});
     }
 
-    private Player getMostKnights() {
+    private void checkLongestRoute() {
+	Player longest = null;
+	RoadFinder roads = new RoadFinder(map);
+	int length = 5;
+	try {
+	    for (Entry<Player, Integer> roadLenght : roads.getLongestRoadByPlayer().entrySet()) {
+		if (roadLenght.getValue() == length) {
+		    longest = null;
+		    roadLenght.getKey().setHasLongestRoad(false);
+		} else if (length < roadLenght.getValue()) {
+		    longest = roadLenght.getKey();
+		    length = roadLenght.getValue();
+		} else {
+		    roadLenght.getKey().setHasLongestRoad(false);
+		}
+	    }
+	    if (longest != null) {
+		longest.setHasLongestRoad(true);
+	    }
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
+    }
+
+    private void checkMostKnights() {
 	Player most = null;
 	int highest = 2;
 	for (Player pl : players) {
@@ -75,6 +107,7 @@ public class ServerScoreController {
 		}
 		if (highest == knights) {
 		    most = null;
+		    pl.setMostRidder(false);
 		} else if (highest < knights) {
 		    most = pl;
 		    highest = knights;
@@ -92,6 +125,5 @@ public class ServerScoreController {
 		ex.printStackTrace();
 	    }
 	}
-	return most;
     }
 }

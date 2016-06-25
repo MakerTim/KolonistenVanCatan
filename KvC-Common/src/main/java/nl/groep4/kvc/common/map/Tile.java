@@ -25,6 +25,15 @@ public interface Tile extends Serializable, Locatable {
     public Street getStreet(Direction direction);
 
     /**
+     * Gets the direction of the given street, will be null if not found.
+     * 
+     * @param street
+     *            the street attached to the tile
+     * @return the direction of the street, null if not found
+     */
+    public Direction getDirection(Street street);
+
+    /**
      * Gets building.
      *
      * @param point
@@ -32,6 +41,15 @@ public interface Tile extends Serializable, Locatable {
      * @return Gets Interactable building points.
      */
     public Building getBuilding(Point point);
+
+    /**
+     * Gets the point of the given building, will be null if not found.
+     * 
+     * @param building
+     *            the building attached to the tile
+     * @return the point of the building, null if not found
+     */
+    public Point getPoint(Building building);
 
     /**
      * Gets streets.

@@ -27,4 +27,11 @@ public interface Street extends Ownable, Serializable, Locatable {
      */
     public Tile[] getConnectedTiles();
 
+    /**
+     * Gets all streets that are connected to this street
+     * 
+     * @return all streets that are connected
+     */
+    public Street[] getConnectedStreets();
+
 }
