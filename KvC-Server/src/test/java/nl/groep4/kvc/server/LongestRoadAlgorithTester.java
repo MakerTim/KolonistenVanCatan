@@ -13,7 +13,7 @@ import nl.groep4.kvc.common.map.Map;
 import nl.groep4.kvc.common.map.Tile;
 import nl.groep4.kvc.server.model.ServerPlayer;
 import nl.groep4.kvc.server.model.map.ServerMap;
-import nl.groep4.kvc.server.util.LongestRoadAlgorith;
+import nl.groep4.kvc.server.util.RoadFinder;
 
 public class LongestRoadAlgorithTester {
 
@@ -86,9 +86,8 @@ public class LongestRoadAlgorithTester {
 
     @Test
     public void algorithmCheck() {
-	setupMap();
-	LongestRoadAlgorith lra = new LongestRoadAlgorith(map);
-	java.util.Map<Player, Integer> roadLenght = lra.getLongestRoad();
+	RoadFinder lra = new RoadFinder(map);
+	java.util.Map<Player, Integer> roadLenght = lra.getLongestRoadByPlayer();
 	assertEquals("MakerTim route (orange).", 8, roadLenght.get(players[0]).intValue());
 	assertEquals("Bachir route (blue).", 3, roadLenght.get(players[1]).intValue());
 	assertEquals("Lisa route (red).", 7, roadLenght.get(players[2]).intValue());
@@ -96,19 +95,18 @@ public class LongestRoadAlgorithTester {
 
     @Test
     public void algorithmDoubleCheck() {
-	setupMap();
 	// Set lisa one longer
 	Tile tile$0_0 = map.getTile(0, 0);
 	tile$0_0.getStreet(Direction.SOUTH_WEST).setOwner(players[2]);
 	// Extra one sized road
-	tile$0_0.getStreet(Direction.SOUTH_EAST).setOwner(players[02]);
+	tile$0_0.getStreet(Direction.SOUTH_EAST).setOwner(players[0]);
 
-	LongestRoadAlgorith lra = new LongestRoadAlgorith(map);
-	java.util.Map<Player, Integer> roadLenght = lra.getLongestRoad();
+	RoadFinder lra = new RoadFinder(map);
+	java.util.Map<Player, Integer> roadLenght = lra.getLongestRoadByPlayer();
 	assertEquals("MakerTim route (orange).", 8, roadLenght.get(players[0]).intValue());
 	assertEquals("Bachir route (blue).", 3, roadLenght.get(players[1]).intValue());
 	assertEquals("Lisa route (red).", 8, roadLenght.get(players[2]).intValue());
-
+	setupMap();
     }
 
 }
