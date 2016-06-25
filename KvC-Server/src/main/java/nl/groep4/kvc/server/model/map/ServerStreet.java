@@ -1,5 +1,9 @@
 package nl.groep4.kvc.server.model.map;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import nl.groep4.kvc.common.enumeration.Direction;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Street;
@@ -63,6 +67,27 @@ public class ServerStreet implements Street {
     @Override
     public Tile[] getConnectedTiles() {
 	return tiles;
+    }
+
+    @Override
+    public Street[] getConnectedStreets() {
+	List<Street> connectedStreets = new ArrayList<>();
+	Tile[] connectedTiles = getConnectedTiles();
+	Direction[] directions = new Direction[connectedTiles.length];
+	for (int i = 0; i < connectedTiles.length; i++) {
+	    Tile tile = connectedTiles[i];
+	    directions[i] = tile.getDirection(this);
+	}
+	for (int i = 0; i < directions.length; i++) {
+	    Direction[] connected = directions[i].getConnected();
+	    for (Direction direction : connected) {
+		Street connectedStreet = connectedTiles[i].getStreet(direction);
+		if (connectedStreet != null) {
+		    connectedStreets.add(connectedStreet);
+		}
+	    }
+	}
+	return connectedStreets.toArray(new Street[connectedStreets.size()]);
     }
 
     @Override
