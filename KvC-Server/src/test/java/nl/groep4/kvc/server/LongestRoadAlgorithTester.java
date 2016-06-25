@@ -33,7 +33,7 @@ public class LongestRoadAlgorithTester {
 	Player lisa = new ServerPlayer("Lisa");
 	try {
 	    makerTim.setColor(Color.ORANGE);
-	    bachir.setColor(Color.BLUE);
+	    bachir.setColor(Color.GREEN);
 	    lisa.setColor(Color.RED);
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();

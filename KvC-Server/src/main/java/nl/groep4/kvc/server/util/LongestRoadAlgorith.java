@@ -15,6 +15,7 @@ import nl.groep4.kvc.common.map.Tile;
 public class LongestRoadAlgorith {
 
     private Set<Street> streetsToCheck;
+    private Set<Set<Street>> routes;
     java.util.Map<Player, Integer> longestCheck = new HashMap<>();
 
     public LongestRoadAlgorith(Map map) {
@@ -24,46 +25,38 @@ public class LongestRoadAlgorith {
 		streetsToCheck.add(street);
 	    }
 	}
-	startCounting();
+	findRouds();
+
     }
 
-    private void startCounting() {
-	Set<Street> streets = new HashSet<>();
+    private void findRouds() {
+	routes = new HashSet<>();
 	for (Street street : streetsToCheck) {
-	    int lenght = countRoute(street, 0, true, streets);
-
-	    Player owner = street.getOwner();
-	    if (!longestCheck.containsKey(owner)) {
-		longestCheck.put(owner, 0);
+	    /* START om ConcurrentModificationException te voorkomen */
+	    boolean skip = false;
+	    for (Set<Street> route : routes) {
+		if (route.contains(street)) {
+		    skip = true;
+		}
 	    }
-	    longestCheck.put(owner, Math.max(lenght, longestCheck.get(owner)));
+	    if (skip) {
+		continue;
+	    }
+	    /* END om ConcurrentModificationException te voorkomen */
+	    Set<Street> route = new HashSet<>();
+	    getAllConnected(street, route);
+	    routes.add(route);
 	}
     }
 
-    private int countRoute(Street street, int count, boolean init, Set<Street> done) {
-	List<Street> connected = connectedStreets(street, done);
-	done.add(street);
-	int routeLenght = count - 1;
-	List<Integer> ints = new ArrayList<>();
-	for (int i = 0; i < connected.size(); i++) {
-	    ints.add(countRoute(connected.get(i), count + 1, false, done));
+    private void getAllConnected(Street street, Set<Street> route) {
+	List<Street> connected = connectedStreets(street, route);
+	for (Street connectedStreet : connected) {
+	    getAllConnected(connectedStreet, route);
 	}
-	if (init) {
-	    for (int i : ints) {
-		routeLenght += i;
-	    }
-	} else {
-	    if (ints.size() == 1) {
-		routeLenght += ints.get(0);
-	    } else if (ints.size() > 1) {
-		ints.sort((i1, i2) -> Integer.compare(i1, i2));
-		routeLenght += ints.get(0);
-	    }
-	}
-	return routeLenght;
     }
 
-    private List<Street> connectedStreets(Street street, Set<Street> done) {
+    private List<Street> connectedStreets(Street street, Set<Street> route) {
 	List<Street> ret = new ArrayList<>();
 	Tile[] connectedTiles = street.getConnectedTiles();
 	Direction[] relativeDirections = new Direction[connectedTiles.length];
@@ -79,13 +72,14 @@ public class LongestRoadAlgorith {
 	    for (int j = 0; j < connected.length; j++) {
 		Street connectedStreet = connectedTiles[i].getStreet(connected[j]);
 		if (connectedStreet != null && connectedStreet.getOwner() == street.getOwner()) {
-		    if (!done.contains(connectedStreet)) {
+		    if (!route.contains(connectedStreet)) {
 			ret.add(connectedStreet);
-			done.add(connectedStreet);
+			route.add(connectedStreet);
 		    }
 		}
 	    }
 	}
+	route.add(street);
 	return ret;
     }
 

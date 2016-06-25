@@ -136,6 +136,8 @@ public class MapController implements Controller {
     public void placeStreet(Coordinate coord) {
 	try {
 	    model.placeStreet(ClientRefrence.getThePlayer(), coord);
+	} catch (NullPointerException ex) {
+	    System.out.println(coord);
 	} catch (RemoteException ex) {
 	    ExceptionManager.handleRemoteException(ex);
 	}

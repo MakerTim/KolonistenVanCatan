@@ -73,7 +73,7 @@ public class TestMapController extends MapController {
 		view.updateScore(ClientRefrence.getThePlayer(), 69);
 		view.updateTurn(ClientRefrence.getThePlayer(), TurnState.WAITING);
 		view.updateConfig();
-		view.setSelectable(SelectState.BANDIT);
+		view.setSelectable(SelectState.STREET);
 	    } catch (Exception ex) {
 		ex.printStackTrace();
 	    }
