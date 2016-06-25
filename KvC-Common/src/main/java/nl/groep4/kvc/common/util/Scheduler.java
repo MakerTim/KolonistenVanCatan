@@ -24,8 +24,10 @@ public class Scheduler {
     public static void runAsyncdSync(Runnable... runs) {
 	Thread[] threads = new Thread[runs.length];
 	for (int i = 0; i < runs.length; i++) {
-	    threads[i] = new Thread(runs[i]);
-	    threads[i].run();
+	    Thread thread = new Thread(runs[i]);
+	    thread.setName(String.format("AsyncSynced [%d/%d] from %s.", i, runs.length, caller()));
+	    thread.start();
+	    threads[i] = thread;
 	}
 	boolean running;
 	do {
@@ -64,16 +66,31 @@ public class Scheduler {
     public static void runSyncLater(Runnable run, long millis) {
 	runAsyncLater(() -> {
 	    Platform.runLater(run);
-	} , millis);
+	}, millis);
     }
 
     public static void runAsyncLater(Runnable run, long millis) {
-	new Thread(() -> {
+	Thread thread = new Thread(() -> {
 	    try {
 		Thread.sleep(millis);
 	    } catch (Exception ex) {
 	    }
 	    run.run();
-	}).start();
+	});
+
+	thread.setName(String.format("runAsyncLater from %s.", caller()));
+	thread.start();
+    }
+
+    private static String caller() {
+	String caller = "";
+	for (StackTraceElement call : Thread.currentThread().getStackTrace()) {
+	    if (!call.isNativeMethod() && !call.getClassName().equals(Scheduler.class.getName())
+		    && call.getLineNumber() > 0) {
+		caller = call.getClassName().replaceAll("(.+\\.)", "") + ".java:" + call.getLineNumber() + " ["
+			+ call.getMethodName() + "]";
+	    }
+	}
+	return caller;
     }
 }
