@@ -210,6 +210,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	    mapController.moveRoverTo(position);
 	}
 	updateScores();
+	updateResources();
     }
 
     @Override
