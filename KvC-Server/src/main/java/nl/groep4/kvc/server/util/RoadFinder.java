@@ -59,7 +59,7 @@ public class RoadFinder {
     private void getAllConnected(Street street, Set<Street> road) {
 	List<Street> connected = connectedStreets(street, road);
 	for (Street connectedStreet : connected) {
-	    getAllConnected(connectedStreet, road);
+	    getAllConnected(connectedStreet, new HashSet<>(road));
 	}
     }
 
