@@ -40,7 +40,7 @@ public class Scheduler {
 	    }
 	    if (running) {
 		try {
-		    Thread.sleep(100L);
+		    Thread.sleep(10L);
 		} catch (Exception ex) {
 		}
 	    }
