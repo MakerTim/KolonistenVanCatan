@@ -190,7 +190,6 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     @Override
     public void placeBuilding(Player newOwner, Coordinate coord, BuildingType type) {
 	mapController.placeBuilding(newOwner, coord, type);
-	updateScores();
     }
 
     @Override
@@ -368,6 +367,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 		for (Player player : getPlayers()) {
 		    try {
 			pl.getUpdateable(UpdateMap.class).updateStock(player, player.getCards());
+			System.out.println(player.getCards().size());
 		    } catch (Exception ex) {
 			ex.printStackTrace();
 		    }
