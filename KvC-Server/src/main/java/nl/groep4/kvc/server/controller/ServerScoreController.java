@@ -72,7 +72,7 @@ public class ServerScoreController {
     private void checkLongestRoute() {
 	Player longest = null;
 	RoadFinder roads = new RoadFinder(map);
-	int length = 5;
+	int length = 4;
 	try {
 	    for (Entry<Player, Integer> roadLenght : roads.getLongestRoadByPlayer().entrySet()) {
 		if (roadLenght.getValue() == length) {
