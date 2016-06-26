@@ -75,7 +75,7 @@ class Road {
      * @return the longest road
      */
     public int getLongestPath() {
-	int lenght = 0;
+	int lenght = 1;
 	for (Street corner : getCorners()) {
 	    lenght = Math.max(roadsFind(corner, new HashSet<>(), 0), lenght);
 	}
