@@ -56,10 +56,10 @@ public class ServerScoreController {
 			}
 		    }
 		    if (player.hasLongestRoad()) {
-			++score;
+			score += 2;
 		    }
 		    if (player.hasMostKnights()) {
-			++score;
+			score += 2;
 		    }
 		    player.setPoints(score);
 		} catch (RemoteException ex) {
