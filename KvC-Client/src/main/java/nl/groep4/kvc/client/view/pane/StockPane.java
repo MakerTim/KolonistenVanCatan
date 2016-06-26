@@ -3,7 +3,6 @@ package nl.groep4.kvc.client.view.pane;
 import java.util.EnumMap;
 import java.util.List;
 
-import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -202,50 +201,48 @@ public class StockPane implements PaneHolder, UpdateStock {
 
     @Override
     public void updateStock(Player pl, List<Card> cards) {
-	Platform.runLater(() -> {
+	if (ClientRefrence.getThePlayer() == null || ClientRefrence.getThePlayer().equals(pl)) {
 	    devCards.getChildren().clear();
-	    if (ClientRefrence.getThePlayer() == null || ClientRefrence.getThePlayer().equals(pl)) {
-		for (Card card : cards) {
-		    CardType type = card.getType();
-		    switch (type) {
-		    case FREE_STREETS:
-			devCards.getChildren().add(getRoadCard(card));
+	    for (Card card : cards) {
+		CardType type = card.getType();
+		switch (type) {
+		case FREE_STREETS:
+		    devCards.getChildren().add(getRoadCard(card));
+		    break;
+		case INVENTION:
+		    devCards.getChildren().add(getInventCard(card));
+		    break;
+		case KNIGHT:
+		    devCards.getChildren().add(getKnightCard(card));
+		    break;
+		case MONOPOLY:
+		    devCards.getChildren().add(getMonoCard(card));
+		    break;
+		case VICTORY:
+		    VictoryCard victoryCard = (VictoryCard) card;
+		    switch (victoryCard.getVictoryType()) {
+		    case CHAPEL:
+			devCards.getChildren().add(getCathCard(card));
 			break;
-		    case INVENTION:
-			devCards.getChildren().add(getInventCard(card));
+		    case LIBARY:
+			devCards.getChildren().add(getLibraryCard(card));
 			break;
-		    case KNIGHT:
-			devCards.getChildren().add(getKnightCard(card));
+		    case MARKET:
+			devCards.getChildren().add(getMarketCard(card));
 			break;
-		    case MONOPOLY:
-			devCards.getChildren().add(getMonoCard(card));
+		    case PARLIAMENT:
+			devCards.getChildren().add(getParlemCard(card));
 			break;
-		    case VICTORY:
-			VictoryCard victoryCard = (VictoryCard) card;
-			switch (victoryCard.getVictoryType()) {
-			case CHAPEL:
-			    devCards.getChildren().add(getCathCard(card));
-			    break;
-			case LIBARY:
-			    devCards.getChildren().add(getLibraryCard(card));
-			    break;
-			case MARKET:
-			    devCards.getChildren().add(getMarketCard(card));
-			    break;
-			case PARLIAMENT:
-			    devCards.getChildren().add(getParlemCard(card));
-			    break;
-			case UNIVERSITY:
-			    devCards.getChildren().add(getUniCard(card));
-			    break;
-			default:
-			    break;
-			}
+		    case UNIVERSITY:
+			devCards.getChildren().add(getUniCard(card));
+			break;
+		    default:
 			break;
 		    }
+		    break;
 		}
 	    }
-	});
+	}
     }
 
     /**
