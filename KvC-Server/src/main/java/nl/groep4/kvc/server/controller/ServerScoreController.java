@@ -31,7 +31,7 @@ public class ServerScoreController {
     }
 
     public void updateScores() {
-	Scheduler.runAsync(() -> {
+	Scheduler.runAsyncLater(() -> {
 	    checkMostKnights();
 	    checkLongestRoute();
 	    for (Player player : players) {
@@ -66,13 +66,13 @@ public class ServerScoreController {
 		    ex.printStackTrace();
 		}
 	    }
-	});
+	}, 10L);
     }
 
     private void checkLongestRoute() {
 	Player longest = null;
 	RoadFinder roads = new RoadFinder(map);
-	int length = 4;
+	int length = 3; // Should be 4, but works on 3?
 	try {
 	    for (Entry<Player, Integer> roadLenght : roads.getLongestRoadByPlayer().entrySet()) {
 		if (roadLenght.getValue() == length) {

@@ -59,7 +59,7 @@ public class RoadFinder {
     private void getAllConnected(Street street, Set<Street> road) {
 	List<Street> connected = connectedStreets(street, road);
 	for (Street connectedStreet : connected) {
-	    getAllConnected(connectedStreet, new HashSet<>(road));
+	    getAllConnected(connectedStreet, road);
 	}
     }
 
@@ -73,6 +73,15 @@ public class RoadFinder {
 	}
 	road.add(street);
 	return ret;
+    }
+
+    /**
+     * Getter for all roads
+     * 
+     * @return All roads found
+     */
+    public Set<Road> getRoads() {
+	return roads;
     }
 
     /**
