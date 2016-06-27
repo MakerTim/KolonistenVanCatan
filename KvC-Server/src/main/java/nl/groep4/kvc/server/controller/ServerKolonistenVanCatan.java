@@ -116,10 +116,18 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	round++;
     }
 
+    /**
+     * Gets new turn.
+     * 
+     * @return The new turn.
+     */
     public int newTurn() {
 	return ++turn - 1;
     }
 
+    /**
+     * Resets turn.
+     */
     public void resetTurn() {
 	turn = 0;
     }
@@ -220,6 +228,9 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	diceController.updateThrow();
     }
 
+    /**
+     * Gets last throw.
+     */
     public Throw getLastThrow() {
 	return this.lastThrow;
     }
@@ -229,6 +240,12 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	mapController.distribute();
     }
 
+    /**
+     * Highlights bandit.
+     * 
+     * @param pl
+     *            Turn player to move bandit.
+     */
     public void highlightBandit(Player pl) {
 	try {
 	    pl.setSelectable(SelectState.BANDIT);
@@ -237,14 +254,38 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	}
     }
 
+    /**
+     * Highlights buildings which are valid to build.
+     * 
+     * @param pl
+     *            Valid places for a player to build.
+     * @param type
+     *            Type of building to build.
+     */
     public void highlightBuildings(Player pl, BuildingType type) {
 	highlightBuildings(pl, mapController.getValidBuildingLocations(type), type);
     }
 
+    /**
+     * Highlights streets.
+     * 
+     * @param pl
+     *            Valid street location for player to build.
+     */
     public void highlightStreet(Player pl) {
 	highlightStreets(pl, mapController.getValidStreetLocations());
     }
 
+    /**
+     * Highlights type building.
+     * 
+     * @param pl
+     *            Player to build type building.
+     * @param buildings
+     *            Buildings to highlight.
+     * @param type
+     *            Type of building to build.
+     */
     public void highlightBuildings(Player pl, Collection<Building> buildings, BuildingType type) {
 	try {
 	    pl.getUpdateable(UpdateMap.class).highlightBuildings(buildings, type);
@@ -255,6 +296,14 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	}
     }
 
+    /**
+     * Highlights streets places.
+     * 
+     * @param pl
+     *            Valid places of player to highlight street locations.
+     * @param streets
+     *            Street locations to highlight.
+     */
     public void highlightStreets(Player pl, Collection<Street> streets) {
 	try {
 	    pl.getUpdateable(UpdateMap.class).highlightStreets(streets);
@@ -345,6 +394,9 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	updateScores();
     }
 
+    /**
+     * Updates the resources.
+     */
     public void updateResources() {
 	List<Runnable> runs = new ArrayList<>();
 	for (Player pl : getPlayers()) {
@@ -361,6 +413,9 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	Scheduler.runAsyncdSync(runs);
     }
 
+    /**
+     * Updates the cards.
+     */
     public void updateCards() {
 	List<Runnable> runs = new ArrayList<>();
 	for (Player pl : getPlayers()) {
@@ -378,6 +433,9 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	Scheduler.runAsyncdSync(runs);
     }
 
+    /**
+     * Updates the costs of development cards, city, village and street.
+     */
     public void updateCosts() {
 	List<Runnable> runs = new ArrayList<>();
 	for (Player pl : getPlayers()) {
@@ -396,6 +454,9 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	Scheduler.runAsyncdSync(runs);
     }
 
+    /**
+     * Updates the trades.
+     */
     public void updateTrades() {
 	List<Runnable> runs = new ArrayList<>();
 	for (Player pl : getPlayers()) {
@@ -410,6 +471,9 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	Scheduler.runAsyncdSync(runs);
     }
 
+    /**
+     * Updates the round.
+     */
     public void updateRound() {
 	List<Runnable> runs = new ArrayList<>();
 	for (Player pl : getPlayers()) {
@@ -424,6 +488,12 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	Scheduler.runAsyncdSync(runs);
     }
 
+    /**
+     * Updates state.
+     * 
+     * @param state
+     *            State of player.
+     */
     public void updateState(TurnState state) {
 	List<Runnable> runs = new ArrayList<>();
 	for (Player pl : getPlayers()) {
@@ -438,6 +508,9 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	Scheduler.runAsyncdSync(runs);
     }
 
+    /**
+     * Updates the turn.
+     */
     public void updateTurn() {
 	List<Runnable> runs = new ArrayList<>();
 	for (Player pl : getPlayers()) {
@@ -452,6 +525,9 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	Scheduler.runAsyncdSync(runs);
     }
 
+    /**
+     * Opens the dice pane.
+     */
     public void openDicePane() {
 	try {
 	    for (Player pl : getPlayersOrded()) {
@@ -506,10 +582,19 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	Scheduler.runAsyncdSync(runs);
     }
 
+    /**
+     * Moves the bandit.
+     */
     public void moveBanditModus() {
 	mapController.moveBanditModus();
     }
 
+    /**
+     * Gets into street modus.
+     * 
+     * @param streetsToBuild
+     *            Places where streets can be build.
+     */
     public void buildStreetModus(int streetsToBuild) {
 	try {
 	    Player who = getTurn();
@@ -525,6 +610,12 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	}
     }
 
+    /**
+     * Gets into village build modus.
+     * 
+     * @param villageToBuild
+     *            Places where villages can be build.
+     */
     public void buildVillageModus(int villageToBuild) {
 	try {
 	    Player who = getTurn();
@@ -539,6 +630,12 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	}
     }
 
+    /**
+     * Gets into city build modus.
+     * 
+     * @param cityToBuild
+     *            Places where city's can be build.
+     */
     public void buildCityModus(int cityToBuild) {
 	try {
 	    Player who = getTurn();
