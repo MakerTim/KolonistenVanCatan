@@ -18,14 +18,32 @@ import nl.groep4.kvc.server.model.ServerLobby;
 import nl.groep4.kvc.server.model.ServerPlayer;
 import nl.groep4.kvc.server.util.ConnectionUtil;
 
+/**
+ * Starts the game and registers player.
+ * 
+ * @author Tim
+ * @version 1.0
+ */
 public class ServerLobbyController {
 
     private Lobby lobby;
 
+    /**
+     * Controls server lobby
+     * 
+     * @param lobby
+     *            Lobby value.
+     */
     public ServerLobbyController(ServerLobby lobby) {
 	this.lobby = lobby;
     }
 
+    /**
+     * Start the game.
+     * 
+     * @throws RemoteException
+     *             Any remotely invoked method.
+     */
     public void startGame() throws RemoteException {
 	if (lobby.getState() != State.LOBBY) {
 	    lobby.setState(State.STARTING);
@@ -95,6 +113,15 @@ public class ServerLobbyController {
 	});
     }
 
+    /**
+     * Registers player.
+     * 
+     * @param username
+     *            Name of player.
+     * @return Null.
+     * @throws RemoteException
+     *             Any remotely invoked method.
+     */
     public Player registerPlayer(String username) throws RemoteException {
 	switch (lobby.getState()) {
 	case IN_GAME:
@@ -128,6 +155,16 @@ public class ServerLobbyController {
 	return null;
     }
 
+    /**
+     * Sets color.
+     * 
+     * @param pl
+     *            Player which color to set.
+     * @param newColor
+     *            New color to set for player.
+     * @throws RemoteException
+     *             Any remotely invoked method.
+     */
     public void setColor(Player pl, Color newColor) throws RemoteException {
 	ConnectionUtil.cleanup(lobby.getPlayers(), player -> {
 	    try {
@@ -170,6 +207,17 @@ public class ServerLobbyController {
 	}
     }
 
+    /**
+     * Removes player.
+     * 
+     * @param pl
+     *            Player to remove from the lobby.
+     * @param shouldRemove
+     *            If true player will be removed.
+     * @return Returns true.
+     * @throws RemoteException
+     *             Any remotely invoked method.
+     */
     public boolean removePlayer(Player pl, boolean shouldRemove) throws RemoteException {
 	lobby.setColor(pl, null);
 	if (shouldRemove) {
