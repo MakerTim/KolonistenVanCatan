@@ -21,19 +21,7 @@ import nl.groep4.kvc.common.interfaces.Trade;
 import nl.groep4.kvc.common.interfaces.VictoryCard;
 import nl.groep4.kvc.common.util.Scheduler;
 
-/**
- * Meant for debugging, has no function in the actual program.
- * 
- * @author Tim
- * @version 1.0
- */
 public class TestMapController extends MapController {
-
-    /**
-     * The controller tests the maps functions.
-     * 
-     * @param view
-     */
 
     public TestMapController(SceneMap view) {
 	super(null, view);

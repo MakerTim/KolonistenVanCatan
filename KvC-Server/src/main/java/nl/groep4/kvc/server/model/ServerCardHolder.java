@@ -14,7 +14,7 @@ public class ServerCardHolder {
     /**
      * The factory to keep all the cards.
      * 
-     * version: 1.0
+     * @version: 1.0
      * 
      * @author: Tim
      */
