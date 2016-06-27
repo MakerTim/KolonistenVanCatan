@@ -6,10 +6,10 @@ import nl.groep4.kvc.common.map.TileResource;
 import nl.groep4.kvc.common.map.TileType;
 
 /**
- * Instance of tileresource
+ * Instance of tile resource.
  *
  * @author Tim
- * @version 1.0
+ * @version 1.1
  */
 public class ServerTileResource extends ServerTile implements TileResource {
 
@@ -19,10 +19,12 @@ public class ServerTileResource extends ServerTile implements TileResource {
     private int number;
 
     /**
-     * Makes an empty resource tile
+     * Makes an empty resource tile.
      *
      * @param type
+     *            The Type of resource on the tile.
      * @param position
+     *            The position of the tile.
      */
     public ServerTileResource(TileType type, int number, Coordinate position) {
 	super(type, position);
