@@ -162,7 +162,7 @@ gamenote.noplayers.title:Pas assez de gens
 note.noplayers.title:Pas assez de joueurs
 note.noplayers.explanation:Il n'y a pas assez de personnes présentes
 note.noplayers.details:Exception: 503 Service Unavailable
-gamenote.noturn.tile:Vous n'êtes pas d'agir
+gamenote.noturn.title:Vous n'êtes pas d'agir
 gamenote.noturn.explanation:Vous n'êtes même pas tourner
 gamenote.noturn.details:Exception: 503 Service Unavailable
 gamenote.nostreet.title:Il n'y a pas de rues à des endroits
