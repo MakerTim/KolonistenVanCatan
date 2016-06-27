@@ -11,12 +11,24 @@ import nl.groep4.kvc.common.interfaces.UpdateMap;
 import nl.groep4.kvc.common.util.Scheduler;
 import nl.groep4.kvc.server.model.ServerThrow;
 
+/**
+ * Gets throw and updates throw.
+ * 
+ * @author Tim
+ * @version 1.0
+ */
 public class ServerThrowController {
 
     private ServerKolonistenVanCatan controller;
 
     private Throw lastThrow;
 
+    /**
+     * Sets lastThrow into new ServerThrow.
+     * 
+     * @param serverKolonistenVanCatan
+     *            Current controller.
+     */
     public ServerThrowController(ServerKolonistenVanCatan serverKolonistenVanCatan) {
 	this.controller = serverKolonistenVanCatan;
 	try {
@@ -27,10 +39,18 @@ public class ServerThrowController {
 	}
     }
 
+    /**
+     * Gets throw.
+     * 
+     * @return The last throw.
+     */
     public Throw getThrow() {
 	return lastThrow;
     }
 
+    /**
+     * Updates throw.
+     */
     public void updateThrow() {
 	List<Runnable> runs = new ArrayList<>();
 	for (Player player : controller.getPlayers()) {
