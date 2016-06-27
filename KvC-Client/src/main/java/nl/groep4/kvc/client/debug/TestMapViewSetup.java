@@ -11,6 +11,10 @@ import nl.groep4.kvc.client.view.scene.SceneMap;
  */
 public class TestMapViewSetup {
 
+    /**
+     * This method sets the view for the map
+     * 
+     */
     public static void setup() {
 	SceneMap view = new SceneMap();
 	ViewMaster.setScene(view);

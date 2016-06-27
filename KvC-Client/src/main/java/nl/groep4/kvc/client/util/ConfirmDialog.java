@@ -4,8 +4,17 @@ import java.util.Optional;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import nl.groep4.kvc.client.controller.ClientRefrence;
 import javafx.scene.control.ButtonType;
+import nl.groep4.kvc.client.controller.ClientRefrence;
+
+/**
+ * The confirm messages are being created here
+ * 
+ * version: 1.0
+ * 
+ * @author Talbi
+ *
+ */
 
 public class ConfirmDialog {
 
