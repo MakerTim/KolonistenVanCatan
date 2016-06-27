@@ -11,11 +11,24 @@ import nl.groep4.kvc.common.interfaces.UpdateMap;
 import nl.groep4.kvc.server.model.ServerCardHolder;
 import nl.groep4.kvc.server.model.ServerCosts;
 
+/**
+ * Checks if player has too much resources, takes resources and buys type of
+ * buildings.
+ * 
+ * @author Tim
+ * @version 1.0
+ */
 public class ServerShopController {
 
     private ServerKolonistenVanCatan controller;
     private ServerCardHolder holder = new ServerCardHolder();
 
+    /**
+     * Controller for the ServerShop.
+     * 
+     * @param serverKolonistenVanCatan
+     *            Server address.
+     */
     public ServerShopController(ServerKolonistenVanCatan serverKolonistenVanCatan) {
 	this.controller = serverKolonistenVanCatan;
     }
@@ -46,6 +59,9 @@ public class ServerShopController {
 	controller.updateResources();
     }
 
+    /**
+     * Buys the street.
+     */
     public void buyStreet() {
 	try {
 	    Player who = controller.getTurn();
@@ -64,6 +80,9 @@ public class ServerShopController {
 	}
     }
 
+    /**
+     * Buys the villages.
+     */
     public void buyVillage() {
 	try {
 	    Player who = controller.getTurn();
@@ -82,6 +101,9 @@ public class ServerShopController {
 	}
     }
 
+    /**
+     * Buys city.
+     */
     public void buyCity() {
 	try {
 	    Player who = controller.getTurn();
@@ -100,6 +122,9 @@ public class ServerShopController {
 	}
     }
 
+    /**
+     * Buys card.
+     */
     public void buyCard() {
 	try {
 	    Player who = controller.getTurn();
