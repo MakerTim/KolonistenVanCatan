@@ -209,7 +209,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
 
     @Override
     public void openEnd(Player pl) {
-	setOverlay(new WinPane(pl));
+	setOverlay(new WinPane(this, pl));
     }
 
     @Override
@@ -256,7 +256,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
 
     @Override
     public void openSavePane() {
-	// TODO: setOverlay(new SavePane());
+	setOverlay(new WinPane(this, null));
     }
 
     @Override
@@ -310,6 +310,15 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    }
 	    overlayPane = pane;
 	});
+    }
+
+    /**
+     * Gets the layers of the scene
+     * 
+     * @return the pane where everything is stored in
+     */
+    public Pane getLayers() {
+	return layers;
     }
 
     @Override
