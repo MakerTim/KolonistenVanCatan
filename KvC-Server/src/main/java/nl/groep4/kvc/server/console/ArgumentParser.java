@@ -25,11 +25,27 @@ public class ArgumentParser {
     private String cmd;
     private String[] args;
 
+    /**
+     * Parses arguments.
+     * 
+     * @param cmd
+     *            Commands to execute.
+     * @param args
+     *            Arguments to give with specific command.
+     * @throws Throwable
+     *             Throws exceptions.
+     */
     public ArgumentParser(String cmd, String[] args) throws Throwable {
 	this.cmd = cmd;
 	this.args = args;
     }
 
+    /**
+     * Commands to use in the console when you are in game.
+     * 
+     * @throws Throwable
+     *             Throws exceptions.
+     */
     public void parse() throws Throwable {
 	switch (cmd.toLowerCase()) {
 	case "exit":
@@ -145,6 +161,9 @@ public class ArgumentParser {
 	System.out.println("Kicked player with the username '" + args[0] + "'");
     }
 
+    /**
+     * Starts the parser.
+     */
     public static void startParser() {
 	String str;
 	Scanner scanner = new Scanner(System.in);
@@ -159,7 +178,7 @@ public class ArgumentParser {
 	    try {
 		new ArgumentParser(cmd, args).parse();
 	    } catch (Throwable thr) {
-		System.err.printf("There wass a exception with the command %s %s\n\t%s\n", cmd, Arrays.toString(args),
+		System.err.printf("There was an exception with the command %s %s\n\t%s\n", cmd, Arrays.toString(args),
 			thr.toString());
 	    }
 	}
