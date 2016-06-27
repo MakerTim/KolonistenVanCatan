@@ -196,6 +196,7 @@ gamenote.norover.explanation:Er is geen tegel met rover geselecteerd
 gamenote.norover.details:Exception: 503 Service Unavailable
 gamenote.alreadyrover.title:Al een rover aanwezig
 gamenote.alreadyrover.explanation:Er staat al een rover op deze tegel
+gamenote.alreadyrover.details:Exception: 503 Service Unavailable
 gamenote.tradeself.title:Ruil beëindigd
 gamenote.tradeself.explanation:U heeft uw eigen ruil beëindigd
 gamenote.tradeself.details:Exception: 503 Service Unavailable

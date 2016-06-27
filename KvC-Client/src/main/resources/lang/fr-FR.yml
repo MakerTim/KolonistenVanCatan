@@ -197,7 +197,7 @@ gamenote.norover.explanation:Il n'y a pas tuile avec bandit sélectionné
 gamenote.norover.details:Exception: 503 Service Unavailable
 gamenote.alreadyrover.title:Comme un bandit présent
 gamenote.alreadyrover.explanation:Er staat al een rover op deze tegel
-gamenote.norover.details:Exception: 503 Service Unavailable
+gamenote.alreadyrover.details:Exception: 503 Service Unavailable
 gamenote.tradeself.title:Pas d'échange
 gamenote.tradeself.explanation:Ne pas échanger avec vous-même
 gamenote.tradeself.details:Exception: 503 Service Unavailable
