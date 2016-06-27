@@ -12,7 +12,7 @@ import nl.groep4.kvc.common.enumeration.SelectState;
 /**
  * Interface of everything the player can do.
  * 
- * @version 1.1
+ * @version 1.2
  * @author Tim
  */
 public interface Player extends Remote {
@@ -230,10 +230,11 @@ public interface Player extends Remote {
     public void addCard(Card drawnCard) throws RemoteException;
 
     /**
-     * The player uses the selected card.
+     * True or false about whether the player uses a card.
      * 
      * @param usedCard
      *            The selected card.
+     * @return True or false about whether the player uses a card.
      * @throws RemoteException
      *             Any remotely invoked method.
      */
