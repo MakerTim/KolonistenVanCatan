@@ -8,17 +8,17 @@ import nl.groep4.kvc.server.rmi.RmiServer;
  * Starts the Server
  * 
  * @author Tim
- * @version 1.0
+ * @version 1.1
  */
 public class ServerStarter {
 
     private static Lobby lobby;
 
     /**
-     * gives port number 1099
+     * Gives port number 1099.
      * 
      * @param args
-     *            Reference to Main
+     *            Reference to Main.
      *
      */
     public static void main(String[] args) {
@@ -31,9 +31,21 @@ public class ServerStarter {
 	ArgumentParser.startParser();
     }
 
+    /**
+     * Gets the Lobby object.
+     * 
+     * @return The Lobby.
+     */
     public static Lobby getLobby() {
 	return lobby;
     }
+
+    /**
+     * 
+     * @param lobby
+     *            The Lobby will be given here.
+     * 
+     */
 
     public static void setLobby(Lobby lobby) {
 	ServerStarter.lobby = lobby;
