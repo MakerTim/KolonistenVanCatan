@@ -2,6 +2,7 @@ package nl.groep4.kvc.server.controller;
 
 import java.rmi.RemoteException;
 
+import nl.groep4.kvc.common.enumeration.CardType;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.Card;
 import nl.groep4.kvc.common.interfaces.Player;
@@ -36,7 +37,7 @@ public class ServerCardController {
      */
     public void useCard(Player from, Card card) {
 	try {
-	    if (!from.useCard(card)) {
+	    if (card.getType() != CardType.VICTORY && !from.useCard(card)) {
 		System.out.printf("Player %s used a card that he shouldn have.\n", from.getUsername());
 		return;
 	    }
