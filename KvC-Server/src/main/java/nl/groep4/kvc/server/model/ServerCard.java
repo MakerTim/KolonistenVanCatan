@@ -3,6 +3,15 @@ package nl.groep4.kvc.server.model;
 import nl.groep4.kvc.common.enumeration.CardType;
 import nl.groep4.kvc.common.interfaces.Card;
 
+/**
+ * The serverside of Card.
+ * 
+ * version: 1.0
+ * 
+ * @author Tim
+ *
+ */
+
 public class ServerCard implements Card {
 
     private static final long serialVersionUID = 1337L;
