@@ -7,6 +7,15 @@ import nl.groep4.kvc.common.enumeration.Resource;
 
 public class ServerCosts {
 
+    /**
+     * A list with the costs for the resources.
+     * 
+     * version: 1.0
+     * 
+     * @author: Tim
+     * 
+     */
+
     public static final EnumMap<Resource, Integer> STREET_COSTS;
     public static final EnumMap<Resource, Integer> VILLAGE_COSTS;
     public static final EnumMap<Resource, Integer> CITY_COSTS;

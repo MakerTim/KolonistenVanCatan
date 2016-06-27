@@ -16,7 +16,7 @@ public class ServerCardHolder {
      * 
      * version: 1.0
      * 
-     * author: Tim
+     * @author: Tim
      */
 
     private List<Card> cards;
