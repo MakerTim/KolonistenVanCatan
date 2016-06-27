@@ -16,12 +16,6 @@ import nl.groep4.kvc.server.model.ServerPlayer;
 import nl.groep4.kvc.server.model.map.ServerMap;
 import nl.groep4.kvc.server.util.RoadFinder;
 
-/**
- * 
- * @author Tim
- *
- */=
-
 public class LongestRoadAlgorithTester {
 
     private Map map;
