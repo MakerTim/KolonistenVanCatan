@@ -256,7 +256,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
 
     @Override
     public void openSavePane() {
-	setOverlay(new WinPane(this, null));
+	// TODO: setOverlay(new SavePane());
     }
 
     @Override
