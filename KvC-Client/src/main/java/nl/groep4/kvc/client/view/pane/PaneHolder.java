@@ -14,7 +14,7 @@ public interface PaneHolder {
     /**
      * Gets the Pane.
      * 
-     * @return
+     * @return Pane
      */
     public Pane getPane();
 
