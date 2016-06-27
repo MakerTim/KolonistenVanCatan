@@ -39,6 +39,7 @@ public class ServerPlayer implements Player {
      * contains more than 20 characters, it will be cut to 2.
      * 
      * @param username
+     *            Name of the player.
      */
     public ServerPlayer(String username) {
 	this.username = username.substring(0, Math.min(20, username.length()));
