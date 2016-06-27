@@ -20,15 +20,32 @@ import nl.groep4.kvc.common.map.Tile;
 import nl.groep4.kvc.common.map.TileLand;
 import nl.groep4.kvc.common.map.TileResource;
 
+/**
+ * Gives resources to player when dice value is the same as the tile you own.
+ * Builds type of buildings and removes bandit.
+ * 
+ * @author Tim
+ * @version 1.0
+ */
 public class ServerMapController {
 
     private ServerKolonistenVanCatan controller;
     private Coordinate roverFrom;
 
+    /**
+     * Controls server map.
+     * 
+     * @param serverKolonistenVanCatan
+     *            The server.
+     */
     public ServerMapController(ServerKolonistenVanCatan serverKolonistenVanCatan) {
 	this.controller = serverKolonistenVanCatan;
     }
 
+    /**
+     * Gives resources to players when the value of the rolled dice is the same
+     * as the tile number the player has a village or city on.
+     */
     public void distribute() {
 	try {
 	    System.out.printf("Giving players resources for tiles with number '%d'\n",
@@ -61,6 +78,16 @@ public class ServerMapController {
 	}
     }
 
+    /**
+     * Places type of buildings on a certain location.
+     * 
+     * @param newOwner
+     *            The new owner of the building.
+     * @param coord
+     *            The location it's build.
+     * @param type
+     *            The kind of building.
+     */
     public void placeBuilding(Player newOwner, Coordinate coord, BuildingType type) {
 	try {
 	    if ((!newOwner.hasRemainingVillages() && type == BuildingType.VILLAGE)
@@ -130,6 +157,14 @@ public class ServerMapController {
 	}
     }
 
+    /**
+     * Places streets on certain location.
+     * 
+     * @param newOwner
+     *            The new owner of the street.
+     * @param coord
+     *            The location the street is build.
+     */
     public void placeStreet(Player newOwner, Coordinate coord) {
 	try {
 	    if (newOwner.hasRemainingStreets()) {
@@ -169,6 +204,12 @@ public class ServerMapController {
 	}
     }
 
+    /**
+     * Moves bandit to new tile location.
+     * 
+     * @param position
+     *            Location which the bandit will go to.
+     */
     public void moveRoverTo(Coordinate position) {
 	try {
 	    if (roverFrom != null && !roverFrom.equals(position)) {
@@ -211,6 +252,12 @@ public class ServerMapController {
 	controller.updateMap();
     }
 
+    /**
+     * Moves bandit from location to another.
+     * 
+     * @param position
+     *            Location where the bandit was standing.
+     */
     public void moveRoverFrom(Coordinate position) {
 	try {
 	    Tile tile = controller.getMap().getTile(position);
@@ -231,10 +278,18 @@ public class ServerMapController {
 	controller.updateMap();
     }
 
+    /**
+     * Checks if bandit is not on the same tile location.
+     * 
+     * @return Where the rover comes from.
+     */
     public boolean isMovingRover() {
 	return roverFrom != null && !roverFrom.isSameLocation(Short.MAX_VALUE, Short.MAX_VALUE);
     }
 
+    /**
+     * Gets into move modes of bandit.
+     */
     public void moveBanditModus() {
 	try {
 	    System.out.println("Bandit is on the move! '7'");
@@ -246,6 +301,11 @@ public class ServerMapController {
 	}
     }
 
+    /**
+     * Sets street where street location must be valid.
+     * 
+     * @return Streets you have.
+     */
     public Set<Street> getValidStreetLocations() {
 	Set<Street> streets = new HashSet<>();
 	for (Tile tile : controller.getMap().getTiles()) {
@@ -264,6 +324,13 @@ public class ServerMapController {
 	return streets;
     }
 
+    /**
+     * Gets valid building locations of a certain building type.
+     * 
+     * @param type
+     *            Kind of building.
+     * @return Buildings the player has build.
+     */
     public Set<Building> getValidBuildingLocations(BuildingType type) {
 	Set<Building> buildings;
 	switch (type) {
