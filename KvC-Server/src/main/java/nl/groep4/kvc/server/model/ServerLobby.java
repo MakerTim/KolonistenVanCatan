@@ -14,7 +14,7 @@ import nl.groep4.kvc.server.controller.ServerKolonistenVanCatan;
 import nl.groep4.kvc.server.controller.ServerLobbyController;
 
 /**
- * Instance of Lobby
+ * Instance of Lobby.
  * 
  * @author Tim
  * @version 1.0
