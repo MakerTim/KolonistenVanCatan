@@ -25,6 +25,8 @@ public class ServerTileResource extends ServerTile implements TileResource {
      *            The Type of resource on the tile.
      * @param position
      *            The position of the tile.
+     * @param number
+     *            Coordinate for tiles.
      */
     public ServerTileResource(TileType type, int number, Coordinate position) {
 	super(type, position);
