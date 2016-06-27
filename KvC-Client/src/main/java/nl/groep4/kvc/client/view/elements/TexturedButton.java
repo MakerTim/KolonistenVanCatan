@@ -91,8 +91,7 @@ public abstract class TexturedButton extends StackPane {
     /**
      * Generates a shadow effect with color black.
      * 
-     * @return settings for shadow.
-     * @return black shadow effect.
+     * @return The shadow effect.
      */
     public static DropShadow getShadowEffect() {
 	DropShadow shadow = new DropShadow();
@@ -112,28 +111,38 @@ public abstract class TexturedButton extends StackPane {
 	clickHandlers.add(click);
     }
 
+    /**
+     * Sets the button on disabled. You can't click the button anymore.
+     */
     public void setDisabled() {
 	setMouseTransparent(true);
     }
 
+    /**
+     * Sets the button on enabled. You can click the button.
+     */
     public void setEnabled() {
 	setMouseTransparent(false);
     }
 
     /**
-     * Gets texture of image.
+     * Gets the image of the button.
      * 
+     * @return The texture image.
      */
     public abstract Image getTexture();
 
     /**
-     * Gets hover effect when hovering above image.
+     * Gets the image of the button when hovered over.
      * 
+     * @return The image of the button when hovered over.
      */
     public abstract Image getHoverTexture();
 
     /**
-     * Gets click effect when user clicks on image.
+     * Gets the image of the button when clicked on.
+     * 
+     * @return The image of the button when clicked on.
      */
     public abstract Image getClickTexture();
 }
