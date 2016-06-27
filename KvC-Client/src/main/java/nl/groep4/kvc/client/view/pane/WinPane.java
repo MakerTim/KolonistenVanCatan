@@ -55,9 +55,12 @@ public class WinPane implements PaneHolder, NotCloseable {
 
     private WritableImage image;
 
-    public WinPane() {
-    }
-
+    /**
+     * Sets up the WinPane.
+     * 
+     * @param scenemap
+     * @param winner
+     */
     public WinPane(SceneMap scenemap, Player winner) {
 	this.scenemap = scenemap;
 	this.winner = winner;
