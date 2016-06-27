@@ -104,6 +104,7 @@ turn.state.trade.self:In der Auktion
 turn.state.wait:Drehen
 turn.state.wait.self:Sind neben
 turn.self:Sie
+turn.lastthrow:Zuletzt geworfen %d
 
 #Cards
 cards.monopoly.info:Monopol: Erhalten Sie alle Ressourcenkarten für eine Art von Wahl
@@ -196,6 +197,9 @@ gamenote.norover.details:Exception: 503 Service Unavailable
 gamenote.tradeself.title:nicht Austausch
 gamenote.tradeself.explanation:Sie handeln nicht mit sich selbst
 gamenote.tradeself.details:Exception: 503 Service Unavailable
+gamenote.noplace.title:Kein Platz
+gamenote.noplace.explanation:Es gibt keinen Platz für dieses Gebäude
+gamenote.noplace.details:Exception: 503 Service Unavailable
 
 #Map
 map.throwdice.clickToThrow:Wirf den Würfel
@@ -249,3 +253,8 @@ error.remote.unknown.details:Exception: 1337 We just don't know any more
 error.translation.notfound.title: Übersetzung nicht gefunden
 error.translation.notfound.explanation:Übersetzung nicht gefunden
 error.translation.notfound.details:Exception: 409 Conflict
+
+#Winpane
+win.button.credits:Kredite
+win.button.close:schließen
+win.button.close:Screenshot

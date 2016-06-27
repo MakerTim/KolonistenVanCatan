@@ -132,7 +132,7 @@ trade.text.ore:Ore
 trade.text.wheat:Wheat
 trade.text.wood:Wood
 trade.text.wool:Wool
-trade.text.brick:Brick
+trade.text.brick:Stone
 trade.text.ore:Ore
 
 #RulesPane
@@ -253,3 +253,8 @@ error.remote.unknown.details:Exception: 1337 We just don't know any more
 error.translation.notfound.title: Translation not found
 error.translation.notfound.explanation:Translation not found
 error.translation.notfound.details:Exception: 409 Conflict
+
+#Winpane
+win.button.credits:Credits
+win.button.close:Exit
+win.button.screenshot:Screenshot

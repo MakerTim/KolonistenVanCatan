@@ -83,15 +83,15 @@ public class MonopolyPane implements PaneHolder, NotCloseable {
 	wool.setOnMouseClicked(click -> onWoolClick());
 
 	woodText.setAlignment(Pos.CENTER);
-	woodText.getChildren().addAll(cards.getWoodText(), cards.getWoodName());
+	woodText.getChildren().add(cards.getWoodName());
 	oreText.setAlignment(Pos.CENTER);
-	oreText.getChildren().addAll(cards.getOreText(), cards.getOreName());
+	oreText.getChildren().add(cards.getOreName());
 	wheatText.setAlignment(Pos.CENTER);
-	wheatText.getChildren().addAll(cards.getWheatText(), cards.getWheatName());
+	wheatText.getChildren().add(cards.getWheatName());
 	stoneText.setAlignment(Pos.CENTER);
-	stoneText.getChildren().addAll(cards.getStoneText(), cards.getStoneName());
+	stoneText.getChildren().add(cards.getStoneName());
 	woolText.setAlignment(Pos.CENTER);
-	woolText.getChildren().addAll(cards.getWoolText(), cards.getWoolName());
+	woolText.getChildren().add(cards.getWoolName());
 
 	wood.getChildren().addAll(cards.getWoodCard(), woodText);
 	wheat.getChildren().addAll(cards.getWheatCard(), wheatText);

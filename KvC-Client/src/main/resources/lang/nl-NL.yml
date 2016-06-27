@@ -106,6 +106,7 @@ turn.state.trade.self:Bent in het veilinghuis
 turn.state.wait:Is aan de beurt
 turn.state.wait.self:Bent aan zet
 turn.self:U
+turn.lastthrow:Laatste gooi %d
 
 #Cards
 cards.monopoly.info:Monopolie: Krijg alle grondstofkaarten van één soort naar keuze
@@ -253,3 +254,8 @@ error.remote.unknown.details:Exception: 500 Internal Server Error
 error.translation.notfound.title:Vertalingsfout
 error.translation.notfound.explanation:Vertaling is niet gevonden
 error.translation.notfound.details:Exception: 1337 We just don't know any more
+
+#Winpane
+win.button.credits:Credits
+win.button.close:Sluiten
+win.button.screenshot:Screenshot
