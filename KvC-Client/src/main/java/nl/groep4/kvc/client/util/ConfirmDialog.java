@@ -18,6 +18,14 @@ import nl.groep4.kvc.client.controller.ClientRefrence;
 
 public class ConfirmDialog {
 
+    /**
+     * This is a confirmationbox that needs confirmation from the player.
+     * 
+     * @param key
+     *            The choice that the player makes.
+     * @return true
+     */
+
     public static boolean confirm(String key) {
 	if (ClientRefrence.isConfirmModus()) {
 	    Alert alert = new Alert(AlertType.CONFIRMATION);
