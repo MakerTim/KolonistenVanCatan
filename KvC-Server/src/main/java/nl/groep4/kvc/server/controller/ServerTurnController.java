@@ -19,14 +19,29 @@ import nl.groep4.kvc.common.map.TileResource;
 import nl.groep4.kvc.common.util.CollectionUtil;
 import nl.groep4.kvc.common.util.Scheduler;
 
+/**
+ * Controls the turns of the players.
+ * 
+ * @author Tim
+ * @version 1.0
+ */
 public class ServerTurnController {
 
     private ServerKolonistenVanCatan controller;
 
+    /**
+     * Controls turns.
+     * 
+     * @param serverKolonistenVanCatan
+     *            Current server.
+     */
     public ServerTurnController(ServerKolonistenVanCatan serverKolonistenVanCatan) {
 	this.controller = serverKolonistenVanCatan;
     }
 
+    /**
+     * Goes to next turn.
+     */
     public void nextTurn() {
 	if (controller.newTurn() >= controller.getPlayers().size() - 1) {
 	    controller.resetTurn();
@@ -50,6 +65,12 @@ public class ServerTurnController {
 	controller.updateTurn();
     }
 
+    /**
+     * Checks when player can build building.
+     * 
+     * @param building
+     *            Building which containst street.
+     */
     public void initTurnStreet(Building building) {
 	try {
 	    if (controller.getState() != GameState.INIT) {
@@ -85,6 +106,9 @@ public class ServerTurnController {
 	}
     }
 
+    /**
+     * Turn of player to place village.
+     */
     public void initTurnBuilding() {
 	try {
 	    if (controller.getState() != GameState.INIT) {
@@ -99,6 +123,10 @@ public class ServerTurnController {
 	}
     }
 
+    /**
+     * When it's turn of a player dices will be rolled and round will be
+     * updated.
+     */
     public void onTurn() {
 	try {
 	    if (controller.getState() != GameState.IN_GAME) {
@@ -113,10 +141,16 @@ public class ServerTurnController {
 	}
     }
 
+    /**
+     * Ends the game.
+     */
     public void endGame() {
 	System.out.println("La fin.");
     }
 
+    /**
+     * Fixes the button.
+     */
     public void fixButtons() {
 	try {
 	    List<Runnable> runs = new ArrayList<>();
