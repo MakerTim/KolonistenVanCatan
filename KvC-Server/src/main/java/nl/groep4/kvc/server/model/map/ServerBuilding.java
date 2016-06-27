@@ -10,10 +10,10 @@ import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Tile;
 
 /**
- * instance of Building
+ * Instance of Building.
  * 
  * @author Tim
- * @version 1.0
+ * @version 1.1
  */
 public class ServerBuilding implements Building {
 
@@ -25,9 +25,10 @@ public class ServerBuilding implements Building {
     private List<Tile> tiles = new ArrayList<>();
 
     /**
-     * Makes empty buildings at the corners of the tiles
+     * Makes empty buildings at the corners of the tiles.
      * 
      * @param location
+     *            The location of the buildings.
      */
     public ServerBuilding(Coordinate location) {
 	this.location = location;
