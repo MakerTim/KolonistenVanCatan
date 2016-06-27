@@ -19,7 +19,7 @@ public class TileFactory {
      * Gives an array with an unmodifiable List in it of all the tiles in the
      * game.
      * 
-     * @return All tiletypes that are needed in the game.
+     * @return All tile types that are needed in the game.
      */
     public static List<TileType> getNeeded() {
 	List<TileType> landTiles = new ArrayList<>();
