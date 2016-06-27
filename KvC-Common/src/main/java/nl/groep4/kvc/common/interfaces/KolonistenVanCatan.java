@@ -199,6 +199,8 @@ public interface KolonistenVanCatan extends Remote {
     /**
      * The player uses a card.
      * 
+     * @param player
+     *            The player who will use the card.
      * @param card
      *            The card that the player will use.
      * @throws RemoteException
