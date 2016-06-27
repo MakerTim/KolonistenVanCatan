@@ -59,7 +59,9 @@ public class WinPane implements PaneHolder, NotCloseable {
      * Sets up the WinPane.
      * 
      * @param scenemap
+     *            The view of the map.
      * @param winner
+     *            The player who has won.
      */
     public WinPane(SceneMap scenemap, Player winner) {
 	this.scenemap = scenemap;
