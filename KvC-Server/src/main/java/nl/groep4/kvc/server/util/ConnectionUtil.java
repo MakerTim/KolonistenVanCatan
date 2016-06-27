@@ -9,7 +9,27 @@ import java.util.function.Consumer;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.util.Scheduler;
 
+/**
+ * The class will delete players views.
+ * 
+ * version: 1.0
+ * 
+ * @author Tim
+ *
+ */
+
 public class ConnectionUtil {
+
+    /**
+     * Deletes the players views who are not in the game anymore.
+     * 
+     * @param players
+     *            De players who were in the game
+     * @param onRemove
+     *            De list with players who are deleted
+     * @throws RemoteException
+     *             Any remotely invoked method.
+     */
 
     public static void cleanup(List<Player> players, Consumer<Player> onRemove) throws RemoteException {
 	Iterator<Player> playerIT = players.iterator();
