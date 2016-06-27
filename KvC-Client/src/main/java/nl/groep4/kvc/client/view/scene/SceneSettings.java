@@ -22,8 +22,9 @@ import nl.groep4.kvc.client.view.elements.TexturedButton;
 /**
  * Configuration Scene.
  * 
- * @version 1.1
  * @author Luc
+ * @version 1.1
+ * 
  **/
 public class SceneSettings implements SceneHolder {
 
