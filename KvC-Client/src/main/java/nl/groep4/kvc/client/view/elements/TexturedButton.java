@@ -15,8 +15,9 @@ import nl.groep4.kvc.client.util.ConfirmDialog;
 /**
  * Button class what makes a combination of images looks like a real button.
  * 
- * @version 1.1
  * @author Tim
+ * @version 1.1
+ * 
  **/
 public abstract class TexturedButton extends StackPane {
 
