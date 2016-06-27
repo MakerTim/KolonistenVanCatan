@@ -27,6 +27,7 @@ import nl.groep4.kvc.common.interfaces.NotCloseable;
 import nl.groep4.kvc.common.interfaces.Player;
 
 public class WinPane implements PaneHolder, NotCloseable {
+    final FileChooser fileChooser = new FileChooser();
     private Font font = new Font(ViewMaster.FONT.getName(), 40);
     private Player winner;
 
@@ -45,8 +46,6 @@ public class WinPane implements PaneHolder, NotCloseable {
     private SceneMap scenemap;
 
     private WritableImage image;
-
-    private FileChooser fc;
 
     public WinPane() {
     }
@@ -106,13 +105,21 @@ public class WinPane implements PaneHolder, NotCloseable {
     }
 
     private void onScreenshotClick() {
+
 	image = scenemap.getLayers().snapshot(null, null);
 
-	File file = new File("screenshot.png");
+	fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG(*.png)", ".png"));
+	fileChooser.setInitialFileName(".png");
+	fileChooser.setTitle("Save Screenshot");
+	File file = fileChooser.showSaveDialog(null);
+
+	if (file == null) {
+	    return;
+	}
 
 	try {
 	    ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
-	    System.out.println("Screenshot!");
+	    System.out.println("Screenshot has been made!");
 	} catch (IOException e) {
 	    e.printStackTrace();
 	} catch (NullPointerException npe) {

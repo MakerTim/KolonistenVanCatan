@@ -161,7 +161,7 @@ gamenote.ingame.details:Schalt Farbe ist nicht verfügbar, während Spiel läuft
 note.noplayers.title:Nicht genug Menschen
 note.noplayers.explanation:Es gibt nicht genug Menschen vorhanden
 note.noplayers.details:Exception: 503 Service Unavailable
-gamenote.noturn.tile:Sie sind nicht zu handeln
+gamenote.noturn.title:Sie sind nicht zu handeln
 gamenote.noturn.explanation:Sie sind nicht einmal umdrehen
 gamenote.noturn.details:Exception: 503 Service Unavailable
 gamenote.nostreet.title:Keine Straßen zu Ort
