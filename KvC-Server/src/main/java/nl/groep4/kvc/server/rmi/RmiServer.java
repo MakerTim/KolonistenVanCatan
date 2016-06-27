@@ -24,7 +24,6 @@ public class RmiServer {
      * 
      * @param port
      *            Port which the server listens to
-     * @author MakerTim
      */
     public static void init(int port) {
 	try {
