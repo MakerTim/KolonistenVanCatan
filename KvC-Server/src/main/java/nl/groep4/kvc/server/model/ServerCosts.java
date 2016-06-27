@@ -10,7 +10,7 @@ public class ServerCosts {
     /**
      * A list with the costs for the resources.
      * 
-     * version: 1.0
+     * @version: 1.0
      * 
      * @author: Tim
      * 

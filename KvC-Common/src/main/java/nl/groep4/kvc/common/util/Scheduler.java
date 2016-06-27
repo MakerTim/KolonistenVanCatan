@@ -7,20 +7,28 @@ import javafx.application.Platform;
 /**
  * Utility class for multi threading.
  * 
- * @version 1.0
+ * @version 1.1
  * @author Tim
  */
 public class Scheduler {
 
     /**
-     * 
+     * See {@link Scheduler#runAsyncdSync(Runnable...)}
      * 
      * @param runs
+     *            A group of methods.
      */
     public static void runAsyncdSync(List<Runnable> runs) {
 	runAsyncdSync(runs.toArray(new Runnable[runs.size()]));
     }
 
+    /**
+     * This method executes multiple threads asynchronously. All the threads
+     * wait until they are all done.
+     * 
+     * @param runs
+     *            A group of methods.
+     */
     public static void runAsyncdSync(Runnable... runs) {
 	Thread[] threads = new Thread[runs.length];
 	for (int i = 0; i < runs.length; i++) {
@@ -47,28 +55,68 @@ public class Scheduler {
 	} while (running);
     }
 
+    /**
+     * See {@link Scheduler#runSyncLater(Runnable, long)}
+     * 
+     * @param run
+     *            A bunch of methods.
+     */
     public static void runSync(Runnable run) {
 	runSyncLater(run, 0L);
     }
 
+    /**
+     * See {@link Scheduler#runAsyncLater(Runnable, long)}
+     * 
+     * @param run
+     *            A bunch of methods.
+     */
     public static void runAsync(Runnable run) {
 	runAsyncLater(run, 0L);
     }
 
+    /**
+     * See {@link Scheduler#runSyncLater(Runnable, long)}
+     * 
+     * @param run
+     *            A bunch of methods.
+     */
     public static void runSyncLater(Runnable run) {
 	runSyncLater(run, 1L);
     }
 
+    /**
+     * {@link Scheduler#runAsyncLater(Runnable, long)}
+     * 
+     * @param run
+     *            A bunch of methods.
+     */
     public static void runAsyncLater(Runnable run) {
 	runAsyncLater(run, 1L);
     }
 
+    /**
+     * Makes sure that the bunch of methods are in the javaFX.
+     * 
+     * @param run
+     *            A bunch of methods.
+     * @param millis
+     *            The milliseconds.
+     */
     public static void runSyncLater(Runnable run, long millis) {
 	runAsyncLater(() -> {
 	    Platform.runLater(run);
 	}, millis);
     }
 
+    /**
+     * Waits a few milliseconds before the thread will start.
+     * 
+     * @param run
+     *            A bunch of methods.
+     * @param millis
+     *            The milliseconds.
+     */
     public static void runAsyncLater(Runnable run, long millis) {
 	Thread thread = new Thread(() -> {
 	    try {

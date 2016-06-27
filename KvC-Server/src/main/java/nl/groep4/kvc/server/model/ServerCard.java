@@ -6,7 +6,7 @@ import nl.groep4.kvc.common.interfaces.Card;
 /**
  * The serverside of Card.
  * 
- * version: 1.0
+ * @version: 1.0
  * 
  * @author Tim
  *

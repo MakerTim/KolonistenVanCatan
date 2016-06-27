@@ -26,9 +26,16 @@ import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.interfaces.NotCloseable;
 import nl.groep4.kvc.common.interfaces.Player;
 
+/**
+ * Makes the WinPane. This Pane will appear when someone has won the game.
+ * 
+ * @author Lisa
+ * @version 1.0
+ */
 public class WinPane implements PaneHolder, NotCloseable {
 
     final FileChooser fileChooser = new FileChooser();
+
     private Font font = new Font(ViewMaster.FONT.getName(), 40);
     private Player winner;
 
@@ -74,16 +81,17 @@ public class WinPane implements PaneHolder, NotCloseable {
 	} catch (NullPointerException npe) {
 	    winnerLine.setText("Lisa");
 	}
+
 	winnerLine.setFont(font);
 	winnerLine.setFill(Color.WHITE);
 	winnerLine.setStroke(Color.BLACK);
 
 	hbox.setAlignment(Pos.CENTER);
+	hbox.setSpacing(10);
 	vbox.setAlignment(Pos.CENTER);
+
 	namepane.setAlignment(Pos.TOP_CENTER);
 	namepane.setPadding(new Insets(50, 0, 0, 0));
-
-	hbox.setSpacing(10);
 
 	hbox.getChildren().addAll(close, credits, screenshot);
 	vbox.getChildren().addAll(banner, trophy, hbox);

@@ -25,7 +25,7 @@ import nl.groep4.kvc.server.model.ServerCosts;
 import nl.groep4.kvc.server.model.map.ServerMap;
 
 /**
- * Instance of KolonistenVanCatan
+ * Instance of KolonistenVanCatan.
  * 
  * @author Tim
  * @version 1.0
