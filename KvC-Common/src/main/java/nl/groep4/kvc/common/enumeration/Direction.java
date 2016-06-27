@@ -16,7 +16,7 @@ public enum Direction implements Offsetable {
 
     @Override
     public Direction opposite() {
-	return CollectionUtil.getInRange(Direction.values(), Direction.values().length / 2);
+	return CollectionUtil.getInRange(Direction.values(), this.ordinal() + Direction.values().length / 2);
     }
 
     @Override

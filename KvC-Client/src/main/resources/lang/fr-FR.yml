@@ -104,6 +104,7 @@ turn.state.trade.self:À la vente aux enchères
 turn.state.wait:Tourne
 turn.state.wait.self:Êtes à côté
 turn.self:Vous
+turn.lastthrow:Dernière jeté
 
 #Cards
 cards.monopoly.info:Monopole: Obtenez toutes les cartes de ressources d'un type de choix
@@ -200,6 +201,8 @@ gamenote.norover.details:Exception: 503 Service Unavailable
 gamenote.tradeself.title:Pas d'échange
 gamenote.tradeself.explanation:Ne pas échanger avec vous-même
 gamenote.tradeself.details:Exception: 503 Service Unavailable
+gamenote.noplace.title:Nulle part
+gamenote.noplace.explanation:Il n'y a pas de place pour ce bâtiment
 
 
 #Map
@@ -254,3 +257,8 @@ error.remote.unknown.details:Exception: 500 Internal Server Error
 error.translation.notfound.title:Erreur de traduction
 error.translation.notfound.explanation:Traduction est introuvable
 error.translation.notfound.details:Exception: 409 Conflict
+
+#Winpane
+win.button.credits:Credits
+win.button.close:Fermer
+win.button.screenshot:Screenshot

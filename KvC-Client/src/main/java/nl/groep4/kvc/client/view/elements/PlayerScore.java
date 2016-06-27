@@ -175,7 +175,7 @@ public class PlayerScore {
 	try {
 	    scoreLabel.setText(Integer.toString(player.getPoints()));
 	    bottom.getChildren().remove(ridderIcon);
-	    if (player.hasMostRidders()) {
+	    if (player.hasMostKnights()) {
 		bottom.getChildren().add(ridderIcon);
 	    }
 	    bottom.getChildren().remove(roadIcon);
@@ -200,7 +200,7 @@ public class PlayerScore {
 	    scoreLabel.setText(Integer.toString(player.getPoints()));
 	    bottom.getChildren().remove(ridderIcon);
 	    bottom.getChildren().remove(roadIcon);
-	    if (player.hasMostRidders()) {
+	    if (player.hasMostKnights()) {
 		bottom.getChildren().add(ridderIcon);
 	    }
 	    if (player.hasLongestRoad()) {

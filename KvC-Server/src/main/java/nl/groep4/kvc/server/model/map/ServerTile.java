@@ -66,8 +66,28 @@ public abstract class ServerTile implements Tile {
     }
 
     @Override
+    public Direction getDirection(Street street) {
+	for (int i = 0; i < streets.length; i++) {
+	    if (street.equals(streets[i])) {
+		return Direction.values()[i];
+	    }
+	}
+	return null;
+    }
+
+    @Override
     public Building getBuilding(Point point) {
 	return buildings[point.ordinal()];
+    }
+
+    @Override
+    public Point getPoint(Building building) {
+	for (int i = 0; i < streets.length; i++) {
+	    if (building.equals(buildings[i])) {
+		return Point.values()[i];
+	    }
+	}
+	return null;
     }
 
     @Override

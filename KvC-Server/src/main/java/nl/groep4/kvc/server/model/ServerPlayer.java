@@ -84,7 +84,7 @@ public class ServerPlayer implements Player {
 	boolean hasCard = false;
 	Iterator<Card> cardIT = cards.iterator();
 	while (cardIT.hasNext()) {
-	    Card card = (Card) cardIT.next();
+	    Card card = cardIT.next();
 	    if (card.getType() == usedCard.getType()) {
 		cardIT.remove();
 		hasCard = true;
@@ -158,7 +158,7 @@ public class ServerPlayer implements Player {
     }
 
     @Override
-    public boolean hasMostRidders() throws RemoteException {
+    public boolean hasMostKnights() throws RemoteException {
 	return hasMostRidders;
     }
 

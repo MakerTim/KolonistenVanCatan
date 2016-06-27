@@ -392,7 +392,7 @@ public interface Player extends Remote {
      * @throws RemoteException
      *             Any remotely invoked method.
      */
-    public boolean hasMostRidders() throws RemoteException;
+    public boolean hasMostKnights() throws RemoteException;
 
     /**
      * Sets that the player has the most knights.
