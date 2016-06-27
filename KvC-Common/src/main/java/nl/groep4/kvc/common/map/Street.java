@@ -5,7 +5,7 @@ import java.io.Serializable;
 import nl.groep4.kvc.common.interfaces.Ownable;
 
 /**
- * Defines street
+ * Defines street.
  * 
  * @version 1.0
  * @author Tim
