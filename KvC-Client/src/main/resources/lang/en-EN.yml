@@ -162,7 +162,7 @@ gamenote.ingame.details:Switching colour is unavailable while game is running
 note.noplayers.title:Not enough people
 note.noplayers.explanation:There are not enough people
 note.noplayers.details:Exception: 503 Service Unavailable
-gamenote.noturn.tile:It is not your turn
+gamenote.noturn.title:It is not your turn
 gamenote.noturn.explanation:It is not your turn yet
 gamenote.noturn.details:Exception: 503 Service Unavailable
 gamenote.nostreet.title:No streets to place
