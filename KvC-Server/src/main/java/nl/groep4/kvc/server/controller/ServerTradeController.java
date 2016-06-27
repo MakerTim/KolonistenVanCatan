@@ -14,20 +14,47 @@ import nl.groep4.kvc.common.interfaces.Trade;
 import nl.groep4.kvc.common.interfaces.UpdateMap;
 import nl.groep4.kvc.server.model.ServerTrade;
 
+/**
+ * Adds trades, removes trades and updates trades.
+ * 
+ * @author Tim
+ * @version 1.0
+ */
 public class ServerTradeController {
 
     private ServerKolonistenVanCatan controller;
 
     private List<Trade> trades = new ArrayList<>();
 
+    /**
+     * Controls server.
+     * 
+     * @param serverKolonistenVanCatan
+     *            Server value.
+     */
     public ServerTradeController(ServerKolonistenVanCatan serverKolonistenVanCatan) {
 	this.controller = serverKolonistenVanCatan;
     }
 
+    /**
+     * Gets list of trades.
+     * 
+     * @return The list of trades.
+     */
     public List<Trade> getTrades() {
 	return trades;
     }
 
+    /**
+     * Adds trades with player name.
+     * 
+     * @param player
+     *            Name of player that offered the trade.
+     * @param request
+     *            The resources the player requests.
+     * @param reward
+     *            The resources the player wants in return.
+     */
     public void addTrade(Player player, Map<Resource, Integer> request, Map<Resource, Integer> reward) {
 	try {
 	    System.out.printf("Added new trade! %s [\t%s : %s]\n", player.getUsername(), request.toString(),
@@ -41,6 +68,15 @@ public class ServerTradeController {
 	}
     }
 
+    /**
+     * Trades the resources with one another and makes sure players can't trade
+     * with themselves.
+     * 
+     * @param trade
+     *            The trade which includes id.
+     * @param player
+     *            The player from which the trade is.
+     */
     public void onTrade(Trade trade, Player player) {
 	try {
 	    if (trade == null) {
@@ -88,6 +124,13 @@ public class ServerTradeController {
 	}
     }
 
+    /**
+     * Checks if player has the resource to make a trade.
+     * 
+     * @param trade
+     *            The trade which includes id.
+     * @return true When player has the resources in stock.
+     */
     public boolean hasAllResources(Trade trade) {
 	for (Entry<Resource, Integer> reward : trade.getReward().entrySet()) {
 	    try {
@@ -102,6 +145,10 @@ public class ServerTradeController {
 	return true;
     }
 
+    /**
+     * Validates trades. Checks when it's a bank trade, then it automatically
+     * trades 4:1.
+     */
     public void validateTrades() {
 	for (Trade trade : new ArrayList<>(trades)) {
 	    if (!hasAllResources(trade)) {
@@ -136,6 +183,12 @@ public class ServerTradeController {
 	}
     }
 
+    /**
+     * Removes the trade.
+     * 
+     * @param key
+     *            The id of the trade.
+     */
     public void removeTrade(UUID key) {
 	Iterator<Trade> tradesIT = trades.iterator();
 	while (tradesIT.hasNext()) {
@@ -147,6 +200,13 @@ public class ServerTradeController {
 	validateTrades();
     }
 
+    /**
+     * Gets the trade.
+     * 
+     * @param tradeKey
+     *            The id of the trade.
+     * @return The trades.
+     */
     public Trade getTrade(UUID tradeKey) {
 	return trades.stream().filter(trade -> trade.getID().equals(tradeKey)).findFirst().orElse(null);
     }

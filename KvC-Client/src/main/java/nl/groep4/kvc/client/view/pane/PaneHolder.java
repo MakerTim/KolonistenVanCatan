@@ -5,8 +5,9 @@ import javafx.scene.layout.Pane;
 /**
  * Interface for making code have some guideline.
  * 
- * @version 1.1
  * @author Tim
+ * @version 1.1
+ * 
  **/
 public interface PaneHolder {
 

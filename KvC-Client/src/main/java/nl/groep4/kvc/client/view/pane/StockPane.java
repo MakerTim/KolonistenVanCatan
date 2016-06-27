@@ -31,8 +31,9 @@ import nl.groep4.kvc.common.interfaces.VictoryCard;
 /**
  * The card pane show all obtained cards.
  * 
- * @version 1.1
  * @author Luc
+ * @version 1.1
+ * 
  * 
  **/
 public class StockPane implements PaneHolder, UpdateStock {

@@ -29,6 +29,12 @@ import nl.groep4.kvc.common.util.Scheduler;
  */
 public class TestMapController extends MapController {
 
+    /**
+     * The controller tests the maps functions.
+     * 
+     * @param view
+     */
+
     public TestMapController(SceneMap view) {
 	super(null, view);
 	Scheduler.runAsyncLater(() -> {
@@ -66,7 +72,7 @@ public class TestMapController extends MapController {
 	    } catch (Exception ex) {
 		ex.printStackTrace();
 	    }
-	}, 3000L);
+	} , 3000L);
 	Scheduler.runAsyncLater(() -> {
 	    try {
 		view.updateRound(25);
@@ -77,7 +83,7 @@ public class TestMapController extends MapController {
 	    } catch (Exception ex) {
 		ex.printStackTrace();
 	    }
-	}, 3000L);
+	} , 3000L);
 	Scheduler.runAsyncLater(() -> {
 	    try {
 		java.util.Map<Resource, Integer> resources = new HashMap<>();
@@ -95,7 +101,7 @@ public class TestMapController extends MapController {
 	    } catch (Exception ex) {
 		ex.printStackTrace();
 	    }
-	}, 3000L);
+	} , 3000L);
 	Scheduler.runAsyncLater(() -> {
 	    try {
 		java.util.Map<Resource, Integer> resources = new HashMap<>();
@@ -136,6 +142,6 @@ public class TestMapController extends MapController {
 	    } catch (Exception ex) {
 		ex.printStackTrace();
 	    }
-	}, 3000L);
+	} , 3000L);
     }
 }
