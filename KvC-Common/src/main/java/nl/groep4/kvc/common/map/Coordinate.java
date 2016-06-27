@@ -44,7 +44,7 @@ public final class Coordinate implements Serializable, Cloneable {
      *            The xCoordinate
      * @param y
      *            The yCoordinate
-     * @return True or false on if item is in the same location.
+     * @return True or false about whether item is in the same location.
      */
     public boolean isSameLocation(double x, double y) {
 	return this.x == x && this.y == y;
