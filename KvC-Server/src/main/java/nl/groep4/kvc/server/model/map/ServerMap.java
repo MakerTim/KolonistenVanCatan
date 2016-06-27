@@ -16,9 +16,10 @@ import nl.groep4.kvc.common.util.CollectionUtil;
 import nl.groep4.kvc.server.factory.TileFactory;
 
 /**
+ * Instance of the map in the game.
  *
  * @author Tim
- * @version 1.0
+ * @version 1.1
  */
 public class ServerMap implements Map {
 
