@@ -15,15 +15,15 @@ import nl.groep4.kvc.server.model.ServerLobby;
  * RMI Server class
  * 
  * @author Tim
- * @version 1.0
+ * @version 1.1
  */
 public class RmiServer {
 
     /**
-     * Create RMI registry and place KolonistenVanCatan object
+     * Create RMI registry and place KolonistenVanCatan object.
      * 
      * @param port
-     *            Port which the server listens to
+     *            Port which the server listens to.
      */
     public static void init(int port) {
 	try {
