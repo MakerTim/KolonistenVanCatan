@@ -13,7 +13,8 @@ public class ServerTrade implements Trade {
     /**
      * The severside model off Trade
      * 
-     * @author: Tim version: 1.0
+     * @author: Tim
+     * @version: 1.0
      */
     private static final long serialVersionUID = -19111999L;
 

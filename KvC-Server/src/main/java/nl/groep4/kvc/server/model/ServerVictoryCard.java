@@ -9,7 +9,7 @@ public class ServerVictoryCard extends ServerCard implements VictoryCard {
     /**
      * The serverside victorcard is created here
      * 
-     * version: 1.0
+     * @version: 1.0
      * 
      * @author: Tim
      * 

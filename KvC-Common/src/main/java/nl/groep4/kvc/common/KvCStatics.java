@@ -3,7 +3,8 @@ package nl.groep4.kvc.common;
 /**
  * This class shows the input that is being used in the lobby.
  * 
- * @author Tim version: 1.0
+ * @author Tim
+ * @version: 1.0
  *
  */
 public class KvCStatics {
