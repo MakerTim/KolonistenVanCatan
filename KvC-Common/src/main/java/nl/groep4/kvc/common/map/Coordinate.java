@@ -77,7 +77,7 @@ public final class Coordinate implements Serializable, Cloneable {
      * 
      * @param subtracted
      *            The coordinates.
-     * @return The substracted coordinates.
+     * @return The subtracted coordinates.
      */
     public Coordinate subtract(Coordinate subtracted) {
 	return subtract(subtracted.getX(), subtracted.getY());

@@ -116,6 +116,8 @@ public class MapController implements Controller {
     /**
      * Places building at the given coordinate.
      * 
+     * @param type
+     *            The type of building.
      * @param coord
      *            Coordinate to place building.
      */
