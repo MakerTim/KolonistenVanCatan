@@ -13,8 +13,9 @@ import javafx.scene.paint.Color;
 /**
  * InputField with a default style to fit in the lobby.
  * 
- * @version 1.1
  * @author Tim
+ * @version 1.1
+ * 
  **/
 public class MenuInputField extends TextField {
 
