@@ -5,7 +5,7 @@ import java.rmi.RemoteException;
 import nl.groep4.kvc.common.interfaces.Throw;
 
 /**
- * Instance of throw
+ * Instance of throw.
  * 
  * @author Tim
  * @version 1.0

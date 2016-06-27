@@ -10,6 +10,11 @@ import nl.groep4.kvc.common.interfaces.Trade;
 
 public class ServerTrade implements Trade {
 
+    /**
+     * The severside model off Trade
+     * 
+     * @author: Tim version: 1.0
+     */
     private static final long serialVersionUID = -19111999L;
 
     private Player player;
@@ -17,6 +22,16 @@ public class ServerTrade implements Trade {
     private EnumMap<Resource, Integer> reward;
     private UUID key = UUID.randomUUID();
 
+    /**
+     * Gives a list with resources that gets traded and the traders.
+     * 
+     * @param player
+     *            This is the player who does the trading.
+     * @param request
+     *            The resources that are requested.
+     * @param reward
+     *            The resources that are given.
+     */
     public ServerTrade(Player player, Map<Resource, Integer> request, Map<Resource, Integer> reward) {
 	this.player = player;
 	this.request = new EnumMap<>(request);
