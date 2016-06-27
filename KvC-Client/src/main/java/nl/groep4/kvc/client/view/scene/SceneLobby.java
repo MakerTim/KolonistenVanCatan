@@ -27,9 +27,9 @@ import nl.groep4.kvc.common.util.Scheduler;
 /**
  * Builds scene settings menu.
  * 
- * @version 1.3
  * @author Luc
  * @author Tim
+ * @version 1.3
  */
 public class SceneLobby implements SceneHolder, UpdateLobby {
 
@@ -85,7 +85,7 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
 		} catch (Exception ex) {
 		}
 	    } while (ViewMaster.getLastScene() == this);
-	}, 1000);
+	} , 1000);
 	lobbyPane.getChildren().addAll(SceneUtil.getMenuBackground(), SceneUtil.getLobbyForeground(),
 		SceneUtil.getMenuBrazier(), SceneUtil.getCornerShield(), lobbyLabel, lobbyGrid, startGame, backButton,
 		saveButton, SettingsButton.getButton(this, 13, 645));
