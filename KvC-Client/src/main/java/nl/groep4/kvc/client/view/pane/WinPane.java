@@ -27,6 +27,7 @@ import nl.groep4.kvc.common.interfaces.NotCloseable;
 import nl.groep4.kvc.common.interfaces.Player;
 
 public class WinPane implements PaneHolder, NotCloseable {
+
     final FileChooser fileChooser = new FileChooser();
     private Font font = new Font(ViewMaster.FONT.getName(), 40);
     private Player winner;
