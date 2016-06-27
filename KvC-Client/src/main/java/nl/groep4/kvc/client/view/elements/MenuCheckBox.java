@@ -5,8 +5,9 @@ import javafx.scene.control.CheckBox;
 /**
  * Wrapper for CheckBox.
  * 
- * @version 1.1
  * @author Tim
+ * @version 1.1
+ * 
  **/
 public class MenuCheckBox extends CheckBox {
 
