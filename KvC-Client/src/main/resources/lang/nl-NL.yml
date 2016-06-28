@@ -202,11 +202,11 @@ gamenote.tradeself.details:Exception: 503 Service Unavailable
 gamenote.noplace.title:No place
 gamenote.noplace.explanation:There is no place for this building
 gamenote.noplace.details:Exception: 503 Service Unavailable
-gamenote.savesucces.title:Succesful save
-gamenote.savesucces.explanation:The game has been saved successfully
+gamenote.savesucces.title:Opgeslagen
+gamenote.savesucces.explanation:Het spel is opgeslagen
 gamenote.savesucces.details:201 Created
-gamenote.savefailed.title:Save failed
-gamenote.savefailed.explanation:Saving the game has failed
+gamenote.savefailed.title:Opslaan niet gelukt
+gamenote.savefailed.explanation:Opslaan van het spel is niet gelukt
 gamenote.savefailed.details:Exception:409 Conflict
 
 #Map
