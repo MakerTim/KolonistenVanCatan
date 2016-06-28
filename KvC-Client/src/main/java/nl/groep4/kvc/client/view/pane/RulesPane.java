@@ -60,7 +60,7 @@ public class RulesPane implements PaneHolder {
 	scrollpane.setMinWidth(500);
 	scrollpane.setMaxWidth(600);
 	scrollpane.setMinHeight(300);
-	scrollpane.setMaxHeight(360);
+	scrollpane.setMaxHeight(325);
 	scrollpane.setContent(lines);
 
 	vbox.setAlignment(Pos.CENTER);
