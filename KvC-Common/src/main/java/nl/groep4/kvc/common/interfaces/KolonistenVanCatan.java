@@ -336,4 +336,13 @@ public interface KolonistenVanCatan extends Remote {
      *             Any remotely invoked method.
      */
     public void updateResources() throws RemoteException;
+
+    /**
+     * Gets the save in a String.
+     * 
+     * @return The save in a String.
+     * @throws RemoteException
+     *             Any remotely invoked method.
+     */
+    public String getSave() throws RemoteException;
 }
