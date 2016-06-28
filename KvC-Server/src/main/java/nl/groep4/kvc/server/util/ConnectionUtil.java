@@ -32,7 +32,7 @@ public class ConnectionUtil {
      */
 
     public static void cleanup(List<Player> players, Consumer<Player> onRemove) throws RemoteException {
-	Iterator<Player> playerIT = players.iterator();
+	Iterator<Player> playerIT = new ArrayList<>(players).iterator();
 	List<Runnable> runs = new ArrayList<>();
 	while (playerIT.hasNext()) {
 	    Player pl = playerIT.next();

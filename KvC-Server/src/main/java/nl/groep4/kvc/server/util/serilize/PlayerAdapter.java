@@ -3,7 +3,10 @@ package nl.groep4.kvc.server.util.serilize;
 import java.lang.reflect.Type;
 import java.rmi.RemoteException;
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonElement;
@@ -12,6 +15,7 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 
 import nl.groep4.kvc.common.enumeration.Color;
+import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.server.ServerStarter;
 
@@ -58,7 +62,14 @@ public class PlayerAdapter extends InterfaceAdapter<Player> {
 	}
 	try {
 	    player.setCards(context.deserialize(obj.get("cards"), List.class));
-	    player.setResources(context.deserialize(obj.get("resources"), EnumMap.class));
+
+	    Map<String, Double> gsonResources = context.deserialize(obj.get("resources"), EnumMap.class);
+	    Map<Resource, Integer> resources = new HashMap<>();
+	    for (Entry<String, Double> gsonEntry : gsonResources.entrySet()) {
+		resources.put(Resource.valueOf(gsonEntry.getKey()), gsonEntry.getValue().intValue());
+	    }
+
+	    player.setResources(new EnumMap<>(resources));
 	    player.setVillagesToBuild(obj.get("villagesToBuild").getAsInt());
 	    player.setCitysToBuild(obj.get("citysToBuild").getAsInt());
 	    player.setStreetsToBuild(obj.get("streetsToBuild").getAsInt());
