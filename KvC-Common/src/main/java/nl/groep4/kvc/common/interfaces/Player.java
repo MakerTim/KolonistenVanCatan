@@ -429,6 +429,8 @@ public interface Player extends Remote {
      * 
      * @param cards
      *            Cards that this player has.
+     * @throws RemoteException
+     *             Any remotely invoked method.
      */
     public void setCards(List<Card> cards) throws RemoteException;
 
@@ -437,6 +439,8 @@ public interface Player extends Remote {
      * 
      * @param resources
      *            The new mapping for the resources.
+     * @throws RemoteException
+     *             Any remotely invoked method.
      */
     public void setResources(Map<Resource, Integer> resources) throws RemoteException;
 
@@ -445,6 +449,8 @@ public interface Player extends Remote {
      * 
      * @param villages
      *            The amount of villages.
+     * @throws RemoteException
+     *             Any remotely invoked method.
      */
     public void setVillagesToBuild(int villages) throws RemoteException;
 
@@ -453,6 +459,8 @@ public interface Player extends Remote {
      * 
      * @param citys
      *            The amount of citys.
+     * @throws RemoteException
+     *             Any remotely invoked method.
      */
     public void setCitysToBuild(int citys) throws RemoteException;
 
@@ -461,6 +469,8 @@ public interface Player extends Remote {
      * 
      * @param streets
      *            The amount of streets.
+     * @throws RemoteException
+     *             Any remotely invoked method.
      */
     public void setStreetsToBuild(int streets) throws RemoteException;
 }
