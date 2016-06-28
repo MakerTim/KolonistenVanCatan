@@ -32,7 +32,6 @@ public class RulesPane implements PaneHolder {
     private KvCText rules = new KvCText(TranslationManager.translate("rules.text.rules"));
     private SceneMap view;
     private MenuButton back = new MenuButton(425, 500, TranslationManager.translate("rules.button.back"));
-    // private Font font = new Font(ViewMaster.FONT.getName(), 17);
 
     /**
      * Sets up the Rulespane.
