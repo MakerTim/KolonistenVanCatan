@@ -9,6 +9,7 @@ import java.util.Scanner;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -131,8 +132,10 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
 	    new JsonParser().parse(string);
 	} catch (IOException ex) {
 	    ex.printStackTrace();
+	    return;
 	} catch (JsonSyntaxException jse) {
 	    ExceptionDialog.error(jse);
+	    return;
 	}
 	controller.load(string);
     }
@@ -181,6 +184,8 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
 
     @Override
     public void warn(Exception ex) throws RemoteException {
-	ExceptionDialog.error(ex);
+	Platform.runLater(() -> {
+	    ExceptionDialog.error(ex);
+	});
     }
 }

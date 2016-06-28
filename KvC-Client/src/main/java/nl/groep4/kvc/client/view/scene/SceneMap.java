@@ -570,6 +570,8 @@ public class SceneMap implements SceneHolder, UpdateMap {
 
     @Override
     public void warn(Exception ex) {
-	ExceptionDialog.error(ex);
+	Platform.runLater(() -> {
+	    ExceptionDialog.error(ex);
+	});
     }
 }
