@@ -76,7 +76,7 @@ public class ServerLobby implements Lobby {
     @Override
     public void loadSave(Player pl, String save) throws RemoteException {
 	try {
-	    kvc = LoadHelper.loadFromSave(save);
+	    controller.startupGame(LoadHelper.loadFromSave(save));
 	} catch (RemoteException rex) {
 	    rex.printStackTrace();
 	} catch (JsonSyntaxException | PlayerNotFoundException ex) {

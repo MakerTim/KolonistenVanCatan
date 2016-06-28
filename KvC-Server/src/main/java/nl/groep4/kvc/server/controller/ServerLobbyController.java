@@ -67,6 +67,7 @@ public class ServerLobbyController {
 	for (Player player : playersUnready) {
 	    runs.add(() -> {
 		try {
+		    lobby.getPlayers().remove(player);
 		    player.getUpdateable(UpdateLobby.class).close("nocolor");
 		} catch (Exception ex) {
 		    ex.printStackTrace();
@@ -77,6 +78,18 @@ public class ServerLobbyController {
 	KolonistenVanCatan kvc = (KolonistenVanCatan) UnicastRemoteObject
 		.exportObject(new ServerKolonistenVanCatan(lobby.getPlayers()), 0);
 	kvc.createMap();
+	startupGame(kvc);
+    }
+
+    /**
+     * When the game starts, this methods starts it.
+     * 
+     * @param kvc
+     *            The game that will be played.
+     * @throws RemoteException
+     *             Any remotely invoked method.
+     */
+    public void startupGame(KolonistenVanCatan kvc) throws RemoteException {
 	lobby.setState(State.IN_GAME);
 	lobby.setGame(kvc);
 	List<Runnable> runners = new ArrayList<>();
@@ -102,7 +115,8 @@ public class ServerLobbyController {
 		    }
 		} catch (Exception ex) {
 		    hasCastException = true;
-		    System.err.println("ServerLobbyController -> " + ex);
+		    ex.printStackTrace();
+		    break;
 		}
 	    } while (hasCastException);
 	    try {
@@ -175,8 +189,9 @@ public class ServerLobbyController {
 	});
 	switch (lobby.getState()) {
 	case STARTING:
-	case IN_GAME:
 	    pl.getUpdateable().popup("ingame");
+	    break;
+	case IN_GAME:
 	    break;
 	case LOBBY:
 	    boolean freeColor = true;
