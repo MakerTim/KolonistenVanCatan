@@ -201,6 +201,12 @@ gamenote.tradeself.details:Exception: 503 Service Unavailable
 gamenote.noplace.title:No place
 gamenote.noplace.explanation:There is no place for this building
 gamenote.noplace.details:Exception: 503 Service Unavailable
+gamenote.savesucces.title:Succesful save
+gamenote.savesucces.explanation:The game has been saved successfully
+gamenote.savesucces.details:201 Created
+gamenote.savefailed.title:Save failed
+gamenote.savefailed.explanation:Saving the game has failed
+gamenote.savefailed.details:Exception:409 Conflict
 
 #Map
 map.throwdice.clickToThrow:Roll the dice
