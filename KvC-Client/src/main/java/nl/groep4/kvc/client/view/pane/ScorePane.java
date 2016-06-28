@@ -2,8 +2,8 @@ package nl.groep4.kvc.client.view.pane;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 import javafx.application.Platform;
 import javafx.geometry.Pos;
@@ -103,7 +103,7 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder, Up
     }
 
     @Override
-    public void updateStock(Player pl, EnumMap<Resource, Integer> resources) {
+    public void updateStock(Player pl, Map<Resource, Integer> resources) {
 	for (PlayerScore playerScore : scores) {
 	    if (pl == null || playerScore.getPlayer().equals(pl)) {
 		playerScore.updateResources(resources);

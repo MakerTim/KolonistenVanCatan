@@ -1,6 +1,6 @@
 package nl.groep4.kvc.client.view.elements;
 
-import java.util.EnumMap;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import javafx.scene.Node;
@@ -232,7 +232,7 @@ public class ResourceCard {
      * @param resources
      *            Resources that will be updated.
      */
-    public void updateStock(EnumMap<Resource, Integer> resources) {
+    public void updateStock(Map<Resource, Integer> resources) {
 	for (Entry<Resource, Integer> resource : resources.entrySet()) {
 	    Resource res = resource.getKey();
 	    String amnt = resource.getValue().toString();

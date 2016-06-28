@@ -3,6 +3,7 @@ package nl.groep4.kvc.client.view.pane;
 import java.io.File;
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.Date;
 
 import javax.imageio.ImageIO;
 
@@ -34,7 +35,7 @@ import nl.groep4.kvc.common.interfaces.Player;
  */
 public class WinPane implements PaneHolder, NotCloseable {
 
-    final FileChooser fileChooser = new FileChooser();
+    private final FileChooser fileChooser = new FileChooser();
 
     private Font font = new Font(ViewMaster.FONT.getName(), 40);
     private Player winner;
@@ -122,8 +123,8 @@ public class WinPane implements PaneHolder, NotCloseable {
 
 	image = scenemap.getLayers().snapshot(null, null);
 
-	fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG(*.png)", ".png"));
-	fileChooser.setInitialFileName(".png");
+	fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG (*.png)", "*.png"));
+	fileChooser.setInitialFileName(new Date().toString() + ".png");
 	fileChooser.setTitle("Save Screenshot");
 	File file = fileChooser.showSaveDialog(null);
 

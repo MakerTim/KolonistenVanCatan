@@ -113,11 +113,13 @@ public interface Lobby extends Remote {
     /**
      * Loads save.
      * 
+     * @param pl
+     *            The player that loads the save.
      * @param save
      *            Saves the game.
      * @throws RemoteException
      *             Any remotely invoked method.
      */
-    public void loadSave(String save) throws RemoteException;
+    public void loadSave(Player pl, String save) throws RemoteException;
 
 }

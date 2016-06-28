@@ -2,8 +2,8 @@ package nl.groep4.kvc.common.interfaces;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 import nl.groep4.kvc.common.enumeration.Color;
 import nl.groep4.kvc.common.enumeration.Resource;
@@ -256,7 +256,7 @@ public interface Player extends Remote {
      * @throws RemoteException
      *             Any remotely invoked method.
      */
-    public EnumMap<Resource, Integer> getResources() throws RemoteException;
+    public Map<Resource, Integer> getResources() throws RemoteException;
 
     /**
      * Gets the amount of a resource.
@@ -423,4 +423,54 @@ public interface Player extends Remote {
      *             Any remotely invoked method.
      */
     public void setHasLongestRoad(boolean hasLongest) throws RemoteException;
+
+    /**
+     * Sets the cards to use.
+     * 
+     * @param cards
+     *            Cards that this player has.
+     * @throws RemoteException
+     *             Any remotely invoked method.
+     */
+    public void setCards(List<Card> cards) throws RemoteException;
+
+    /**
+     * Sets all resources that this player has
+     * 
+     * @param resources
+     *            The new mapping for the resources.
+     * @throws RemoteException
+     *             Any remotely invoked method.
+     */
+    public void setResources(Map<Resource, Integer> resources) throws RemoteException;
+
+    /**
+     * Sets the amount that this player can build.
+     * 
+     * @param villages
+     *            The amount of villages.
+     * @throws RemoteException
+     *             Any remotely invoked method.
+     */
+    public void setVillagesToBuild(int villages) throws RemoteException;
+
+    /**
+     * Sets the amount that this player can build.
+     * 
+     * @param citys
+     *            The amount of citys.
+     * @throws RemoteException
+     *             Any remotely invoked method.
+     */
+    public void setCitysToBuild(int citys) throws RemoteException;
+
+    /**
+     * Sets the amount that this player can build.
+     * 
+     * @param streets
+     *            The amount of streets.
+     * @throws RemoteException
+     *             Any remotely invoked method.
+     */
+    public void setStreetsToBuild(int streets) throws RemoteException;
 }

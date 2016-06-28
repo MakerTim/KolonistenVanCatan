@@ -91,6 +91,7 @@ public class ServerTradeController {
 		try {
 		    player.getUpdateable().popup("tradeself");
 		    removeTrade(trade.getID());
+		    controller.updateTrades();
 		} catch (RemoteException ex) {
 		    ex.printStackTrace();
 		}
@@ -98,6 +99,7 @@ public class ServerTradeController {
 	    }
 	    if (hasAllResources(trade)) {
 		if (player == null) {
+		    System.out.printf("Bank traded with %s\n", "", trade.getPlayer().getUsername());
 		    for (Entry<Resource, Integer> reward : trade.getReward().entrySet()) {
 			trade.getPlayer().takeResource(reward.getKey(), reward.getValue());
 		    }
@@ -105,6 +107,8 @@ public class ServerTradeController {
 			trade.getPlayer().giveResource(requested.getKey(), requested.getValue());
 		    }
 		} else {
+		    System.out.printf("Player %s traded with %s\n", player.getUsername(),
+			    trade.getPlayer().getUsername());
 		    for (Entry<Resource, Integer> reward : trade.getReward().entrySet()) {
 			trade.getPlayer().takeResource(reward.getKey(), reward.getValue());
 			player.giveResource(reward.getKey(), reward.getValue());

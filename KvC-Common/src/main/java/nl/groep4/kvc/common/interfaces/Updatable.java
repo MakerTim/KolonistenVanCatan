@@ -51,4 +51,14 @@ public interface Updatable<T> extends Remote {
      */
     public default void testConnection() throws RemoteException {
     }
+
+    /**
+     * Shows an exception.
+     * 
+     * @param ex
+     *            The exception to be shown.
+     * @throws RemoteException
+     *             Any remotely invoked method.
+     */
+    public void warn(Exception ex) throws RemoteException;
 }

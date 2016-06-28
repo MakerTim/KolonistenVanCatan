@@ -1,11 +1,19 @@
 package nl.groep4.kvc.client.view.scene;
 
+import java.io.File;
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.Arrays;
+import java.util.Scanner;
 
+import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
+
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import nl.groep4.kvc.client.controller.ClientRefrence;
 import nl.groep4.kvc.client.controller.Controller;
 import nl.groep4.kvc.client.controller.LobbyController;
@@ -33,7 +41,7 @@ import nl.groep4.kvc.common.util.Scheduler;
  */
 public class SceneLobby implements SceneHolder, UpdateLobby {
 
-    private MenuButton saveButton;
+    private MenuButton loadButton;
     private MenuButton backButton;
     private MenuButton startGame;
     private Text lobbyLabel;
@@ -58,10 +66,11 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
 	lobbyLabel = new KvCText(873, 150, TranslationManager.translate("lobby.shield.title"));
 	startGame = new MenuButton(415, 550, TranslationManager.translate("lobby.button.start"));
 	backButton = new MenuButton(215, 550, TranslationManager.translate("lobby.button.back"));
-	saveButton = new MenuButton(615, 550, TranslationManager.translate("lobby.button.loadsave"));
+	loadButton = new MenuButton(615, 550, TranslationManager.translate("lobby.button.loadsave"));
 
 	startGame.registerClick(() -> controller.startGame());
 	backButton.registerClick(() -> controller.disconnect(ClientRefrence.getThePlayer()));
+	loadButton.registerClick(() -> onLoadClick());
 
 	scrolls = new ColorScroll[Color.values().length];
 	for (int i = 0; i < Color.values().length; i++) {
@@ -85,14 +94,14 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
 		} catch (Exception ex) {
 		}
 	    } while (ViewMaster.getLastScene() == this);
-	} , 1000);
+	}, 1000);
 	lobbyPane.getChildren().addAll(SceneUtil.getMenuBackground(), SceneUtil.getLobbyForeground(),
 		SceneUtil.getMenuBrazier(), SceneUtil.getCornerShield(), lobbyLabel, lobbyGrid, startGame, backButton,
-		saveButton, SettingsButton.getButton(this, 13, 645));
+		loadButton, SettingsButton.getButton(this, 13, 645));
 
 	Scene scene = new Scene(lobbyPane);
 	SceneUtil.fadeIn(SceneUtil.getLobbyForeground(), SceneUtil.getCornerShield(), lobbyLabel, lobbyGrid, startGame,
-		backButton, saveButton);
+		backButton, loadButton);
 	if (model != null) {
 	    try {
 		setModel(model);
@@ -103,12 +112,40 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
 	return scene;
     }
 
+    private void onLoadClick() {
+	FileChooser fileChooser = new FileChooser();
+	fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON (*.json)", "*.json"));
+	fileChooser.setInitialFileName("The save file");
+	fileChooser.setTitle("Load save");
+	File file = fileChooser.showSaveDialog(null);
+	if (file == null) {
+	    return;
+	}
+	String string = "";
+	Scanner scanner;
+	try {
+	    scanner = new Scanner(file);
+	    while (scanner.hasNextLine()) {
+		string += scanner.nextLine();
+	    }
+	    scanner.close();
+	    new JsonParser().parse(string);
+	} catch (IOException ex) {
+	    ex.printStackTrace();
+	    return;
+	} catch (JsonSyntaxException jse) {
+	    ExceptionDialog.error(jse);
+	    return;
+	}
+	controller.load(string);
+    }
+
     @Override
     public void updateConfig() {
 	lobbyLabel.setText(TranslationManager.translate("lobby.shield.title"));
 	startGame.updateText(TranslationManager.translate("lobby.button.start"));
 	backButton.updateText(TranslationManager.translate("lobby.button.back"));
-	saveButton.updateText(TranslationManager.translate("lobby.button.loadsave"));
+	loadButton.updateText(TranslationManager.translate("lobby.button.loadsave"));
 	Arrays.stream(scrolls).forEach(scroll -> scroll.updateTranslation());
     }
 
@@ -143,5 +180,12 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
     @Override
     public void start() throws RemoteException {
 	controller.start();
+    }
+
+    @Override
+    public void warn(Exception ex) throws RemoteException {
+	Platform.runLater(() -> {
+	    ExceptionDialog.error(ex);
+	});
     }
 }

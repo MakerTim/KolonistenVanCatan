@@ -26,7 +26,7 @@ public class ServerPlayer implements Player {
     private Updatable<?> updatable;
     private Color color;
     private List<Card> cards = new ArrayList<>();
-    private EnumMap<Resource, Integer> resources;;
+    private Map<Resource, Integer> resources;
     private int villagesToBuild;
     private int citysToBuild;
     private int streetsToBuild;
@@ -101,7 +101,7 @@ public class ServerPlayer implements Player {
     }
 
     @Override
-    public EnumMap<Resource, Integer> getResources() {
+    public Map<Resource, Integer> getResources() {
 	return resources;
     }
 
@@ -126,17 +126,17 @@ public class ServerPlayer implements Player {
     }
 
     @Override
-    public int getRemainingCitys() throws RemoteException {
+    public int getRemainingCitys() {
 	return citysToBuild;
     }
 
     @Override
-    public void addRemainingCitys(int citys) throws RemoteException {
+    public void addRemainingCitys(int citys) {
 	citysToBuild += citys;
     }
 
     @Override
-    public int getPoints() throws RemoteException {
+    public int getPoints() {
 	return score;
     }
 
@@ -145,7 +145,7 @@ public class ServerPlayer implements Player {
 	if (obj instanceof Player) {
 	    Player other = (Player) obj;
 	    try {
-		return other.getUsername().equals(getUsername());
+		return other.getColor().equals(getColor());
 	    } catch (RemoteException ex) {
 		ex.printStackTrace();
 	    }
@@ -154,27 +154,52 @@ public class ServerPlayer implements Player {
     }
 
     @Override
-    public void setPoints(int score) throws RemoteException {
+    public void setPoints(int score) {
 	this.score = score;
     }
 
     @Override
-    public boolean hasMostKnights() throws RemoteException {
+    public boolean hasMostKnights() {
 	return hasMostRidders;
     }
 
     @Override
-    public void setMostRidder(boolean hasMost) throws RemoteException {
+    public void setMostRidder(boolean hasMost) {
 	this.hasMostRidders = hasMost;
     }
 
     @Override
-    public boolean hasLongestRoad() throws RemoteException {
+    public boolean hasLongestRoad() {
 	return hasLongestRoad;
     }
 
     @Override
-    public void setHasLongestRoad(boolean hasLongest) throws RemoteException {
+    public void setHasLongestRoad(boolean hasLongest) {
 	this.hasLongestRoad = hasLongest;
+    }
+
+    @Override
+    public void setCards(List<Card> cards) {
+	this.cards = cards;
+    }
+
+    @Override
+    public void setResources(Map<Resource, Integer> resources) {
+	this.resources = resources;
+    }
+
+    @Override
+    public void setVillagesToBuild(int villages) {
+	this.villagesToBuild = villages;
+    }
+
+    @Override
+    public void setCitysToBuild(int citys) {
+	this.citysToBuild = citys;
+    }
+
+    @Override
+    public void setStreetsToBuild(int streets) {
+	this.streetsToBuild = streets;
     }
 }

@@ -137,4 +137,14 @@ public class LobbyController implements Controller {
 	    ExceptionManager.handleRemoteException(ex);
 	}
     }
+
+    public boolean load(String save) {
+	try {
+	    model.loadSave(ClientRefrence.getThePlayer(), save);
+	    return true;
+	} catch (Exception ex) {
+	    ex.printStackTrace();
+	}
+	return false;
+    }
 }

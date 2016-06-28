@@ -7,9 +7,13 @@ import java.util.List;
 import java.util.Scanner;
 
 import nl.groep4.kvc.common.KvCStatics;
+import nl.groep4.kvc.common.enumeration.BuildingType;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
+import nl.groep4.kvc.common.interfaces.Lobby;
 import nl.groep4.kvc.common.interfaces.Player;
+import nl.groep4.kvc.common.map.Building;
+import nl.groep4.kvc.common.map.Street;
 import nl.groep4.kvc.common.util.Scheduler;
 import nl.groep4.kvc.server.ServerStarter;
 import nl.groep4.kvc.server.util.ConnectionUtil;
@@ -152,10 +156,28 @@ public class ArgumentParser {
 	    System.out.println("Need a playername to be kicked");
 	    return;
 	}
-	for (Player pl : ServerStarter.getLobby().getPlayers()) {
+	Lobby lobby = ServerStarter.getLobby();
+	for (Player pl : new ArrayList<>(lobby.getPlayers())) {
 	    if (pl.getUsername().equals(args[0])) {
 		pl.getUpdateable().close("");
 		ServerStarter.getLobby().disconnect(pl);
+		KolonistenVanCatan game = ServerStarter.getLobby().getGame();
+		if (game != null) {
+		    List<Building> buildings = game.getMap().getAllBuildings();
+		    List<Street> streets = game.getMap().getAllStreets();
+		    for (Building building : buildings) {
+			if (building.getOwner().equals(pl)) {
+			    building.setOwner(null);
+			    building.setBuildingType(BuildingType.EMPTY);
+			}
+		    }
+		    for (Street street : streets) {
+			if (street.getOwner().equals(pl)) {
+			    street.setOwner(null);
+			}
+		    }
+		}
+		game.reconnect();
 	    }
 	}
 	System.out.println("Kicked player with the username '" + args[0] + "'");

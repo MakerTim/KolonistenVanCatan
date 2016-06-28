@@ -282,6 +282,11 @@ public class MapController implements Controller {
 	return false;
     }
 
+    /**
+     * Gets the last throw, may be null
+     * 
+     * @return the last dices that where thrown
+     */
     public Throw lastThrow() {
 	try {
 	    return model.getLastThrow();
@@ -290,5 +295,19 @@ public class MapController implements Controller {
 	    ex.printStackTrace();
 	}
 	return null;
+    }
+
+    /**
+     * Gets the save of the game in String form.
+     * 
+     * @return The savefile as String.
+     */
+    public String getSaveFile() {
+	try {
+	    return model.getSave();
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
+	return "";
     }
 }

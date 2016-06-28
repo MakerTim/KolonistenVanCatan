@@ -1,7 +1,12 @@
 package nl.groep4.kvc.client.view.scene;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.rmi.RemoteException;
 import java.util.Collection;
+import java.util.Date;
 import java.util.EnumMap;
 import java.util.List;
 
@@ -16,6 +21,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.FileChooser;
 import nl.groep4.kvc.client.controller.Controller;
 import nl.groep4.kvc.client.controller.MapController;
 import nl.groep4.kvc.client.util.SceneUtil;
@@ -256,16 +262,39 @@ public class SceneMap implements SceneHolder, UpdateMap {
 
     @Override
     public void openSavePane() {
-	// TODO: setOverlay(new SavePane());
+	String toSave = controller.getSaveFile();
+	if (toSave == null || toSave.isEmpty()) {
+	    System.err.println("Couldnt save.");
+	    popup("savefail");
+	    return;
+	}
+	FileChooser fileChooser = new FileChooser();
+	fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON (*.json)", "*.json"));
+	fileChooser.setInitialFileName(new Date().toString() + ".json");
+	fileChooser.setTitle("Save file");
+	File file = fileChooser.showSaveDialog(null);
+	if (file == null) {
+	    return;
+	}
+	Writer writer;
+	try {
+	    writer = new FileWriter(file);
+	    writer.write(toSave);
+	    writer.flush();
+	    writer.close();
+	} catch (IOException ex) {
+	    ex.printStackTrace();
+	}
+	popup("savesucces");
     }
 
     @Override
-    public void openInventionPane() throws RemoteException {
+    public void openInventionPane() {
 	setOverlay(new InventionPane(this));
     }
 
     @Override
-    public void openMonopolyPane() throws RemoteException {
+    public void openMonopolyPane() {
 	setOverlay(new MonopolyPane(this));
     }
 
@@ -348,14 +377,14 @@ public class SceneMap implements SceneHolder, UpdateMap {
     }
 
     @Override
-    public void setModel(Map model) throws RemoteException {
+    public void setModel(Map model) {
 	Platform.runLater(() -> {
 	    gamepane.updateMap(model);
 	});
     }
 
     @Override
-    public void close(String reason) throws RemoteException {
+    public void close(String reason) {
 	Platform.runLater(() -> {
 	    ExceptionDialog.warning("kicked." + reason);
 	    ViewMaster.setScene(new SceneLogin());
@@ -363,12 +392,12 @@ public class SceneMap implements SceneHolder, UpdateMap {
     }
 
     @Override
-    public void popup(String key) throws RemoteException {
+    public void popup(String key) {
 	Platform.runLater(() -> ExceptionDialog.warning("gamenote." + key));
     }
 
     @Override
-    public void updateStock(Player pl, EnumMap<Resource, Integer> resources) {
+    public void updateStock(Player pl, java.util.Map<Resource, Integer> resources) {
 	Platform.runLater(() -> {
 	    stockPane.updateStock(pl, resources);
 	    playerPane.updateStock(pl, resources);
@@ -537,5 +566,12 @@ public class SceneMap implements SceneHolder, UpdateMap {
     @Override
     public void updatePlayerOrder(List<Player> order) {
 	Platform.runLater(() -> playerPane.updatePlayerOrder(order));
+    }
+
+    @Override
+    public void warn(Exception ex) {
+	Platform.runLater(() -> {
+	    ExceptionDialog.error(ex);
+	});
     }
 }

@@ -22,7 +22,9 @@ import nl.groep4.kvc.common.map.Map;
 import nl.groep4.kvc.common.map.Street;
 import nl.groep4.kvc.common.util.Scheduler;
 import nl.groep4.kvc.server.model.ServerCosts;
+import nl.groep4.kvc.server.model.ServerThrow;
 import nl.groep4.kvc.server.model.map.ServerMap;
+import nl.groep4.kvc.server.util.SaveHelper;
 
 /**
  * Instance of KolonistenVanCatan.
@@ -40,8 +42,9 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     ServerScoreController scoreController;
     ServerSaveController saveController;
 
-    private final List<Player> players;
-    private ServerMap map = new ServerMap();
+    private List<Player> players;
+    private Map map = new ServerMap();
+    private int endScore = 10;
     private int round = -1;
     private int turn = -1;
     private Throw lastThrow;
@@ -62,9 +65,12 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	mapController = new ServerMapController(this);
 	cardController = new ServerCardController(this);
 	scoreController = new ServerScoreController(getPlayers(), getMap());
-	players.sort((pl1, pl2) -> {
-	    return Integer.compare(pl1.hashCode(), pl2.hashCode());
-	});
+	if (players != null) {
+	    setPlayers(players);
+	    players.sort((pl1, pl2) -> {
+		return Integer.compare(pl1.hashCode(), pl2.hashCode());
+	    });
+	}
 	System.out.println("\tRandomized players");
     }
 
@@ -79,6 +85,16 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     @Override
     public Map getMap() {
 	return map;
+    }
+
+    /**
+     * Sets the map for the game.
+     * 
+     * @param map
+     *            The map that will be set.
+     */
+    public void setMap(ServerMap map) {
+	this.map = map;
     }
 
     @Override
@@ -140,6 +156,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 		for (Player player : getPlayers()) {
 		    try {
 			pl.getUpdateable(UpdateMap.class).updateScore(player, player.getPoints());
+		    } catch (NullPointerException ex) {
 		    } catch (RemoteException ex) {
 			ex.printStackTrace();
 		    }
@@ -149,7 +166,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	Scheduler.runAsyncdSync(runs);
 	for (Player pl : getPlayers()) {
 	    try {
-		if (pl.getPoints() >= 10) {
+		if (pl.getPoints() >= endScore) {
 		    runs = new ArrayList<>();
 		    setState(GameState.END);
 		    runs.add(() -> {
@@ -172,6 +189,16 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     @Override
     public List<Player> getPlayers() {
 	return players;
+    }
+
+    /**
+     * Sets the players list.
+     * 
+     * @param playersSave
+     *            The list where the players will be set to.
+     */
+    public void setPlayers(List<Player> playersSave) {
+	this.players = playersSave;
     }
 
     @Override
@@ -376,6 +403,8 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	updateTurn();
 	updateTrades();
 	updateScores();
+	updateCosts();
+	updateCards();
     }
 
     @Override
@@ -423,7 +452,6 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 		for (Player player : getPlayers()) {
 		    try {
 			pl.getUpdateable(UpdateMap.class).updateStock(player, player.getCards());
-			System.out.println(player.getCards().size());
 		    } catch (Exception ex) {
 			ex.printStackTrace();
 		    }
@@ -446,6 +474,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 		    view.updateCityCosts(ServerCosts.CITY_COSTS);
 		    view.updateVillageCosts(ServerCosts.VILLAGE_COSTS);
 		    view.updateStreetCosts(ServerCosts.STREET_COSTS);
+		} catch (NullPointerException npe) {
 		} catch (Exception ex) {
 		    ex.printStackTrace();
 		}
@@ -658,5 +687,69 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     @Override
     public void targetMonopoly(Player who, Resource resource) throws RemoteException {
 	cardController.targetMonopoly(who, resource);
+    }
+
+    /**
+     * Gets the score when the game should end.
+     * 
+     * @return The score when it ends.
+     */
+    public int getEndscore() {
+	return endScore;
+    }
+
+    /**
+     * Sets the score when the game will end.
+     * 
+     * @param score
+     *            The score when the game wil end.
+     */
+    public void setEndScore(int score) {
+	this.endScore = score;
+    }
+
+    /**
+     * Gets the current turn.
+     * 
+     * @return The turn the game is in.
+     */
+    public int getTurnNumber() {
+	return turn;
+    }
+
+    /**
+     * Sets the round where the game is in.
+     * 
+     * @param round
+     *            The round where the game is in.
+     */
+    public void setRound(int round) {
+	this.round = round;
+    }
+
+    /**
+     * Sets the turn, the number of the player in orderd.
+     * 
+     * @param turn
+     *            The number for the player who is.
+     */
+    public void setTurn(int turn) {
+	this.turn = turn;
+    }
+
+    /**
+     * Sets the last dice throw for the game.<br>
+     * NOTE: Will not trigger the desribute.
+     * 
+     * @param lastThrow
+     *            The last throw.
+     */
+    public void setThrow(ServerThrow lastThrow) {
+	this.lastThrow = lastThrow;
+    }
+
+    @Override
+    public String getSave() {
+	return SaveHelper.toSaveFile(this);
     }
 }
