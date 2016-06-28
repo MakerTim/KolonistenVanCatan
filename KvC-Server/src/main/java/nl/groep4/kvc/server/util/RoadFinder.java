@@ -11,7 +11,9 @@ import nl.groep4.kvc.common.map.Map;
 import nl.groep4.kvc.common.map.Street;
 
 /**
- * Class to find all the roads in a Map
+ * Class to find all the roads in a Map.
+ * 
+ * version: 1.1
  * 
  * @author MakerTim
  *
@@ -22,10 +24,10 @@ public class RoadFinder {
     private Set<Road> roads;
 
     /**
-     * Sets up the class and find all the roads
+     * Sets up the class and find all the roads.
      * 
      * @param map
-     *            the map where the streets are in
+     *            The map where the streets are in.
      */
     public RoadFinder(Map map) {
 	streetsToCheck = new HashSet<>();
@@ -76,19 +78,19 @@ public class RoadFinder {
     }
 
     /**
-     * Getter for all roads
+     * Getter for all roads.
      * 
-     * @return All roads found
+     * @return All roads found.
      */
     public Set<Road> getRoads() {
 	return roads;
     }
 
     /**
-     * Looks through every road and finds the longest for each player
+     * Looks through every road and finds the longest for each player.
      * 
      * @return a Map where very player with a road is found in with there
-     *         longest road count
+     *         longest road count.
      */
     public java.util.Map<Player, Integer> getLongestRoadByPlayer() {
 	java.util.Map<Player, Integer> ret = new HashMap<>();

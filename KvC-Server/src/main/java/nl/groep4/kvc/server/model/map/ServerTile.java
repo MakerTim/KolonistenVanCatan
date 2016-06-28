@@ -10,10 +10,10 @@ import nl.groep4.kvc.common.map.Tile;
 import nl.groep4.kvc.common.map.TileType;
 
 /**
- * Instance of Tile
+ * Instance of Tile.
  * 
  * @author Tim
- * @version 1.0
+ * @version 1.1
  */
 public abstract class ServerTile implements Tile {
 
@@ -25,10 +25,12 @@ public abstract class ServerTile implements Tile {
     private TileType type;
 
     /**
-     * Makes an empty tile
+     * Makes an empty tile.
      * 
      * @param type
+     *            The type of tile in the game.
      * @param position
+     *            The position of the tile.
      */
     public ServerTile(TileType type, Coordinate position) {
 	this.type = type;

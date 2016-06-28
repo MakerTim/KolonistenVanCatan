@@ -109,7 +109,7 @@ turn.lastthrow:Dernière jeté
 #Cards
 cards.monopoly.info:Monopole: Obtenez toutes les cartes de ressources d'un type de choix
 cards.knight.info:Chevalier: Déplacer highwayman et tirez la carte des ressources d'un autre joueur
-cards.road.info:Construction rue: Prêt à construire une rue (gratuit)
+cards.road.info:Construction rue: Prêt à construire 3 rue (gratuit)
 cards.victory.info:point de victoire: Un point libre
 cards.invent.info:Invention: Tirer deux cartes de ressources choisies par la banque
 
@@ -162,7 +162,7 @@ gamenote.noplayers.title:Pas assez de gens
 note.noplayers.title:Pas assez de joueurs
 note.noplayers.explanation:Il n'y a pas assez de personnes présentes
 note.noplayers.details:Exception: 503 Service Unavailable
-gamenote.noturn.tile:Vous n'êtes pas d'agir
+gamenote.noturn.title:Vous n'êtes pas d'agir
 gamenote.noturn.explanation:Vous n'êtes même pas tourner
 gamenote.noturn.details:Exception: 503 Service Unavailable
 gamenote.nostreet.title:Il n'y a pas de rues à des endroits
@@ -197,7 +197,7 @@ gamenote.norover.explanation:Il n'y a pas tuile avec bandit sélectionné
 gamenote.norover.details:Exception: 503 Service Unavailable
 gamenote.alreadyrover.title:Comme un bandit présent
 gamenote.alreadyrover.explanation:Er staat al een rover op deze tegel
-gamenote.norover.details:Exception: 503 Service Unavailable
+gamenote.alreadyrover.details:Exception: 503 Service Unavailable
 gamenote.tradeself.title:Pas d'échange
 gamenote.tradeself.explanation:Ne pas échanger avec vous-même
 gamenote.tradeself.details:Exception: 503 Service Unavailable

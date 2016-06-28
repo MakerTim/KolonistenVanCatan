@@ -15,7 +15,7 @@ import nl.groep4.kvc.common.map.Map;
  * The interfaces of the ServerKolonistenVanCatan.
  * 
  * @author Tim
- * @version 1.1
+ * @version 1.2
  */
 public interface KolonistenVanCatan extends Remote {
 
@@ -61,7 +61,7 @@ public interface KolonistenVanCatan extends Remote {
     public void start() throws RemoteException;
 
     /**
-     * Gets true or false on if the bandit is moving.
+     * Gets true or false about whether the bandit is moving.
      * 
      * @return True or false on isMovingRover.
      * @throws RemoteException
@@ -199,6 +199,8 @@ public interface KolonistenVanCatan extends Remote {
     /**
      * The player uses a card.
      * 
+     * @param player
+     *            The player who will use the card.
      * @param card
      *            The card that the player will use.
      * @throws RemoteException

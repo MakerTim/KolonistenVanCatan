@@ -31,8 +31,9 @@ import nl.groep4.kvc.common.interfaces.VictoryCard;
 /**
  * The card pane show all obtained cards.
  * 
- * @version 1.1
  * @author Luc
+ * @version 1.1
+ * 
  * 
  **/
 public class StockPane implements PaneHolder, UpdateStock {
@@ -249,6 +250,9 @@ public class StockPane implements PaneHolder, UpdateStock {
      * Gets the resource for the cathedral card.
      * 
      * @return Image of the cathedral card.
+     * @param card
+     *            this is a cathedral card
+     * 
      */
     public Node getCathCard(Card card) {
 	ImageView cathCard;
@@ -266,6 +270,8 @@ public class StockPane implements PaneHolder, UpdateStock {
     /**
      * Gets the resource for the cathedral card.
      * 
+     * @param card
+     *            this is a university card.
      * @return Image of the cathedral card.
      */
     public Node getUniCard(Card card) {
@@ -284,6 +290,8 @@ public class StockPane implements PaneHolder, UpdateStock {
     /**
      * Gets the resource for the cathedral card.
      * 
+     * @param card
+     *            this is a market card.
      * @return Image of the cathedral card.
      */
     public Node getMarketCard(Card card) {
@@ -302,6 +310,8 @@ public class StockPane implements PaneHolder, UpdateStock {
     /**
      * Gets the resource for the cathedral card.
      * 
+     * @param card
+     *            this is a parlemcard.
      * @return Image of the cathedral card.
      */
     public Node getParlemCard(Card card) {
@@ -320,6 +330,8 @@ public class StockPane implements PaneHolder, UpdateStock {
     /**
      * Gets the resource for the cathedral card.
      * 
+     * @param card
+     *            This is library card.
      * @return Image of the cathedral card.
      */
     public Node getLibraryCard(Card card) {
@@ -338,6 +350,8 @@ public class StockPane implements PaneHolder, UpdateStock {
     /**
      * Gets the resource for the monopoly card.
      * 
+     * @param card
+     *            This is a monopoly card.
      * @return Image of the monopoly card.
      */
     public Node getMonoCard(Card card) {
@@ -356,6 +370,8 @@ public class StockPane implements PaneHolder, UpdateStock {
     /**
      * Gets the resource for the knight card.
      * 
+     * @param card
+     *            This is a knight card.
      * @return Image of the knight card.
      */
     public Node getKnightCard(Card card) {
@@ -374,6 +390,8 @@ public class StockPane implements PaneHolder, UpdateStock {
     /**
      * Gets the resource for the invention card.
      * 
+     * @param card
+     *            This is an invention card.
      * @return Image of the invention card.
      */
     public Node getInventCard(Card card) {
@@ -392,6 +410,8 @@ public class StockPane implements PaneHolder, UpdateStock {
     /**
      * Gets the resource for the road card.
      * 
+     * @param card
+     *            This is a road card.
      * @return Image of the road card.
      */
     public Node getRoadCard(Card card) {

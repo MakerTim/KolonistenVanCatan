@@ -10,10 +10,10 @@ import nl.groep4.kvc.common.map.Street;
 import nl.groep4.kvc.common.util.CollectionUtil;
 
 /**
- * A road object, used only for {@link RoadFinder}
+ * A road object, used only for {@link RoadFinder}.
  * 
  * @author MakerTim
- * @version 1.0
+ * @version 1.1
  *
  */
 class Road {
@@ -21,40 +21,40 @@ class Road {
     private Set<Street> streets;
 
     /**
-     * Constructs a road
+     * Constructs a road.
      * 
      * @param streets
-     *            a set of streets
+     *            a set of streets.
      */
     public Road(Set<Street> streets) {
 	this.streets = streets;
     }
 
     /**
-     * Gets the owner of this road
+     * Gets the owner of this road.
      * 
-     * @return the Player from who the road is
+     * @return the Player from who the road is.
      */
     public Player getOwner() {
 	return CollectionUtil.first(streets).getOwner();
     }
 
     /**
-     * Check if the given street is inside this road
+     * Check if the given street is inside this road.
      * 
      * @param street
-     *            the street to check
-     * @return returns true if the street is resent
+     *            The street to check
+     * @return returns true if the street is resent.
      */
     public boolean hasStreet(Street street) {
 	return streets.contains(street);
     }
 
     /**
-     * Gets all roads on the outside of a path<br>
-     * <b>note that branches of size 1 are not counted as corner</b>
+     * Gets all roads on the outside of a path.<br>
+     * <b>note that branches of size 1 are not counted as corner.</b>
      * 
-     * @return a set of streets that are at the end of a path inside the road
+     * @return a set of streets that are at the end of a path inside the road.
      */
     public Set<Street> getCorners() {
 	Set<Street> corners = new HashSet<>();
@@ -70,9 +70,9 @@ class Road {
     }
 
     /**
-     * Calculates the longest path inside the road
+     * Calculates the longest path inside the road.
      * 
-     * @return the longest road
+     * @return the longest road.
      */
     public int getLongestPath() {
 	int lenght = 1;

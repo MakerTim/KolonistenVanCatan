@@ -5,20 +5,21 @@ import javafx.scene.layout.Pane;
 /**
  * Interface for making code have some guideline.
  * 
- * @version 1.1
  * @author Tim
+ * @version 1.2
+ * 
  **/
 public interface PaneHolder {
 
     /**
-     * Gets pane.
+     * Gets the Pane.
      * 
+     * @return Pane
      */
     public Pane getPane();
 
     /**
      * Update the translation of the pane.
-     * 
      */
     public void updateTranslation();
 }

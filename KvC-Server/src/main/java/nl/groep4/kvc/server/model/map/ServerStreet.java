@@ -10,10 +10,10 @@ import nl.groep4.kvc.common.map.Street;
 import nl.groep4.kvc.common.map.Tile;
 
 /**
- * Instance of street
+ * Instance of street.
  * 
  * @author Tim
- * @version 1.0
+ * @version 1.1
  *
  */
 public class ServerStreet implements Street {
@@ -25,9 +25,10 @@ public class ServerStreet implements Street {
     private Tile[] tiles = new Tile[2];
 
     /**
-     * Makes empty streets at the points where the streets can be placed
+     * Makes empty streets at the points where the streets can be placed.
      * 
      * @param location
+     *            The location of the streets.
      */
     public ServerStreet(Coordinate location) {
 	this.location = location;

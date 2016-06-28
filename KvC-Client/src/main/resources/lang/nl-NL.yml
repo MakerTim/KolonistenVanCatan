@@ -111,7 +111,7 @@ turn.lastthrow:Laatste gooi %d
 #Cards
 cards.monopoly.info:Monopolie: Krijg alle grondstofkaarten van één soort naar keuze
 cards.knight.info:Ridder: Verplaats struikrover en trek grondstofkaart van andere speler
-cards.road.info:Stratenbouw: Direct twee (gratis) straten bouwen
+cards.road.info:Stratenbouw: Direct 3 (gratis) straten bouwen
 cards.victory.info:Overwinningspunt: Een gratis punt
 cards.invent.info:Uitvinding: Trek twee grondstofkaarten naar keuze van de bank
 
@@ -130,7 +130,6 @@ trade.text.wood:Hout
 trade.text.wool:Wol
 trade.text.brick:Steen
 trade.text.ore:Erts
-trade.button.back:Terug
 trade.text.wheat:Graan
 trade.text.wood:Hout
 trade.text.wool:Wol
@@ -164,7 +163,7 @@ gamenote.ingame.details:Tijdens het spel kunt u niet van kleur veranderen
 note.noplayers.title:Niet genoeg mensen
 note.noplayers.explanation:Niet genoeg mensen zijn aanwezig
 note.noplayers.details:Exception: 503 Service Unavailable
-gamenote.noturn.tile:U bent niet aan de beurt
+gamenote.noturn.title:U bent niet aan de beurt
 gamenote.noturn.explanation:U bent nog niet aan de beurt
 gamenote.noturn.details:Exception: 503 Service Unavailable
 gamenote.nostreet.title:Geen straten om te plaatsen
@@ -196,6 +195,7 @@ gamenote.norover.explanation:Er is geen tegel met rover geselecteerd
 gamenote.norover.details:Exception: 503 Service Unavailable
 gamenote.alreadyrover.title:Al een rover aanwezig
 gamenote.alreadyrover.explanation:Er staat al een rover op deze tegel
+gamenote.alreadyrover.details:Exception: 503 Service Unavailable
 gamenote.tradeself.title:Ruil beëindigd
 gamenote.tradeself.explanation:U heeft uw eigen ruil beëindigd
 gamenote.tradeself.details:Exception: 503 Service Unavailable

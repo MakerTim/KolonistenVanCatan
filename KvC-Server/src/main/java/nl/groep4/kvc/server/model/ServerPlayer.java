@@ -15,10 +15,10 @@ import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.Updatable;
 
 /**
- * Instance of player
+ * Instance of player.
  * 
  * @author Tim
- * @version 1.0
+ * @version 1.1
  */
 public class ServerPlayer implements Player {
 
@@ -36,9 +36,10 @@ public class ServerPlayer implements Player {
 
     /**
      * Makes a new player on the basis of the username. When the username
-     * contains more than 20 characters, it will be cut to 2
+     * contains more than 20 characters, it will be cut to 2.
      * 
      * @param username
+     *            Name of the player.
      */
     public ServerPlayer(String username) {
 	this.username = username.substring(0, Math.min(20, username.length()));

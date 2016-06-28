@@ -11,15 +11,15 @@ import nl.groep4.kvc.common.map.TileType;
  * 
  * @author Tim
  * 
- * @version 1.1
+ * @version 1.2
  */
 public class TileFactory {
 
     /**
      * Gives an array with an unmodifiable List in it of all the tiles in the
-     * game
+     * game.
      * 
-     * @return all tiletypes that are needed in the game
+     * @return All tile types that are needed in the game.
      */
     public static List<TileType> getNeeded() {
 	List<TileType> landTiles = new ArrayList<>();
@@ -39,9 +39,9 @@ public class TileFactory {
 
     /**
      * Gives an array with an unmodifiable List in it of all the numbers for the
-     * tiles in the game
+     * tiles in the game.
      * 
-     * @return all numbers that will be added to the game
+     * @return All numbers that will be added to the game.
      */
     public static List<Integer> getNumbers() {
 	List<Integer> numbers = new ArrayList<>();

@@ -18,6 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.MenuButton;
@@ -25,7 +26,16 @@ import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.interfaces.NotCloseable;
 import nl.groep4.kvc.common.interfaces.Player;
 
+/**
+ * Makes the WinPane. This Pane will appear when someone has won the game.
+ * 
+ * @author Lisa
+ * @version 1.0
+ */
 public class WinPane implements PaneHolder, NotCloseable {
+
+    final FileChooser fileChooser = new FileChooser();
+
     private Font font = new Font(ViewMaster.FONT.getName(), 40);
     private Player winner;
 
@@ -45,9 +55,14 @@ public class WinPane implements PaneHolder, NotCloseable {
 
     private WritableImage image;
 
-    public WinPane() {
-    }
-
+    /**
+     * Sets up the WinPane.
+     * 
+     * @param scenemap
+     *            The view of the map.
+     * @param winner
+     *            The player who has won.
+     */
     public WinPane(SceneMap scenemap, Player winner) {
 	this.scenemap = scenemap;
 	this.winner = winner;
@@ -71,16 +86,17 @@ public class WinPane implements PaneHolder, NotCloseable {
 	} catch (NullPointerException npe) {
 	    winnerLine.setText("Lisa");
 	}
+
 	winnerLine.setFont(font);
 	winnerLine.setFill(Color.WHITE);
 	winnerLine.setStroke(Color.BLACK);
 
 	hbox.setAlignment(Pos.CENTER);
+	hbox.setSpacing(10);
 	vbox.setAlignment(Pos.CENTER);
+
 	namepane.setAlignment(Pos.TOP_CENTER);
 	namepane.setPadding(new Insets(50, 0, 0, 0));
-
-	hbox.setSpacing(10);
 
 	hbox.getChildren().addAll(close, credits, screenshot);
 	vbox.getChildren().addAll(banner, trophy, hbox);
@@ -103,13 +119,21 @@ public class WinPane implements PaneHolder, NotCloseable {
     }
 
     private void onScreenshotClick() {
+
 	image = scenemap.getLayers().snapshot(null, null);
 
-	File file = new File("screenshot.png");
+	fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG(*.png)", ".png"));
+	fileChooser.setInitialFileName(".png");
+	fileChooser.setTitle("Save Screenshot");
+	File file = fileChooser.showSaveDialog(null);
+
+	if (file == null) {
+	    return;
+	}
 
 	try {
 	    ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
-	    System.out.println("Screenshot!");
+	    System.out.println("Screenshot has been made!");
 	} catch (IOException e) {
 	    e.printStackTrace();
 	} catch (NullPointerException npe) {

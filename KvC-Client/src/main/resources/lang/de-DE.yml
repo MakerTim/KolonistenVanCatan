@@ -7,7 +7,7 @@ game.button.build:Bauen
 game.button.trade:Handel
 game.button.buy:Kaufen
 game.button.settings:Optionen
-game.button.next:Einde beurt
+game.button.next:Endrunde
 game.menu.save:Speichern
 game.menu.pause:Pause
 game.menu.exit:Schließen
@@ -109,7 +109,7 @@ turn.lastthrow:Zuletzt geworfen %d
 #Cards
 cards.monopoly.info:Monopol: Erhalten Sie alle Ressourcenkarten für eine Art von Wahl
 cards.knight.info:Ritter: Bewegen der Bandit und  ziehen eine Ressourcen Karte von einem anderen Spieler
-cards.road.info:Straßenbau: Bereit eine (kostenlose) Straßen bauen
+cards.road.info:Straßenbau: Bereit 3 (kostenlose) Straßen bauen
 cards.victory.info:Siegpunkt: Ein freier Punkt
 cards.invent.info:Erfindung: Ziehen zwei Ressourcenkarten von der Bank der Wahl
 
@@ -161,7 +161,7 @@ gamenote.ingame.details:Schalt Farbe ist nicht verfügbar, während Spiel läuft
 note.noplayers.title:Nicht genug Menschen
 note.noplayers.explanation:Es gibt nicht genug Menschen vorhanden
 note.noplayers.details:Exception: 503 Service Unavailable
-gamenote.noturn.tile:Sie sind nicht zu handeln
+gamenote.noturn.title:Sie sind nicht zu handeln
 gamenote.noturn.explanation:Sie sind nicht einmal umdrehen
 gamenote.noturn.details:Exception: 503 Service Unavailable
 gamenote.nostreet.title:Keine Straßen zu Ort
@@ -193,7 +193,7 @@ gamenote.norover.explanation:Kein LandKärtchen durch Räuber ausgewählt
 gamenote.norover.details:Exception: 503 Service Unavailable
 gamenote.alreadyrover.title:Es gibt bereits ein Bandit vorhanden
 gamenote.alreadyrover.explanation:Es gibt bereits einen Rover auf der LandKärtche
-gamenote.norover.details:Exception: 503 Service Unavailable
+gamenote.alreadyrover.details:Exception: 503 Service Unavailable
 gamenote.tradeself.title:nicht Austausch
 gamenote.tradeself.explanation:Sie handeln nicht mit sich selbst
 gamenote.tradeself.details:Exception: 503 Service Unavailable
@@ -257,4 +257,4 @@ error.translation.notfound.details:Exception: 409 Conflict
 #Winpane
 win.button.credits:Kredite
 win.button.close:schließen
-win.button.close:Screenshot
+win.button.screenshot:Screenshot

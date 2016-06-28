@@ -47,7 +47,7 @@ public class SettingsButton extends MenuButton {
     }
 
     /**
-     * gets button settings.
+     * Gets button settings.
      * 
      * @param parent
      *            Parent of button.
@@ -55,7 +55,7 @@ public class SettingsButton extends MenuButton {
      *            Sets the value of the property layoutX.
      * @param y
      *            Sets the value of the property layoutY.
-     * @return
+     * @return The button with all its values.
      */
     public static SettingsButton getButton(SceneHolder parent, int x, int y) {
 	BUTTON.parent = parent;

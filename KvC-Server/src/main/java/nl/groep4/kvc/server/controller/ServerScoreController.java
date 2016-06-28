@@ -1,7 +1,6 @@
 package nl.groep4.kvc.server.controller;
 
 import java.rmi.RemoteException;
-
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -14,22 +13,33 @@ import nl.groep4.kvc.common.map.Map;
 import nl.groep4.kvc.common.util.Scheduler;
 import nl.groep4.kvc.server.util.RoadFinder;
 
+/**
+ * Checks longest route, most knights and updates score.
+ * 
+ * @author Tim
+ * @version 1.0
+ */
 public class ServerScoreController {
-
-    /**
-     * elk 'laatste' straat (doodlopende straat) vinden <br>
-     * vervolgens elk einde met elkaar kijken hoeveel stappen er tussen zitten
-     * langste route = win
-     */
 
     private List<Player> players;
     private Map map;
 
+    /**
+     * Lists players.
+     * 
+     * @param players
+     *            All the players.
+     * @param map
+     *            Current map.
+     */
     public ServerScoreController(List<Player> players, Map map) {
 	this.players = players;
 	this.map = map;
     }
 
+    /**
+     * Updates score.
+     */
     public void updateScores() {
 	Scheduler.runAsyncLater(() -> {
 	    checkMostKnights();
@@ -66,7 +76,7 @@ public class ServerScoreController {
 		    ex.printStackTrace();
 		}
 	    }
-	}, 10L);
+	} , 10L);
     }
 
     private void checkLongestRoute() {

@@ -7,8 +7,9 @@ import nl.groep4.kvc.client.util.SoundUtil;
 /**
  * InputField where only certain input is allowed.
  * 
- * @version 1.1
  * @author Tim
+ * @version 1.1
+ * 
  **/
 public class MenuFilterdInputField extends MenuInputField {
 

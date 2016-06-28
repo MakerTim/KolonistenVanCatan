@@ -29,7 +29,7 @@ public class ServerLobbyController {
     private Lobby lobby;
 
     /**
-     * Controls server lobby
+     * Controls server lobby.
      * 
      * @param lobby
      *            Lobby value.

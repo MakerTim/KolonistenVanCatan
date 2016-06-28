@@ -12,7 +12,7 @@ import nl.groep4.kvc.server.controller.ServerLobbyController;
 import nl.groep4.kvc.server.util.LoadHelper;
 
 /**
- * Instance of Lobby
+ * Instance of Lobby.
  * 
  * @author Tim
  * @version 1.0

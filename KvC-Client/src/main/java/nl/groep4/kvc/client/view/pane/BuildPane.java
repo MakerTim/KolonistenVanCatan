@@ -30,6 +30,10 @@ import nl.groep4.kvc.common.interfaces.UpdateCosts;
  */
 
 public class BuildPane implements PaneHolder, UpdateCosts {
+
+    /**
+     * The pane to build is getting build here.
+     */
     MenuButton streetbutton = new MenuButton(425, 500, TranslationManager.translate("build.button.road"));
     MenuButton villagebutton = new MenuButton(425, 500, TranslationManager.translate("build.button.village"));
     MenuButton citybutton = new MenuButton(425, 500, TranslationManager.translate("build.button.city"));
@@ -77,7 +81,7 @@ public class BuildPane implements PaneHolder, UpdateCosts {
     private SceneMap sceneMap;
 
     /**
-     * Sets up the BuyPane.
+     * Sets up the BuildPane.
      * 
      * @param sceneMap
      *            The view of the map.
