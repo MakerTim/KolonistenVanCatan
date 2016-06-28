@@ -4,12 +4,15 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gson.JsonSyntaxException;
+
 import nl.groep4.kvc.common.enumeration.Color;
 import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Lobby;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.server.controller.ServerLobbyController;
 import nl.groep4.kvc.server.util.LoadHelper;
+import nl.groep4.kvc.server.util.serilize.PlayerNotFoundException;
 
 /**
  * Instance of Lobby.
@@ -71,9 +74,16 @@ public class ServerLobby implements Lobby {
     }
 
     @Override
-    public void loadSave(String save) throws RemoteException {
-	// TODO: call this method.
-	kvc = LoadHelper.loadFromSave(save);
+    public void loadSave(Player pl, String save) throws RemoteException {
+	try {
+	    kvc = LoadHelper.loadFromSave(save);
+	} catch (RemoteException rex) {
+	    rex.printStackTrace();
+	} catch (JsonSyntaxException | PlayerNotFoundException ex) {
+	    pl.getUpdateable().warn(ex);
+	} catch (Exception ex) {
+	    ex.printStackTrace();
+	}
     }
 
     @Override

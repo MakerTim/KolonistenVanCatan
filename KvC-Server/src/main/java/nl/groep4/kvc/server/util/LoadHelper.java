@@ -19,10 +19,12 @@ import nl.groep4.kvc.common.map.Tile;
 import nl.groep4.kvc.server.controller.ServerKolonistenVanCatan;
 import nl.groep4.kvc.server.model.ServerThrow;
 import nl.groep4.kvc.server.model.map.ServerMap;
+import nl.groep4.kvc.server.util.serilize.PlayerNotFoundException;
 
 public class LoadHelper extends SaveLoadHelper {
 
-    public static ServerKolonistenVanCatan loadFromSave(String safeFile) throws RemoteException, JsonSyntaxException {
+    public static ServerKolonistenVanCatan loadFromSave(String safeFile)
+	    throws RemoteException, JsonSyntaxException, PlayerNotFoundException {
 	ServerKolonistenVanCatan skvc = new ServerKolonistenVanCatan(null);
 	JsonObject obj = new JsonParser().parse(safeFile).getAsJsonObject();
 

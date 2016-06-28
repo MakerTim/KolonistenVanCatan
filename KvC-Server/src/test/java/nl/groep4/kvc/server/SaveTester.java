@@ -41,9 +41,7 @@ public class SaveTester {
     @Test
     public void testSave() throws RemoteException {
 	String save = SaveHelper.toSaveFile(skvc);
-	System.out.println(save);
-	ServerKolonistenVanCatan skvc = LoadHelper.loadFromSave(save);
-	System.out.println(skvc);
+	skvc = LoadHelper.loadFromSave(save);
     }
 
 }

@@ -538,4 +538,9 @@ public class SceneMap implements SceneHolder, UpdateMap {
     public void updatePlayerOrder(List<Player> order) {
 	Platform.runLater(() -> playerPane.updatePlayerOrder(order));
     }
+
+    @Override
+    public void warn(Exception ex) throws RemoteException {
+	ExceptionDialog.error(ex);
+    }
 }
