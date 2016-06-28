@@ -4,14 +4,12 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.gson.GsonBuilder;
-
 import nl.groep4.kvc.common.enumeration.Color;
 import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Lobby;
 import nl.groep4.kvc.common.interfaces.Player;
-import nl.groep4.kvc.server.controller.ServerKolonistenVanCatan;
 import nl.groep4.kvc.server.controller.ServerLobbyController;
+import nl.groep4.kvc.server.util.LoadHelper;
 
 /**
  * Instance of Lobby
@@ -74,8 +72,8 @@ public class ServerLobby implements Lobby {
 
     @Override
     public void loadSave(String save) throws RemoteException {
-	// TODO: ServerLobby#LoadSave Needs to be looked in
-	kvc = new GsonBuilder().create().fromJson(save, ServerKolonistenVanCatan.class);
+	// TODO: call this method.
+	kvc = LoadHelper.loadFromSave(save);
     }
 
     @Override

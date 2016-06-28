@@ -18,7 +18,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.FileChooser;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.elements.MenuButton;
@@ -45,8 +44,6 @@ public class WinPane implements PaneHolder, NotCloseable {
     private SceneMap scenemap;
 
     private WritableImage image;
-
-    private FileChooser fc;
 
     public WinPane() {
     }

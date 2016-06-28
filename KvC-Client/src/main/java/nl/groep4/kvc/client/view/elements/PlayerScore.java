@@ -1,8 +1,8 @@
 package nl.groep4.kvc.client.view.elements;
 
 import java.rmi.RemoteException;
-import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import javafx.geometry.Pos;
@@ -150,7 +150,7 @@ public class PlayerScore {
      * @param resources
      *            All the resources.
      */
-    public void updateResources(EnumMap<Resource, Integer> resources) {
+    public void updateResources(Map<Resource, Integer> resources) {
 	for (Entry<Resource, Integer> resource : resources.entrySet()) {
 	    Resource res = resource.getKey();
 	    String amount = resource.getValue().toString();

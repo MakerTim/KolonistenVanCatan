@@ -368,7 +368,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
     }
 
     @Override
-    public void updateStock(Player pl, EnumMap<Resource, Integer> resources) {
+    public void updateStock(Player pl, java.util.Map<Resource, Integer> resources) {
 	Platform.runLater(() -> {
 	    stockPane.updateStock(pl, resources);
 	    playerPane.updateStock(pl, resources);

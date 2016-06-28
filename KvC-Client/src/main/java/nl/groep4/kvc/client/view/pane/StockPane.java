@@ -1,7 +1,7 @@
 package nl.groep4.kvc.client.view.pane;
 
-import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -193,7 +193,7 @@ public class StockPane implements PaneHolder, UpdateStock {
     }
 
     @Override
-    public void updateStock(Player pl, EnumMap<Resource, Integer> resources) {
+    public void updateStock(Player pl, Map<Resource, Integer> resources) {
 	if (ClientRefrence.getThePlayer() == null || ClientRefrence.getThePlayer().equals(pl)) {
 	    cards.updateStock(resources);
 	}
