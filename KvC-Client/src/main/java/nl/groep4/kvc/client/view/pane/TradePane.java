@@ -26,14 +26,20 @@ import nl.groep4.kvc.common.interfaces.UpdateTrade;
  * Generates trade pane.
  * 
  * @author Matthijs
- * @version 1.1
+ * @version 1.2
  */
 public class TradePane implements PaneHolder, UpdateTrade {
 
     private SceneMap sceneMap;
-    private MenuButton plaats;
-    private MenuButton terug;
-    Text test;
+    private MenuButton plaats = new MenuButton(425, 500, TranslationManager.translate("trade.button.place"));
+    private MenuButton terug = new MenuButton(425, 500, TranslationManager.translate("trade.button.back"));
+
+    private Text wheat = new KvCText(TranslationManager.translate("trade.text.wheat")).addShadow();
+    private Text wood = new KvCText(TranslationManager.translate("trade.text.wood")).addShadow();
+    private Text wool = new KvCText(TranslationManager.translate("trade.text.wool")).addShadow();
+    private Text stone = new KvCText(TranslationManager.translate("trade.text.brick")).addShadow();
+    private Text ore = new KvCText(TranslationManager.translate("trade.text.ore")).addShadow();
+
     private VBox entries = new VBox(10);
 
     /**
@@ -48,8 +54,6 @@ public class TradePane implements PaneHolder, UpdateTrade {
 
     @Override
     public Pane getPane() {
-	plaats = new MenuButton(425, 500, TranslationManager.translate("trade.button.place"));
-	terug = new MenuButton(425, 500, TranslationManager.translate("trade.button.back"));
 	HBox hboxScrollpane = new HBox();
 	VBox vboxButtons = new VBox();
 	VBox vbox = new VBox();
@@ -58,12 +62,6 @@ public class TradePane implements PaneHolder, UpdateTrade {
 	HBox testbox = new HBox();
 	StackPane stackpane = new StackPane();
 	ScrollPane scrollpane = new ScrollPane();
-
-	Text wheat = new KvCText("Wheat").addShadow();
-	Text wood = new KvCText("Wood").addShadow();
-	Text wool = new KvCText("Wool").addShadow();
-	Text stone = new KvCText("Stone").addShadow();
-	Text ore = new KvCText("Ore").addShadow();
 
 	scrollpane.setHbarPolicy(ScrollBarPolicy.NEVER);
 	scrollpane.setVbarPolicy(ScrollBarPolicy.ALWAYS);
@@ -133,12 +131,13 @@ public class TradePane implements PaneHolder, UpdateTrade {
 
     @Override
     public void updateTranslation() {
-	if (terug != null) {
-	    terug.updateText(TranslationManager.translate("trade.button.back"));
-	}
-	if (plaats != null) {
-	    plaats.updateText(TranslationManager.translate("trade.button.plaats"));
-	}
+	terug.updateText(TranslationManager.translate("trade.button.back"));
+	plaats.updateText(TranslationManager.translate("trade.button.place"));
+	wheat.setText(TranslationManager.translate("trade.text.wheat"));
+	wood.setText(TranslationManager.translate("trade.text.wood"));
+	wool.setText(TranslationManager.translate("trade.text.wool"));
+	stone.setText(TranslationManager.translate("trade.text.brick"));
+	ore.setText(TranslationManager.translate("trade.text.ore"));
     }
 
     @Override

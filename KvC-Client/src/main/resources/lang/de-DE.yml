@@ -7,7 +7,7 @@ game.button.build:Bauen
 game.button.trade:Handel
 game.button.buy:Kaufen
 game.button.settings:Optionen
-game.button.next:Einde beurt
+game.button.next:Endrunde
 game.menu.save:Speichern
 game.menu.pause:Pause
 game.menu.exit:Schließen
@@ -257,4 +257,4 @@ error.translation.notfound.details:Exception: 409 Conflict
 #Winpane
 win.button.credits:Kredite
 win.button.close:schließen
-win.button.close:Screenshot
+win.button.screenshot:Screenshot
