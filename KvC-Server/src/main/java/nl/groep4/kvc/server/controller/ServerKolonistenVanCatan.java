@@ -24,6 +24,7 @@ import nl.groep4.kvc.common.util.Scheduler;
 import nl.groep4.kvc.server.model.ServerCosts;
 import nl.groep4.kvc.server.model.ServerThrow;
 import nl.groep4.kvc.server.model.map.ServerMap;
+import nl.groep4.kvc.server.util.SaveHelper;
 
 /**
  * Instance of KolonistenVanCatan.
@@ -745,5 +746,10 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
      */
     public void setThrow(ServerThrow lastThrow) {
 	this.lastThrow = lastThrow;
+    }
+
+    @Override
+    public String getSave() {
+	return SaveHelper.toSaveFile(this);
     }
 }

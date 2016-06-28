@@ -114,7 +114,7 @@ public class SceneLobby implements SceneHolder, UpdateLobby {
     private void onLoadClick() {
 	FileChooser fileChooser = new FileChooser();
 	fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON (*.json)", "*.json"));
-	fileChooser.setInitialFileName("savefile");
+	fileChooser.setInitialFileName("The save file");
 	fileChooser.setTitle("Load save");
 	File file = fileChooser.showSaveDialog(null);
 	if (file == null) {

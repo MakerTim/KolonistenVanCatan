@@ -296,4 +296,18 @@ public class MapController implements Controller {
 	}
 	return null;
     }
+
+    /**
+     * Gets the save of the game in String form.
+     * 
+     * @return The savefile as String.
+     */
+    public String getSaveFile() {
+	try {
+	    return model.getSave();
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
+	return "";
+    }
 }
