@@ -22,12 +22,17 @@ public class ServerStarter {
      *
      */
     public static void main(String[] args) {
+	//
 	System.out.println("Starting server...");
 	int port = 1099;
 	if (args.length > 0 && args[0].matches("\\d+")) {
 	    port = Integer.parseInt(args[0]);
 	}
-	RmiServer.init(port);
+	if (args.length > 1 && !args[1].isEmpty()) {
+	    System.setProperty("java.rmi.server.hostname", args[1]);
+	    RmiServer.init(port, args[1]);
+	}
+	RmiServer.init(port, null);
 	ArgumentParser.startParser();
     }
 

@@ -4,6 +4,7 @@ import java.net.InetAddress;
 import java.rmi.Remote;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.rmi.server.RemoteServer;
 import java.rmi.server.UnicastRemoteObject;
 
 import nl.groep4.kvc.common.KvCStatics;
@@ -24,11 +25,13 @@ public class RmiServer {
      * 
      * @param port
      *            Port which the server listens to.
+     * @param host
      */
-    public static void init(int port) {
+    public static void init(int port, String host) {
 	try {
-	    System.out.printf("Server ip: %s\n", InetAddress.getLocalHost());
+	    System.out.printf("Server ip: %s\n", host == null ? InetAddress.getLocalHost() : host);
 	    System.out.printf("Server port: %d\n", port);
+	    RemoteServer.setLog(System.out);
 	    ServerLobby lobby = new ServerLobby();
 	    ServerLobbyController lobbyController = new ServerLobbyController(lobby);
 	    lobby.setController(lobbyController);
