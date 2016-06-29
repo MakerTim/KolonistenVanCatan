@@ -1,8 +1,11 @@
 package nl.groep4.kvc.server.util;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
@@ -28,10 +31,13 @@ public class LoadHelper extends SaveLoadHelper {
 	ServerKolonistenVanCatan skvc = new ServerKolonistenVanCatan(null);
 	JsonObject obj = new JsonParser().parse(safeFile).getAsJsonObject();
 
-	List<Player> playersSave = GSON.fromJson(obj.get("players"), List.class);
+	List<Player> playersSave = new ArrayList<Player>();
+	JsonArray gsonPlayers = obj.get("players").getAsJsonArray();
+	for (JsonElement playerElement : gsonPlayers) {
+	    playersSave.add(GSON.fromJson(playerElement, Player.class));
+	}
 	skvc.setPlayers(playersSave);
 	skvc.setMap(GSON.fromJson(obj.get("map"), ServerMap.class));
-	// FIXME: Update streets / buildings with tiles!
 
 	for (Tile tile : skvc.getMap().getTiles()) {
 	    fixStreets(skvc.getMap(), tile);
