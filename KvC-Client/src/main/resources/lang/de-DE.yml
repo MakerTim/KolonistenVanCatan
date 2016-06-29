@@ -200,6 +200,12 @@ gamenote.tradeself.details:Exception: 503 Service Unavailable
 gamenote.noplace.title:Kein Platz
 gamenote.noplace.explanation:Es gibt keinen Platz für dieses Gebäude
 gamenote.noplace.details:Exception: 503 Service Unavailable
+gamenote.savesucces.title:gespeichert
+gamenote.savesucces.explanation:Das Spiel wurde erfolgreich gespeichert
+gamenote.savesucces.details:201 Created
+gamenote.savefailed.title:Speichern fehlgeschlagen
+gamenote.savefailed.explanation:Speichern Sie das Spiel ist fehlgeschlagen
+gamenote.savefailed.details:Exception:409 Conflict
 
 #Map
 map.throwdice.clickToThrow:Wirf den Würfel
@@ -235,6 +241,9 @@ kicked.started.details:Unfähig Spiel im Gange beitreten
 kicked.closed.title:Server geschlossen
 kicked.closed.explanation:Der Server wurde geschlossen
 kicked.closed.details:Exception: 503 Service Unavailable
+kicked.console.title:Rausgeschmissen
+kicked.console.explanation:Sie wurden aus dem Spiel gekickt
+kicked.console.details:Exception: 503 Service Unavailable
 
 #ExceptionManager
 error.connect.notfound.title:Server nicht gefunden

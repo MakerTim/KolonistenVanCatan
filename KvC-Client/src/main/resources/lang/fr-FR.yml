@@ -203,6 +203,12 @@ gamenote.tradeself.explanation:Ne pas échanger avec vous-même
 gamenote.tradeself.details:Exception: 503 Service Unavailable
 gamenote.noplace.title:Nulle part
 gamenote.noplace.explanation:Il n'y a pas de place pour ce bâtiment
+gamenote.savesucces.title:sauvé
+gamenote.savesucces.explanation:Le jeu est sauvé
+gamenote.savesucces.details:201 Created
+gamenote.savefailed.title:Saving a échoué
+gamenote.savefailed.explanation:Sauver le jeu ne réussit pas
+gamenote.savefailed.details:Exception:409 Conflict
 
 
 #Map
@@ -239,6 +245,9 @@ kicked.started.details:Le jeu est joué
 kicked.closed.title:serveur fermé
 kicked.closed.explanation:Le serveur est fermé
 kicked.closed.details:Exception: 503 Service Unavailable
+kicked.console.title:Expulsé
+kicked.console.explanation:Vous avez été expulsé du jeu
+kicked.console.details:Exception: 503 Service Unavailable
 
 #ExceptionManager
 error.connect.notfound.title:Le serveur est introuvable

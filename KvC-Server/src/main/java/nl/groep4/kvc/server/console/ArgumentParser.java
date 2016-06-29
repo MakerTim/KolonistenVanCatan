@@ -159,7 +159,7 @@ public class ArgumentParser {
 	Lobby lobby = ServerStarter.getLobby();
 	for (Player pl : new ArrayList<>(lobby.getPlayers())) {
 	    if (pl.getUsername().equals(args[0])) {
-		pl.getUpdateable().close("");
+		pl.getUpdateable().close("console");
 		ServerStarter.getLobby().disconnect(pl);
 		KolonistenVanCatan game = ServerStarter.getLobby().getGame();
 		if (game != null) {
