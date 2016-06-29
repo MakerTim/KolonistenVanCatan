@@ -9,19 +9,22 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import nl.groep4.kvc.client.controller.ClientRefrence;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
+import nl.groep4.kvc.client.view.elements.KvCText;
 import nl.groep4.kvc.client.view.elements.ResourceCard;
 import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.NotCloseable;
+import nl.groep4.kvc.common.interfaces.Player;
 
 /**
- * The pane when an monopoly card (development card) is used.
+ * The pane when a monopoly card (development card) is used.
  * 
  * @author Lisa
- * @version 1.1
+ * @version 1.2
  */
 public class MonopolyPane implements PaneHolder, NotCloseable {
     private Font font = new Font(ViewMaster.FONT.getName(), 30);
@@ -29,6 +32,18 @@ public class MonopolyPane implements PaneHolder, NotCloseable {
 
     private Text choice = new Text(TranslationManager.translate("monopoly.text.choice"));
     private Text monopoly = new Text(TranslationManager.translate("monopoly.text.monopoly"));
+    private Text woodAmount = new KvCText("0");
+    private Text stoneAmount = new KvCText("0");
+    private Text woolAmount = new KvCText("0");
+    private Text wheatAmount = new KvCText("0");
+    private Text oreAmount = new KvCText("0");
+
+    private int woodam = 0;
+    private int stoneam = 0;
+    private int woolam = 0;
+    private int wheatam = 0;
+    private int oream = 0;
+
     private ResourceCard cards;
     private VBox woodText;
     private VBox oreText;
@@ -62,6 +77,48 @@ public class MonopolyPane implements PaneHolder, NotCloseable {
 	choice.setStroke(Color.BLACK);
 	monopoly.setStroke(Color.BLACK);
 
+	woodAmount.setFont(ViewMaster.TITLE_FONT);
+	stoneAmount.setFont(ViewMaster.TITLE_FONT);
+	woolAmount.setFont(ViewMaster.TITLE_FONT);
+	wheatAmount.setFont(ViewMaster.TITLE_FONT);
+	oreAmount.setFont(ViewMaster.TITLE_FONT);
+
+	for (Resource resourceType : Resource.values()) {
+	    for (Player player : scenemap.getController().getPlayers()) {
+		if (player.equals(ClientRefrence.getThePlayer())) {
+		    continue;
+		}
+		try {
+		    switch (resourceType) {
+		    case BRICK:
+			stoneam += player.getResourceAmount(resourceType);
+			break;
+		    case ORE:
+			oream += player.getResourceAmount(resourceType);
+			break;
+		    case WHEAT:
+			wheatam += player.getResourceAmount(resourceType);
+			break;
+		    case WOOD:
+			woodam += player.getResourceAmount(resourceType);
+			break;
+		    case WOOL:
+			woolam += player.getResourceAmount(resourceType);
+			break;
+		    }
+		} catch (Exception e) {
+
+		    e.printStackTrace();
+		}
+	    }
+	}
+
+	woodAmount.setText(Integer.toString(stoneam));
+	stoneAmount.setText(Integer.toString(stoneam));
+	woolAmount.setText(Integer.toString(woolam));
+	wheatAmount.setText(Integer.toString(wheatam));
+	oreAmount.setText(Integer.toString(oream));
+
 	woodText = new VBox();
 	wheatText = new VBox();
 	oreText = new VBox();
@@ -83,15 +140,15 @@ public class MonopolyPane implements PaneHolder, NotCloseable {
 	wool.setOnMouseClicked(click -> onWoolClick());
 
 	woodText.setAlignment(Pos.CENTER);
-	woodText.getChildren().add(cards.getWoodName());
+	woodText.getChildren().addAll(woodAmount, cards.getWoodName());
 	oreText.setAlignment(Pos.CENTER);
-	oreText.getChildren().add(cards.getOreName());
+	oreText.getChildren().addAll(oreAmount, cards.getOreName());
 	wheatText.setAlignment(Pos.CENTER);
-	wheatText.getChildren().add(cards.getWheatName());
+	wheatText.getChildren().addAll(wheatAmount, cards.getWheatName());
 	stoneText.setAlignment(Pos.CENTER);
-	stoneText.getChildren().add(cards.getStoneName());
+	stoneText.getChildren().addAll(stoneAmount, cards.getStoneName());
 	woolText.setAlignment(Pos.CENTER);
-	woolText.getChildren().add(cards.getWoolName());
+	woolText.getChildren().addAll(woolAmount, cards.getWoolName());
 
 	wood.getChildren().addAll(cards.getWoodCard(), woodText);
 	wheat.getChildren().addAll(cards.getWheatCard(), wheatText);
