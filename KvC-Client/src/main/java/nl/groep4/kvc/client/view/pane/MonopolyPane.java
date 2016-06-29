@@ -113,7 +113,7 @@ public class MonopolyPane implements PaneHolder, NotCloseable {
 	    }
 	}
 
-	woodAmount.setText(Integer.toString(stoneam));
+	woodAmount.setText(Integer.toString(woodam));
 	stoneAmount.setText(Integer.toString(stoneam));
 	woolAmount.setText(Integer.toString(woolam));
 	wheatAmount.setText(Integer.toString(wheatam));
