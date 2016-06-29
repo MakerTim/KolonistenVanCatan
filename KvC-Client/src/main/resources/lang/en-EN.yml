@@ -242,6 +242,9 @@ kicked.started.details:Unable to join game in progress
 kicked.closed.title:Server closed
 kicked.closed.explanation:The server has been closed
 kicked.closed.details:Exception: 503 Service Unavailable
+kicked.console.title:Kicked
+kicked.console.explanation:You have been kicked out of the game
+kicked.console.details:Exception: 503 Service Unavailable
 
 #ExceptionManager
 error.connect.notfound.title:Server not found

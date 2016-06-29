@@ -243,6 +243,9 @@ kicked.started.details:Spel wordt al gespeeld
 kicked.closed.title:Server gesloten
 kicked.closed.explanation:De server is gesloten
 kicked.closed.details:Exception: 503 Service Unavailable
+kicked.console.title:Er uit gegooid
+kicked.console.explanation:U bent uit het spel gegooid
+kicked.console.details:Exception: 503 Service Unavailable
 
 #ExceptionManager
 error.connect.notfound.title:Server is niet gevonden

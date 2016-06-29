@@ -245,6 +245,9 @@ kicked.started.details:Le jeu est joué
 kicked.closed.title:serveur fermé
 kicked.closed.explanation:Le serveur est fermé
 kicked.closed.details:Exception: 503 Service Unavailable
+kicked.console.title:Expulsé
+kicked.console.explanation:Vous avez été expulsé du jeu
+kicked.console.details:Exception: 503 Service Unavailable
 
 #ExceptionManager
 error.connect.notfound.title:Le serveur est introuvable
