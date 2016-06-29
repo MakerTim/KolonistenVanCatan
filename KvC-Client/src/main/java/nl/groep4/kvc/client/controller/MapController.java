@@ -1,6 +1,8 @@
 package nl.groep4.kvc.client.controller;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -309,5 +311,19 @@ public class MapController implements Controller {
 	    ex.printStackTrace();
 	}
 	return "";
+    }
+
+    /**
+     * Get list of players
+     * 
+     * @return gets the players from the server, orded by turn
+     */
+    public List<Player> getPlayers() {
+	try {
+	    return model.getPlayersOrded();
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	}
+	return new ArrayList<>();
     }
 }
