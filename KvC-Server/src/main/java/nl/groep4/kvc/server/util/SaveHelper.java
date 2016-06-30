@@ -13,6 +13,7 @@ public class SaveHelper extends SaveLoadHelper {
 	JsonObject server = new JsonObject();
 
 	server.add("players", GSON.toJsonTree(kvc.getPlayers()));
+	server.add("trades", GSON.toJsonTree(kvc.getTrades()));
 	server.add("map", GSON.toJsonTree(kvc.getMap(), ServerMap.class));
 	server.addProperty("endScore", kvc.getEndscore());
 	server.addProperty("round", kvc.getRound());

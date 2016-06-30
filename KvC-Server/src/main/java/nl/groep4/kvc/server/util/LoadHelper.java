@@ -14,6 +14,7 @@ import nl.groep4.kvc.common.enumeration.Direction;
 import nl.groep4.kvc.common.enumeration.GameState;
 import nl.groep4.kvc.common.enumeration.Point;
 import nl.groep4.kvc.common.interfaces.Player;
+import nl.groep4.kvc.common.interfaces.Trade;
 import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Map;
@@ -21,6 +22,7 @@ import nl.groep4.kvc.common.map.Street;
 import nl.groep4.kvc.common.map.Tile;
 import nl.groep4.kvc.server.controller.ServerKolonistenVanCatan;
 import nl.groep4.kvc.server.model.ServerThrow;
+import nl.groep4.kvc.server.model.ServerTrade;
 import nl.groep4.kvc.server.model.map.ServerMap;
 import nl.groep4.kvc.server.util.serilize.PlayerNotFoundException;
 
@@ -31,14 +33,21 @@ public class LoadHelper extends SaveLoadHelper {
 	ServerKolonistenVanCatan skvc = new ServerKolonistenVanCatan(null);
 	JsonObject obj = new JsonParser().parse(safeFile).getAsJsonObject();
 
-	List<Player> playersSave = new ArrayList<Player>();
+	List<Player> playersSave = new ArrayList<>();
 	JsonArray gsonPlayers = obj.get("players").getAsJsonArray();
 	for (JsonElement playerElement : gsonPlayers) {
 	    playersSave.add(GSON.fromJson(playerElement, Player.class));
 	}
 	skvc.setPlayers(playersSave);
-	skvc.setMap(GSON.fromJson(obj.get("map"), ServerMap.class));
 
+	List<Trade> tradesSave = new ArrayList<>();
+	JsonArray gsonTrades = obj.get("trades").getAsJsonArray();
+	for (JsonElement tradeElement : gsonTrades) {
+	    tradesSave.add(GSON.fromJson(tradeElement, ServerTrade.class));
+	}
+	skvc.setTrades(tradesSave);
+
+	skvc.setMap(GSON.fromJson(obj.get("map"), ServerMap.class));
 	for (Tile tile : skvc.getMap().getTiles()) {
 	    fixStreets(skvc.getMap(), tile);
 	    fixBuildings(skvc.getMap(), tile);

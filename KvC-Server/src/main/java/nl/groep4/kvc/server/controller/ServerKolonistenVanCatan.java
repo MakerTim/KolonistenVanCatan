@@ -15,6 +15,7 @@ import nl.groep4.kvc.common.interfaces.Card;
 import nl.groep4.kvc.common.interfaces.KolonistenVanCatan;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.Throw;
+import nl.groep4.kvc.common.interfaces.Trade;
 import nl.groep4.kvc.common.interfaces.UpdateMap;
 import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Coordinate;
@@ -43,6 +44,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     ServerSaveController saveController;
 
     private List<Player> players;
+    private List<Trade> trades = new ArrayList<>();
     private Map map = new ServerMap();
     private int endScore = 10;
     private int round = -1;
@@ -493,7 +495,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	for (Player pl : getPlayers()) {
 	    runs.add(() -> {
 		try {
-		    pl.getUpdateable(UpdateMap.class).updateTrades(tradeController.getTrades());
+		    pl.getUpdateable(UpdateMap.class).updateTrades(getTrades());
 		} catch (Exception ex) {
 		    ex.printStackTrace();
 		}
@@ -748,6 +750,25 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
      */
     public void setThrow(ServerThrow lastThrow) {
 	this.lastThrow = lastThrow;
+    }
+
+    /**
+     * Gets list of trades.
+     * 
+     * @return The list of trades.
+     */
+    public List<Trade> getTrades() {
+	return trades;
+    }
+
+    /**
+     * Sets the trades
+     * 
+     * @param trades
+     *            all the trades that there are.
+     */
+    public void setTrades(List<Trade> trades) {
+	this.trades = trades;
     }
 
     @Override

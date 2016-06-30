@@ -3,7 +3,6 @@ package nl.groep4.kvc.server.controller;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.UUID;
@@ -24,8 +23,6 @@ public class ServerTradeController {
 
     private ServerKolonistenVanCatan controller;
 
-    private List<Trade> trades = new ArrayList<>();
-
     /**
      * Controls server.
      * 
@@ -34,15 +31,6 @@ public class ServerTradeController {
      */
     public ServerTradeController(ServerKolonistenVanCatan serverKolonistenVanCatan) {
 	this.controller = serverKolonistenVanCatan;
-    }
-
-    /**
-     * Gets list of trades.
-     * 
-     * @return The list of trades.
-     */
-    public List<Trade> getTrades() {
-	return trades;
     }
 
     /**
@@ -59,7 +47,7 @@ public class ServerTradeController {
 	try {
 	    System.out.printf("Added new trade! %s [\t%s : %s]\n", player.getUsername(), request.toString(),
 		    reward.toString());
-	    trades.add(new ServerTrade(player, request, reward));
+	    controller.getTrades().add(new ServerTrade(player, request, reward));
 	    validateTrades();
 	    controller.updateTrades();
 	    player.getUpdateable(UpdateMap.class).closeOverlay();
@@ -154,7 +142,7 @@ public class ServerTradeController {
      * trades 4:1.
      */
     public void validateTrades() {
-	for (Trade trade : new ArrayList<>(trades)) {
+	for (Trade trade : new ArrayList<>(controller.getTrades())) {
 	    if (!hasAllResources(trade)) {
 		removeTrade(trade.getID());
 		continue;
@@ -194,7 +182,7 @@ public class ServerTradeController {
      *            The id of the trade.
      */
     public void removeTrade(UUID key) {
-	Iterator<Trade> tradesIT = trades.iterator();
+	Iterator<Trade> tradesIT = controller.getTrades().iterator();
 	while (tradesIT.hasNext()) {
 	    Trade trade = tradesIT.next();
 	    if (trade.getID().equals(key)) {
@@ -212,6 +200,6 @@ public class ServerTradeController {
      * @return The trades.
      */
     public Trade getTrade(UUID tradeKey) {
-	return trades.stream().filter(trade -> trade.getID().equals(tradeKey)).findFirst().orElse(null);
+	return controller.getTrades().stream().filter(trade -> trade.getID().equals(tradeKey)).findFirst().orElse(null);
     }
 }
