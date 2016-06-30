@@ -58,8 +58,14 @@ import nl.groep4.kvc.common.interfaces.Card;
 import nl.groep4.kvc.common.interfaces.NotCloseable;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.Trade;
+import nl.groep4.kvc.common.interfaces.UpdateCosts;
 import nl.groep4.kvc.common.interfaces.UpdateDice;
 import nl.groep4.kvc.common.interfaces.UpdateMap;
+import nl.groep4.kvc.common.interfaces.UpdatePlayerOrder;
+import nl.groep4.kvc.common.interfaces.UpdateRound;
+import nl.groep4.kvc.common.interfaces.UpdateScore;
+import nl.groep4.kvc.common.interfaces.UpdateStock;
+import nl.groep4.kvc.common.interfaces.UpdateTrade;
 import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Map;
 import nl.groep4.kvc.common.map.Street;
@@ -410,6 +416,15 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    stockPane.updateStock(pl, resources);
 	    playerPane.updateStock(pl, resources);
 	});
+	Platform.runLater(() -> {
+	    try {
+		if (overlayPane instanceof UpdateStock) {
+		    ((UpdateStock) overlayPane).updateStock(pl, resources);
+		}
+	    } catch (Exception ex) {
+		ex.printStackTrace();
+	    }
+	});
     }
 
     @Override
@@ -417,6 +432,15 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	Platform.runLater(() -> {
 	    stockPane.updateStock(pl, cards);
 	    playerPane.updateStock(pl, cards);
+	});
+	Platform.runLater(() -> {
+	    try {
+		if (overlayPane instanceof UpdateStock) {
+		    ((UpdateStock) overlayPane).updateStock(pl, cards);
+		}
+	    } catch (Exception ex) {
+		ex.printStackTrace();
+	    }
 	});
     }
 
@@ -441,6 +465,15 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    } catch (RemoteException ex) {
 		ex.printStackTrace();
 	    }
+	    Platform.runLater(() -> {
+		try {
+		    if (overlayPane instanceof UpdateCosts) {
+			((UpdateCosts) overlayPane).updateStreetCosts(resources);
+		    }
+		} catch (Exception ex) {
+		    ex.printStackTrace();
+		}
+	    });
 	});
     }
 
@@ -453,6 +486,15 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    } catch (RemoteException ex) {
 		ex.printStackTrace();
 	    }
+	    Platform.runLater(() -> {
+		try {
+		    if (overlayPane instanceof UpdateCosts) {
+			((UpdateCosts) overlayPane).updateVillageCosts(resources);
+		    }
+		} catch (Exception ex) {
+		    ex.printStackTrace();
+		}
+	    });
 	});
     }
 
@@ -465,6 +507,15 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    } catch (Exception ex) {
 		ex.printStackTrace();
 	    }
+	    Platform.runLater(() -> {
+		try {
+		    if (overlayPane instanceof UpdateCosts) {
+			((UpdateCosts) overlayPane).updateCardCosts(resources);
+		    }
+		} catch (Exception ex) {
+		    ex.printStackTrace();
+		}
+	    });
 	});
     }
 
@@ -476,6 +527,15 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    } catch (Exception ex) {
 		ex.printStackTrace();
 	    }
+	    Platform.runLater(() -> {
+		try {
+		    if (overlayPane instanceof UpdateTrade) {
+			((UpdateTrade) overlayPane).updateTrades(allTrades);
+		    }
+		} catch (Exception ex) {
+		    ex.printStackTrace();
+		}
+	    });
 	});
     }
 
@@ -488,6 +548,15 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    } catch (RemoteException ex) {
 		ex.printStackTrace();
 	    }
+	    Platform.runLater(() -> {
+		try {
+		    if (overlayPane instanceof UpdateRound) {
+			((UpdateRound) overlayPane).updateRound(round);
+		    }
+		} catch (Exception ex) {
+		    ex.printStackTrace();
+		}
+	    });
 	});
     }
 
@@ -500,6 +569,15 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    } catch (RemoteException ex) {
 		ex.printStackTrace();
 	    }
+	    Platform.runLater(() -> {
+		try {
+		    if (overlayPane instanceof UpdateRound) {
+			((UpdateRound) overlayPane).updateTurn(who, what);
+		    }
+		} catch (Exception ex) {
+		    ex.printStackTrace();
+		}
+	    });
 	});
     }
 
@@ -512,6 +590,15 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    } catch (RemoteException ex) {
 		ex.printStackTrace();
 	    }
+	    Platform.runLater(() -> {
+		try {
+		    if (overlayPane instanceof UpdateScore) {
+			((UpdateScore) overlayPane).updateScore(pl, score);
+		    }
+		} catch (Exception ex) {
+		    ex.printStackTrace();
+		}
+	    });
 	});
     }
 
@@ -574,6 +661,15 @@ public class SceneMap implements SceneHolder, UpdateMap {
     @Override
     public void updatePlayerOrder(List<Player> order) {
 	Platform.runLater(() -> playerPane.updatePlayerOrder(order));
+	Platform.runLater(() -> {
+	    try {
+		if (overlayPane instanceof UpdatePlayerOrder) {
+		    ((UpdatePlayerOrder) overlayPane).updatePlayerOrder(order);
+		}
+	    } catch (Exception ex) {
+		ex.printStackTrace();
+	    }
+	});
     }
 
     @Override
