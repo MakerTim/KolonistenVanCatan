@@ -32,6 +32,7 @@ public class BuildingAdapter extends InterfaceAdapter<Building> {
 	    JsonObject obj = (JsonObject) elem;
 	    Building building = new ServerBuilding(context.deserialize(obj.get("location"), Coordinate.class));
 	    building.setOwner(context.deserialize(obj.get("owner"), Player.class));
+	    building.setBuildingType(context.deserialize(obj.get("type"), BuildingType.class));
 	    return building;
 	}
 	return null;

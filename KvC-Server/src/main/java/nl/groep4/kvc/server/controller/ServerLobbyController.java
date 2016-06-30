@@ -75,8 +75,7 @@ public class ServerLobbyController {
 	    });
 	}
 	Scheduler.runAsyncdSync(runs);
-	KolonistenVanCatan kvc = (KolonistenVanCatan) UnicastRemoteObject
-		.exportObject(new ServerKolonistenVanCatan(lobby.getPlayers()), 0);
+	KolonistenVanCatan kvc = new ServerKolonistenVanCatan(lobby.getPlayers());
 	kvc.createMap();
 	startupGame(kvc);
     }
@@ -90,8 +89,9 @@ public class ServerLobbyController {
      *             Any remotely invoked method.
      */
     public void startupGame(KolonistenVanCatan kvc) throws RemoteException {
+	KolonistenVanCatan kvcSkeleton = (KolonistenVanCatan) UnicastRemoteObject.exportObject(kvc, 0);
 	lobby.setState(State.IN_GAME);
-	lobby.setGame(kvc);
+	lobby.setGame(kvcSkeleton);
 	List<Runnable> runners = new ArrayList<>();
 	for (Player pl : lobby.getPlayers()) {
 	    runners.add(() -> {
@@ -109,18 +109,17 @@ public class ServerLobbyController {
 		hasCastException = false;
 		try {
 		    Thread.sleep(100L);
-		    for (Player pl : kvc.getPlayers()) {
+		    for (Player pl : kvcSkeleton.getPlayers()) {
 			UpdateMap updateMap = pl.getUpdateable(UpdateMap.class);
 			updateMap.testConnection();
 		    }
 		} catch (Exception ex) {
 		    hasCastException = true;
-		    ex.printStackTrace();
 		    break;
 		}
 	    } while (hasCastException);
 	    try {
-		kvc.start();
+		kvcSkeleton.start();
 	    } catch (Exception ex) {
 		ex.printStackTrace();
 	    }

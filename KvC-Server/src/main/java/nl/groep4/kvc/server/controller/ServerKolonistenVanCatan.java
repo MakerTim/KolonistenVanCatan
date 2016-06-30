@@ -77,7 +77,9 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
     @Override
     public void start() {
 	System.out.println("\tStarted game!");
-	state = GameState.INIT;
+	if (state == null) {
+	    state = GameState.INIT;
+	}
 	updateCosts();
 	nextTurn();
     }

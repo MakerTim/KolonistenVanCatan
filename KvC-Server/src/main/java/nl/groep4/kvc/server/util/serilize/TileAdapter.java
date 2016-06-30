@@ -49,8 +49,10 @@ public class TileAdapter extends InterfaceAdapter<Tile> {
 	    case "ServerTileResource":
 		land = new ServerTileResource(context.deserialize(obj.get("type"), TileType.class),
 			obj.get("number").getAsInt(), coord);
+		break;
 	    case "ServerTileDesert":
 		land = new ServerTileDesert(coord);
+		break;
 	    }
 	    if (obj.get("hasRover").getAsBoolean()) {
 		land.placeRover();
