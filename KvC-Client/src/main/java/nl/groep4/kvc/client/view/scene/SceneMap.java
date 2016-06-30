@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.EnumMap;
@@ -22,6 +23,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
+import nl.groep4.kvc.client.controller.ClientRefrence;
 import nl.groep4.kvc.client.controller.Controller;
 import nl.groep4.kvc.client.controller.MapController;
 import nl.groep4.kvc.client.util.SceneUtil;
@@ -270,7 +272,13 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	}
 	FileChooser fileChooser = new FileChooser();
 	fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON (*.json)", "*.json"));
-	fileChooser.setInitialFileName(new Date().toString() + ".json");
+	try {
+	    fileChooser.setInitialFileName(new SimpleDateFormat("YYYY-MM-dd ").format(new Date())
+		    + ClientRefrence.getThePlayer().getUsername() + ".json");
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	    fileChooser.setInitialFileName(new SimpleDateFormat("YYYY-MM-dd").format(new Date()) + ".json");
+	}
 	fileChooser.setTitle("Save file");
 	File file = fileChooser.showSaveDialog(null);
 	if (file == null) {
