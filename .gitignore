@@ -1,3 +1,6 @@
+# KVC specific #
+rmilog.latest
+
 # NetBeans specific #
 nbproject/
 build/

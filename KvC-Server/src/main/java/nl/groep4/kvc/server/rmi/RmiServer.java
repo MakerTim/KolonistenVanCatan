@@ -1,5 +1,7 @@
 package nl.groep4.kvc.server.rmi;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.net.InetAddress;
 import java.rmi.Remote;
 import java.rmi.registry.LocateRegistry;
@@ -31,7 +33,9 @@ public class RmiServer {
 	try {
 	    System.out.printf("Server ip: %s\n", host == null ? InetAddress.getLocalHost() : host);
 	    System.out.printf("Server port: %d\n", port);
-	    RemoteServer.setLog(System.out);
+	    File rmilog = new File("rmilog.latest");
+	    rmilog.delete();
+	    RemoteServer.setLog(new FileOutputStream(rmilog));
 	    ServerLobby lobby = new ServerLobby();
 	    ServerLobbyController lobbyController = new ServerLobbyController(lobby);
 	    lobby.setController(lobbyController);
