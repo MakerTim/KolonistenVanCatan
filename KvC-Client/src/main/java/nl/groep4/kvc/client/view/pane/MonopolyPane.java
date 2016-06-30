@@ -1,5 +1,9 @@
 package nl.groep4.kvc.client.view.pane;
 
+import java.rmi.RemoteException;
+import java.util.List;
+import java.util.Map;
+
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
@@ -17,8 +21,10 @@ import nl.groep4.kvc.client.view.elements.KvCText;
 import nl.groep4.kvc.client.view.elements.ResourceCard;
 import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.enumeration.Resource;
+import nl.groep4.kvc.common.interfaces.Card;
 import nl.groep4.kvc.common.interfaces.NotCloseable;
 import nl.groep4.kvc.common.interfaces.Player;
+import nl.groep4.kvc.common.interfaces.UpdateStock;
 
 /**
  * The pane when a monopoly card (development card) is used.
@@ -26,7 +32,7 @@ import nl.groep4.kvc.common.interfaces.Player;
  * @author Lisa
  * @version 1.2
  */
-public class MonopolyPane implements PaneHolder, NotCloseable {
+public class MonopolyPane implements PaneHolder, NotCloseable, UpdateStock {
     private Font font = new Font(ViewMaster.FONT.getName(), 30);
     private Font font2 = new Font(ViewMaster.FONT.getName(), 50);
 
@@ -217,4 +223,12 @@ public class MonopolyPane implements PaneHolder, NotCloseable {
 
     }
 
+    @Override
+    public void updateStock(Player pl, Map<Resource, Integer> resources) throws RemoteException {
+	// TODO LISA -> update telling
+    }
+
+    @Override
+    public void updateStock(Player pl, List<Card> cards) throws RemoteException {
+    }
 }
