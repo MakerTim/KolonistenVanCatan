@@ -42,24 +42,28 @@ public class TileAdapter extends InterfaceAdapter<Tile> {
 	if (elem.isJsonObject()) {
 	    JsonObject obj = (JsonObject) elem;
 	    Coordinate coord = context.deserialize(obj.get("position"), Coordinate.class);
-	    TileLand land = null;
+	    Tile tile = null;
 	    switch (obj.get("class").getAsString()) {
 	    case "ServerTileSea":
-		return new ServerTileSea(coord);
+		tile = new ServerTileSea(coord);
+		break;
 	    case "ServerTileResource":
-		land = new ServerTileResource(context.deserialize(obj.get("type"), TileType.class),
+		tile = new ServerTileResource(context.deserialize(obj.get("type"), TileType.class),
 			obj.get("number").getAsInt(), coord);
 		break;
 	    case "ServerTileDesert":
-		land = new ServerTileDesert(coord);
+		tile = new ServerTileDesert(coord);
 		break;
 	    }
-	    if (obj.get("hasRover").getAsBoolean()) {
-		land.placeRover();
-	    } else {
-		land.removeRover();
+	    if (tile instanceof TileLand) {
+		TileLand tileLand = (TileLand) tile;
+		if (obj.get("hasRover").getAsBoolean()) {
+		    tileLand.placeRover();
+		} else {
+		    tileLand.removeRover();
+		}
 	    }
-	    return land;
+	    return tile;
 	}
 	return null;
     }
