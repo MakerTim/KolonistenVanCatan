@@ -2,6 +2,7 @@ package nl.groep4.kvc.server.controller;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -88,7 +89,7 @@ public class ServerTradeController {
 		}
 		return;
 	    }
-	    if (hasAllResources(trade.getPlayer(), trade)) {
+	    if (hasAllResources(trade.getPlayer(), trade.getReward())) {
 		if (player == null) {
 		    System.out.printf("Bank traded with %s\n", "", trade.getPlayer().getUsername());
 		    for (Entry<Resource, Integer> reward : trade.getReward().entrySet()) {
@@ -100,7 +101,7 @@ public class ServerTradeController {
 		} else {
 		    System.out.printf("Player %s traded with %s\n", player.getUsername(),
 			    trade.getPlayer().getUsername());
-		    if (hasAllResources(player, trade)) {
+		    if (hasAllResources(player, trade.getRequest())) {
 			for (Entry<Resource, Integer> reward : trade.getReward().entrySet()) {
 			    trade.getPlayer().takeResource(reward.getKey(), reward.getValue());
 			    player.giveResource(reward.getKey(), reward.getValue());
@@ -130,8 +131,8 @@ public class ServerTradeController {
      *            The trade which includes id.
      * @return true When player has the resources in stock.
      */
-    public boolean hasAllResources(Player pl, Trade trade) {
-	for (Entry<Resource, Integer> reward : trade.getReward().entrySet()) {
+    public boolean hasAllResources(Player pl, EnumMap<Resource, Integer> resourcesToCheck) {
+	for (Entry<Resource, Integer> reward : resourcesToCheck.entrySet()) {
 	    try {
 		if (!pl.hasResource(reward.getKey(), reward.getValue())) {
 		    return false;
@@ -150,7 +151,7 @@ public class ServerTradeController {
      */
     public void validateTrades() {
 	for (Trade trade : new ArrayList<>(controller.getTrades())) {
-	    if (!hasAllResources(trade.getPlayer(), trade)) {
+	    if (!hasAllResources(trade.getPlayer(), trade.getReward())) {
 		removeTrade(trade.getID());
 		continue;
 	    }
