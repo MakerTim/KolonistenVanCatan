@@ -53,6 +53,8 @@ public class ServerTradeController {
 	    player.getUpdateable(UpdateMap.class).closeOverlay();
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();
+	} catch (NullPointerException ex) {
+	    ex.printStackTrace();
 	}
     }
 
@@ -70,6 +72,7 @@ public class ServerTradeController {
 	    if (trade == null) {
 		try {
 		    player.getUpdateable().popup("notrade");
+		    controller.updateTrades();
 		} catch (RemoteException ex) {
 		    ex.printStackTrace();
 		}
@@ -85,7 +88,7 @@ public class ServerTradeController {
 		}
 		return;
 	    }
-	    if (hasAllResources(trade)) {
+	    if (hasAllResources(trade.getPlayer(), trade)) {
 		if (player == null) {
 		    System.out.printf("Bank traded with %s\n", "", trade.getPlayer().getUsername());
 		    for (Entry<Resource, Integer> reward : trade.getReward().entrySet()) {
@@ -97,13 +100,17 @@ public class ServerTradeController {
 		} else {
 		    System.out.printf("Player %s traded with %s\n", player.getUsername(),
 			    trade.getPlayer().getUsername());
-		    for (Entry<Resource, Integer> reward : trade.getReward().entrySet()) {
-			trade.getPlayer().takeResource(reward.getKey(), reward.getValue());
-			player.giveResource(reward.getKey(), reward.getValue());
-		    }
-		    for (Entry<Resource, Integer> requested : trade.getRequest().entrySet()) {
-			player.takeResource(requested.getKey(), requested.getValue());
-			trade.getPlayer().giveResource(requested.getKey(), requested.getValue());
+		    if (hasAllResources(player, trade)) {
+			for (Entry<Resource, Integer> reward : trade.getReward().entrySet()) {
+			    trade.getPlayer().takeResource(reward.getKey(), reward.getValue());
+			    player.giveResource(reward.getKey(), reward.getValue());
+			}
+			for (Entry<Resource, Integer> requested : trade.getRequest().entrySet()) {
+			    player.takeResource(requested.getKey(), requested.getValue());
+			    trade.getPlayer().giveResource(requested.getKey(), requested.getValue());
+			}
+		    } else {
+			player.getUpdateable().popup("noresources");
 		    }
 		}
 	    }
@@ -123,10 +130,10 @@ public class ServerTradeController {
      *            The trade which includes id.
      * @return true When player has the resources in stock.
      */
-    public boolean hasAllResources(Trade trade) {
+    public boolean hasAllResources(Player pl, Trade trade) {
 	for (Entry<Resource, Integer> reward : trade.getReward().entrySet()) {
 	    try {
-		if (!trade.getPlayer().hasResource(reward.getKey(), reward.getValue())) {
+		if (!pl.hasResource(reward.getKey(), reward.getValue())) {
 		    return false;
 		}
 	    } catch (RemoteException e) {
@@ -143,7 +150,7 @@ public class ServerTradeController {
      */
     public void validateTrades() {
 	for (Trade trade : new ArrayList<>(controller.getTrades())) {
-	    if (!hasAllResources(trade)) {
+	    if (!hasAllResources(trade.getPlayer(), trade)) {
 		removeTrade(trade.getID());
 		continue;
 	    }
