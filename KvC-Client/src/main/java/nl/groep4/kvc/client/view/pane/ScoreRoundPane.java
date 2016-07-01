@@ -51,7 +51,7 @@ public class ScoreRoundPane implements PaneHolder, UpdateScore, UpdateRound {
     }
 
     @Override
-    public void updateTranslation() {
+    public void updateConfig() {
 	if (roundText != null) {
 	    roundText.setText(TranslationManager.translate("game.round", round));
 	}

@@ -147,7 +147,7 @@ public class InventionPane implements PaneHolder, NotCloseable {
     }
 
     @Override
-    public void updateTranslation() {
+    public void updateConfig() {
 	choice.setText(TranslationManager.translate("invention.text.choice"));
 	invention.setText(TranslationManager.translate("invention.text.invention"));
 

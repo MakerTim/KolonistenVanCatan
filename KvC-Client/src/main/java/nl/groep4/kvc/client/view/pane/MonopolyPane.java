@@ -177,7 +177,7 @@ public class MonopolyPane implements PaneHolder, NotCloseable, UpdateStock {
     }
 
     @Override
-    public void updateTranslation() {
+    public void updateConfig() {
 	choice.setText(TranslationManager.translate("monopoly.text.choice"));
 	monopoly.setText(TranslationManager.translate("monopoly.text.monopoly"));
 

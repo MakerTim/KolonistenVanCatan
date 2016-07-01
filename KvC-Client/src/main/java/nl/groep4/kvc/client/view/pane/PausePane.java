@@ -67,7 +67,7 @@ public class PausePane implements PaneHolder, NotCloseable {
     }
 
     @Override
-    public void updateTranslation() {
+    public void updateConfig() {
 	if (continueButton != null) {
 	    continueButton.updateText(TranslationManager.translate("pause.label.pause"));
 	}

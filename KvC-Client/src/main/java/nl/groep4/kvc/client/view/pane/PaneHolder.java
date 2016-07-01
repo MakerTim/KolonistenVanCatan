@@ -21,5 +21,5 @@ public interface PaneHolder {
     /**
      * Update the translation of the pane.
      */
-    public void updateTranslation();
+    public void updateConfig();
 }

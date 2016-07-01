@@ -130,7 +130,7 @@ public class TradePane implements PaneHolder, UpdateTrade {
     }
 
     @Override
-    public void updateTranslation() {
+    public void updateConfig() {
 	terug.updateText(TranslationManager.translate("trade.button.back"));
 	plaats.updateText(TranslationManager.translate("trade.button.place"));
 	wheat.setText(TranslationManager.translate("trade.text.wheat"));

@@ -62,7 +62,7 @@ public class TurnInfoPane implements PaneHolder, UpdateRound {
     }
 
     @Override
-    public void updateTranslation() {
+    public void updateConfig() {
 	try {
 	    updateTurn(lastTurn, state);
 	} catch (Exception ex) {

@@ -1,13 +1,16 @@
 package nl.groep4.kvc.client.view.scene;
 
+import java.rmi.RemoteException;
+
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Slider;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import javafx.stage.Stage;
 import nl.groep4.kvc.client.controller.Controller;
 import nl.groep4.kvc.client.util.SceneUtil;
 import nl.groep4.kvc.client.util.SoundUtil;
@@ -18,6 +21,8 @@ import nl.groep4.kvc.client.view.elements.LanguageButton;
 import nl.groep4.kvc.client.view.elements.MenuButton;
 import nl.groep4.kvc.client.view.elements.MenuSlider;
 import nl.groep4.kvc.client.view.elements.TexturedButton;
+import nl.groep4.kvc.client.view.pane.PaneHolder;
+import nl.groep4.kvc.common.interfaces.UpdateMap;
 
 /**
  * Configuration Scene.
@@ -26,7 +31,7 @@ import nl.groep4.kvc.client.view.elements.TexturedButton;
  * @version 1.1
  * 
  **/
-public class SceneSettings implements SceneHolder {
+public class SceneSettings implements SceneHolder, PaneHolder {
 
     private static final String PLAY = "settings.button.playmusic";
     private static final String STOP = "settings.button.stopmusic";
@@ -38,6 +43,7 @@ public class SceneSettings implements SceneHolder {
 
     private SceneHolder parent;
     private Slider slider;
+    private Pane form;
 
     /**
      * Current settings.
@@ -51,10 +57,31 @@ public class SceneSettings implements SceneHolder {
 
     @Override
     public Scene getScene() {
+	Pane pane = getPane();
+	Scene scene = new Scene(pane);
+	SceneUtil.fadeIn(SceneUtil.getSettingsForeground(), form, acceptSettings);
+	return scene;
+    }
+
+    @Override
+    public void updateConfig() {
+	music.updateText(TranslationManager.translate(SoundUtil.themesongIsPlaying() ? STOP : PLAY));
+	acceptSettings.updateText(TranslationManager.translate("settings.button.accept"));
+	settings.setText(TranslationManager.translate("settings.label.title"));
+	if (parent instanceof SceneLogin) {
+	    ((SceneLogin) parent).updateConfig();
+	}
+    }
+
+    @Override
+    public void registerController(Controller controller) {
+    }
+
+    @Override
+    public Pane getPane() {
 	/* Build multiple layers for the design */
 	Pane layers = new Pane();
-	Scene scene = new Scene(layers);
-	Pane form = new VBox(20);
+	form = new VBox(20);
 	form.setLayoutX(410);
 	form.setLayoutY(100);
 
@@ -79,16 +106,18 @@ public class SceneSettings implements SceneHolder {
 	music.registerClick(() -> {
 	    if (SoundUtil.themesongIsPlaying()) {
 		SoundUtil.stopThemesong();
-		music.updateText(TranslationManager.translate(PLAY));
-
 	    } else {
 		SoundUtil.playThemesong();
-		music.updateText(TranslationManager.translate(STOP));
 	    }
+	    updateConfig();
 	});
 	acceptSettings.registerClick(() -> {
-	    if (parent == null) {
-		((Stage) scene.getWindow()).close();
+	    if (parent instanceof UpdateMap) {
+		try {
+		    ((UpdateMap) parent).closeOverlay();
+		} catch (RemoteException ex) {
+		    ex.printStackTrace();
+		}
 	    } else {
 		ViewMaster.setScene(parent);
 	    }
@@ -100,23 +129,13 @@ public class SceneSettings implements SceneHolder {
 	});
 
 	form.getChildren().addAll(new StackPane(settings), music, slider, language);
-	layers.getChildren().addAll(SceneUtil.getMenuBackground(), SceneUtil.getSettingsForeground(),
-		SceneUtil.getMenuBrazier(), acceptSettings, form);
-	SceneUtil.fadeIn(SceneUtil.getSettingsForeground(), form, acceptSettings);
-	return scene;
-    }
 
-    @Override
-    public void updateConfig() {
-	music.updateText(TranslationManager.translate(SoundUtil.themesongIsPlaying() ? STOP : PLAY));
-	acceptSettings.updateText(TranslationManager.translate("settings.button.accept"));
-	settings.setText(TranslationManager.translate("settings.label.title"));
-	if (parent instanceof SceneLogin) {
-	    ((SceneLogin) parent).updateConfig();
+	if (!(parent instanceof UpdateMap)) {
+	    layers.getChildren().addAll(SceneUtil.getMenuBackground(), SceneUtil.getMenuBrazier());
 	}
-    }
-
-    @Override
-    public void registerController(Controller controller) {
+	layers.getChildren().addAll(SceneUtil.getSettingsForeground(), acceptSettings, form);
+	HBox hbox = new HBox(layers);
+	hbox.setAlignment(Pos.CENTER);
+	return hbox;
     }
 }

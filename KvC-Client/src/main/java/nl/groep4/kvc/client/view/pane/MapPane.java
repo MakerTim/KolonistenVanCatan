@@ -75,7 +75,7 @@ public class MapPane implements PaneHolder {
     }
 
     @Override
-    public void updateTranslation() {
+    public void updateConfig() {
     }
 
     /**

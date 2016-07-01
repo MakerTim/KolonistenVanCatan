@@ -95,7 +95,7 @@ public class TradeEntry implements PaneHolder {
 		"-fx-background-color: rgba(255, 255, 255, 0.4); -fx-border-color: black; -fx-border-style: solid; -fx-border-radius: 10px; -fx-background-radius: 10px;");
 
 	pane.setOnMouseClicked(klick -> onPaneClick());
-	updateTranslation();
+	updateConfig();
 	return pane;
     }
 
@@ -104,7 +104,7 @@ public class TradeEntry implements PaneHolder {
     }
 
     @Override
-    public void updateTranslation() {
+    public void updateConfig() {
 	try {
 	    username.setText(theTrade.getPlayer().getUsername());
 	    give.setText(TranslationManager.translate("trade.text.offer"));

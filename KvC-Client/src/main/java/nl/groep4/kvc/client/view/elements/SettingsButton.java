@@ -1,9 +1,9 @@
 package nl.groep4.kvc.client.view.elements;
 
-import javafx.stage.Stage;
 import nl.groep4.kvc.client.util.TranslationManager;
 import nl.groep4.kvc.client.view.ViewMaster;
 import nl.groep4.kvc.client.view.scene.SceneHolder;
+import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.client.view.scene.SceneSettings;
 
 /**
@@ -22,17 +22,15 @@ public class SettingsButton extends MenuButton {
      * Translates button and activates when registers a click.
      * 
      */
-    public SettingsButton() {
+    private SettingsButton() {
 	super(TranslationManager.translate("lobby.button.settings"));
 	setFont(ViewMaster.FONT);
 	registerClick(() -> onSettingsClick());
     }
 
     private void onSettingsClick() {
-	if (parent == null) {
-	    Stage stage = new Stage();
-	    stage.setScene(new SceneSettings(null).getScene());
-	    stage.showAndWait();
+	if (parent instanceof SceneMap) {
+	    ((SceneMap) parent).setOverlay(new SceneSettings(parent));
 	} else {
 	    ViewMaster.setScene(new SceneSettings(parent));
 	}

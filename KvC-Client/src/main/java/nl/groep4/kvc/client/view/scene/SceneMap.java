@@ -110,8 +110,10 @@ public class SceneMap implements SceneHolder, UpdateMap {
 
     @Override
     public Scene getScene() {
-	SoundUtil.stopThemesong();
-	SoundUtil.playGamesong();
+	if (SoundUtil.themesongIsPlaying()) {
+	    SoundUtil.stopThemesong();
+	    Scheduler.runSyncLater(() -> SoundUtil.playThemesong(), 100L);
+	}
 	if (layers == null) {
 	    /* Build layer for the design */
 	    layers = new StackPane();
@@ -378,15 +380,15 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    tradeButton.updateText(TranslationManager.translate("game.button.trade"));
 	    buyButton.updateText(TranslationManager.translate("game.button.buy"));
 	    if (overlayPane != null) {
-		overlayPane.updateTranslation();
+		overlayPane.updateConfig();
 	    }
-	    gamepane.updateTranslation();
-	    stockPane.updateTranslation();
-	    scorePane.updateTranslation();
-	    infoPane.updateTranslation();
-	    buildPane.updateTranslation();
-	    tradePane.updateTranslation();
-	    buyPane.updateTranslation();
+	    gamepane.updateConfig();
+	    stockPane.updateConfig();
+	    scorePane.updateConfig();
+	    infoPane.updateConfig();
+	    buildPane.updateConfig();
+	    tradePane.updateConfig();
+	    buyPane.updateConfig();
 	});
     }
 

@@ -269,7 +269,7 @@ public class BuildPane implements PaneHolder, UpdateCosts {
     }
 
     @Override
-    public void updateTranslation() {
+    public void updateConfig() {
 	streetbutton.updateText(TranslationManager.translate("build.button.road"));
 	villagebutton.updateText(TranslationManager.translate("build.button.village"));
 

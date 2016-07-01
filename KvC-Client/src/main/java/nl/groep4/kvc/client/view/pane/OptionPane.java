@@ -84,7 +84,7 @@ public class OptionPane implements PaneHolder {
 	exit.setOnMouseClicked(klick -> onExitClick());
 	back.setOnMouseClicked(klick -> onBackClick());
 
-	hboxsetting.getChildren().add(SettingsButton.getButton(null, 0, 0));
+	hboxsetting.getChildren().add(SettingsButton.getButton(map, 0, 0));
 	hboxsave.getChildren().add(save);
 	hboxpause.getChildren().add(pause);
 	hboxrules.getChildren().add(rules);
@@ -122,7 +122,7 @@ public class OptionPane implements PaneHolder {
     }
 
     @Override
-    public void updateTranslation() {
+    public void updateConfig() {
 	title.setText(TranslationManager.translate("game.menu.title"));
 	save.updateText(TranslationManager.translate("game.menu.save"));
 	pause.updateText(TranslationManager.translate("game.menu.pause"));

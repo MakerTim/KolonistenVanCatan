@@ -184,7 +184,7 @@ public class StockPane implements PaneHolder, UpdateStock {
     }
 
     @Override
-    public void updateTranslation() {
+    public void updateConfig() {
 	if (cards != null) {
 	    cards.updateTranslation();
 	}
