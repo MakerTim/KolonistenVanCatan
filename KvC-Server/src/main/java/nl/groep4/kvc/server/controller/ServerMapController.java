@@ -375,7 +375,8 @@ public class ServerMapController {
 	case CITY:
 	    buildings = new HashSet<>();
 	    for (Building building : controller.getMap().getAllBuildings()) {
-		if (controller.getTurn().equals(building.getOwner())) {
+		if (controller.getTurn().equals(building.getOwner())
+			&& building.getBuildingType().equals(BuildingType.VILLAGE)) {
 		    buildings.add(building);
 		}
 	    }
