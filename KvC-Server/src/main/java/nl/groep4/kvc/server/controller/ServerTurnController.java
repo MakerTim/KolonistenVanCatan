@@ -118,6 +118,7 @@ public class ServerTurnController {
 	    pl.getUpdateable(UpdateMap.class).blockActions();
 	    controller.highlightBuildings(controller.getTurn(), BuildingType.VILLAGE);
 	    pl.addRemainingVillages(1);
+	} catch (NullPointerException npe) {
 	} catch (Exception ex) {
 	    ex.printStackTrace();
 	}
@@ -161,6 +162,7 @@ public class ServerTurnController {
 		runs.add(() -> {
 		    try {
 			player.getUpdateable(UpdateMap.class).blockActions();
+		    } catch (NullPointerException npe) {
 		    } catch (Exception ex) {
 			ex.printStackTrace();
 		    }

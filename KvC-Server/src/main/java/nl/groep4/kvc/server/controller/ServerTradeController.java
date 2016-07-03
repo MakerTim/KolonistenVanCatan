@@ -55,7 +55,6 @@ public class ServerTradeController {
 	} catch (RemoteException ex) {
 	    ex.printStackTrace();
 	} catch (NullPointerException ex) {
-	    ex.printStackTrace();
 	}
     }
 

@@ -59,4 +59,7 @@ public class ServerTrade implements Trade {
 	return key;
     }
 
+    public void setKey(UUID key) {
+	this.key = key;
+    }
 }
