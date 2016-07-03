@@ -183,7 +183,7 @@ gamenote.noresources.explanation:U heeft niet genoeg grondstoffen
 gamenote.noresources.details:Exception: 503 Service Unavailable
 gamenote.nocards.title:Niet genoeg kaarten
 gamenote.nocards.explanation:U heeft niet genoeg kaarten
-gamenote.nocard.details:Exception: 503 Service Unavailable
+gamenote.nocards.details:Exception: 503 Service Unavailable
 gamenote.noowner.title:Niet de eigenaar
 gamenote.noowner.explanation:U bent niet de eigenaar van dit gebouw
 gamenote.noowner.details:Exception: 503 Service Unavailable

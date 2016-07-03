@@ -58,8 +58,8 @@ build.materials.row.prices:Prices
 build.button.back:Back
 
 #Login
-login.error.nousername.title: No Username
-login.error.nousername.explanation: No username was filled in
+login.error.nousername.title:No Username
+login.error.nousername.explanation:No username was filled in
 login.error.nousername.details:Exception: 401 Unauthorized
 login.error.novalidip.title:No Valid IP
 login.error.novalidip.explanation:Entered IP Address is invalid
@@ -157,8 +157,8 @@ credits.text.credits:Credits
 
 #IngameNotices
 gamenote.ingame.title:Game in progress
-gamenote.ingame.explanation:You can no longer pick a different colour
-gamenote.ingame.details:Switching colour is unavailable while game is running
+gamenote.ingame.explanation:You can no longer pick a different color
+gamenote.ingame.details:Switching color is unavailable while game is running
 note.noplayers.title:Not enough people
 note.noplayers.explanation:There are not enough people
 note.noplayers.details:Exception: 503 Service Unavailable
@@ -182,7 +182,7 @@ gamenote.noresources.explanation:You don't have enough resources
 gamenote.noresources.details:Exception: 503 Service Unavailable
 gamenote.nocards.title:Not enough cards
 gamenote.nocards.explanation:You don't have enough cards
-gamenote.nocard.details:Exception: 503 Service Unavailable
+gamenote.nocards.details:Exception: 503 Service Unavailable
 gamenote.noowner.title:Not the owner
 gamenote.noowner.explanation:You are not the owner of this building
 gamenote.noowner.details:Exception: 503 Service Unavailable

@@ -4,7 +4,7 @@ language:Français
 game.round:Tour: %d
 game.score:Points: %d
 game.button.build:Construire
-game.button.trade:Échange
+game.button.trade:Échanger
 game.button.buy:Acheter
 game.button.settings:Options
 game.button.next:Joueur suivant
@@ -182,7 +182,7 @@ gamenote.noresources.explanation:Vous ne disposez pas de suffisamment de ressour
 gamenote.noresources.details:Exception: 503 Service Unavailable
 gamenote.nocards.title:Pas assez de cartes
 gamenote.nocards.explanation:Vous n'avez pas assez de cartes
-gamenote.nocard.details:Exception: 503 Service Unavailable
+gamenote.nocards.details:Exception: 503 Service Unavailable
 gamenote.noowner.title:Pas le propriétaire
 gamenote.noowner.explanation:Vous n'êtes pas le propriétaire de ce bâtiment
 gamenote.noowner.details:Exception: 503 Service Unavailable
@@ -214,12 +214,12 @@ gamenote.savefailed.details:Exception:409 Conflict
 #Map
 map.throwdice.clickToThrow:Jouer aux dés
 map.throwdice.throw:des dés
-map.stock.show:Show cartes
+map.stock.show:Afficher cartes
 map.stock.hide:Cacher cartes
 map.throwdice.clicktothrow.other:Dés sont lancés
 
 #SceneSettings
-settings.button.playmusic:Son on
+settings.button.playmusic:Aucun son
 settings.button.stopmusic:Son off
 settings.button.accept:Accepter
 settings.label.title:Réglages
