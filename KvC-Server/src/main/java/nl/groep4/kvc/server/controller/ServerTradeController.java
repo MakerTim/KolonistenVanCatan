@@ -126,9 +126,11 @@ public class ServerTradeController {
     /**
      * Checks if player has the resource to make a trade.
      * 
-     * @param trade
-     *            The trade which includes id.
-     * @return true When player has the resources in stock.
+     * @param pl
+     *            The Player that will be checked.
+     * @param resourcesToCheck
+     *            The resources that the player need to have.
+     * @return true When player has all the resources in stock.
      */
     public boolean hasAllResources(Player pl, EnumMap<Resource, Integer> resourcesToCheck) {
 	for (Entry<Resource, Integer> reward : resourcesToCheck.entrySet()) {
