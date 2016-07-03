@@ -146,8 +146,8 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    optionButton = new MenuButton(TranslationManager.translate("game.button.settings"));
 	    nxtButton.setFont(ViewMaster.FONT);
 	    optionButton.setFont(ViewMaster.FONT);
-	    nxtButton.setOnMouseClicked(mouse -> onNxtTurnClick());
-	    optionButton.setOnMouseClicked(mouse -> onOptionClick());
+	    nxtButton.registerClick(() -> onNxtTurnClick());
+	    optionButton.registerClick(() -> onOptionClick());
 	    optionPane.setAlignment(Pos.BOTTOM_RIGHT);
 	    optionPane.getChildren().addAll(nxtButton, optionButton);
 
@@ -160,10 +160,10 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    buildButton.setFont(ViewMaster.FONT);
 	    tradeButton.setFont(ViewMaster.FONT);
 	    buyButton.setFont(ViewMaster.FONT);
-	    resourceButton.setOnMouseClicked(mouse -> onToggleResourceClick());
-	    buildButton.setOnMouseClicked(mouse -> onBuildClick());
-	    tradeButton.setOnMouseClicked(mouse -> onTradeClick());
-	    buyButton.setOnMouseClicked(mouse -> onBuyClick());
+	    resourceButton.registerClick(() -> onToggleResourceClick());
+	    buildButton.registerClick(() -> onBuildClick());
+	    tradeButton.registerClick(() -> onTradeClick());
+	    buyButton.registerClick(() -> onBuyClick());
 
 	    buttons.setAlignment(Pos.BOTTOM_RIGHT);
 	    buttons.getChildren().addAll(resourceButton, buildButton, tradeButton, buyButton);
@@ -345,7 +345,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
 		theOverlayBackground = new Rectangle(0, 0, ViewMaster.GAME_WIDHT, ViewMaster.GAME_HEIGHT);
 		theOverlayBackground.setFill(new Color(0.1, 0.1, 0.1, 0.5));
 		if (!(pane instanceof NotCloseable)) {
-		    theOverlayBackground.setOnMouseClicked(click -> closeOverlay());
+		    theOverlayBackground.setOnMouseClicked(mouse -> closeOverlay());
 		}
 		layers.getChildren().add(theOverlayBackground);
 		layers.getChildren().add(theOverlayPane);
