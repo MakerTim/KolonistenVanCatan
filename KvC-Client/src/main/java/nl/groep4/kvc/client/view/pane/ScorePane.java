@@ -139,7 +139,7 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder, Up
 		Pane parent = (Pane) first.getParent();
 		parent.getChildren().remove(first);
 		first = ps.getPane();
-		parent.getChildren().add(first);
+		parent.getChildren().add(0, first);
 	    }
 	    for (int i = 1; i < order.size(); i++) {
 		PlayerScore ps = new PlayerScore(order.get(i));
