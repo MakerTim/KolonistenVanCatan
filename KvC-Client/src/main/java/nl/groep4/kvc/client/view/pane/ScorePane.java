@@ -13,6 +13,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import nl.groep4.kvc.client.view.elements.PlayerScore;
+import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.Card;
 import nl.groep4.kvc.common.interfaces.Player;
@@ -30,11 +31,21 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder, Up
 
     private StackPane scorePane;
     private VBox content;
-    private Node first = new PlayerScore(null).getPane();
+    private Node first;
     private ImageView banner;
     private ImageView closedBanner;
+    private SceneMap view;
 
     private ArrayList<PlayerScore> scores;
+
+    public ScorePane(SceneMap mapView) {
+	this.view = mapView;
+	first = new PlayerScore(view, null).getPane();
+    }
+
+    public SceneMap getParent() {
+	return view;
+    }
 
     @Override
     public Pane getPane() {
@@ -72,6 +83,7 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder, Up
 	VBox stack = new VBox(first);
 	stack.setAlignment(Pos.TOP_CENTER);
 	scorePane.getChildren().addAll(getClosedBanner(), stack);
+	view.getGamepane().highlightPlayer(null);
     }
 
     /**
@@ -134,7 +146,7 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder, Up
 	Platform.runLater(() -> {
 	    content.getChildren().clear();
 	    if (!order.isEmpty()) {
-		PlayerScore ps = new PlayerScore(order.get(0));
+		PlayerScore ps = new PlayerScore(view, order.get(0));
 		scores.add(ps);
 		Pane parent = (Pane) first.getParent();
 		parent.getChildren().remove(first);
@@ -142,7 +154,7 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder, Up
 		parent.getChildren().add(0, first);
 	    }
 	    for (int i = 1; i < order.size(); i++) {
-		PlayerScore ps = new PlayerScore(order.get(i));
+		PlayerScore ps = new PlayerScore(view, order.get(i));
 		scores.add(ps);
 		content.getChildren().add(ps.getPane());
 	    }

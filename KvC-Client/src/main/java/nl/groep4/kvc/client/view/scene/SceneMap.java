@@ -76,7 +76,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
     public static /* final */ double scale = 100/* px */;
 
     private MapController controller;
-    private PaneHolder overlayPane = null;
+    private PaneHolder overlayPaneHolder = null;
     private Pane theOverlayPane = null;
     private Rectangle theOverlayBackground = null;
     private MapPane gamepane = new MapPane();
@@ -120,7 +120,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    buildPane = new BuildPane(this);
 	    tradePane = new TradePane(this);
 	    buyPane = new BuyPane(this);
-	    playerPane = new ScorePane();
+	    playerPane = new ScorePane(this);
 
 	    /* Build top */
 	    BorderPane top = new BorderPane();
@@ -319,33 +319,34 @@ public class SceneMap implements SceneHolder, UpdateMap {
     /**
      * Overlays other panes.
      * 
-     * @param pane
+     * @param paneHolder
      *            To overlay.
      */
-    public void setOverlay(PaneHolder pane) {
+    public void setOverlay(PaneHolder paneHolder) {
 	Scheduler.runSync(() -> {
 	    if (theOverlayPane != null) {
 		layers.getChildren().remove(theOverlayBackground);
 		layers.getChildren().remove(theOverlayPane);
 	    }
-	    if (pane != null) {
-		theOverlayPane = pane.getPane();
+	    if (paneHolder != null) {
+		theOverlayPane = paneHolder.getPane();
 		theOverlayPane.setPickOnBounds(false);
 		for (Node node : theOverlayPane.getChildren()) {
 		    node.setPickOnBounds(false);
 		}
 		theOverlayBackground = new Rectangle(0, 0, ViewMaster.GAME_WIDHT, ViewMaster.GAME_HEIGHT);
 		theOverlayBackground.setFill(new Color(0.1, 0.1, 0.1, 0.5));
-		if (!(pane instanceof NotCloseable)) {
+		if (!(paneHolder instanceof NotCloseable)) {
 		    theOverlayBackground.setOnMouseClicked(click -> closeOverlay());
 		}
 		layers.getChildren().add(theOverlayBackground);
 		layers.getChildren().add(theOverlayPane);
 		SceneUtil.fadeIn(theOverlayPane);
+		playerPane.hoverOut();
 	    } else {
 		theOverlayPane = null;
 	    }
-	    overlayPane = pane;
+	    overlayPaneHolder = paneHolder;
 	});
     }
 
@@ -371,8 +372,8 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    buildButton.updateText(TranslationManager.translate("game.button.build"));
 	    tradeButton.updateText(TranslationManager.translate("game.button.trade"));
 	    buyButton.updateText(TranslationManager.translate("game.button.buy"));
-	    if (overlayPane != null) {
-		overlayPane.updateTranslation();
+	    if (overlayPaneHolder != null) {
+		overlayPaneHolder.updateTranslation();
 	    }
 	    gamepane.updateTranslation();
 	    stockPane.updateTranslation();
@@ -382,6 +383,10 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    tradePane.updateTranslation();
 	    buyPane.updateTranslation();
 	});
+    }
+
+    public MapPane getGamepane() {
+	return gamepane;
     }
 
     @Override
@@ -550,9 +555,9 @@ public class SceneMap implements SceneHolder, UpdateMap {
     @Override
     public void updateDices(int dice1, int dice2) {
 	Platform.runLater(() -> {
-	    if (overlayPane instanceof UpdateDice) {
+	    if (overlayPaneHolder instanceof UpdateDice) {
 		try {
-		    ((UpdateDice) overlayPane).updateDices(dice1, dice2);
+		    ((UpdateDice) overlayPaneHolder).updateDices(dice1, dice2);
 		} catch (RemoteException ex) {
 		    ex.printStackTrace();
 		}

@@ -13,6 +13,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import nl.groep4.kvc.client.view.ViewMaster;
+import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.enumeration.Resource;
 import nl.groep4.kvc.common.interfaces.Card;
 import nl.groep4.kvc.common.interfaces.Player;
@@ -50,11 +51,13 @@ public class PlayerScore {
 
     /**
      * Constructor for setting up object for PlayerScore.
-     *
+     * 
+     * @param view
+     *            The Parent view where this can be found in.
      * @param player
      *            The player.
      */
-    public PlayerScore(Player player) {
+    public PlayerScore(SceneMap view, Player player) {
 	this.player = player;
 	usernameLabel = new KvCText();
 	brickLabel = new KvCText();
@@ -85,6 +88,8 @@ public class PlayerScore {
 	try {
 	    usernameLabel.setText(player.getUsername());
 	    usernameLabel.setFill(player.getColor().getColor());
+	    usernameLabel.setOnMouseEntered(mouse -> view.getGamepane().highlightPlayer(player));
+	    usernameLabel.setOnMouseExited(mouse -> view.getGamepane().highlightPlayer(null));
 	    updateResources(player.getResources());
 	    updateStock(player.getCards());
 	    updateScore(player.getPoints());
