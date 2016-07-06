@@ -190,10 +190,13 @@ public class ClientTile extends StackPane {
      *            highlight
      */
     public void highlightPlayer(Player player) {
+	if (tile == null) {
+	    return;
+	}
 	for (int i = 0; i < lines.length; i++) {
 	    Street street = tile.getStreet(Direction.values()[i]);
 	    if (street != null && player != null && player.equals(street.getOwner())) {
-		lines[i].setEffect(getEffect());
+		lines[i].setEffect(shadow());
 	    } else {
 		lines[i].setEffect(null);
 	    }
@@ -201,7 +204,7 @@ public class ClientTile extends StackPane {
 	for (int i = 0; i < houses.length; i++) {
 	    Building building = tile.getBuilding(CollectionUtil.getInRange(Point.values(), i + 4));
 	    if (building != null && player != null && player.equals(building.getOwner())) {
-		houses[i].setEffect(getEffect());
+		houses[i].setEffect(shadow());
 	    } else {
 		houses[i].setEffect(null);
 	    }
