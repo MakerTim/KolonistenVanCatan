@@ -101,7 +101,7 @@ public class DicePane implements PaneHolder, UpdateDice, NotCloseable {
     }
 
     @Override
-    public void updateTranslation() {
+    public void updateConfig() {
 	if (isMyTurn) {
 	    throwLabel.setText(TranslationManager.translate("map.throwdice.clickToThrow"));
 	} else {

@@ -496,6 +496,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	    runs.add(() -> {
 		try {
 		    pl.getUpdateable(UpdateMap.class).updateTrades(getTrades());
+		} catch (NullPointerException npe) {
 		} catch (Exception ex) {
 		    ex.printStackTrace();
 		}
@@ -533,6 +534,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	    runs.add(() -> {
 		try {
 		    pl.getUpdateable(UpdateMap.class).updateTurn(getTurn(), state);
+		} catch (NullPointerException npe) {
 		} catch (Exception ex) {
 		    ex.printStackTrace();
 		}
@@ -550,6 +552,7 @@ public class ServerKolonistenVanCatan implements KolonistenVanCatan {
 	    runs.add(() -> {
 		try {
 		    pl.getUpdateable(UpdateMap.class).updatePlayerOrder(getPlayersOrded());
+		} catch (NullPointerException npe) {
 		} catch (Exception ex) {
 		    ex.printStackTrace();
 		}

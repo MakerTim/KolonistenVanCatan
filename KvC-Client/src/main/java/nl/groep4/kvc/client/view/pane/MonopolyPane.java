@@ -1,5 +1,9 @@
 package nl.groep4.kvc.client.view.pane;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
@@ -17,8 +21,10 @@ import nl.groep4.kvc.client.view.elements.KvCText;
 import nl.groep4.kvc.client.view.elements.ResourceCard;
 import nl.groep4.kvc.client.view.scene.SceneMap;
 import nl.groep4.kvc.common.enumeration.Resource;
+import nl.groep4.kvc.common.interfaces.Card;
 import nl.groep4.kvc.common.interfaces.NotCloseable;
 import nl.groep4.kvc.common.interfaces.Player;
+import nl.groep4.kvc.common.interfaces.UpdateStock;
 
 /**
  * The pane when a monopoly card (development card) is used.
@@ -26,7 +32,7 @@ import nl.groep4.kvc.common.interfaces.Player;
  * @author Lisa
  * @version 1.2
  */
-public class MonopolyPane implements PaneHolder, NotCloseable {
+public class MonopolyPane implements PaneHolder, NotCloseable, UpdateStock {
     private Font font = new Font(ViewMaster.FONT.getName(), 30);
     private Font font2 = new Font(ViewMaster.FONT.getName(), 50);
 
@@ -37,12 +43,6 @@ public class MonopolyPane implements PaneHolder, NotCloseable {
     private Text woolAmount = new KvCText("0");
     private Text wheatAmount = new KvCText("0");
     private Text oreAmount = new KvCText("0");
-
-    private int woodam = 0;
-    private int stoneam = 0;
-    private int woolam = 0;
-    private int wheatam = 0;
-    private int oream = 0;
 
     private ResourceCard cards;
     private VBox woodText;
@@ -83,42 +83,6 @@ public class MonopolyPane implements PaneHolder, NotCloseable {
 	wheatAmount.setFont(ViewMaster.TITLE_FONT);
 	oreAmount.setFont(ViewMaster.TITLE_FONT);
 
-	for (Resource resourceType : Resource.values()) {
-	    for (Player player : scenemap.getController().getPlayers()) {
-		if (player.equals(ClientRefrence.getThePlayer())) {
-		    continue;
-		}
-		try {
-		    switch (resourceType) {
-		    case BRICK:
-			stoneam += player.getResourceAmount(resourceType);
-			break;
-		    case ORE:
-			oream += player.getResourceAmount(resourceType);
-			break;
-		    case WHEAT:
-			wheatam += player.getResourceAmount(resourceType);
-			break;
-		    case WOOD:
-			woodam += player.getResourceAmount(resourceType);
-			break;
-		    case WOOL:
-			woolam += player.getResourceAmount(resourceType);
-			break;
-		    }
-		} catch (Exception e) {
-
-		    e.printStackTrace();
-		}
-	    }
-	}
-
-	woodAmount.setText(Integer.toString(woodam));
-	stoneAmount.setText(Integer.toString(stoneam));
-	woolAmount.setText(Integer.toString(woolam));
-	wheatAmount.setText(Integer.toString(wheatam));
-	oreAmount.setText(Integer.toString(oream));
-
 	woodText = new VBox();
 	wheatText = new VBox();
 	oreText = new VBox();
@@ -149,6 +113,8 @@ public class MonopolyPane implements PaneHolder, NotCloseable {
 	stoneText.getChildren().addAll(stoneAmount, cards.getStoneName());
 	woolText.setAlignment(Pos.CENTER);
 	woolText.getChildren().addAll(woolAmount, cards.getWoolName());
+
+	updateStock(ClientRefrence.getThePlayer(), new HashMap<>());
 
 	wood.getChildren().addAll(cards.getWoodCard(), woodText);
 	wheat.getChildren().addAll(cards.getWheatCard(), wheatText);
@@ -211,10 +177,58 @@ public class MonopolyPane implements PaneHolder, NotCloseable {
     }
 
     @Override
-    public void updateTranslation() {
+    public void updateConfig() {
 	choice.setText(TranslationManager.translate("monopoly.text.choice"));
 	monopoly.setText(TranslationManager.translate("monopoly.text.monopoly"));
 
     }
 
+    @Override
+    public void updateStock(Player pl, Map<Resource, Integer> resources) {
+
+	int woodam = 0;
+	int stoneam = 0;
+	int woolam = 0;
+	int wheatam = 0;
+	int oream = 0;
+
+	for (Resource resourceType : Resource.values()) {
+	    for (Player player : scenemap.getController().getPlayers()) {
+		if (player.equals(ClientRefrence.getThePlayer())) {
+		    continue;
+		}
+		try {
+		    switch (resourceType) {
+		    case BRICK:
+			stoneam += player.getResourceAmount(resourceType);
+			break;
+		    case ORE:
+			oream += player.getResourceAmount(resourceType);
+			break;
+		    case WHEAT:
+			wheatam += player.getResourceAmount(resourceType);
+			break;
+		    case WOOD:
+			woodam += player.getResourceAmount(resourceType);
+			break;
+		    case WOOL:
+			woolam += player.getResourceAmount(resourceType);
+			break;
+		    }
+		} catch (Exception e) {
+
+		    e.printStackTrace();
+		}
+	    }
+	}
+	woodAmount.setText(Integer.toString(woodam));
+	stoneAmount.setText(Integer.toString(stoneam));
+	woolAmount.setText(Integer.toString(woolam));
+	wheatAmount.setText(Integer.toString(wheatam));
+	oreAmount.setText(Integer.toString(oream));
+    }
+
+    @Override
+    public void updateStock(Player pl, List<Card> cards) {
+    }
 }

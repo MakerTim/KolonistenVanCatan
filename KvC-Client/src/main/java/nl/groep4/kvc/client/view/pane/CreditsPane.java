@@ -104,7 +104,7 @@ public class CreditsPane implements PaneHolder {
     }
 
     @Override
-    public void updateTranslation() {
+    public void updateConfig() {
 
 	credits.setText(TranslationManager.translate("credits.text.credits"));
 	back.updateText(TranslationManager.translate("credits.button.back"));

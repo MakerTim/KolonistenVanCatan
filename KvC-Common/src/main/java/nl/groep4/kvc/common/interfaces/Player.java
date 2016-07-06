@@ -176,8 +176,10 @@ public interface Player extends Remote {
      * @return The view.
      * @throws RemoteException
      *             Any remotely invoked method.
+     * @throws NullPointerException
+     *             When the player has no view open.
      */
-    public Updatable<?> getUpdateable() throws RemoteException;
+    public Updatable<?> getUpdateable() throws RemoteException, NullPointerException;
 
     /**
      * General method to update.
@@ -189,8 +191,13 @@ public interface Player extends Remote {
      * @return The view of the game.
      * @throws RemoteException
      *             Any remotely invoked method.
+     * @throws ClassCastException
+     *             When the client has not that view open.
+     * @throws NullPointerException
+     *             When the player has no view open.
      */
-    public default <T extends Updatable<?>> T getUpdateable(Class<T> type) throws RemoteException {
+    public default <T extends Updatable<?>> T getUpdateable(Class<T> type)
+	    throws RemoteException, NullPointerException, ClassCastException {
 	return (T) getUpdateable();
     }
 

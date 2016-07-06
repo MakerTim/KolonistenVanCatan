@@ -181,7 +181,7 @@ gamenote.noresources.explanation:Sie verfügen nicht über genügend Ressourcen
 gamenote.noresources.details:Exception: 503 Service Unavailable
 gamenote.nocards.title:Nicht genügend Karten
 gamenote.nocards.explanation:Sie haben nicht genug Karten
-gamenote.nocard.details:Exception: 503 Service Unavailable
+gamenote.nocards.details:Exception: 503 Service Unavailable
 gamenote.noowner.title:Nicht der Besitzer
 gamenote.noowner.explanation:Sie sind nicht der Eigentümer dieses Gebäudes
 gamenote.noowner.details:Exception: 503 Service Unavailable

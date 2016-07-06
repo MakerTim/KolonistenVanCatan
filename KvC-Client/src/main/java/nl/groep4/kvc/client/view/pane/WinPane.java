@@ -143,7 +143,7 @@ public class WinPane implements PaneHolder, NotCloseable {
     }
 
     @Override
-    public void updateTranslation() {
+    public void updateConfig() {
 	credits.updateText(TranslationManager.translate("win.button.credits"));
 	close.updateText(TranslationManager.translate("win.button.close"));
 	screenshot.updateText(TranslationManager.translate("win.button.screenshot"));

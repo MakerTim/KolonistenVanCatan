@@ -101,7 +101,7 @@ public class RulesPane implements PaneHolder {
     }
 
     @Override
-    public void updateTranslation() {
+    public void updateConfig() {
 	rules.setText(TranslationManager.translate("rules.text.rules"));
 	back.updateText(TranslationManager.translate("rules.button.back"));
     }

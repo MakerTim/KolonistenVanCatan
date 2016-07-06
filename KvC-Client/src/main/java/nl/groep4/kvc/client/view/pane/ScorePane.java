@@ -111,7 +111,7 @@ public class ScorePane implements PaneHolder, UpdateStock, UpdatePlayerOrder, Up
     }
 
     @Override
-    public void updateTranslation() {
+    public void updateConfig() {
     }
 
     @Override

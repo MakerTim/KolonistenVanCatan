@@ -58,8 +58,14 @@ import nl.groep4.kvc.common.interfaces.Card;
 import nl.groep4.kvc.common.interfaces.NotCloseable;
 import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.interfaces.Trade;
+import nl.groep4.kvc.common.interfaces.UpdateCosts;
 import nl.groep4.kvc.common.interfaces.UpdateDice;
 import nl.groep4.kvc.common.interfaces.UpdateMap;
+import nl.groep4.kvc.common.interfaces.UpdatePlayerOrder;
+import nl.groep4.kvc.common.interfaces.UpdateRound;
+import nl.groep4.kvc.common.interfaces.UpdateScore;
+import nl.groep4.kvc.common.interfaces.UpdateStock;
+import nl.groep4.kvc.common.interfaces.UpdateTrade;
 import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Map;
 import nl.groep4.kvc.common.map.Street;
@@ -104,8 +110,10 @@ public class SceneMap implements SceneHolder, UpdateMap {
 
     @Override
     public Scene getScene() {
-	SoundUtil.stopThemesong();
-	SoundUtil.playGamesong();
+	if (SoundUtil.themesongIsPlaying()) {
+	    SoundUtil.stopThemesong();
+	    Scheduler.runSyncLater(() -> SoundUtil.playThemesong(), 100L);
+	}
 	if (layers == null) {
 	    /* Build layer for the design */
 	    layers = new StackPane();
@@ -138,8 +146,8 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    optionButton = new MenuButton(TranslationManager.translate("game.button.settings"));
 	    nxtButton.setFont(ViewMaster.FONT);
 	    optionButton.setFont(ViewMaster.FONT);
-	    nxtButton.setOnMouseClicked(mouse -> onNxtTurnClick());
-	    optionButton.setOnMouseClicked(mouse -> onOptionClick());
+	    nxtButton.registerClick(() -> onNxtTurnClick());
+	    optionButton.registerClick(() -> onOptionClick());
 	    optionPane.setAlignment(Pos.BOTTOM_RIGHT);
 	    optionPane.getChildren().addAll(nxtButton, optionButton);
 
@@ -152,10 +160,10 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    buildButton.setFont(ViewMaster.FONT);
 	    tradeButton.setFont(ViewMaster.FONT);
 	    buyButton.setFont(ViewMaster.FONT);
-	    resourceButton.setOnMouseClicked(mouse -> onToggleResourceClick());
-	    buildButton.setOnMouseClicked(mouse -> onBuildClick());
-	    tradeButton.setOnMouseClicked(mouse -> onTradeClick());
-	    buyButton.setOnMouseClicked(mouse -> onBuyClick());
+	    resourceButton.registerClick(() -> onToggleResourceClick());
+	    buildButton.registerClick(() -> onBuildClick());
+	    tradeButton.registerClick(() -> onTradeClick());
+	    buyButton.registerClick(() -> onBuyClick());
 
 	    buttons.setAlignment(Pos.BOTTOM_RIGHT);
 	    buttons.getChildren().addAll(resourceButton, buildButton, tradeButton, buyButton);
@@ -337,7 +345,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
 		theOverlayBackground = new Rectangle(0, 0, ViewMaster.GAME_WIDHT, ViewMaster.GAME_HEIGHT);
 		theOverlayBackground.setFill(new Color(0.1, 0.1, 0.1, 0.5));
 		if (!(paneHolder instanceof NotCloseable)) {
-		    theOverlayBackground.setOnMouseClicked(click -> closeOverlay());
+		    theOverlayBackground.setOnMouseClicked(mouse -> closeOverlay());
 		}
 		layers.getChildren().add(theOverlayBackground);
 		layers.getChildren().add(theOverlayPane);
@@ -373,15 +381,15 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    tradeButton.updateText(TranslationManager.translate("game.button.trade"));
 	    buyButton.updateText(TranslationManager.translate("game.button.buy"));
 	    if (overlayPaneHolder != null) {
-		overlayPaneHolder.updateTranslation();
+		overlayPaneHolder.updateConfig();
 	    }
-	    gamepane.updateTranslation();
-	    stockPane.updateTranslation();
-	    scorePane.updateTranslation();
-	    infoPane.updateTranslation();
-	    buildPane.updateTranslation();
-	    tradePane.updateTranslation();
-	    buyPane.updateTranslation();
+	    gamepane.updateConfig();
+	    stockPane.updateConfig();
+	    scorePane.updateConfig();
+	    infoPane.updateConfig();
+	    buildPane.updateConfig();
+	    tradePane.updateConfig();
+	    buyPane.updateConfig();
 	});
     }
 
@@ -415,6 +423,15 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    stockPane.updateStock(pl, resources);
 	    playerPane.updateStock(pl, resources);
 	});
+	Platform.runLater(() -> {
+	    try {
+		if (overlayPaneHolder instanceof UpdateStock) {
+		    ((UpdateStock) overlayPaneHolder).updateStock(pl, resources);
+		}
+	    } catch (Exception ex) {
+		ex.printStackTrace();
+	    }
+	});
     }
 
     @Override
@@ -422,6 +439,15 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	Platform.runLater(() -> {
 	    stockPane.updateStock(pl, cards);
 	    playerPane.updateStock(pl, cards);
+	});
+	Platform.runLater(() -> {
+	    try {
+		if (overlayPaneHolder instanceof UpdateStock) {
+		    ((UpdateStock) overlayPaneHolder).updateStock(pl, cards);
+		}
+	    } catch (Exception ex) {
+		ex.printStackTrace();
+	    }
 	});
     }
 
@@ -446,6 +472,15 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    } catch (RemoteException ex) {
 		ex.printStackTrace();
 	    }
+	    Platform.runLater(() -> {
+		try {
+		    if (overlayPaneHolder instanceof UpdateCosts) {
+			((UpdateCosts) overlayPaneHolder).updateStreetCosts(resources);
+		    }
+		} catch (Exception ex) {
+		    ex.printStackTrace();
+		}
+	    });
 	});
     }
 
@@ -458,6 +493,15 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    } catch (RemoteException ex) {
 		ex.printStackTrace();
 	    }
+	    Platform.runLater(() -> {
+		try {
+		    if (overlayPaneHolder instanceof UpdateCosts) {
+			((UpdateCosts) overlayPaneHolder).updateVillageCosts(resources);
+		    }
+		} catch (Exception ex) {
+		    ex.printStackTrace();
+		}
+	    });
 	});
     }
 
@@ -470,6 +514,15 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    } catch (Exception ex) {
 		ex.printStackTrace();
 	    }
+	    Platform.runLater(() -> {
+		try {
+		    if (overlayPaneHolder instanceof UpdateCosts) {
+			((UpdateCosts) overlayPaneHolder).updateCardCosts(resources);
+		    }
+		} catch (Exception ex) {
+		    ex.printStackTrace();
+		}
+	    });
 	});
     }
 
@@ -481,6 +534,15 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    } catch (Exception ex) {
 		ex.printStackTrace();
 	    }
+	    Platform.runLater(() -> {
+		try {
+		    if (overlayPaneHolder instanceof UpdateTrade) {
+			((UpdateTrade) overlayPaneHolder).updateTrades(allTrades);
+		    }
+		} catch (Exception ex) {
+		    ex.printStackTrace();
+		}
+	    });
 	});
     }
 
@@ -493,6 +555,15 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    } catch (RemoteException ex) {
 		ex.printStackTrace();
 	    }
+	    Platform.runLater(() -> {
+		try {
+		    if (overlayPaneHolder instanceof UpdateRound) {
+			((UpdateRound) overlayPaneHolder).updateRound(round);
+		    }
+		} catch (Exception ex) {
+		    ex.printStackTrace();
+		}
+	    });
 	});
     }
 
@@ -505,6 +576,15 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    } catch (RemoteException ex) {
 		ex.printStackTrace();
 	    }
+	    Platform.runLater(() -> {
+		try {
+		    if (overlayPaneHolder instanceof UpdateRound) {
+			((UpdateRound) overlayPaneHolder).updateTurn(who, what);
+		    }
+		} catch (Exception ex) {
+		    ex.printStackTrace();
+		}
+	    });
 	});
     }
 
@@ -517,6 +597,15 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    } catch (RemoteException ex) {
 		ex.printStackTrace();
 	    }
+	    Platform.runLater(() -> {
+		try {
+		    if (overlayPaneHolder instanceof UpdateScore) {
+			((UpdateScore) overlayPaneHolder).updateScore(pl, score);
+		    }
+		} catch (Exception ex) {
+		    ex.printStackTrace();
+		}
+	    });
 	});
     }
 
@@ -579,6 +668,15 @@ public class SceneMap implements SceneHolder, UpdateMap {
     @Override
     public void updatePlayerOrder(List<Player> order) {
 	Platform.runLater(() -> playerPane.updatePlayerOrder(order));
+	Platform.runLater(() -> {
+	    try {
+		if (overlayPaneHolder instanceof UpdatePlayerOrder) {
+		    ((UpdatePlayerOrder) overlayPaneHolder).updatePlayerOrder(order);
+		}
+	    } catch (Exception ex) {
+		ex.printStackTrace();
+	    }
+	});
     }
 
     @Override

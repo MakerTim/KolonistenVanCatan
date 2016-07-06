@@ -28,6 +28,7 @@ public class RmiServer {
      * @param port
      *            Port which the server listens to.
      * @param host
+     *            The host name where the server will register to.
      */
     public static void init(int port, String host) {
 	try {

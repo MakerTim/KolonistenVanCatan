@@ -135,7 +135,7 @@ public class BuyPane implements PaneHolder, UpdateCosts {
     }
 
     @Override
-    public void updateTranslation() {
+    public void updateConfig() {
 	brick.setText(TranslationManager.translate("buypane.text.brick"));
 	wool.setText(TranslationManager.translate("buypane.text.wool"));
 	wheat.setText(TranslationManager.translate("buypane.text.wheat"));

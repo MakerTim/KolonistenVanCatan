@@ -11,6 +11,8 @@ import javafx.beans.binding.FloatExpression;
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.ReadOnlyFloatWrapper;
 import nl.groep4.kvc.client.controller.ClientRefrence;
+import nl.groep4.kvc.client.view.ViewMaster;
+import nl.groep4.kvc.common.interfaces.UpdateMap;
 
 /**
  * Controls all the sounds in the game.
@@ -23,7 +25,6 @@ public class SoundUtil {
     private static final float VOLUME_LEVEL = 30F;
     private static FloatExpression volume = new ReadOnlyFloatWrapper(0F);
     private static Clip teamsongKvC;
-    private static Clip playMusic;
 
     /**
      * Sound that will be played when user clicks on the button "End turn".
@@ -44,20 +45,13 @@ public class SoundUtil {
      */
     public static void playThemesong() {
 	stopThemesong();
-	teamsongKvC = playSound("sound/themesongKvC.wav");
+	if (ViewMaster.getLastScene() instanceof UpdateMap) {
+	    teamsongKvC = playSound("sound/playMusic.wav");
+	} else {
+	    teamsongKvC = playSound("sound/themesongKvC.wav");
+	}
 	if (teamsongKvC != null) {
 	    teamsongKvC.loop(Clip.LOOP_CONTINUOUSLY);
-	}
-    }
-
-    /**
-     * Plays music file when the player is in game.
-     */
-    public static void playGamesong() {
-	stopThemesong();
-	playMusic = playSound("sound/playMusic.wav");
-	if (playMusic != null) {
-	    playMusic.loop(Clip.LOOP_CONTINUOUSLY);
 	}
     }
 

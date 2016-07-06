@@ -214,7 +214,7 @@ public class PlaceTradePane implements PaneHolder {
     }
 
     @Override
-    public void updateTranslation() {
+    public void updateConfig() {
 	place.updateText(TranslationManager.translate("trade.button.place"));
 	back.updateText(TranslationManager.translate("trade.button.back"));
 	search.setText(TranslationManager.translate("trade.text.search"));
