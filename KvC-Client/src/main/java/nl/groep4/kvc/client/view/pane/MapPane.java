@@ -17,6 +17,7 @@ import nl.groep4.kvc.common.enumeration.BuildingType;
 import nl.groep4.kvc.common.enumeration.Direction;
 import nl.groep4.kvc.common.enumeration.Point;
 import nl.groep4.kvc.common.enumeration.SelectState;
+import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Map;
@@ -67,6 +68,17 @@ public class MapPane implements PaneHolder {
      */
     public void registerController(MapController controller) {
 	tiles.forEach(tile -> tile.setController(controller));
+    }
+
+    /**
+     * Highlights all ownables from the map of the given player
+     * 
+     * @param player
+     *            The player that will be highlighted, if null remove all
+     *            highlight
+     */
+    public void highlightPlayer(Player player) {
+	tiles.forEach(tile -> tile.highlightPlayer(player));
     }
 
     @Override

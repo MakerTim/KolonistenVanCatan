@@ -22,6 +22,7 @@ import nl.groep4.kvc.common.enumeration.BuildingType;
 import nl.groep4.kvc.common.enumeration.Direction;
 import nl.groep4.kvc.common.enumeration.Point;
 import nl.groep4.kvc.common.enumeration.SelectState;
+import nl.groep4.kvc.common.interfaces.Player;
 import nl.groep4.kvc.common.map.Building;
 import nl.groep4.kvc.common.map.Coordinate;
 import nl.groep4.kvc.common.map.Street;
@@ -179,6 +180,32 @@ public class ClientTile extends StackPane {
      */
     public void setController(MapController controller) {
 	this.controller = controller;
+    }
+
+    /**
+     * Highlights all ownables from the map of the given player
+     * 
+     * @param player
+     *            The player that will be highlighted, if null remove all
+     *            highlight
+     */
+    public void highlightPlayer(Player player) {
+	for (int i = 0; i < lines.length; i++) {
+	    Street street = tile.getStreet(Direction.values()[i]);
+	    if (street != null && player != null && player.equals(street.getOwner())) {
+		lines[i].setEffect(getEffect());
+	    } else {
+		lines[i].setEffect(null);
+	    }
+	}
+	for (int i = 0; i < houses.length; i++) {
+	    Building building = tile.getBuilding(CollectionUtil.getInRange(Point.values(), i + 4));
+	    if (building != null && player != null && player.equals(building.getOwner())) {
+		houses[i].setEffect(getEffect());
+	    } else {
+		houses[i].setEffect(null);
+	    }
+	}
     }
 
     private void renderTile() {

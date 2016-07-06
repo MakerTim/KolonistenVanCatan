@@ -82,7 +82,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
     public static /* final */ double scale = 100/* px */;
 
     private MapController controller;
-    private PaneHolder overlayPane = null;
+    private PaneHolder overlayPaneHolder = null;
     private Pane theOverlayPane = null;
     private Rectangle theOverlayBackground = null;
     private MapPane gamepane = new MapPane();
@@ -128,7 +128,7 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    buildPane = new BuildPane(this);
 	    tradePane = new TradePane(this);
 	    buyPane = new BuyPane(this);
-	    playerPane = new ScorePane();
+	    playerPane = new ScorePane(this);
 
 	    /* Build top */
 	    BorderPane top = new BorderPane();
@@ -327,33 +327,34 @@ public class SceneMap implements SceneHolder, UpdateMap {
     /**
      * Overlays other panes.
      * 
-     * @param pane
+     * @param paneHolder
      *            To overlay.
      */
-    public void setOverlay(PaneHolder pane) {
+    public void setOverlay(PaneHolder paneHolder) {
 	Scheduler.runSync(() -> {
 	    if (theOverlayPane != null) {
 		layers.getChildren().remove(theOverlayBackground);
 		layers.getChildren().remove(theOverlayPane);
 	    }
-	    if (pane != null) {
-		theOverlayPane = pane.getPane();
+	    if (paneHolder != null) {
+		theOverlayPane = paneHolder.getPane();
 		theOverlayPane.setPickOnBounds(false);
 		for (Node node : theOverlayPane.getChildren()) {
 		    node.setPickOnBounds(false);
 		}
 		theOverlayBackground = new Rectangle(0, 0, ViewMaster.GAME_WIDHT, ViewMaster.GAME_HEIGHT);
 		theOverlayBackground.setFill(new Color(0.1, 0.1, 0.1, 0.5));
-		if (!(pane instanceof NotCloseable)) {
+		if (!(paneHolder instanceof NotCloseable)) {
 		    theOverlayBackground.setOnMouseClicked(mouse -> closeOverlay());
 		}
 		layers.getChildren().add(theOverlayBackground);
 		layers.getChildren().add(theOverlayPane);
 		SceneUtil.fadeIn(theOverlayPane);
+		playerPane.hoverOut();
 	    } else {
 		theOverlayPane = null;
 	    }
-	    overlayPane = pane;
+	    overlayPaneHolder = paneHolder;
 	});
     }
 
@@ -379,8 +380,8 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    buildButton.updateText(TranslationManager.translate("game.button.build"));
 	    tradeButton.updateText(TranslationManager.translate("game.button.trade"));
 	    buyButton.updateText(TranslationManager.translate("game.button.buy"));
-	    if (overlayPane != null) {
-		overlayPane.updateConfig();
+	    if (overlayPaneHolder != null) {
+		overlayPaneHolder.updateConfig();
 	    }
 	    gamepane.updateConfig();
 	    stockPane.updateConfig();
@@ -390,6 +391,10 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    tradePane.updateConfig();
 	    buyPane.updateConfig();
 	});
+    }
+
+    public MapPane getGamepane() {
+	return gamepane;
     }
 
     @Override
@@ -420,8 +425,8 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	});
 	Platform.runLater(() -> {
 	    try {
-		if (overlayPane instanceof UpdateStock) {
-		    ((UpdateStock) overlayPane).updateStock(pl, resources);
+		if (overlayPaneHolder instanceof UpdateStock) {
+		    ((UpdateStock) overlayPaneHolder).updateStock(pl, resources);
 		}
 	    } catch (Exception ex) {
 		ex.printStackTrace();
@@ -437,8 +442,8 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	});
 	Platform.runLater(() -> {
 	    try {
-		if (overlayPane instanceof UpdateStock) {
-		    ((UpdateStock) overlayPane).updateStock(pl, cards);
+		if (overlayPaneHolder instanceof UpdateStock) {
+		    ((UpdateStock) overlayPaneHolder).updateStock(pl, cards);
 		}
 	    } catch (Exception ex) {
 		ex.printStackTrace();
@@ -469,8 +474,8 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    }
 	    Platform.runLater(() -> {
 		try {
-		    if (overlayPane instanceof UpdateCosts) {
-			((UpdateCosts) overlayPane).updateStreetCosts(resources);
+		    if (overlayPaneHolder instanceof UpdateCosts) {
+			((UpdateCosts) overlayPaneHolder).updateStreetCosts(resources);
 		    }
 		} catch (Exception ex) {
 		    ex.printStackTrace();
@@ -490,8 +495,8 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    }
 	    Platform.runLater(() -> {
 		try {
-		    if (overlayPane instanceof UpdateCosts) {
-			((UpdateCosts) overlayPane).updateVillageCosts(resources);
+		    if (overlayPaneHolder instanceof UpdateCosts) {
+			((UpdateCosts) overlayPaneHolder).updateVillageCosts(resources);
 		    }
 		} catch (Exception ex) {
 		    ex.printStackTrace();
@@ -511,8 +516,8 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    }
 	    Platform.runLater(() -> {
 		try {
-		    if (overlayPane instanceof UpdateCosts) {
-			((UpdateCosts) overlayPane).updateCardCosts(resources);
+		    if (overlayPaneHolder instanceof UpdateCosts) {
+			((UpdateCosts) overlayPaneHolder).updateCardCosts(resources);
 		    }
 		} catch (Exception ex) {
 		    ex.printStackTrace();
@@ -531,8 +536,8 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    }
 	    Platform.runLater(() -> {
 		try {
-		    if (overlayPane instanceof UpdateTrade) {
-			((UpdateTrade) overlayPane).updateTrades(allTrades);
+		    if (overlayPaneHolder instanceof UpdateTrade) {
+			((UpdateTrade) overlayPaneHolder).updateTrades(allTrades);
 		    }
 		} catch (Exception ex) {
 		    ex.printStackTrace();
@@ -552,8 +557,8 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    }
 	    Platform.runLater(() -> {
 		try {
-		    if (overlayPane instanceof UpdateRound) {
-			((UpdateRound) overlayPane).updateRound(round);
+		    if (overlayPaneHolder instanceof UpdateRound) {
+			((UpdateRound) overlayPaneHolder).updateRound(round);
 		    }
 		} catch (Exception ex) {
 		    ex.printStackTrace();
@@ -573,8 +578,8 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    }
 	    Platform.runLater(() -> {
 		try {
-		    if (overlayPane instanceof UpdateRound) {
-			((UpdateRound) overlayPane).updateTurn(who, what);
+		    if (overlayPaneHolder instanceof UpdateRound) {
+			((UpdateRound) overlayPaneHolder).updateTurn(who, what);
 		    }
 		} catch (Exception ex) {
 		    ex.printStackTrace();
@@ -594,8 +599,8 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	    }
 	    Platform.runLater(() -> {
 		try {
-		    if (overlayPane instanceof UpdateScore) {
-			((UpdateScore) overlayPane).updateScore(pl, score);
+		    if (overlayPaneHolder instanceof UpdateScore) {
+			((UpdateScore) overlayPaneHolder).updateScore(pl, score);
 		    }
 		} catch (Exception ex) {
 		    ex.printStackTrace();
@@ -639,9 +644,9 @@ public class SceneMap implements SceneHolder, UpdateMap {
     @Override
     public void updateDices(int dice1, int dice2) {
 	Platform.runLater(() -> {
-	    if (overlayPane instanceof UpdateDice) {
+	    if (overlayPaneHolder instanceof UpdateDice) {
 		try {
-		    ((UpdateDice) overlayPane).updateDices(dice1, dice2);
+		    ((UpdateDice) overlayPaneHolder).updateDices(dice1, dice2);
 		} catch (RemoteException ex) {
 		    ex.printStackTrace();
 		}
@@ -665,8 +670,8 @@ public class SceneMap implements SceneHolder, UpdateMap {
 	Platform.runLater(() -> playerPane.updatePlayerOrder(order));
 	Platform.runLater(() -> {
 	    try {
-		if (overlayPane instanceof UpdatePlayerOrder) {
-		    ((UpdatePlayerOrder) overlayPane).updatePlayerOrder(order);
+		if (overlayPaneHolder instanceof UpdatePlayerOrder) {
+		    ((UpdatePlayerOrder) overlayPaneHolder).updatePlayerOrder(order);
 		}
 	    } catch (Exception ex) {
 		ex.printStackTrace();
